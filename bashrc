@@ -14,7 +14,9 @@ alias ghci-sandbox="ghci -package-db .cabal-sandbox/*-packages.conf.d"
 
 ########## For git completion and prompt ##########
 
-source ~/.git-prompt.sh
+if [ -f ~/.git-prompt.sh ]; then
+	source ~/.git-prompt.sh
+fi
 
 # Unstaged (*) and staged (+) changes will be shown next to the branch name
 GIT_PS1_SHOWDIRTYSTATE=true

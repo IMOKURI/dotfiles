@@ -1,6 +1,5 @@
-[user]
-	name = IMOKURI
-	email = nenegi.01mo@gmail.com
+[include]
+	path = ~/.gitconfig.local
 [color]
 	ui = auto
 [push]
@@ -11,9 +10,5 @@
 	autosetuprebase = always
 [fetch]
 	prune = true
-[http]
-	proxy = http://proxy.jpn.hp.com:8080
-[https]
-	proxy = http://proxy.jpn.hp.com:8080
 [core]
 	editor = vim
