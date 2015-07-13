@@ -9,7 +9,9 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-alias ghci-sandbox="ghci -package-db .cabal-sandbox/*-packages.conf.d"
+alias ghc-sandbox="ghc -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
+alias ghci-sandbox="ghci -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
+alias runhaskell-sandbox="runhaskell -no-user-package-db -package-db .cabal-sandbox/*-packages.conf.d"
 
 
 ########## For git completion and prompt ##########
