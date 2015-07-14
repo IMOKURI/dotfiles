@@ -94,3 +94,17 @@ let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 
+" *.hsのファイルを保存するときにコンパイルエラー・ワーニングをチェックする
+" 開いたquickfixの画面は :ccl で閉じる
+autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+
+" <Space>g をghcmod-vimプラグインのprefixキーにする
+nnoremap [ghcmod] <Nop>
+nmap     <Space>g [ghcmod]
+
+" <Space>gt を :GhcModType に割り当てる
+nnoremap <silent> [ghcmod]t :GhcModType<CR>
+
+" <Space>gc を :GhcModTypeClear に割り当てる
+nnoremap <silent> [ghcmod]c :GhcModTypeClear<CR>
+
