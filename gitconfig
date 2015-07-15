@@ -1,14 +1,18 @@
 [include]
 	path = ~/.gitconfig.local
+[core]
+	editor = vim
 [color]
 	ui = auto
 [push]
 	default = current
+[fetch]
+	prune = true
 [merge]
 	ff = false
 [branch]
 	autosetuprebase = always
-[fetch]
-	prune = true
-[core]
-	editor = vim
+[branch "master"]
+	rebase = true
+[pull]
+	rebase = preserve
