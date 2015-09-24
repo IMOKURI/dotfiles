@@ -13,6 +13,20 @@ alias ghc-sandbox="ghc -package-db .cabal-sandbox/*-packages.conf.d"
 alias ghci-sandbox="ghci -package-db .cabal-sandbox/*-packages.conf.d"
 alias runhaskell-sandbox="runhaskell -package-db .cabal-sandbox/*-packages.conf.d"
 
+# Use temporary work space
+tmpspace() {
+  (
+  d=$(mktemp -d) && cd "$d" || exit 1
+  "$SHELL"
+  s=$?
+  if [[ $s == 0 ]]; then
+    rm -rf "$d"
+  else
+    echo "Directory '$d' still exists." >&2
+  fi
+  exit $s
+  )
+}
 
 ########## For git completion and prompt ##########
 
