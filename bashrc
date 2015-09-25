@@ -2,7 +2,12 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
+fi
+
+# Source local definitions
+if [ -f ~/.bashrc.local ]; then
+  . ~/.bashrc.local
 fi
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
