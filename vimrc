@@ -10,8 +10,8 @@ set number
 "コードの色分け
 syntax on
 
-"インデントをスペース4つ分に設定
-set tabstop=4
+"インデントをスペース2つ分に設定
+set tabstop=2
 
 "オートインデント無効化
 set noautoindent
@@ -81,7 +81,7 @@ NeoBundle 'eagletmt/ghcmod-vim'
 
 call neobundle#end()
 
-filetype plugin indent on       " restore filetype
+filetype plugin on       " restore filetype
 
 
 NeoBundleCheck
