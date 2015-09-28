@@ -78,6 +78,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'kana/vim-filetype-haskell'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'eagletmt/ghcmod-vim'
+NeoBundle 'pbrisbin/vim-syntax-shakespeare'
 
 call neobundle#end()
 
