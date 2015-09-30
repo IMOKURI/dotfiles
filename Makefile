@@ -1,20 +1,22 @@
-DOTFILES_EXCLUDES := README.md LICENSE Makefile $(wildcard .??*) $(wildcard cabal.*)
-DOTFILES_TARGET   := $(shell ls)
-DOTFILES_FILES    := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
+DOTFILES_EXCLUDES    := README.md LICENSE Makefile $(wildcard .??*) $(wildcard cabal.*)
+DOTFILES_TARGET      := $(shell ls)
+DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
+HASKELL_BIN_TARGET   := $(shell ls .cabal-sandbox/bin/)
 
 all: install
 
-install: update deploy init
+install: update haskell-setup deploy
 
 help:
 	@echo "make list           #=> Show file list for deployment"
 	@echo "make update         #=> Fetch changes for this repo"
+	@echo "make haskell-setup  #=> Setup Haskell packages"
 	@echo "make deploy         #=> Create symlink to home directory"
-	@echo "make init           #=> Setup environment settings"
-	@echo "make install        #=> Run make update, deploy, init"
+	@echo "make install        #=> Run make update, haskell-setup, deploy"
 
 list:
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
+	@$(foreach val, $(HASKELL_BIN_TARGET), ls -dF .cabal-sandbox/bin/$(val);)
 
 update:
 	git pull origin master
@@ -22,13 +24,13 @@ update:
 	git submodule update
 	git submodule foreach git pull origin master
 
-deploy:
-	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
-	@if [ -d ".cabal-sandbox/bin/" ]; then ln -sfnv `pwd`/.cabal-sandbox/bin ~/.local/bin; fi
-
-init:
+haskell-setup:
 	cabal update
 	cabal sandbox init
 	cabal install ghc-mod
-	ln -sfnv `pwd`/.cabal-sandbox/bin ~/.local/bin
+
+deploy:
+	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
+	@if [ ! -d "~/.local/bin/" ]; then mkdir -p ~/.local/bin; fi
+	@$(foreach val, $(HASKELL_BIN_TARGET), ln -sfnv $(abspath .cabal-sandbox/bin/$(val)) $(HOME)/.local/bin/$(val);)
 
