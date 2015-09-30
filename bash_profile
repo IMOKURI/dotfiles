@@ -12,7 +12,7 @@ fi
 
 # User specific environment and startup programs
 
-export PATH=$HOME/.cabal/bin:$PATH:$HOME/.local/bin:$HOME/bin
+export PATH=$HOME/.cabal/bin:$HOME/.local/bin:$HOME/bin:$PATH
 
 # Welcome message
 if type figlet > /dev/null 2>&1; then
