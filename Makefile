@@ -23,7 +23,8 @@ update:
 	git submodule foreach git pull origin master
 
 haskell-setup:
-	stack install ghc-mod
+	stack setup
+	stack install cabal-helper ghc-mod
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
