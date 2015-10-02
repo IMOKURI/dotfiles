@@ -5,18 +5,8 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-# Source local definitions
-if [ -f ~/.bashrc.local ]; then
-  . ~/.bashrc.local
-fi
-
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-alias ghc-sandbox="ghc -package-db .cabal-sandbox/*-packages.conf.d"
-alias ghci-sandbox="ghci -package-db .cabal-sandbox/*-packages.conf.d"
-alias runhaskell-sandbox="runhaskell -package-db .cabal-sandbox/*-packages.conf.d"
 
 # Use temporary work space
 tmpspace() {

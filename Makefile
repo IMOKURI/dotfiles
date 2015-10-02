@@ -1,7 +1,6 @@
-DOTFILES_EXCLUDES    := README.md LICENSE Makefile $(wildcard .??*) $(wildcard cabal.*)
+DOTFILES_EXCLUDES    := README.md LICENSE Makefile $(wildcard .??*)
 DOTFILES_TARGET      := $(shell ls)
 DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
-HASKELL_BIN_TARGET   := $(shell ls .cabal-sandbox/bin/)
 
 all: install
 
@@ -16,7 +15,6 @@ help:
 
 list:
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
-	@$(foreach val, $(HASKELL_BIN_TARGET), ls -dF .cabal-sandbox/bin/$(val);)
 
 update:
 	git pull origin master
@@ -25,12 +23,8 @@ update:
 	git submodule foreach git pull origin master
 
 haskell-setup:
-	cabal update
-	cabal sandbox init
-	cabal install ghc-mod
+	stack install ghc-mod
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
-	@if [ ! -d "~/.local/bin/" ]; then mkdir -p ~/.local/bin; fi
-	@$(foreach val, $(HASKELL_BIN_TARGET), ln -sfnv $(abspath .cabal-sandbox/bin/$(val)) $(HOME)/.local/bin/$(val);)
 
