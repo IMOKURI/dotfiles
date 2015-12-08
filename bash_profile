@@ -14,6 +14,8 @@ fi
 
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
+export HEROKU_SSL_VERIFY=disable
+
 # Welcome message
 if type figlet > /dev/null 2>&1; then
 	figlet `uname -n`
