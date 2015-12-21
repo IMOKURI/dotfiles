@@ -12,7 +12,7 @@ fi
 
 # User specific environment and startup programs
 
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$HOME/node_modules/.bin:$PATH
 
 export HEROKU_SSL_VERIFY=disable
 

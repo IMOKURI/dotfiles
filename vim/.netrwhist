@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/github/yesod/keter/etc'
 let g:netrw_dirhist_2='/home/github/yesod/test-mysite/Settings'
 let g:netrw_dirhist_3='/home/github/gitit/plugins'
+let g:netrw_dirhist_4='/home/sugiyam/github/shogi-imokuri123-com/templates'
+let g:netrw_dirhist_5='/home/sugiyam/github/IMOKURI.github.io/_site/about'
+let g:netrw_dirhist_6='/home/sugiyam/github/IMOKURI.github.io/templates'
