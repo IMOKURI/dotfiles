@@ -50,3 +50,5 @@ GIT_PS1_SHOWSTASHSTATE=true
 # Set prompt
 PS1='\[\e[0;36m\][\u@\h \W]\[\e[0;35m\]$(__git_ps1)\[\e[0;36m\]\$\[\e[0m\] '
 
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
