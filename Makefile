@@ -24,7 +24,7 @@ update:
 
 haskell-setup:
 	stack setup
-	stack install cabal-helper ghc-mod
+	stack install ghc-mod hlint stylish-haskell
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
