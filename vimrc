@@ -97,6 +97,7 @@ let g:neocomplcache_enable_smart_case = 1
 
 " *.hsのファイルを保存するときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
+" 開いたquickfixの画面には :copen で移動する
 autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 
 " <Space>g をghcmod-vimプラグインのprefixキーにする
