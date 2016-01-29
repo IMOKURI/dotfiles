@@ -24,8 +24,11 @@ update:
 
 haskell-setup:
 	stack setup
-	stack install ghc-mod hlint stylish-haskell
+	stack install ghc-mod hlint stylish-haskell hoogle
+	hoogle data
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
+	chmod 700 ~/.ghc
+	chmod 600 ~/.ghc/ghci.conf
 
