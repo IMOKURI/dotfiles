@@ -14,5 +14,7 @@ fi
 
 export PATH=$HOME/.local/bin:$HOME/bin:$HOME/node_modules/.bin:/usr/local/heroku/bin:$PATH
 
+export EDITOR="vim"
+
 export HEROKU_SSL_VERIFY=disable
 
