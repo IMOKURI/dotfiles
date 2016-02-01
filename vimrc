@@ -7,14 +7,18 @@ set title
 "行番号を表示
 set number
 
+"カラースキーマ設定
+colorscheme torte
+
 "コードの色分け
 syntax on
 
 "インデントをスペース2つ分に設定
 set tabstop=2
 
-"オートインデント無効化
-set noautoindent
+"オートインデント有効化
+"ペースト時はインデントが入らないよう「:a!」でペーストモードにする
+set autoindent
 
 "改行時の自動コメントアウトを無効化
 autocmd FileType * setlocal formatoptions-=ro
@@ -72,18 +76,26 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundleFetch 'Shougo/neobundle-vim-recipes', {'force' : 1}
 
 " NeoBundleのプラグインインストール
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make -f make_unix.mak'}}
-NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'kana/vim-filetype-haskell'
-NeoBundle 'ujihisa/neco-ghc'
-NeoBundle 'eagletmt/ghcmod-vim'
-NeoBundle 'pbrisbin/vim-syntax-shakespeare'
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make -f make_unix.mak'}}  " 非同期処理
+
+NeoBundle 'Shougo/neocomplcache.vim'    " 入力補完 neo-completion with cache
+
+NeoBundle 'Shougo/neosnippet'           " スニペット
+NeoBundle 'Shougo/neosnippet-snippets'
+
+NeoBundle 'Shougo/unite.vim'            " 統合ユーザインターフェース
+
+NeoBundle 'ujihisa/unite-colorscheme'   " カラースキーマ一覧表示
+
+NeoBundle 'neovimhaskell/haskell-vim'   " Haskell シンタックスハイライト＆インデント
+NeoBundle 'ujihisa/neco-ghc'            " Haskell 入力補完
+NeoBundle 'eagletmt/ghcmod-vim'         " Haskell 構文チェック
 
 call neobundle#end()
 
-filetype plugin on       " restore filetype
-
+filetype plugin indent on
+filetype indent on
+syntax on
 
 NeoBundleCheck
 
@@ -95,7 +107,7 @@ let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 
-" *.hsのファイルを保存するときにコンパイルエラー・ワーニングをチェックする
+" *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
 " 開いたquickfixの画面には :copen で移動する
 autocmd BufWritePost *.hs GhcModCheckAndLintAsync
