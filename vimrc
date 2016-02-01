@@ -4,6 +4,9 @@
 "編集中のファイル名を表示
 set title
 
+"現在のモードを表示
+set showmode
+
 "行番号を表示
 set number
 
