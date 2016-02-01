@@ -16,9 +16,24 @@ syntax on
 "インデントをスペース2つ分に設定
 set tabstop=2
 
+"タブをスペース2つ分に設定
+set softtabstop=2
+
 "オートインデント有効化
 "ペースト時はインデントが入らないよう「:a!」でペーストモードにする
 set autoindent
+
+"スマートインデント有効化
+set smartindent
+
+"タブの代わりにスペースを使う
+set expandtab
+
+"スマートタブ有効化
+set smarttab
+
+"インデント1つにつき使うスペースの数
+set shiftwidth=2
 
 "改行時の自動コメントアウトを無効化
 autocmd FileType * setlocal formatoptions-=ro
