@@ -1,3 +1,6 @@
 [submodule "vim/bundle/neobundle.vim"]
 	path = vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim
+[submodule "themes/copernico-theme"]
+	path = themes/copernico-theme
+	url = https://github.com/mgyugcha/copernico-theme.git
