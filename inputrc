@@ -1,0 +1,4 @@
+$if Bash
+  set completion-ignore-case on
+  set visible-stats on
+$endif
