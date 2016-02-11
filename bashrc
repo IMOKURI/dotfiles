@@ -8,6 +8,18 @@ fi
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
+##### Set bash options #####
+
+# ディレクトリ名を入力した時、cdの引数に与えられたものとする
+shopt -s autocd
+
+# dotで始まるファイルをワイルドカードのマッチ対象に含める
+shopt -s dotglob
+
+# ** を指定すると、該当ディレクトリ以下のディレクトリを再帰的にマッチにする
+shopt -s globstar
+
+
 # Use temporary work space
 tmpspace() {
   (
