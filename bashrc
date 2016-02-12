@@ -38,6 +38,9 @@ tmpspace() {
 # Change directory to root of git repository
 alias cdgr='cd $(git rev-parse --show-cdup)'
 
+# Colorized cat
+alias c='pygmentize -g'
+
 ########## For git completion and prompt ##########
 
 if [ -f ~/.git-prompt.sh ]; then
