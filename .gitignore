@@ -1,2 +1,5 @@
-vim
+vim/*
+!vim/swp
+vim/swp/*
+!vim/swp/.gitkeep
 ghc/ghci_history

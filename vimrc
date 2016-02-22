@@ -78,6 +78,8 @@ nnoremap <ESC><ESC> :nohlsearch<CR>
 "ビープ音OFF
 set vb t_vb=
 
+"swpファイル出力先変更
+set directory=~/.vim/swp//
 
 "##### プラグインインストール #####
 
