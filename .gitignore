@@ -3,3 +3,4 @@ vim/*
 vim/swp/*
 !vim/swp/.gitkeep
 ghc/ghci_history
+themes/Paper

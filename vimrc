@@ -11,7 +11,7 @@ set showmode
 set number
 
 "カラースキーマ設定
-colorscheme torte
+colorscheme elflord
 
 "コードの色分け
 syntax on
