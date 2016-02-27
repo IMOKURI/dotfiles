@@ -111,6 +111,8 @@ NeoBundle 'neovimhaskell/haskell-vim'   " Haskell シンタックスハイライ
 NeoBundle 'ujihisa/neco-ghc'            " Haskell 入力補完
 NeoBundle 'eagletmt/ghcmod-vim'         " Haskell 構文チェック
 
+NeoBundle 'ConradIrwin/vim-bracketed-paste'  " ペースト時に自動的にpaste modeになる
+
 call neobundle#end()
 
 filetype plugin indent on
