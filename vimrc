@@ -81,45 +81,35 @@ set vb t_vb=
 "swpファイル出力先変更
 set directory=~/.vim/swp//
 
+
 "##### プラグインインストール #####
 
-set nocompatible
-filetype off  " for NeoBundle
+if &compatible
+  set nocompatible
+endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-if has('vim_starting')
-  set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
+call dein#begin(expand('~/.vim/dein'))
+
+" プラグインリストを収めた TOML ファイル
+let s:toml      = '~/.vim/rc/dein.toml'
+let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
+
+" TOML を読み込み、キャッシュする
+if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#save_cache()
 endif
 
-call neobundle#begin(expand('~/.vim/bundle'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleFetch 'Shougo/neobundle-vim-recipes', {'force' : 1}
-
-" NeoBundleのプラグインインストール
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make -f make_unix.mak'}}  " 非同期処理
-
-NeoBundle 'Shougo/neocomplcache.vim'    " 入力補完 neo-completion with cache
-
-NeoBundle 'Shougo/neosnippet'           " スニペット
-NeoBundle 'Shougo/neosnippet-snippets'
-
-NeoBundle 'Shougo/unite.vim'            " 統合ユーザインターフェース
-
-NeoBundle 'ujihisa/unite-colorscheme'   " カラースキーマ一覧表示
-
-NeoBundle 'neovimhaskell/haskell-vim'   " Haskell シンタックスハイライト＆インデント
-NeoBundle 'ujihisa/neco-ghc'            " Haskell 入力補完
-NeoBundle 'eagletmt/ghcmod-vim'         " Haskell 構文チェック
-
-NeoBundle 'ConradIrwin/vim-bracketed-paste'  " ペースト時に自動的にpaste modeになる
-
-call neobundle#end()
+call dein#end()
 
 filetype plugin indent on
-filetype indent on
-syntax on
 
-NeoBundleCheck
+if dein#check_install()
+  call dein#install()
+endif
+
 
 "##### プラグイン設定 #####
 

@@ -1,0 +1,34 @@
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = ['neosnippet-snippets']
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_path = '.*'
+
+[[plugins]]
+repo   = 'Shougo/unite.vim'
+depends = 'neomru.vim'
+
+[[plugins]]
+repo      = 'ujihisa/unite-colorscheme'
+on_source = ['unite.vim']
+
+[[plugins]]
+repo = 'eagletmt/neco-ghc'
+on_ft = 'haskell'
+external_commands = 'ghc-mod'
+
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim'
+on_ft = 'haskell'
+external_commands = 'ghc-mod'
+
+[[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+on_i = 1
