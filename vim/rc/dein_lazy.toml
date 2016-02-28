@@ -28,7 +28,3 @@ external_commands = 'ghc-mod'
 repo = 'eagletmt/ghcmod-vim'
 on_ft = 'haskell'
 external_commands = 'ghc-mod'
-
-[[plugins]]
-repo = 'ConradIrwin/vim-bracketed-paste'
-on_i = 1
