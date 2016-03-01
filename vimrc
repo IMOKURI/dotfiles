@@ -82,6 +82,12 @@ set vb t_vb=
 set directory=~/.vim/swp//
 
 
+"##### ショートカットキー設定 #####
+
+"root権限でファイルを保存する
+cmap w!! w !sudo tee > /dev/null %
+
+
 "##### プラグインインストール #####
 
 if &compatible
