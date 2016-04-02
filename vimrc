@@ -123,11 +123,11 @@ syntax on
 
 "##### プラグイン設定 #####
 
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 
 " *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
