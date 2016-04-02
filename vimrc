@@ -93,29 +93,32 @@ cmap w!! w !sudo tee > /dev/null %
 if &compatible
   set nocompatible
 endif
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('~/.vim/dein'))
+let s:dein_dir = expand('~/.vim/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_cache_dir = s:dein_dir . '/cache'
 
-" プラグインリストを収めた TOML ファイル
 let s:toml      = '~/.vim/rc/dein.toml'
 let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
 
-" TOML を読み込み、キャッシュする
-if dein#load_cache([expand('<sfile>'), s:toml, s:lazy_toml])
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  call dein#save_cache()
-endif
+execute 'set runtimepath^=' . s:dein_repo_dir
+
+call dein#load_state(s:dein_cache_dir)
+call dein#begin(s:dein_cache_dir)
+
+call dein#load_toml(s:toml,      {'lazy': 0})
+call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
 call dein#end()
-
-filetype plugin indent on
+call dein#save_state()
 
 if dein#check_install()
   call dein#install()
 endif
 
+filetype plugin indent on
+filetype indent on
+syntax on
 
 "##### プラグイン設定 #####
 
