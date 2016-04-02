@@ -29,10 +29,10 @@ set_proxy(){
 }
 
 while true; do
-  read -p "Do you wish to use proxy to download dotfiles?" yn
+  read -p "Do you wish to use proxy to download dotfiles? [n] " -e -i "n" yn
   case $yn in
     [Yy]* )
-      read -p "Please input proxy address and port(ex: http://proxy.example.com:8080)." proxy_uri
+      read -p "Please input proxy address and port(ex: http://proxy.example.com:8080). " proxy_uri
       set_proxy "$proxy_uri"
       break;;
     [Nn]* )
@@ -68,7 +68,7 @@ if [ $? -ne 0 ]; then
 fi
 
 while true; do
-  read -p "Do you wish to install haskell packages?" yn
+  read -p "Do you wish to install haskell packages? [n] " -e -i "n" yn
   case $yn in
     [Yy]* )
       if is_exist "stack"; then
