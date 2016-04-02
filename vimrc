@@ -103,14 +103,15 @@ let s:lazy_toml = '~/.vim/rc/dein_lazy.toml'
 
 execute 'set runtimepath^=' . s:dein_repo_dir
 
-call dein#load_state(s:dein_dir)
-call dein#begin(s:dein_dir)
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-call dein#load_toml(s:toml,      {'lazy': 0})
-call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-call dein#end()
-call dein#save_state()
+  call dein#end()
+  call dein#save_state()
+endif
 
 if dein#check_install()
   call dein#install()
