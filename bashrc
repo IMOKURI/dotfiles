@@ -10,33 +10,11 @@ fi
 
 ##### Set bash options #####
 
-# ディレクトリ名を入力した時、cdの引数に与えられたものとする
-shopt -s autocd
-
 # dotで始まるファイルをワイルドカードのマッチ対象に含める
 shopt -s dotglob
 
 # ** を指定すると、該当ディレクトリ以下のディレクトリを再帰的にマッチにする
 shopt -s globstar
-
-
-# Use temporary work space
-tmpspace() {
-  (
-  d=$(mktemp -d) && cd "$d" || exit 1
-  "$SHELL"
-  s=$?
-  if [[ $s == 0 ]]; then
-    rm -rf "$d"
-  else
-    echo "Directory '$d' still exists." >&2
-  fi
-  exit $s
-  )
-}
-
-# Change directory to root of git repository
-alias cdgr='cd $(git rev-parse --show-cdup)'
 
 # Colorized cat
 alias c='pygmentize -g'
