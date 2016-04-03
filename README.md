@@ -2,11 +2,11 @@
 
 ## Installation
 
-`bash -c "$(curl -fsSL https://git.io/imokuri123)"`
+`bash -c "$(curl -fsSL https://git.io/imokuri)"`
 
 or
 
-`bash -c "$(wget -qO - https://git.io/imokuri123)"`
+`bash -c "$(wget -qO - https://git.io/imokuri)"`
 
 ## Feature
 
