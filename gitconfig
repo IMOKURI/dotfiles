@@ -1,22 +1,36 @@
 [include]
 	path = ~/.gitconfig.local
+
+[user]
+  name = IMOKURI
+  email = nenegi.01mo@gmail.com
+
 [core]
 	editor = vim
+
 [color]
 	ui = auto
+
 [push]
 	default = current
+
 [fetch]
 	prune = true
+
 [merge]
 	ff = false
+
 [branch]
 	autosetuprebase = always
+
 [branch "master"]
 	rebase = true
+
 [pull]
 	rebase = preserve
+
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
+
 [alias]
   graph = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
