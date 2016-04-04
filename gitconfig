@@ -1,33 +1,33 @@
 [include]
-	path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
 
 [user]
   name = IMOKURI
   email = nenegi.01mo@gmail.com
 
 [core]
-	editor = vim
+  editor = vim
 
 [color]
-	ui = auto
+  ui = auto
 
 [push]
-	default = current
+  default = current
 
 [fetch]
-	prune = true
+  prune = true
 
 [merge]
-	ff = false
+  ff = false
 
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 
 [branch "master"]
-	rebase = true
+  rebase = true
 
 [pull]
-	rebase = preserve
+  rebase = preserve
 
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
