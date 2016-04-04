@@ -19,13 +19,13 @@ set_proxy(){
 
   cp ~/.gitconfig{,.local}
 
-  echo "proxy = \"$1\"" >> ~/.curlrc
+  echo "proxy = \"$1\"" > ~/.curlrc
 
-  echo "http_proxy=$1" >> ~/.wgetrc
+  echo "http_proxy=$1" > ~/.wgetrc
   echo "https_proxy=$1" >> ~/.wgetrc
 
-  echo "http_proxy=$1" >> ~/.bash_profile.local
-  echo "https_proxy=$1" >> ~/.bash_profile.local
+  echo "export http_proxy=$1" > ~/.bash_profile.local
+  echo "export https_proxy=$1" >> ~/.bash_profile.local
 }
 
 while true; do
