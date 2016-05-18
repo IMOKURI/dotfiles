@@ -1,7 +1,5 @@
 vim/*
 !vim/rc
-!vim/swp
-vim/swp/*
 !vim/swp/.gitkeep
 ghc/ghci_history
 themes/Paper
