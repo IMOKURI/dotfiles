@@ -45,3 +45,9 @@ PS1='\[\e[0;33m\]${?##0}\[\e[0;36m\][\u@\h \W]\[\e[0;35m\]$(__git_ps1)\[\e[0;36m
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+# enable python virtualenv
+if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  source /usr/bin/virtualenvwrapper.sh
+fi
