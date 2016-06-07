@@ -25,6 +25,10 @@ if [ -f ~/.git-prompt.sh ]; then
 	source ~/.git-prompt.sh
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+	source ~/.git-completion.bash
+fi
+
 # Unstaged (*) and staged (+) changes will be shown next to the branch name
 GIT_PS1_SHOWDIRTYSTATE=true
 
