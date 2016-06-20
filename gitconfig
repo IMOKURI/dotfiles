@@ -14,27 +14,6 @@
 [push]
   default = current
 
-[fetch]
-  prune = true
-
-[remote "origin"]
-  prune = true
-
-[remote "upstream"]
-  prune = true
-
-[merge]
-  ff = false
-
-[branch]
-  autosetuprebase = always
-
-[branch "master"]
-  rebase = true
-
-[pull]
-  rebase = preserve
-
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
 

@@ -71,6 +71,11 @@ set wrapscan
 "検索結果のハイライトをEsc連打でクリアする
 nnoremap <ESC><ESC> :nohlsearch<CR>
 
+"スペース2回で単語をハイライトする
+nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+
+"#で、単語をハイライトして、置換する
+nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 
 "##### その他設定 #####
 
