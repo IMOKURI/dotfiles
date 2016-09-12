@@ -67,22 +67,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-while true; do
-  read -p "Do you wish to install haskell packages? [n] " -e -i "n" yn
-  case $yn in
-    [Yy]* )
-      if is_exist "stack"; then
-        make haskell-setup
-      else
-        echo "Skip due to missing stack."
-      fi
-      break;;
-    [Nn]* )
-      break;;
-    * )
-      echo "Please answer yes or no.";;
-  esac
-done
-
 make deploy
+
+if is_exist "stack"; then
+  echo "Please run 'make haskell-setup', if you want to use haskell packages."
+fi
 
