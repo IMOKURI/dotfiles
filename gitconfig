@@ -4,6 +4,7 @@
 [user]
   name = IMOKURI
   email = nenegi.01mo@gmail.com
+  signingkey = 4ABC2303
 
 [core]
   editor = vim
@@ -21,6 +22,9 @@
   graph = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
+[gpg]
+  program = gpg2
