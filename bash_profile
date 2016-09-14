@@ -12,7 +12,7 @@ fi
 
 # User specific environment and startup programs
 
-export PATH=$HOME/.local/bin:$HOME/bin:$HOME/node_modules/.bin:/usr/local/heroku/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/heroku/bin:$PATH
 
 export EDITOR="vim"
 
