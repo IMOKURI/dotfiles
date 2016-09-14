@@ -49,6 +49,8 @@ set matchtime=2
 "最後の行を出来る限り表示する
 set display=lastline
 
+"末尾から2行目にステータスラインを常時表示
+set laststatus=2
 
 "##### 検索設定 #####
 

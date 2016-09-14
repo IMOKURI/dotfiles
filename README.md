@@ -11,5 +11,8 @@ or
 ## Feature
 
 * Download repository to ~/.dotfiles
-* Install haskell packages (See. Makefile) [Optional]
-* Deploy dotfiles
+* Create symlinks to dotfile
+
+## Post Installation
+
+* Install haskell packages by `make haskell-setup` [Optional]

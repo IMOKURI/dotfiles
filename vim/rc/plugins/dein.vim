@@ -42,6 +42,9 @@ let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 
+" Setting theme of lightline
+let g:lightline = { 'colorscheme': 'wombat' }
+
 " *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
 " 開いたquickfixの画面には :copen で移動する
@@ -56,4 +59,3 @@ nnoremap <silent> [ghcmod]t :GhcModType<CR>
 
 " <Space>gc を :GhcModTypeClear に割り当てる
 nnoremap <silent> [ghcmod]c :GhcModTypeClear<CR>
-
