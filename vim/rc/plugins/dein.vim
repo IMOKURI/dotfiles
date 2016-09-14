@@ -42,8 +42,25 @@ let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 
-" Setting theme of lightline
-let g:lightline = { 'colorscheme': 'wombat' }
+" Settings of lightline
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'component_function': {
+  \   'fugitive': 'LightLineFugitive'
+  \ }
+  \ }
+
+" ステータスバーにgitのHEADのブランチを表示する関数
+function! LightLineFugitive()
+  try
+    return exists('*fugitive#head') ? fugitive#head() : ''
+  catch
+  endtry
+  return ''
+endfunction
 
 " *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
