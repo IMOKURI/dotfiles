@@ -17,6 +17,10 @@ repo = 'itchyny/vim-haskell-indent'
 on_ft = 'haskell'
 
 [[plugins]]
+repo = 'tpope/vim-markdown'
+on_ft = ['markdown','md']
+
+[[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
 
 [[plugins]]

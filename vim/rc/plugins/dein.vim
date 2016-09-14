@@ -62,6 +62,9 @@ function! LightLineFugitive()
   return ''
 endfunction
 
+" markdownのコードブロックの中でシンタックスハイライトを有効にする
+let g:markdown_fenced_languages = ['haskell', 'bash=sh']
+
 " *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
 " 開いたquickfixの画面には :copen で移動する
