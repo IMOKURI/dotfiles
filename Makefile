@@ -24,7 +24,7 @@ deploy: ## Create symlink to home directory
 haskell-setup: ## Setup Haskell packages
 	stack setup
 	stack install ghc-mod hlint stylish-haskell hoogle
-	hoogle data
+	hoogle generate
 
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
