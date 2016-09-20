@@ -1,7 +1,7 @@
 .PHONY: help
 .DEFAULT_GOAL := help
 
-DOTFILES_EXCLUDES    := README.md LICENSE Makefile install $(wildcard .??*)
+DOTFILES_EXCLUDES    := README.md LICENSE Makefile install config.yaml $(wildcard .??*)
 DOTFILES_TARGET      := $(shell ls)
 DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 
@@ -25,6 +25,7 @@ haskell-setup: ## Setup Haskell packages
 	stack setup
 	stack install ghc-mod hlint stylish-haskell hoogle
 	hoogle generate
+	ln -sfnv $(abspath config.yaml) $(HOME)/.stack/config.yaml
 
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
