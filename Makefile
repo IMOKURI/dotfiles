@@ -18,8 +18,8 @@ update: ## Pull changes for this repo
 
 deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
-	chmod 700 ~/.ghc
-	chmod 600 ~/.ghc/ghci.conf
+	@chmod 700 ~/.ghc
+	@chmod 600 ~/.ghc/ghci.conf
 
 haskell-setup: ## Setup Haskell packages
 	stack setup

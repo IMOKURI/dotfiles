@@ -9,9 +9,6 @@ set showmode
 "行番号を表示
 set number
 
-"カラースキーマ設定
-colorscheme elflord
-
 "コードの色分け
 syntax on
 

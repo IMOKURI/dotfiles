@@ -42,9 +42,13 @@ let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 
+" Theme
+autocmd ColorScheme * highlight Normal ctermbg=none
+colorscheme tender
+
 " Settings of lightline
 let g:lightline = {
-  \ 'colorscheme': 'wombat',
+  \ 'colorscheme': 'tender',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
   \ },
