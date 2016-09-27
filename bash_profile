@@ -12,6 +12,11 @@ fi
 
 # User specific environment and startup programs
 
-export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:$PATH
 
 export EDITOR="vim"
+
+[ -f ~/.hosts ] && export HOSTALIASES=~/.hosts
+
+# initialize rbenv
+eval "$(rbenv init -)"
