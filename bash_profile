@@ -12,7 +12,7 @@ fi
 
 # User specific environment and startup programs
 
-export PATH=$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:/usr/local/heroku/bin:$PATH
 
 export EDITOR="vim"
 
