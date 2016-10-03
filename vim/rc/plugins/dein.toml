@@ -25,6 +25,10 @@ repo = 'tpope/vim-markdown'
 on_ft = ['markdown','md']
 
 [[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
 
 [[plugins]]
