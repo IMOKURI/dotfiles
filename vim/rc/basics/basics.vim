@@ -92,3 +92,6 @@ set directory=~/.vim/swp//
 
 "root権限でファイルを保存する
 cmap w!! w !sudo tee > /dev/null %
+
+"help画面をqで閉じる
+autocmd FileType help nnoremap <buffer> q <C-w>c
