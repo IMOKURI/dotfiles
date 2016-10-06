@@ -69,6 +69,9 @@ endfunction
 " bash supportカスタムテンプレートファイル
 let g:BASH_CustomTemplateFile = '~/.vim/rc/templates/bash.templates'
 
+" awk supportカスタムテンプレートファイル
+let g:Awk_CustomTemplateFile = '~/.vim/rc/templates/awk.templates'
+
 " markdownのコードブロックの中でシンタックスハイライトを有効にする
 let g:markdown_fenced_languages = ['haskell', 'bash=sh']
 

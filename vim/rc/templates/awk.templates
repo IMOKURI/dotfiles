@@ -1,0 +1,44 @@
+§ =============================================================
+§  Custom Templates
+§ =============================================================
+
+§ set the template style used after loading the library
+SetStyle( 'default' )
+
+§ -------------------------------------------------------------
+§  A template definition is build like this:
+§    == Menu.some name == <options> ==
+§    <inserted code>
+§    == Menu.other name == <options> ==
+§    <inserted code>
+§    == ENDTEMPLATE ==
+§  A template ends with the line "== ENDTEMPLATE ==" or with
+§  the start of a new template.
+§ -------------------------------------------------------------
+
+§ =============================================================
+§  Comments
+§ =============================================================
+
+== Comments.file description == start, map:ch ==
+#!/usr/bin/awk -f
+#===============================================================================
+#
+#          File:  |FILENAME|
+#
+#   Description:  ---
+#
+#        Author:  ---
+#  Organization:  ---
+#       Version:  ---
+#      Revision:  ---
+#       Created:  |DATE|
+#       License:  ---
+#===============================================================================
+
+#-------------------------------------------------------------------------------
+# Comment_Frame
+#-------------------------------------------------------------------------------
+
+<CURSOR>
+== ENDTEMPLATE ==
