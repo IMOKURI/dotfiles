@@ -19,6 +19,9 @@ shopt -s globstar
 # Colorized cat
 alias c='pygmentize -g'
 
+# alias colordiff
+[ -x /usr/bin/colordiff ] && alias diff='colordiff'
+
 ########## For git completion and prompt ##########
 
 if [ -f ~/.git-prompt.sh ]; then

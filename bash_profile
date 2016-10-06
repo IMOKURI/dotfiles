@@ -16,6 +16,8 @@ export PATH=$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:/usr/local/heroku/bin:$P
 
 export EDITOR="vim"
 
+export LESS='-g -i -M -N -R -S -W -z-4 -x2'
+
 [ -f ~/.hosts ] && export HOSTALIASES=~/.hosts
 
 # initialize rbenv
