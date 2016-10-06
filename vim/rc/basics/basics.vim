@@ -90,6 +90,9 @@ set directory=~/.vim/swp//
 
 "##### ショートカットキー設定 #####
 
+"backspaceでの削除を有効化
+set backspace=indent,eol,start
+
 "root権限でファイルを保存する
 cmap w!! w !sudo tee > /dev/null %
 

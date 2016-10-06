@@ -66,6 +66,9 @@ function! LightLineFugitive()
   return ''
 endfunction
 
+" bash supportカスタムテンプレートファイル
+let g:BASH_CustomTemplateFile = '~/.vim/rc/templates/bash.templates'
+
 " markdownのコードブロックの中でシンタックスハイライトを有効にする
 let g:markdown_fenced_languages = ['haskell', 'bash=sh']
 
