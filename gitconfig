@@ -4,7 +4,6 @@
 [user]
   name = IMOKURI
   email = nenegi.01mo@gmail.com
-  signingkey = 4ABC2303
 
 [core]
   editor = vim
@@ -25,6 +24,3 @@
   required = true
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
-
-[gpg]
-  program = gpg2

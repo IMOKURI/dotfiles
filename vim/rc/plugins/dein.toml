@@ -29,6 +29,10 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
+repo = 'sedan07/vim-mib'
+on_ft = 'mib'
+
+[[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
 
 [[plugins]]
