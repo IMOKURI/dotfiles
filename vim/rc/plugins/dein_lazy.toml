@@ -20,6 +20,16 @@ repo      = 'ujihisa/unite-colorscheme'
 on_source = ['unite.vim']
 
 [[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+on_i = 1
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
 repo = 'eagletmt/neco-ghc'
 on_ft = 'haskell'
 external_commands = 'ghc-mod'

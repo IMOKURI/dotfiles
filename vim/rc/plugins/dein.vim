@@ -71,9 +71,6 @@ let g:BASH_CustomTemplateFile = '~/.vim/rc/templates/bash.templates'
 " awk supportカスタムテンプレートファイル
 let g:Awk_CustomTemplateFile = '~/.vim/rc/templates/awk.templates'
 
-" markdownのコードブロックの中でシンタックスハイライトを有効にする
-let g:markdown_fenced_languages = ['haskell', 'bash=sh']
-
 " *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
 " 開いたquickfixの画面は :ccl で閉じる
 " 開いたquickfixの画面には :copen で移動する

@@ -14,9 +14,9 @@ fi
 
 export PATH=$HOME/node_modules/.bin:$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:/usr/local/heroku/bin:$PATH
 
-export EDITOR="vim"
+export LESS='-i -M -N -R -W -z-3 -x2'
 
-export LESS='-g -i -M -N -R -S -W -z-4 -x2'
+export EDITOR="vim"
 
 [ -f ~/.hosts ] && export HOSTALIASES=~/.hosts
 

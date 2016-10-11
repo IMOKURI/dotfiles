@@ -9,6 +9,9 @@ set showmode
 "行番号を表示
 set number
 
+"カーソルラインをハイライト
+set cursorline
+
 "コードの色分け
 syntax on
 
@@ -71,7 +74,7 @@ nnoremap N Nzz
 set wrapscan
 
 "検索結果のハイライトをEsc連打でクリアする
-nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 "スペース2回で単語をハイライトする
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>

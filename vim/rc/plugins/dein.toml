@@ -21,7 +21,7 @@ repo = 'itchyny/vim-haskell-indent'
 on_ft = 'haskell'
 
 [[plugins]]
-repo = 'tpope/vim-markdown'
+repo = 'rhysd/vim-gfm-syntax'
 on_ft = ['markdown','md']
 
 [[plugins]]
@@ -31,9 +31,6 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'sedan07/vim-mib'
 on_ft = 'mib'
-
-[[plugins]]
-repo = 'ConradIrwin/vim-bracketed-paste'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
