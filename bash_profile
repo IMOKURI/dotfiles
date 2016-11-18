@@ -18,7 +18,11 @@ export LESS='-i -M -N -R -W -z-3 -x2'
 
 export EDITOR="vim"
 
-[ -f ~/.hosts ] && export HOSTALIASES=~/.hosts
+if [ -f ~/.hosts ]; then
+  export HOSTALIASES=~/.hosts
+fi
 
 # initialize rbenv
-eval "$(rbenv init -)"
+if [ -n "$(type -t rbenv)" ]; then
+  eval "$(rbenv init -)"
+fi
