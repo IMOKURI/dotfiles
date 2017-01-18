@@ -29,13 +29,13 @@ set autoindent
 set smartindent
 
 "タブの代わりにスペースを使う
-set expandtab
+"set expandtab
 
 "スマートタブ有効化
-set smarttab
+"set smarttab
 
 "インデント1つにつき使うスペースの数
-set shiftwidth=2
+"set shiftwidth=2
 
 "改行時の自動コメントアウトを無効化
 autocmd FileType * setlocal formatoptions-=ro
