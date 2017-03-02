@@ -1,6 +1,3 @@
-[submodule "themes/copernico-theme"]
-	path = themes/copernico-theme
-	url = https://github.com/mgyugcha/copernico-theme.git
 [submodule "vim/dein/repos/github.com/Shougo/dein.vim"]
 	path = vim/dein/repos/github.com/Shougo/dein.vim
 	url = https://github.com/Shougo/dein.vim.git
