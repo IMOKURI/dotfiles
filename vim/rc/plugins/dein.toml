@@ -17,6 +17,10 @@ repo = 'WolfgangMehner/awk-support'
 on_ft = 'awk'
 
 [[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python'
+
+[[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
 on_ft = ['markdown','md']
 

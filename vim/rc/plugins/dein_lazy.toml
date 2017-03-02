@@ -12,6 +12,10 @@ repo = 'Shougo/neomru.vim'
 on_path = '.*'
 
 [[plugins]]
+repo = 'andviro/flake8-vim'
+on_ft = 'python'
+
+[[plugins]]
 repo   = 'Shougo/unite.vim'
 depends = 'neomru.vim'
 
