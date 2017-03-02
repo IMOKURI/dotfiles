@@ -12,7 +12,3 @@ or
 
 * Download repository to ~/.dotfiles
 * Create symlinks to dotfile
-
-## Post Installation
-
-* Install haskell packages by `make haskell-setup` [Optional]

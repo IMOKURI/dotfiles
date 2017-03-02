@@ -1,7 +1,7 @@
 .PHONY: help
 .DEFAULT_GOAL := help
 
-DOTFILES_EXCLUDES    := README.md LICENSE Makefile install config.yaml $(wildcard .??*)
+DOTFILES_EXCLUDES    := README.md LICENSE Makefile install $(wildcard .??*)
 DOTFILES_TARGET      := $(shell ls)
 DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 
@@ -18,14 +18,6 @@ update: ## Pull changes for this repo
 
 deploy: ## Create symlink to home directory
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
-	@chmod 700 ~/.ghc
-	@chmod 600 ~/.ghc/ghci.conf
-
-haskell-setup: ## Setup Haskell packages
-	stack setup
-	stack install ghc-mod hlint stylish-haskell hoogle
-	hoogle generate
-	ln -sfnv $(abspath config.yaml) $(HOME)/.stack/config.yaml
 
 help: ## This help
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[32m%-10s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)

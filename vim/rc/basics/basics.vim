@@ -87,9 +87,6 @@ nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 "ビープ音OFF
 set vb t_vb=
 
-"swpファイル出力先変更
-set directory=~/.vim/swp//
-
 
 "##### ショートカットキー設定 #####
 

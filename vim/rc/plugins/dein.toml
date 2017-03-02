@@ -17,10 +17,6 @@ repo = 'WolfgangMehner/awk-support'
 on_ft = 'awk'
 
 [[plugins]]
-repo = 'itchyny/vim-haskell-indent'
-on_ft = 'haskell'
-
-[[plugins]]
 repo = 'rhysd/vim-gfm-syntax'
 on_ft = ['markdown','md']
 

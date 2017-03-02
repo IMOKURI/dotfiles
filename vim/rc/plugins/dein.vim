@@ -12,9 +12,6 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   call dein#load_toml(s:toml,{'lazy': 0})
-
-  call dein#local('~/github',{},['vim-nnmi'])
-
   call dein#load_toml(s:lazy_toml,{'lazy': 1})
 
   call dein#end()
@@ -63,21 +60,3 @@ endfunction
 
 " bash supportカスタムテンプレートファイル
 let g:BASH_CustomTemplateFile = '~/.vim/rc/templates/bash.templates'
-
-" awk supportカスタムテンプレートファイル
-let g:Awk_CustomTemplateFile = '~/.vim/rc/templates/awk.templates'
-
-" *.hsのファイルを保存したときにコンパイルエラー・ワーニングをチェックする
-" 開いたquickfixの画面は :ccl で閉じる
-" 開いたquickfixの画面には :copen で移動する
-autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-
-" <Space>g をghcmod-vimプラグインのprefixキーにする
-nnoremap [ghcmod] <Nop>
-nmap     <Space>g [ghcmod]
-
-" <Space>gt を :GhcModType に割り当てる
-nnoremap <silent> [ghcmod]t :GhcModType<CR>
-
-" <Space>gc を :GhcModTypeClear に割り当てる
-nnoremap <silent> [ghcmod]c :GhcModTypeClear<CR>

@@ -81,8 +81,4 @@ speak "Deploying dotfiles..."
 
 make deploy
 
-if is_exist "stack"; then
-  echo "Please run 'make haskell-setup', if you want to use haskell packages."
-fi
-
 speak "Finished!"
