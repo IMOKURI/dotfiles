@@ -22,10 +22,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-filetype plugin indent on
-filetype indent on
-syntax on
-
 "##### プラグイン設定 #####
 
 " Use neocomplete.
@@ -35,7 +31,14 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
 " Theme
-autocmd ColorScheme * highlight Normal ctermbg=none
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+filetype plugin indent on
+filetype indent on
+syntax on
+
 colorscheme tender
 
 " Settings of lightline
