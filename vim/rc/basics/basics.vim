@@ -98,3 +98,6 @@ cmap w!! w !sudo tee > /dev/null %
 
 "help画面をqで閉じる
 autocmd FileType help nnoremap <buffer> q <C-w>c
+
+"新しいタブを開く
+nnoremap <C-t> :<C-u>tabnew<CR>
