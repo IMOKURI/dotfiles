@@ -66,3 +66,6 @@ let g:BASH_CustomTemplateFile = '~/.vim/rc/templates/bash.templates'
 
 " Disable history file
 let g:netrw_dirhistmax = 0
+
+" Toggle NERDTree
+nnoremap <C-\> :NERDTreeToggle<cr>

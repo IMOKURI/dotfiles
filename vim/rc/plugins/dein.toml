@@ -43,3 +43,6 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'jacoborus/tender.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
