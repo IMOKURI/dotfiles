@@ -22,6 +22,13 @@ alias c='pygmentize -g'
 # alias colordiff
 [ -x /usr/bin/colordiff ] && alias diff='colordiff'
 
+# cdls
+alias cd='cdls'
+
+cdls () {
+	\cd "$@" && pwd && ls -l
+}
+
 ########## For git completion and prompt ##########
 
 if [ -f ~/.git-prompt.sh ]; then
