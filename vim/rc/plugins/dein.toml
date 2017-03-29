@@ -46,3 +46,6 @@ repo = 'jacoborus/tender.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'

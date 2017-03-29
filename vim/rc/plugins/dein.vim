@@ -69,3 +69,9 @@ let g:netrw_dirhistmax = 0
 
 " Toggle NERDTree
 nnoremap <C-\> :NERDTreeToggle<cr>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
