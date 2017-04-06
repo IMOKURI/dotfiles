@@ -70,3 +70,8 @@ if [ -f /usr/bin/virtualenvwrapper.sh ]; then
   export WORKON_HOME=$HOME/.virtualenvs
   source /usr/bin/virtualenvwrapper.sh
 fi
+
+# enable Haskell Stack completion
+if [[ $(type stack > /dev/null 2>&1) ]]; then
+  eval "$(stack --bash-completion-script stack)"
+fi
