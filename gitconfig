@@ -12,8 +12,15 @@
 [color]
   ui = auto
 
+[status]
+  showUntrackedFiles = all
+
 [push]
   default = current
+  followTags = true
+
+[transfer]
+  fsckobjects = true
 
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/

@@ -29,6 +29,11 @@ cdls () {
 	\cd "$@" && pwd && ls -l
 }
 
+# cdroot
+cdroot () {
+	cd $(git rev-parse --show-toplevel)
+}
+
 ########## For git completion and prompt ##########
 
 if [ -f ~/.git-prompt.sh ]; then

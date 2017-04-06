@@ -9,6 +9,9 @@ set showmode
 "行番号を表示
 set number
 
+"制御文字を表示
+set list
+
 "カーソルラインをハイライト
 set cursorline
 
