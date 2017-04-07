@@ -58,6 +58,9 @@ set laststatus=2
 "画面の更新時間を設定(ms)
 set updatetime=250
 
+"80文字目にラインを表示
+set colorcolumn=80
+
 "##### 検索設定 #####
 
 "大文字/小文字の区別なく検索する
