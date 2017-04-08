@@ -12,13 +12,6 @@
     - `stack setup`
     - `stack install shellcheck`
 
-## Prerequisites (Vim)
-
-* Install git
-* Install Vim with enable lua
-* Install python packages
-    - `pip install jedi flake8 icdiff Pygments`
-
 ## Installation
 
 `bash -c "$(curl -fsSL https://git.io/imokuri)"`
