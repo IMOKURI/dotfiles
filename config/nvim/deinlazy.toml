@@ -1,0 +1,25 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+hook_source = '''
+  let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+'''
+
+[[plugins]]
+repo = 'andviro/flake8-vim'
+on_ft = 'python'
