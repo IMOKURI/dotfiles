@@ -68,3 +68,8 @@ autocmd FileType help nnoremap <buffer> q <C-w>c
 
 "新しいタブを開く
 nnoremap <C-t> :<C-u>tabnew<CR>
+
+"##### その他設定 #####
+
+" ヒストリーファイルを作成しない
+let g:netrw_dirhistmax = 0
