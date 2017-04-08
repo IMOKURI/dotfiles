@@ -26,22 +26,22 @@ alias c='pygmentize -g'
 alias cd='cdls'
 
 cdls () {
-	\cd "$@" && pwd && ls -l
+  \cd "$@" && pwd && ls -l
 }
 
 # cdroot
 cdroot () {
-	cd $(git rev-parse --show-toplevel)
+  cd $(git rev-parse --show-toplevel)
 }
 
 ########## For git completion and prompt ##########
 
 if [ -f ~/.git-prompt.sh ]; then
-	source ~/.git-prompt.sh
+  source ~/.git-prompt.sh
 fi
 
 if [ -f ~/.git-completion.bash ]; then
-	source ~/.git-completion.bash
+  source ~/.git-completion.bash
 fi
 
 # Unstaged (*) and staged (+) changes will be shown next to the branch name
@@ -60,7 +60,14 @@ GIT_PS1_SHOWSTASHSTATE=true
 ##################################################
 
 # Set prompt
-PS1='\[\e[0;33m\]${?##0}\[\e[0;36m\][\u@\h \W]\[\e[0;35m\]$(__git_ps1)\[\e[0;36m\]\$\[\e[0m\] '
+case ${UID} in
+0)
+  PS1='\[\e[0;31m\]${?##0}\[\e[0;33m\][\u@\h \W]\[\e[0;35m\]$(__git_ps1)\[\e[0;33m\]\$\[\e[0m\] '
+  ;;
+*)
+  PS1='\[\e[0;33m\]${?##0}\[\e[0;36m\][\u@\h \W]\[\e[0;35m\]$(__git_ps1)\[\e[0;36m\]\$\[\e[0m\] '
+  ;;
+esac
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

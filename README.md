@@ -2,16 +2,18 @@
 
 ## Prerequisites
 
+* Install git
 * Install [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 * Install python3
 * Install python packages
-    - `pip3 install neovim jedi flake8`
+    - `pip3 install neovim jedi flake8 icdiff Pygments`
 
 ## Prerequisites(Alternative)
 
+* Install git
 * Install Vim with enable lua
 * Install python packages
-    - `pip install jedi flake8`
+    - `pip install jedi flake8 icdiff Pygments`
 
 ## Installation
 

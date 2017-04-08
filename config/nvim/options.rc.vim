@@ -6,6 +6,16 @@ set number
 "制御文字を表示
 set list
 
+"インデントをスペース4つ分に設定
+set tabstop=4
+set softtabstop=4
+
+"オートインデントで挿入される幅
+set shiftwidth=4
+
+"スマートインデント有効化
+set smartindent
+
 "カーソルラインをハイライト
 set cursorline
 
