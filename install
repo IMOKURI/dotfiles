@@ -37,10 +37,10 @@ function set_proxy(){
 speak "Starting..."
 
 while true; do
-  read -p "Do you wish to use proxy to download dotfiles? [n] " -e -i "n" yn
+  read -r -p "Do you wish to use proxy to download dotfiles? " -e yn
   case $yn in
     [Yy]* )
-      read -p "Please input proxy address and port(ex: http://proxy.example.com:8080). " proxy_uri
+      read -r -p "Please input proxy address and port(ex: http://proxy.example.com:8080). " proxy_uri
       set_proxy "$proxy_uri"
       break;;
     [Nn]* )
@@ -72,8 +72,8 @@ else
   exit 1
 fi
 
-cd ~/.dotfiles
-if [ $? -ne 0 ]; then
+
+if cd ~/.dotfiles; then
   exit 1
 fi
 
