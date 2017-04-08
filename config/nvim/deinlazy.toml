@@ -1,4 +1,10 @@
 [[plugins]]
+repo = 'neomake/neomake'
+hook_add = '''
+  autocmd! BufWritePost * Neomake
+'''
+
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
 hook_source = '''
@@ -19,7 +25,3 @@ hook_source = '''
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
 '''
-
-[[plugins]]
-repo = 'andviro/flake8-vim'
-on_ft = 'python'

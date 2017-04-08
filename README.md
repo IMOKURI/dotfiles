@@ -1,14 +1,18 @@
 # dotfiles
 
-## Prerequisites
+## Prerequisites (Neovim)
 
 * Install git
 * Install [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 * Install python3
 * Install python packages
     - `pip3 install neovim jedi flake8 icdiff Pygments`
+* Install [Stack](https://docs.haskellstack.org/en/stable/README/#how-to-install)
+* Install ShellCheck
+    - `stack setup`
+    - `stack install shellcheck`
 
-## Prerequisites(Alternative)
+## Prerequisites (Vim)
 
 * Install git
 * Install Vim with enable lua
