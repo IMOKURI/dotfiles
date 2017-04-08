@@ -75,3 +75,8 @@ fi
 if [[ $(type stack > /dev/null 2>&1) ]]; then
   eval "$(stack --bash-completion-script stack)"
 fi
+
+# enable Neovim
+if [[ $(type nvim > /dev/null 2>&1) ]]; then
+  alias vi=nvim
+fi
