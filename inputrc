@@ -1,4 +1,5 @@
 $if Bash
   set completion-ignore-case on
   set visible-stats on
+  set bell-style none
 $endif
