@@ -1,0 +1,37 @@
+snippet template
+abbr python script template
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+
+    """
+    ${0:A simple python script template.}
+
+    """
+
+    from __future__ import print_function
+    import sys
+    import argparse
+
+
+    def main(arguments):
+
+        parser = argparse.ArgumentParser(
+            description=__doc__,
+            formatter_class=argparse.RawDescriptionHelpFormatter)
+
+        parser.add_argument('infile',
+                            help="Input file",
+                            type=argparse.FileType('r'))
+
+        parser.add_argument('-o', '--outfile',
+                            help="Output file",
+                            type=argparse.FileType('w'),
+                            default=sys.stdout)
+
+        args = parser.parse_args(arguments)
+
+        print(args.infile.name)
+
+
+    if __name__ == '__main__':
+        sys.exit(main(sys.argv[1:]))
