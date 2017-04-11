@@ -69,6 +69,9 @@ autocmd FileType help nnoremap <buffer> q <C-w>c
 "新しいタブを開く
 nnoremap <C-t> :<C-u>tabnew<CR>
 
+"ESCでターミナルモードからコマンドモードにする
+tnoremap <silent> <ESC> <C-\><C-n>
+
 "##### その他設定 #####
 
 " マウスの無効化
