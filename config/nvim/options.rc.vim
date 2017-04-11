@@ -71,5 +71,8 @@ nnoremap <C-t> :<C-u>tabnew<CR>
 
 "##### その他設定 #####
 
+" マウスの無効化
+set mouse-=a
+
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
