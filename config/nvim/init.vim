@@ -29,4 +29,5 @@ filetype plugin indent on
 syntax on
 
 runtime! theme.rc.vim
+runtime! plugins.rc.vim
 runtime! options.rc.vim
