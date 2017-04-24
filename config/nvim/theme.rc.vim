@@ -1,7 +1,7 @@
-colorscheme tender
+colorscheme onedark
 
 let g:lightline = {
-  \ 'colorscheme': 'tender',
+  \ 'colorscheme': 'onedark',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
   \ },

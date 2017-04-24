@@ -5,7 +5,7 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
-repo = 'jacoborus/tender.vim'
+repo = 'joshdick/onedark.vim'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
