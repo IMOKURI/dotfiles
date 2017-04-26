@@ -6,7 +6,7 @@
   path = ~/.gitconfig.local
 
 [core]
-  editor = vim
+  editor = vi
   quotepath = false
 
 [color]
