@@ -1,4 +1,19 @@
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+depends = ['neosnippet-snippets']
+on_i = 1
+on_ft = ['snippet']
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+'''
+
+[[plugins]]
 repo = 'neomake/neomake'
 hook_add = '''
   autocmd! BufWritePost * Neomake
@@ -13,16 +28,17 @@ hook_source = '''
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
+depends = ['deoplete.nvim']
 on_ft = 'python'
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
-depends = ['neosnippet-snippets']
-on_i = 1
-on_ft = ['snippet']
-hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-'''
+repo = 'jmcantrell/vim-virtualenv'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'sedan07/vim-mib'
+on_ft = 'mib'
