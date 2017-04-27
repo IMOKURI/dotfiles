@@ -2,7 +2,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'joshdick/onedark.vim'
+repo = 'jacoborus/tender.vim'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
