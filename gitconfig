@@ -2,7 +2,7 @@
   name = IMOKURI
   email = nenegi.01mo@gmail.com
 
-[include]
+[includeIf "gitdir:~/ghe/"]
   path = ~/.gitconfig.local
 
 [core]
