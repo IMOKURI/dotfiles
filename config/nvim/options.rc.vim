@@ -28,6 +28,9 @@ set display=lastline
 "末尾から2行目にステータスラインを常時表示
 set laststatus=2
 
+"モードを非表示にする
+set noshowmode
+
 "画面の更新時間を設定(ms)
 set updatetime=250
 
