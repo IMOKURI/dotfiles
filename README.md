@@ -6,7 +6,7 @@
 * Install [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 * Install python3
 * Install python packages
-    - `pip3 install neovim jedi flake8 icdiff Pygments`
+    - `pip3 install neovim jedi flake8 icdiff Pygments virtualenvwrapper`
 
 ## Setup (Recommendation)
 

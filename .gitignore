@@ -1,4 +1,1 @@
-config/*
-!config/nvim
-!config/pip
 config/nvim/dein
