@@ -80,5 +80,11 @@ tnoremap <silent> <ESC> <C-\><C-n>
 " マウスの無効化
 set mouse-=a
 
+" カーソル位置記憶
+autocmd BufReadPost *
+      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \   exe "normal! g'\"" |
+      \ endif
+
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
