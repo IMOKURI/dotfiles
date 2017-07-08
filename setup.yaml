@@ -184,7 +184,7 @@
             state: link
             force: true
         with_items:
-            - "{{ find.files }}"
+            - "{{ find_config.files }}"
         tags: deploy
 
       - name: Setup Haskell
