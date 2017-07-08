@@ -29,17 +29,6 @@
       - name: Install Haskell Stack
         shell: bash /tmp/stack.sh
 
-      - name: Install Python2 Packages
-        pip:
-            name: "{{ item }}"
-        with_items:
-            - neovim
-            - jedi
-            - flake8
-            - icdiff
-            - Pygments
-            - virrualenvwrapper
-
       - name: Install Packages
         yum:
             name: "{{ item }}"
@@ -48,6 +37,30 @@
             - python36u
             - python36u-pip
             - neovim
+
+      - name: Install Python2 Packages
+        pip:
+            name: "{{ item }}"
+            executable: pip2.7
+        with_items:
+            - neovim
+            - jedi
+            - flake8
+            - icdiff
+            - Pygments
+            - virtualenvwrapper
+
+      - name: Install Python3 Packages
+        pip:
+            name: "{{ item }}"
+            executable: pip3.6
+        with_items:
+            - neovim
+            - jedi
+            - flake8
+            - icdiff
+            - Pygments
+            - virtualenvwrapper
 
       - name: Create Symbolic Links
         file:
@@ -70,17 +83,6 @@
             - { name: 'pip', link: '/usr/local/bin/pip', path: '/usr/bin/pip2', priority: 20 }
             - { name: 'pip', link: '/usr/local/bin/pip', path: '/usr/bin/pip3', priority: 30 }
             - { name: 'vi', link: '/usr/local/bin/vi', path: "{{ lookup('pipe', 'which nvim') }}", priority: 100 }
-
-      - name: Install Python3 Packages
-        pip:
-            name: "{{ item }}"
-        with_items:
-            - neovim
-            - jedi
-            - flake8
-            - icdiff
-            - Pygments
-            - virrualenvwrapper
 
       - name: Create Config Directory
         file:
