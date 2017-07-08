@@ -7,8 +7,13 @@
             return_content: true
         register: ius
 
+      - name: Save IUS Repository Installer
+        copy:
+            content: "{{ ius.content }}"
+            dest: /tmp/ius.sh
+
       - name: Install IUS Repository
-        shell: "bash -c '{{ ius.content }}'"
+        shell: bash /tmp/ius.sh
 
       - name: Get Haskell Stack Installer
         uri:
@@ -16,8 +21,13 @@
             return_content: true
         register: stack
 
+      - name: Save Haskell Stack Installer
+        copy:
+            content: "{{ stack.content }}"
+            dest: /tmp/stack.sh
+
       - name: Install Haskell Stack
-        shell: "bash -c '{{ stack.content }}'"
+        shell: bash /tmp/stack.sh
 
       - name: Install Python2 Packages
         pip:
