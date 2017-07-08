@@ -25,13 +25,13 @@ done
 
 speak "Install Ansible..."
 
-yum install -y python python-setuptools
+yum install -y python python-setuptools gcc python-devel libffi-devel openssl-devel
 
 easy_install pip ansible
 
 speak "Downloading playbook..."
 
-curl -fsSL https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml -O ~/.setup.yaml
+curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml" -O ~/.setup.yaml
 
 speak "Run Ansible Playbook..."
 
