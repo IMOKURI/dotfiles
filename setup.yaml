@@ -1,15 +1,9 @@
 ---
 - hosts: localhost
   tasks:
-      - name: Get IUS Repository Installer
-        uri:
+      - name: Download IUS Repository Installer
+        get_url:
             url: https://setup.ius.io
-            return_content: true
-        register: ius
-
-      - name: Save IUS Repository Installer
-        copy:
-            content: "{{ ius.content }}"
             dest: /tmp/ius.sh
 
       - name: Install IUS Repository
@@ -17,15 +11,9 @@
         args:
             creates: /etc/yum.repos.d/ius.repo
 
-      - name: Get Haskell Stack Installer
-        uri:
+      - name: Download Haskell Stack Installer
+        get_url:
             url: https://get.haskellstack.org
-            return_content: true
-        register: stack
-
-      - name: Save Haskell Stack Installer
-        copy:
-            content: "{{ stack.content }}"
             dest: /tmp/stack.sh
 
       - name: Install Haskell Stack
