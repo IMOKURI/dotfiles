@@ -31,7 +31,7 @@ easy_install pip ansible
 
 speak "Downloading playbook..."
 
-curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml" -O ~/.setup.yaml
+curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml" -o ~/.setup.yaml
 
 speak "Run Ansible Playbook..."
 
