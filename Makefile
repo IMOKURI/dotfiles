@@ -1,7 +1,7 @@
 .PHONY: help
 .DEFAULT_GOAL := help
 
-DOTFILES_EXCLUDES    := README.md LICENSE Makefile install config $(wildcard .??*)
+DOTFILES_EXCLUDES    := README.md LICENSE Makefile install setup.yaml config $(wildcard .??*)
 DOTFILES_TARGET      := $(shell ls)
 DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_CONFIG      := $(shell ls config)
