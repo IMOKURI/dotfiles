@@ -154,19 +154,12 @@
         register: find
         tags: deploy
 
-      - name: Remove Old Dotfiles
-        file:
-            path: "~/.{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
-            state: absent
-        with_items:
-            - "{{ find.files }}"
-        tags: deploy
-
       - name: Create Symbolic Links To Dotfiles
         file:
             src: "~/.dotfiles/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
             dest: "~/.{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
             state: link
+            force: true
         with_items:
             - "{{ find.files }}"
         tags: deploy
@@ -184,19 +177,12 @@
             state: directory
         tags: deploy
 
-      - name: Remove Old Config Dotfiles
-        file:
-            path: "~/.config/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
-            state: absent
-        with_items:
-            - "{{ find.files }}"
-        tags: deploy
-
       - name: Create Symbolic Links To Config Dotfiles
         file:
             src: "~/.dotfiles/config/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
             dest: "~/.config/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
             state: link
+            force: true
         with_items:
             - "{{ find.files }}"
         tags: deploy
