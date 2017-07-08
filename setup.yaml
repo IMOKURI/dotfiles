@@ -14,6 +14,8 @@
 
       - name: Install IUS Repository
         shell: bash /tmp/ius.sh
+        args:
+            creates: /etc/yum.repos.d/ius.repo
 
       - name: Get Haskell Stack Installer
         uri:
@@ -28,6 +30,8 @@
 
       - name: Install Haskell Stack
         shell: bash /tmp/stack.sh
+        args:
+            creates: /usr/local/bin/stack
 
       - name: Install Packages
         yum:
