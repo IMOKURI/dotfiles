@@ -1,5 +1,7 @@
 # dotfiles
 
+Deploy dotfiles using ansible.
+
 ## Requirement
 
 * curl
@@ -23,10 +25,10 @@
 	* icdiff
 	* Pygments
 	* virtualenvwrapper
-* Download repository to ~/.dotfiles
-* Create symlinks to dotfile
 * Setup alternative commands
 * Setup virtualenv boot script
+* Download repository to ~/.dotfiles
+* Create symlinks to dotfile
 * Install Haskell Packages(Optional)
 	* ghc-mod
 	* hdevtools
