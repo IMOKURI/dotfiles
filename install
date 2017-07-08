@@ -74,6 +74,7 @@ git clone --recursive "$DOTFILES_REPO" "$DOTPATH"
 speak "Deploying dotfiles..."
 
 cd ~/.dotfiles
+mkdir ~/.config
 
 make deploy
 
