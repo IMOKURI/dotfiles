@@ -80,13 +80,13 @@ make deploy
 
 speak "Setup alternative commands..."
 
-update-alternative --install /usr/local/bin/python python "$(which python2)" 20
-update-alternative --install /usr/local/bin/python python "$(which python3)" 30
+update-alternatives --install /usr/local/bin/python python "$(which python2)" 20
+update-alternatives --install /usr/local/bin/python python "$(which python3)" 30
 
-update-alternative --install /usr/local/bin/pip pip "$(which pip2)" 20
-update-alternative --install /usr/local/bin/pip pip "$(which pip3)" 30
+update-alternatives --install /usr/local/bin/pip pip "$(which pip2)" 20
+update-alternatives --install /usr/local/bin/pip pip "$(which pip3)" 30
 
-update-alternative --install /usr/local/bin/vi vi "$(which nvim)" 100
+update-alternatives --install /usr/local/bin/vi vi "$(which nvim)" 100
 
 speak "Source dotfiles..."
 
