@@ -35,6 +35,6 @@ curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml
 
 speak "Run Ansible Playbook..."
 
-ansible-playbook ~/.setup.yaml
+ansible-playbook ~/.setup.yaml --tags "initialize,deploy"
 
 speak "Finished!"
