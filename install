@@ -74,7 +74,7 @@ git clone --recursive "$DOTFILES_REPO" "$DOTPATH"
 speak "Deploying dotfiles..."
 
 cd ~/.dotfiles
-mkdir ~/.config
+mkdir -p ~/.config
 
 make deploy
 
@@ -88,12 +88,10 @@ update-alternatives --install /usr/local/bin/pip pip "$(which pip3)" 30
 
 update-alternatives --install /usr/local/bin/vi vi "$(which nvim)" 100
 
-speak "Source dotfiles..."
-
-source ~/.bash_profile
-source ~/.bashrc
-
 speak "Install Python Packages(For Virtualenv)"
+
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
 
 mkdir -p ~/.virtualenvs/deps
 mkdir -p ~/.virtualenvs/deps3
