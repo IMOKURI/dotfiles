@@ -25,7 +25,7 @@ done
 
 speak "Install Ansible..."
 
-yum install -y cowsay python python-setuptools gcc python-devel libffi-devel openssl-devel
+yum install -y python python-setuptools gcc python-devel libffi-devel openssl-devel
 
 easy_install pip ansible
 
