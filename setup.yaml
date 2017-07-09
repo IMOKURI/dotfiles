@@ -39,6 +39,7 @@
         pip:
             name: "{{ item }}"
             executable: pip2.7
+            state: latest
         with_items:
             - neovim
             - jedi
@@ -46,16 +47,18 @@
             - icdiff
             - Pygments
             - virtualenvwrapper
+            - ansible
             - ansible-lint
             - yamllint
             - vint
         become: true
-        tags: initialize
+        tags: [initialize, update]
 
       - name: Install Python3 Packages
         pip:
             name: "{{ item }}"
             executable: pip3.6
+            state: latest
         with_items:
             - neovim
             - jedi
@@ -63,23 +66,23 @@
             - icdiff
             - Pygments
             - virtualenvwrapper
-            - ansible-lint
             - yamllint
             - vint
         become: true
-        tags: initialize
+        tags: [initialize, update]
 
       - name: Install Ruby Packages
         gem:
             name: "{{ item }}"
             user_install: false
+            state: latest
         with_items:
             - msgpack
             - neovim
             - mdl
             - rubocop
         become: true
-        tags: initialize
+        tags: [initialize, update]
 
       - name: Create Symbolic Links for Python3
         file:
@@ -126,25 +129,25 @@
         pip:
             name: "{{ item }}"
             executable: pip2.7
+            state: latest
             extra_args: --target ~/.virtualenvs/deps
         with_items:
             - neovim
             - jedi
             - flake8
-            - yamllint
-        tags: initialize
+        tags: [initialize, update]
 
       - name: Install Virtualenv Default Package for Python3
         pip:
             name: "{{ item }}"
             executable: pip3.6
+            state: latest
             extra_args: --target ~/.virtualenvs/deps3
         with_items:
             - neovim
             - jedi
             - flake8
-            - yamllint
-        tags: initialize
+        tags: [initialize, update]
 
       - name: Setup Virtualenv Boot Script
         blockinfile:
