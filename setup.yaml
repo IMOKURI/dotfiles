@@ -23,8 +23,12 @@
         with_items:
             - git2u
             - python36u
+            - python36u-devel
             - python36u-pip
             - neovim
+            - ruby
+            - ruby-devel
+            - rubygems
         tags: initialize
 
       - name: Install Python2 Packages
@@ -38,6 +42,9 @@
             - icdiff
             - Pygments
             - virtualenvwrapper
+            - ansible-lint
+            - yamllint
+            - vint
         tags: initialize
 
       - name: Install Python3 Packages
@@ -51,6 +58,20 @@
             - icdiff
             - Pygments
             - virtualenvwrapper
+            - ansible-lint
+            - yamllint
+            - vint
+        tags: initialize
+
+      - name: Install Ruby Packages
+        gem:
+            name: "{{ item }}"
+            user_install: false
+        with_items:
+            - msgpack
+            - neovim
+            - mdl
+            - rubocop
         tags: initialize
 
       - name: Create Symbolic Links for Python3
@@ -101,6 +122,7 @@
             - neovim
             - jedi
             - flake8
+            - yamllint
         tags: initialize
 
       - name: Install Virtualenv Default Package for Python3
@@ -112,6 +134,7 @@
             - neovim
             - jedi
             - flake8
+            - yamllint
         tags: initialize
 
       - name: Setup Virtualenv Boot Script
@@ -204,21 +227,3 @@
             - { target: hdevtools, creates: ~/.local/bin/hdevtools }
             - { target: hlint, creates: ~/.local/bin/hlint }
         tags: [optional, haskell]
-
-      - name: Install Ruby
-        yum:
-            name: "{{ item }}"
-        with_items:
-            - ruby
-            - ruby-devel
-            - rubygems
-        tags: [optional, ruby]
-
-      - name: Install Ruby Packages
-        gem:
-            name: "{{ item }}"
-            user_install: false
-        with_items:
-            - msgpack
-            - neovim
-        tags: [optional, ruby]
