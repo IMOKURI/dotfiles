@@ -154,6 +154,29 @@
                 fi
         tags: initialize
 
+      - name: Clone Rbenv
+        git:
+            repo: https://github.com/rbenv/rbenv.git
+            dest: ~/.rbenv
+        tags: initialize
+
+      - name: Compile Rbenv
+        shell: src/configure
+        args:
+            chdir: ~/.rbenv
+        tags: initialize
+
+      - name: Make Rbenv
+        make:
+            chdir: ~/.rbenv/src
+        tags: initialize
+
+      - name: Clone Ruby-Build
+        git:
+            repo: https://github.com/rbenv/ruby-build.git
+            dest: ~/.rbenv/plugins/ruby-build
+        tags: initialize
+
       - name: Clone Dotfiles Repository
         git:
             repo: https://github.com/IMOKURI/dotfiles.git
