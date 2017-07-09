@@ -204,3 +204,18 @@
             - { target: hdevtools, creates: ~/.local/bin/hdevtools }
             - { target: hlint, creates: ~/.local/bin/hlint }
         tags: [optional, haskell]
+
+      - name: Install Ruby
+        yum:
+            name: "{{ item }}"
+        with_items:
+            - ruby
+            - rubygems
+        tags: [optional, ruby]
+
+      - name: Install Ruby Packages
+        gem:
+            name: "{{ item }}"
+        with_items:
+            - neovim
+        tags: [optional, ruby]
