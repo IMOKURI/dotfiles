@@ -25,9 +25,9 @@ done
 
 speak "Install Ansible..."
 
-yum install -y python python-setuptools gcc python-devel libffi-devel openssl-devel
+sudo yum install -y python python-setuptools gcc python-devel libffi-devel openssl-devel
 
-easy_install pip ansible
+sudo easy_install pip ansible
 
 speak "Downloading playbook..."
 
