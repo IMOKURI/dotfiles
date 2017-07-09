@@ -14,18 +14,6 @@
             creates: /etc/yum.repos.d/ius.repo
         tags: initialize
 
-      - name: Download Haskell Stack Installer
-        get_url:
-            url: https://get.haskellstack.org
-            dest: /tmp/stack.sh
-        tags: initialize
-
-      - name: Install Haskell Stack
-        shell: bash /tmp/stack.sh
-        args:
-            creates: /usr/local/bin/stack
-        tags: initialize
-
       - name: Install Packages
         yum:
             name: "{{ item }}"
@@ -187,10 +175,29 @@
             - "{{ find_config.files }}"
         tags: deploy
 
+      - name: Download Haskell Stack Installer
+        get_url:
+            url: https://get.haskellstack.org
+            dest: /tmp/stack.sh
+        tags: [optional, haskell]
+
+      - name: Install Haskell Stack
+        shell: bash /tmp/stack.sh
+        args:
+            creates: /usr/local/bin/stack
+        tags: [optional, haskell]
+
       - name: Setup Haskell
         shell: stack setup
-        tags: optional
+        tags: [optional, haskell]
 
       - name: Install Haskell Packages
-        shell: stack install shellcheck ghc-mod hdevtools hlint
-        tags: optional
+        shell: "stack install {{ item.target }}"
+        args:
+            creates: "{{ item.creates }}"
+        with_items:
+            - { target: ShellCheck, creates: ~/.local/bin/shellcheck }
+            - { target: ghc-mod, creates: ~/.local/bin/ghc-mod }
+            - { target: hdevtools, creates: ~/.local/bin/hdevtools }
+            - { target: hlint, creates: ~/.local/bin/hlint }
+        tags: [optional, haskell]
