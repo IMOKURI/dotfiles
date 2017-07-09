@@ -6,8 +6,13 @@ set number
 "制御文字を表示
 set list
 
+"タブをスペースに変換
+set expandtab
+
 "インデントをスペース4つ分に設定
 set tabstop=4
+
+"タブとその削除をスペース4つ分に設定
 set softtabstop=4
 
 "オートインデントで挿入される幅
