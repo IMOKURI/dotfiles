@@ -210,12 +210,15 @@
             name: "{{ item }}"
         with_items:
             - ruby
+            - ruby-devel
             - rubygems
         tags: [optional, ruby]
 
       - name: Install Ruby Packages
         gem:
             name: "{{ item }}"
+            user_install: false
         with_items:
+            - msgpack
             - neovim
         tags: [optional, ruby]
