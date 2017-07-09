@@ -70,7 +70,7 @@ cmap w!! w !sudo tee > /dev/null %
 autocmd FileType help nnoremap <buffer> q <C-w>c
 
 "新しいタブを開く
-nnoremap <C-t> :<C-u>tabnew<CR>
+nnoremap nt :<C-u>tabnew<CR>
 
 "ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
