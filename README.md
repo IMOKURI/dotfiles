@@ -19,7 +19,8 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 	* neovim
 	* python2
 	* python3
-	* ruby	etc...
+	* ruby
+	* nodejs	etc...
 * Install Python2 Packages
 	* jedi
 	* flake8

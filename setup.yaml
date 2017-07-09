@@ -18,6 +18,19 @@
         become: true
         tags: initialize
 
+      - name: Download Nodejs Repository Installer
+        get_url:
+            url: https://rpm.nodesource.com/setup_6.x
+            dest: /tmp/nodejs.sh
+        tags: initialize
+
+      - name: Install Nodejs Repository
+        shell: bash /tmp/nodejs.sh
+        args:
+            creates: /etc/yum.repos.d/nodesource-el.repo
+        become: true
+        tags: initialize
+
       - name: Install Packages
         yum:
             name: "{{ item }}"
@@ -32,6 +45,7 @@
             - rubygems
             - bzip2
             - readline-devel
+            - nodejs
         become: true
         tags: initialize
 
