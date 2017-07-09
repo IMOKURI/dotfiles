@@ -16,6 +16,7 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 
 * Install Packages
 	* git
+	* git-lfs
 	* neovim
 	* python2
 	* python3

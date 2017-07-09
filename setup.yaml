@@ -18,6 +18,19 @@
         become: true
         tags: initialize
 
+      - name: Download Git-LFS Repository Installer
+        get_url:
+            url: https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh
+            dest: /tmp/git-lfs.sh
+        tags: initialize
+
+      - name: Install Git-LFS Repository
+        shell: bash /tmp/git-lfs.sh
+        args:
+            creates: /etc/yum.repos.d/github_git-lfs.repo
+        become: true
+        tags: initialize
+
       - name: Download Nodejs Repository Installer
         get_url:
             url: https://rpm.nodesource.com/setup_6.x
@@ -36,6 +49,7 @@
             name: "{{ item }}"
         with_items:
             - git2u
+            - git-lfs
             - python36u
             - python36u-devel
             - python36u-pip
