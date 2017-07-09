@@ -15,6 +15,7 @@
         shell: bash /tmp/ius.sh
         args:
             creates: /etc/yum.repos.d/ius.repo
+        become: true
         tags: initialize
 
       - name: Install Packages
@@ -29,6 +30,9 @@
             - ruby
             - ruby-devel
             - rubygems
+            - bzip2
+            - readline-devel
+        become: true
         tags: initialize
 
       - name: Install Python2 Packages
@@ -45,6 +49,7 @@
             - ansible-lint
             - yamllint
             - vint
+        become: true
         tags: initialize
 
       - name: Install Python3 Packages
@@ -61,6 +66,7 @@
             - ansible-lint
             - yamllint
             - vint
+        become: true
         tags: initialize
 
       - name: Install Ruby Packages
@@ -72,6 +78,7 @@
             - neovim
             - mdl
             - rubocop
+        become: true
         tags: initialize
 
       - name: Create Symbolic Links for Python3
@@ -82,6 +89,7 @@
         with_items:
             - { src: "{{ lookup('pipe', 'which python3.6') }}", dest: '/usr/local/bin/python3' }
             - { src: "{{ lookup('pipe', 'which pip3.6') }}", dest: '/usr/local/bin/pip3' }
+        become: true
         tags: initialize
 
       - name: Set Alternative Commands
@@ -96,6 +104,7 @@
             - { name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip2') }}", priority: 20 }
             - { name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip3') }}", priority: 30 }
             - { name: 'vi', link: '/usr/local/bin/vi', path: "{{ lookup('pipe', 'which nvim') }}", priority: 100 }
+        become: true
         tags: initialize
 
       - name: Source Virtualenvwrapper Script
@@ -234,6 +243,7 @@
         shell: bash /tmp/stack.sh
         args:
             creates: /usr/local/bin/stack
+        become: true
         tags: [optional, haskell]
 
       - name: Setup Haskell

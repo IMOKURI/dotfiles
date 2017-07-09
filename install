@@ -9,10 +9,10 @@ function speak(){
 speak "Starting..."
 
 while true; do
-  read -r -p "Do you wish to use proxy to download dotfiles? " -e yn
+  read -r -p "Do you need to use proxy?(y/n) " -e yn
   case $yn in
     [Yy]* )
-      read -r -p "Please input proxy address and port(ex: http://proxy.example.com:8080). " proxy_uri
+      read -r -p "Please input proxy address(ex: http://proxy.example.com:8080). " proxy_uri
       export http_proxy "$proxy_uri"
       export https_proxy "$proxy_uri"
       break;;
