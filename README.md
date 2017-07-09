@@ -8,28 +8,47 @@ Deploy dotfiles using ansible.
 
 ## Installation
 
-`bash -c "$(curl -fsSL https://git.io/imokuri)"`
+```
+bash -c "$(curl -fsSL https://git.io/imokuri)"
+```
 
 ## Feature
 
 * Install Packages
-	* python2
-	* python3
 	* git
 	* neovim
-	* stack - haskell
-* Install Python Packages
-	* neovim
+	* python2
+	* python3
+	* ruby	etc...
+* Install Python2 Packages
 	* jedi
 	* flake8
-	* icdiff
-	* Pygments
 	* virtualenvwrapper
-* Setup alternative commands
-* Setup virtualenv boot script
-* Download repository to ~/.dotfiles
-* Create symlinks to dotfile
-* Install Haskell Packages(Optional)
+	* yamllint
+	* vint	etc...
+* Install Python3 Packages
+	* See above...
+* Install Ruby Packages
+	* rubocop
+	* mdl	etc...
+* Set Alternative Commands
+* Setup Python Virtualenv
+* Setup Rbenv
+* Clone Dotfiles Repository
+* Create Symbolic Links To Dotfiles
+
+## Installation - Optional
+
+```
+ansible-playbook setup.yaml --tags optional
+```
+
+## Feature - Optional
+
+* Install Haskell Stack
+* Setup Haskell
+* Install Haskell Packages
+	* ShellCheck
 	* ghc-mod
 	* hdevtools
 	* hlint
