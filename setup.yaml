@@ -1,9 +1,30 @@
 ---
 - hosts: localhost
   gather_facts: no
-  environment:
-      http_proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
+  vars:
+      proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
+  environment: "{{ proxy }}"
   tasks:
+      - name: Set Proxy to Bash Profile
+        blockinfile:
+            path: ~/.bash_profile.local
+            block: |
+                export http_proxy={{ proxy }}
+                export https_proxy={{ proxy }}
+        when: proxy is defined
+        tags: initialize
+
+      - name: Set Proxy to Git Config
+        blockinfile:
+            path: ~/.gitconfig.local
+            block: |
+                [http]
+                  proxy = {{ proxy }}
+                [https]
+                  proxy = {{ proxy }}
+        when: proxy is defined
+        tags: initialize
+
       - name: Download IUS Repository Installer
         get_url:
             url: https://setup.ius.io
@@ -261,6 +282,15 @@
             force: true
         with_items:
             - "{{ find_config.files }}"
+        tags: deploy
+
+      - name: Create Git Work Directory
+        file:
+            path: "{{ item }}"
+            state: directory
+        with_items:
+            - ~/github
+            - ~/ghe
         tags: deploy
 
       - name: Download Haskell Stack Installer
