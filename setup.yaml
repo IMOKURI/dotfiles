@@ -3,7 +3,6 @@
   gather_facts: no
   environment:
       http_proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
-      https_proxy: "{{ lookup('env', 'https_proxy') | default('') }}"
   tasks:
       - name: Download IUS Repository Installer
         get_url:

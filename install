@@ -8,24 +8,11 @@ function speak(){
 
 speak "Starting..."
 
-while true; do
-  read -r -p "Do you need to use proxy?(y/n) " -e yn
-  case $yn in
-    [Yy]* )
-      read -r -p "Please input proxy address(ex: http://proxy.example.com:8080). " proxy_uri
-      export http_proxy="$proxy_uri"
-      export https_proxy="$proxy_uri"
-      break;;
-    [Nn]* )
-      break;;
-    * )
-      echo "Please answer yes or no.";;
-  esac
-done
-
-speak "Install Ansible..."
+speak "Install Ansible Dependency Packages..."
 
 sudo yum install -y python python-setuptools gcc python-devel libffi-devel openssl-devel
+
+speak "Install Ansible..."
 
 sudo easy_install pip ansible
 

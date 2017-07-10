@@ -6,6 +6,13 @@ Deploy dotfiles using ansible.
 
 * curl
 
+Set environment variables if you need to use proxy.
+
+```
+export http_proxy=http://proxy.example.com:port
+export https_proxy=http://proxy.example.com:port
+```
+
 ## Installation
 
 ```
