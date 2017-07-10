@@ -2,26 +2,29 @@
 - hosts: localhost
   gather_facts: no
   vars:
-      proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
+      proxy:
+          http_proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
   environment: "{{ proxy }}"
   tasks:
       - name: Set Proxy to Bash Profile
         blockinfile:
             path: ~/.bash_profile.local
+            create: true
             block: |
-                export http_proxy={{ proxy }}
-                export https_proxy={{ proxy }}
+                export http_proxy={{ proxy.http_proxy }}
+                export https_proxy={{ proxy.http_proxy }}
         when: proxy is defined
         tags: initialize
 
       - name: Set Proxy to Git Config
         blockinfile:
             path: ~/.gitconfig.local
+            create: true
             block: |
                 [http]
-                  proxy = {{ proxy }}
+                  proxy = {{ proxy.http_proxy }}
                 [https]
-                  proxy = {{ proxy }}
+                  proxy = {{ proxy.http_proxy }}
         when: proxy is defined
         tags: initialize
 
