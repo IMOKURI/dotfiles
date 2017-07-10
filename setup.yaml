@@ -13,7 +13,7 @@
             block: |
                 export http_proxy={{ proxy.http_proxy }}
                 export https_proxy={{ proxy.http_proxy }}
-        when: proxy is defined
+        when: proxy.http_proxy != ''
         tags: initialize
 
       - name: Set Proxy to Git Config
@@ -21,11 +21,14 @@
             path: ~/.gitconfig.local
             create: true
             block: |
+                [user]
+                  name =
+                  email =
                 [http]
                   proxy = {{ proxy.http_proxy }}
                 [https]
                   proxy = {{ proxy.http_proxy }}
-        when: proxy is defined
+        when: proxy.http_proxy != ''
         tags: initialize
 
       - name: Download IUS Repository Installer
