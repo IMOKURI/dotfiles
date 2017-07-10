@@ -13,8 +13,8 @@ while true; do
   case $yn in
     [Yy]* )
       read -r -p "Please input proxy address(ex: http://proxy.example.com:8080). " proxy_uri
-      export http_proxy "$proxy_uri"
-      export https_proxy "$proxy_uri"
+      export http_proxy="$proxy_uri"
+      export https_proxy="$proxy_uri"
       break;;
     [Nn]* )
       break;;
