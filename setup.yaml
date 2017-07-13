@@ -247,6 +247,7 @@
         git:
             repo: https://github.com/IMOKURI/dotfiles.git
             dest: ~/.dotfiles
+            track_submodules: true
         tags: [initialize, update]
 
       - name: Find Dotfiles Path
