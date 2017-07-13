@@ -31,17 +31,19 @@ cdls () {
 
 # cdroot
 cdroot () {
-  cd $(git rev-parse --show-toplevel)
+  cd "$(git rev-parse --show-toplevel)" || return
 }
 
 ########## For git completion and prompt ##########
 
-if [ -f ~/.git-prompt.sh ]; then
-  source ~/.git-prompt.sh
+GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh | head -1)"
+if [ -n "$GIT_PROMPT" ]; then
+  source "$GIT_PROMPT"
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-  source ~/.git-completion.bash
+GIT_COMPLETION="$(find /usr/share/doc/ -type f -name git-completion.bash | head -1)"
+if [ -n "$GIT_COMPLETION" ]; then
+  source "$GIT_COMPLETION"
 fi
 
 # Unstaged (*) and staged (+) changes will be shown next to the branch name
