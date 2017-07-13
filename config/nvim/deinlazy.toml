@@ -16,6 +16,9 @@ hook_source = '''
 repo = 'neomake/neomake'
 hook_source = '''
   let g:neomake_open_list = 2
+  let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
+  let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
+  let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
 '''
 hook_add = '''
   autocmd! BufWritePost * Neomake
