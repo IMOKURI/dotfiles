@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: false
   vars:
       proxy:
           http_proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
@@ -70,6 +70,13 @@
         become: true
         tags: initialize
 
+      - name: Install Ripgrep Repository
+        shell: yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+        args:
+            creates: /etc/yum.repos.d/carlwgeorge-ripgrep-epel-7.repo
+        become: true
+        tags: initialize
+
       - name: Install Packages
         yum:
             name: "{{ item }}"
@@ -86,6 +93,7 @@
             - bzip2
             - readline-devel
             - nodejs
+            - ripgrep
         become: true
         tags: initialize
 
@@ -144,8 +152,8 @@
             dest: "{{ item.dest }}"
             state: link
         with_items:
-            - { src: "{{ lookup('pipe', 'which python3.6') }}", dest: '/usr/local/bin/python3' }
-            - { src: "{{ lookup('pipe', 'which pip3.6') }}", dest: '/usr/local/bin/pip3' }
+            - {src: "{{ lookup('pipe', 'which python3.6') }}", dest: '/usr/local/bin/python3'}
+            - {src: "{{ lookup('pipe', 'which pip3.6') }}", dest: '/usr/local/bin/pip3'}
         become: true
         tags: initialize
 
@@ -156,11 +164,11 @@
             path: "{{ item.path }}"
             priority: "{{ item.priority }}"
         with_items:
-            - { name: 'python', link: '/usr/local/bin/python', path: "{{ lookup('pipe', 'which python2') }}", priority: 20 }
-            - { name: 'python', link: '/usr/local/bin/python', path: "{{ lookup('pipe', 'which python3') }}", priority: 30 }
-            - { name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip2') }}", priority: 20 }
-            - { name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip3') }}", priority: 30 }
-            - { name: 'vi', link: '/usr/local/bin/vi', path: "{{ lookup('pipe', 'which nvim') }}", priority: 100 }
+            - {name: 'python', link: '/usr/local/bin/python', path: "{{ lookup('pipe', 'which python2') }}", priority: 20}
+            - {name: 'python', link: '/usr/local/bin/python', path: "{{ lookup('pipe', 'which python3') }}", priority: 30}
+            - {name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip2') }}", priority: 20}
+            - {name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip3') }}", priority: 30}
+            - {name: 'vi', link: '/usr/local/bin/vi', path: "{{ lookup('pipe', 'which nvim') }}", priority: 100}
         become: true
         tags: initialize
 
@@ -205,7 +213,7 @@
 
       - name: Setup Virtualenv Boot Script
         blockinfile:
-            path: ~/.virtualenvs/postmkvirtualenv 
+            path: ~/.virtualenvs/postmkvirtualenv
             block: |
                 # find directory
                 SITEDIR=$(virtualenvwrapper_get_site_packages_dir)
@@ -322,8 +330,8 @@
         args:
             creates: "{{ item.creates }}"
         with_items:
-            - { target: ShellCheck, creates: ~/.local/bin/shellcheck }
-            - { target: ghc-mod, creates: ~/.local/bin/ghc-mod }
-            - { target: hdevtools, creates: ~/.local/bin/hdevtools }
-            - { target: hlint, creates: ~/.local/bin/hlint }
+            - {target: ShellCheck, creates: ~/.local/bin/shellcheck}
+            - {target: ghc-mod, creates: ~/.local/bin/ghc-mod}
+            - {target: hdevtools, creates: ~/.local/bin/hdevtools}
+            - {target: hlint, creates: ~/.local/bin/hlint}
         tags: [optional, haskell]
