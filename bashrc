@@ -36,12 +36,12 @@ cdroot () {
 
 ########## For git completion and prompt ##########
 
-GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh | head -1)"
+GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh 2> /dev/null | head -1)"
 if [ -n "$GIT_PROMPT" ]; then
   source "$GIT_PROMPT"
 fi
 
-GIT_COMPLETION="$(find /usr/share/doc/ -type f -name git-completion.bash | head -1)"
+GIT_COMPLETION="$(find /usr/share/doc/ -type f -name git-completion.bash 2> /dev/null | head -1)"
 if [ -n "$GIT_COMPLETION" ]; then
   source "$GIT_COMPLETION"
 fi
