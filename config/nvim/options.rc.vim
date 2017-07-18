@@ -80,6 +80,10 @@ nnoremap nt :<C-u>tabnew<CR>
 "ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
 
+"インデントをコマンド1回にする
+nnoremap > >>
+nnoremap < <<
+
 "##### その他設定 #####
 
 " マウスの無効化
