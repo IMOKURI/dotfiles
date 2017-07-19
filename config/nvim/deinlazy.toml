@@ -72,6 +72,6 @@ hook_source = '''
 '''
 hook_add = '''
   nmap <Space> [denite]
-  nmap <silent> [denite]f :<C-u>Denite file_rec<CR>
-  nmap <silent> [denite]g :<C-u>Denite grep<CR>
+  nnoremap <silent> [denite]f :<C-u>Denite file_rec<CR>
+  nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
 '''
