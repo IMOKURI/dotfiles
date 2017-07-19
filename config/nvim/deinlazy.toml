@@ -71,7 +71,7 @@ hook_source = '''
   call denite#custom#option('default', 'prompt', '>')
 '''
 hook_add = '''
-  nmap <Space>d [denite]
+  nmap <Space> [denite]
   nmap <silent> [denite]f :<C-u>Denite file_rec<CR>
   nmap <silent> [denite]g :<C-u>Denite grep<CR>
 '''
