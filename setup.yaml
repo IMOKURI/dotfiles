@@ -112,6 +112,7 @@
             - ansible
             - ansible-lint
             - yamllint
+            - yapf
             - vint
         become: true
         tags: [initialize, update]
@@ -129,6 +130,7 @@
             - Pygments
             - virtualenvwrapper
             - yamllint
+            - yapf
             - vint
         become: true
         tags: [initialize, update]
@@ -144,6 +146,15 @@
             - mdl
             - rubocop
         become: true
+        tags: [initialize, update]
+
+      - name: Install node.js Packages
+        npm:
+            name: "{{ item }}"
+            path: "{{ lookup('env','HOME') }}"
+        with_items:
+            - remark
+            - tldr
         tags: [initialize, update]
 
       - name: Create Symbolic Links for Python3
@@ -197,6 +208,7 @@
             - neovim
             - jedi
             - flake8
+            - yapf
         tags: [initialize, update]
 
       - name: Install Virtualenv Default Package for Python3
@@ -209,6 +221,7 @@
             - neovim
             - jedi
             - flake8
+            - yapf
         tags: [initialize, update]
 
       - name: Setup Virtualenv Boot Script
