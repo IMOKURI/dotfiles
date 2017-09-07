@@ -153,6 +153,7 @@
             name: "{{ item }}"
             path: "{{ lookup('env','HOME') }}"
         with_items:
+            - doctoc
             - remark
             - tldr
         tags: [initialize, update]
