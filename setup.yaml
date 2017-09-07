@@ -111,6 +111,7 @@
             - virtualenvwrapper
             - ansible
             - ansible-lint
+            - ansible-tower-cli
             - yamllint
             - yapf
             - vint
