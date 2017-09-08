@@ -47,6 +47,12 @@ repo = 'sedan07/vim-mib'
 on_ft = 'mib'
 
 [[plugins]]
+repo = 'guywald1/vim-prismo'
+hook_add = '''
+  nnoremap <C-h> :Prismo<CR>
+'''
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = ['Denite']
 hook_source = '''
