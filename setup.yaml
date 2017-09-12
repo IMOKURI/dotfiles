@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  gather_facts: false
+  gather_facts: true
   vars:
       proxy:
           http_proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
@@ -33,15 +33,13 @@
 
       - name: Download IUS Repository Installer
         get_url:
-            url: https://setup.ius.io
-            dest: /tmp/ius.sh
+            url: https://raw.githubusercontent.com/iuscommunity/automation-examples/ansible/enable-ius.yml
+            dest: /tmp/enable-ius.yml
         tags: initialize
 
       - name: Install IUS Repository
-        shell: bash /tmp/ius.sh
-        args:
-            creates: /etc/yum.repos.d/ius.repo
-        become: true
+        include: /tmp/enable-ius.yml
+        static: false
         tags: initialize
 
       - name: Download Git-LFS Repository Installer
