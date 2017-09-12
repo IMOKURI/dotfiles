@@ -80,6 +80,7 @@
       - name: Install Packages
         yum:
             name: "{{ item }}"
+            state: latest
         with_items:
             - git2u
             - git-lfs
@@ -95,7 +96,7 @@
             - nodejs
             - ripgrep
         become: true
-        tags: initialize
+        tags: [initialize, update]
 
       - name: Install Python2 Packages
         pip:
@@ -153,6 +154,7 @@
         npm:
             name: "{{ item }}"
             path: "{{ lookup('env','HOME') }}"
+            state: latest
         with_items:
             - doctoc
             - remark
