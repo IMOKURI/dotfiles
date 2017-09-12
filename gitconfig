@@ -8,6 +8,7 @@
 [core]
   editor = vi
   quotepath = false
+  excludesfile = ~/.gitignore.global
 
 [color]
   ui = auto

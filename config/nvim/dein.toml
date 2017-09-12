@@ -15,3 +15,23 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'tpope/vim-sleuth'
+
+[[plugins]]
+repo = 'xolox/vim-misc'
+
+[[plugins]]
+repo = 'xolox/vim-session'
+depends = ['vim-misc']
+hook_add = '''
+  let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
+  if isdirectory(s:local_session_directory)
+    let g:session_directory = s:local_session_directory
+    let g:session_autosave = 'yes'
+    let g:session_autoload = 'yes'
+    let g:session_autosave_periodic = 1
+  else
+    let g:session_autosave = 'no'
+    let g:session_autoload = 'no'
+  endif
+  unlet s:local_session_directory
+'''

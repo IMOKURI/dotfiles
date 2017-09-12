@@ -149,7 +149,7 @@
         become: true
         tags: [initialize, update]
 
-      - name: Install node.js Packages
+      - name: Install Node.js Packages
         npm:
             name: "{{ item }}"
             path: "{{ lookup('env','HOME') }}"

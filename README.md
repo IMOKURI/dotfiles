@@ -21,25 +21,11 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 
 ## Feature
 
+* Add Repository
 * Install Packages
-	* git
-	* git-lfs
-	* neovim
-	* python2
-	* python3
-	* ruby
-	* nodejs	etc...
-* Install Python2 Packages
-	* jedi
-	* flake8
-	* virtualenvwrapper
-	* yamllint
-	* vint	etc...
-* Install Python3 Packages
-	* Same as python2. See above...
+* Install Python2/3 Packages
 * Install Ruby Packages
-	* rubocop
-	* mdl	etc...
+* Install Node.js Packages
 * Set Alternative Commands
 * Setup Python Virtualenv
 * Setup Rbenv
@@ -57,7 +43,3 @@ ansible-playbook setup.yaml --tags optional
 * Install Haskell Stack
 * Setup Haskell
 * Install Haskell Packages
-	* ShellCheck
-	* ghc-mod
-	* hdevtools
-	* hlint
