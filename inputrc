@@ -2,4 +2,7 @@ $if Bash
   set completion-ignore-case on
   set visible-stats on
   set bell-style none
+
+  "\C-j": menu-complete
+  "\C-k": menu-complete-backward
 $endif
