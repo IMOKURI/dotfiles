@@ -16,6 +16,8 @@ export PATH=$HOME/node_modules/.bin:$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:
 
 export LESS='-i -M -N -R -S -W -z-3 -x2'
 
+export GREP_OPTIONS='--exclude-dir=.git'
+
 export EDITOR="vi"
 
 if [ -f ~/.hosts ]; then
