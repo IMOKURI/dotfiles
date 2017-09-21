@@ -69,7 +69,10 @@ nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
 set backspace=indent,eol,start
 
 "root権限でファイルを保存する
-cmap w!! w !sudo tee > /dev/null %
+cnoremap w!! w !sudo tee > /dev/null %
+
+"常に全てのタブを閉じる
+cmap q qa
 
 "help画面をqで閉じる
 autocmd FileType help nnoremap <buffer> q <C-w>c
