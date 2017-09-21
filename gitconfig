@@ -36,4 +36,11 @@
   pushInsteadOf = https://github.com/
 
 [alias]
-  graph = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  a = add
+  b = branch
+  c = commit
+  d = diff
+  g = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  s = status
+  co = checkout
+  dc = diff --cached

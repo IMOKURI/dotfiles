@@ -34,6 +34,8 @@ cdroot () {
   cd "$(git rev-parse --show-toplevel)" || return
 }
 
+alias g='git'
+
 ########## For git completion and prompt ##########
 
 GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh 2> /dev/null | head -1)"
