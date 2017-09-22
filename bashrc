@@ -34,7 +34,7 @@ cdroot () {
   cd "$(git rev-parse --show-toplevel)" || return
 }
 
-alias g='git'
+alias gi='git'
 
 ########## For git completion and prompt ##########
 
