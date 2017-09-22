@@ -27,6 +27,9 @@ set cursorline
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
+"画面端が5行見える状態でスクロールする
+set scrolloff=5
+
 "最後の行を出来る限り表示する
 set display=lastline
 
