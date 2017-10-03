@@ -6,11 +6,17 @@ Deploy dotfiles using ansible.
 
 * curl
 
-Set environment variables if you need to use proxy.
+* Set environment variables if you need to use proxy.
 
 ```
 export http_proxy=http://proxy.example.com:port
 export https_proxy=http://proxy.example.com:port
+```
+
+* Enable optional repository. (RHEL Only)
+
+```
+subscription-manager repos --enable rhel-7-server-optional-rpms
 ```
 
 ## Installation
