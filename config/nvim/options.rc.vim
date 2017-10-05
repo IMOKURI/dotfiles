@@ -101,5 +101,9 @@ autocmd BufReadPost *
       \   exe "normal! g'\"" |
       \ endif
 
+" 文字コード判別
+set encoding=utf-8
+set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
+
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
