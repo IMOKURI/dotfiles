@@ -156,6 +156,7 @@
             path: "{{ lookup('env','HOME') }}"
             state: latest
         with_items:
+            - coffeelint
             - doctoc
             - remark
             - tldr
