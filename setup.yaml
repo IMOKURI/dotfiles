@@ -135,15 +135,15 @@
         tags: [initialize, update]
 
       - name: Install Latest Ruby
-        shell: bash -lc "rbenv install {{ ruby_version.stdout_lines }}"
+        shell: bash -lc "rbenv install {{ ruby_version.stdout }}"
         tags: [initialize, update]
 
       - name: Rehash Rbenv
-        shell: bash -lc "rbenv rehash {{ ruby_version.stdout_lines }}"
+        shell: bash -lc "rbenv rehash {{ ruby_version.stdout }}"
         tags: [initialize, update]
 
       - name: Set Default Ruby
-        shell: bash -lc "rbenv global {{ ruby_version.stdout_lines }}"
+        shell: bash -lc "rbenv global {{ ruby_version.stdout }}"
         tags: [initialize, update]
 
       - name: Install Python2 Packages
