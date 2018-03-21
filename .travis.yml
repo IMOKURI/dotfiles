@@ -1,3 +1,4 @@
+---
 sudo: required
 
 services:
@@ -14,5 +15,4 @@ before_install:
 script:
   - docker run -i -t --rm=true ${OS_DIST}:${OS_VERSION} bash -c "yum install -y sudo; \
                                                                  $(curl -fsSL https://git.io/imokuri); \
-                                                                 ls /usr/bin; \
-                                                                 /usr/bin/ansible-playbook ~/.setup.yaml --tags optional"
+                                                                 /bin/ansible-playbook ~/.setup.yaml --tags optional"
