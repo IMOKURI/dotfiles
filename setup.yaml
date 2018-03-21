@@ -189,6 +189,7 @@
         gem:
             name: "{{ item }}"
             user_install: false
+            executable: ~/.rbenv/shims/gem
             state: latest
         with_items:
             - msgpack
