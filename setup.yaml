@@ -357,18 +357,18 @@
         get_url:
             url: https://get.haskellstack.org
             dest: /tmp/stack.sh
-        tags: [optional, haskell]
+        tags: optional
 
       - name: Install Haskell Stack
         shell: bash /tmp/stack.sh
         args:
             creates: /usr/local/bin/stack
         become: true
-        tags: [optional, haskell]
+        tags: optional
 
       - name: Setup Haskell
         shell: stack setup
-        tags: [optional, haskell]
+        tags: optional
 
       - name: Install Haskell Packages
         shell: "stack install {{ item.target }}"
@@ -376,7 +376,7 @@
             creates: "{{ item.creates }}"
         with_items:
             - {target: ShellCheck, creates: ~/.local/bin/shellcheck}
-            - {target: ghc-mod, creates: ~/.local/bin/ghc-mod}
-            - {target: hdevtools, creates: ~/.local/bin/hdevtools}
-            - {target: hlint, creates: ~/.local/bin/hlint}
-        tags: [optional, haskell]
+            #- {target: ghc-mod, creates: ~/.local/bin/ghc-mod}
+            #- {target: hdevtools, creates: ~/.local/bin/hdevtools}
+            #- {target: hlint, creates: ~/.local/bin/hlint}
+        tags: optional
