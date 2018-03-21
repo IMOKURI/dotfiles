@@ -7,10 +7,10 @@ function _logger(){
 }
 
 _logger "Install Ansible Dependency Packages..."
-sudo yum install -y python python-pip gcc python-devel libffi-devel openssl-devel
+sudo yum install -y gcc python python-devel libffi-devel openssl-devel
 
-_logger "Upgrade Pip..."
-sudo pip install -U pip
+_logger "Install Pip..."
+curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo python
 
 _logger "Install Ansible..."
 sudo pip install ansible
