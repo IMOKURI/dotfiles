@@ -12,4 +12,4 @@ before_install:
   - docker pull ${OS_DIST}:${OS_VERSION}
 
 script:
-  - docker run -i -t --rm=true ${OS_DIST}:${OS_VERSION} bash -c "yum install -y sudo; $(curl -fsSL https://git.io/imokuri)"
+  - docker run -i -t --rm=true ${OS_DIST}:${OS_VERSION} bash -c "yum install -y make sudo; $(curl -fsSL https://git.io/imokuri)"
