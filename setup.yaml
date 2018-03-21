@@ -82,6 +82,8 @@
             name: "{{ item }}"
             state: latest
         with_items:
+            - make
+            - which
             - git2u
             - git-lfs
             - python36u
