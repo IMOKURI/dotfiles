@@ -29,12 +29,12 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 
 * Add Repository
 * Install Packages
+* Setup Rbenv
 * Install Python2/3 Packages
 * Install Ruby Packages
 * Install Node.js Packages
 * Set Alternative Commands
 * Setup Python Virtualenv
-* Setup Rbenv
 * Clone Dotfiles Repository
 * Create Symbolic Links To Dotfiles
 
