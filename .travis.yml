@@ -14,6 +14,4 @@ before_install:
 script:
   - docker run -i -t --rm=true ${OS_DIST}:${OS_VERSION} bash -c "yum install -y sudo; \
                                                                  $(curl -fsSL https://git.io/imokuri); \
-                                                                 echo $PATH; \
-                                                                 ls /usr/bin; \
-                                                                 ansible-playbook ~/.setup.yaml --tags optional"
+                                                                 /usr/bin/ansible-playbook ~/.setup.yaml --tags optional"
