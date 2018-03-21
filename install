@@ -14,9 +14,11 @@ sudo yum install -y python python-setuptools gcc python-devel libffi-devel opens
 
 speak "Install Ansible..."
 
-sudo easy_install -U setuptools
+sudo easy_install pip
 
-sudo easy_install pip ansible
+sudo pip install setuptools --upgrade
+
+sudo pip install ansible
 
 speak "Downloading playbook..."
 
