@@ -207,6 +207,7 @@
         with_items:
             - coffeelint
             - doctoc
+            - jsonlint
             - remark
             - tldr
         tags: [initialize, update]
