@@ -98,6 +98,54 @@
         become: true
         tags: [initialize, update]
 
+      - name: Clone Rbenv
+        git:
+            repo: https://github.com/rbenv/rbenv.git
+            dest: ~/.rbenv
+        tags: initialize
+
+      - name: Compile Rbenv
+        shell: src/configure
+        args:
+            chdir: ~/.rbenv
+        tags: initialize
+
+      - name: Make Rbenv
+        make:
+            chdir: ~/.rbenv/src
+        tags: initialize
+
+      - name: Clone Ruby-Build
+        git:
+            repo: https://github.com/rbenv/ruby-build.git
+            dest: ~/.rbenv/plugins/ruby-build
+        tags: [initialize, update]
+
+      - name: Setup Rbenv Environment Temporarily
+        blockinfile:
+            path: ~/.bash_profile
+            block: |
+                export PATH=~/.rbenv/bin:$PATH
+                eval "$(rbenv init -)"
+        tags: initialize
+
+      - name: Latest Stable Ruby Version
+        shell: bash -lc "rbenv install -l | grep -v - | tail -1"
+        register: ruby_version
+        tags: [initialize, update]
+
+      - name: Install Latest Ruby
+        shell: bash -lc "rbenv install {{ ruby_version }}"
+        tags: [initialize, update]
+
+      - name: Rehash Rbenv
+        shell: bash -lc "rbenv rehash {{ ruby_version }}"
+        tags: [initialize, update]
+
+      - name: Set Default Ruby
+        shell: bash -lc "rbenv global {{ ruby_version }}"
+        tags: [initialize, update]
+
       - name: Install Python2 Packages
         pip:
             name: "{{ item }}"
@@ -244,29 +292,6 @@
                 else
                     echo "$HOME/.virtualenvs/deps/" > "$SITEDIR/extra.pth";
                 fi
-        tags: initialize
-
-      - name: Clone Rbenv
-        git:
-            repo: https://github.com/rbenv/rbenv.git
-            dest: ~/.rbenv
-        tags: initialize
-
-      - name: Compile Rbenv
-        shell: src/configure
-        args:
-            chdir: ~/.rbenv
-        tags: initialize
-
-      - name: Make Rbenv
-        make:
-            chdir: ~/.rbenv/src
-        tags: initialize
-
-      - name: Clone Ruby-Build
-        git:
-            repo: https://github.com/rbenv/ruby-build.git
-            dest: ~/.rbenv/plugins/ruby-build
         tags: initialize
 
       - name: Clone Dotfiles Repository
