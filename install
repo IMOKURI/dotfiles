@@ -2,30 +2,26 @@
 
 set -e
 
-function speak(){
+function _logger(){
   echo "========== $(date -u '+%Y-%m-%d_%H:%M:%S') $1 =========="
 }
 
-speak "Starting..."
-
-speak "Install Ansible Dependency Packages..."
-
+_logger "Install Ansible Dependency Packages..."
 sudo yum install -y python python-setuptools gcc python-devel libffi-devel openssl-devel
 
-speak "Install Ansible..."
-
+_logger "Install Pip..."
 sudo easy_install pip
 
+_logger "Upgrade Setuptools..."
 sudo pip install setuptools --upgrade
 
+_logger "Install Ansible..."
 sudo pip install ansible
 
-speak "Downloading playbook..."
-
+_logger "Downloading playbook..."
 curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml" -o ~/.setup.yaml
 
-speak "Run Ansible Playbook..."
-
+_logger "Run Ansible Playbook..."
 ansible-playbook ~/.setup.yaml --tags "initialize,deploy"
 
-speak "Finished!"
+_logger "Finished!"
