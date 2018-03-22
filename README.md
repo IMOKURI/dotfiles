@@ -7,6 +7,7 @@ Deploy dotfiles using ansible.
 ## Requirement
 
 * curl
+* sudo
 
 * Set environment variables if you need to use proxy.
 
