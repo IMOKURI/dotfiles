@@ -7,13 +7,13 @@ function _logger(){
 }
 
 _logger "Install Ansible Dependency Packages..."
-sudo yum install -y gcc python python-devel libffi-devel openssl-devel
+sudo -E yum install -y gcc python python-devel libffi-devel openssl-devel
 
 _logger "Install Pip..."
-curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo python
+curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python
 
 _logger "Install Ansible..."
-sudo pip install ansible
+sudo -E pip install ansible
 
 _logger "Downloading playbook..."
 curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml" -o ~/.setup.yaml
