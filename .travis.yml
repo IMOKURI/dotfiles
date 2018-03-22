@@ -20,7 +20,7 @@ before_install:
 script:
   - docker exec --tty "$(cat ${container_id})" env TERM=xterm yum install -y sudo
   - docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "$(curl -fsSL https://git.io/imokuri)"
-  - docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook ~/.setup.yaml --tags optional
+  - docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook .setup.yaml --tags optional
 
   - docker stop "$(cat ${container_id})"
 
