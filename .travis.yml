@@ -6,13 +6,23 @@ services:
 
 env:
   matrix:
-    - OS_DIST=centos
-      OS_VERSION=7
+    - distribution: centos
+      version: 7
+      init: /usr/lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 before_install:
-  - docker pull ${OS_DIST}:${OS_VERSION}
+  - docker pull ${distribution}:${version}
+
+  - container_id=$(mktemp)
+  - docker run --detach ${run_opts} ${distribution}:${version} "${init}" > "${container_id}"
 
 script:
-  - docker run -i -t --rm=true ${OS_DIST}:${OS_VERSION} bash -c "yum install -y sudo; \
-                                                                 $(curl -fsSL https://git.io/imokuri); \
-                                                                 /bin/ansible-playbook ~/.setup.yaml --tags optional"
+  - docker exec --tty "$(cat ${container_id})" env TERM=xterm yum install -y sudo
+  - docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "$(curl -fsSL https://git.io/imokuri)"
+  - docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook ~/.setup.yaml --tags optional
+
+  - docker stop "$(cat ${container_id})"
+
+notifications:
+  email: false
