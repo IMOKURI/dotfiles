@@ -10,19 +10,33 @@ env:
       version: 7
       init: /usr/lib/systemd/systemd
       run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+      proxy: true
+    - distribution: centos
+      version: 7
+      init: /usr/lib/systemd/systemd
+      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+      proxy: false
 
 before_install:
   - docker pull ${distribution}:${version}
+  - docker pull wernight/squid
 
   - container_id=$(mktemp)
   - docker run --detach ${run_opts} ${distribution}:${version} "${init}" > "${container_id}"
 
+  - [ ${proxy} ] && squid_container_id=$(mktemp)
+  - [ ${proxy} ] && docker run --detach -p 3128:3128 wernight/squid > "${squid_container_id}"
+  - [ ${proxy} ] && squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "${squid_container_id}")
+
+  - [ ${proxy} ] && docker exec --tty "$(cat ${container_id})" echo "proxy=http://${squid_container_ip}:3128" >> /etc/yum.conf
+  - docker exec --tty "$(cat ${container_id})" yum install -y sudo
+
 script:
-  - docker exec --tty "$(cat ${container_id})" env TERM=xterm yum install -y sudo
-  - docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "$(curl -fsSL https://git.io/imokuri)"
-  #- docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /root/.dotfiles/setup.yaml --tags optional
+  - [ ${proxy} ] && docker exec --tty "$(cat ${container_id})" env http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
+  - [ ${proxy} ] || docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "$(curl -fsSL https://git.io/imokuri)"
 
   - docker stop "$(cat ${container_id})"
+  - [ ${proxy} ] && docker stop "$(cat ${squid_container_id})"
 
 notifications:
   email: false

@@ -6,6 +6,13 @@ function _logger(){
   echo "========== $(date -u '+%Y-%m-%d_%H:%M:%S') $1 =========="
 }
 
+_logger "Set Proxy if Available..."
+if [[ "${http_proxy}" ]]; then
+  if ! grep -q proxy /etc/yum.conf; then
+    echo "proxy=${http_proxy}" >> /etc/yum.conf
+  fi
+fi
+
 _logger "Install Ansible Dependency Packages..."
 sudo -E yum install -y gcc python python-devel libffi-devel openssl-devel
 
