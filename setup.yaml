@@ -77,6 +77,13 @@
         become: true
         tags: initialize
 
+      - name: Install Docker CE Repository
+        shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+        args:
+            creates: /etc/yum.repos.d/docker-ce.repo
+        become: true
+        tags: initialize
+
       - name: Install Packages
         yum:
             name: "{{ item }}"
@@ -97,6 +104,10 @@
             - readline-devel
             - nodejs
             - ripgrep
+            - docker-ce
+            - yum-utils
+            - device-mapper-persistent-data
+            - lvm2
         become: true
         tags: [initialize, update]
 
@@ -378,7 +389,7 @@
             creates: "{{ item.creates }}"
         with_items:
             - {target: ShellCheck, creates: ~/.local/bin/shellcheck}
-            #- {target: ghc-mod, creates: ~/.local/bin/ghc-mod}
-            #- {target: hdevtools, creates: ~/.local/bin/hdevtools}
-            #- {target: hlint, creates: ~/.local/bin/hlint}
+            # - {target: ghc-mod, creates: ~/.local/bin/ghc-mod}
+            # - {target: hdevtools, creates: ~/.local/bin/hdevtools}
+            # - {target: hlint, creates: ~/.local/bin/hlint}
         tags: optional
