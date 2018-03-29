@@ -29,7 +29,7 @@ before_install:
       squid_container_id=$(mktemp)
       docker run --detach -p 3128:3128 wernight/squid > "${squid_container_id}"
       squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(cat "${squid_container_id}"))
-      docker exec --tty "$(cat ${container_id})" 'echo "proxy=http://${squid_container_ip}:3128" >> /etc/yum.conf'
+      docker exec --tty "$(cat ${container_id})" sed -i "\$aproxy=http://${squid_container_ip}:3128" /etc/yum.conf
     fi
 
   - docker exec --tty "$(cat ${container_id})" yum install -y sudo
