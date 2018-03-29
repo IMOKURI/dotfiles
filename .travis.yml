@@ -24,19 +24,26 @@ before_install:
   - container_id=$(mktemp)
   - docker run --detach ${run_opts} ${distribution}:${version} "${init}" > "${container_id}"
 
-  - [ ${proxy} ] && squid_container_id=$(mktemp)
-  - [ ${proxy} ] && docker run --detach -p 3128:3128 wernight/squid > "${squid_container_id}"
-  - [ ${proxy} ] && squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "${squid_container_id}")
+  - |
+    if [ ${proxy} == true ]; then
+      squid_container_id=$(mktemp)
+      docker run --detach -p 3128:3128 wernight/squid > "${squid_container_id}"
+      squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(cat "${squid_container_id}"))
+      docker exec --tty "$(cat ${container_id})" sed -i "\$aproxy=http://${squid_container_ip}:3128" /etc/yum.conf
+    fi
 
-  - [ ${proxy} ] && docker exec --tty "$(cat ${container_id})" echo "proxy=http://${squid_container_ip}:3128" >> /etc/yum.conf
   - docker exec --tty "$(cat ${container_id})" yum install -y sudo
 
 script:
-  - [ ${proxy} ] && docker exec --tty "$(cat ${container_id})" env http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
-  - [ ${proxy} ] || docker exec --tty "$(cat ${container_id})" env TERM=xterm bash -c "$(curl -fsSL https://git.io/imokuri)"
+  - |
+    if [ ${proxy} == true ]; then
+      docker exec --tty "$(cat ${container_id})" env http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
+    else
+      docker exec --tty "$(cat ${container_id})" bash -c "$(curl -fsSL https://git.io/imokuri)"
+    fi
 
   - docker stop "$(cat ${container_id})"
-  - [ ${proxy} ] && docker stop "$(cat ${squid_container_id})"
+  - if [ ${proxy} == true ]; then docker stop "$(cat ${squid_container_id})"; fi
 
 notifications:
   email: false
