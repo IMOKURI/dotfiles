@@ -168,6 +168,8 @@
 
       - name: Install Latest Ruby
         shell: bash -lc "rbenv install {{ ruby_version.stdout }}"
+        args:
+            creates: "~/.rbenv/versions/{{ ruby_version.stdout }}"
         tags: [initialize, update]
 
       - name: Rehash Rbenv
