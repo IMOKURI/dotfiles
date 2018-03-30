@@ -84,6 +84,18 @@
         become: true
         tags: initialize
 
+      - name: Download Docker Compose Binary
+        get_url:
+            url: https://github.com/docker/compose/releases/download/1.20.1/docker-compose-Linux-x86_64
+            dest: /usr/local/bin/docker-compose
+        tags: initialize
+
+      - name: Add Executable Permission to Docker Compose Binary
+        file:
+            path: /usr/local/bin/docker-compose
+            state: touch
+            mode: 0755
+
       - name: Install Packages
         yum:
             name: "{{ item }}"
