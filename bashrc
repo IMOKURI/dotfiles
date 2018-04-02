@@ -10,6 +10,9 @@ fi
 
 ##### Set bash options #####
 
+# ディレクトリ名を実行すると、そのディレクトリに移動する
+shopt -s autocd
+
 # dotで始まるファイルをワイルドカードのマッチ対象に含める
 shopt -s dotglob
 
@@ -21,6 +24,12 @@ alias c='pygmentize -g'
 
 # alias colordiff
 [ -x /usr/bin/colordiff ] && alias diff='colordiff'
+
+alias ..='cd ..'
+alias ..2='..; ..'
+alias ..3='..2; ..'
+alias ..4='..3; ..'
+alias ..5='..4; ..'
 
 # cdls
 alias cd='cdls'
@@ -34,7 +43,8 @@ cdroot () {
   cd "$(git rev-parse --show-toplevel)" || return
 }
 
-alias gi='git'
+alias g='git'
+complete -o default -o nospace -F _git g
 
 ########## For git completion and prompt ##########
 

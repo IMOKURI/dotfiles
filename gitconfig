@@ -36,11 +36,11 @@
   pushInsteadOf = https://github.com/
 
 [alias]
-  ad = add
-  br = branch
-  cm = commit
+  a = add
+  b = branch
+  c = commit
   co = checkout
   dc = diff --cached
-  di = diff
-  gr = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  st = status
+  d = diff
+  g = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  s = status
