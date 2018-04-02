@@ -25,6 +25,17 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'sbdchd/neoformat'
+hook_source = '''
+  let g:neoformat_basic_format_align = 1
+  let g:neoformat_basic_format_retab = 1
+  let g:neoformat_basic_format_trim = 1
+'''
+hook_add = '''
+  autocmd! BufWritePre * undojoin | Neoformat
+'''
+
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
 hook_source = '''
