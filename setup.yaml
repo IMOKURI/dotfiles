@@ -111,6 +111,19 @@
         become: true
         tags: [initialize, update]
 
+      - name: Download Go Binary
+        get_url:
+            url: https://dl.google.com/go/go1.10.1.linux-amd64.tar.gz
+            dest: /tmp/go1.10.1.linux-amd64.tar.gz
+        tags: initialize
+
+      - name: Extract Go Binary
+        unarchive:
+            src: /tmp/go1.10.1.linux-amd64.tar.gz
+            dest: /usr/local
+            creates: /usr/local/go
+        tags: initialize
+
       - name: Download Docker Compose Binary
         get_url:
             url: https://github.com/docker/compose/releases/download/1.20.1/docker-compose-Linux-x86_64
