@@ -11,6 +11,9 @@ hook_add = '''
 repo = 'jacoborus/tender.vim'
 
 [[plugins]]
+repo = 'challenger-deep-theme/vim'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]

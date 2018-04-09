@@ -1,4 +1,4 @@
-colorscheme tender
+colorscheme challenger_deep
 
 let g:lightline = {
   \ 'colorscheme': 'tender',
