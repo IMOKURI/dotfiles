@@ -1,6 +1,11 @@
 ---
 sudo: required
 
+language: ruby
+
+rvm:
+  - ruby-head
+
 services:
   - docker
 
@@ -18,6 +23,8 @@ env:
       proxy: false
 
 before_install:
+  - type ruby
+  - ruby --version
   - docker pull ${distribution}:${version}
   - docker pull wernight/squid
 
@@ -36,7 +43,7 @@ before_install:
 
 script:
   - |
-    travis_wait 30 if [ ${proxy} == true ]; then
+    if [ ${proxy} == true ]; then
       docker exec --tty "$(cat ${container_id})" env http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
     else
       docker exec --tty "$(cat ${container_id})" bash -c "$(curl -fsSL https://git.io/imokuri)"

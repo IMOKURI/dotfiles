@@ -180,7 +180,7 @@
         tags: [initialize, update]
 
       - name: Install Latest Ruby
-        shell: bash -lc "rbenv install {{ ruby_version.stdout }}"
+        shell: bash -lc "RUBY_CONFIGURE_OPTS=--disable-install-doc rbenv install {{ ruby_version.stdout }}"
         args:
             creates: "~/.rbenv/versions/{{ ruby_version.stdout | trim }}"
         tags: [initialize, update]
