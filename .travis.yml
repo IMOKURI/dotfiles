@@ -4,7 +4,7 @@ sudo: required
 language: ruby
 
 rvm:
-  - ruby-head
+  - ruby-2.5.1
 
 services:
   - docker
@@ -23,8 +23,6 @@ env:
       proxy: false
 
 before_install:
-  - type ruby
-  - ruby --version
   - docker pull ${distribution}:${version}
   - docker pull wernight/squid
 
