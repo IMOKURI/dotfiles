@@ -124,6 +124,12 @@
             creates: /usr/local/go
         tags: initialize
 
+      - name: Install Go Packages
+        shell: "go get {{ item }}"
+        with_items:
+            - mvdan.cc/sh/cmd/shfmt
+        tags: update
+
       - name: Download Docker Compose Binary
         get_url:
             url: https://github.com/docker/compose/releases/download/1.20.1/docker-compose-Linux-x86_64
