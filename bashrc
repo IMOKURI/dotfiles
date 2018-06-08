@@ -25,6 +25,8 @@ alias c='pygmentize -g'
 # alias colordiff
 [ -x /usr/bin/colordiff ] && alias diff='colordiff'
 
+alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
+
 alias ..='cd ..'
 alias ..2='..; ..'
 alias ..3='..2; ..'
