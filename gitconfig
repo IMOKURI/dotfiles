@@ -5,6 +5,9 @@
 [includeIf "gitdir:~/ghe/"]
   path = ~/.gitconfig.local
 
+[includeIf "gitdir:/mnt/c/Users/sugiyayo/Documents/GitHub/"]
+  path = ~/.gitconfig.local
+
 [core]
   editor = vi
   quotepath = false

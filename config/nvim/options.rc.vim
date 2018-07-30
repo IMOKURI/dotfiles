@@ -95,6 +95,9 @@ nnoremap < <<
 " マウスの無効化
 set mouse-=a
 
+" clipboard設定
+set clipboard+=unnamed
+
 " カーソル位置記憶
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
