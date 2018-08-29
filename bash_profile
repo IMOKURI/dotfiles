@@ -14,7 +14,7 @@ fi
 
 export PATH=$HOME/node_modules/.bin:$HOME/.rbenv/bin:$HOME/.local/bin:$HOME/bin:/usr/local/heroku/bin:/usr/local/go/bin:~/go/bin:$PATH
 
-export LESS='-i -M -N -R -S -W -z-3 -x2'
+export LESS='-i -M -N -R -W -z-3 -x4 -F -X'
 
 export GREP_OPTIONS='--exclude-dir=.git'
 
