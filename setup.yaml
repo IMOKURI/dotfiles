@@ -98,7 +98,7 @@
       - name: Install Pipenv Packages
         pip:
             name: "{{ item }}"
-            executable: pip3
+            executable: pip3.6
             state: latest
         with_items:
             - pipenv
