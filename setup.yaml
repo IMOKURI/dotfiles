@@ -121,7 +121,7 @@
         tags: [initialize, update]
 
       - name: Install Python3 Packages
-        shell: "pipenv install --three"
+        shell: "pipenv install --python python3.6"
         args:
             chdir: ~/.dotfiles/config/nvim/py3
             creates: ~/.dotfiles/config/nvim/py3/Pipfile
