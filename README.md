@@ -28,27 +28,14 @@ subscription-manager repos --enable rhel-7-server-optional-rpms
 bash -c "$(curl -fsSL https://git.io/imokuri)"
 ```
 
+## Update
+
+```
+cd ~/.dotfiles && ansible-playbook setup.yaml --tags update
+```
+
 ## Feature
 
-* Add Repository
-* Install Packages
-* Setup Rbenv
-* Install Python2/3 Packages
-* Install Ruby Packages
-* Install Node.js Packages
-* Set Alternative Commands
-* Setup Python Virtualenv
+* Install Git, Neovim, Python, Node.js, etc...
 * Clone Dotfiles Repository
 * Create Symbolic Links To Dotfiles
-
-## Installation - Optional
-
-```
-ansible-playbook setup.yaml --tags optional
-```
-
-## Feature - Optional
-
-* Install Haskell Stack
-* Setup Haskell
-* Install Haskell Packages
