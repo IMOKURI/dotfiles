@@ -106,6 +106,13 @@
         become: true
         tags: [initialize, update]
 
+      - name: Clone Dotfiles Repository
+        git:
+            repo: https://github.com/IMOKURI/dotfiles.git
+            dest: ~/.dotfiles
+            track_submodules: true
+        tags: [initialize, update]
+
       - name: Install Python2 Packages
         shell: "pipenv install --two"
         args:
@@ -163,13 +170,6 @@
             - {name: 'vi', link: '/usr/local/bin/vi', path: "{{ lookup('pipe', 'which nvim') }}", priority: 100}
         become: true
         tags: initialize
-
-      - name: Clone Dotfiles Repository
-        git:
-            repo: https://github.com/IMOKURI/dotfiles.git
-            dest: ~/.dotfiles
-            track_submodules: true
-        tags: [initialize, update]
 
       - name: Find Dotfiles Path
         find:
