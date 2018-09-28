@@ -98,9 +98,11 @@
       - name: Install Pipenv Packages
         pip:
             name: "{{ item }}"
+            executable: pip3
             state: latest
         with_items:
             - pipenv
+            - pipenv-pipes
         become: true
         tags: [initialize, update]
 

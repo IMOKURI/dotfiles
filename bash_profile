@@ -24,6 +24,9 @@ if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts
 fi
 
+# for pipenv
+export WORKON_HOME=~/.virtualenvs
+
 # initialize rbenv
 if [ -n "$(type -t rbenv)" ]; then
   eval "$(rbenv init -)"
