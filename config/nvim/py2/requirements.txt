@@ -1,0 +1,6 @@
+neovim
+jedi
+flake8
+yamllint
+yapf
+vint

@@ -95,44 +95,49 @@
         become: true
         tags: [initialize, update]
 
-      - name: Install Python2 Packages
+      - name: Install Pipenv Packages
         pip:
             name: "{{ item }}"
-            executable: pip2.7
             state: latest
         with_items:
-            - neovim
-            - jedi
-            - flake8
-            - icdiff
-            - Pygments
-            - virtualenvwrapper
-            - ansible
-            - ansible-lint
-            - ansible-tower-cli
-            - yamllint
-            - yapf
-            - vint
+            - pipenv
         become: true
         tags: [initialize, update]
 
-      - name: Install Python3 Packages
-        pip:
-            name: "{{ item }}"
-            executable: pip3.6
-            state: latest
-        with_items:
-            - neovim
-            - jedi
-            - flake8
-            - icdiff
-            - Pygments
-            - virtualenvwrapper
-            - yamllint
-            - yapf
-            - vint
-        become: true
+      - name: Install Python2 Packages
+        shell: "pipenv install --two"
+        args:
+            chdir: ~/.dotfiles/config/nvim/py2
+            creates: ~/.dotfiles/config/nvim/py2/Pipfile
         tags: [initialize, update]
+
+      - name: Install Python3 Packages
+        shell: "pipenv install --three"
+        args:
+            chdir: ~/.dotfiles/config/nvim/py3
+            creates: ~/.dotfiles/config/nvim/py3/Pipfile
+        tags: [initialize, update]
+
+      - name: Remove Pipfile.lock
+        file:
+            path: "{{ item }}"
+            state: absent
+        with_items:
+            - ~/.dotfiles/config/nvim/py2/Pipfile.lock
+            - ~/.dotfiles/config/nvim/py3/Pipfile.lock
+        tags: update
+
+      - name: Update Python2 Packages
+        shell: "pipenv update"
+        args:
+            chdir: ~/.dotfiles/config/nvim/py2
+        tags: update
+
+      - name: Update Python3 Packages
+        shell: "pipenv update"
+        args:
+            chdir: ~/.dotfiles/config/nvim/py3
+        tags: update
 
       - name: Install Node.js Packages
         npm:
@@ -144,19 +149,7 @@
             - doctoc
             - jsonlint
             - remark
-            - tldr
         tags: [initialize, update]
-
-      - name: Create Symbolic Links for Python3
-        file:
-            src: "{{ item.src }}"
-            dest: "{{ item.dest }}"
-            state: link
-        with_items:
-            - {src: "{{ lookup('pipe', 'which python3.6') }}", dest: '/usr/local/bin/python3'}
-            - {src: "{{ lookup('pipe', 'which pip3.6') }}", dest: '/usr/local/bin/pip3'}
-        become: true
-        tags: initialize
 
       - name: Set Alternative Commands
         alternatives:
@@ -165,70 +158,8 @@
             path: "{{ item.path }}"
             priority: "{{ item.priority }}"
         with_items:
-            - {name: 'python', link: '/usr/local/bin/python', path: "{{ lookup('pipe', 'which python2') }}", priority: 20}
-            - {name: 'python', link: '/usr/local/bin/python', path: "{{ lookup('pipe', 'which python3') }}", priority: 30}
-            - {name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip2') }}", priority: 20}
-            - {name: 'pip', link: '/usr/local/bin/pip', path: "{{ lookup('pipe', 'which pip3') }}", priority: 30}
             - {name: 'vi', link: '/usr/local/bin/vi', path: "{{ lookup('pipe', 'which nvim') }}", priority: 100}
         become: true
-        tags: initialize
-
-      - name: Source Virtualenvwrapper Script
-        shell: source /usr/bin/virtualenvwrapper.sh
-        environment:
-            WORKON_HOME: ~/.virtualenvs
-        tags: initialize
-
-      - name: Create Virtualenv Default Package Dir
-        file:
-            path: "{{ item }}"
-            state: directory
-        with_items:
-            - ~/.virtualenvs/deps
-            - ~/.virtualenvs/deps3
-        tags: initialize
-
-      - name: Install Virtualenv Default Package for Python2
-        pip:
-            name: "{{ item }}"
-            executable: pip2.7
-            state: latest
-            extra_args: --target ~/.virtualenvs/deps
-        with_items:
-            - neovim
-            - jedi
-            - flake8
-            - yapf
-        tags: [initialize, update]
-
-      - name: Install Virtualenv Default Package for Python3
-        pip:
-            name: "{{ item }}"
-            executable: pip3.6
-            state: latest
-            extra_args: --target ~/.virtualenvs/deps3
-        with_items:
-            - neovim
-            - jedi
-            - flake8
-            - yapf
-        tags: [initialize, update]
-
-      - name: Setup Virtualenv Boot Script
-        blockinfile:
-            path: ~/.virtualenvs/postmkvirtualenv
-            block: |
-                # find directory
-                SITEDIR=$(virtualenvwrapper_get_site_packages_dir)
-                PYVER=$(virtualenvwrapper_get_python_version)
-
-                # create new .pth file with our path depending of python version
-                if [[ $PYVER == 3* ]];
-                then
-                    echo "$HOME/.virtualenvs/deps3/" > "$SITEDIR/extra.pth";
-                else
-                    echo "$HOME/.virtualenvs/deps/" > "$SITEDIR/extra.pth";
-                fi
         tags: initialize
 
       - name: Clone Dotfiles Repository

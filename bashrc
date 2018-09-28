@@ -19,19 +19,7 @@ shopt -s dotglob
 # ** を指定すると、該当ディレクトリ以下のディレクトリを再帰的にマッチにする
 shopt -s globstar
 
-# Colorized cat
-alias c='pygmentize -g'
-
-# alias colordiff
-[ -x /usr/bin/colordiff ] && alias diff='colordiff'
-
 alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
-
-alias ..='cd ..'
-alias ..2='..; ..'
-alias ..3='..2; ..'
-alias ..4='..3; ..'
-alias ..5='..4; ..'
 
 # cdls
 alias cd='cdls'
@@ -87,12 +75,6 @@ esac
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-
-# enable python virtualenv
-if [ -f /usr/bin/virtualenvwrapper.sh ]; then
-  export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/bin/virtualenvwrapper.sh
-fi
 
 # enable Haskell Stack completion
 if [[ $(type stack > /dev/null 2>&1) ]]; then
