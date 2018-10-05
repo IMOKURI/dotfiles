@@ -79,30 +79,32 @@
 
       - name: Install Packages
         yum:
-            name: "{{ item }}"
+            name: "{{ packages }}"
             state: latest
-        with_items:
-            - make
-            - which
-            - git2u
-            - git-lfs
-            - python36u
-            - python36u-devel
-            - python36u-pip
-            - neovim
-            - nodejs
-            - ripgrep
+        vars:
+            packages:
+                - make
+                - which
+                - git2u
+                - git-lfs
+                - python36u
+                - python36u-devel
+                - python36u-pip
+                - neovim
+                - nodejs
+                - ripgrep
         become: true
         tags: [initialize, update]
 
       - name: Install Pipenv Packages
         pip:
-            name: "{{ item }}"
+            name: "{{ pip_packages }}"
             executable: pip3.6
             state: latest
-        with_items:
-            - pipenv
-            - pipenv-pipes
+        vars:
+            pip_packages:
+                - pipenv
+                - pipenv-pipes
         become: true
         tags: [initialize, update]
 
