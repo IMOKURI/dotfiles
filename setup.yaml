@@ -115,19 +115,14 @@
             track_submodules: true
         tags: [initialize, update]
 
-      - name: Install Python2 Packages
-        shell: "pipenv install --two"
-        args:
-            chdir: ~/.dotfiles/config/nvim/py2
-            creates: ~/.dotfiles/config/nvim/py2/Pipfile
-        tags: [initialize, update]
-
-      - name: Install Python3 Packages
-        shell: "pipenv install --python python3.6"
-        args:
-            chdir: ~/.dotfiles/config/nvim/py3
-            creates: ~/.dotfiles/config/nvim/py3/Pipfile
-        tags: [initialize, update]
+      - name: Remove Virtual Env
+        shell: "pipenv --rm"
+            chdir: "{{ item }}"
+        with_items:
+            - ~/.dotfiles/config/nvim/py2
+            - ~/.dotfiles/config/nvim/py3
+        ignore_errors: true
+        tags: update
 
       - name: Remove Pipfile.lock
         file:
@@ -138,17 +133,17 @@
             - ~/.dotfiles/config/nvim/py3/Pipfile.lock
         tags: update
 
-      - name: Update Python2 Packages
+      - name: Install/Update Python2 Packages
         shell: "pipenv update"
         args:
             chdir: ~/.dotfiles/config/nvim/py2
-        tags: update
+        tags: [initialize, update]
 
-      - name: Update Python3 Packages
+      - name: Install/Update Python3 Packages
         shell: "pipenv update"
         args:
             chdir: ~/.dotfiles/config/nvim/py3
-        tags: update
+        tags: [initialize, update]
 
       - name: Install Node.js Packages
         npm:
