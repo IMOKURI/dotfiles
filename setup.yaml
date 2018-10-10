@@ -117,6 +117,7 @@
 
       - name: Remove Virtual Env
         shell: "pipenv --rm"
+        args:
             chdir: "{{ item }}"
         with_items:
             - ~/.dotfiles/config/nvim/py2
