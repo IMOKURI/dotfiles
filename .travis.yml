@@ -11,8 +11,8 @@ services:
 
 env:
   global:
-    - LANG: ja_JP.UTF-8
-    - LC_ALL: ja_JP.UTF-8
+    - LANG: en_US.utf8
+    - LC_ALL: en_US.utf8
     - DISTRIBUTION: centos
     - VERSION: 7
     - INIT: /usr/lib/systemd/systemd
