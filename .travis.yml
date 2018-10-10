@@ -10,45 +10,44 @@ services:
   - docker
 
 env:
+  global:
+    - LANG: ja_JP.UTF-8
+    - LC_ALL: ja_JP.UTF-8
+    - DISTRIBUTION: centos
+    - VERSION: 7
+    - INIT: /usr/lib/systemd/systemd
+    - RUN_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   matrix:
-    - distribution: centos
-      version: 7
-      init: /usr/lib/systemd/systemd
-      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      proxy: true
-    - distribution: centos
-      version: 7
-      init: /usr/lib/systemd/systemd
-      run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      proxy: false
+    - PROXY: true
+    - PROXY: false
 
 before_install:
-  - docker pull ${distribution}:${version}
+  - docker pull ${DISTRIBUTION}:${VERSION}
   - docker pull wernight/squid
 
-  - container_id=$(mktemp)
-  - docker run --detach ${run_opts} ${distribution}:${version} "${init}" > "${container_id}"
+  - CONTAINER_ID=$(mktemp)
+  - docker run --detach ${RUN_OPTS} ${DISTRIBUTION}:${VERSION} "${INIT}" > "${CONTAINER_ID}"
 
   - |
-    if [ ${proxy} == true ]; then
-      squid_container_id=$(mktemp)
-      docker run --detach -p 3128:3128 wernight/squid > "${squid_container_id}"
-      squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(cat "${squid_container_id}"))
-      docker exec --tty "$(cat ${container_id})" sed -i "\$aproxy=http://${squid_container_ip}:3128" /etc/yum.conf
+    if [ ${PROXY} == true ]; then
+      SQUID_CONTAINER_ID=$(mktemp)
+      docker run --detach -p 3128:3128 wernight/squid > "${SQUID_CONTAINER_ID}"
+      squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(cat "${SQUID_CONTAINER_ID}"))
+      docker exec --tty "$(cat ${CONTAINER_ID})" sed -i "\$aproxy=http://${squid_container_ip}:3128" /etc/yum.conf
     fi
 
-  - docker exec --tty "$(cat ${container_id})" yum install -y sudo
+  - docker exec --tty "$(cat ${CONTAINER_ID})" yum install -y sudo
 
 script:
   - |
-    if [ ${proxy} == true ]; then
-      docker exec --tty "$(cat ${container_id})" env http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
+    if [ ${PROXY} == true ]; then
+      docker exec --tty "$(cat ${CONTAINER_ID})" env http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
     else
-      docker exec --tty "$(cat ${container_id})" bash -c "$(curl -fsSL https://git.io/imokuri)"
+      docker exec --tty "$(cat ${CONTAINER_ID})" bash -c "$(curl -fsSL https://git.io/imokuri)"
     fi
 
-  - docker stop "$(cat ${container_id})"
-  - if [ ${proxy} == true ]; then docker stop "$(cat ${squid_container_id})"; fi
+  - docker stop "$(cat ${CONTAINER_ID})"
+  - if [ ${PROXY} == true ]; then docker stop "$(cat ${SQUID_CONTAINER_ID})"; fi
 
 notifications:
   email: false
