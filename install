@@ -3,7 +3,8 @@
 set -e
 
 function _logger(){
-  echo "========== $(date -u '+%Y-%m-%d_%H:%M:%S') $1 =========="
+  sep='======================================================================='
+  printf "\n%s %s\n\n" "${1}" "${sep:${#1}}"
 }
 
 _logger "Set Proxy if Available..."
