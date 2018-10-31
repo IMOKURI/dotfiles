@@ -89,7 +89,10 @@ cnoremap w!! w !sudo tee > /dev/null %
 cmap q qa
 
 "help画面をqで閉じる
-autocmd FileType help nnoremap <buffer> q <C-w>c
+augroup help_quit
+      autocmd!
+      autocmd FileType help nnoremap <buffer> q <C-w>c
+augroup END
 
 "新しいタブを開く
 nnoremap nt :<C-u>tabnew<CR>
@@ -110,10 +113,13 @@ set mouse-=a
 set clipboard+=unnamed
 
 " カーソル位置記憶
-autocmd BufReadPost *
-      \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-      \   exe "normal! g'\"" |
-      \ endif
+augroup remember_cursor
+      autocmd!
+      autocmd BufReadPost *
+            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+            \   exe "normal! g'\"" |
+            \ endif
+augroup END
 
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
