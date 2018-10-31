@@ -3,4 +3,4 @@ jedi
 flake8
 yamllint
 yapf
-vint
+vim-vint
