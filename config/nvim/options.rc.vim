@@ -108,5 +108,8 @@ autocmd BufReadPost *
 set encoding=utf-8
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 
+" □や○文字が崩れる問題を解決
+set ambiwidth=double
+
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
