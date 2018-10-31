@@ -1,3 +1,14 @@
+"##### 文字コード設定 #####
+" 文字コード判別
+set encoding=utf-8
+set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
+
+" vim script内でマルチバイトを使う設定
+scriptencoding utf-8
+
+" □や○文字が崩れる問題を解決
+set ambiwidth=double
+
 "##### 表示設定 #####
 
 "行番号を表示
@@ -103,13 +114,6 @@ autocmd BufReadPost *
       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
       \   exe "normal! g'\"" |
       \ endif
-
-" 文字コード判別
-set encoding=utf-8
-set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
-
-" □や○文字が崩れる問題を解決
-set ambiwidth=double
 
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
