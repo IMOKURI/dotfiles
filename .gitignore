@@ -1,2 +1,2 @@
 config/nvim/dein
-Pipfile*
+Pipfile.lock
