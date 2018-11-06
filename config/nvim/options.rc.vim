@@ -1,4 +1,5 @@
 "##### 文字コード設定 #####
+
 " 文字コード判別
 set encoding=utf-8
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
@@ -11,98 +12,111 @@ set ambiwidth=double
 
 "##### 表示設定 #####
 
-"行番号を表示
+" 行番号を表示
 set number
 
-"制御文字を表示
+" 制御文字を表示
 set list
 
-"タブをスペースに変換
+" タブをスペースに変換
 set expandtab
 
-"インデントをスペース4つ分に設定
+" インデントをスペース4つ分に設定
 set tabstop=4
 
-"タブとその削除をスペース4つ分に設定
+" タブとその削除をスペース4つ分に設定
 set softtabstop=4
 
-"オートインデントで挿入される幅
+" >> コマンドで挿入される幅
 set shiftwidth=4
 
-"スマートインデント有効化
+" >> で挿入する際、shiftwidthの倍数になるように調整
+set shiftround
+
+" スマートインデント有効化
 set smartindent
 
-"カーソルラインをハイライト
+" カーソルラインをハイライト
 set cursorline
 
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
-"画面端が5行見える状態でスクロールする
+" 画面端が5行見える状態でスクロールする
 set scrolloff=5
 
-"最後の行を出来る限り表示する
+" 最後の行を出来る限り表示する
 set display=lastline
 
-"末尾から2行目にステータスラインを常時表示
+" 末尾から2行目にステータスラインを常時表示
 set laststatus=2
 
-"モードを非表示にする
+" モードを非表示にする
 set noshowmode
 
-"画面の更新時間を設定(ms)
+" 画面の更新時間を設定(ms)
 set updatetime=250
 
-"80文字目にラインを表示
+" 80文字目にラインを表示
 set colorcolumn=80
+
+" 有効なときのみ再描画する
+set lazyredraw
 
 "##### 検索設定 #####
 
-"大文字/小文字の区別なく検索する
+" 大文字/小文字の区別なく検索する
 set ignorecase
 
-"検索文字列に大文字が含まれている場合は区別して検索する
+" 検索文字列に大文字が含まれている場合は区別して検索する
 set smartcase
 
-"インクリメンタルサーチ
+" インクリメンタルサーチ
 set incsearch
 
-"「次の（前の）検索候補」を画面の中心に表示する
+" 「次の（前の）検索候補」を画面の中心に表示する
 nnoremap n nzz
 nnoremap N Nzz
 
-"検索時に最後まで行ったら最初に戻る
+" 検索時に最後まで行ったら最初に戻る
 set wrapscan
 
-"検索結果のハイライトをEsc連打でクリアする
+" 検索結果のハイライトをEsc連打でクリアする
 nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
+
+" ファイルを検索する際大文字/小文字を区別しない
+set fileignorecase
 
 "##### ショートカットキー設定 #####
 
-"backspaceでの削除を有効化
+" backspaceでの削除を有効化
 set backspace=indent,eol,start
 
-"root権限でファイルを保存する
+" root権限でファイルを保存する
 cnoremap w!! w !sudo tee > /dev/null %
 
-"常に全てのタブを閉じる
+" 常に全てのタブを閉じる
 cmap q qa
 
-"help画面をqで閉じる
+" help画面をqで閉じる
 augroup help_quit
       autocmd!
       autocmd FileType help nnoremap <buffer> q <C-w>c
 augroup END
 
-"新しいタブを開く
+" 新しいタブを開く
 nnoremap nt :<C-u>tabnew<CR>
 
-"ESCでターミナルモードからコマンドモードにする
+" ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
 
-"インデントをコマンド1回にする
+" インデントをコマンド1回にする
 nnoremap > >>
 nnoremap < <<
+
+" 表示行単位で移動する
+nnoremap j gj
+nnoremap k gk
 
 "##### その他設定 #####
 
@@ -120,6 +134,23 @@ augroup remember_cursor
             \   exe "normal! g'\"" |
             \ endif
 augroup END
+
+" ディレクトリが存在しなかったら作成する関数
+function! SafeMkdir(path)
+    if !isdirectory(a:path)
+        call mkdir(a:path, "p", 0700)
+    endif
+endfunction
+
+" swapファイルの作成場所を指定
+call SafeMkdir($HOME . "/.vim/swap")
+set swapfile
+set directory=$HOME/.vim/swap//
+
+" undoファイルの作成場所を指定
+call SafeMkdir($HOME . "/.vim/undo")
+set undofile
+set undodir=$HOME/.vim/undo//
 
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
