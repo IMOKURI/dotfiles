@@ -134,17 +134,29 @@
             - ~/.dotfiles/config/nvim/py3/Pipfile.lock
         tags: update
 
-      - name: Install/Update Python2 Packages
+      - name: Install Python2 Packages
+        shell: "pipenv install"
+        args:
+            chdir: ~/.dotfiles/config/nvim/py2
+        tags: initialize
+
+      - name: Install Python3 Packages
+        shell: "pipenv install"
+        args:
+            chdir: ~/.dotfiles/config/nvim/py3
+        tags: initialize
+
+      - name: Update Python2 Packages
         shell: "pipenv update"
         args:
             chdir: ~/.dotfiles/config/nvim/py2
-        tags: [initialize, update]
+        tags: update
 
-      - name: Install/Update Python3 Packages
+      - name: Update Python3 Packages
         shell: "pipenv update"
         args:
             chdir: ~/.dotfiles/config/nvim/py3
-        tags: [initialize, update]
+        tags: update
 
       - name: Install Node.js Packages
         npm:
