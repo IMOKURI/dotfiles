@@ -168,7 +168,7 @@
             - doctoc
             - jsonlint
             - neovim
-            - remark
+            - remark-cli
         tags: [initialize, update]
 
       - name: Set Alternative Commands
