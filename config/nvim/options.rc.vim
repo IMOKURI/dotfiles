@@ -108,7 +108,11 @@ augroup help_quit
 augroup END
 
 " 新しいタブを開く
-nnoremap nt :<C-u>tabnew<CR>
+nnoremap st :<C-u>tabnew<CR>
+
+" タブを移動する
+nnoremap sn gt
+nnoremap sp gT
 
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
