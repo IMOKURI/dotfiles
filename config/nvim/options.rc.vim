@@ -142,22 +142,5 @@ augroup remember_cursor
             \ endif
 augroup END
 
-" ディレクトリが存在しなかったら作成する関数
-function! SafeMkdir(path)
-    if !isdirectory(a:path)
-        call mkdir(a:path, "p", 0700)
-    endif
-endfunction
-
-" swapファイルの作成場所を指定
-call SafeMkdir($HOME . "/.vim/swap")
-set swapfile
-set directory=$HOME/.vim/swap//
-
-" undoファイルの作成場所を指定
-call SafeMkdir($HOME . "/.vim/undo")
-set undofile
-set undodir=$HOME/.vim/undo//
-
 " ヒストリーファイルを作成しない
 let g:netrw_dirhistmax = 0
