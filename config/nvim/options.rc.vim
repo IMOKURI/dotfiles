@@ -89,9 +89,6 @@ set fileignorecase
 
 "##### ショートカットキー設定 #####
 
-" LeaderキーをSpaceに割り当て
-let mapleader = "\<Space>"
-
 " backspaceでの削除を有効化
 set backspace=indent,eol,start
 

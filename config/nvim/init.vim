@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 if !exists('g:env')
   if has('win64') || has('win32') || has('win16')
     let g:env = 'WINDOWS'
@@ -8,6 +11,9 @@ endif
 
 if g:env =~# 'LINUX'
   " ... to do Linux-specific stuff.
+
+  " LeaderキーをSpaceに割り当て
+  let mapleader = "\<Space>"
 
   let s:dein_dir = expand('~/.config/nvim/dein')
   let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'

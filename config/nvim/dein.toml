@@ -2,12 +2,6 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'thiagoalessio/rainbow_levels.vim'
-hook_add = '''
-  map <leader>r :RainbowLevelsToggle<cr>
-'''
-
-[[plugins]]
 repo = 'jacoborus/tender.vim'
 
 [[plugins]]
@@ -21,6 +15,13 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+hook_add = '''
+  nmap <Leader>g [figitive]
+  nnoremap <silent> [figitive]s :<C-u>Gstatus<CR>
+  nnoremap <silent> [figitive]d :<C-u>Gdiff<CR>
+  nnoremap <silent> [figitive]b :<C-u>Gblame<CR>
+  nnoremap <silent> [figitive]l :<C-u>Glog<CR>
+'''
 
 [[plugins]]
 repo = 'tpope/vim-sleuth'
