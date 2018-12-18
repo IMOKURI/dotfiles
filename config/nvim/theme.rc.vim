@@ -21,5 +21,3 @@ function! LightLineFugitive()
   endtry
   return ''
 endfunction
-
-" hi! Normal ctermbg=NONE guibg=NONE

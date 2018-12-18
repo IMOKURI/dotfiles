@@ -60,7 +60,7 @@ if dein#check_install()
   call dein#install()
 endif
 
-if (has('termguicolors'))
+if has('nvim') || has('termguicolors')
   set termguicolors
 endif
 
