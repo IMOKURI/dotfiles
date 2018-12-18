@@ -35,7 +35,7 @@ if g:env =~# 'LINUX'
   endif
 
   if (has('termguicolors'))
-  set termguicolors
+    set termguicolors
   endif
 
   filetype plugin on
