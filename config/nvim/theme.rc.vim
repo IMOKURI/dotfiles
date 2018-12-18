@@ -22,4 +22,4 @@ function! LightLineFugitive()
   return ''
 endfunction
 
-hi! Normal ctermbg=NONE guibg=NONE
+" hi! Normal ctermbg=NONE guibg=NONE
