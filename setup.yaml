@@ -59,7 +59,7 @@
 
       - name: Download Nodejs Repository Installer
         get_url:
-            url: https://rpm.nodesource.com/setup_6.x
+            url: https://rpm.nodesource.com/setup_10.x
             dest: /tmp/nodejs.sh
         tags: initialize
 
