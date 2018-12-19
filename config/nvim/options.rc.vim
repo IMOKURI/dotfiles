@@ -124,9 +124,6 @@ nnoremap k gk
 
 "##### その他設定 #####
 
-" マウスの無効化
-set mouse-=a
-
 " clipboard設定
 set clipboard+=unnamed
 
