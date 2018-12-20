@@ -64,8 +64,7 @@ if has('nvim') || has('termguicolors')
   set termguicolors
 endif
 
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 syntax on
 
 runtime! theme.rc.vim
