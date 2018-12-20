@@ -52,7 +52,5 @@
   co = checkout
   dc = diff --cached
   d = diff
-  fp = !git fetch -p && git-delete-merged-branches.sh
   g = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  pp = !git pull -p && git-delete-merged-branches.sh
   s = status

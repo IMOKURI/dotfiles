@@ -36,6 +36,8 @@ cdroot () {
 alias g='git'
 complete -o default -o nospace -F _git g
 
+alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
+
 ########## For git completion and prompt ##########
 
 GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh 2> /dev/null | head -1)"
