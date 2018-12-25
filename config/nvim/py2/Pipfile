@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+ansible-lint = "*"
 neovim = "*"
 jedi = "*"
 "flake8" = "*"
