@@ -11,6 +11,8 @@ jedi = "*"
 yamllint = "*"
 yapf = "*"
 vim-vint = "*"
+flake8-import-order = "*"
+flake8-builtins = "*"
 
 [dev-packages]
 
