@@ -21,6 +21,8 @@ shopt -s globstar
 
 alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
 
+alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenkins.docker.hpecorp.net/'
+
 # cdls
 alias cd='cdls'
 
