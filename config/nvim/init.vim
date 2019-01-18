@@ -17,8 +17,8 @@ if g:env =~# 'LINUX'
   let s:toml_file = s:nvim_dir . '/dein.toml'
   let s:toml_lazy_file = s:nvim_dir . '/deinlazy.toml'
 
-  let g:python_host_prog = substitute(system('ls /root/.virtualenvs/py2-*/bin/python'), '\n', '', 'g')
-  let g:python3_host_prog = substitute(system('ls /root/.virtualenvs/py3-*/bin/python'), '\n', '', 'g')
+  let g:python_host_prog = substitute(system('ls /root/.local/share/virtualenvs/py2-*/bin/python'), '\n', '', 'g')
+  let g:python3_host_prog = substitute(system('ls /root/.local/share/virtualenvs/py3-*/bin/python'), '\n', '', 'g')
 
 elseif g:env =~# 'WINDOWS'
   " ... to do Windows-specific stuff.
