@@ -13,9 +13,6 @@ if g:env =~# 'LINUX'
   " ... to do Linux-specific stuff.
 
   let s:nvim_dir = expand('~/.config/nvim')
-  let s:dein_dir = s:nvim_dir . '/dein'
-  let s:toml_file = s:nvim_dir . '/dein.toml'
-  let s:toml_lazy_file = s:nvim_dir . '/deinlazy.toml'
 
   let g:python_host_prog = substitute(system('ls /root/.local/share/virtualenvs/py2-*/bin/python'), '\n', '', 'g')
   let g:python3_host_prog = substitute(system('ls /root/.local/share/virtualenvs/py3-*/bin/python'), '\n', '', 'g')
@@ -24,9 +21,6 @@ elseif g:env =~# 'WINDOWS'
   " ... to do Windows-specific stuff.
 
   let s:nvim_dir = 'C:/Users/sugiyayo/AppData/Local/nvim'
-  let s:dein_dir = s:nvim_dir . '/dein'
-  let s:toml_file = s:nvim_dir . '/dein.toml'
-  let s:toml_lazy_file = s:nvim_dir . '/deinlazy.toml'
 
   let g:python_host_prog = 'C:\Python27\python2'
   let g:python3_host_prog = 'C:\Users\sugiyayo\AppData\Local\Programs\Python\Python37-32\python'
@@ -39,12 +33,15 @@ elseif g:env =~# 'MINGW'
 
 endif
 
-" LeaderキーをSpaceに割り当て
-let mapleader = "\<Space>"
+let s:dein_dir = s:nvim_dir . '/dein'
+let s:toml_file = s:nvim_dir . '/dein.toml'
+let s:toml_lazy_file = s:nvim_dir . '/deinlazy.toml'
 
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
 execute 'set runtimepath^=' . s:dein_repo_dir
+
+" LeaderキーをSpaceに割り当て
+let mapleader = "\<Space>"
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
