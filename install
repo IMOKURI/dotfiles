@@ -70,6 +70,7 @@ fi
 
 _banner "Install Packages..."
 
+# TODO: Check if git is already installed.
 sudo -E yum install -y gcc python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel neovim nodejs ripgrep
 
 _banner "Install Pip..."
