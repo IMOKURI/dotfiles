@@ -8,9 +8,22 @@
   tasks:
       - name: Set Proxy to Bash Profile
         blockinfile:
-            path: ~/.bash_profile.local
+            path: ~/.bash_profile.proxy
             create: true
             block: |
+                function proxy_on {
+                  export http_proxy={{ proxy.http_proxy }}
+                  export https_proxy={{ proxy.http_proxy }}
+                }
+
+                function proxy_off {
+                  unset http_proxy
+                  unset https_proxy
+                }
+
+                export proxy_on=proxy_on
+                export proxy_off=proxy_off
+
                 export http_proxy={{ proxy.http_proxy }}
                 export https_proxy={{ proxy.http_proxy }}
         when: proxy.http_proxy != ''
@@ -29,110 +42,15 @@
                 [https]
                   proxy = {{ proxy.http_proxy }}
         when: proxy.http_proxy != ''
+        # notify: TODO
         tags: initialize
 
-      - name: Download IUS Repository Installer
-        get_url:
-            url: https://raw.githubusercontent.com/iuscommunity/automation-examples/bash/enable-ius.sh
-            dest: /tmp/ius.sh
-        tags: initialize
-
-      - name: Install IUS Repository
-        shell: bash /tmp/ius.sh
-        args:
-            creates: /etc/yum.repos.d/ius.repo
-        become: true
-        tags: initialize
-
-      - name: Download Git-LFS Repository Installer
-        get_url:
-            url: https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh
-            dest: /tmp/git-lfs.sh
-        tags: initialize
-
-      - name: Install Git-LFS Repository
-        shell: bash /tmp/git-lfs.sh
-        args:
-            creates: /etc/yum.repos.d/github_git-lfs.repo
-        become: true
-        tags: initialize
-
-      - name: Download Nodejs Repository Installer
-        get_url:
-            url: https://rpm.nodesource.com/setup_10.x
-            dest: /tmp/nodejs.sh
-        tags: initialize
-
-      - name: Install Nodejs Repository
-        shell: bash /tmp/nodejs.sh
-        args:
-            creates: /etc/yum.repos.d/nodesource-el.repo
-        become: true
-        tags: initialize
-
-      - name: Install Ripgrep Repository
-        shell: yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
-        args:
-            creates: /etc/yum.repos.d/carlwgeorge-ripgrep-epel-7.repo
-        become: true
-        tags: initialize
-
-      - name: Install Packages
-        yum:
-            name: "{{ packages }}"
-            state: latest
-        vars:
-            packages:
-                - make
-                - which
-                - git2u
-                - git-lfs
-                - python36u
-                - python36u-devel
-                - python36u-pip
-                - neovim
-                - nodejs
-                - ripgrep
-        become: true
-        tags: [initialize, update]
-
-      - name: Install Pipenv Packages
-        pip:
-            name: "{{ pip_packages }}"
-            executable: pip3.6
-            state: latest
-        vars:
-            pip_packages:
-                - pipenv
-                - pipenv-pipes
-        become: true
-        tags: [initialize, update]
-
-      - name: Clone Dotfiles Repository
+      - name: Clone/Update Dotfiles Repository
         git:
             repo: https://github.com/IMOKURI/dotfiles.git
             dest: ~/.dotfiles
             track_submodules: true
         tags: [initialize, update]
-
-      - name: Remove Virtual Env
-        shell: "pipenv --rm"
-        args:
-            chdir: "{{ item }}"
-        with_items:
-            - ~/.dotfiles/config/nvim/py2
-            - ~/.dotfiles/config/nvim/py3
-        ignore_errors: true
-        tags: update
-
-      - name: Remove Pipfile.lock
-        file:
-            path: "{{ item }}"
-            state: absent
-        with_items:
-            - ~/.dotfiles/config/nvim/py2/Pipfile.lock
-            - ~/.dotfiles/config/nvim/py3/Pipfile.lock
-        tags: update
 
       - name: Install Python2 Packages
         shell: "pipenv install"
@@ -145,31 +63,6 @@
         args:
             chdir: ~/.dotfiles/config/nvim/py3
         tags: initialize
-
-      - name: Update Python2 Packages
-        shell: "pipenv update"
-        args:
-            chdir: ~/.dotfiles/config/nvim/py2
-        tags: update
-
-      - name: Update Python3 Packages
-        shell: "pipenv update"
-        args:
-            chdir: ~/.dotfiles/config/nvim/py3
-        tags: update
-
-      - name: Install Node.js Packages
-        npm:
-            name: "{{ item }}"
-            path: "{{ lookup('env','HOME') }}"
-            state: latest
-        with_items:
-            - coffeelint
-            - doctoc
-            - jsonlint
-            - neovim
-            - remark-cli
-        tags: [initialize, update]
 
       - name: Set Alternative Commands
         alternatives:

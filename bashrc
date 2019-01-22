@@ -85,11 +85,3 @@ case ${UID} in
   PS1="\[${RED}\]\${?##0}\[${GREEN}\][\u@\h \W]\[${CYAN}\]\$(__git_ps1)\[${GREEN}\]\$\[${CLEAR_COLOR}\] "
   ;;
 esac
-
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
-
-# enable Haskell Stack completion
-if [[ $(type stack > /dev/null 2>&1) ]]; then
-  eval "$(stack --bash-completion-script stack)"
-fi

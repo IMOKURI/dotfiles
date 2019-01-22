@@ -2,31 +2,121 @@
 
 set -e
 
-function _logger(){
+##### Variables ###############################################################
+
+# Defind Colors
+RED="\033[38;2;255;84;88m"
+GREEN="\033[38;2;98;209;150m"
+YELLOW="\033[38;2;255;179;120m"
+BLUE="\033[38;2;101;178;255m"
+MAGENTA="\033[38;2;144;108;255m"
+CYAN="\033[38;2;99;242;241m"
+CLEAR_COLOR="\033[0m"
+
+INFO="GREEN"
+WARN="YELLOW"
+ERROR="RED"
+
+# Define dotpath
+DOTPATH="~/.dotfiles"
+
+##### Functions ###############################################################
+
+function _banner(){
   sep='======================================================================='
-  printf "\n%s %s\n\n" "${1}" "${sep:${#1}}"
+  printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
-_logger "Set Proxy if Available..."
+function _logger(){
+  COLOR="${1}"
+  printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
+}
+
+##### Set Proxy ###############################################################
+
+_banner "Set Proxy if Available..."
+
 if [[ "${http_proxy}" ]]; then
   if ! grep -q proxy /etc/yum.conf; then
     echo "proxy=${http_proxy}" >> /etc/yum.conf
   fi
 fi
 
-_logger "Install Ansible Dependency Packages..."
-sudo -E yum install -y gcc python python-devel libffi-devel openssl-devel
+##### Setup repositories ######################################################
 
-_logger "Install Pip..."
-curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python
+_banner "Setup repositories..."
 
-_logger "Install Ansible..."
-sudo -E pip install ansible
+if [[ ! -f /etc/yum.repos.d/ius.repo ]]; then
+  _logger "${INFO}" "Install IUS repository"
+  curl -fsSL https://raw.githubusercontent.com/iuscommunity/automation-examples/bash/enable-ius.sh | sudo -E bash
+fi
 
-_logger "Downloading playbook..."
-curl -fsSL "https://raw.githubusercontent.com/IMOKURI/dotfiles/master/setup.yaml" -o ~/.setup.yaml
+if [[ ! -f /etc/yum.repos.d/github_git-lfs.repo ]]; then
+  _logger "${INFO}" "Install Git LFS repository"
+  curl -fsSL https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo -E bash
+fi
 
-_logger "Run Ansible Playbook..."
-ansible-playbook ~/.setup.yaml --tags "initialize,deploy"
+if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
+  _logger "${INFO}" "Install Nodejs repository"
+  curl -fsSL https://rpm.nodesource.com/setup_10.x | sudo -E bash
+fi
 
-_logger "Finished!"
+if [[ ! -f /etc/yum.repos.d/carlwgeorge-ripgrep-epel-7.repo ]]; then
+  _logger "${INFO}" "Install Ripgrep repository"
+  sudo -E yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+fi
+
+##### Install packages ########################################################
+
+_banner "Install Packages..."
+
+sudo -E yum install -y gcc python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel neovim nodejs ripgrep
+
+_banner "Install Pip..."
+
+_logger "${INFO}" "Install pip3.6"
+curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3.6
+
+_logger "${INFO}" "Install pip2.7"
+curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python2.7
+
+##### Install python packages #################################################
+
+_banner "Install Python Packages..."
+
+sudo -E pip install ansible pipenv pipenv-pipes
+
+##### Install nodejs packages #################################################
+
+_banner "Install NodeJS Packages..."
+
+sudo -E npm -g install doctoc jsonlint neovim remark-cli
+
+##### Clone Dotfiles ##########################################################
+
+_banner "Clone Dotfiles..."
+
+if [[ ! -d "${DOTPATH}" ]]; then
+  _logger "${INFO}" "Clone dotfiles repository"
+  git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
+else
+  _logger "${INFO}" "Update dotfiles repository"
+  pushd "$(pwd)"
+  cd "${DOTPATH}"
+  git pull
+  git submodule init
+  git submodule update
+  git submodule foreach git pull origin master
+  popd
+fi
+
+##### Run Ansible Playbook ####################################################
+
+_banner "Run Ansible Playbook..."
+
+pushd "$(pwd)"
+cd "${DOTPATH}"
+ansible-playbook setup.yaml --tags "initialize,deploy"
+popd
+
+_banner "Finished!"
