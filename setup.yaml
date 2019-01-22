@@ -144,4 +144,5 @@
         tags: deploy
   handlers:
       - name: Edit .gitconfig.local
-        msg: "Edit name/email in .gitconfig.local."
+        debug:
+            msg: "Edit name/email in .gitconfig.local."
