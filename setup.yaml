@@ -42,7 +42,7 @@
                 [https]
                   proxy = {{ proxy.http_proxy }}
         when: proxy.http_proxy != ''
-        # notify: TODO
+        notify: Edit .gitconfig.local
         tags: initialize
 
       - name: Clone/Update Dotfiles Repository
@@ -142,3 +142,6 @@
             - ~/github
             - ~/ghe
         tags: deploy
+  handlers:
+      - name: Edit .gitconfig.local
+        msg: "Edit name/email in .gitconfig.local."
