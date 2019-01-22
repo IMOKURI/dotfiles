@@ -145,4 +145,4 @@
   handlers:
       - name: Edit .gitconfig.local
         debug:
-            msg: "Edit name/email in .gitconfig.local."
+            msg: "Edit name/email in ~/.gitconfig.local"
