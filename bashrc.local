@@ -11,6 +11,27 @@ shopt -s dotglob
 # ** を指定すると、該当ディレクトリ以下のディレクトリを再帰的にマッチにする
 shopt -s globstar
 
+##### User specific alias #####################################################
+
+alias cd='cdls'
+
+cdls () {
+  \cd "$@" && pwd && ls -l
+}
+
+cdroot () {
+  cd "$(git rev-parse --show-toplevel)" || return
+}
+
+alias g='git'
+complete -o default -o nospace -F _git g
+
+alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
+
+alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
+
+alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenkins.docker.hpecorp.net/'
+
 ##### For git completion and prompt ###########################################
 
 GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh 2> /dev/null | head -1)"
