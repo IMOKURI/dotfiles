@@ -70,9 +70,11 @@ CLEAR_COLOR="\033[0m"
 
 # Hostname hash
 HMD5="$(hostname | md5sum)"
-PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:0:2} 0x${HMD5:2:2} 0x${HMD5:4:2})"
+#PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:0:2} 0x${HMD5:2:2} 0x${HMD5:4:2})"
+PROMPT_RGB="$(printf "%d;%d;200" 0x${HMD5:0:2} 0x${HMD5:2:2})"
 PROMPT_COLOR="\033[38;2;${PROMPT_RGB}m"
-GIT_PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:6:2} 0x${HMD5:8:2} 0x${HMD5:10:2})"
+#GIT_PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:6:2} 0x${HMD5:8:2} 0x${HMD5:10:2})"
+GIT_PROMPT_RGB="$(printf "200;%d;%d" 0x${HMD5:8:2} 0x${HMD5:10:2})"
 GIT_PROMPT_COLOR="\033[38;2;${GIT_PROMPT_RGB}m"
 
 # Set prompt
