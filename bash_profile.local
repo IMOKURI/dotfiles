@@ -19,3 +19,5 @@ export EDITOR="vi"
 if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts
 fi
+
+export PIPENV_VENV_IN_PROJECT=true

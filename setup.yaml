@@ -2,9 +2,10 @@
 - hosts: localhost
   gather_facts: false
   vars:
-      proxy:
-          http_proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
-  environment: "{{ proxy }}"
+      proxy: "{{ lookup('env', 'http_proxy') | default('') }}"
+  environment:
+      "http_proxy": "{{ proxy }}"
+      "PIPENV_VENV_IN_PROJECT": true
   tasks:
       - name: Set Proxy to Bash Profile
         blockinfile:
@@ -12,8 +13,8 @@
             create: true
             block: |
                 function proxy_on {
-                  export http_proxy={{ proxy.http_proxy }}
-                  export https_proxy={{ proxy.http_proxy }}
+                  export http_proxy={{ proxy }}
+                  export https_proxy={{ proxy }}
                 }
 
                 function proxy_off {
@@ -24,9 +25,9 @@
                 export proxy_on=proxy_on
                 export proxy_off=proxy_off
 
-                export http_proxy={{ proxy.http_proxy }}
-                export https_proxy={{ proxy.http_proxy }}
-        when: proxy.http_proxy != ''
+                export http_proxy={{ proxy }}
+                export https_proxy={{ proxy }}
+        when: proxy != ''
         tags: initialize
 
       - name: Set Proxy to Git Config
@@ -38,10 +39,10 @@
                   name =
                   email =
                 [http]
-                  proxy = {{ proxy.http_proxy }}
+                  proxy = {{ proxy }}
                 [https]
-                  proxy = {{ proxy.http_proxy }}
-        when: proxy.http_proxy != ''
+                  proxy = {{ proxy }}
+        when: proxy != ''
         notify: Edit .gitconfig.local
         tags: initialize
 

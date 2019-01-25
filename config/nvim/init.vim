@@ -14,8 +14,8 @@ if g:env =~# 'LINUX'
 
   let s:nvim_dir = expand('~/.config/nvim')
 
-  let g:python_host_prog = substitute(system('ls /root/.local/share/virtualenvs/py2-*/bin/python'), '\n', '', 'g')
-  let g:python3_host_prog = substitute(system('ls /root/.local/share/virtualenvs/py3-*/bin/python'), '\n', '', 'g')
+  let g:python_host_prog = expand('~/.dotfiles/config/nvim/py2/.venv/bin/python')
+  let g:python3_host_prog = expand('~/.dotfiles/config/nvim/py3/.venv/bin/python')
 
 elseif g:env =~# 'WINDOWS'
   " ... to do Windows-specific stuff.
