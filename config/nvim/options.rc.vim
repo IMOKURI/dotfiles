@@ -87,6 +87,9 @@ nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
 " ファイルを検索する際大文字/小文字を区別しない
 set fileignorecase
 
+" ファイル名を補完する
+set wildmode=longest,full
+
 "##### ショートカットキー設定 #####
 
 " backspaceでの削除を有効化
