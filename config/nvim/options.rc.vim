@@ -127,6 +127,9 @@ nnoremap k gk
 " カーソル下の単語をハイライトする
 nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 
+" カーソル下の単語をハイライトして置換する
+nmap # <Leader>h:%s/<C-r>///g<Left><Left>
+
 "##### その他設定 #####
 
 " clipboard設定
