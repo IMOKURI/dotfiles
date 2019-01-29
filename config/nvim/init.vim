@@ -41,7 +41,7 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath^=' . s:dein_repo_dir
 
 " LeaderキーをSpaceに割り当て
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
