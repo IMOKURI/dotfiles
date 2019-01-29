@@ -135,9 +135,6 @@ nmap # <Leader>h:%s/<C-r>///g<Left><Left>
 " clipboard設定
 set clipboard+=unnamed
 
-" バッファのファイルのディレクトリをカレントディレクトリに
-set autochdir
-
 " カーソル位置記憶
 augroup remember_cursor
       autocmd!
