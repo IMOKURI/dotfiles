@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 ansible-lint = "*"
-neovim = "*"
+pynvim = "*"
 jedi = "*"
 "flake8" = "*"
 yamllint = "*"
