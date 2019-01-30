@@ -97,11 +97,14 @@ set inccommand=split
 " backspaceでの削除を有効化
 set backspace=indent,eol,start
 
+" ファイル保存
+nnoremap <silent> <Leader>w :<C-u>w<CR>
+
 " root権限でファイルを保存する
 cnoremap w!! w !sudo tee > /dev/null %
 
 " 常に全てのタブを閉じる
-cmap q qa
+cnoremap q qa
 
 " help画面をqで閉じる
 augroup help_quit
@@ -132,6 +135,21 @@ nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 
 " カーソル下の単語をハイライトして置換する
 nmap # <Leader>h:%s/<C-r>///g<Left><Left>
+
+" Location Listのtoggle
+function! ToggleLocationList()
+      let l:nr_current = winnr('$')
+      lwindow
+      let l:nr_location = winnr('$')
+      if l:nr_current == l:nr_location
+            lclose
+      endif
+endfunction
+nnoremap <script> <silent> <Leader>f :call ToggleLocationList()<CR>
+
+" Location Listのエラーに移動する
+nnoremap <silent> <Leader>p :<C-u>lprevious<CR>
+nnoremap <silent> <Leader>n :<C-u>lnext<CR>
 
 "##### その他設定 #####
 
