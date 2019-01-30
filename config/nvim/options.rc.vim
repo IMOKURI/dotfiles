@@ -89,6 +89,9 @@ set fileignorecase
 " ファイル名を補完する
 set wildmode=longest,full
 
+" 置換内容を表示
+set inccommand=split
+
 "##### ショートカットキー設定 #####
 
 " backspaceでの削除を有効化
