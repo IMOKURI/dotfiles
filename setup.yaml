@@ -53,12 +53,6 @@
             track_submodules: true
         tags: [initialize, update]
 
-      - name: Install Python2 Packages
-        shell: "pipenv install"
-        args:
-            chdir: ~/.dotfiles/config/nvim/py2
-        tags: initialize
-
       - name: Install Python3 Packages
         shell: "pipenv install"
         args:

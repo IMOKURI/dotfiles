@@ -78,9 +78,6 @@ _banner "Install Pip..."
 _logger "${INFO}" "Install pip3.6"
 curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3.6
 
-_logger "${INFO}" "Install pip2.7"
-curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python2.7
-
 ##### Install python packages #################################################
 
 _banner "Install Python Packages..."

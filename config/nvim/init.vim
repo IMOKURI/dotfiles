@@ -13,14 +13,14 @@ if g:env =~# 'LINUX'
 
   let s:nvim_dir = expand('~/.config/nvim')
 
-  let g:python_host_prog = expand('~/.dotfiles/config/nvim/py2/.venv/bin/python')
+  let g:python_host_prog = ''
   let g:python3_host_prog = expand('~/.dotfiles/config/nvim/py3/.venv/bin/python')
 
 elseif g:env =~# 'WINDOWS'
 
   let s:nvim_dir = 'C:/Users/sugiyayo/AppData/Local/nvim'
 
-  let g:python_host_prog = 'C:\Python27\python2'
+  let g:python_host_prog = ''
   let g:python3_host_prog = 'C:\Users\sugiyayo\AppData\Local\Programs\Python\Python37-32\python'
 
 endif
