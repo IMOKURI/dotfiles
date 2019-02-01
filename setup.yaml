@@ -30,9 +30,17 @@
         when: proxy != ''
         tags: initialize
 
+      - name: Create Config Directory
+        file:
+            path: ~/.config
+            state: directory
+        tags:
+            - initialize
+            - deploy
+
       - name: Set Proxy to Git Config
         blockinfile:
-            path: ~/.gitconfig.local
+            path: ~/.config/git/config.local
             create: true
             block: |
                 [user]
@@ -43,7 +51,7 @@
                 [https]
                   proxy = {{ proxy }}
         when: proxy != ''
-        notify: Edit .gitconfig.local
+        notify: Edit .config/git/config.local
         tags: initialize
 
       - name: Clone/Update Dotfiles Repository
@@ -95,12 +103,6 @@
         register: find_config
         tags: deploy
 
-      - name: Create Config Directory
-        file:
-            path: ~/.config
-            state: directory
-        tags: deploy
-
       - name: Create Symbolic Links To Config Dotfiles
         file:
             src: "~/.dotfiles/config/{{ item.path | regex_replace('^.*/([^/]+)$', '\\1') }}"
@@ -138,6 +140,6 @@
             - ~/ghe
         tags: deploy
   handlers:
-      - name: Edit .gitconfig.local
+      - name: Edit .config/git/config.local
         debug:
-            msg: "Edit name/email in ~/.gitconfig.local"
+            msg: "Edit name/email in ~/.config/git/config.local"

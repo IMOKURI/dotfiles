@@ -3,23 +3,25 @@
   email = nenegi.01mo@gmail.com
 
 [includeIf "gitdir:~/ghe/"]
-  path = ~/.gitconfig.local
+  path = ~/.config/git/config.local
 
 [includeIf "gitdir:/mnt/c/Users/sugiyayo/Documents/GitHub/"]
-  path = ~/.gitconfig.local
+  path = ~/.config/git/config.local
 
 [core]
   editor = vi
   fscache = true
   preloadindex = true
   quotepath = false
-  excludesfile = ~/.gitignore.global
 
 [color]
   ui = auto
 
 [status]
   showUntrackedFiles = all
+
+[fetch]
+  prune = true
 
 [push]
   default = current
@@ -33,6 +35,9 @@
 
 [diff]
   tool = nvimdiff2
+
+[difftool]
+  prompt = false
 
 [difftool "nvimdiff2"]
   cmd = nvim -d $LOCAL $REMOTE
@@ -52,5 +57,6 @@
   co = checkout
   dc = diff --cached
   d = diff
+  dd = difftool
   g = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   s = status

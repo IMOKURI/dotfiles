@@ -1,0 +1,8 @@
+# ansible
+*.retry
+
+# (neo)vim
+.vimsessions
+
+# python
+.venv
