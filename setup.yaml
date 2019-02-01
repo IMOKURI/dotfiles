@@ -30,36 +30,14 @@
         when: proxy != ''
         tags: initialize
 
-      - name: Create Config Directory
-        file:
-            path: ~/.config
-            state: directory
-        tags:
-            - initialize
-            - deploy
-
-      - name: Set Proxy to Git Config
-        blockinfile:
-            path: ~/.config/git/config.local
-            create: true
-            block: |
-                [user]
-                  name =
-                  email =
-                [http]
-                  proxy = {{ proxy }}
-                [https]
-                  proxy = {{ proxy }}
-        when: proxy != ''
-        notify: Edit .config/git/config.local
-        tags: initialize
-
       - name: Clone/Update Dotfiles Repository
         git:
             repo: https://github.com/IMOKURI/dotfiles.git
             dest: ~/.dotfiles
             track_submodules: true
-        tags: [initialize, update]
+        tags:
+            - initialize
+            - update
 
       - name: Install Python3 Packages
         shell: "pipenv install"
@@ -96,6 +74,14 @@
             - "{{ find.files }}"
         tags: deploy
 
+      - name: Create Config Directory
+        file:
+            path: ~/.config
+            state: directory
+        tags:
+            - initialize
+            - deploy
+
       - name: Find Config Dotfiles Path
         find:
             paths: ~/.dotfiles/config
@@ -112,6 +98,22 @@
         with_items:
             - "{{ find_config.files }}"
         tags: deploy
+
+      - name: Set Proxy to Git Config
+        blockinfile:
+            path: ~/.config/git/config.local
+            create: true
+            block: |
+                [user]
+                  name =
+                  email =
+                [http]
+                  proxy = {{ proxy }}
+                [https]
+                  proxy = {{ proxy }}
+        when: proxy != ''
+        notify: Edit .config/git/config.local
+        tags: initialize
 
       - name: Add task to source .bashrc.local
         blockinfile:
