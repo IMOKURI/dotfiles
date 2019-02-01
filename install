@@ -18,7 +18,7 @@ WARN="YELLOW"
 ERROR="RED"
 
 # Define dotpath
-DOTPATH="~/.dotfiles"
+DOTPATH="$HOME/.dotfiles"
 
 ##### Functions ###############################################################
 
