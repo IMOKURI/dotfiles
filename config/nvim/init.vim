@@ -10,7 +10,6 @@ if !exists('g:env')
 endif
 
 if g:env =~# 'LINUX'
-  " ... to do Linux-specific stuff.
 
   let s:nvim_dir = expand('~/.config/nvim')
 
@@ -18,18 +17,11 @@ if g:env =~# 'LINUX'
   let g:python3_host_prog = expand('~/.dotfiles/config/nvim/py3/.venv/bin/python')
 
 elseif g:env =~# 'WINDOWS'
-  " ... to do Windows-specific stuff.
 
   let s:nvim_dir = 'C:/Users/sugiyayo/AppData/Local/nvim'
 
   let g:python_host_prog = 'C:\Python27\python2'
   let g:python3_host_prog = 'C:\Users\sugiyayo\AppData\Local\Programs\Python\Python37-32\python'
-
-elseif g:env =~# 'CYGWIN'
-  " ... to do Cygwin-specific stuff.
-
-elseif g:env =~# 'MINGW'
-  " ... to do MinGW-specific stuff (Git Bash, mainly).
 
 endif
 
