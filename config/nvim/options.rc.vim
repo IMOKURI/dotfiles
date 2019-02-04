@@ -126,6 +126,14 @@ tnoremap <silent> <ESC> <C-\><C-n>
 nnoremap > >>
 nnoremap < <<
 
+" 選択してインデントしたときに、選択状態を維持する
+vnoremap > >gv
+vnoremap < <gv
+
+" 加算減算
+nnoremap + <C-a>
+nnoremap - <C-x>
+
 " 表示行単位で移動する
 nnoremap j gj
 nnoremap k gk
