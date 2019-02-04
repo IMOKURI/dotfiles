@@ -1,14 +1,14 @@
-# .bash_profile.local
+# .config/profile.d/local.sh
 
 ##### Get proxy setting #######################################################
 #
-if [ -f ~/.bash_profile.proxy ]; then
-  . ~/.bash_profile.proxy
+if [ -f ~/.config/profile.d/proxy.sh ]; then
+  . ~/.config/profile.d/proxy.sh
 fi
 
 ##### User specific environment ###############################################
 
-export PATH=$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 export LESS='-i -M -R -W -z-3 -x4 -F -X'
 

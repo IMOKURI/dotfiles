@@ -1,0 +1,7 @@
+[user]
+  name = 
+  email = 
+[http]
+  proxy = write_proxy_here
+[https]
+  proxy = write_proxy_here

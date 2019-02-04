@@ -1,2 +1,4 @@
+config/git/config.local
 config/nvim/dein
+config/profile.d/proxy.sh
 Pipfile.lock

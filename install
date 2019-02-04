@@ -88,7 +88,9 @@ sudo -E pip install ansible pipenv pipenv-pipes python-language-server[all]
 
 _banner "Install NodeJS Packages..."
 
-sudo -E npm -g install doctoc neovim bash-language-server
+sudo -E npm -g install doctoc neovim
+
+npm -g install bash-language-server --unsafe-perm=true --allow-root
 
 ##### Clone Dotfiles ##########################################################
 
@@ -108,13 +110,13 @@ else
   popd
 fi
 
-##### Run Ansible Playbook ####################################################
+##### Install dotfiles ########################################################
 
-_banner "Run Ansible Playbook..."
+_banner "Install dotfiles..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-ansible-playbook setup.yaml --tags "initialize,deploy"
+make install
 popd
 
 _banner "Finished!"

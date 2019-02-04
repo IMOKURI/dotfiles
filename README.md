@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/IMOKURI/dotfiles.svg?branch=master)](https://travis-ci.org/IMOKURI/dotfiles)
 
-Deploy dotfiles using ansible.
+Deploy dotfiles.
 
 ## Requirement
 
@@ -31,7 +31,7 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 ## Update
 
 ```
-cd ~/.dotfiles && ansible-playbook setup.yaml --tags update
+cd ~/.dotfiles && make update
 ```
 
 ## Feature
