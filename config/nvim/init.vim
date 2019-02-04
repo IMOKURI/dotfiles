@@ -14,7 +14,7 @@ if g:env =~# 'LINUX'
   let s:nvim_dir = expand('~/.config/nvim')
 
   let g:python_host_prog = ''
-  let g:python3_host_prog = expand('~/.dotfiles/config/nvim/py3/.venv/bin/python')
+  let g:python3_host_prog = expand('~/.dotfiles/config/nvim/.venv/bin/python')
 
 elseif g:env =~# 'WINDOWS'
 
