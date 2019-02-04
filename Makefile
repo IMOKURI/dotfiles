@@ -30,7 +30,7 @@ endif
 
 pipenv: ## Setup pipenv
 	cd config/nvim/ && \
-	pipenv install
+	PIPENV_VENV_IN_PROJECT=true pipenv install
 
 command: ## Set alias
 	alternatives --install /usr/local/bin/vi vi $(shell command -v nvim) 10
