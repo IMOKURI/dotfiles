@@ -71,7 +71,7 @@ fi
 _banner "Install Packages..."
 
 # TODO: Check if git is already installed.
-sudo -E yum install -y gcc python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel neovim nodejs ripgrep
+sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel neovim nodejs ripgrep
 
 _banner "Install Pip..."
 
@@ -82,13 +82,13 @@ curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3.6
 
 _banner "Install Python Packages..."
 
-sudo -E pip install ansible pipenv pipenv-pipes
+sudo -E pip install ansible pipenv pipenv-pipes python-language-server[all]
 
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
 
-sudo -E npm -g install doctoc jsonlint neovim remark-cli
+sudo -E npm -g install doctoc neovim bash-language-server
 
 ##### Clone Dotfiles ##########################################################
 
