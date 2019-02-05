@@ -7,26 +7,26 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     pushd %0\..
 
     cls
-    echo ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    echo +     Install Dotfiles                                               +
-    echo ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    echo  1: Update repo.
-    echo  2: Copy nvim settings.
-    echo  3: Setup pipenv.
+    echo ----------------------------------------------------------------------
+    echo       Install Dotfiles
+    echo ----------------------------------------------------------------------
+    echo  r: Update repo.
+    echo  n: Copy nvim settings.
+    echo  p: Setup pipenv.
     echo  q: Quit.
-    echo ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    echo ----------------------------------------------------------------------
 
-    set Slt=nul
-    set /p Slt=Input:
+    set input=nul
+    set /p input=Input:
 
-    if %Slt%=='1' goto Set_1
-    if %Slt%=='2' goto Set_2
-    if %Slt%=='3' goto Set_3
-    if %Slt%=='q' goto :eof
+    if '%input%'=='r' goto Repo
+    if '%input%'=='n' goto Nvim
+    if '%input%'=='p' goto Pipenv
+    if '%input%'=='q' goto :EOF
 
     goto Menu
 
-:Set_1
+:Repo
     cls
 
     git pull origin master
@@ -37,7 +37,7 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     pause
     goto Menu
 
-:Set_2
+:Nvim
     cls
 
     xcopy /s /e /y %DOTPATH%\config\nvim %NVIMPATH%
@@ -45,7 +45,7 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     pause
     goto Menu
 
-:Set_3
+:Pipenv
     cls
 
     pushd %NVIMPATH%
