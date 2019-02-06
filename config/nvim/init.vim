@@ -13,19 +13,19 @@ if g:env =~# 'LINUX'
 
   let s:nvim_dir = expand('~/.config/nvim')
 
-  let g:python_host_prog = ''
-  let g:python3_host_prog = expand('~/.dotfiles/config/nvim/.venv/bin/python')
+  let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
 
 elseif g:env =~# 'WINDOWS'
 
-  let s:nvim_dir = 'C:/Users/sugiyayo/AppData/Local/nvim'
+  let s:nvim_dir = '$USERPROFILE/AppData/Local/nvim'
 
-  let g:python_host_prog = ''
-  let g:python3_host_prog = 'C:\Users\sugiyayo\AppData\Local\Programs\Python\Python37-32\python'
+  let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
 
   set shell=\"C:/Program\ Files/Git/bin/bash.exe\"
 
 endif
+
+let g:python_host_prog = ''
 
 let s:dein_dir = s:nvim_dir . '/dein'
 let s:toml_file = s:nvim_dir . '/dein.toml'

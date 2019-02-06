@@ -10,9 +10,9 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     echo ----------------------------------------------------------------------
     echo       Install Dotfiles
     echo ----------------------------------------------------------------------
-    echo  r: Update repo.
-    echo  n: Copy nvim settings.
-    echo  p: Setup pipenv.
+    echo  r: Repository update.
+    echo  n: Nvim settings.
+    echo  p: Pipenv setup.
     echo  q: Quit.
     echo ----------------------------------------------------------------------
 
