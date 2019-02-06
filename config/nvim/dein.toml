@@ -36,7 +36,14 @@ hook_add = '''
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
 rev = 'next'
-build = 'bash install.sh'
+hook_post_update = '''
+  if g:env =~# 'WINDOWS'
+    let cmd = 'powershell .\\install.ps1'
+  else
+    let cmd = 'bash install.sh'
+  endif
+  let g:dein#plugin.build = cmd
+'''
 hook_add = '''
   set hidden
   let g:LanguageClient_autoStart = 1
