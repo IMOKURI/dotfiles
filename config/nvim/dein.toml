@@ -37,9 +37,7 @@ hook_add = '''
 repo = 'autozimu/LanguageClient-neovim'
 rev = 'next'
 hook_post_update = '''
-  if g:env =~# 'WINDOWS'
-    let cmd = 'powershell .\\install.ps1'
-  else
+  if g:env =~# 'LINUX'
     let cmd = 'bash install.sh'
   endif
   let g:dein#plugin.build = cmd
@@ -47,7 +45,6 @@ hook_post_update = '''
 hook_add = '''
   set hidden
   let g:LanguageClient_autoStart = 1
-  let g:LanguageClient_selectionUI = 'location-list'
 
   let g:LanguageClient_serverCommands = {}
   if executable('pyls')
