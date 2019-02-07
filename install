@@ -82,15 +82,13 @@ command -v pip3.6 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.
 
 _banner "Install Python Packages..."
 
-sudo -E pip install ansible pipenv pipenv-pipes python-language-server[all]
+sudo -E pip install ansible pipenv pipenv-pipes jedi flake8 pylint vim-vint yamllint
 
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
 
-sudo -E npm -g install doctoc neovim
-
-npm -g install bash-language-server --unsafe-perm=true --allow-root
+sudo -E npm -g install doctoc neovim jsonlint remark-cli
 
 ##### Clone Dotfiles ##########################################################
 

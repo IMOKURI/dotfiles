@@ -24,6 +24,11 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'zchee/deoplete-jedi'
+depends = ['deoplete.nvim']
+on_ft = 'python'
+
+[[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
 on_i = 1
 on_ft = 'python'
@@ -33,8 +38,25 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
-repo = 'cohama/lexima.vim'
-on_i = 1
+repo = 'neomake/neomake'
+hook_source = '''
+  let g:neomake_open_list = 2
+  let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
+  let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
+  let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
+  let g:neomake_shellcheck_args = ['-fgcc']
+'''
+hook_add = '''
+  autocmd! BufWritePost * Neomake
+'''
+
+[[plugins]]
+repo = 'sbdchd/neoformat'
+hook_source = '''
+  let g:neoformat_basic_format_align = 1
+  let g:neoformat_basic_format_retab = 1
+  let g:neoformat_basic_format_trim = 1
+'''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
