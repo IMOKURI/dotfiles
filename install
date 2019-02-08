@@ -82,7 +82,7 @@ command -v pip3.6 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.
 
 _banner "Install Python Packages..."
 
-sudo -E pip install ansible pipenv pipenv-pipes jedi flake8 pylint vim-vint yamllint
+sudo -E pip install ansible pipenv pipenv-pipes
 
 ##### Install nodejs packages #################################################
 
