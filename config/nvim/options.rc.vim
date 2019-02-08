@@ -146,6 +146,17 @@ nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 " カーソル下の単語をハイライトして置換する
 nmap # <Leader>h:%s/<C-r>///g<Left><Left>
 
+" Quick Fixのtoggle
+function! ToggleQuickFix()
+      let l:nr_current = winnr('$')
+      cwindow
+      let l:nr_quickfix = winnr('$')
+      if l:nr_current == l:nr_quickfix
+            cclose
+      endif
+endfunction
+nnoremap <script> <silent> <Leader>c :call ToggleQuickFix()<CR>
+
 " Location Listのtoggle
 function! ToggleLocationList()
       let l:nr_current = winnr('$')
@@ -155,7 +166,7 @@ function! ToggleLocationList()
             lclose
       endif
 endfunction
-nnoremap <script> <silent> <Leader>f :call ToggleLocationList()<CR>
+nnoremap <script> <silent> <Leader>l :call ToggleLocationList()<CR>
 
 " Location Listのエラーに移動する
 nnoremap <silent> <Leader>p :<C-u>lprevious<CR>
