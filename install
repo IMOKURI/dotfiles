@@ -114,7 +114,7 @@ _banner "Install dotfiles..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-make install
+sudo -E make install
 popd
 
 _banner "Finished!"
