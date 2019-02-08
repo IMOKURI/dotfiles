@@ -47,7 +47,7 @@ hook_source = '''
   let g:neomake_shellcheck_args = ['-fgcc']
 '''
 hook_add = '''
-  autocmd! BufWritePost * Neomake
+  autocmd! InsertLeave,BufWritePost * Neomake
 '''
 
 [[plugins]]
