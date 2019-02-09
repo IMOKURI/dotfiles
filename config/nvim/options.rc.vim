@@ -146,6 +146,9 @@ nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 " カーソル下の単語をハイライトして置換する
 nmap # <Leader>h:%s/<C-r>///g<Left><Left>
 
+" バッファ内で置換する
+nnoremap S :%s//g<LEFT><LEFT>
+
 " Quick Fixのtoggle
 function! ToggleQuickFix()
       let l:nr_current = winnr('$')
