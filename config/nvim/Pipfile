@@ -7,7 +7,6 @@ name = "pypi"
 pynvim = "*"
 jedi = "*"
 flake8 = "*"
-pylint = "*"
 vim-vint = "*"
 yamllint = "*"
 
