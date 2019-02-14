@@ -33,7 +33,7 @@ pipenv: ## Setup pipenv
 	PIPENV_VENV_IN_PROJECT=true pipenv install
 
 command: ## Set command alias
-	alternatives --install /usr/local/bin/vi vi $(shell command -v nvim) 10
+	alternatives --install /usr/local/bin/vi vi $(shell command -v nvim) 100
 
 update: ## Pull repo
 	git pull origin master
@@ -47,6 +47,17 @@ deploy: ## Create symlink
 	@$(foreach val, $(DOTFILES_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 	@echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> $(HOME)/.bashrc
 	@echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> $(HOME)/.bash_profile
+
+update-neovim: ## Update neovim
+	cd $(HOME)/src/neovim && \
+	git pull
+
+build-neovim: ## Build neovim
+	cd $(HOME)/src/neovim && \
+	rm -fr build/ && \
+	make clean && \
+	make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
+	make install
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[38;2;98;209;150m%-10s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)

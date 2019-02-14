@@ -5,20 +5,21 @@ set -e
 ##### Variables ###############################################################
 
 # Defind Colors
-RED="\033[38;2;255;84;88m"
-GREEN="\033[38;2;98;209;150m"
-YELLOW="\033[38;2;255;179;120m"
+#RED="\033[38;2;255;84;88m"
+#GREEN="\033[38;2;98;209;150m"
+#YELLOW="\033[38;2;255;179;120m"
 BLUE="\033[38;2;101;178;255m"
-MAGENTA="\033[38;2;144;108;255m"
-CYAN="\033[38;2;99;242;241m"
+#MAGENTA="\033[38;2;144;108;255m"
+#CYAN="\033[38;2;99;242;241m"
 CLEAR_COLOR="\033[0m"
 
 INFO="GREEN"
-WARN="YELLOW"
-ERROR="RED"
+#WARN="YELLOW"
+#ERROR="RED"
 
-# Define dotpath
+# Define path
 DOTPATH="$HOME/.dotfiles"
+NEOVIMPATH="$HOME/src/neovim"
 
 ##### Functions ###############################################################
 
@@ -72,7 +73,10 @@ _banner "Install Packages..."
 
 command -v git &> /dev/null && yum remove -y git
 
-sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel neovim nodejs ripgrep
+sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel nodejs ripgrep
+
+# Neovim build dependencies
+sudo -E yum install -y ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch
 
 _banner "Install Pip..."
 
@@ -107,6 +111,32 @@ else
   git submodule foreach git pull origin master
   popd
 fi
+
+##### Clone neovim ############################################################
+
+_banner "Clone Neovim..."
+
+mkdir -p "${HOME}/{src,neovim}"
+
+if [[ ! -d "${NEOVIMPATH}" ]]; then
+  _logger "${INFO}" "Clone neovim"
+  git clone https://github.com/neovim/neovim.git "${NEOVIMPATH}"
+else
+  _logger "${INFO}" "Update neovim repository"
+  pushd "$(pwd)"
+  cd "${DOTPATH}"
+  make update-neovim
+  popd
+fi
+
+##### Install neovim ##########################################################
+
+_banner "Install Neovim..."
+
+pushd "$(pwd)"
+cd "${DOTPATH}"
+make build-neovim
+popd
 
 ##### Install dotfiles ########################################################
 
