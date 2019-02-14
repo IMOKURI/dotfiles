@@ -116,8 +116,6 @@ fi
 
 _banner "Clone Neovim..."
 
-mkdir -p "${HOME}/{src,neovim}"
-
 if [[ ! -d "${NEOVIMPATH}" ]]; then
   _logger "${INFO}" "Clone neovim"
   git clone https://github.com/neovim/neovim.git "${NEOVIMPATH}"
