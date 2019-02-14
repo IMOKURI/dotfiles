@@ -24,7 +24,7 @@ NEOVIMPATH="$HOME/src/neovim"
 ##### Functions ###############################################################
 
 function _banner(){
-  sep='======================================================================='
+  sep=$(for ((i=1; i<=$(tput cols); i++)); do echo -n =; done)
   printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 

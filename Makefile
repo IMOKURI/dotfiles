@@ -33,7 +33,7 @@ pipenv: ## Setup pipenv
 	PIPENV_VENV_IN_PROJECT=true pipenv install
 
 command: ## Set command alias
-	alternatives --install /usr/local/bin/vi vi $(shell command -v nvim) 100
+	alternatives --install /usr/local/bin/vi vi $(HOME)/neovim/bin/nvim 100
 
 update: ## Pull repo
 	git pull origin master
