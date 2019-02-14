@@ -62,6 +62,11 @@ set colorcolumn=80
 " 有効なときのみ再描画する
 set lazyredraw
 
+" ポップアップメニューを透過する
+if exists('&pumblend')
+      set pumblend=20
+endif
+
 "##### 検索設定 #####
 
 " 大文字/小文字の区別なく検索する
