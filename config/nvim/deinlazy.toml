@@ -81,8 +81,7 @@ hook_source = '''
   call denite#custom#option('default', 'prompt', '>')
 '''
 hook_add = '''
-  nmap <C-u> [denite]
-  nnoremap <silent> [denite]<C-p> :<C-u>Denite file_rec<CR>
-  nnoremap <silent> [denite]<C-g> :<C-u>Denite grep<CR>
-  nnoremap <silent> [denite]<C-n> :Neoformat<CR>
+  nnoremap <silent> <Leader>p :Denite file_rec<CR>
+  nnoremap <silent> <Leader>g :Denite grep<CR>
+  nnoremap <silent> <Leader>n :Neoformat<CR>
 '''

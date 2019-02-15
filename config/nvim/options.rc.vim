@@ -111,11 +111,8 @@ cnoremap w!! w !sudo tee > /dev/null %
 " 常に全てのタブを閉じる
 cnoremap q qa
 
-" help画面をqで閉じる
-augroup help_quit
-      autocmd!
-      autocmd FileType help nnoremap <buffer> q <C-w>c
-augroup END
+" windowを閉じる
+nnoremap <silent> <Leader>q <C-w>c
 
 " 新しいタブを開く
 nnoremap st :<C-u>tabnew<CR>
@@ -177,8 +174,8 @@ endfunction
 nnoremap <script> <silent> <Leader>l :call ToggleLocationList()<CR>
 
 " Location Listのエラーに移動する
-nnoremap <silent> <Leader>p :<C-u>lprevious<CR>
-nnoremap <silent> <Leader>n :<C-u>lnext<CR>
+nnoremap <silent> <C-p> :<C-u>lprevious<CR>
+nnoremap <silent> <C-n> :<C-u>lnext<CR>
 
 "##### その他設定 #####
 
