@@ -16,7 +16,7 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_CONFIG), ls -dF config/$(val);)
 
-install: proxy pipenv command update deploy ## Do proxy, pipenv, command, update and deploy
+install: proxy update pipenv deploy ## Do proxy, update, pipenv and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
@@ -28,18 +28,15 @@ ifeq ("$(wildcard $(GIT_PROXY_SETTINGS))","")
 endif
 endif
 
-pipenv: ## Setup pipenv
-	cd config/nvim/ && \
-	PIPENV_VENV_IN_PROJECT=true pipenv install
-
-command: ## Set command alias
-	alternatives --install /usr/local/bin/vi vi $(HOME)/neovim/bin/nvim 100
-
-update: ## Pull repo
+update: ## Update repository
 	git pull origin master
 	git submodule init
 	git submodule update
 	git submodule foreach git pull origin master
+
+pipenv: ## Setup pipenv
+	cd config/nvim/ && \
+	PIPENV_VENV_IN_PROJECT=true pipenv install
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
