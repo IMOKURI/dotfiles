@@ -42,8 +42,6 @@ deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
-	@echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> $(HOME)/.bashrc
-	@echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> $(HOME)/.bash_profile
 
 update-neovim: ## Update neovim
 	cd $(HOME)/src/neovim && \
