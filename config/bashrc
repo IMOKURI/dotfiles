@@ -13,6 +13,8 @@ shopt -s globstar
 
 ##### User specific alias #####################################################
 
+alias vi="$HOME/neovim/bin/nvim"
+
 alias cd='cdls'
 
 cdls () {

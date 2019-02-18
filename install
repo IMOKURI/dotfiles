@@ -71,8 +71,6 @@ fi
 
 _banner "Install Packages..."
 
-command -v git &> /dev/null && yum remove -y git
-
 sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel nodejs ripgrep
 
 # Neovim build dependencies
@@ -142,7 +140,7 @@ _banner "Install dotfiles..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-sudo -E make install
+make install
 echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> ${HOME}/.bashrc
 echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> ${HOME}/.bash_profile
 popd
