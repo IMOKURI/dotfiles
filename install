@@ -143,6 +143,8 @@ _banner "Install dotfiles..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
 sudo -E make install
+echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> ${HOME}/.bashrc
+echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> ${HOME}/.bash_profile
 popd
 
 _banner "Finished!"
