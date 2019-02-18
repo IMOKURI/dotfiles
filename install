@@ -92,6 +92,16 @@ _banner "Install NodeJS Packages..."
 
 sudo -E npm -g install doctoc neovim jsonlint remark-cli
 
+##### Download git scripts ####################################################
+
+_banner "Download Git Scripts..."
+
+mkdir -p "$HOME/.local/bin"
+
+curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+
+curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+
 ##### Clone Dotfiles ##########################################################
 
 _banner "Clone Dotfiles..."

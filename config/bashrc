@@ -40,15 +40,9 @@ alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenki
 
 ##### For git completion and prompt ###########################################
 
-GIT_PROMPT="$(find /usr/share/doc/ -type f -name git-prompt.sh 2> /dev/null | head -1)"
-if [ -n "$GIT_PROMPT" ]; then
-  source "$GIT_PROMPT"
-fi
+source "$HOME/.local/bin/git-completion.bash"
 
-GIT_COMPLETION="$(find /usr/share/doc/ -type f -name git-completion.bash 2> /dev/null | head -1)"
-if [ -n "$GIT_COMPLETION" ]; then
-  source "$GIT_COMPLETION"
-fi
+source "$HOME/.local/bin/git-prompt.sh"
 
 # Unstaged (*) and staged (+) changes will be shown next to the branch name
 GIT_PS1_SHOWDIRTYSTATE=true
