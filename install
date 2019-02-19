@@ -72,13 +72,7 @@ fi
 
 _banner "Install Packages..."
 
-sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which python36u python36u-devel nodejs ripgrep
-
-# Git build dependencies
-sudo -E yum install -y libcurl-devel expat-devel
-
-# Neovim build dependencies
-sudo -E yum install -y ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch
+sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36u python36u-devel ripgrep unzip which
 
 ##### Clone git ###############################################################
 
@@ -87,6 +81,7 @@ _banner "Clone Git..."
 if [[ ! -d "${GITPATH}" ]]; then
   _logger "${INFO}" "Clone git"
   git clone https://github.com/git/git.git "${GITPATH}"
+  sudo -E yum remove -y git
 else
   _logger "${INFO}" "Update git repository"
   pushd "$(pwd)"
@@ -106,6 +101,7 @@ popd
 
 _logger "${INFO}" "Install Git-LFS"
 
+export PATH="$HOME/bin:$PATH"
 sudo -E yum install -y git-lfs
 
 ##### Install python packages #################################################
