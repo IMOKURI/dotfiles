@@ -98,9 +98,11 @@ _banner "Download Git Scripts..."
 
 mkdir -p "$HOME/.local/bin"
 
-curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+#curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+cp /usr/share/doc/git2u-core-doc-*/contrib/completion/git-completion.bash "$HOME/.local/bin/git-completion.bash"
 
-curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+#curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+cp /usr/share/doc/git2u-core-doc-*/contrib/completion/git-prompt.sh "$HOME/.local/bin/git-prompt.sh"
 
 ##### Clone Dotfiles ##########################################################
 
@@ -151,8 +153,8 @@ _banner "Install dotfiles..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
 make install
-echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> ${HOME}/.bashrc
-echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> ${HOME}/.bash_profile
+echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
+echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.bash_profile"
 popd
 
 _banner "Finished!"
