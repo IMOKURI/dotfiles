@@ -74,6 +74,24 @@ _banner "Install Packages..."
 
 sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36u python36u-devel ripgrep unzip which
 
+##### Clone Dotfiles ##########################################################
+
+_banner "Clone Dotfiles..."
+
+if [[ ! -d "${DOTPATH}" ]]; then
+  _logger "${INFO}" "Clone dotfiles repository"
+  git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
+else
+  _logger "${INFO}" "Update dotfiles repository"
+  pushd "$(pwd)"
+  cd "${DOTPATH}"
+  git pull
+  git submodule init
+  git submodule update
+  git submodule foreach git pull origin master
+  popd
+fi
+
 ##### Clone git ###############################################################
 
 _banner "Clone Git..."
@@ -104,6 +122,16 @@ _logger "${INFO}" "Install Git-LFS"
 export PATH="$HOME/bin:$PATH"
 sudo -E yum install -y git-lfs
 
+##### Download git scripts ####################################################
+
+_banner "Download Git Scripts..."
+
+mkdir -p "$HOME/.local/bin"
+
+curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+
+curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+
 ##### Install python packages #################################################
 
 _banner "Install Pip..."
@@ -119,34 +147,6 @@ sudo -E pip install ansible pipenv pipenv-pipes
 _banner "Install NodeJS Packages..."
 
 sudo -E npm -g install doctoc neovim jsonlint remark-cli
-
-##### Download git scripts ####################################################
-
-_banner "Download Git Scripts..."
-
-mkdir -p "$HOME/.local/bin"
-
-curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-
-curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-
-##### Clone Dotfiles ##########################################################
-
-_banner "Clone Dotfiles..."
-
-if [[ ! -d "${DOTPATH}" ]]; then
-  _logger "${INFO}" "Clone dotfiles repository"
-  git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
-else
-  _logger "${INFO}" "Update dotfiles repository"
-  pushd "$(pwd)"
-  cd "${DOTPATH}"
-  git pull
-  git submodule init
-  git submodule update
-  git submodule foreach git pull origin master
-  popd
-fi
 
 ##### Clone neovim ############################################################
 
