@@ -20,6 +20,7 @@ INFO="GREEN"
 # Define path
 DOTPATH="$HOME/.dotfiles"
 NEOVIMPATH="$HOME/src/neovim"
+GITPATH="$HOME/src/git"
 
 ##### Functions ###############################################################
 
@@ -59,7 +60,7 @@ fi
 
 if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
   _logger "${INFO}" "Install Nodejs repository"
-  curl -fsSL https://rpm.nodesource.com/setup_10.x | sudo -E bash
+  curl -fsSL https://rpm.nodesource.com/setup_11.x | sudo -E bash
 fi
 
 if [[ ! -f /etc/yum.repos.d/carlwgeorge-ripgrep-epel-7.repo ]]; then
@@ -71,16 +72,47 @@ fi
 
 _banner "Install Packages..."
 
-sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which git2u git-lfs python36u python36u-devel nodejs ripgrep
+sudo -E yum install -y gcc gcc-c++ python python-devel libffi-devel openssl-devel make which python36u python36u-devel nodejs ripgrep
+
+# Git build dependencies
+sudo -E yum install -y libcurl-devel expat-devel
 
 # Neovim build dependencies
 sudo -E yum install -y ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch
 
+##### Clone git ###############################################################
+
+_banner "Clone Git..."
+
+if [[ ! -d "${GITPATH}" ]]; then
+  _logger "${INFO}" "Clone git"
+  git clone https://github.com/git/git.git "${GITPATH}"
+else
+  _logger "${INFO}" "Update git repository"
+  pushd "$(pwd)"
+  cd "${DOTPATH}"
+  make update-git
+  popd
+fi
+
+##### Install git #############################################################
+
+_banner "Install Git..."
+
+pushd "$(pwd)"
+cd "${DOTPATH}"
+make build-git
+popd
+
+_logger "${INFO}" "Install Git-LFS"
+
+sudo -E yum install -y git-lfs
+
+##### Install python packages #################################################
+
 _banner "Install Pip..."
 
 command -v pip3.6 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3.6
-
-##### Install python packages #################################################
 
 _banner "Install Python Packages..."
 
@@ -98,11 +130,9 @@ _banner "Download Git Scripts..."
 
 mkdir -p "$HOME/.local/bin"
 
-#curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-cp /usr/share/doc/git2u-core-doc-*/contrib/completion/git-completion.bash "$HOME/.local/bin/git-completion.bash"
+curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 
-#curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-cp /usr/share/doc/git2u-core-doc-*/contrib/completion/git-prompt.sh "$HOME/.local/bin/git-prompt.sh"
+curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 
 ##### Clone Dotfiles ##########################################################
 
