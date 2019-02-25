@@ -106,16 +106,16 @@ set backspace=indent,eol,start
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
 " root権限でファイルを保存する
-cnoremap w!! w !sudo tee > /dev/null %
+nnoremap <silent> <Leader><Leader>w :<C-u>w !sudo tee > /dev/null %<CR>
 
 " 常に全てのタブを閉じる
 cnoremap q qa
 
 " windowを閉じる
-nnoremap <silent> <Leader>q <C-w>c
+nnoremap <silent> <Leader>q :<C-u>close<CR>
 
 " 新しいタブを開く
-nnoremap st :<C-u>tabnew<CR>
+nnoremap <silent> st :<C-u>tabnew<CR>
 
 " タブを移動する
 nnoremap sn gt
@@ -189,6 +189,12 @@ augroup remember_cursor
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
             \   exe "normal! g'\"" |
             \ endif
+augroup END
+
+" インサートモードから抜けるときにpasteモード解除
+augroup insert_leave
+      autocmd!
+      autocmd InsertLeave * set nopaste
 augroup END
 
 " ヒストリーファイルを作成しない

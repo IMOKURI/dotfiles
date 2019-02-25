@@ -2,6 +2,7 @@
 *.retry
 
 # (neo)vim
+tags
 .vimsessions
 
 # python
