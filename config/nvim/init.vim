@@ -25,7 +25,7 @@ elseif g:env =~# 'WINDOWS'
 
 endif
 
-let g:python_host_prog = ''
+let g:python_host_prog = '/usr/bin/python2'
 
 let s:dein_dir = s:nvim_dir . '/dein'
 let s:toml_file = s:nvim_dir . '/dein.toml'

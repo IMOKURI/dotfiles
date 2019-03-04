@@ -5,5 +5,8 @@
 tags
 .vimsessions
 
+# neomake
+.*@neomake*
+
 # python
 .venv
