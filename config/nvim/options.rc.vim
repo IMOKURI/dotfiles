@@ -114,12 +114,12 @@ cnoremap q qa
 " windowを閉じる
 nnoremap <silent> <Leader>q :<C-u>close<CR>
 
-" 新しいタブを開く
-nnoremap <silent> st :<C-u>tabnew<CR>
-
 " タブを移動する
-nnoremap sn gt
-nnoremap sp gT
+nnoremap gn gt
+nnoremap gp gT
+
+" 新しいタブを開く
+nnoremap <silent> gt :<C-u>tabnew<CR>
 
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
@@ -141,6 +141,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
+" ウィンドウを分割する
+nnoremap <C-w>- <C-w>s
+nnoremap <C-w><bar> <C-w>v
 
 " カーソル下の単語をハイライトする
 nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
