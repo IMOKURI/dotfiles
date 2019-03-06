@@ -55,7 +55,7 @@ build-git: ## Build git
 	make all && \
 	make install
 
-neovim: update-neovim build-neobim ## Get latest neovim
+neovim: update-neovim build-neovim ## Get latest neovim
 
 update-neovim: ## Update neovim repository
 	cd $(HOME)/src/neovim && \
