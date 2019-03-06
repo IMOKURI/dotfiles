@@ -53,6 +53,9 @@ set laststatus=2
 " モードを非表示にする
 set noshowmode
 
+" ファイルが変更されたとき、再読込する
+set autoread
+
 " 画面の更新時間を設定(ms)
 set updatetime=250
 
@@ -104,6 +107,9 @@ set backspace=indent,eol,start
 
 " カレントディレクトリでExploreを開く
 nnoremap <silent> <Leader>e :E %:h<CR>
+
+" ctagsを生成する
+nnoremap <silent> <Leader>c :!ctags -R -f tags<CR>
 
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
