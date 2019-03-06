@@ -122,16 +122,6 @@ _logger "${INFO}" "Install Git-LFS"
 export PATH="$HOME/bin:$PATH"
 sudo -E yum install -y git-lfs
 
-##### Download git scripts ####################################################
-
-_banner "Download Git Scripts..."
-
-mkdir -p "$HOME/.local/bin"
-
-curl -o "$HOME/.local/bin/git-completion.bash" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-
-curl -o "$HOME/.local/bin/git-prompt.sh" https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-
 ##### Install python packages #################################################
 
 _banner "Install Pip..."

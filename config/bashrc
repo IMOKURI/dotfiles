@@ -40,9 +40,8 @@ alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenki
 
 ##### For git completion and prompt ###########################################
 
-source "$HOME/.local/bin/git-completion.bash"
-
-source "$HOME/.local/bin/git-prompt.sh"
+source "$HOME/src/git/contrib/completion/git-completion.bash"
+source "$HOME/src/git/contrib/completion/git-prompt.sh"
 
 # Unstaged (*) and staged (+) changes will be shown next to the branch name
 GIT_PS1_SHOWDIRTYSTATE=true

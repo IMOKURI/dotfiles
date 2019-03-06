@@ -43,6 +43,8 @@ deploy: ## Create symlink
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
+git: update-git build-git ## Get latest git
+
 update-git: ## Update git repository
 	cd $(HOME)/src/git && \
 	git pull
@@ -52,6 +54,8 @@ build-git: ## Build git
 	make clean && \
 	make all && \
 	make install
+
+neovim: update-neovim build-neobim ## Get latest neovim
 
 update-neovim: ## Update neovim repository
 	cd $(HOME)/src/neovim && \
