@@ -102,6 +102,9 @@ set inccommand=split
 " backspaceでの削除を有効化
 set backspace=indent,eol,start
 
+" カレントディレクトリでExploreを開く
+nnoremap <silent> <Leader>e :E %:h<CR>
+
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
