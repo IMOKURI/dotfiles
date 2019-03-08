@@ -8,7 +8,7 @@ fi
 
 ##### User specific environment ###############################################
 
-export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/bin:$PATH
 
 export LESS='-i -M -R -W -z-3 -x4 -F -X'
 
