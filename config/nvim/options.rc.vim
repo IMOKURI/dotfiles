@@ -109,7 +109,7 @@ set backspace=indent,eol,start
 nnoremap <silent> <Leader>e :E %:h<CR>
 
 " ctagsを生成する
-nnoremap <silent> <Leader>c :!ctags -R -f tags<CR>
+nnoremap <silent> <Leader>t :!ctags -R -f tags<CR>
 
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
