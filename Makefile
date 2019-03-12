@@ -64,6 +64,7 @@ update-neovim: ## Update neovim repository
 build-neovim: ## Build neovim
 	cd $(HOME)/src/neovim && \
 	rm -fr build/ && \
+	make distclean && \
 	make clean && \
 	make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
 	make install
