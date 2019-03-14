@@ -14,6 +14,9 @@ set ambiwidth=double
 " 行番号を表示
 set number
 
+" 行番号を相対位置で表示
+set relativenumber
+
 " 制御文字を表示
 set list
 

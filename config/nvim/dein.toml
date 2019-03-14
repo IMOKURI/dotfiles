@@ -21,6 +21,14 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 't9md/vim-quickhl'
+hook_add = '''
+  nmap <Leader>m <Plug>(quickhl-manual-this)
+  xmap <Leader>m <Plug>(quickhl-manual-this)
+  nmap <Leader>M :<C-u>QuickhlManualReset<CR>
+'''
+
+[[plugins]]
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]

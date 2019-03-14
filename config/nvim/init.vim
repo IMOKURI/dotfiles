@@ -1,6 +1,9 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+filetype off
+filetype plugin indent off
+
 if !exists('g:env')
   if has('win64') || has('win32') || has('win16')
     let g:env = 'WINDOWS'
