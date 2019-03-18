@@ -4,6 +4,9 @@ scriptencoding utf-8
 filetype off
 filetype plugin indent off
 
+let g:mapleader = "\<Space>"
+let g:maplocalleader = '\'
+
 " -----------------------------------------------------------------------------
 " Detect platform
 " -----------------------------------------------------------------------------
@@ -15,25 +18,27 @@ if !exists('g:env')
   endif
 endif
 
-if g:env =~# 'LINUX'
-  let s:nvim_dir = expand('~/.config/nvim')
-  let g:python_host_prog = '/usr/bin/python2'
-  let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
-
-elseif g:env =~# 'WINDOWS'
-  let s:nvim_dir = '$USERPROFILE/AppData/Local/nvim'
-  let g:python_host_prog = ''
-  let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
-  set shell=\"C:/Program\ Files/Git/bin/bash.exe\"
-
+if empty($XDG_CONFIG_HOME)
+  if g:env =~# 'LINUX'
+    let $XDG_CONFIG_HOME = expand('~/.config')
+  elseif g:env =~# 'WINDOWS'
+    let $XDG_CONFIG_HOME = '$USERPROFILE/AppData/Local'
+  endif
 endif
-
-let g:mapleader = "\<Space>"
-let g:maplocalleader = '\'
 
 " -----------------------------------------------------------------------------
 " Plugin settings
 " -----------------------------------------------------------------------------
+let s:nvim_dir = $XDG_CONFIG_HOME . '/nvim'
+
+if g:env =~# 'LINUX'
+  let g:python_host_prog = '/usr/bin/python2'
+  let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
+elseif g:env =~# 'WINDOWS'
+  let g:python_host_prog = ''
+  let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
+endif
+
 let s:dein_dir = s:nvim_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath^=' . s:dein_repo_dir
@@ -56,6 +61,14 @@ function! s:t9md_vim_quickhl()
   nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
   xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
   nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
+endfunction
+
+function! s:dhruvasagar_vim_table_mode()
+  nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
+endfunction
+
+function! s:jsfaint_gen_tags_vim()
+  nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
 endfunction
 
 function! s:ttpope_vim_fugitive()
@@ -142,16 +155,24 @@ if dein#load_state(s:dein_dir)
   call dein#add('jacoborus/tender.vim')
   call dein#add('itchyny/lightline.vim')
 
+  call dein#add('tpope/vim-sleuth')
+
   call dein#add('t9md/vim-quickhl', {
         \ 'hook_add': function('s:t9md_vim_quickhl')
+        \ })
+
+  call dein#add('dhruvasagar/vim-table-mode', {
+        \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
+        \ })
+
+  call dein#add('jsfaint/gen_tags.vim', {
+        \ 'hook_add': function('s:jsfaint_gen_tags_vim')
         \ })
 
   call dein#add('airblade/vim-gitgutter')
   call dein#add('tpope/vim-fugitive', {
         \ 'hook_add': function('s:ttpope_vim_fugitive')
         \ })
-
-  call dein#add('tpope/vim-sleuth')
 
   call dein#add('xolox/vim-misc')
   call dein#add('xolox/vim-session', {
@@ -282,9 +303,6 @@ nnoremap <silent> <C-n> :<C-u>lnext<CR>
 " カレントディレクトリでExploreを開く
 nnoremap <silent> <Leader>e :E %:h<CR>
 
-" ctagsを生成する
-nnoremap <silent> <Leader>t :!ctags -R -f tags<CR>
-
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
@@ -412,6 +430,9 @@ set lazyredraw
 if exists('&pumblend')
   set pumblend=20
 endif
+
+" ポップアップメニューで表示する数
+set pumheight=10
 
 " 大文字/小文字の区別なく検索する
 set ignorecase
