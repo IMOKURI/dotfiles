@@ -1,6 +1,9 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+filetype off
+filetype plugin indent off
+
 " -----------------------------------------------------------------------------
 " Detect platform
 " -----------------------------------------------------------------------------
@@ -49,18 +52,18 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-function s:t9md_vim_quickhl()
+function! s:t9md_vim_quickhl()
   nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
   xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
   nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
 endfunction
 
-function s:ttpope_vim_fugitive()
+function! s:ttpope_vim_fugitive()
   nnoremap <silent> <Leader>s :<C-u>Gstatus<CR>
   nnoremap <silent> <Leader>d :<C-u>Gdiff<CR>
 endfunction
 
-function s:xolox_vim_session()
+function! s:xolox_vim_session()
   let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
   if isdirectory(s:local_session_directory)
     let g:session_directory = s:local_session_directory
@@ -74,20 +77,20 @@ function s:xolox_vim_session()
   unlet s:local_session_directory
 endfunction
 
-function s:shougo_deoplete_nvim()
+function! s:shougo_deoplete_nvim()
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#auto_complete_delay = 0
   let g:deoplete#auto_complete_start_length = 1
 endfunction
 
-function s:neomake_neomake_hook_add()
+function! s:neomake_neomake_hook_add()
   augroup neomake
     autocmd!
     autocmd InsertLeave,BufWritePost * Neomake
   augroup END
 endfunction
 
-function s:neomake_neomake_hook_source()
+function! s:neomake_neomake_hook_source()
   let g:neomake_open_list = 2
   let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
   let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
@@ -95,22 +98,22 @@ function s:neomake_neomake_hook_source()
   let g:neomake_shellcheck_args = ['-fgcc']
 endfunction
 
-function s:sbdchd_neoformat_hook_add()
+function! s:sbdchd_neoformat_hook_add()
   nnoremap <silent> <Leader>n :Neoformat<CR>
 endfunction
 
-function s:sbdchd_neoformat_hook_source()
+function! s:sbdchd_neoformat_hook_source()
   let g:neoformat_basic_format_align = 1
   let g:neoformat_basic_format_retab = 1
   let g:neoformat_basic_format_trim = 1
 endfunction
 
-function s:shougo_denite_nvim_hook_add()
+function! s:shougo_denite_nvim_hook_add()
   nnoremap <silent> <Leader>p :Denite file_rec<CR>
   nnoremap <silent> <Leader>g :Denite grep<CR>
 endfunction
 
-function s:shougo_denite_nvim_hook_source()
+function! s:shougo_denite_nvim_hook_source()
   if executable('rg')
     call denite#custom#var('file_rec', 'command',
           \ ['rg', '--files', '--glob', '!.git'])
@@ -228,7 +231,7 @@ let g:lightline = {
       \ }
       \ }
 
-if has("gui_running")
+if has('gui_running')
   Guifont! Migu 1M:h12
 endif
 
@@ -236,7 +239,6 @@ endif
 " Useful function
 " -----------------------------------------------------------------------------
 
-" カーソル位置記憶
 augroup remember_cursor
   autocmd!
   autocmd BufReadPost *
@@ -245,13 +247,11 @@ augroup remember_cursor
         \ endif
 augroup END
 
-" インサートモードから抜けるときにpasteモード解除
-augroup insert_leave
+augroup nopaste_when_insert_leave
   autocmd!
   autocmd InsertLeave * set nopaste
 augroup END
 
-" Quick Fixのtoggle
 function! ToggleQuickFix()
   let l:nr_current = winnr('$')
   cwindow
@@ -262,7 +262,6 @@ function! ToggleQuickFix()
 endfunction
 nnoremap <script> <silent> <Leader>c :call ToggleQuickFix()<CR>
 
-" Location Listのtoggle
 function! ToggleLocationList()
   let l:nr_current = winnr('$')
   lwindow
@@ -272,6 +271,10 @@ function! ToggleLocationList()
   endif
 endfunction
 nnoremap <script> <silent> <Leader>l :call ToggleLocationList()<CR>
+
+" Location Listのエラーに移動する
+nnoremap <silent> <C-p> :<C-u>lprevious<CR>
+nnoremap <silent> <C-n> :<C-u>lnext<CR>
 
 " -----------------------------------------------------------------------------
 " Mapping
@@ -288,18 +291,18 @@ nnoremap <silent> <Leader>w :<C-u>w<CR>
 " root権限でファイルを保存する
 nnoremap <silent> <Leader><Leader>w :<C-u>w !sudo tee > /dev/null %<CR>
 
-" 常に全てのタブを閉じる
-cnoremap q qa
-
 " windowを閉じる
-nnoremap <silent> <Leader>q :<C-u>close<CR>
+nnoremap <silent> qq :<C-u>close<CR>
+
+" 全てのタブを閉じる
+nnoremap <silent> <Leader>q :<C-u>qa<CR>
+
+" 新しいタブを開く
+nnoremap <silent> gt :<C-u>tabnew<CR>
 
 " タブを移動する
 nnoremap gn gt
 nnoremap gp gT
-
-" 新しいタブを開く
-nnoremap <silent> gt :<C-u>tabnew<CR>
 
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
@@ -333,31 +336,20 @@ nnoremap <C-w><bar> <C-w>v
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
-" カーソル下の単語をハイライトする
-nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
-
 " カーソル下の単語をハイライトして置換する
 nmap # <Leader>h:%s/<C-r>///g<Left><Left>
 
 " バッファ内で置換する
 nnoremap S :%s//g<LEFT><LEFT>
 
-" Location Listのエラーに移動する
-nnoremap <silent> <C-p> :<C-u>lprevious<CR>
-nnoremap <silent> <C-n> :<C-u>lnext<CR>
-
 " -----------------------------------------------------------------------------
 " Options
 " -----------------------------------------------------------------------------
-"##### 文字コード設定 #####
-
 " 文字コード判別
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 
 " □や○文字が崩れる問題を解決
 set ambiwidth=double
-
-"##### 表示設定 #####
 
 " 行番号を表示
 set number
@@ -392,8 +384,8 @@ set cursorline
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
-" 画面端が5行見える状態でスクロールする
-set scrolloff=5
+" 画面端が3行見える状態でスクロールする
+set scrolloff=3
 
 " 最後の行を出来る限り表示する
 set display=lastline
@@ -421,8 +413,6 @@ if exists('&pumblend')
   set pumblend=20
 endif
 
-"##### 検索設定 #####
-
 " 大文字/小文字の区別なく検索する
 set ignorecase
 
@@ -445,17 +435,17 @@ set wildmenu
 set wildmode=longest,full
 
 " ファイル名補完をポップアップで表示する
-silent! set wildoptions=pum
+if has('nvim')
+  set wildoptions=pum
+endif
 
 " 置換内容を表示
-set inccommand=split
-
-"##### ショートカットキー設定 #####
+if has('nvim')
+  set inccommand=split
+endif
 
 " backspaceでの削除を有効化
 set backspace=indent,eol,start
-
-"##### その他設定 #####
 
 " clipboard設定
 set clipboard+=unnamed
