@@ -97,8 +97,14 @@ nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
 " ファイルを検索する際大文字/小文字を区別しない
 set fileignorecase
 
+" ファイル名補完を行う
+set wildmenu
+
 " ファイル名を補完する
 set wildmode=longest,full
+
+" ファイル名補完をポップアップで表示する
+set wildoptions=pum
 
 " 置換内容を表示
 set inccommand=split
