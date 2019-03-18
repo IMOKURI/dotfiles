@@ -192,7 +192,11 @@ endif
 
 if dein#check_install()
   call dein#install()
+  call dein#remote_plugins()
 endif
+
+command! DeinUpdate if dein#check_update() | call dein#update() | endif
+command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')") | call dein#recache_runtimepath()
 
 " -----------------------------------------------------------------------------
 " Color schema
@@ -215,14 +219,18 @@ function! LightLineFugitive()
 endfunction
 
 let g:lightline = {
-  \ 'colorscheme': 'tender',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'component_function': {
-  \   'fugitive': 'LightLineFugitive'
-  \ }
-  \ }
+      \ 'colorscheme': 'tender',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive'
+      \ }
+      \ }
+
+if has("gui_running")
+  Guifont! Migu 1M:h12
+endif
 
 " -----------------------------------------------------------------------------
 " Useful function
@@ -230,38 +238,38 @@ let g:lightline = {
 
 " カーソル位置記憶
 augroup remember_cursor
-      autocmd!
-      autocmd BufReadPost *
-            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-            \   exe "normal! g'\"" |
-            \ endif
+  autocmd!
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
 augroup END
 
 " インサートモードから抜けるときにpasteモード解除
 augroup insert_leave
-      autocmd!
-      autocmd InsertLeave * set nopaste
+  autocmd!
+  autocmd InsertLeave * set nopaste
 augroup END
 
 " Quick Fixのtoggle
 function! ToggleQuickFix()
-      let l:nr_current = winnr('$')
-      cwindow
-      let l:nr_quickfix = winnr('$')
-      if l:nr_current == l:nr_quickfix
-            cclose
-      endif
+  let l:nr_current = winnr('$')
+  cwindow
+  let l:nr_quickfix = winnr('$')
+  if l:nr_current == l:nr_quickfix
+    cclose
+  endif
 endfunction
 nnoremap <script> <silent> <Leader>c :call ToggleQuickFix()<CR>
 
 " Location Listのtoggle
 function! ToggleLocationList()
-      let l:nr_current = winnr('$')
-      lwindow
-      let l:nr_location = winnr('$')
-      if l:nr_current == l:nr_location
-            lclose
-      endif
+  let l:nr_current = winnr('$')
+  lwindow
+  let l:nr_location = winnr('$')
+  if l:nr_current == l:nr_location
+    lclose
+  endif
 endfunction
 nnoremap <script> <silent> <Leader>l :call ToggleLocationList()<CR>
 
@@ -410,7 +418,7 @@ set lazyredraw
 
 " ポップアップメニューを透過する
 if exists('&pumblend')
-      set pumblend=20
+  set pumblend=20
 endif
 
 "##### 検索設定 #####
