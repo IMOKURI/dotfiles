@@ -71,11 +71,6 @@ function! s:jsfaint_gen_tags_vim()
   nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
 endfunction
 
-function! s:ttpope_vim_fugitive()
-  nnoremap <silent> <Leader>s :<C-u>Gstatus<CR>
-  nnoremap <silent> <Leader>d :<C-u>Gdiff<CR>
-endfunction
-
 function! s:xolox_vim_session()
   let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
   if isdirectory(s:local_session_directory)
@@ -155,6 +150,9 @@ if dein#load_state(s:dein_dir)
   call dein#add('jacoborus/tender.vim')
   call dein#add('itchyny/lightline.vim')
 
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('tpope/vim-fugitive')
+
   call dein#add('tpope/vim-sleuth')
 
   call dein#add('t9md/vim-quickhl', {
@@ -167,11 +165,6 @@ if dein#load_state(s:dein_dir)
 
   call dein#add('jsfaint/gen_tags.vim', {
         \ 'hook_add': function('s:jsfaint_gen_tags_vim')
-        \ })
-
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-fugitive', {
-        \ 'hook_add': function('s:ttpope_vim_fugitive')
         \ })
 
   call dein#add('xolox/vim-misc')
@@ -223,7 +216,7 @@ command! DeinUpdate if dein#check_update() | call dein#update() | endif
 command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')") | call dein#recache_runtimepath()
 
 " -----------------------------------------------------------------------------
-" Color schema
+" Color scheme
 " -----------------------------------------------------------------------------
 if has('nvim') || has('termguicolors')
   set termguicolors
