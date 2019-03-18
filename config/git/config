@@ -12,7 +12,7 @@
   path = ~/.config/git/config.local
 
 [core]
-  editor = vi
+  editor = nvim
   fscache = true
   preloadindex = true
   quotepath = false

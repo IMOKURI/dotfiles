@@ -57,6 +57,9 @@ hook_source = '''
   let g:neoformat_basic_format_retab = 1
   let g:neoformat_basic_format_trim = 1
 '''
+hook_add = '''
+  nnoremap <silent> <Leader>n :Neoformat<CR>
+'''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -83,5 +86,4 @@ hook_source = '''
 hook_add = '''
   nnoremap <silent> <Leader>p :Denite file_rec<CR>
   nnoremap <silent> <Leader>g :Denite grep<CR>
-  nnoremap <silent> <Leader>n :Neoformat<CR>
 '''
