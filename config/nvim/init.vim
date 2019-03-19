@@ -5,7 +5,7 @@ filetype off
 filetype plugin indent off
 
 let g:mapleader = "\<Space>"
-let g:maplocalleader = '\'
+let g:maplocalleader = '`'
 
 " -----------------------------------------------------------------------------
 " Detect platform
@@ -78,6 +78,7 @@ function! s:xolox_vim_session()
     let g:session_autosave = 'yes'
     let g:session_autoload = 'yes'
     let g:session_autosave_periodic = 1
+    set sessionoptions-=help
   else
     let g:session_autosave = 'no'
     let g:session_autoload = 'no'
@@ -99,7 +100,7 @@ function! s:neomake_neomake_hook_add()
 endfunction
 
 function! s:neomake_neomake_hook_source()
-  let g:neomake_open_list = 2
+  "let g:neomake_open_list = 2
   let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
   let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
   let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
@@ -117,7 +118,7 @@ function! s:sbdchd_neoformat_hook_source()
 endfunction
 
 function! s:shougo_denite_nvim_hook_add()
-  nnoremap <silent> <Leader>p :Denite file_rec<CR>
+  nnoremap <silent> <Leader>f :Denite file_rec<CR>
   nnoremap <silent> <Leader>g :Denite grep<CR>
 endfunction
 
@@ -235,12 +236,47 @@ function! LightLineFugitive()
   return ''
 endfunction
 
+function! LightlineNeomakeLocationList()
+  if !exists(':Neomake')
+    return ''
+  endif
+  let ErrorCounts = get(neomake#statusline#LoclistCounts(), 'E', 0)
+  let WarningCounts = get(neomake#statusline#LoclistCounts(), 'W', 0)
+  if ErrorCounts + WarningCounts == 0
+    return ''
+  endif
+  return 'LL:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
+endfunction
+
+function! LightlineNeomakeQuickFix()
+  if !exists(':Neomake')
+    return ''
+  endif
+  let ErrorCounts = get(neomake#statusline#QflistCounts(), 'E', 0)
+  let WarningCounts = get(neomake#statusline#QflistCounts(), 'W', 0)
+  if ErrorCounts + WarningCounts == 0
+    return ''
+  endif
+  return 'QF:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
+endfunction
+
 let g:lightline = {
       \ 'colorscheme': 'tender',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \   'left': [
+      \     [ 'mode', 'paste' ],
+      \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
+      \     [ 'neomake_ll', 'neomake_qf' ]
+      \   ],
+      \   'right': [
+      \     [ 'lineinfo' ],
+      \     [ 'percent' ],
+      \     [ 'fileformat', 'fileencoding', 'filetype' ]
+      \   ]
       \ },
       \ 'component_function': {
+      \   'neomake_ll': 'LightlineNeomakeLocationList',
+      \   'neomake_qf': 'LightlineNeomakeQuickFix',
       \   'fugitive': 'LightLineFugitive'
       \ }
       \ }
@@ -252,6 +288,14 @@ endif
 " -----------------------------------------------------------------------------
 " Useful function
 " -----------------------------------------------------------------------------
+
+augroup start_insert_in_terminal
+  autocmd!
+  autocmd BufEnter *
+        \ if &buftype == 'terminal' |
+        \   :startinsert |
+        \ endif
+augroup END
 
 augroup remember_cursor
   autocmd!
@@ -266,35 +310,19 @@ augroup nopaste_when_insert_leave
   autocmd InsertLeave * set nopaste
 augroup END
 
-function! ToggleQuickFix()
-  let l:nr_current = winnr('$')
-  cwindow
-  let l:nr_quickfix = winnr('$')
-  if l:nr_current == l:nr_quickfix
-    cclose
-  endif
-endfunction
-nnoremap <script> <silent> <Leader>c :call ToggleQuickFix()<CR>
-
-function! ToggleLocationList()
-  let l:nr_current = winnr('$')
-  lwindow
-  let l:nr_location = winnr('$')
-  if l:nr_current == l:nr_location
-    lclose
-  endif
-endfunction
-nnoremap <script> <silent> <Leader>l :call ToggleLocationList()<CR>
+" Quick Fixのエラーに移動する
+nnoremap <silent> <C-p> :<C-u>cprevious<CR>
+nnoremap <silent> <C-n> :<C-u>cnext<CR>
 
 " Location Listのエラーに移動する
-nnoremap <silent> <C-p> :<C-u>lprevious<CR>
-nnoremap <silent> <C-n> :<C-u>lnext<CR>
+nnoremap <silent> <LocalLeader>p :<C-u>lprevious<CR>
+nnoremap <silent> <LocalLeader>n :<C-u>lnext<CR>
 
 " -----------------------------------------------------------------------------
 " Mapping
 " -----------------------------------------------------------------------------
-" カレントディレクトリでExploreを開く
-nnoremap <silent> <Leader>e :E %:h<CR>
+" Exploreを開く
+nnoremap <silent> <Leader>e :Explore<CR>
 
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
@@ -345,7 +373,7 @@ nnoremap <C-w>- <C-w>s
 nnoremap <C-w><bar> <C-w>v
 
 " 検索結果のハイライトをEsc連打でクリアする
-nnoremap <Esc><Esc> :<C-u>set nohlsearch!<CR>
+nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 " カーソル下の単語をハイライトして置換する
 nmap # <Leader>h:%s/<C-r>///g<Left><Left>
