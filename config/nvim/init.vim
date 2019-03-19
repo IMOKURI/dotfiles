@@ -11,19 +11,19 @@ let g:maplocalleader = '`'
 " Detect platform
 " -----------------------------------------------------------------------------
 if !exists('g:env')
-  if has('win64') || has('win32') || has('win16')
-    let g:env = 'WINDOWS'
-  else
-    let g:env = toupper(substitute(system('uname'), '\n', '', ''))
-  endif
+    if has('win64') || has('win32') || has('win16')
+        let g:env = 'WINDOWS'
+    else
+        let g:env = toupper(substitute(system('uname'), '\n', '', ''))
+    endif
 endif
 
 if empty($XDG_CONFIG_HOME)
-  if g:env =~# 'LINUX'
-    let $XDG_CONFIG_HOME = expand('~/.config')
-  elseif g:env =~# 'WINDOWS'
-    let $XDG_CONFIG_HOME = '$USERPROFILE/AppData/Local'
-  endif
+    if g:env =~# 'LINUX'
+        let $XDG_CONFIG_HOME = expand('~/.config')
+    elseif g:env =~# 'WINDOWS'
+        let $XDG_CONFIG_HOME = '$USERPROFILE/AppData/Local'
+    endif
 endif
 
 " -----------------------------------------------------------------------------
@@ -32,11 +32,11 @@ endif
 let s:nvim_dir = $XDG_CONFIG_HOME . '/nvim'
 
 if g:env =~# 'LINUX'
-  let g:python_host_prog = '/usr/bin/python2'
-  let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
 elseif g:env =~# 'WINDOWS'
-  let g:python_host_prog = ''
-  let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
+    let g:python_host_prog = ''
+    let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
 endif
 
 let s:dein_dir = s:nvim_dir . '/dein'
@@ -57,170 +57,166 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-function! s:t9md_vim_quickhl()
-  nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-  xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-  nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
-endfunction
-
-function! s:dhruvasagar_vim_table_mode()
-  nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
-endfunction
-
-function! s:jsfaint_gen_tags_vim()
-  nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
-endfunction
-
-function! s:xolox_vim_session()
-  let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
-  if isdirectory(s:local_session_directory)
-    let g:session_directory = s:local_session_directory
-    let g:session_autosave = 'yes'
-    let g:session_autoload = 'yes'
-    let g:session_autosave_periodic = 1
-    set sessionoptions-=help
-  else
-    let g:session_autosave = 'no'
-    let g:session_autoload = 'no'
-  endif
-  unlet s:local_session_directory
-endfunction
-
-function! s:shougo_deoplete_nvim()
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 0
-  let g:deoplete#auto_complete_start_length = 1
-endfunction
-
-function! s:neomake_neomake_hook_add()
-  augroup neomake
-    autocmd!
-    autocmd InsertLeave,BufWritePost * Neomake
-  augroup END
-endfunction
-
-function! s:neomake_neomake_hook_source()
-  "let g:neomake_open_list = 2
-  let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
-  let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
-  let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
-  let g:neomake_shellcheck_args = ['-fgcc']
-endfunction
-
-function! s:sbdchd_neoformat_hook_add()
-  nnoremap <silent> <Leader>n :Neoformat<CR>
-endfunction
-
-function! s:sbdchd_neoformat_hook_source()
-  let g:neoformat_basic_format_align = 1
-  let g:neoformat_basic_format_retab = 1
-  let g:neoformat_basic_format_trim = 1
-endfunction
-
-function! s:shougo_denite_nvim_hook_add()
-  nnoremap <silent> <Leader>f :Denite file_rec<CR>
-  nnoremap <silent> <Leader>g :Denite grep<CR>
-endfunction
-
-function! s:shougo_denite_nvim_hook_source()
-  if executable('rg')
-    call denite#custom#var('file_rec', 'command',
-          \ ['rg', '--files', '--glob', '!.git'])
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'final_opts', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'default_opts',
-          \ ['--vimgrep', '--no-heading'])
-  endif
-
-  call denite#custom#map('insert', '<C-j>',
-        \ '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<C-k>',
-        \ '<denite:move_to_previous_line>', 'noremap')
-
-  call denite#custom#option('default', 'prompt', '>')
-endfunction
-
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
-  call dein#add('Shougo/dein.vim')
+    call dein#add('Shougo/dein.vim')
 
-  call dein#add('challenger-deep-theme/vim')
-  call dein#add('jacoborus/tender.vim')
-  call dein#add('itchyny/lightline.vim')
+    call dein#add('challenger-deep-theme/vim')
+    call dein#add('jacoborus/tender.vim')
+    call dein#add('itchyny/lightline.vim')
 
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-fugitive')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('tpope/vim-fugitive')
 
-  call dein#add('tpope/vim-sleuth')
+    call dein#add('tpope/vim-sleuth')
 
-  call dein#add('t9md/vim-quickhl', {
-        \ 'hook_add': function('s:t9md_vim_quickhl')
-        \ })
+    function! s:t9md_vim_quickhl()
+        nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
+        xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
+        nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
+    endfunction
 
-  call dein#add('dhruvasagar/vim-table-mode', {
-        \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
-        \ })
+    call dein#add('t9md/vim-quickhl', {
+                \ 'hook_add': function('s:t9md_vim_quickhl')
+                \ })
 
-  call dein#add('jsfaint/gen_tags.vim', {
-        \ 'hook_add': function('s:jsfaint_gen_tags_vim')
-        \ })
+    function! s:dhruvasagar_vim_table_mode()
+        nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
+    endfunction
 
-  call dein#add('xolox/vim-misc')
-  call dein#add('xolox/vim-session', {
-        \ 'depends': 'vim-misc',
-        \ 'hook_add': function('s:xolox_vim_session')
-        \ })
+    call dein#add('dhruvasagar/vim-table-mode', {
+                \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
+                \ })
 
-  call dein#add('Shougo/deoplete.nvim', {
-        \ 'on_i': 1,
-        \ 'hook_source': function('s:shougo_deoplete_nvim')
-        \ })
+    function! s:jsfaint_gen_tags_vim()
+        nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
+    endfunction
 
-  call dein#add('zchee/deoplete-jedi', {
-        \ 'depends': 'deoplete.nvim',
-        \ 'on_ft': 'python'
-        \ })
-  call dein#add('Vimjas/vim-python-pep8-indent', {
-        \ 'on_i': 1,
-        \ 'on_ft': 'python'
-        \ })
+    call dein#add('jsfaint/gen_tags.vim', {
+                \ 'hook_add': function('s:jsfaint_gen_tags_vim')
+                \ })
 
-  call dein#add('neomake/neomake', {
-        \ 'hook_add': function('s:neomake_neomake_hook_add'),
-        \ 'hook_source': function('s:neomake_neomake_hook_source')
-        \ })
+    function! s:xolox_vim_session()
+        let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
+        if isdirectory(s:local_session_directory)
+            let g:session_directory = s:local_session_directory
+            let g:session_autosave = 'yes'
+            let g:session_autoload = 'yes'
+            let g:session_autosave_periodic = 1
+            set sessionoptions-=help
+        else
+            let g:session_autosave = 'no'
+            let g:session_autoload = 'no'
+        endif
+        unlet s:local_session_directory
+    endfunction
 
-  call dein#add('sbdchd/neoformat', {
-        \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
-        \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
-        \ })
+    call dein#add('xolox/vim-misc')
+    call dein#add('xolox/vim-session', {
+                \ 'depends': 'vim-misc',
+                \ 'hook_add': function('s:xolox_vim_session')
+                \ })
 
-  call dein#add('Shougo/denite.nvim', {
-        \ 'on_cmd': 'Denite',
-        \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
-        \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
-        \ })
+    function! s:shougo_deoplete_nvim()
+        let g:deoplete#enable_at_startup = 1
+        let g:deoplete#auto_complete_delay = 0
+        let g:deoplete#auto_complete_start_length = 1
+    endfunction
 
-  call dein#end()
-  call dein#save_state()
+    call dein#add('Shougo/deoplete.nvim', {
+                \ 'on_i': 1,
+                \ 'hook_add': function('s:shougo_deoplete_nvim')
+                \ })
+
+    call dein#add('zchee/deoplete-jedi', {
+                \ 'depends': 'deoplete.nvim',
+                \ 'on_ft': 'python'
+                \ })
+    call dein#add('Vimjas/vim-python-pep8-indent', {
+                \ 'on_i': 1,
+                \ 'on_ft': 'python'
+                \ })
+
+    function! s:neomake_neomake()
+        augroup call_neomake
+            autocmd!
+            autocmd InsertLeave,BufWritePost * Neomake
+        augroup END
+
+        "let g:neomake_open_list = 2
+        let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
+        let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
+        let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
+        let g:neomake_shellcheck_args = ['-fgcc']
+        let g:neomake_echo_current_error = 0
+        let g:neomake_virtualtext_prefix = '> '
+    endfunction
+
+    call dein#add('neomake/neomake', {
+                \ 'hook_add': function('s:neomake_neomake')
+                \ })
+
+    function! s:sbdchd_neoformat()
+        nnoremap <silent> <Leader>n :Neoformat<CR>
+
+        let g:neoformat_basic_format_align = 1
+        let g:neoformat_basic_format_retab = 1
+        let g:neoformat_basic_format_trim = 1
+    endfunction
+
+    call dein#add('sbdchd/neoformat', {
+                \ 'hook_add': function('s:sbdchd_neoformat')
+                \ })
+
+    function! s:shougo_denite_nvim_hook_add()
+        nnoremap <silent> <Leader>f :Denite file/rec<CR>
+        nnoremap <silent> <Leader>g :Denite grep<CR>
+    endfunction
+
+    call dein#add('Shougo/denite.nvim', {
+                \ 'hook_add': function('s:shougo_denite_nvim_hook_add')
+                \ })
+
+    call dein#end()
+    call dein#save_state()
 endif
 
 if dein#check_install()
-  call dein#install()
-  call dein#remote_plugins()
+    call dein#install()
+    call dein#remote_plugins()
 endif
 
 command! DeinUpdate if dein#check_update() | call dein#update() | endif
 command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')") | call dein#recache_runtimepath()
 
+function! s:shougo_denite_nvim_hook_source()
+    if executable('rg')
+        call denite#custom#var('file/rec', 'command',
+                    \ ['rg', '--files', '--glob', '!.git'])
+        call denite#custom#var('grep', 'command', ['rg'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'final_opts', [])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'default_opts',
+                    \ ['--vimgrep', '--no-heading'])
+    endif
+
+    call denite#custom#map('insert', '<C-j>',
+                \ '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-k>',
+                \ '<denite:move_to_previous_line>', 'noremap')
+
+    call denite#custom#option('default', 'prompt', '>')
+endfunction
+
+call dein#set_hook('denite.nvim', 'hook_source', function('s:shougo_denite_nvim_hook_source'))
+
 " -----------------------------------------------------------------------------
 " Color scheme
 " -----------------------------------------------------------------------------
 if has('nvim') || has('termguicolors')
-  set termguicolors
+    set termguicolors
 endif
 
 filetype plugin indent on
@@ -229,60 +225,60 @@ syntax on
 colorscheme challenger_deep
 
 function! LightLineFugitive()
-  try
-    return exists('*fugitive#head') ? fugitive#head() : ''
-  catch
-  endtry
-  return ''
+    try
+        return exists('*fugitive#head') ? fugitive#head() : ''
+    catch
+    endtry
+    return ''
 endfunction
 
 function! LightlineNeomakeLocationList()
-  if !exists(':Neomake')
-    return ''
-  endif
-  let ErrorCounts = get(neomake#statusline#LoclistCounts(), 'E', 0)
-  let WarningCounts = get(neomake#statusline#LoclistCounts(), 'W', 0)
-  if ErrorCounts + WarningCounts == 0
-    return ''
-  endif
-  return 'LL:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
+    if !exists(':Neomake')
+        return ''
+    endif
+    let ErrorCounts = get(neomake#statusline#LoclistCounts(), 'E', 0)
+    let WarningCounts = get(neomake#statusline#LoclistCounts(), 'W', 0)
+    if ErrorCounts + WarningCounts == 0
+        return ''
+    endif
+    return 'LL:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
 endfunction
 
 function! LightlineNeomakeQuickFix()
-  if !exists(':Neomake')
-    return ''
-  endif
-  let ErrorCounts = get(neomake#statusline#QflistCounts(), 'E', 0)
-  let WarningCounts = get(neomake#statusline#QflistCounts(), 'W', 0)
-  if ErrorCounts + WarningCounts == 0
-    return ''
-  endif
-  return 'QF:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
+    if !exists(':Neomake')
+        return ''
+    endif
+    let ErrorCounts = get(neomake#statusline#QflistCounts(), 'E', 0)
+    let WarningCounts = get(neomake#statusline#QflistCounts(), 'W', 0)
+    if ErrorCounts + WarningCounts == 0
+        return ''
+    endif
+    return 'QF:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'tender',
-      \ 'active': {
-      \   'left': [
-      \     [ 'mode', 'paste' ],
-      \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
-      \     [ 'neomake_ll', 'neomake_qf' ]
-      \   ],
-      \   'right': [
-      \     [ 'lineinfo' ],
-      \     [ 'percent' ],
-      \     [ 'fileformat', 'fileencoding', 'filetype' ]
-      \   ]
-      \ },
-      \ 'component_function': {
-      \   'neomake_ll': 'LightlineNeomakeLocationList',
-      \   'neomake_qf': 'LightlineNeomakeQuickFix',
-      \   'fugitive': 'LightLineFugitive'
-      \ }
-      \ }
+            \ 'colorscheme': 'tender',
+            \ 'active': {
+            \   'left': [
+            \     [ 'mode', 'paste' ],
+            \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
+            \     [ 'neomake_ll', 'neomake_qf' ]
+            \   ],
+            \   'right': [
+            \     [ 'lineinfo' ],
+            \     [ 'percent' ],
+            \     [ 'fileformat', 'fileencoding', 'filetype' ]
+            \   ]
+            \ },
+            \ 'component_function': {
+            \   'neomake_ll': 'LightlineNeomakeLocationList',
+            \   'neomake_qf': 'LightlineNeomakeQuickFix',
+            \   'fugitive': 'LightLineFugitive'
+            \ }
+            \ }
 
 if has('gui_running')
-  Guifont! Migu 1M:h12
+    Guifont! Migu 1M:h12
 endif
 
 " -----------------------------------------------------------------------------
@@ -290,33 +286,29 @@ endif
 " -----------------------------------------------------------------------------
 
 augroup start_insert_in_terminal
-  autocmd!
-  autocmd BufEnter *
-        \ if &buftype == 'terminal' |
-        \   :startinsert |
-        \ endif
+    autocmd!
+    autocmd BufEnter *
+                \ if &buftype == 'terminal' |
+                \   :startinsert |
+                \ endif
 augroup END
 
 augroup remember_cursor
-  autocmd!
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \   exe "normal! g'\"" |
-        \ endif
+    autocmd!
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \   exe "normal! g'\"" |
+                \ endif
 augroup END
 
 augroup nopaste_when_insert_leave
-  autocmd!
-  autocmd InsertLeave * set nopaste
+    autocmd!
+    autocmd InsertLeave * set nopaste
 augroup END
 
-" Quick Fixのエラーに移動する
-nnoremap <silent> <C-p> :<C-u>cprevious<CR>
-nnoremap <silent> <C-n> :<C-u>cnext<CR>
-
 " Location Listのエラーに移動する
-nnoremap <silent> <LocalLeader>p :<C-u>lprevious<CR>
-nnoremap <silent> <LocalLeader>n :<C-u>lnext<CR>
+nnoremap <silent> <C-p> :<C-u>lprevious<CR>
+nnoremap <silent> <C-n> :<C-u>lnext<CR>
 
 " -----------------------------------------------------------------------------
 " Mapping
@@ -449,7 +441,7 @@ set lazyredraw
 
 " ポップアップメニューを透過する
 if exists('&pumblend')
-  set pumblend=20
+    set pumblend=20
 endif
 
 " ポップアップメニューで表示する数
@@ -478,12 +470,12 @@ set wildmode=longest,full
 
 " ファイル名補完をポップアップで表示する
 if has('nvim')
-  set wildoptions=pum
+    silent! set wildoptions=pum
 endif
 
 " 置換内容を表示
 if has('nvim')
-  set inccommand=split
+    set inccommand=split
 endif
 
 " backspaceでの削除を有効化
