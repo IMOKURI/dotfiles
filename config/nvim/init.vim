@@ -90,6 +90,7 @@ call dein#add('dhruvasagar/vim-table-mode', {
 
 function! s:jsfaint_gen_tags_vim()
     nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
+    nnoremap <silent> <Leader>z :<C-u>GenGTAGS<CR>
 endfunction
 
 call dein#add('jsfaint/gen_tags.vim', {
