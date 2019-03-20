@@ -97,7 +97,7 @@ call dein#add('jsfaint/gen_tags.vim', {
             \ })
 
 function! s:xolox_vim_session()
-    let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
+    let s:local_session_directory = getcwd() . '/.vimsessions'
     if isdirectory(s:local_session_directory)
         let g:session_directory = s:local_session_directory
         let g:session_autosave = 'yes'
@@ -144,12 +144,12 @@ function! s:neomake_neomake()
     augroup END
 
     "let g:neomake_open_list = 2
+    let g:neomake_echo_current_error = 0
+    let g:neomake_virtualtext_prefix = '> '
     let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
     let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
     let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
     let g:neomake_shellcheck_args = ['-fgcc']
-    let g:neomake_echo_current_error = 0
-    let g:neomake_virtualtext_prefix = '> '
 endfunction
 
 call dein#add('neomake/neomake', {
@@ -303,9 +303,16 @@ augroup nopaste_when_insert_leave
     autocmd InsertLeave * set nopaste
 augroup END
 
-" Location Listのエラーに移動する
+function! LocationNext()
+    try
+        lnext
+    catch
+        try | lfirst | catch | endtry
+    endtry
+endfunction
+
 nnoremap <silent> <C-p> :<C-u>lprevious<CR>
-nnoremap <silent> <C-n> :<C-u>lnext<CR>
+nnoremap <silent> <C-n> :call LocationNext()<CR>
 
 " -----------------------------------------------------------------------------
 " Mapping
