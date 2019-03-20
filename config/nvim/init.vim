@@ -145,11 +145,14 @@ function! s:neomake_neomake()
     augroup END
 
     "let g:neomake_open_list = 2
+    let g:neomake_tempfile_dir = '/tmp/neomake%:p:h'
     let g:neomake_echo_current_error = 0
     let g:neomake_virtualtext_prefix = '> '
     let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
     let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
     let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
+
+    let g:neomake_python_enabled_makers = ['flake8', 'pylint']
     let g:neomake_shellcheck_args = ['-fgcc']
 endfunction
 
@@ -235,8 +238,8 @@ function! LightlineNeomake()
     let l:bufnr = winbufnr(l:winnr)
     let l:neomake_status_str = neomake#statusline#get(l:bufnr, {
                 \ 'format_running': '({{running_job_names}})',
-                \ 'format_loclist_unknown': '',
-                \ 'format_loclist_ok': 'ok',
+                \ 'format_loclist_unknown': '(」・ω・)」うー',
+                \ 'format_loclist_ok': '(/・ω・)/にゃー',
                 \ 'format_loclist_type_default': '{{type}}:{{count}} ',
                 \ 'format_loclist_issues': '%s',
                 \ 'format_quickfix_ok': '',

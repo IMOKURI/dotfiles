@@ -18,7 +18,7 @@ alias vi="$HOME/neovim/bin/nvim"
 alias cd='cdls'
 
 cdls () {
-  \cd "$@" && pwd && ls -l
+  \cd "$@" && pwd && ls -l --color=always | head -n 20
 }
 
 cdd () {
