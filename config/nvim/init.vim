@@ -230,28 +230,19 @@ function! LightLineFugitive()
     return ''
 endfunction
 
-function! LightlineNeomakeLocationList()
-    if !exists(':Neomake')
-        return ''
-    endif
-    let ErrorCounts = get(neomake#statusline#LoclistCounts(), 'E', 0)
-    let WarningCounts = get(neomake#statusline#LoclistCounts(), 'W', 0)
-    if ErrorCounts + WarningCounts == 0
-        return ''
-    endif
-    return 'LL:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
-endfunction
-
-function! LightlineNeomakeQuickFix()
-    if !exists(':Neomake')
-        return ''
-    endif
-    let ErrorCounts = get(neomake#statusline#QflistCounts(), 'E', 0)
-    let WarningCounts = get(neomake#statusline#QflistCounts(), 'W', 0)
-    if ErrorCounts + WarningCounts == 0
-        return ''
-    endif
-    return 'QF:[ E:'.ErrorCounts.', W:'.WarningCounts.' ]'
+function! LightlineNeomake()
+    let l:winnr = winnr()
+    let l:bufnr = winbufnr(l:winnr)
+    let l:neomake_status_str = neomake#statusline#get(l:bufnr, {
+                \ 'format_running': '({{running_job_names}})',
+                \ 'format_loclist_unknown': '',
+                \ 'format_loclist_ok': 'ok',
+                \ 'format_loclist_type_default': '{{type}}:{{count}} ',
+                \ 'format_loclist_issues': '%s',
+                \ 'format_quickfix_ok': '',
+                \ 'format_quickfix_issues': '%s'
+                \ })
+    return l:neomake_status_str
 endfunction
 
 let g:lightline = {
@@ -260,7 +251,7 @@ let g:lightline = {
             \   'left': [
             \     [ 'mode', 'paste' ],
             \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
-            \     [ 'neomake_ll', 'neomake_qf' ]
+            \     [ 'neomake' ]
             \   ],
             \   'right': [
             \     [ 'lineinfo' ],
@@ -269,8 +260,7 @@ let g:lightline = {
             \   ]
             \ },
             \ 'component_function': {
-            \   'neomake_ll': 'LightlineNeomakeLocationList',
-            \   'neomake_qf': 'LightlineNeomakeQuickFix',
+            \   'neomake': 'LightlineNeomake',
             \   'fugitive': 'LightLineFugitive'
             \ }
             \ }
