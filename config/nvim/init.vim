@@ -331,6 +331,9 @@ nnoremap <silent> <C-n> :call LocationNext()<CR>
 " Exploreを開く
 nnoremap <silent> <Leader>e :Explore<CR>
 
+" ファイルを履歴から開く
+nnoremap <silent> <Leader>o :browse oldfiles<CR>
+
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
