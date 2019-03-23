@@ -32,13 +32,12 @@ endif
 let s:nvim_dir = $XDG_CONFIG_HOME . '/nvim'
 
 if g:env =~# 'LINUX'
-    let g:python_host_prog = '/usr/bin/python2'
     let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
 elseif g:env =~# 'WINDOWS'
-    let g:python_host_prog = ''
     let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
 endif
 
+let g:python_host_prog = ''
 let s:dein_dir = s:nvim_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath^=' . s:dein_repo_dir
@@ -212,6 +211,24 @@ function! s:shougo_denite_nvim_hook_source()
 endfunction
 
 call dein#set_hook('denite.nvim', 'hook_source', function('s:shougo_denite_nvim_hook_source'))
+
+" -----------------------------------------------------------------------------
+" netrw
+" -----------------------------------------------------------------------------
+" ファイルツリーの表示形式、1にするとls -laのような表示になります
+let g:netrw_liststyle=1
+
+" ヘッダを非表示にする
+let g:netrw_banner=0
+
+" サイズを(K,M,G)で表示する
+let g:netrw_sizestyle="H"
+
+" 日付フォーマットを yyyy/mm/dd(曜日) hh:mm:ss で表示する
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+
+" ブックマークと履歴を保存するディレクトリ
+let g:netrw_home=expand('~')
 
 " -----------------------------------------------------------------------------
 " Color scheme
@@ -480,13 +497,10 @@ endif
 set backspace=indent,eol,start
 
 " clipboard設定
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 
 " スワップファイルを作成しない
 set noswapfile
 
 " バックアップファイルを作成しない
 set nobackup
-
-" ヒストリーファイルを作成しない
-let g:netrw_dirhistmax = 0
