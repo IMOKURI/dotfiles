@@ -496,6 +496,8 @@ if has('nvim')
     set inccommand=split
 endif
 
+set virtualedit+=block
+
 " backspaceでの削除を有効化
 set backspace=indent,eol,start
 
