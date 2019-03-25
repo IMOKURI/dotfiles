@@ -194,12 +194,12 @@ function! s:shougo_denite_nvim_hook_source()
     if executable('rg')
         call denite#custom#var('file/rec', 'command',
                     \ ['rg', '--files', '--glob', '!.git'])
-        call denite#custom#var('grep', 'command', ['rg'])
+        call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
         call denite#custom#var('grep', 'recursive_opts', [])
         call denite#custom#var('grep', 'final_opts', [])
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'default_opts',
-                    \ ['--vimgrep', '--no-heading'])
+                    \ ['-i', '--vimgrep', '--no-heading'])
     endif
 
     call denite#custom#map('insert', '<C-j>',
@@ -215,19 +215,19 @@ call dein#set_hook('denite.nvim', 'hook_source', function('s:shougo_denite_nvim_
 " -----------------------------------------------------------------------------
 " netrw
 " -----------------------------------------------------------------------------
-" ファイルツリーの表示形式、1にするとls -laのような表示になります
+" one file per line with timestamp information and file size
 let g:netrw_liststyle=1
 
-" ヘッダを非表示にする
+" suppress the banner
 let g:netrw_banner=0
 
-" サイズを(K,M,G)で表示する
-let g:netrw_sizestyle="H"
+" human-readable
+let g:netrw_sizestyle='H'
 
-" 日付フォーマットを yyyy/mm/dd(曜日) hh:mm:ss で表示する
-let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+" specify format string to vim's strftime()
+let g:netrw_timefmt='%Y/%m/%d(%a) %H:%M:%S'
 
-" ブックマークと履歴を保存するディレクトリ
+" The home directory for where bookmarks and history are saved
 let g:netrw_home=expand('~')
 
 " -----------------------------------------------------------------------------
