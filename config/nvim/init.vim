@@ -38,9 +38,16 @@ elseif g:env =~# 'WINDOWS'
 endif
 
 let g:python_host_prog = ''
+
 let s:dein_dir = s:nvim_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-execute 'set runtimepath^=' . s:dein_repo_dir
+
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
 "---------------------------------------------------------------------------"
 " Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator |
@@ -308,14 +315,6 @@ endif
 " -----------------------------------------------------------------------------
 " Useful function
 " -----------------------------------------------------------------------------
-
-augroup start_insert_in_terminal
-    autocmd!
-    autocmd BufEnter *
-                \ if &buftype == 'terminal' |
-                \   :startinsert |
-                \ endif
-augroup END
 
 augroup remember_cursor
     autocmd!
