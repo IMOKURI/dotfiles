@@ -103,6 +103,7 @@ function! s:xolox_vim_session()
         let g:session_autosave = 'yes'
         let g:session_autoload = 'yes'
         let g:session_autosave_periodic = 1
+        let g:session_autosave_silent = 1
         set sessionoptions-=help
     else
         let g:session_autosave = 'no'
