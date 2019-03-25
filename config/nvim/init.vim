@@ -117,10 +117,17 @@ call dein#add('xolox/vim-session', {
             \ 'hook_add': function('s:xolox_vim_session')
             \ })
 
+function! s:ncm2_float_preview()
+    let g:float_preview#docked = 1
+endfunction
+
+call dein#add('ncm2/float-preview.nvim', {
+            \ 'on_i': 1,
+            \ 'hook_add': function('s:ncm2_float_preview')
+            \ })
+
 function! s:shougo_deoplete_nvim()
     let g:deoplete#enable_at_startup = 1
-    let g:deoplete#auto_complete_delay = 0
-    let g:deoplete#auto_complete_start_length = 1
 endfunction
 
 call dein#add('Shougo/deoplete.nvim', {
@@ -202,10 +209,18 @@ function! s:shougo_denite_nvim_hook_source()
                     \ ['-i', '--vimgrep', '--no-heading'])
     endif
 
-    call denite#custom#map('insert', '<C-j>',
-                \ '<denite:move_to_next_line>', 'noremap')
-    call denite#custom#map('insert', '<C-k>',
-                \ '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map(
+                \ 'insert',
+                \ '<C-j>',
+                \ '<denite:move_to_next_line>',
+                \ 'noremap'
+                \ )
+    call denite#custom#map(
+                \ 'insert',
+                \ '<C-k>',
+                \ '<denite:move_to_previous_line>',
+                \ 'noremap'
+                \ )
 
     call denite#custom#option('default', 'prompt', '>')
 endfunction
@@ -456,6 +471,9 @@ set colorcolumn=80
 
 " 有効なときのみ再描画する
 set lazyredraw
+
+" preview windowを表示しない
+set completeopt-=preview
 
 " ポップアップメニューを透過する
 if exists('&pumblend')
