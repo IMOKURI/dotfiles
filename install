@@ -72,7 +72,7 @@ fi
 
 _banner "Install Packages..."
 
-sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36u python36u-devel ripgrep unzip which global
+sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36u python36u-devel ripgrep unzip which global lua-term
 
 ##### Clone Dotfiles ##########################################################
 
