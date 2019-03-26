@@ -63,172 +63,169 @@ endif
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
+call dein#begin(s:dein_dir)
 
-    call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/dein.vim')
 
-    call dein#add('challenger-deep-theme/vim')
-    call dein#add('jacoborus/tender.vim')
-    call dein#add('itchyny/lightline.vim')
+call dein#add('challenger-deep-theme/vim')
+call dein#add('jacoborus/tender.vim')
+call dein#add('itchyny/lightline.vim')
 
-    call dein#add('airblade/vim-gitgutter')
-    call dein#add('tpope/vim-fugitive')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('tpope/vim-fugitive')
 
-    call dein#add('tpope/vim-sleuth')
+call dein#add('tpope/vim-sleuth')
 
-    function! s:t9md_vim_quickhl()
-        nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-        xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-        nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
-    endfunction
+function! s:t9md_vim_quickhl()
+    nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
+    xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
+    nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
+endfunction
 
-    call dein#add('t9md/vim-quickhl', {
-                \ 'hook_add': function('s:t9md_vim_quickhl')
-                \ })
+call dein#add('t9md/vim-quickhl', {
+            \ 'hook_add': function('s:t9md_vim_quickhl')
+            \ })
 
-    function! s:dhruvasagar_vim_table_mode()
-        nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
-    endfunction
+function! s:dhruvasagar_vim_table_mode()
+    nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
+endfunction
 
-    call dein#add('dhruvasagar/vim-table-mode', {
-                \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
-                \ })
+call dein#add('dhruvasagar/vim-table-mode', {
+            \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
+            \ })
 
-    function! s:jsfaint_gen_tags_vim()
-        nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
-        nnoremap <silent> <Leader>z :<C-u>GenGTAGS<CR>
-    endfunction
+function! s:jsfaint_gen_tags_vim()
+    nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
+    nnoremap <silent> <Leader>z :<C-u>GenGTAGS<CR>
+endfunction
 
-    call dein#add('jsfaint/gen_tags.vim', {
-                \ 'hook_add': function('s:jsfaint_gen_tags_vim')
-                \ })
+call dein#add('jsfaint/gen_tags.vim', {
+            \ 'hook_add': function('s:jsfaint_gen_tags_vim')
+            \ })
 
-    function! s:xolox_vim_session()
-        let s:local_session_directory = getcwd() . '/.vimsessions'
-        if isdirectory(s:local_session_directory)
-            let g:session_directory = s:local_session_directory
-            let g:session_autosave = 'yes'
-            let g:session_autoload = 'yes'
-            let g:session_autosave_periodic = 1
-            let g:session_autosave_silent = 1
-            set sessionoptions-=help
-        else
-            let g:session_autosave = 'no'
-            let g:session_autoload = 'no'
-        endif
-        unlet s:local_session_directory
-    endfunction
+function! s:xolox_vim_session()
+    let s:local_session_directory = getcwd() . '/.vimsessions'
+    if isdirectory(s:local_session_directory)
+        let g:session_directory = s:local_session_directory
+        let g:session_autosave = 'yes'
+        let g:session_autoload = 'yes'
+        let g:session_autosave_periodic = 1
+        let g:session_autosave_silent = 1
+        set sessionoptions-=help
+    else
+        let g:session_autosave = 'no'
+        let g:session_autoload = 'no'
+    endif
+    unlet s:local_session_directory
+endfunction
 
-    call dein#add('xolox/vim-misc')
-    call dein#add('xolox/vim-session', {
-                \ 'depends': 'vim-misc',
-                \ 'hook_add': function('s:xolox_vim_session')
-                \ })
+call dein#add('xolox/vim-misc')
+call dein#add('xolox/vim-session', {
+            \ 'depends': 'vim-misc',
+            \ 'hook_add': function('s:xolox_vim_session')
+            \ })
 
-    function! s:ncm2_float_preview()
-        let g:float_preview#docked = 1
-    endfunction
+function! s:ncm2_float_preview()
+    let g:float_preview#docked = 1
+endfunction
 
-    call dein#add('ncm2/float-preview.nvim', {
-                \ 'on_i': 1,
-                \ 'hook_add': function('s:ncm2_float_preview')
-                \ })
+call dein#add('ncm2/float-preview.nvim', {
+            \ 'on_i': 1,
+            \ 'hook_add': function('s:ncm2_float_preview')
+            \ })
 
-    function! s:shougo_deoplete_nvim()
-        let g:deoplete#enable_at_startup = 1
-    endfunction
+function! s:shougo_deoplete_nvim()
+    let g:deoplete#enable_at_startup = 1
+endfunction
 
-    call dein#add('Shougo/deoplete.nvim', {
-                \ 'on_i': 1,
-                \ 'hook_add': function('s:shougo_deoplete_nvim')
-                \ })
+call dein#add('Shougo/deoplete.nvim', {
+            \ 'on_i': 1,
+            \ 'hook_add': function('s:shougo_deoplete_nvim')
+            \ })
 
-    call dein#add('zchee/deoplete-jedi', {
-                \ 'depends': 'deoplete.nvim',
-                \ 'on_ft': 'python'
-                \ })
-    call dein#add('Vimjas/vim-python-pep8-indent', {
-                \ 'on_i': 1,
-                \ 'on_ft': 'python'
-                \ })
+call dein#add('zchee/deoplete-jedi', {
+            \ 'depends': 'deoplete.nvim',
+            \ 'on_ft': 'python'
+            \ })
+call dein#add('Vimjas/vim-python-pep8-indent', {
+            \ 'on_i': 1,
+            \ 'on_ft': 'python'
+            \ })
 
-    function! s:neomake_neomake()
-        augroup call_neomake
-            autocmd!
-            autocmd InsertLeave,BufWritePost * Neomake
-        augroup END
+function! s:neomake_neomake()
+    augroup call_neomake
+        autocmd!
+        autocmd InsertLeave,BufWritePost * Neomake
+    augroup END
 
-        "let g:neomake_open_list = 2
-        let g:neomake_tempfile_dir = '/tmp/neomake%:p:h'
-        let g:neomake_echo_current_error = 0
-        let g:neomake_virtualtext_prefix = '> '
-        let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
-        let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
-        let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
+    "let g:neomake_open_list = 2
+    let g:neomake_tempfile_dir = '/tmp/neomake%:p:h'
+    let g:neomake_echo_current_error = 0
+    let g:neomake_virtualtext_prefix = '> '
+    let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
+    let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
+    let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
 
-        let g:neomake_python_enabled_makers = ['flake8', 'pylint']
-        let g:neomake_shellcheck_args = ['-fgcc']
-    endfunction
+    let g:neomake_python_enabled_makers = ['flake8', 'pylint']
+    let g:neomake_shellcheck_args = ['-fgcc']
+endfunction
 
-    call dein#add('neomake/neomake', {
-                \ 'hook_add': function('s:neomake_neomake')
-                \ })
+call dein#add('neomake/neomake', {
+            \ 'hook_add': function('s:neomake_neomake')
+            \ })
 
-    function! s:sbdchd_neoformat()
-        nnoremap <silent> <Leader>n :Neoformat<CR>
+function! s:sbdchd_neoformat()
+    nnoremap <silent> <Leader>n :Neoformat<CR>
 
-        let g:neoformat_basic_format_align = 1
-        let g:neoformat_basic_format_retab = 1
-        let g:neoformat_basic_format_trim = 1
-    endfunction
+    let g:neoformat_basic_format_align = 1
+    let g:neoformat_basic_format_retab = 1
+    let g:neoformat_basic_format_trim = 1
+endfunction
 
-    call dein#add('sbdchd/neoformat', {
-                \ 'hook_add': function('s:sbdchd_neoformat')
-                \ })
+call dein#add('sbdchd/neoformat', {
+            \ 'hook_add': function('s:sbdchd_neoformat')
+            \ })
 
-    function! s:shougo_denite_nvim_hook_add()
-        nnoremap <silent> <Leader>f :Denite file/rec<CR>
-        nnoremap <silent> <Leader>g :Denite grep<CR>
-    endfunction
+function! s:shougo_denite_nvim_hook_add()
+    nnoremap <silent> <Leader>f :Denite file/rec<CR>
+    nnoremap <silent> <Leader>g :Denite grep<CR>
+endfunction
 
-    function! s:shougo_denite_nvim_hook_source()
-        if executable('rg')
-            call denite#custom#var('file/rec', 'command',
-                        \ ['rg', '--files', '--glob', '!.git'])
-            call denite#custom#var('grep', 'command', ['rg'])
-            call denite#custom#var('grep', 'recursive_opts', [])
-            call denite#custom#var('grep', 'final_opts', [])
-            call denite#custom#var('grep', 'separator', ['--'])
-            call denite#custom#var('grep', 'default_opts',
-                        \ ['-i', '--vimgrep', '--no-heading'])
-        endif
+function! s:shougo_denite_nvim_hook_source()
+    if executable('rg')
+        call denite#custom#var('file/rec', 'command',
+                    \ ['rg', '--files', '--glob', '!.git'])
+        call denite#custom#var('grep', 'command', ['rg'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'final_opts', [])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'default_opts',
+                    \ ['-i', '--vimgrep', '--no-heading'])
+    endif
 
-        call denite#custom#map(
-                    \ 'insert',
-                    \ '<C-j>',
-                    \ '<denite:move_to_next_line>',
-                    \ 'noremap'
-                    \ )
-        call denite#custom#map(
-                    \ 'insert',
-                    \ '<C-k>',
-                    \ '<denite:move_to_previous_line>',
-                    \ 'noremap'
-                    \ )
+    call denite#custom#map(
+                \ 'insert',
+                \ '<C-j>',
+                \ '<denite:move_to_next_line>',
+                \ 'noremap'
+                \ )
+    call denite#custom#map(
+                \ 'insert',
+                \ '<C-k>',
+                \ '<denite:move_to_previous_line>',
+                \ 'noremap'
+                \ )
 
-        call denite#custom#option('default', 'prompt', '>')
-    endfunction
+    call denite#custom#option('default', 'prompt', '>')
+endfunction
 
-    call dein#add('Shougo/denite.nvim', {
-                \ 'on_cmd': 'Denite',
-                \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
-                \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
-                \ })
+call dein#add('Shougo/denite.nvim', {
+            \ 'on_cmd': 'Denite',
+            \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
+            \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
+            \ })
 
-    call dein#end()
-    call dein#save_state()
-endif
+call dein#end()
 
 if has('vim_starting') && dein#check_install()
     call dein#install()
