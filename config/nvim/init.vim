@@ -22,7 +22,7 @@ if empty($XDG_CONFIG_HOME)
     if g:env =~# 'LINUX'
         let $XDG_CONFIG_HOME = expand('~/.config')
     elseif g:env =~# 'WINDOWS'
-        let $XDG_CONFIG_HOME = '$USERPROFILE/AppData/Local'
+        let $XDG_CONFIG_HOME = expand('~/AppData/Local')
     endif
 endif
 
