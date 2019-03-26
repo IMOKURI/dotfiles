@@ -191,25 +191,11 @@ function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>g :Denite grep<CR>
 endfunction
 
-call dein#add('Shougo/denite.nvim', {
-            \ 'hook_add': function('s:shougo_denite_nvim_hook_add')
-            \ })
-
-call dein#end()
-
-if has('vim_starting') && dein#check_install()
-    call dein#install()
-    call dein#remote_plugins()
-endif
-
-command! DeinUpdate if dein#check_update() | call dein#update() | endif
-command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')") | call dein#recache_runtimepath()
-
 function! s:shougo_denite_nvim_hook_source()
     if executable('rg')
         call denite#custom#var('file/rec', 'command',
                     \ ['rg', '--files', '--glob', '!.git'])
-        call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+        call denite#custom#var('grep', 'command', ['rg'])
         call denite#custom#var('grep', 'recursive_opts', [])
         call denite#custom#var('grep', 'final_opts', [])
         call denite#custom#var('grep', 'separator', ['--'])
@@ -233,7 +219,21 @@ function! s:shougo_denite_nvim_hook_source()
     call denite#custom#option('default', 'prompt', '>')
 endfunction
 
-call dein#set_hook('denite.nvim', 'hook_source', function('s:shougo_denite_nvim_hook_source'))
+call dein#add('Shougo/denite.nvim', {
+            \ 'on_cmd': 'Denite',
+            \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
+            \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
+            \ })
+
+call dein#end()
+
+if has('vim_starting') && dein#check_install()
+    call dein#install()
+    call dein#remote_plugins()
+endif
+
+command! DeinUpdate if dein#check_update() | call dein#update() | endif
+command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')") | call dein#recache_runtimepath()
 
 " -----------------------------------------------------------------------------
 " netrw
