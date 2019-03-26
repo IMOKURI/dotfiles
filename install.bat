@@ -11,7 +11,6 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     echo       Install Dotfiles
     echo ----------------------------------------------------------------------
     echo  r: Repository update.
-    echo  n: Nvim settings.
     echo  p: Pipenv setup.
     echo  q: Quit.
     echo ----------------------------------------------------------------------
@@ -20,7 +19,6 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     set /p input=Input:
 
     if '%input%'=='r' goto Repo
-    if '%input%'=='n' goto Nvim
     if '%input%'=='p' goto Pipenv
     if '%input%'=='q' goto :EOF
 
@@ -33,12 +31,6 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     rem git submodule init
     rem git submodule update
     rem git submodule foreach git pull origin master
-
-    pause
-    goto Menu
-
-:Nvim
-    cls
 
     xcopy /s /e /y %DOTPATH%\config\nvim %NVIMPATH%
 
