@@ -30,9 +30,9 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     cls
 
     git pull origin master
-    git submodule init
-    git submodule update
-    git submodule foreach git pull origin master
+    rem git submodule init
+    rem git submodule update
+    rem git submodule foreach git pull origin master
 
     pause
     goto Menu
