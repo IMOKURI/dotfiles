@@ -400,11 +400,18 @@ nnoremap <C-w><bar> <C-w>v
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
+" カーソル下の単語をハイライトする
+nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+
 " カーソル下の単語をハイライトして置換する
 nmap # <Leader>h:%s/<C-r>///g<Left><Left>
 
 " バッファ内で置換する
 nnoremap S :%s//g<LEFT><LEFT>
+
+" レジスタからペーストする
+nnoremap <Leader>p "0p
+nnoremap <Leader>P "0P
 
 " -----------------------------------------------------------------------------
 " Options
