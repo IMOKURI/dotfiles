@@ -35,6 +35,7 @@ complete -o default -o nospace -F _git g
 alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
 
 alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
+#alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validateJenkinsfile'
 
 alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenkins.docker.hpecorp.net/'
 

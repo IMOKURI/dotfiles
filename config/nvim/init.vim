@@ -143,13 +143,17 @@ call dein#add('Shougo/deoplete.nvim', {
             \ 'hook_add': function('s:shougo_deoplete_nvim')
             \ })
 
-call dein#add('zchee/deoplete-jedi', {
+call dein#add('deoplete-plugins/deoplete-jedi', {
             \ 'depends': 'deoplete.nvim',
             \ 'on_ft': 'python'
             \ })
 call dein#add('Vimjas/vim-python-pep8-indent', {
             \ 'on_i': 1,
             \ 'on_ft': 'python'
+            \ })
+
+call dein#add('martinda/Jenkinsfile-vim-syntax', {
+            \ 'on_path': '.*Jenkinsfile'
             \ })
 
 function! s:neomake_neomake()
@@ -412,6 +416,9 @@ nnoremap S :%s//g<LEFT><LEFT>
 " レジスタからペーストする
 nnoremap <Leader>p "0p
 nnoremap <Leader>P "0P
+
+" # を入力したときに行頭に移動しない
+inoremap # x<BS>#
 
 " -----------------------------------------------------------------------------
 " Options
