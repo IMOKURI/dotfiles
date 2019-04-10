@@ -396,6 +396,8 @@ nnoremap < <<
 " 加算減算
 nnoremap + <C-a>
 nnoremap - <C-x>
+vnoremap + <C-a>
+vnoremap - <C-x>
 
 " 「次の（前の）検索候補」を画面の中心に表示する
 nnoremap n nzz
