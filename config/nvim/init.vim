@@ -268,6 +268,9 @@ let g:netrw_timefmt='%Y/%m/%d(%a) %H:%M:%S'
 " The home directory for where bookmarks and history are saved
 let g:netrw_home=expand('~')
 
+" the settings that netrw buffers have
+let g:netrw_bufsettings='noma nomod nu rnu nowrap ro nobl'
+
 " -----------------------------------------------------------------------------
 " Color scheme
 " -----------------------------------------------------------------------------
