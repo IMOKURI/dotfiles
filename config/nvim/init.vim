@@ -94,6 +94,8 @@ call dein#add('dhruvasagar/vim-table-mode', {
             \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
             \ })
 
+call dein#add('mechatroner/rainbow_csv')
+
 function! s:jsfaint_gen_tags_vim()
     nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
     nnoremap <silent> <Leader>z :<C-u>GenGTAGS<CR>
@@ -172,6 +174,15 @@ function! s:neomake_neomake()
 
     let g:neomake_python_enabled_makers = ['flake8', 'pylint']
     let g:neomake_shellcheck_args = ['-fgcc']
+    let g:neomake_c_enabled_makers = ['gcc']
+    let g:neomake_c_gcc_args = [
+                \ '-fsyntax-only',
+                \ '-std=gnu99',
+                \ '-Wall',
+                \ '-Wextra',
+                \ '-fopenmp',
+                \ '-I./include',
+                \ ]
 endfunction
 
 call dein#add('neomake/neomake', {
@@ -398,8 +409,8 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
 " ウィンドウを分割する
-nnoremap <C-w>- <C-w>s
-nnoremap <C-w><bar> <C-w>v
+nnoremap <Leader>- <C-w>s
+nnoremap <Leader><bar> <C-w>v
 
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
@@ -459,6 +470,9 @@ set smartindent
 " カーソルラインをハイライト
 set cursorline
 
+" 行頭に移動しない
+set nostartofline
+
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
@@ -476,6 +490,9 @@ set noshowmode
 
 " ファイルが変更されたとき、再読込する
 set autoread
+
+" 保存していなくても移動できる
+set hidden
 
 " 画面の更新時間を設定(ms)
 set updatetime=250
