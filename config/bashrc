@@ -29,8 +29,21 @@ cdroot () {
   cd "$(git rev-parse --show-toplevel)" || return
 }
 
-alias g='git'
-complete -o default -o nospace -F _git g
+#alias g='git'
+#complete -o default -o nospace -F _git g
+
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gf='git fetch'
+alias gg='git graph'
+alias gm='git mergetool'
+alias gp='git pull'
+alias gpu='git push'
+alias gs='git status'
 
 alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
 
