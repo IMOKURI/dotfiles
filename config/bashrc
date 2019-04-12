@@ -33,6 +33,7 @@ cdroot () {
 #complete -o default -o nospace -F _git g
 
 alias ga='git add'
+alias gaa='git add -A'
 alias gb='git branch'
 alias gc='git commit'
 alias gcm='git commit -m'
@@ -41,7 +42,8 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gf='git fetch'
 alias gg='git graph'
-alias gm='git mergetool'
+alias gm='git merge'
+alias gmt='git mergetool'
 alias gp='git pull'
 alias gpu='git push'
 alias gs='git status'
