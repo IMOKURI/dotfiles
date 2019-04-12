@@ -20,6 +20,9 @@
 [color]
   ui = auto
 
+[grep]
+  lineNumber = true
+
 [status]
   showUntrackedFiles = all
 
