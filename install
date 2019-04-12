@@ -121,7 +121,7 @@ sudo -E yum install -y git-lfs
 
 _banner "Install Pip..."
 
-command -v pip3.6 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3.6
+command -v pip3 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
 
 _banner "Install Python Packages..."
 
