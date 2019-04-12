@@ -48,11 +48,6 @@ fi
 
 _banner "Setup repositories..."
 
-if [[ ! -f /etc/yum.repos.d/ius.repo ]]; then
-  _logger "${INFO}" "Install IUS repository"
-  curl -fsSL https://raw.githubusercontent.com/iuscommunity/automation-examples/bash/enable-ius.sh | sudo -E bash
-fi
-
 if [[ ! -f /etc/yum.repos.d/github_git-lfs.repo ]]; then
   _logger "${INFO}" "Install Git LFS repository"
   curl -fsSL https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo -E bash
@@ -72,7 +67,7 @@ fi
 
 _banner "Install Packages..."
 
-sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36u python36u-devel ripgrep unzip which global lua-term
+sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel ripgrep unzip which global lua-term
 
 ##### Clone Dotfiles ##########################################################
 
