@@ -62,6 +62,8 @@ fi
 
 _banner "Install Packages..."
 
+sudo -E yum install -y epel-release
+
 sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel unzip which global lua-term
 
 ##### Clone Dotfiles ##########################################################
