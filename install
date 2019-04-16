@@ -58,16 +58,11 @@ if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
   curl -fsSL https://rpm.nodesource.com/setup_11.x | sudo -E bash
 fi
 
-if [[ ! -f /etc/yum.repos.d/carlwgeorge-ripgrep-epel-7.repo ]]; then
-  _logger "${INFO}" "Install Ripgrep repository"
-  sudo -E yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
-fi
-
 ##### Install packages ########################################################
 
 _banner "Install Packages..."
 
-sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel ripgrep unzip which global lua-term
+sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel unzip which global lua-term
 
 ##### Clone Dotfiles ##########################################################
 
@@ -132,6 +127,16 @@ sudo -E pip install ansible pipenv pipenv-pipes
 _banner "Install NodeJS Packages..."
 
 sudo -E npm -g install doctoc neovim jsonlint remark-cli
+
+##### Install ripgrep #########################################################
+
+_banner "Install RipGrep..."
+
+curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.0/ripgrep-11.0.0-x86_64-unknown-linux-musl.tar.gz
+
+tar xf /tmp/rg.tar.gz -C "$HOME/src/"
+
+ln -s "$HOME/src/ripgrep-*/rg" "$HOME/bin/rg"
 
 ##### Clone neovim ############################################################
 
