@@ -86,6 +86,8 @@ call dein#add('t9md/vim-quickhl', {
             \ 'hook_add': function('s:t9md_vim_quickhl')
             \ })
 
+call dein#add('thiagoalmeidasa/vim-ansible-vault')
+
 function! s:dhruvasagar_vim_table_mode()
     nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
 endfunction
