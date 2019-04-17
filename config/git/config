@@ -39,6 +39,9 @@
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
 
+[diff "ansible-vault"]
+  textconv = ansible-vault view
+
 [merge]
   tool = nvimdiff
   conflictstyle = diff3
