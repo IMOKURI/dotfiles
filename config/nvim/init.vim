@@ -87,24 +87,15 @@ call dein#add('t9md/vim-quickhl', {
             \ })
 
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
-
-function! s:dhruvasagar_vim_table_mode()
-    nnoremap <silent> <Leader>t :<C-u>TableModeToggle<CR>
-endfunction
-
-call dein#add('dhruvasagar/vim-table-mode', {
-            \ 'hook_add': function('s:dhruvasagar_vim_table_mode')
-            \ })
-
+call dein#add('dhruvasagar/vim-table-mode')
 call dein#add('mechatroner/rainbow_csv')
 
-function! s:jsfaint_gen_tags_vim()
-    nnoremap <silent> <Leader>a :<C-u>GenCtags<CR>
-    nnoremap <silent> <Leader>z :<C-u>GenGTAGS<CR>
+function! s:majutsushi_tagbar()
+    nnoremap <silent> <Leader>t :TagbarToggle<CR>
 endfunction
 
-call dein#add('jsfaint/gen_tags.vim', {
-            \ 'hook_add': function('s:jsfaint_gen_tags_vim')
+call dein#add('majutsushi/tagbar', {
+            \ 'hook_add': function('s:majutsushi_tagbar')
             \ })
 
 function! s:xolox_vim_session()

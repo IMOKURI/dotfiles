@@ -1,9 +1,13 @@
 # .config/profile.d/local.sh
 
 ##### Get proxy setting #######################################################
-#
+
 if [ -f ~/.config/profile.d/proxy.sh ]; then
   . ~/.config/profile.d/proxy.sh
+fi
+
+if [ -f ~/.local/bin/bashmarks.sh ]; then
+  . ~/.local/bin/bashmarks.sh
 fi
 
 ##### User specific environment ###############################################

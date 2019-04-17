@@ -64,7 +64,7 @@ _banner "Install Packages..."
 
 sudo -E yum install -y epel-release
 
-sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel unzip which global lua-term
+sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel unzip which lua-term
 
 ##### Clone Dotfiles ##########################################################
 
@@ -139,6 +139,18 @@ curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/down
 tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
 ln -s "$HOME/src/ripgrep-*/rg" "$HOME/bin/rg"
+
+##### Install bashmarks #######################################################
+
+_banner "Install Bashmarks..."
+
+if [[ ! -d "${DOTPATH}" ]]; then
+  git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
+  pushd "$(pwd)"
+  cd "${HOME}/src/bashmarks"
+  make install
+  popd
+fi
 
 ##### Clone neovim ############################################################
 
