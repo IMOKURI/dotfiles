@@ -134,17 +134,19 @@ sudo -E npm -g install doctoc neovim jsonlint remark-cli
 
 _banner "Install RipGrep..."
 
-curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.0/ripgrep-11.0.0-x86_64-unknown-linux-musl.tar.gz
+if [[ ! -f "${HOME}/bin/rg" ]]; then
+  curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.0/ripgrep-11.0.0-x86_64-unknown-linux-musl.tar.gz
 
-tar xf /tmp/rg.tar.gz -C "$HOME/src/"
+  tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
-ln -s "$HOME/src/ripgrep-*/rg" "$HOME/bin/rg"
+  ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
+fi
 
 ##### Install bashmarks #######################################################
 
 _banner "Install Bashmarks..."
 
-if [[ ! -d "${DOTPATH}" ]]; then
+if [[ ! -d "${HOME}/src/bashmarks" ]]; then
   git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
   pushd "$(pwd)"
   cd "${HOME}/src/bashmarks"
