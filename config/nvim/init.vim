@@ -363,8 +363,11 @@ nnoremap <silent> <Leader>o :browse oldfiles<CR>
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
+" すべてのバッファのファイルを保存
+nnoremap <silent> <Leader><Leader>w :<C-u>wa<CR>
+
 " root権限でファイルを保存する
-nnoremap <silent> <Leader><Leader>w :<C-u>w !sudo tee > /dev/null %<CR>
+cnoremap w!! w !sudo tee > /dev/null %
 
 " windowを閉じる
 nnoremap <silent> qq :<C-u>close<CR>
