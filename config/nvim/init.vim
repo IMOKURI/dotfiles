@@ -385,6 +385,10 @@ nnoremap <silent> gt :<C-u>tabnew<CR>
 nnoremap gn gt
 nnoremap gp gT
 
+" 先頭/末尾に移動する
+noremap H ^
+noremap L $
+
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
 
@@ -416,10 +420,14 @@ nnoremap <C-h> <C-w>h
 nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
 
+" 相対行番号のトグル
+nnoremap <silent> <Leader>n :set relativenumber!<CR>
+
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 " カーソル下の単語をハイライトする
+nnoremap * *N
 nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 
 " カーソル下の単語をハイライトして置換する
