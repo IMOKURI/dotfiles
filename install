@@ -40,7 +40,7 @@ _banner "Set Proxy if Available..."
 
 if [[ "${http_proxy}" ]]; then
   if ! grep -q proxy /etc/yum.conf; then
-    echo "proxy=${http_proxy}" >> /etc/yum.conf
+    echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
   fi
 fi
 
