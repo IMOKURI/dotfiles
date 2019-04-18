@@ -375,6 +375,9 @@ nnoremap <silent> qq :<C-u>close<CR>
 " 全てのタブを閉じる
 nnoremap <silent> <Leader>q :<C-u>qa<CR>
 
+" すべてのタブを保存せず閉じる
+nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
+
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
 
