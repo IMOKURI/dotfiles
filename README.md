@@ -16,10 +16,11 @@ export http_proxy=http://proxy.example.com:port
 export https_proxy=http://proxy.example.com:port
 ```
 
-* Enable optional repository. (RHEL Only)
+* Enable optional and extra repository. (RHEL Only)
 
 ```
 subscription-manager repos --enable rhel-7-server-optional-rpms
+subscription-manager repos --enable rhel-7-server-extras-rpms
 ```
 
 ## Installation
