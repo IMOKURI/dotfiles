@@ -421,7 +421,7 @@ nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
 
 " 相対行番号のトグル
-nnoremap <silent> <Leader>n :set relativenumber!<CR>
+nnoremap <silent> <Leader>r :set relativenumber!<CR>
 
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
