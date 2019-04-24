@@ -86,8 +86,17 @@ call dein#add('t9md/vim-quickhl', {
             \ 'hook_add': function('s:t9md_vim_quickhl')
             \ })
 
+function! s:cohama_lexima_vim()
+endfunction
+
+call dein#add('cohama/lexima.vim', {
+            \ 'hook_add': function('s:cohama_lexima_vim')
+            \ })
+
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
+
 call dein#add('dhruvasagar/vim-table-mode')
+
 call dein#add('mechatroner/rainbow_csv')
 
 function! s:majutsushi_tagbar()
