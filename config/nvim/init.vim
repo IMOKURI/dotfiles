@@ -369,6 +369,9 @@ nnoremap <silent> <Leader>e :Explore<CR>
 " ファイルを履歴から開く
 nnoremap <silent> <Leader>o :browse oldfiles<CR>
 
+" バッファからファイルを開く
+nnoremap <leader>b :buffers<CR>:buffer<space>
+
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
