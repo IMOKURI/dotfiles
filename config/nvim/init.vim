@@ -236,6 +236,12 @@ function! s:shougo_denite_nvim_hook_source()
                     \ denite#do_map('move_up_path')
     endfunction
 
+    call denite#custom#option('_', {
+                \ 'split': 'floating',
+                \ 'highlight_window_background': 'Pmenu',
+                \ 'highlight_matched_char': 'Underlined',
+                \ })
+
     if executable('rg')
         call denite#custom#var('file/rec', 'command',
                     \ ['rg', '--files', '--glob', '!.git'])
