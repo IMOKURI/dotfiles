@@ -203,6 +203,14 @@ call dein#add('sbdchd/neoformat', {
             \ 'hook_add': function('s:sbdchd_neoformat')
             \ })
 
+function! s:thinca_vim_showtime()
+    nnoremap <silent> <Leader>s :ShowtimeStart<CR>
+endfunction
+
+call dein#add('thinca/vim-showtime', {
+            \ 'hook_source': function('s:thinca_vim_showtime')
+            \ })
+
 function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
     nnoremap <silent> <Leader>g :Denite grep<CR>
