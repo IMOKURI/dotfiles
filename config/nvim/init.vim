@@ -217,34 +217,42 @@ function! s:shougo_denite_nvim_hook_add()
 endfunction
 
 function! s:shougo_denite_nvim_hook_source()
+
+    " Define mappings
+    augroup Denite
+        autocmd!
+        autocmd FileType denite call s:denite_my_settings()
+    augroup END
+    function! s:denite_my_settings() abort
+        nnoremap <silent><buffer><expr> <CR>
+                    \ denite#do_map('do_action')
+        nnoremap <silent><buffer><expr> <ESC>
+                    \ denite#do_map('quit')
+        nnoremap <silent><buffer><expr> i
+                    \ denite#do_map('open_filter_buffer')
+        nnoremap <silent><buffer><expr> <Space>
+                    \ denite#do_map('toggle_select').'j'
+        nnoremap <silent><buffer><expr> -
+                    \ denite#do_map('move_up_path')
+    endfunction
+
     if executable('rg')
         call denite#custom#var('file/rec', 'command',
                     \ ['rg', '--files', '--glob', '!.git'])
+
         call denite#custom#var('grep', 'command', ['rg'])
-        call denite#custom#var('grep', 'recursive_opts', [])
-        call denite#custom#var('grep', 'final_opts', [])
-        call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'default_opts',
                     \ ['-i', '--vimgrep', '--no-heading'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'final_opts', [])
     endif
 
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-j>',
-                \ '<denite:move_to_next_line>',
-                \ 'noremap'
-                \ )
-    call denite#custom#map(
-                \ 'insert',
-                \ '<C-k>',
-                \ '<denite:move_to_previous_line>',
-                \ 'noremap'
-                \ )
-
-    call denite#custom#option('default', 'prompt', '>')
 endfunction
 
 call dein#add('Shougo/denite.nvim', {
+            \ 'rev': 'ui',
             \ 'on_cmd': 'Denite',
             \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
             \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
