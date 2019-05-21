@@ -29,6 +29,7 @@ endif
 endif
 
 update: ## Update repository
+	git fetch
 	git pull origin master
 	git submodule init
 	git submodule update
