@@ -464,7 +464,7 @@ nnoremap <Leader>P "0P
 inoremap # x<BS>#
 
 " 行末に移動する
-inoremap <C-l> <ESC>$a
+inoremap <C-l> <ESC>A
 
 " jsonを整形する
 cnoremap jq %!jq --indent 4 .
