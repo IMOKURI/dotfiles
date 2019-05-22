@@ -350,9 +350,10 @@ let g:lightline = {
             \ }
             \ }
 
-if has('gui_running')
-    Guifont! Migu 1M:h12
-endif
+" This does not work. Use ginit.vim instead.
+"if has('gui_running')
+"    Guifont! Migu 1M:h12
+"endif
 
 " -----------------------------------------------------------------------------
 " Useful function
