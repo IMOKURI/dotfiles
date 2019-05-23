@@ -212,6 +212,7 @@ call dein#add('thinca/vim-showtime', {
             \ })
 
 function! s:shougo_denite_nvim_hook_add()
+    nnoremap <silent> <Leader>b :Denite buffer<CR>
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
     nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep<CR>
