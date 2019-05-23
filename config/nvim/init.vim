@@ -213,6 +213,7 @@ call dein#add('thinca/vim-showtime', {
 
 function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
+    nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep<CR>
 endfunction
 
@@ -388,12 +389,6 @@ nnoremap <silent> <C-n> :call LocationNext()<CR>
 " -----------------------------------------------------------------------------
 " Exploreを開く
 nnoremap <silent> <Leader>e :Explore<CR>
-
-" ファイルを履歴から開く
-nnoremap <silent> <Leader>o :browse oldfiles<CR>
-
-" バッファからファイルを開く
-nnoremap <leader>b :buffers<CR>:buffer<space>
 
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
