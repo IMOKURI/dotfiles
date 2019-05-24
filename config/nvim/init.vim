@@ -99,14 +99,6 @@ call dein#add('dhruvasagar/vim-table-mode')
 
 call dein#add('mechatroner/rainbow_csv')
 
-function! s:majutsushi_tagbar()
-    nnoremap <silent> <Leader>t :TagbarToggle<CR>
-endfunction
-
-call dein#add('majutsushi/tagbar', {
-            \ 'hook_add': function('s:majutsushi_tagbar')
-            \ })
-
 function! s:xolox_vim_session()
     let s:local_session_directory = getcwd() . '/.vimsessions'
     if isdirectory(s:local_session_directory)
@@ -216,6 +208,7 @@ function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
     nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep<CR>
+    nnoremap <silent> <Leader>t :Denite tag<CR>
 endfunction
 
 function! s:shougo_denite_nvim_hook_source()
