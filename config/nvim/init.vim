@@ -74,6 +74,14 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
 
+function! s:lambdalisue_suda_vim()
+    let g:suda_smart_edit = 1
+endfunction
+
+call dein#add('lambdalisue/suda.vim', {
+            \ 'hook_add': function('s:lambdalisue_suda_vim')
+            \ })
+
 call dein#add('tpope/vim-sleuth')
 
 function! s:t9md_vim_quickhl()
