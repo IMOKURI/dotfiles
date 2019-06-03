@@ -225,6 +225,7 @@ function! s:shougo_denite_nvim_hook_source()
     augroup Denite
         autocmd!
         autocmd FileType denite call s:denite_my_settings()
+        autocmd FileType denite-filter call s:denite_filter_my_settings()
     augroup END
     function! s:denite_my_settings() abort
         nnoremap <silent><buffer><expr> <CR>
@@ -237,6 +238,10 @@ function! s:shougo_denite_nvim_hook_source()
                     \ denite#do_map('toggle_select').'j'
         nnoremap <silent><buffer><expr> -
                     \ denite#do_map('move_up_path')
+    endfunction
+    function! s:denite_filter_my_settings() abort
+        nnoremap <silent><buffer><expr> <ESC>
+                    \ denite#do_map('quit')
     endfunction
 
     call denite#custom#option('_', {
@@ -261,7 +266,6 @@ function! s:shougo_denite_nvim_hook_source()
 endfunction
 
 call dein#add('Shougo/denite.nvim', {
-            \ 'rev': 'ui',
             \ 'on_cmd': 'Denite',
             \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
             \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
