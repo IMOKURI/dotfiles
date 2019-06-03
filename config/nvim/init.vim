@@ -491,8 +491,8 @@ cnoremap jq %!jq --indent 4 .
 " 文字コード判別
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 
-" □や○文字が崩れる問題を解決
-set ambiwidth=double
+" 曖昧な幅の文字の論理幅を1に
+set ambiwidth=single
 
 " 行番号を表示
 set number
