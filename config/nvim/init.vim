@@ -290,9 +290,14 @@ call dein#add('pocari/vim-denite-emoji', {
 
 call dein#end()
 
-if has('vim_starting') && dein#check_install()
+if dein#check_install()
     call dein#install()
     call dein#remote_plugins()
+endif
+
+if !empty(dein#check_clean())
+    call map(dein#check_clean(), "delete(v:val, 'rf')")
+    call dein#recache_runtimepath()
 endif
 
 " -----------------------------------------------------------------------------
