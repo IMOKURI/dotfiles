@@ -217,6 +217,7 @@ function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep<CR>
     nnoremap <silent> <Leader>t :Denite tag<CR>
+    nnoremap <silent> <Leader>h :Denite menu:git<CR>
 endfunction
 
 function! s:shougo_denite_nvim_hook_source()
@@ -262,6 +263,24 @@ function! s:shougo_denite_nvim_hook_source()
         call denite#custom#var('grep', 'separator', ['--'])
         call denite#custom#var('grep', 'final_opts', [])
     endif
+
+    let s:menus = {}
+
+    let s:menus.git = {
+                \ 'description': 'git command'
+                \ }
+    let s:menus.git.command_candidates = [
+                \ ['[git] status', 'Gstatus'],
+                \ ['[git] diff', 'Gdiff'],
+                \ ['[git] add', 'Gwrite'],
+                \ ['[git] commit', 'Gcommit'],
+                \ ['[git] merge', 'Gmerge'],
+                \ ['[git] fetch', 'Gfetch'],
+                \ ['[git] pull', 'Gpull'],
+                \ ['[git] push', 'Gpush'],
+                \ ]
+
+    call denite#custom#var('menu', 'menus', s:menus)
 
 endfunction
 
@@ -464,10 +483,9 @@ nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 " カーソル下の単語をハイライトする
 nnoremap * *N
-nnoremap <silent> <Leader>h "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 
 " カーソル下の単語をハイライトして置換する
-nmap # <Leader>h:%s/<C-r>///g<Left><Left>
+nmap # *:%s/<C-r>///g<Left><Left>
 
 " バッファ内で置換する
 nnoremap S :%s//g<LEFT><LEFT>
