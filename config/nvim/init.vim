@@ -217,17 +217,17 @@ function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep<CR>
     nnoremap <silent> <Leader>t :Denite tag<CR>
-    nnoremap <silent> <Leader>h :Denite menu:git<CR>
+    nnoremap <silent> <Leader>h :Denite menu<CR>
 endfunction
 
 function! s:shougo_denite_nvim_hook_source()
 
-    " Define mappings
     augroup Denite
         autocmd!
         autocmd FileType denite call s:denite_my_settings()
         autocmd FileType denite-filter call s:denite_filter_my_settings()
     augroup END
+
     function! s:denite_my_settings() abort
         nnoremap <silent><buffer><expr> <CR>
                     \ denite#do_map('do_action')
@@ -240,6 +240,7 @@ function! s:shougo_denite_nvim_hook_source()
         nnoremap <silent><buffer><expr> -
                     \ denite#do_map('move_up_path')
     endfunction
+
     function! s:denite_filter_my_settings() abort
         nnoremap <silent><buffer><expr> <ESC>
                     \ denite#do_map('quit')
@@ -266,20 +267,6 @@ function! s:shougo_denite_nvim_hook_source()
 
     let s:menus = {}
 
-    let s:menus.git = {
-                \ 'description': 'git command'
-                \ }
-    let s:menus.git.command_candidates = [
-                \ ['[git] status', 'Gstatus'],
-                \ ['[git] diff', 'Gdiff'],
-                \ ['[git] add', 'Gwrite'],
-                \ ['[git] commit', 'Gcommit'],
-                \ ['[git] merge', 'Gmerge'],
-                \ ['[git] fetch', 'Gfetch'],
-                \ ['[git] pull', 'Gpull'],
-                \ ['[git] push', 'Gpush'],
-                \ ]
-
     call denite#custom#var('menu', 'menus', s:menus)
 
 endfunction
@@ -296,9 +283,6 @@ if has('vim_starting') && dein#check_install()
     call dein#install()
     call dein#remote_plugins()
 endif
-
-command! DeinUpdate if dein#check_update() | call dein#update() | endif
-command! DeinClean call map(dein#check_clean(), "delete(v:val, 'rf')") | call dein#recache_runtimepath()
 
 " -----------------------------------------------------------------------------
 " netrw
