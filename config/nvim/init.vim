@@ -247,9 +247,11 @@ function! s:shougo_denite_nvim_hook_source()
     endfunction
 
     call denite#custom#option('_', {
+                \ 'prompt': '>>',
                 \ 'split': 'floating',
-                \ 'highlight_window_background': 'Pmenu',
-                \ 'highlight_matched_char': 'Underlined',
+                \ 'highlight_window_background': 'CursorLine',
+                \ 'highlight_filter_background': 'CursorLine',
+                \ 'smartcase': 'true',
                 \ })
 
     if executable('rg')
