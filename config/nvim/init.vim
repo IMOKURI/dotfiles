@@ -277,6 +277,17 @@ call dein#add('Shougo/denite.nvim', {
             \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
             \ })
 
+function! s:pocari_vim_denite_emoji()
+    nnoremap <silent> <Leader>u :Denite emoji<CR>
+endfunction
+
+call dein#add('junegunn/vim-emoji')
+call dein#add('pocari/vim-denite-emoji', {
+            \ 'depends': ['denite.nvim', 'vim-emoji'],
+            \ 'on_source': 'denite.nvim',
+            \ 'hook_add': function('s:pocari_vim_denite_emoji'),
+            \ })
+
 call dein#end()
 
 if has('vim_starting') && dein#check_install()
