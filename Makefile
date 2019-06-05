@@ -30,10 +30,7 @@ endif
 
 update: ## Update repository
 	git fetch
-	git pull origin master
-	git submodule init
-	git submodule update
-	git submodule foreach git pull origin master
+	git pull
 
 pipenv: ## Setup pipenv
 	cd config/nvim/ && \
