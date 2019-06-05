@@ -147,6 +147,10 @@ call dein#add('Shougo/deoplete.nvim', {
             \ 'hook_add': function('s:shougo_deoplete_nvim')
             \ })
 
+call dein#add('fszymanski/deoplete-emoji', {
+            \ 'depends': 'deoplete.nvim',
+            \ })
+
 call dein#add('deoplete-plugins/deoplete-jedi', {
             \ 'depends': 'deoplete.nvim',
             \ 'on_ft': 'python'
