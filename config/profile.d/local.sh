@@ -6,10 +6,6 @@ if [ -f ~/.config/profile.d/proxy.sh ]; then
   . ~/.config/profile.d/proxy.sh
 fi
 
-if [ -f ~/.local/bin/bashmarks.sh ]; then
-  . ~/.local/bin/bashmarks.sh
-fi
-
 ##### User specific environment ###############################################
 
 export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/bin:$PATH

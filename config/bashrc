@@ -55,6 +55,12 @@ alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins
 
 alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenkins.docker.hpecorp.net/'
 
+##### Load bashmarks ##########################################################
+
+if [ -f ~/.local/bin/bashmarks.sh ]; then
+  . ~/.local/bin/bashmarks.sh
+fi
+
 ##### For git completion and prompt ###########################################
 
 source "$HOME/src/git/contrib/completion/git-completion.bash"
