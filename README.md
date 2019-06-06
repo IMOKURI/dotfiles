@@ -2,41 +2,48 @@
 
 [![Build Status](https://travis-ci.org/IMOKURI/dotfiles.svg?branch=master)](https://travis-ci.org/IMOKURI/dotfiles)
 
-Deploy dotfiles.
+## Support
+
+-   CentOS/RHEL 7
+-   Windows(only neovim)
 
 ## Requirement
 
-* curl
-* sudo
+-   packages
+    -   curl
+    -   sudo
 
-* Set environment variables if you need to use proxy.
+-   Set environment variables if you need to use proxy.
 
-```
-export http_proxy=http://proxy.example.com:port
-export https_proxy=http://proxy.example.com:port
-```
+    export http_proxy=<http://proxy.example.com:port>
+    export https_proxy=<http://proxy.example.com:port>
 
-* Enable optional and extra repository. (RHEL Only)
+-   Enable optional and extra repository. (RHEL Only)
 
-```
-subscription-manager repos --enable rhel-7-server-optional-rpms
-subscription-manager repos --enable rhel-7-server-extras-rpms
-```
+    subscription-manager repos --enable rhel-7-server-optional-rpms
+    subscription-manager repos --enable rhel-7-server-extras-rpms
 
 ## Installation
 
-```
-bash -c "$(curl -fsSL https://git.io/imokuri)"
-```
+    bash -c "$(curl -fsSL https://git.io/imokuri)"
 
 ## Update
 
-```
-cd ~/.dotfiles && make update
-```
+-   dotfiles
+
+      cd ~/.dotfiles && make update
+
+-   git
+
+      cd ~/.dotfiles && make git
+
+-   neovim
+
+      cd ~/.dotfiles && make neovim
 
 ## Feature
 
-* Install Git, Neovim, Python, Node.js, etc...
-* Clone Dotfiles Repository
-* Create Symbolic Links To Dotfiles
+-   Install/Build latest Git and Neovim.
+-   Install Python, Node.js.
+-   Clone dotfiles repository.
+-   Create symbolic link to dotfiles.
