@@ -400,6 +400,12 @@ augroup remember_cursor
                 \ endif
 augroup END
 
+augroup auto_cursorline
+    autocmd!
+    autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+    autocmd CursorHold,CursorHoldI * setlocal cursorline
+augroup END
+
 augroup nopaste_when_insert_leave
     autocmd!
     autocmd InsertLeave * set nopaste
