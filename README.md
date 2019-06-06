@@ -2,6 +2,13 @@
 
 [![Build Status](https://travis-ci.org/IMOKURI/dotfiles.svg?branch=master)](https://travis-ci.org/IMOKURI/dotfiles)
 
+## Feature
+
+-   Install/Build latest Git and Neovim.
+-   Install Python, Node.js.
+-   Clone dotfiles repository.
+-   Create symbolic link to dotfiles.
+
 ## Support
 
 -   CentOS/RHEL 7
@@ -52,9 +59,22 @@ cd ~/.dotfiles && make git
 cd ~/.dotfiles && make neovim
 ```
 
-## Feature
+## Docker
 
--   Install/Build latest Git and Neovim.
--   Install Python, Node.js.
--   Clone dotfiles repository.
--   Create symbolic link to dotfiles.
+```
+# Build Environment
+docker build --build-arg PROXY=http://web-proxy.jp.hpecorp.net:8080/ -t imokuri-base-image .
+docker run -dt --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --name imokuri-dev imokuri-base-image
+docker exec -t imokuri-dev bash -c "$(curl -fsSL https://git.io/imokuri)"
+
+# (Optional) Backup Environment
+docker stop imokuri-dev
+docker commit imokuri-dev imokuri-image
+docker start imokuri-dev
+
+# Let's Develop!
+docker exec -it imokuri-dev /bin/bash
+
+# Recreate Environment
+docker run -it imokuri-image /bin/bash
+```
