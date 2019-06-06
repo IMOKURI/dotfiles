@@ -561,6 +561,15 @@ set nostartofline
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
+" 折返しのときにインデントがつく
+set breakindent
+
+" breakindentの記号
+set showbreak=>>>
+
+" showbreakを左端に表示する
+set breakindentopt=sbr
+
 " 画面端が3行見える状態でスクロールする
 set scrolloff=3
 
