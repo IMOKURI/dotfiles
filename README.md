@@ -58,7 +58,7 @@ make neovim
 
 ```
 # Build Environment
-docker build --build-arg PROXY=http://web-proxy.jp.hpecorp.net:8080/ -t imokuri-base-image .
+docker build --build-arg PROXY=<http://proxy.example.com:port> -t imokuri-base-image .
 docker run -dt --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --name imokuri-dev imokuri-base-image
 docker exec -t imokuri-dev bash -c "$(curl -fsSL https://git.io/imokuri)"
 
