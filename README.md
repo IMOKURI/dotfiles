@@ -44,19 +44,16 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 -   dotfiles
 
 ```
-cd ~/.dotfiles && make update
-```
+cd ~/.dotfiles
 
--   git
+# dotfiles
+make update
 
-```
-cd ~/.dotfiles && make git
-```
+# git
+make git
 
--   neovim
-
-```
-cd ~/.dotfiles && make neovim
+# neovim
+make neovim
 ```
 
 ## Docker
