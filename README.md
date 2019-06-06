@@ -41,8 +41,6 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 
 ## Update
 
--   dotfiles
-
 ```
 cd ~/.dotfiles
 
