@@ -647,6 +647,9 @@ set backspace=indent,eol,start
 " clipboard設定
 set clipboard+=unnamedplus
 
+" undoファイルを作成する
+set undofile
+
 " スワップファイルを作成しない
 set noswapfile
 
