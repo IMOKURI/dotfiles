@@ -383,6 +383,11 @@ let g:lightline = {
             \ }
             \ }
 
+augroup custom_filetype
+    autocmd!
+    autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
+augroup END
+
 " This does not work. Use ginit.vim instead.
 "if has('gui_running')
 "    Guifont! Migu 1M:h12
