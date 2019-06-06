@@ -5,7 +5,6 @@
 ## Support
 
 -   CentOS/RHEL 7
--   Windows(only neovim)
 
 ## Requirement
 
