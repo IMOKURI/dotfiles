@@ -467,12 +467,6 @@ nnoremap <silent> <Leader>q :<C-u>qa<CR>
 " すべてのタブを保存せず閉じる
 nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
 
-" コマンドラインモードの代わりにコマンドラインウィンドウを開く
-nnoremap : q:
-xnoremap : q:
-nnoremap / q/
-xnoremap / q/
-
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
 
