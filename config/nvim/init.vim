@@ -484,6 +484,9 @@ nnoremap gp gT
 noremap H ^
 noremap L $
 
+" ターミナルを開く
+nnoremap <silent> te :terminal<CR>
+
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
 
