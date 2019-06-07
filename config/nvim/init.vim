@@ -94,6 +94,21 @@ call dein#add('t9md/vim-quickhl', {
             \ 'hook_add': function('s:t9md_vim_quickhl')
             \ })
 
+function! s:osyo_manga_vim_anzu()
+    nmap n <Plug>(anzu-n)
+    nmap N <Plug>(anzu-N)
+    nmap * <Plug>(anzu-star)
+
+    augroup vim_anzu
+        autocmd!
+        autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
+    augroup END
+endfunction
+
+call dein#add('osyo-manga/vim-anzu', {
+            \ 'hook_add': function('s:osyo_manga_vim_anzu')
+            \ })
+
 function! s:cohama_lexima_vim()
 endfunction
 
@@ -369,7 +384,7 @@ let g:lightline = {
             \   'left': [
             \     [ 'mode', 'paste' ],
             \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
-            \     [ 'neomake' ]
+            \     [ 'neomake', 'anzu' ]
             \   ],
             \   'right': [
             \     [ 'lineinfo' ],
@@ -379,7 +394,8 @@ let g:lightline = {
             \ },
             \ 'component_function': {
             \   'neomake': 'LightlineNeomake',
-            \   'fugitive': 'LightLineFugitive'
+            \   'fugitive': 'LightLineFugitive',
+            \   'anzu': 'anzu#search_status'
             \ }
             \ }
 
@@ -481,10 +497,6 @@ nnoremap - <C-x>
 vnoremap + <C-a>
 vnoremap - <C-x>
 
-" 「次の（前の）検索候補」を画面の中心に表示する
-nnoremap n nzz
-nnoremap N Nzz
-
 " 表示行単位で移動する
 nnoremap j gj
 nnoremap k gk
@@ -504,9 +516,6 @@ nnoremap <silent> <Leader>r :set relativenumber!<CR>
 
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
-
-" カーソル下の単語をハイライトする
-nnoremap * *N
 
 " カーソル下の単語をハイライトして置換する
 nmap # *:%s/<C-r>///g<Left><Left>
