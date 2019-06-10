@@ -66,6 +66,7 @@ endif
 call dein#begin(s:dein_dir)
 
 call dein#add('Shougo/dein.vim')
+call dein#add('wsdjeg/dein-ui.vim')
 
 call dein#add('challenger-deep-theme/vim')
 call dein#add('jacoborus/tender.vim')
