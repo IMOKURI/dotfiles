@@ -167,10 +167,72 @@ call dein#add('fszymanski/deoplete-emoji', {
             \ 'depends': 'deoplete.nvim',
             \ })
 
-call dein#add('deoplete-plugins/deoplete-jedi', {
-            \ 'depends': 'deoplete.nvim',
-            \ 'on_ft': 'python'
+" call dein#add('deoplete-plugins/deoplete-jedi', {
+"             \ 'depends': 'deoplete.nvim',
+"             \ 'on_ft': 'python'
+"             \ })
+
+call dein#add('prabirshrestha/async.vim')
+
+function! s:prabirshrestha_vim_lsp()
+    let g:lsp_signs_enabled = 1
+
+    let g:lsp_signs_error = {'text': 'E'}
+    let g:lsp_signs_warning = {'text': 'W'}
+    let g:lsp_signs_information = {'text': 'I'}
+    let g:lsp_signs_hint = {'text': 'H'}
+
+    nmap <silent> <Leader>] <Plug>(lsp-definition)
+    nmap <silent> <Leader>n <Plug>(lsp-document-format)
+    nmap <silent> <Leader>r <Plug>(lsp-rename)
+
+    nmap <silent> <C-p> <Plug>(lsp-previous-error)
+    nmap <silent> <C-n> <Plug>(lsp-next-error)
+
+    if (executable('pyls'))
+        augroup LspPython
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'pyls',
+                        \ 'cmd': {server_info->['pyls']},
+                        \ 'whitelist': ['python']
+                        \ })
+        augroup END
+    endif
+
+    if executable('docker-langserver')
+        augroup LspDocker
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'docker-langserver',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+                        \ 'whitelist': ['dockerfile'],
+                        \ })
+        augroup END
+    endif
+
+    if executable('bash-language-server')
+        augroup LspBash
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'bash-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+                        \ 'whitelist': ['sh'],
+                        \ })
+        augroup END
+    endif
+
+endfunction
+
+call dein#add('prabirshrestha/vim-lsp', {
+            \ 'depends': 'async.vim',
+            \ 'hook_add': function('s:prabirshrestha_vim_lsp')
             \ })
+
+call dein#add('lighttiger2505/deoplete-vim-lsp', {
+            \ 'depends': ['deoplete.nvim', 'vim-lsp'],
+            \ })
+
 call dein#add('Vimjas/vim-python-pep8-indent', {
             \ 'on_i': 1,
             \ 'on_ft': 'python'
@@ -178,49 +240,6 @@ call dein#add('Vimjas/vim-python-pep8-indent', {
 
 call dein#add('martinda/Jenkinsfile-vim-syntax', {
             \ 'on_path': '.*Jenkinsfile'
-            \ })
-
-function! s:neomake_neomake()
-    augroup call_neomake
-        autocmd!
-        autocmd InsertLeave,BufWritePost * Neomake
-    augroup END
-
-    "let g:neomake_open_list = 2
-    let g:neomake_tempfile_dir = '/tmp/neomake%:p:h'
-    let g:neomake_echo_current_error = 0
-    let g:neomake_virtualtext_prefix = '> '
-    let g:neomake_error_sign = {'text': 'E>', 'texthl': 'NeomakeErrorSign'}
-    let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign',}
-    let g:neomake_info_sign = {'text': 'I>', 'texthl': 'NeomakeInfoSign'}
-
-    let g:neomake_python_enabled_makers = ['flake8', 'pylint']
-    let g:neomake_shellcheck_args = ['-fgcc']
-    let g:neomake_c_enabled_makers = ['gcc']
-    let g:neomake_c_gcc_args = [
-                \ '-fsyntax-only',
-                \ '-std=gnu99',
-                \ '-Wall',
-                \ '-Wextra',
-                \ '-fopenmp',
-                \ '-I./include',
-                \ ]
-endfunction
-
-call dein#add('neomake/neomake', {
-            \ 'hook_add': function('s:neomake_neomake')
-            \ })
-
-function! s:sbdchd_neoformat()
-    nnoremap <silent> <Leader>n :Neoformat<CR>
-
-    let g:neoformat_basic_format_align = 1
-    let g:neoformat_basic_format_retab = 1
-    let g:neoformat_basic_format_trim = 1
-endfunction
-
-call dein#add('sbdchd/neoformat', {
-            \ 'hook_add': function('s:sbdchd_neoformat')
             \ })
 
 function! s:thinca_vim_showtime()
@@ -364,28 +383,13 @@ function! LightLineFugitive()
     return ''
 endfunction
 
-function! LightlineNeomake()
-    let l:winnr = winnr()
-    let l:bufnr = winbufnr(l:winnr)
-    let l:neomake_status_str = neomake#statusline#get(l:bufnr, {
-                \ 'format_running': '({{running_job_names}})',
-                \ 'format_loclist_unknown': '(」・ω・)」うー',
-                \ 'format_loclist_ok': '(/・ω・)/にゃー',
-                \ 'format_loclist_type_default': '{{type}}:{{count}} ',
-                \ 'format_loclist_issues': '%s',
-                \ 'format_quickfix_ok': '',
-                \ 'format_quickfix_issues': '%s'
-                \ })
-    return l:neomake_status_str
-endfunction
-
 let g:lightline = {
             \ 'colorscheme': 'tender',
             \ 'active': {
             \   'left': [
             \     [ 'mode', 'paste' ],
             \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
-            \     [ 'neomake', 'anzu' ]
+            \     [ 'anzu' ]
             \   ],
             \   'right': [
             \     [ 'lineinfo' ],
@@ -394,7 +398,6 @@ let g:lightline = {
             \   ]
             \ },
             \ 'component_function': {
-            \   'neomake': 'LightlineNeomake',
             \   'fugitive': 'LightLineFugitive',
             \   'anzu': 'anzu#search_status'
             \ }
@@ -432,17 +435,6 @@ augroup nopaste_when_insert_leave
     autocmd!
     autocmd InsertLeave * set nopaste
 augroup END
-
-function! LocationNext()
-    try
-        lnext
-    catch
-        try | lfirst | catch | endtry
-    endtry
-endfunction
-
-nnoremap <silent> <C-p> :<C-u>lprevious<CR>
-nnoremap <silent> <C-n> :call LocationNext()<CR>
 
 " -----------------------------------------------------------------------------
 " Mapping
@@ -510,7 +502,7 @@ nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
 
 " 相対行番号のトグル
-nnoremap <silent> <Leader>r :set relativenumber!<CR>
+"nnoremap <silent> <Leader>r :set relativenumber!<CR>
 
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
