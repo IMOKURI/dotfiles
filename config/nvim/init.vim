@@ -179,11 +179,9 @@ function! s:prabirshrestha_vim_lsp()
     let g:lsp_signs_hint = {'text': 'H'}
 
     nmap <silent> <Leader>] <Plug>(lsp-definition)
+    nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
     nmap <silent> <Leader>n <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
-
-    nmap <silent> <C-p> <Plug>(lsp-previous-error)
-    nmap <silent> <C-n> <Plug>(lsp-next-error)
 
     if (executable('pyls'))
         augroup LspPython
@@ -469,6 +467,10 @@ nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
 
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
+
+" QuickFixのエラーに移動する
+nnoremap <silent> <C-p> :cprev<CR>
+nnoremap <silent> <C-n> :cnext<CR>
 
 " タブを移動する
 nnoremap gn gt
