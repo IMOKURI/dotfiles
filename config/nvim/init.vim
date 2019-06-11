@@ -114,6 +114,7 @@ function! s:cohama_lexima_vim()
 endfunction
 
 call dein#add('cohama/lexima.vim', {
+            \ 'on_i': 1,
             \ 'hook_add': function('s:cohama_lexima_vim')
             \ })
 
