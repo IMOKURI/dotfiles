@@ -34,7 +34,7 @@ update: ## Update repository
 
 pipenv: ## Setup pipenv
 	cd config/nvim/ && \
-	PIPENV_VENV_IN_PROJECT=true pipenv install
+	PIPENV_VENV_IN_PROJECT=true pipenv install pynvim
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github,.local/share/nvim/undo}

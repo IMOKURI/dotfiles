@@ -43,7 +43,7 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
     pushd %NVIMPATH%
 
     SET PIPENV_VENV_IN_PROJECT=true
-    pipenv install
+    pipenv install pynvim
 
     popd
 
