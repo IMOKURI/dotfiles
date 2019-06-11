@@ -4,44 +4,44 @@
 
 ## Feature
 
--   Install/Build latest Git and Neovim.
--   Install Python, Node.js.
--   Clone dotfiles repository.
--   Create symbolic link to dotfiles.
+- Install/Build latest Git and Neovim.
+- Install Python, Node.js, Go.
+- Clone dotfiles repository.
+- Create symbolic link to dotfiles.
 
 ## Support
 
--   CentOS/RHEL 7
+- CentOS/RHEL 7
 
 ## Requirement
 
--   Packages
-    -   curl
-    -   sudo
+- Packages
+  - curl
+  - sudo
 
--   Set environment variables if you need to use proxy.
+- Set environment variables if you need to use proxy.
 
-```
+```bash
 export http_proxy=<http://proxy.example.com:port>
 export https_proxy=<http://proxy.example.com:port>
 ```
 
--   Enable optional and extra repository. (RHEL Only)
+- Enable optional and extra repository. (RHEL Only)
 
-```
+```bash
 subscription-manager repos --enable rhel-7-server-optional-rpms
 subscription-manager repos --enable rhel-7-server-extras-rpms
 ```
 
 ## Installation
 
-```
+```bash
 bash -c "$(curl -fsSL https://git.io/imokuri)"
 ```
 
 ## Update
 
-```
+```bash
 cd ~/.dotfiles
 
 # dotfiles
@@ -56,7 +56,7 @@ make neovim
 
 ## Docker
 
-```
+```bash
 # Build Environment
 docker build --build-arg PROXY=<http://proxy.example.com:port> -t imokuri-base-image .
 docker run -dt --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --name imokuri-dev imokuri-base-image
