@@ -168,11 +168,6 @@ call dein#add('fszymanski/deoplete-emoji', {
             \ 'depends': 'deoplete.nvim',
             \ })
 
-" call dein#add('deoplete-plugins/deoplete-jedi', {
-"             \ 'depends': 'deoplete.nvim',
-"             \ 'on_ft': 'python'
-"             \ })
-
 call dein#add('prabirshrestha/async.vim')
 
 function! s:prabirshrestha_vim_lsp()
@@ -219,6 +214,17 @@ function! s:prabirshrestha_vim_lsp()
                         \ 'name': 'bash-language-server',
                         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
                         \ 'whitelist': ['sh'],
+                        \ })
+        augroup END
+    endif
+
+    if executable('efm-langserver')
+        augroup LspEFM
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'efm-langserver-erb',
+                        \ 'cmd': {server_info->['efm-langserver']},
+                        \ 'whitelist': ['vim', 'markdown'],
                         \ })
         augroup END
     endif

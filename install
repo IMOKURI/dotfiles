@@ -64,7 +64,7 @@ _banner "Install Packages..."
 
 sudo -E yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel unzip which lua-term gettext
+sudo -E yum install -y autoconf automake cmake expat-devel gcc gcc-c++ git libcurl-devel libffi-devel libtool make ninja-build nodejs openssl-devel patch pkgconfig python python-devel python36 python36-devel unzip which lua-term gettext golang
 
 ##### Clone Dotfiles ##########################################################
 
@@ -119,13 +119,19 @@ command -v pip3 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py
 
 _banner "Install Python Packages..."
 
-sudo -E /usr/local/bin/pip install ansible pipenv pipenv-pipes flake8 jedi vim-vint yamllint python-language-server
+sudo -E /usr/local/bin/pip install ansible pipenv pipenv-pipes vim-vint yamllint python-language-server
 
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
 
-sudo -E npm -g install doctoc neovim jsonlint remark-cli bash-language-server dockerfile-language-server-nodejs
+npm install doctoc neovim jsonlint markdownlint-cli bash-language-server dockerfile-language-server-nodejs
+
+##### Install go packages #####################################################
+
+_banner "Install Go Packages..."
+
+go get github.com/mattn/efm-langserver/cmd/efm-langserver
 
 ##### Install ripgrep #########################################################
 
