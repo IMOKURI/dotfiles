@@ -321,9 +321,35 @@ function! s:shougo_denite_nvim_hook_source()
         call denite#custom#var('grep', 'final_opts', [])
     endif
 
-    let s:menus = {}
+    let s:denite_menus = {}
 
-    call denite#custom#var('menu', 'menus', s:menus)
+    let s:denite_menus.dotfiles = {
+                \ 'description': 'Edit dotfiles'
+                \ }
+    let s:denite_menus.dotfiles.file_candidates = [
+                \ ['init.vim', '~/.dotfiles/config/nvim/init.vim'],
+                \ ['installer', '~/.dotfiles/install']
+                \ ]
+
+    command! -nargs=1 ToggleOption set <args>! <bar> set <args>?
+    let s:toggle_options = [
+                \ "cursorcolumn",
+                \ "cursorline",
+                \ "hlsearch",
+                \ "list",
+                \ "number",
+                \ "paste",
+                \ "relativenumber",
+                \ "spell",
+                \ "wrap",
+                \ ]
+    let s:denite_menus.toggle = {
+                \ 'description': 'Toggle option'
+                \ }
+    let s:denite_menus.toggle.command_candidates =
+                \ map(copy(s:toggle_options), '[v:val, "ToggleOption " . v:val]')
+
+    call denite#custom#var('menu', 'menus', s:denite_menus)
 
 endfunction
 
