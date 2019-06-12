@@ -264,14 +264,6 @@ call dein#add('martinda/Jenkinsfile-vim-syntax', {
             \ 'on_path': '.*Jenkinsfile'
             \ })
 
-function! s:thinca_vim_showtime()
-    nnoremap <silent> <Leader>s :ShowtimeStart<CR>
-endfunction
-
-call dein#add('thinca/vim-showtime', {
-            \ 'hook_source': function('s:thinca_vim_showtime')
-            \ })
-
 function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>b :Denite buffer<CR>
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
