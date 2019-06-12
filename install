@@ -125,7 +125,7 @@ pip install --user \
   pipenv-pipes \
   vim-vint \
   yamllint \
-  python-language-server
+  'python-language-server[all]'
 
 ##### Install nodejs packages #################################################
 
