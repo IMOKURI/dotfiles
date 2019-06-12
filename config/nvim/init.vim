@@ -102,7 +102,7 @@ function! s:osyo_manga_vim_anzu()
 
     augroup vim_anzu
         autocmd!
-        autocmd CursorHold,CursorHoldI,WinLeave,TabLeave * call anzu#clear_search_status()
+        autocmd WinLeave,TabLeave * call anzu#clear_search_status()
     augroup END
 endfunction
 
