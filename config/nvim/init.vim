@@ -179,6 +179,7 @@ function! s:prabirshrestha_vim_lsp()
     let g:lsp_signs_hint = {'text': 'H'}
 
     nmap <silent> <Leader>] <Plug>(lsp-definition)
+    nmap <silent> <Leader>[ <C-o>
     nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
     nmap <silent> <Leader>n <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
@@ -189,7 +190,8 @@ function! s:prabirshrestha_vim_lsp()
             autocmd User lsp_setup call lsp#register_server({
                         \ 'name': 'pyls',
                         \ 'cmd': {server_info->['pyls']},
-                        \ 'whitelist': ['python']
+                        \ 'whitelist': ['python'],
+                        \ 'workspace_config': {'pyls': {'plugins': {'pycodestyle': {'ignore': ['E501']}}}}
                         \ })
         augroup END
     endif
@@ -481,7 +483,7 @@ noremap H ^
 noremap L $
 
 " ターミナルを開く
-nnoremap <silent> te :terminal<CR>
+nnoremap <silent> te :terminal<CR>i
 
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
