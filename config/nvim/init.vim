@@ -171,13 +171,6 @@ call dein#add('fszymanski/deoplete-emoji', {
 call dein#add('prabirshrestha/async.vim')
 
 function! s:prabirshrestha_vim_lsp()
-    let g:lsp_signs_enabled = 1
-
-    let g:lsp_signs_error = {'text': 'E'}
-    let g:lsp_signs_warning = {'text': 'W'}
-    let g:lsp_signs_information = {'text': 'I'}
-    let g:lsp_signs_hint = {'text': 'H'}
-
     nmap <silent> <Leader>] <Plug>(lsp-definition)
     nmap <silent> <Leader>[ <C-o>
     nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
