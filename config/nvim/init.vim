@@ -5,7 +5,6 @@ filetype off
 filetype plugin indent off
 
 let g:mapleader = "\<Space>"
-let g:maplocalleader = '`'
 
 " -----------------------------------------------------------------------------
 " Detect platform
@@ -38,6 +37,8 @@ elseif g:env =~# 'WINDOWS'
 endif
 
 let g:python_host_prog = ''
+
+let g:dein#install_progress_type = 'title'
 
 let s:dein_dir = s:nvim_dir . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -115,8 +116,10 @@ endfunction
 
 call dein#add('cohama/lexima.vim', {
             \ 'on_i': 1,
-            \ 'hook_add': function('s:cohama_lexima_vim')
+            \ 'hook_source': function('s:cohama_lexima_vim')
             \ })
+
+call dein#add('tpope/vim-surround')
 
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
 
