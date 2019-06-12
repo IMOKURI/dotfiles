@@ -88,7 +88,6 @@ _banner "Clone Git..."
 if [[ ! -d "${GITPATH}" ]]; then
   _logger "${INFO}" "Clone git"
   git clone https://github.com/git/git.git "${GITPATH}"
-  sudo -E yum remove -y git
 else
   _logger "${INFO}" "Update git repository"
   pushd "$(pwd)"
@@ -108,7 +107,6 @@ popd
 
 _logger "${INFO}" "Install Git-LFS"
 
-export PATH="$HOME/bin:$PATH"
 sudo -E yum install -y git-lfs
 
 ##### Install python packages #################################################

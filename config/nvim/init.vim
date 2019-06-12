@@ -405,13 +405,21 @@ function! LightLineFugitive()
     return ''
 endfunction
 
+function! LightlineQuickFix()
+    let s:buf_num = bufnr('%')
+    let s:qflist = getqflist()
+    let s:buf_diag = filter(s:qflist, {index, dict -> dict['bufnr'] == s:buf_num})
+    let s:count = len(s:buf_diag)
+    return s:count > 0 ? '(」・ω・)」うー ' . s:count : '(/・ω・)/にゃー'
+endfunction
+
 let g:lightline = {
             \ 'colorscheme': 'tender',
             \ 'active': {
             \   'left': [
             \     [ 'mode', 'paste' ],
             \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
-            \     [ 'anzu' ]
+            \     [ 'quickfix', 'anzu' ]
             \   ],
             \   'right': [
             \     [ 'lineinfo' ],
@@ -421,6 +429,7 @@ let g:lightline = {
             \ },
             \ 'component_function': {
             \   'fugitive': 'LightLineFugitive',
+            \   'quickfix': 'LightlineQuickFix',
             \   'anzu': 'anzu#search_status'
             \ }
             \ }
@@ -553,6 +562,9 @@ inoremap <C-l> <ESC>A
 
 " jsonを整形する
 cnoremap jq %!jq --indent 4 .
+
+" コマンドの実行結果をバッファに出力する
+cnoremap jj new <bar> put =
 
 " -----------------------------------------------------------------------------
 " Options
