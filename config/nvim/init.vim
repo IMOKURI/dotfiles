@@ -218,6 +218,28 @@ function! s:prabirshrestha_vim_lsp()
         augroup END
     endif
 
+    if executable('vscode-json-languageserver')
+        augroup LspJson
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'vscode-json-languageserver',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
+                        \ 'whitelist': ['json'],
+                        \ })
+        augroup END
+    endif
+
+    if executable('yaml-language-server')
+        augroup LspYaml
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'yaml-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
+                        \ 'whitelist': ['yaml'],
+                        \ })
+        augroup END
+    endif
+
     if executable('efm-langserver')
         augroup LspEFM
             autocmd!

@@ -119,13 +119,26 @@ command -v pip3 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py
 
 _banner "Install Python Packages..."
 
-pip install --user ansible pipenv pipenv-pipes vim-vint yamllint python-language-server
+pip install --user \
+  ansible \
+  pipenv \
+  pipenv-pipes \
+  vim-vint \
+  yamllint \
+  python-language-server
 
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
 
-npm install doctoc neovim jsonlint markdownlint-cli bash-language-server dockerfile-language-server-nodejs
+npm install \
+  doctoc \
+  neovim \
+  markdownlint-cli \
+  bash-language-server \
+  dockerfile-language-server-nodejs \
+  yaml-language-server \
+  vscode-json-languageserver
 
 ##### Install go packages #####################################################
 
