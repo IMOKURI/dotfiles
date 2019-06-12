@@ -549,6 +549,8 @@ nnoremap S :%s//g<LEFT><LEFT>
 " レジスタからペーストする
 nnoremap <Leader>p "0p
 nnoremap <Leader>P "0P
+vnoremap <Leader>p "0p
+vnoremap <Leader>P "0P
 
 " # を入力したときに行頭に移動しない
 inoremap # x<BS>#
