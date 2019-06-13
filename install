@@ -2,6 +2,8 @@
 
 set -e
 
+export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
+
 ##### Variables ###############################################################
 
 # Defind Colors
