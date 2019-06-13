@@ -76,6 +76,25 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
 
+function! s:lambdalisue_vim_gista()
+    " Create a token vimson in 'token/{APINAME}' at |g:gista#client#cache_dir| (for
+    " example, '~/.cache/vim-gista/token/GitHub') with the following content:
+    " >
+    "     { 'username': 'your personal access token' }
+    " <
+    " Remember that you have to enable 'gist' access to the access token.
+
+    " call gista#client#register('GHE', 'https://ghe.domain.com/api/v3')
+    let g:gista#client#default_apiname = 'GHE'
+
+    let g:gista#command#post#interactive_description = 0
+    let g:gista#command#post#allow_empty_description = 1
+endfunction
+
+call dein#add('lambdalisue/vim-gista', {
+            \ 'hook_add': function('s:lambdalisue_vim_gista')
+            \ })
+
 function! s:lambdalisue_suda_vim()
     let g:suda_smart_edit = 1
 endfunction
@@ -556,9 +575,6 @@ nnoremap <C-h> <C-w>h
 " ウィンドウを分割する
 nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
-
-" 相対行番号のトグル
-"nnoremap <silent> <Leader>r :set relativenumber!<CR>
 
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
