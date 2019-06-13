@@ -112,10 +112,12 @@ call dein#add('t9md/vim-quickhl', {
             \ 'hook_add': function('s:t9md_vim_quickhl')
             \ })
 
+call dein#add('haya14busa/is.vim')
+
 function! s:osyo_manga_vim_anzu()
-    nmap n <Plug>(anzu-n)
-    nmap N <Plug>(anzu-N)
-    nmap * <Plug>(anzu-star)
+    nmap n <Plug>(is-nohl)<Plug>(anzu-n)
+    nmap N <Plug>(is-nohl)<Plug>(anzu-N)
+    nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
 
     augroup vim_anzu
         autocmd!
@@ -124,6 +126,7 @@ function! s:osyo_manga_vim_anzu()
 endfunction
 
 call dein#add('osyo-manga/vim-anzu', {
+            \ 'depends': 'is.vim',
             \ 'hook_add': function('s:osyo_manga_vim_anzu')
             \ })
 
