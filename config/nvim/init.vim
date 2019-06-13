@@ -186,6 +186,15 @@ call dein#add('Shougo/deoplete.nvim', {
             \ 'hook_add': function('s:shougo_deoplete_nvim')
             \ })
 
+function! s:shougo_echodoc_vim()
+    let g:echodoc#enable_at_startup = 1
+endfunction
+
+call dein#add('Shougo/echodoc.vim', {
+            \ 'depends': 'deoplete.nvim',
+            \ 'hook_add': function('s:shougo_echodoc_vim')
+            \ })
+
 call dein#add('fszymanski/deoplete-emoji', {
             \ 'depends': 'deoplete.nvim',
             \ })
@@ -376,7 +385,7 @@ function! s:shougo_denite_nvim_hook_source()
 endfunction
 
 call dein#add('Shougo/denite.nvim', {
-            \ 'on_cmd': 'Denite',
+            \ 'on_cmd': ['Denite', 'DeniteCursorWord'],
             \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
             \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
             \ })
