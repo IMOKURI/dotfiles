@@ -92,6 +92,7 @@ sudo -E yum install -y \
   python36 \
   python36-devel \
   unzip \
+  wget \
   which
 
 ##### Clone Dotfiles ##########################################################
