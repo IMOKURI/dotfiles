@@ -76,23 +76,20 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-fugitive')
 
-function! s:lambdalisue_vim_gista()
-    " Create a token vimson in 'token/{APINAME}' at |g:gista#client#cache_dir| (for
-    " example, '~/.cache/vim-gista/token/GitHub') with the following content:
+function! s:mattn_gist_vim()
+    " create a "Personal Access Token" and place it in a file named ~/.gist-vim like this:
     " >
-    "     { 'username': 'your personal access token' }
+    "     token xxxxx
     " <
-    " Remember that you have to enable 'gist' access to the access token.
-
-    " call gista#client#register('GHE', 'https://ghe.domain.com/api/v3')
-    let g:gista#client#default_apiname = 'GHE'
-
-    let g:gista#command#post#interactive_description = 0
-    let g:gista#command#post#allow_empty_description = 1
+    let g:gist_api_url = 'https://github.hpe.com/api/v3'
+    let g:gist_show_privates = 1
+    let g:gist_detect_filetype = 1
 endfunction
 
-call dein#add('lambdalisue/vim-gista', {
-            \ 'hook_add': function('s:lambdalisue_vim_gista')
+call dein#add('mattn/webapi-vim')
+call dein#add('mattn/gist-vim', {
+            \ 'depends': 'webapi-vim',
+            \ 'hook_add': function('s:mattn_gist_vim')
             \ })
 
 function! s:lambdalisue_suda_vim()
