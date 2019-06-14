@@ -316,13 +316,21 @@ function! s:shougo_denite_nvim_hook_source()
     function! s:denite_my_settings() abort
         nnoremap <silent><buffer><expr> <CR>
                     \ denite#do_map('do_action')
+        nnoremap <silent><buffer><expr> t
+                    \ denite#do_map('do_action', 'tabopen')
+        nnoremap <silent><buffer><expr> -
+                    \ denite#do_map('do_action', 'split')
+        nnoremap <silent><buffer><expr> <bar>
+                    \ denite#do_map('do_action', 'vsplit')
+        nnoremap <silent><buffer><expr> p
+                    \ denite#do_map('do_action', 'preview')
         nnoremap <silent><buffer><expr> <ESC>
                     \ denite#do_map('quit')
         nnoremap <silent><buffer><expr> i
                     \ denite#do_map('open_filter_buffer')
         nnoremap <silent><buffer><expr> <Space>
                     \ denite#do_map('toggle_select').'j'
-        nnoremap <silent><buffer><expr> -
+        nnoremap <silent><buffer><expr> <BS>
                     \ denite#do_map('move_up_path')
     endfunction
 
@@ -332,7 +340,7 @@ function! s:shougo_denite_nvim_hook_source()
     endfunction
 
     call denite#custom#option('_', {
-                \ 'prompt': '>>',
+                \ 'prompt': '>',
                 \ 'split': 'floating',
                 \ 'highlight_window_background': 'CursorLine',
                 \ 'highlight_filter_background': 'CursorLine',
