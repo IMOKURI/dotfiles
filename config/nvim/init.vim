@@ -83,6 +83,7 @@ function! s:mattn_gist_vim()
     " <
     let g:gist_api_url = 'https://github.hpe.com/api/v3'
     let g:gist_show_privates = 1
+    let g:gist_get_multiplefile = 1
     let g:gist_detect_filetype = 1
 endfunction
 
