@@ -47,6 +47,7 @@ alias gmt='git mergetool'
 alias gp='git pull'
 alias gpu='git push'
 alias gs='git status'
+alias gsf='git submodule foreach'
 
 alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
 
