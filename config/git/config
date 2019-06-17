@@ -48,6 +48,10 @@
 [diff "ansible-vault"]
   textconv = ansible-vault view
 
+[diff "xlsx"]
+  binary = true
+  textconv = git-xlsx-textconv
+
 [merge]
   tool = nvimdiff
   conflictstyle = diff3
