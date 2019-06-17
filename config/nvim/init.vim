@@ -455,6 +455,10 @@ syntax on
 
 colorscheme challenger_deep
 
+highlight ActiveWindow guibg=#1e1c31 ctermbg=233
+highlight InactiveWindow guibg=#100E23 ctermbg=232
+set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+
 function! LightLineFugitive()
     try
         return exists('*fugitive#head') ? fugitive#head() : ''
