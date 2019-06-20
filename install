@@ -72,6 +72,7 @@ sudo -E yum install -y \
   autoconf \
   automake \
   cmake \
+  ctags \
   expat-devel \
   gcc \
   gcc-c++ \

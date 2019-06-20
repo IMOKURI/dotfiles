@@ -206,6 +206,27 @@ function! s:prabirshrestha_vim_lsp()
     nmap <silent> <Leader>n <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
 
+    " pycodestyle
+    " E501 line too long
+    " W503 line break before binary operator
+
+    " pylint
+    " C0301 [line-too-long] Line too long
+    " W0703 [broad-except] Catching too general exception Exception
+
+    let s:workspace_config_python = {
+                \ 'pyls': {'plugins': {
+                \   'pycodestyle': {'ignore': [
+                \       'E501',
+                \       'W503'
+                \   ]},
+                \   'pylint': {'ignore': [
+                \       'C0301',
+                \       'W0703'
+                \   ]}
+                \ }}
+                \ }
+
     if (executable('pyls'))
         augroup LspPython
             autocmd!
@@ -213,7 +234,7 @@ function! s:prabirshrestha_vim_lsp()
                         \ 'name': 'pyls',
                         \ 'cmd': {server_info->['pyls']},
                         \ 'whitelist': ['python'],
-                        \ 'workspace_config': {'pyls': {'plugins': {'pycodestyle': {'ignore': ['E501']}}}}
+                        \ 'workspace_config': s:workspace_config_python
                         \ })
         augroup END
     endif
