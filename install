@@ -21,6 +21,7 @@ INFO="GREEN"
 
 # Define path
 DOTPATH="$HOME/.dotfiles"
+VIMPATH="$HOME/src/vim"
 NEOVIMPATH="$HOME/src/neovim"
 GITPATH="$HOME/src/git"
 
@@ -80,8 +81,13 @@ sudo -E yum install -y \
   libcurl-devel \
   libffi-devel \
   libtool \
+  lua \
+  lua-devel \
   lua-term \
+  luajit \
+  luajit-devel \
   make \
+  ncurses-devel \
   ninja-build \
   nodejs \
   openssl-devel \
@@ -221,6 +227,31 @@ _banner "Install Neovim..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
 make build-neovim
+popd
+
+##### Clone vim ###############################################################
+
+_banner "Clone Vim..."
+
+if [[ ! -d "${VIMPATH}" ]]; then
+  _logger "${INFO}" "Clone vim"
+  git clone https://github.com/vim/vim.git "${VIMPATH}"
+else
+  _logger "${INFO}" "Update vim repository"
+  pushd "$(pwd)"
+  cd "${DOTPATH}"
+  make update-vim
+  popd
+fi
+
+##### Install vim #############################################################
+
+_banner "Install Vim..."
+
+pushd "$(pwd)"
+cd "${DOTPATH}"
+make build-vim
+# _logger "${INFO}" "Skip to build vim."
 popd
 
 ##### Install dotfiles ########################################################

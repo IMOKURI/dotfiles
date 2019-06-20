@@ -40,6 +40,7 @@ deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github,.local/share/nvim/undo}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
+	@ln -sfnv $(abspath config/nvim/init.vim) $(HOME)/.vimrc
 
 git: update-git build-git ## Get latest git
 
@@ -65,6 +66,19 @@ build-neovim: ## Build neovim
 	make distclean && \
 	make clean && \
 	make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
+	make install
+
+vim: update-vim build-vim ## Get latest vim
+
+update-vim: ## Update vim repository
+	cd $(HOME)/src/vim && \
+	git pull
+
+build-vim: ## Build vim
+	cd $(HOME)/src/vim/src && \
+	(make clean || :) && \
+	./configure --with-features=huge --enable-python3interp --enable-luainterp --enable-fail-if-missing --with-luajit --prefix=$(HOME)/vim && \
+	make && \
 	make install
 
 help: ## Show this help

@@ -4,7 +4,7 @@
 
 ## Feature
 
-- Install/Build latest Git and Neovim.
+- Install/Build latest Git and Neovim, Vim.
 - Install Python, Node.js, Go.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
@@ -52,6 +52,9 @@ make git
 
 # neovim
 make neovim
+
+# vim
+make vim
 ```
 
 ## Docker
