@@ -716,6 +716,9 @@ set hidden
 " 画面の更新時間を設定(ms)
 set updatetime=250
 
+" Escを押してから挿入モードを抜けるまでの時間を短くする
+set ttimeoutlen=100
+
 " 80文字目にラインを表示
 set colorcolumn=80
 
@@ -764,6 +767,7 @@ if has('nvim')
     set inccommand=split
 endif
 
+" 矩形選択時に文字のないところにカーソルを移動できるようにする
 set virtualedit+=block
 
 " backspaceでの削除を有効化
