@@ -157,6 +157,7 @@ pip install --user \
   ansible \
   pipenv \
   pipenv-pipes \
+  pysnooper \
   vim-vint \
   yamllint \
   'python-language-server[all]'

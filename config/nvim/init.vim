@@ -690,7 +690,7 @@ set showmatch
 set breakindent
 
 " breakindentの記号
-set showbreak=>>>
+set showbreak=(//_//)
 
 " showbreakを左端に表示する
 set breakindentopt=sbr
