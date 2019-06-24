@@ -29,6 +29,7 @@ let s:nvim_dir = $XDG_CONFIG_HOME . '/nvim'
 
 if g:env =~# 'LINUX'
     let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
+    let g:node_host_prog = expand('~/node_modules/.bin/neovim-node-host')
 elseif g:env =~# 'WINDOWS'
     let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
 endif
