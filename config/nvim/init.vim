@@ -352,6 +352,8 @@ function! s:shougo_denite_nvim_hook_source()
                     \ denite#do_map('toggle_select').'j'
         nnoremap <silent><buffer><expr> <BS>
                     \ denite#do_map('move_up_path')
+
+        set winblend=20
     endfunction
 
     function! s:denite_filter_my_settings() abort
@@ -475,6 +477,8 @@ colorscheme challenger_deep
 highlight ActiveWindow guibg=#1e1c31 ctermbg=233
 highlight InactiveWindow guibg=#100E23 ctermbg=232
 set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+
+highlight PmenuSel blend=0
 
 function! LightLineFugitive()
     try
