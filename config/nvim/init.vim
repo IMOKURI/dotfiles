@@ -629,8 +629,8 @@ function! SafeMkdir(path) abort
     endif
 endfunction
 
-call SafeMkdir($HOME . ".local/share/nvim/swap")
-call SafeMkdir($HOME . ".local/share/nvim/undo")
+call SafeMkdir($HOME . "/.local/share/nvim/swap")
+call SafeMkdir($HOME . "/.local/share/nvim/undo")
 
 " -----------------------------------------------------------------------------
 " Mapping
