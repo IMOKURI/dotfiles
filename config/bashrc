@@ -1,5 +1,7 @@
 # .config/bashrc
 
+OS_NAME="$(awk -F= '/^NAME/{print $2}' /etc/os-release)"
+
 ##### Set bash options ########################################################
 
 # ディレクトリ名を実行すると、そのディレクトリに移動する
@@ -13,7 +15,9 @@ shopt -s globstar
 
 ##### User specific alias #####################################################
 
-alias vi="$HOME/neovim/bin/nvim"
+if [[ "${OS_NAME}" != "Ubuntu" ]]; then
+  alias vi="$HOME/neovim/bin/nvim"
+fi
 
 alias cd='cdls'
 
@@ -62,6 +66,10 @@ if [ -f ~/.local/bin/bashmarks.sh ]; then
   . ~/.local/bin/bashmarks.sh
 fi
 
+##### Enterprise Linux specific configurations ################################
+
+if [[ "${OS_NAME}" != "Ubuntu" ]]; then
+
 ##### For git completion and prompt ###########################################
 
 source "$HOME/src/git/contrib/completion/git-completion.bash"
@@ -109,3 +117,5 @@ case ${UID} in
   PS1="\[${RED}\]\${?##0}\[${PROMPT_COLOR}\][\u@\h \W]\[${GIT_PROMPT_COLOR}\]\$(__git_ps1)\[${GREEN}\]\\$\[${CLEAR_COLOR}\] "
   ;;
 esac
+
+fi
