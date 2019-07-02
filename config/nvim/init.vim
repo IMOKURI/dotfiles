@@ -459,15 +459,15 @@ function! s:shougo_denite_nvim_hook_source()
 
     command! -nargs=1 ToggleOption set <args>! <bar> set <args>?
     let s:toggle_options = [
-                \ "cursorcolumn",
-                \ "cursorline",
-                \ "hlsearch",
-                \ "list",
-                \ "number",
-                \ "paste",
-                \ "relativenumber",
-                \ "spell",
-                \ "wrap",
+                \ 'cursorcolumn',
+                \ 'cursorline',
+                \ 'hlsearch',
+                \ 'list',
+                \ 'number',
+                \ 'paste',
+                \ 'relativenumber',
+                \ 'spell',
+                \ 'wrap',
                 \ ]
     let s:denite_menus.toggle = {
                 \ 'description': 'Toggle option'
@@ -625,12 +625,12 @@ augroup END
 
 function! SafeMkdir(path) abort
     if !isdirectory(a:path)
-        call mkdir(a:path, "p", 0700)
+        call mkdir(a:path, 'p', 0700)
     endif
 endfunction
 
-call SafeMkdir($HOME . "/.local/share/nvim/swap")
-call SafeMkdir($HOME . "/.local/share/nvim/undo")
+call SafeMkdir($HOME . '/.local/share/nvim/swap')
+call SafeMkdir($HOME . '/.local/share/nvim/undo')
 
 " -----------------------------------------------------------------------------
 " Mapping
