@@ -363,8 +363,10 @@ function! s:w0rp_ale()
                 \ }
     let g:ale_python_flake8_options = '--ignore=E501'
     let g:ale_fixers = {
+                \ 'json': ['jq'],
                 \ 'python': ['autopep8', 'yapf', 'isort'],
                 \ }
+    let g:ale_json_jq_options = '--indent 4'
 
     nmap <silent> <C-p> <Plug>(ale_previous_wrap)
     nmap <silent> <C-n> <Plug>(ale_next_wrap)
@@ -717,9 +719,6 @@ inoremap # x<BS>#
 
 " 行末に移動する
 inoremap <C-l> <ESC>A
-
-" jsonを整形する
-cnoremap jq %!jq --indent 4 .
 
 " コマンドの実行結果をバッファに出力する
 cnoremap jj new <bar> put =
