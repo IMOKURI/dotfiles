@@ -1,7 +1,5 @@
 # .config/bashrc
 
-OS_NAME="$(awk -F= '/^NAME/{print $2}' /etc/os-release)"
-
 ##### Set bash options ########################################################
 
 # ディレクトリ名を実行すると、そのディレクトリに移動する
@@ -15,7 +13,7 @@ shopt -s globstar
 
 ##### User specific alias #####################################################
 
-if [[ "${OS_NAME}" != "Ubuntu" ]]; then
+if [ -f /etc/redhat-release ]; then
   alias vi="$HOME/neovim/bin/nvim"
 fi
 
@@ -68,7 +66,7 @@ fi
 
 ##### Enterprise Linux specific configurations ################################
 
-if [[ "${OS_NAME}" != "Ubuntu" ]]; then
+if [ -f /etc/redhat-release ]; then
 
 ##### For git completion and prompt ###########################################
 

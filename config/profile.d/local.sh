@@ -12,8 +12,6 @@ export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/node_modules/.bin:$HOME/.local/
 
 export LESS='-i -M -R -W -z-3 -x4 -F -X'
 
-export GREP_OPTIONS='--exclude-dir=.git'
-
 export EDITOR="vi"
 
 if [ -f ~/.hosts ]; then

@@ -382,7 +382,9 @@ function! s:shougo_denite_nvim_hook_source()
         nnoremap <silent><buffer><expr> <BS>
                     \ denite#do_map('move_up_path')
 
-        set winblend=20
+        if exists('&winblend')
+            set winblend=20
+        endif
     endfunction
 
     function! s:denite_filter_my_settings() abort
@@ -507,7 +509,9 @@ highlight ActiveWindow guibg=#1e1c31 ctermbg=233
 highlight InactiveWindow guibg=#100E23 ctermbg=232
 set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 
-highlight PmenuSel blend=0
+if exists('&blend')
+    highlight PmenuSel blend=0
+endif
 
 function! LightLineFugitive()
     try
