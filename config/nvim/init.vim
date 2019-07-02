@@ -203,9 +203,11 @@ call dein#add('prabirshrestha/async.vim')
 function! s:prabirshrestha_vim_lsp()
     nmap <silent> <Leader>] <Plug>(lsp-definition)
     nmap <silent> <Leader>[ <C-o>
-    nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
+    " nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
     " nmap <silent> <Leader>n <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
+
+    let g:lsp_diagnostics_enabled = 0
 
     " pycodestyle
     " E501 line too long
@@ -224,7 +226,11 @@ function! s:prabirshrestha_vim_lsp()
                 \   'pylint': {'ignore': [
                 \       'C0301',
                 \       'W0703'
-                \   ]}
+                \   ]},
+                \   'jedi_definition': {
+                \       'follow_imports': v:true,
+                \       'follow_builtin_imports': v:true
+                \   }
                 \ }}
                 \ }
 
@@ -340,9 +346,39 @@ function! s:sbdchd_neoformat_hook_source()
 endfunction
 
 call dein#add('sbdchd/neoformat', {
-    \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
-    \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
-    \ })
+            \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
+            \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
+            \ })
+
+function! s:w0rp_ale()
+    let g:ale_sign_error = 'E>'
+    let g:ale_sign_warning = 'W>'
+
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
+
+    let g:ale_linters = {
+                \ 'python': ['flake8', 'pylint'],
+                \ }
+    let g:ale_python_flake8_options = '--ignore=E501'
+    let g:ale_fixers = {
+                \ 'python': ['autopep8', 'yapf', 'isort'],
+                \ }
+
+    nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
+    nmap <silent> <Leader>x <Plug>(ale_fix)
+endfunction
+
+call dein#add('w0rp/ale', {
+            \ 'hook_add': function('s:w0rp_ale')
+            \ })
+
+call dein#add('maximbaz/lightline-ale', {
+            \ 'depends': ['ale', 'lightline.vim']
+            \ })
 
 function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>b :Denite buffer<CR>
@@ -521,13 +557,8 @@ function! LightLineFugitive()
     return ''
 endfunction
 
-function! LightlineQuickFix()
-    let s:buf_num = bufnr('%')
-    let s:qflist = getqflist()
-    let s:buf_diag = filter(s:qflist, {index, dict -> dict['bufnr'] == s:buf_num})
-    let s:count = len(s:buf_diag)
-    return s:count > 0 ? '(」・ω・)」うー ' . s:count : '(/・ω・)/にゃー'
-endfunction
+let g:lightline#ale#indicator_checking = '(」・ω・)」うー '
+let g:lightline#ale#indicator_ok = '(/・ω・)/にゃー'
 
 let g:lightline = {
             \ 'colorscheme': 'tender',
@@ -535,17 +566,26 @@ let g:lightline = {
             \   'left': [
             \     [ 'mode', 'paste' ],
             \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
-            \     [ 'quickfix', 'anzu' ]
+            \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok', 'anzu' ]
             \   ],
             \   'right': [
-            \     [ 'lineinfo' ],
-            \     [ 'percent' ],
-            \     [ 'fileformat', 'fileencoding', 'filetype' ]
+            \     [ 'percent', 'lineinfo' ],
+            \     [ 'filetype' ],
+            \     [ 'fileformat', 'fileencoding' ]
             \   ]
+            \ },
+            \ 'component_expand': {
+            \   'linter_checking': 'lightline#ale#checking',
+            \   'linter_warnings': 'lightline#ale#warnings',
+            \   'linter_errors': 'lightline#ale#errors',
+            \   'linter_ok': 'lightline#ale#ok',
+            \ },
+            \ 'component_type': {
+            \   'linter_warnings': 'warning',
+            \   'linter_errors': 'error',
             \ },
             \ 'component_function': {
             \   'fugitive': 'LightLineFugitive',
-            \   'quickfix': 'LightlineQuickFix',
             \   'anzu': 'anzu#search_status'
             \ }
             \ }
@@ -618,10 +658,6 @@ nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
 
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
-
-" QuickFixのエラーに移動する
-nnoremap <silent> <C-p> :cprev<CR>
-nnoremap <silent> <C-n> :cnext<CR>
 
 " タブを移動する
 nnoremap gn gt
