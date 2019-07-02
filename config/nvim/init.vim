@@ -38,7 +38,7 @@ let g:python_host_prog = ''
 
 let g:dein#install_progress_type = 'title'
 
-let s:dein_dir = s:nvim_dir . '/dein'
+let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
