@@ -583,6 +583,15 @@ augroup nopaste_when_insert_leave
     autocmd InsertLeave * set nopaste
 augroup END
 
+function! SafeMkdir(path) abort
+    if !isdirectory(a:path)
+        call mkdir(a:path, "p", 0700)
+    endif
+endfunction
+
+call SafeMkdir($HOME . ".local/share/nvim/swap")
+call SafeMkdir($HOME . ".local/share/nvim/undo")
+
 " -----------------------------------------------------------------------------
 " Mapping
 " -----------------------------------------------------------------------------
@@ -817,8 +826,8 @@ set clipboard+=unnamedplus
 " undoファイルを作成する
 set undofile
 
-" スワップファイルを作成しない
-set noswapfile
+" スワップファイルを作成する
+set swapfile
 
 " バックアップファイルを作成しない
 set nobackup

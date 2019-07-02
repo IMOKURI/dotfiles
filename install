@@ -71,7 +71,7 @@ sudo -E yum install -y \
 sudo -E yum install -y \
   autoconf \
   automake \
-  cmake \
+  cmake3 \
   ctags \
   expat-devel \
   gcc \
@@ -101,6 +101,8 @@ sudo -E yum install -y \
   unzip \
   wget \
   which
+
+sudo alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 30
 
 ##### Clone Dotfiles ##########################################################
 

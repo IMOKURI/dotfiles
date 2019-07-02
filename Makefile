@@ -37,7 +37,7 @@ pipenv: ## Setup pipenv
 	PIPENV_VENV_IN_PROJECT=true pipenv install pynvim
 
 deploy: ## Create symlink
-	@mkdir -p $(HOME)/{.config,ghe,github,.local/share/nvim/undo}
+	@mkdir -p $(HOME)/{.config,ghe,github}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 	@ln -sfnv $(abspath config/nvim/init.vim) $(HOME)/.vimrc
