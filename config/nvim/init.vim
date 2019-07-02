@@ -204,7 +204,7 @@ function! s:prabirshrestha_vim_lsp()
     nmap <silent> <Leader>] <Plug>(lsp-definition)
     nmap <silent> <Leader>[ <C-o>
     nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
-    nmap <silent> <Leader>n <Plug>(lsp-document-format)
+    " nmap <silent> <Leader>n <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
 
     " pycodestyle
@@ -328,6 +328,21 @@ call dein#add('Shougo/neosnippet', {
             \ 'on_ft': 'snippet',
             \ 'hook_source': function('s:Shougo_neosnippet')
             \ })
+
+function! s:sbdchd_neoformat_hook_add()
+    nnoremap <silent> <Leader>n :Neoformat<CR>
+endfunction
+
+function! s:sbdchd_neoformat_hook_source()
+    let g:neoformat_basic_format_align = 1
+    let g:neoformat_basic_format_retab = 1
+    let g:neoformat_basic_format_trim = 1
+endfunction
+
+call dein#add('sbdchd/neoformat', {
+    \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
+    \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
+    \ })
 
 function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>b :Denite buffer<CR>
