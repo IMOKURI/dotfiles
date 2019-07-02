@@ -315,6 +315,20 @@ call dein#add('martinda/Jenkinsfile-vim-syntax', {
             \ 'on_path': '.*Jenkinsfile'
             \ })
 
+function! s:Shougo_neosnippet()
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+endfunction
+
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neosnippet', {
+            \ 'depends': 'neosnippet-snippets',
+            \ 'on_i': 1,
+            \ 'on_ft': 'snippet',
+            \ 'hook_source': function('s:Shougo_neosnippet')
+            \ })
+
 function! s:shougo_denite_nvim_hook_add()
     nnoremap <silent> <Leader>b :Denite buffer<CR>
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
