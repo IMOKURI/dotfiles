@@ -50,6 +50,7 @@ alias gp='git pull'
 alias gpu='git push'
 alias gs='git status'
 alias gsf='git submodule foreach'
+alias gsr='git submodule foreach git checkout .'
 
 alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
 
