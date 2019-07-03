@@ -105,13 +105,6 @@ CLEAR="\033[0m"
 #GIT_PROMPT_COLOR="\033[38;2;${GIT_PROMPT_RGB}m"
 
 # Set prompt
-case ${UID} in
-0)
-  PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\W\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$\[${CLEAR}\] "
-  ;;
-*)
-  PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\W\[${YELLOW}\]\$(__git_ps1)\[${CYAN}\]\\$\[${CLEAR}\] "
-  ;;
-esac
+PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\W\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$\[${CLEAR}\] "
 
 fi
