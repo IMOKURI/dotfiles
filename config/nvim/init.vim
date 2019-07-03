@@ -362,6 +362,7 @@ function! s:w0rp_ale()
                 \ 'python': ['flake8', 'pylint'],
                 \ }
     let g:ale_python_flake8_options = '--ignore=E501'
+    let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
 
     let g:ale_fixers = {
                 \ 'json': ['jq'],
