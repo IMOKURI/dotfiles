@@ -27,12 +27,12 @@ GITPATH="$HOME/src/git"
 
 ##### Functions ###############################################################
 
-function _banner(){
-  sep=$(for ((i=1; i<$(tput cols); i++)); do echo -n =; done)
+function _banner() {
+  sep=$(for ((i = 1; i < $(tput cols); i++)); do echo -n =; done)
   printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
-function _logger(){
+function _logger() {
   COLOR="${1}"
   printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
@@ -151,7 +151,7 @@ sudo -E yum install -y git-lfs
 
 _banner "Install Pip..."
 
-command -v pip3 &> /dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
+command -v pip3 &>/dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
 
 _banner "Install Python Packages..."
 
@@ -183,7 +183,8 @@ _banner "Install Go Packages..."
 
 go get \
   github.com/mattn/efm-langserver/cmd/efm-langserver \
-  github.com/tokuhirom/git-xlsx-textconv
+  github.com/tokuhirom/git-xlsx-textconv \
+  mvdan.cc/sh/cmd/shfmt
 
 ##### Install ripgrep #########################################################
 
@@ -266,10 +267,10 @@ pushd "$(pwd)"
 cd "${DOTPATH}"
 make install
 if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
-  echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
+  echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
 fi
 if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
-  echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.bash_profile"
+  echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
 fi
 popd
 

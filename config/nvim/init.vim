@@ -362,9 +362,11 @@ function! s:w0rp_ale()
                 \ 'python': ['flake8', 'pylint'],
                 \ }
     let g:ale_python_flake8_options = '--ignore=E501'
+
     let g:ale_fixers = {
                 \ 'json': ['jq'],
                 \ 'python': ['autopep8', 'yapf', 'isort'],
+                \ 'sh': ['shfmt'],
                 \ }
     let g:ale_json_jq_options = '--indent 4'
 
