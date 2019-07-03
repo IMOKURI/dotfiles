@@ -157,6 +157,7 @@ _banner "Install Python Packages..."
 
 pip install --user \
   ansible \
+  neovim \
   pipenv \
   pipenv-pipes \
   pysnooper \
