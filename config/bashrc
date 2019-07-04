@@ -52,7 +52,21 @@ alias gs='git status'
 alias gsf='git submodule foreach'
 alias gsr='git submodule foreach git checkout .'
 
-alias git-delete-merged-branch='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
+# Delete merged branch
+alias gbd='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
+
+# Delere squash merged branch
+function gbds() {
+  git checkout -q master
+  git for-each-ref refs/heads/ "--format=%(refname:short)" | \
+    while read branch; do
+      mergeBase=$(git merge-base master "$branch")
+      if [[ $(git cherry master "$(git commit-tree "$(git rev-parse "$branch"^{tree})" -p "$mergeBase" -m _)") == "-"* ]]; then
+        git branch -D "$branch"
+      fi
+    done
+}
+alias gbds=gbds
 
 alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
 #alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validateJenkinsfile'
