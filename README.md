@@ -12,6 +12,7 @@
 ## Support
 
 - CentOS/RHEL 7
+- Ubuntu (wo installer)
 
 ## Requirement
 
