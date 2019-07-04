@@ -105,7 +105,9 @@ CLEAR="\033[0m"
 #GIT_PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:6:2} 0x${HMD5:8:2} 0x${HMD5:10:2})"
 #GIT_PROMPT_COLOR="\033[38;2;${GIT_PROMPT_RGB}m"
 
+PROMPT_DIRTRIM=3
+
 # Set prompt
-PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\W\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$\[${CLEAR}\] "
+PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\w\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$\[${CLEAR}\] "
 
 fi
