@@ -421,6 +421,8 @@ function! s:shougo_denite_nvim_hook_source() abort
                     \ denite#do_map('do_action', 'vsplit')
         nnoremap <silent><buffer><expr> p
                     \ denite#do_map('do_action', 'preview')
+        nnoremap <silent><buffer><expr> d
+                    \ denite#do_map('do_action', 'delete')
         nnoremap <silent><buffer><expr> <ESC>
                     \ denite#do_map('quit')
         nnoremap <silent><buffer><expr> i
