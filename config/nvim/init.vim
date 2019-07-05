@@ -369,6 +369,7 @@ function! s:w0rp_ale() abort
                 \ 'python': ['flake8', 'pylint'],
                 \ }
     let g:ale_python_flake8_options = '--ignore=E501'
+    let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
     let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
 
     let g:ale_fixers = {
