@@ -140,6 +140,10 @@ call dein#add('cohama/lexima.vim', {
 
 call dein#add('tpope/vim-surround')
 
+call dein#add('tpope/vim-commentary')
+
+call dein#add('junegunn/vim-easy-align')
+
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
 
 call dein#add('dhruvasagar/vim-table-mode')
