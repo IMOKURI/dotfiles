@@ -142,7 +142,15 @@ call dein#add('tpope/vim-surround')
 
 call dein#add('tpope/vim-commentary')
 
-call dein#add('junegunn/vim-easy-align')
+function! s:junegunn_vim_easy_align() abort
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+endfunction
+
+call dein#add('junegunn/vim-easy-align', {
+            \ 'hook_add': function('s:junegunn_vim_easy_align')
+            \ })
+
 
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
 
