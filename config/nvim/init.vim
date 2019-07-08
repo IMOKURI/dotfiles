@@ -523,6 +523,38 @@ call dein#add('pocari/vim-denite-emoji', {
             \ 'hook_add': function('s:pocari_vim_denite_emoji'),
             \ })
 
+function! s:chemzqm_denite_git_add() abort
+    nnoremap <silent> <Leader>gb :Denite gitbranch<CR>
+    nnoremap <silent> <Leader>gg :Denite gitlog<CR>
+    nnoremap <silent> <Leader>gs :Denite gitstatus<CR>
+    nnoremap <silent> <Leader>gd :Denite gitchanged -auto-action=preview<CR>
+endfunction
+
+function! s:chemzqm_denite_git_source() abort
+
+    augroup DeniteGit
+        autocmd!
+        autocmd FileType denite call s:denite_git_my_settings()
+    augroup END
+
+    function! s:denite_git_my_settings() abort
+        nnoremap <silent><buffer><expr> a
+                    \ denite#do_map('do_action', 'add')
+        nnoremap <silent><buffer><expr> r
+                    \ denite#do_map('do_action', 'commit')
+        nnoremap <silent><buffer><expr> r
+                    \ denite#do_map('do_action', 'reset')
+    endfunction
+
+endfunction
+
+call dein#add('chemzqm/denite-git', {
+            \ 'depends': 'denite.nvim',
+            \ 'on_source': 'denite.nvim',
+            \ 'hook_add': function('s:chemzqm_denite_git_add'),
+            \ 'hook_source': function('s:chemzqm_denite_git_source'),
+            \ })
+
 call dein#end()
 
 if dein#check_install()
