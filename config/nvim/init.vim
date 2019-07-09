@@ -99,6 +99,15 @@ call dein#add('lambdalisue/suda.vim', {
             \ 'hook_add': function('s:lambdalisue_suda_vim')
             \ })
 
+function! s:airblade_vim_rooter() abort
+    let g:rooter_change_directory_for_non_project_files = 'current'
+    let g:rooter_patterns = ['.git', '.git/']
+endfunction
+
+call dein#add('airblade/vim-rooter', {
+            \ 'hook_add': function('s:airblade_vim_rooter')
+            \ })
+
 call dein#add('tpope/vim-sleuth')
 
 function! s:t9md_vim_quickhl() abort
@@ -419,11 +428,11 @@ function! s:shougo_denite_nvim_hook_source() abort
 
     augroup Denite
         autocmd!
-        autocmd FileType denite call s:denite_my_settings()
-        autocmd FileType denite-filter call s:denite_filter_my_settings()
+        autocmd FileType denite call s:denite_settings()
+        autocmd FileType denite-filter call s:denite_filter_settings()
     augroup END
 
-    function! s:denite_my_settings() abort
+    function! s:denite_settings() abort
         nnoremap <silent><buffer><expr> <CR>
                     \ denite#do_map('do_action')
         nnoremap <silent><buffer><expr> t
@@ -450,7 +459,7 @@ function! s:shougo_denite_nvim_hook_source() abort
         endif
     endfunction
 
-    function! s:denite_filter_my_settings() abort
+    function! s:denite_filter_settings() abort
         nnoremap <silent><buffer><expr> <ESC>
                     \ denite#do_map('quit')
     endfunction
@@ -531,21 +540,19 @@ function! s:chemzqm_denite_git_add() abort
 endfunction
 
 function! s:chemzqm_denite_git_source() abort
-
     augroup DeniteGit
         autocmd!
-        autocmd FileType denite call s:denite_git_my_settings()
+        autocmd FileType denite call s:denite_git_settings()
     augroup END
 
-    function! s:denite_git_my_settings() abort
+    function! s:denite_git_settings() abort
         nnoremap <silent><buffer><expr> a
                     \ denite#do_map('do_action', 'add')
-        nnoremap <silent><buffer><expr> r
+        nnoremap <silent><buffer><expr> c
                     \ denite#do_map('do_action', 'commit')
         nnoremap <silent><buffer><expr> r
                     \ denite#do_map('do_action', 'reset')
     endfunction
-
 endfunction
 
 call dein#add('chemzqm/denite-git', {
@@ -553,6 +560,30 @@ call dein#add('chemzqm/denite-git', {
             \ 'on_source': 'denite.nvim',
             \ 'hook_add': function('s:chemzqm_denite_git_add'),
             \ 'hook_source': function('s:chemzqm_denite_git_source'),
+            \ })
+
+function! s:lambdalisue_session_vim_add() abort
+    let g:session_dir = expand('~/.local/share/nvim/session')
+
+    nnoremap <silent> <Leader>s :Denite session<CR>
+endfunction
+
+function! s:lambdalisue_session_vim_source() abort
+    augroup DeniteSession
+        autocmd!
+        autocmd FileType denite call s:denite_session_settings()
+    augroup END
+
+    function! s:denite_session_settings() abort
+        nnoremap <silent><buffer><expr> r
+                    \ denite#do_map('do_action', 'remove')
+    endfunction
+endfunction
+
+call dein#add('lambdalisue/session.vim', {
+            \ 'depends': 'denite.nvim',
+            \ 'hook_add': function('s:lambdalisue_session_vim_add'),
+            \ 'hook_source': function('s:lambdalisue_session_vim_source')
             \ })
 
 call dein#end()
@@ -690,6 +721,7 @@ function! SafeMkdir(path) abort
     endif
 endfunction
 
+call SafeMkdir($HOME . '/.local/share/nvim/session')
 call SafeMkdir($HOME . '/.local/share/nvim/swap')
 call SafeMkdir($HOME . '/.local/share/nvim/undo')
 
