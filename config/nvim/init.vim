@@ -562,30 +562,6 @@ call dein#add('chemzqm/denite-git', {
             \ 'hook_source': function('s:chemzqm_denite_git_source'),
             \ })
 
-function! s:lambdalisue_session_vim_add() abort
-    let g:session_dir = expand('~/.local/share/nvim/session')
-
-    nnoremap <silent> <Leader>s :Denite session<CR>
-endfunction
-
-function! s:lambdalisue_session_vim_source() abort
-    augroup DeniteSession
-        autocmd!
-        autocmd FileType denite call s:denite_session_settings()
-    augroup END
-
-    function! s:denite_session_settings() abort
-        nnoremap <silent><buffer><expr> r
-                    \ denite#do_map('do_action', 'remove')
-    endfunction
-endfunction
-
-call dein#add('lambdalisue/session.vim', {
-            \ 'depends': 'denite.nvim',
-            \ 'hook_add': function('s:lambdalisue_session_vim_add'),
-            \ 'hook_source': function('s:lambdalisue_session_vim_source')
-            \ })
-
 call dein#end()
 
 if dein#check_install()

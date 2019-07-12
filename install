@@ -256,8 +256,8 @@ _banner "Install Vim..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-make build-vim
-# _logger "${INFO}" "Skip to build vim."
+# make build-vim
+_logger "${INFO}" "Skip to build vim."
 popd
 
 ##### Install dotfiles ########################################################
