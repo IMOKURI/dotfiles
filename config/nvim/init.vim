@@ -701,6 +701,24 @@ call SafeMkdir($HOME . '/.local/share/nvim/session')
 call SafeMkdir($HOME . '/.local/share/nvim/swap')
 call SafeMkdir($HOME . '/.local/share/nvim/undo')
 
+function! s:smart_foldcloser() abort
+    if foldlevel('.') == 0
+        norm! zM
+        return
+    endif
+
+    let foldc_lnum = foldclosed('.')
+    norm! zc
+    if foldc_lnum == -1
+        return
+    endif
+
+    if foldclosed('.') != foldc_lnum
+        return
+    endif
+    norm! zM
+endfunction
+
 " -----------------------------------------------------------------------------
 " Mapping
 " -----------------------------------------------------------------------------
@@ -766,6 +784,18 @@ nnoremap <C-h> <C-w>h
 nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
 
+" 折りたたみを開く
+nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+
+" 折りたたみを閉じる
+nnoremap <silent> , :<C-u>call <SID>smart_foldcloser()<CR>
+
+" 現在いるところ以外の折り畳みを閉じる
+nnoremap <silent> z, zMzv
+
+" 現在いる折り畳みと同じ階層までの全ての折り畳みを開く
+nnoremap <silent> zl :<C-u>set foldlevel=<C-r>=foldlevel('.')<CR><CR>
+
 " 検索結果のハイライトをEsc連打でクリアする
 nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
 
@@ -784,8 +814,9 @@ vnoremap <Leader>P "0P
 " # を入力したときに行頭に移動しない
 inoremap # x<BS>#
 
-" 行末に移動する
-inoremap <C-l> <ESC>A
+" インサートモード中に左右に移動する
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " コマンドの実行結果をバッファに出力する
 cnoremap jj new <bar> put =
@@ -843,6 +874,18 @@ set showbreak=(//_//)
 
 " showbreakを左端に表示する
 set breakindentopt=sbr
+
+" indentの階層で折りたたみを行う
+set foldmethod=indent
+
+" 3行以上が対象となる場合のみ折りたたむ
+set foldminlines=3
+
+" 折りたたみの最大の深さ
+set foldnestmax=5
+
+" foldの余白は空白で埋める
+set fillchars=fold:\ 
 
 " 画面端が3行見える状態でスクロールする
 set scrolloff=3
