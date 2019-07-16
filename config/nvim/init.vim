@@ -609,6 +609,8 @@ syntax on
 
 colorscheme challenger_deep
 
+highlight Folded guibg=#565575 ctermbg=236
+
 if has('nvim')
     highlight ActiveWindow guibg=#1e1c31 ctermbg=233
     highlight InactiveWindow guibg=#100E23 ctermbg=232
