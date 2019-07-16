@@ -120,8 +120,6 @@ call dein#add('t9md/vim-quickhl', {
             \ 'hook_add': function('s:t9md_vim_quickhl')
             \ })
 
-call dein#add('itchyny/vim-cursorword')
-
 call dein#add('haya14busa/is.vim')
 
 function! s:osyo_manga_vim_anzu() abort
