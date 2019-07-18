@@ -819,7 +819,7 @@ vnoremap <Leader>P "0P
 inoremap # x<BS>#
 
 " インサートモード中に左右に移動する
-inoremap <C-h> <left>
+"inoremap <C-h> <left>
 inoremap <C-l> <right>
 
 " コマンドの実行結果をバッファに出力する
