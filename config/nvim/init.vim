@@ -886,7 +886,7 @@ set foldmethod=indent
 set foldminlines=3
 
 " 折りたたみの最大の深さ
-set foldnestmax=5
+set foldnestmax=10
 
 " foldの余白は空白で埋める
 set fillchars=fold:\ 
