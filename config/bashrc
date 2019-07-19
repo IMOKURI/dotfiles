@@ -27,7 +27,7 @@ cdd () {
   cd ~/.dotfiles/
 }
 
-cdroot () {
+cdr () {
   cd "$(git rev-parse --show-toplevel)" || return
 }
 
