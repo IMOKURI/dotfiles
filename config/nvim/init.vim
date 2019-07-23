@@ -822,11 +822,8 @@ inoremap # x<BS>#
 "inoremap <C-h> <left>
 inoremap <C-l> <right>
 
-" visual modeでcommand line windowを開く
-vnoremap q: :<c-f>
-
 " コマンドの実行結果をバッファに出力する
-cnoremap jj new <bar> put =
+cnoremap cmd new <bar> put =
 
 " -----------------------------------------------------------------------------
 " Options
