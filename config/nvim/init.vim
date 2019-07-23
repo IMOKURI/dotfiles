@@ -695,16 +695,6 @@ augroup nopaste_when_insert_leave
     autocmd InsertLeave * set nopaste
 augroup END
 
-function! SafeMkdir(path) abort
-    if !isdirectory(a:path)
-        call mkdir(a:path, 'p', 0700)
-    endif
-endfunction
-
-call SafeMkdir($HOME . '/.local/share/nvim/session')
-call SafeMkdir($HOME . '/.local/share/nvim/swap')
-call SafeMkdir($HOME . '/.local/share/nvim/undo')
-
 function! s:smart_foldcloser() abort
     if foldlevel('.') == 0
         norm! zM
@@ -822,9 +812,6 @@ inoremap # x<BS>#
 "inoremap <C-h> <left>
 inoremap <C-l> <right>
 
-" コマンドの実行結果をバッファに出力する
-cnoremap cmd new <bar> put =
-
 " -----------------------------------------------------------------------------
 " Options
 " -----------------------------------------------------------------------------
@@ -894,26 +881,14 @@ set fillchars=fold:\
 " 画面端が3行見える状態でスクロールする
 set scrolloff=3
 
-" 最後の行を出来る限り表示する
-set display=lastline
-
-" 末尾から2行目にステータスラインを常時表示
-set laststatus=2
-
 " モードを非表示にする
 set noshowmode
-
-" ファイルが変更されたとき、再読込する
-set autoread
 
 " 保存していなくても移動できる
 set hidden
 
 " 画面の更新時間を設定(ms)
 set updatetime=250
-
-" Escを押してから挿入モードを抜けるまでの時間を短くする
-set ttimeoutlen=100
 
 " 80文字目にラインを表示
 set colorcolumn=80
@@ -938,25 +913,14 @@ set ignorecase
 " 検索文字列に大文字が含まれている場合は区別して検索する
 set smartcase
 
-" インクリメンタルサーチ
-set incsearch
-
 " 検索時に最後まで行ったら最初に戻る
 set wrapscan
 
 " ファイルを検索する際大文字/小文字を区別しない
 set fileignorecase
 
-" ファイル名補完を行う
-set wildmenu
-
 " ファイル名を補完する
 set wildmode=longest,full
-
-" ファイル名補完をポップアップで表示する
-if has('nvim')
-    silent! set wildoptions=pum
-endif
 
 " 置換内容を表示
 if has('nvim')
@@ -965,9 +929,6 @@ endif
 
 " 矩形選択時に文字のないところにカーソルを移動できるようにする
 set virtualedit+=block
-
-" backspaceでの削除を有効化
-set backspace=indent,eol,start
 
 " clipboard設定
 set clipboard+=unnamedplus
