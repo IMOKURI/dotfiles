@@ -65,7 +65,7 @@ build-neovim: ## Build neovim
 	rm -fr .deps build/ && \
 	make distclean && \
 	make clean && \
-	make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
+	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
 	make install
 
 vim: update-vim build-vim ## Get latest vim
