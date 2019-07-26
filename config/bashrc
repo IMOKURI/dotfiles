@@ -51,6 +51,7 @@ alias gpu='git push'
 alias gs='git status'
 alias gsf='git submodule foreach'
 alias gsr='git submodule foreach git checkout .'
+alias gsu='git submodule foreach git pull origin master'
 
 # Delete merged branch
 alias gbd='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
