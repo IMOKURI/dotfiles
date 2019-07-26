@@ -768,7 +768,7 @@ vnoremap - <C-x>
 nnoremap j gj
 nnoremap k gk
 
-" バッファを移動する
+" ウィンドウを移動する
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
@@ -777,6 +777,9 @@ nnoremap <C-h> <C-w>h
 " ウィンドウを分割する
 nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
+
+" 直前のバッファに移動する
+nnoremap <Leader><Tab> <C-^>
 
 " 折りたたみを開く
 nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
