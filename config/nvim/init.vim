@@ -62,6 +62,16 @@ endif
 " cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
 "---------------------------------------------------------------------------"
 
+" variable prefixes
+" b:    Local to the current buffer.
+" w:    Local to the current window.
+" t:    Local to the current tab page.
+" g:    Global.
+" l:    Local to a function.
+" s:    Local to a :source'ed Vim script.
+" a:    Function argument (only inside a function).
+" v:    Global, predefined by Vim.
+
 call dein#begin(s:dein_dir)
 
 call dein#add('Shougo/dein.vim')
