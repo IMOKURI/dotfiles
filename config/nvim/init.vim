@@ -627,6 +627,13 @@ if has('nvim')
     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endif
 
+if has('nvim-0.3.2')
+    highlight ALEErrorSignLineNr guifg=#ff5458 guibg=#100E23 ctermbg=232
+    highlight ALEStyleErrorSignLineNr guifg=#ff5458 guibg=#100E23 ctermbg=232
+    highlight ALEWarningSignLineNr guifg=#ffb378 guibg=#100E23 ctermbg=232
+    highlight ALEStyleWarningSignLineNr guifg=#ffb378 guibg=#100E23 ctermbg=232
+endif
+
 if exists('&blend')
     highlight PmenuSel blend=0
 endif
