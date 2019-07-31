@@ -183,7 +183,7 @@ npm install \
 _banner "Install Go Packages..."
 
 go get \
-  github.com/mattn/efm-langserver/cmd/efm-langserver \
+  github.com/mattn/efm-langserver \
   github.com/tokuhirom/git-xlsx-textconv \
   mvdan.cc/sh/cmd/shfmt
 
