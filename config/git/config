@@ -29,9 +29,6 @@
 [status]
   showUntrackedFiles = all
 
-[submodule]
-  recurse = true
-
 [fetch]
   prune = true
 
