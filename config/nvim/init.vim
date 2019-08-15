@@ -428,6 +428,7 @@ call dein#add('maximbaz/lightline-ale', {
 
 function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>b :Denite buffer<CR>
+    nnoremap <silent> <Leader>e :DeniteBufferDir file/rec<CR>
     nnoremap <silent> <Leader>f :Denite file/rec<CR>
     nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep -auto-action=preview<CR>
@@ -734,7 +735,7 @@ endfunction
 " Mapping
 " -----------------------------------------------------------------------------
 " Exploreを開く
-nnoremap <silent> <Leader>e :Explore<CR>
+"nnoremap <silent> <Leader>e :Explore<CR>
 
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
