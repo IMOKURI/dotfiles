@@ -1,7 +1,15 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-let g:mapleader = "\<Space>"
+if !exists('g:mapleader')
+    let g:mapleader = "\<Space>"
+endif
+
+augroup GlobalAutoCmd
+    autocmd!
+augroup END
+command! -nargs=* Gautocmd autocmd GlobalAutoCmd <args>
+command! -nargs=* Gautocmdft autocmd GlobalAutoCmd FileType <args>
 
 " -----------------------------------------------------------------------------
 " Detect platform
@@ -117,10 +125,7 @@ if dein#load_state(s:dein_dir)
         nmap N <Plug>(is-nohl)<Plug>(anzu-N)
         nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
 
-        augroup vim_anzu
-            autocmd!
-            autocmd WinLeave,TabLeave * call anzu#clear_search_status()
-        augroup END
+        Gautocmd WinLeave,TabLeave * call anzu#clear_search_status()
     endfunction
 
     call dein#add('osyo-manga/vim-anzu', {
@@ -223,11 +228,13 @@ if dein#load_state(s:dein_dir)
     endfunction
 
     call dein#add('Shougo/echodoc.vim', {
+                \ 'lazy': 1,
                 \ 'depends': 'deoplete.nvim',
                 \ 'hook_add': function('s:shougo_echodoc_vim')
                 \ })
 
     call dein#add('fszymanski/deoplete-emoji', {
+                \ 'lazy': 1,
                 \ 'depends': 'deoplete.nvim',
                 \ })
 
@@ -267,70 +274,52 @@ if dein#load_state(s:dein_dir)
                     \ }
 
         if (executable('pyls'))
-            augroup LspPython
-                autocmd!
-                autocmd User lsp_setup call lsp#register_server({
-                            \ 'name': 'pyls',
-                            \ 'cmd': {server_info->['pyls']},
-                            \ 'whitelist': ['python'],
-                            \ 'workspace_config': s:workspace_config_python
-                            \ })
-            augroup END
+            Gautocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'pyls',
+                        \ 'cmd': {server_info->['pyls']},
+                        \ 'whitelist': ['python'],
+                        \ 'workspace_config': s:workspace_config_python
+                        \ })
         endif
 
         if executable('docker-langserver')
-            augroup LspDocker
-                autocmd!
-                autocmd User lsp_setup call lsp#register_server({
-                            \ 'name': 'docker-langserver',
-                            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-                            \ 'whitelist': ['dockerfile'],
-                            \ })
-            augroup END
+            Gautocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'docker-langserver',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+                        \ 'whitelist': ['dockerfile'],
+                        \ })
         endif
 
         if executable('bash-language-server')
-            augroup LspBash
-                autocmd!
-                autocmd User lsp_setup call lsp#register_server({
-                            \ 'name': 'bash-language-server',
-                            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                            \ 'whitelist': ['sh'],
-                            \ })
-            augroup END
+            Gautocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'bash-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+                        \ 'whitelist': ['sh'],
+                        \ })
         endif
 
         if executable('vscode-json-languageserver')
-            augroup LspJson
-                autocmd!
-                autocmd User lsp_setup call lsp#register_server({
-                            \ 'name': 'vscode-json-languageserver',
-                            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
-                            \ 'whitelist': ['json'],
-                            \ })
-            augroup END
+            Gautocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'vscode-json-languageserver',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
+                        \ 'whitelist': ['json'],
+                        \ })
         endif
 
         if executable('yaml-language-server')
-            augroup LspYaml
-                autocmd!
-                autocmd User lsp_setup call lsp#register_server({
-                            \ 'name': 'yaml-language-server',
-                            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
-                            \ 'whitelist': ['yaml'],
-                            \ })
-            augroup END
+            Gautocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'yaml-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
+                        \ 'whitelist': ['yaml'],
+                        \ })
         endif
 
         if executable('efm-langserver')
-            augroup LspEFM
-                autocmd!
-                autocmd User lsp_setup call lsp#register_server({
-                            \ 'name': 'efm-langserver-erb',
-                            \ 'cmd': {server_info->['efm-langserver']},
-                            \ 'whitelist': ['vim', 'markdown'],
-                            \ })
-            augroup END
+            Gautocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'efm-langserver-erb',
+                        \ 'cmd': {server_info->['efm-langserver']},
+                        \ 'whitelist': ['vim', 'markdown'],
+                        \ })
         endif
 
     endfunction
@@ -342,6 +331,7 @@ if dein#load_state(s:dein_dir)
                 \ })
 
     call dein#add('lighttiger2505/deoplete-vim-lsp', {
+                \ 'lazy': 1,
                 \ 'depends': ['deoplete.nvim', 'vim-lsp'],
                 \ })
 
@@ -436,11 +426,8 @@ if dein#load_state(s:dein_dir)
 
     function! s:shougo_denite_nvim_hook_source() abort
 
-        augroup Denite
-            autocmd!
-            autocmd FileType denite call s:denite_settings()
-            autocmd FileType denite-filter call s:denite_filter_settings()
-        augroup END
+        Gautocmdft denite call s:denite_settings()
+        Gautocmdft denite-filter call s:denite_filter_settings()
 
         function! s:denite_settings() abort
             nnoremap <silent><buffer><expr> <CR>
@@ -550,10 +537,7 @@ if dein#load_state(s:dein_dir)
     endfunction
 
     function! s:chemzqm_denite_git_source() abort
-        augroup DeniteGit
-            autocmd!
-            autocmd FileType denite call s:denite_git_settings()
-        augroup END
+        Gautocmdft denite call s:denite_git_settings()
 
         function! s:denite_git_settings() abort
             nnoremap <silent><buffer><expr> a
@@ -662,10 +646,7 @@ let g:lightline = {
             \ }
             \ }
 
-augroup custom_filetype
-    autocmd!
-    autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
-augroup END
+Gautocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
 " This does not work. Use ginit.vim instead.
 "if has('gui_running')
@@ -676,24 +657,15 @@ augroup END
 " Useful function
 " -----------------------------------------------------------------------------
 
-augroup remember_cursor
-    autocmd!
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal! g'\"" |
-                \ endif
-augroup END
+Gautocmd BufReadPost *
+            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+            \   exe "normal! g'\"" |
+            \ endif
 
-augroup auto_cursorline
-    autocmd!
-    autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-    autocmd CursorHold,CursorHoldI * setlocal cursorline
-augroup END
+Gautocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+Gautocmd CursorHold,CursorHoldI * setlocal cursorline
 
-augroup nopaste_when_insert_leave
-    autocmd!
-    autocmd InsertLeave * set nopaste
-augroup END
+Gautocmd InsertLeave * set nopaste
 
 function! s:smart_foldcloser() abort
     if foldlevel('.') == 0
