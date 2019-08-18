@@ -205,10 +205,19 @@ if dein#load_state(s:dein_dir)
         endfunction
 
         call dein#add('ncm2/float-preview.nvim', {
-                    \ 'on_i': 1,
+                    \ 'on_source': 'deoplete.nvim',
                     \ 'hook_add': function('s:ncm2_float_preview')
                     \ })
     endif
+
+    function! s:shougo_echodoc_vim() abort
+        let g:echodoc#enable_at_startup = 1
+    endfunction
+
+    call dein#add('Shougo/echodoc.vim', {
+                \ 'on_source': 'deoplete.nvim',
+                \ 'hook_add': function('s:shougo_echodoc_vim')
+                \ })
 
     function! s:shougo_deoplete_nvim() abort
         let g:deoplete#enable_at_startup = 1
@@ -221,16 +230,6 @@ if dein#load_state(s:dein_dir)
     call dein#add('Shougo/deoplete.nvim', {
                 \ 'on_i': 1,
                 \ 'hook_add': function('s:shougo_deoplete_nvim')
-                \ })
-
-    function! s:shougo_echodoc_vim() abort
-        let g:echodoc#enable_at_startup = 1
-    endfunction
-
-    call dein#add('Shougo/echodoc.vim', {
-                \ 'lazy': 1,
-                \ 'depends': 'deoplete.nvim',
-                \ 'hook_add': function('s:shougo_echodoc_vim')
                 \ })
 
     call dein#add('fszymanski/deoplete-emoji', {
