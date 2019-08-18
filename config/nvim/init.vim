@@ -528,7 +528,7 @@ if dein#load_state(s:dein_dir)
     endfunction
 
     call dein#add('Shougo/denite.nvim', {
-                \ 'on_cmd': ['Denite', 'DeniteCursorWord'],
+                \ 'on_cmd': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord'],
                 \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
                 \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
                 \ })
@@ -771,7 +771,8 @@ nnoremap k gk
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+"nnoremap <C-h> <C-w>h
+nnoremap <BS> <C-w>h
 
 " ウィンドウを分割する
 nnoremap <Leader>- <C-w>s
