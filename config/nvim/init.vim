@@ -175,29 +175,6 @@ if dein#load_state(s:dein_dir)
 
     call dein#add('dhruvasagar/vim-table-mode')
 
-    " Session Manager
-    function! s:xolox_vim_session() abort
-        let s:local_session_directory = getcwd() . '/.vimsessions'
-        if isdirectory(s:local_session_directory)
-            let g:session_directory = s:local_session_directory
-            let g:session_autosave = 'yes'
-            let g:session_autoload = 'yes'
-            let g:session_autosave_periodic = 1
-            let g:session_autosave_silent = 1
-            set sessionoptions-=help
-        else
-            let g:session_autosave = 'no'
-            let g:session_autoload = 'no'
-        endif
-        unlet s:local_session_directory
-    endfunction
-
-    call dein#add('xolox/vim-misc')
-    call dein#add('xolox/vim-session', {
-                \ 'depends': 'vim-misc',
-                \ 'hook_add': function('s:xolox_vim_session')
-                \ })
-
     " Completion
     if has('nvim')
         function! s:ncm2_float_preview() abort
