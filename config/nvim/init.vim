@@ -466,24 +466,6 @@ if dein#load_state(s:dein_dir)
                     \ ['installer', '~/.dotfiles/install']
                     \ ]
 
-        command! -nargs=1 ToggleOption set <args>! <bar> set <args>?
-        let s:toggle_options = [
-                    \ 'cursorcolumn',
-                    \ 'cursorline',
-                    \ 'hlsearch',
-                    \ 'list',
-                    \ 'number',
-                    \ 'paste',
-                    \ 'relativenumber',
-                    \ 'spell',
-                    \ 'wrap',
-                    \ ]
-        let s:denite_menus.toggle = {
-                    \ 'description': 'Toggle option'
-                    \ }
-        let s:denite_menus.toggle.command_candidates =
-                    \ map(copy(s:toggle_options), '[v:val, "ToggleOption " . v:val]')
-
         call denite#custom#var('menu', 'menus', s:denite_menus)
 
     endfunction
@@ -516,11 +498,11 @@ if dein#load_state(s:dein_dir)
         Gautocmdft denite call s:denite_git_settings()
 
         function! s:denite_git_settings() abort
-            nnoremap <silent><buffer><expr> a
+            nnoremap <silent><buffer><expr> ga
                         \ denite#do_map('do_action', 'add')
-            nnoremap <silent><buffer><expr> c
+            nnoremap <silent><buffer><expr> gc
                         \ denite#do_map('do_action', 'commit')
-            nnoremap <silent><buffer><expr> r
+            nnoremap <silent><buffer><expr> gr
                         \ denite#do_map('do_action', 'reset')
         endfunction
     endfunction
@@ -530,6 +512,31 @@ if dein#load_state(s:dein_dir)
                 \ 'on_source': 'denite.nvim',
                 \ 'hook_add': function('s:chemzqm_denite_git_add'),
                 \ 'hook_source': function('s:chemzqm_denite_git_source'),
+                \ })
+
+    " Session Manager
+    function! s:lambdalisue_session_vim_add() abort
+        nnoremap <silent> <Leader>s :Denite session<CR>
+    endfunction
+
+    function! s:lambdalisue_session_vim_source() abort
+        Gautocmdft denite call s:denite_session_settings()
+
+        function! s:denite_session_settings() abort
+            nnoremap <silent><buffer><expr> so
+                        \ denite#do_map('do_action', 'open')
+            nnoremap <silent><buffer><expr> sf
+                        \ denite#do_map('do_action', 'open_force')
+            nnoremap <silent><buffer><expr> sr
+                        \ denite#do_map('do_action', 'remove')
+        endfunction
+    endfunction
+
+    call dein#add('lambdalisue/session.vim', {
+                \ 'depends': 'denite.nvim',
+                \ 'on_source': 'denite.nvim',
+                \ 'hook_add': function('s:lambdalisue_session_vim_add'),
+                \ 'hook_source': function('s:lambdalisue_session_vim_source')
                 \ })
 
     call dein#end()
