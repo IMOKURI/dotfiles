@@ -29,12 +29,13 @@ let s:nvim_dir = $XDG_CONFIG_HOME . '/nvim'
 
 if g:env =~# 'LINUX'
     let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
+    let g:python_host_prog = '/usr/bin/python2'
     let g:node_host_prog = expand('~/node_modules/.bin/neovim-node-host')
 elseif g:env =~# 'WINDOWS'
     let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
+    let g:python_host_prog = ''
+    let g:node_host_prog = ''
 endif
-
-let g:python_host_prog = ''
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -74,41 +75,19 @@ if dein#load_state(s:dein_dir)
 
     call dein#begin(s:dein_dir)
 
+    " Plugin Manager
     call dein#add('Shougo/dein.vim')
     call dein#add('wsdjeg/dein-ui.vim')
 
+    " Color Scheme
     call dein#add('challenger-deep-theme/vim')
     call dein#add('jacoborus/tender.vim')
-    call dein#add('itchyny/lightline.vim')
 
+    " Git
     call dein#add('airblade/vim-gitgutter')
     call dein#add('tpope/vim-fugitive')
 
-    function! s:mattn_gist_vim() abort
-        " create a "Personal Access Token" and place it in a file named ~/.gist-vim like this:
-        " >
-        "     token xxxxx
-        " <
-        let g:gist_api_url = 'https://github.hpe.com/api/v3'
-        let g:gist_show_privates = 1
-        let g:gist_get_multiplefile = 1
-        let g:gist_detect_filetype = 1
-    endfunction
-
-    call dein#add('mattn/webapi-vim')
-    call dein#add('mattn/gist-vim', {
-                \ 'depends': 'webapi-vim',
-                \ 'hook_add': function('s:mattn_gist_vim')
-                \ })
-
-    function! s:lambdalisue_suda_vim() abort
-        let g:suda_smart_edit = 1
-    endfunction
-
-    call dein#add('lambdalisue/suda.vim', {
-                \ 'hook_add': function('s:lambdalisue_suda_vim')
-                \ })
-
+    " Project
     function! s:airblade_vim_rooter() abort
         let g:rooter_change_directory_for_non_project_files = 'current'
         let g:rooter_patterns = ['.git', '.git/']
@@ -118,8 +97,7 @@ if dein#load_state(s:dein_dir)
                 \ 'hook_add': function('s:airblade_vim_rooter')
                 \ })
 
-    call dein#add('tpope/vim-sleuth')
-
+    " Highlight
     function! s:t9md_vim_quickhl() abort
         nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
         xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
@@ -150,6 +128,21 @@ if dein#load_state(s:dein_dir)
                 \ 'hook_add': function('s:osyo_manga_vim_anzu')
                 \ })
 
+    call dein#add('mechatroner/rainbow_csv')
+
+    call dein#add('martinda/Jenkinsfile-vim-syntax', {
+                \ 'on_path': '.*Jenkinsfile'
+                \ })
+
+    " Utility
+    function! s:lambdalisue_suda_vim() abort
+        let g:suda_smart_edit = 1
+    endfunction
+
+    call dein#add('lambdalisue/suda.vim', {
+                \ 'hook_add': function('s:lambdalisue_suda_vim')
+                \ })
+
     function! s:cohama_lexima_vim() abort
         call lexima#add_rule({'char': '「', 'input_after': '」', 'filetype': 'markdown'})
     endfunction
@@ -177,8 +170,7 @@ if dein#load_state(s:dein_dir)
 
     call dein#add('dhruvasagar/vim-table-mode')
 
-    call dein#add('mechatroner/rainbow_csv')
-
+    " Session Manager
     function! s:xolox_vim_session() abort
         let s:local_session_directory = getcwd() . '/.vimsessions'
         if isdirectory(s:local_session_directory)
@@ -201,6 +193,7 @@ if dein#load_state(s:dein_dir)
                 \ 'hook_add': function('s:xolox_vim_session')
                 \ })
 
+    " Completion
     if has('nvim')
         function! s:ncm2_float_preview() abort
             let g:float_preview#docked = 1
@@ -238,8 +231,7 @@ if dein#load_state(s:dein_dir)
                 \ 'depends': 'deoplete.nvim',
                 \ })
 
-    call dein#add('prabirshrestha/async.vim')
-
+    " LSP
     function! s:prabirshrestha_vim_lsp() abort
         nmap <silent> <Leader>] <Plug>(lsp-definition)
         nmap <silent> <Leader>[ <C-o>
@@ -343,6 +335,7 @@ if dein#load_state(s:dein_dir)
 
     endfunction
 
+    call dein#add('prabirshrestha/async.vim')
     call dein#add('prabirshrestha/vim-lsp', {
                 \ 'depends': 'async.vim',
                 \ 'hook_add': function('s:prabirshrestha_vim_lsp')
@@ -352,15 +345,7 @@ if dein#load_state(s:dein_dir)
                 \ 'depends': ['deoplete.nvim', 'vim-lsp'],
                 \ })
 
-    call dein#add('Vimjas/vim-python-pep8-indent', {
-                \ 'on_i': 1,
-                \ 'on_ft': 'python'
-                \ })
-
-    call dein#add('martinda/Jenkinsfile-vim-syntax', {
-                \ 'on_path': '.*Jenkinsfile'
-                \ })
-
+    " Snippet
     function! s:Shougo_neosnippet() abort
         imap <C-k> <Plug>(neosnippet_expand_or_jump)
         smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -372,6 +357,14 @@ if dein#load_state(s:dein_dir)
                 \ 'depends': 'neosnippet-snippets',
                 \ 'on_i': 1,
                 \ 'hook_source': function('s:Shougo_neosnippet')
+                \ })
+
+    " Formatter
+    call dein#add('tpope/vim-sleuth')
+
+    call dein#add('Vimjas/vim-python-pep8-indent', {
+                \ 'on_i': 1,
+                \ 'on_ft': 'python'
                 \ })
 
     function! s:sbdchd_neoformat_hook_add() abort
@@ -389,6 +382,7 @@ if dein#load_state(s:dein_dir)
                 \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
                 \ })
 
+    " Linter
     function! s:w0rp_ale() abort
         let g:ale_sign_error = 'E>'
         let g:ale_sign_warning = 'W>'
@@ -421,10 +415,14 @@ if dein#load_state(s:dein_dir)
                 \ 'hook_add': function('s:w0rp_ale')
                 \ })
 
+    " Status Line
+    call dein#add('itchyny/lightline.vim')
+
     call dein#add('maximbaz/lightline-ale', {
                 \ 'depends': ['ale', 'lightline.vim']
                 \ })
 
+    " Launcher
     function! s:shougo_denite_nvim_hook_add() abort
         nnoremap <silent> <Leader>b :Denite buffer<CR>
         nnoremap <silent> <Leader>e :DeniteBufferDir file/rec<CR>
