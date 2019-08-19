@@ -79,484 +79,479 @@ endif
 " a:    Function argument (only inside a function).
 " v:    Global, predefined by Vim.
 
-if dein#load_state(s:dein_dir)
+call dein#begin(s:dein_dir)
 
-    call dein#begin(s:dein_dir)
+" Plugin Manager
+call dein#add('Shougo/dein.vim')
+call dein#add('wsdjeg/dein-ui.vim')
 
-    " Plugin Manager
-    call dein#add('Shougo/dein.vim')
-    call dein#add('wsdjeg/dein-ui.vim')
+" Color Scheme
+call dein#add('challenger-deep-theme/vim')
+call dein#add('jacoborus/tender.vim')
 
-    " Color Scheme
-    call dein#add('challenger-deep-theme/vim')
-    call dein#add('jacoborus/tender.vim')
+" Git
+call dein#add('airblade/vim-gitgutter')
+call dein#add('tpope/vim-fugitive')
 
-    " Git
-    call dein#add('airblade/vim-gitgutter')
-    call dein#add('tpope/vim-fugitive')
+" Project
+function! s:airblade_vim_rooter() abort
+    let g:rooter_change_directory_for_non_project_files = 'current'
+    let g:rooter_patterns = ['.git', '.git/']
+endfunction
 
-    " Project
-    function! s:airblade_vim_rooter() abort
-        let g:rooter_change_directory_for_non_project_files = 'current'
-        let g:rooter_patterns = ['.git', '.git/']
+call dein#add('airblade/vim-rooter', {
+            \ 'hook_add': function('s:airblade_vim_rooter')
+            \ })
+
+" Highlight
+function! s:t9md_vim_quickhl() abort
+    nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
+    xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
+    nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
+endfunction
+
+call dein#add('t9md/vim-quickhl', {
+            \ 'hook_add': function('s:t9md_vim_quickhl')
+            \ })
+
+call dein#add('itchyny/vim-cursorword')
+
+call dein#add('haya14busa/is.vim')
+
+function! s:osyo_manga_vim_anzu() abort
+    nmap n <Plug>(is-nohl)<Plug>(anzu-n)
+    nmap N <Plug>(is-nohl)<Plug>(anzu-N)
+    nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
+
+    Gautocmd WinLeave,TabLeave * call anzu#clear_search_status()
+endfunction
+
+call dein#add('osyo-manga/vim-anzu', {
+            \ 'depends': 'is.vim',
+            \ 'hook_add': function('s:osyo_manga_vim_anzu')
+            \ })
+
+call dein#add('mechatroner/rainbow_csv')
+
+call dein#add('martinda/Jenkinsfile-vim-syntax', {
+            \ 'on_path': '.*Jenkinsfile'
+            \ })
+
+" Utility
+function! s:lambdalisue_suda_vim() abort
+    let g:suda_smart_edit = 1
+endfunction
+
+call dein#add('lambdalisue/suda.vim', {
+            \ 'hook_add': function('s:lambdalisue_suda_vim')
+            \ })
+
+function! s:cohama_lexima_vim() abort
+    " Japanese Bracket
+    call lexima#add_rule({'char': '「', 'input_after': '」'})
+    call lexima#add_rule({'char': '」', 'at': '\%#」', 'leave': 1})
+    call lexima#add_rule({'char': '<BS>', 'at': '「\%#」', 'delete': 1})
+
+    " Jinja2
+    call lexima#add_rule({'char': '%', 'at': '{\%#}', 'input_after': '%'})
+    call lexima#add_rule({'char': '%', 'at': '{%\%#%}', 'leave': 2})
+    call lexima#add_rule({'char': '}', 'at': '{%\%#%}', 'leave': 2})
+    call lexima#add_rule({'char': '<BS>', 'at': '{%\%#%}', 'delete': 1})
+
+    call lexima#add_rule({'char': '<Space>', 'at': '{%\%#%}', 'input_after': '<Space>'})
+    call lexima#add_rule({'char': '%', 'at': '{% \%# %}', 'leave': 3})
+    call lexima#add_rule({'char': '}', 'at': '{% \%# %}', 'leave': 3})
+    call lexima#add_rule({'char': '<BS>', 'at': '{% \%# %}', 'delete': 1})
+endfunction
+
+call dein#add('cohama/lexima.vim', {
+            \ 'on_i': 1,
+            \ 'hook_source': function('s:cohama_lexima_vim')
+            \ })
+
+call dein#add('tpope/vim-surround')
+
+call dein#add('tpope/vim-commentary')
+
+function! s:junegunn_vim_easy_align() abort
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+endfunction
+
+call dein#add('junegunn/vim-easy-align', {
+            \ 'hook_add': function('s:junegunn_vim_easy_align')
+            \ })
+
+
+call dein#add('thiagoalmeidasa/vim-ansible-vault')
+
+call dein#add('dhruvasagar/vim-table-mode')
+
+" Completion
+if has('nvim')
+    function! s:ncm2_float_preview() abort
+        let g:float_preview#docked = 1
     endfunction
 
-    call dein#add('airblade/vim-rooter', {
-                \ 'hook_add': function('s:airblade_vim_rooter')
-                \ })
-
-    " Highlight
-    function! s:t9md_vim_quickhl() abort
-        nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-        xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-        nnoremap <silent> <Leader>M :<C-u>QuickhlManualReset<CR>
-    endfunction
-
-    call dein#add('t9md/vim-quickhl', {
-                \ 'hook_add': function('s:t9md_vim_quickhl')
-                \ })
-
-    call dein#add('itchyny/vim-cursorword')
-
-    call dein#add('haya14busa/is.vim')
-
-    function! s:osyo_manga_vim_anzu() abort
-        nmap n <Plug>(is-nohl)<Plug>(anzu-n)
-        nmap N <Plug>(is-nohl)<Plug>(anzu-N)
-        nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
-
-        Gautocmd WinLeave,TabLeave * call anzu#clear_search_status()
-    endfunction
-
-    call dein#add('osyo-manga/vim-anzu', {
-                \ 'depends': 'is.vim',
-                \ 'hook_add': function('s:osyo_manga_vim_anzu')
-                \ })
-
-    call dein#add('mechatroner/rainbow_csv')
-
-    call dein#add('martinda/Jenkinsfile-vim-syntax', {
-                \ 'on_path': '.*Jenkinsfile'
-                \ })
-
-    " Utility
-    function! s:lambdalisue_suda_vim() abort
-        let g:suda_smart_edit = 1
-    endfunction
-
-    call dein#add('lambdalisue/suda.vim', {
-                \ 'hook_add': function('s:lambdalisue_suda_vim')
-                \ })
-
-    function! s:cohama_lexima_vim() abort
-        " Japanese Bracket
-        call lexima#add_rule({'char': '「', 'input_after': '」'})
-        call lexima#add_rule({'char': '」', 'at': '\%#」', 'leave': 1})
-        call lexima#add_rule({'char': '<BS>', 'at': '「\%#」', 'delete': 1})
-
-        " Jinja2
-        call lexima#add_rule({'char': '%', 'at': '{\%#}', 'input_after': '%'})
-        call lexima#add_rule({'char': '%', 'at': '{%\%#%}', 'leave': 2})
-        call lexima#add_rule({'char': '}', 'at': '{%\%#%}', 'leave': 2})
-        call lexima#add_rule({'char': '<BS>', 'at': '{%\%#%}', 'delete': 1})
-
-        call lexima#add_rule({'char': '<Space>', 'at': '{%\%#%}', 'input_after': '<Space>'})
-        call lexima#add_rule({'char': '%', 'at': '{% \%# %}', 'leave': 3})
-        call lexima#add_rule({'char': '}', 'at': '{% \%# %}', 'leave': 3})
-        call lexima#add_rule({'char': '<BS>', 'at': '{% \%# %}', 'delete': 1})
-    endfunction
-
-    call dein#add('cohama/lexima.vim', {
-                \ 'on_i': 1,
-                \ 'hook_source': function('s:cohama_lexima_vim')
-                \ })
-
-    call dein#add('tpope/vim-surround')
-
-    call dein#add('tpope/vim-commentary')
-
-    function! s:junegunn_vim_easy_align() abort
-        nmap ga <Plug>(EasyAlign)
-        xmap ga <Plug>(EasyAlign)
-    endfunction
-
-    call dein#add('junegunn/vim-easy-align', {
-                \ 'hook_add': function('s:junegunn_vim_easy_align')
-                \ })
-
-
-    call dein#add('thiagoalmeidasa/vim-ansible-vault')
-
-    call dein#add('dhruvasagar/vim-table-mode')
-
-    " Completion
-    if has('nvim')
-        function! s:ncm2_float_preview() abort
-            let g:float_preview#docked = 1
-        endfunction
-
-        call dein#add('ncm2/float-preview.nvim', {
-                    \ 'on_source': 'deoplete.nvim',
-                    \ 'hook_add': function('s:ncm2_float_preview')
-                    \ })
-    endif
-
-    function! s:shougo_echodoc_vim() abort
-        let g:echodoc#enable_at_startup = 1
-    endfunction
-
-    call dein#add('Shougo/echodoc.vim', {
+    call dein#add('ncm2/float-preview.nvim', {
                 \ 'on_source': 'deoplete.nvim',
-                \ 'hook_add': function('s:shougo_echodoc_vim')
+                \ 'hook_add': function('s:ncm2_float_preview')
                 \ })
-
-    function! s:shougo_deoplete_nvim() abort
-        let g:deoplete#enable_at_startup = 1
-    endfunction
-
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
-    call dein#add('Shougo/deoplete.nvim', {
-                \ 'on_i': 1,
-                \ 'hook_add': function('s:shougo_deoplete_nvim')
-                \ })
-
-    call dein#add('fszymanski/deoplete-emoji', {
-                \ 'lazy': 1,
-                \ 'depends': 'deoplete.nvim',
-                \ })
-
-    " LSP
-    function! s:prabirshrestha_vim_lsp() abort
-        nmap <silent> <Leader>] <Plug>(lsp-definition)
-        nmap <silent> <Leader>[ <C-o>
-        " nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
-        " nmap <silent> <Leader>n <Plug>(lsp-document-format)
-        nmap <silent> <Leader>r <Plug>(lsp-rename)
-
-        let g:lsp_diagnostics_enabled = 0
-
-        " pycodestyle
-        " E501 line too long
-        " W503 line break before binary operator
-
-        " pylint
-        " C0301 [line-too-long] Line too long
-        " W0703 [broad-except] Catching too general exception Exception
-
-        let s:workspace_config_python = {
-                    \ 'pyls': {'plugins': {
-                    \   'pycodestyle': {'ignore': [
-                    \       'E501',
-                    \       'W503'
-                    \   ]},
-                    \   'pylint': {'ignore': [
-                    \       'C0301',
-                    \       'W0703'
-                    \   ]},
-                    \   'jedi_definition': {
-                    \       'follow_imports': v:true,
-                    \       'follow_builtin_imports': v:true
-                    \   }
-                    \ }}
-                    \ }
-
-        if (executable('pyls'))
-            Gautocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'pyls',
-                        \ 'cmd': {server_info->['pyls']},
-                        \ 'whitelist': ['python'],
-                        \ 'workspace_config': s:workspace_config_python
-                        \ })
-        endif
-
-        if executable('docker-langserver')
-            Gautocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'docker-langserver',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-                        \ 'whitelist': ['dockerfile'],
-                        \ })
-        endif
-
-        if executable('bash-language-server')
-            Gautocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'bash-language-server',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                        \ 'whitelist': ['sh'],
-                        \ })
-        endif
-
-        if executable('vscode-json-languageserver')
-            Gautocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'vscode-json-languageserver',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
-                        \ 'whitelist': ['json'],
-                        \ })
-        endif
-
-        if executable('yaml-language-server')
-            Gautocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'yaml-language-server',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
-                        \ 'whitelist': ['yaml'],
-                        \ })
-        endif
-
-        if executable('efm-langserver')
-            Gautocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'efm-langserver-erb',
-                        \ 'cmd': {server_info->['efm-langserver']},
-                        \ 'whitelist': ['vim', 'markdown'],
-                        \ })
-        endif
-
-    endfunction
-
-    call dein#add('prabirshrestha/async.vim')
-    call dein#add('prabirshrestha/vim-lsp', {
-                \ 'depends': 'async.vim',
-                \ 'hook_add': function('s:prabirshrestha_vim_lsp')
-                \ })
-
-    call dein#add('lighttiger2505/deoplete-vim-lsp', {
-                \ 'lazy': 1,
-                \ 'depends': ['deoplete.nvim', 'vim-lsp'],
-                \ })
-
-    " Snippet
-    function! s:Shougo_neosnippet() abort
-        imap <C-k> <Plug>(neosnippet_expand_or_jump)
-        smap <C-k> <Plug>(neosnippet_expand_or_jump)
-        xmap <C-k> <Plug>(neosnippet_expand_target)
-    endfunction
-
-    call dein#add('Shougo/neosnippet-snippets')
-    call dein#add('Shougo/neosnippet', {
-                \ 'depends': 'neosnippet-snippets',
-                \ 'on_i': 1,
-                \ 'hook_source': function('s:Shougo_neosnippet')
-                \ })
-
-    " Formatter
-    call dein#add('tpope/vim-sleuth')
-
-    call dein#add('Vimjas/vim-python-pep8-indent', {
-                \ 'on_i': 1,
-                \ 'on_ft': 'python'
-                \ })
-
-    function! s:sbdchd_neoformat_hook_add() abort
-        nnoremap <silent> <Leader>n :Neoformat<CR>
-    endfunction
-
-    function! s:sbdchd_neoformat_hook_source() abort
-        let g:neoformat_basic_format_align = 1
-        let g:neoformat_basic_format_retab = 1
-        let g:neoformat_basic_format_trim = 1
-    endfunction
-
-    call dein#add('sbdchd/neoformat', {
-                \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
-                \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
-                \ })
-
-    " Linter
-    function! s:w0rp_ale() abort
-        let g:ale_sign_error = 'E>'
-        let g:ale_sign_warning = 'W>'
-
-        let g:ale_echo_msg_error_str = 'E'
-        let g:ale_echo_msg_warning_str = 'W'
-        let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
-
-        let g:ale_linters = {
-                    \ 'python': ['flake8', 'pylint'],
-                    \ }
-        let g:ale_python_flake8_options = '--ignore=E501'
-        let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
-        let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
-
-        let g:ale_fixers = {
-                    \ 'json': ['jq'],
-                    \ 'python': ['autopep8', 'yapf', 'isort'],
-                    \ 'sh': ['shfmt'],
-                    \ }
-        let g:ale_json_jq_options = '--indent 4'
-
-        nmap <silent> <C-p> <Plug>(ale_previous_wrap)
-        nmap <silent> <C-n> <Plug>(ale_next_wrap)
-
-        nmap <silent> <Leader>x <Plug>(ale_fix)
-    endfunction
-
-    call dein#add('w0rp/ale', {
-                \ 'hook_add': function('s:w0rp_ale')
-                \ })
-
-    " Status Line
-    call dein#add('itchyny/lightline.vim')
-
-    call dein#add('maximbaz/lightline-ale', {
-                \ 'depends': ['ale', 'lightline.vim']
-                \ })
-
-    " Launcher
-    function! s:shougo_denite_nvim_hook_add() abort
-        nnoremap <silent> <Leader>b :Denite buffer<CR>
-        nnoremap <silent> <Leader>e :DeniteBufferDir file/rec<CR>
-        nnoremap <silent> <Leader>f :Denite file/rec<CR>
-        nnoremap <silent> <Leader>o :Denite file/old<CR>
-        nnoremap <silent> <Leader>g :Denite grep -auto-action=preview<CR>
-        nnoremap <silent> <Leader>c :DeniteCursorWord grep -auto-action=preview<CR>
-        nnoremap <silent> <Leader>t :Denite tag -auto-action=preview<CR>
-        nnoremap <silent> <Leader>h :Denite menu<CR>
-    endfunction
-
-    function! s:shougo_denite_nvim_hook_source() abort
-
-        Gautocmdft denite call s:denite_settings()
-        Gautocmdft denite-filter call s:denite_filter_settings()
-
-        function! s:denite_settings() abort
-            nnoremap <silent><buffer><expr> <CR>
-                        \ denite#do_map('do_action')
-            nnoremap <silent><buffer><expr> t
-                        \ denite#do_map('do_action', 'tabopen')
-            nnoremap <silent><buffer><expr> -
-                        \ denite#do_map('do_action', 'split')
-            nnoremap <silent><buffer><expr> <bar>
-                        \ denite#do_map('do_action', 'vsplit')
-            nnoremap <silent><buffer><expr> p
-                        \ denite#do_map('do_action', 'preview')
-            nnoremap <silent><buffer><expr> d
-                        \ denite#do_map('do_action', 'delete')
-            nnoremap <silent><buffer><expr> <ESC>
-                        \ denite#do_map('quit')
-            nnoremap <silent><buffer><expr> i
-                        \ denite#do_map('open_filter_buffer')
-            nnoremap <silent><buffer><expr> <Space>
-                        \ denite#do_map('toggle_select').'j'
-            nnoremap <silent><buffer><expr> <BS>
-                        \ denite#do_map('move_up_path')
-
-            if exists('&winblend')
-                set winblend=20
-            endif
-        endfunction
-
-        function! s:denite_filter_settings() abort
-            nnoremap <silent><buffer><expr> <ESC>
-                        \ denite#do_map('quit')
-        endfunction
-
-        call denite#custom#option('_', {
-                    \ 'prompt': '>',
-                    \ 'split': 'floating',
-                    \ 'smartcase': 'true',
-                    \ })
-
-        if executable('rg')
-            call denite#custom#var('file/rec', 'command',
-                        \ ['rg', '--files', '--glob', '!.git'])
-
-            call denite#custom#var('grep', 'command', ['rg'])
-            call denite#custom#var('grep', 'default_opts',
-                        \ ['-i', '--vimgrep', '--no-heading'])
-            call denite#custom#var('grep', 'recursive_opts', [])
-            call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-            call denite#custom#var('grep', 'separator', ['--'])
-            call denite#custom#var('grep', 'final_opts', [])
-        endif
-
-        let s:denite_menus = {}
-
-        let s:denite_menus.dotfiles = {
-                    \ 'description': 'Edit dotfiles'
-                    \ }
-        let s:denite_menus.dotfiles.file_candidates = [
-                    \ ['init.vim', '~/.dotfiles/config/nvim/init.vim'],
-                    \ ['installer', '~/.dotfiles/install']
-                    \ ]
-
-        call denite#custom#var('menu', 'menus', s:denite_menus)
-
-    endfunction
-
-    call dein#add('Shougo/denite.nvim', {
-                \ 'on_cmd': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord'],
-                \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
-                \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
-                \ })
-
-    function! s:pocari_vim_denite_emoji() abort
-        nnoremap <silent> <Leader>u :Denite emoji<CR>
-    endfunction
-
-    call dein#add('junegunn/vim-emoji')
-    call dein#add('pocari/vim-denite-emoji', {
-                \ 'depends': ['denite.nvim', 'vim-emoji'],
-                \ 'on_source': 'denite.nvim',
-                \ 'hook_add': function('s:pocari_vim_denite_emoji'),
-                \ })
-
-    function! s:chemzqm_denite_git_add() abort
-        nnoremap <silent> <Leader>gb :Denite gitbranch<CR>
-        nnoremap <silent> <Leader>gg :Denite gitlog<CR>
-        nnoremap <silent> <Leader>gs :Denite gitstatus<CR>
-        nnoremap <silent> <Leader>gd :Denite gitchanged -auto-action=preview<CR>
-    endfunction
-
-    function! s:chemzqm_denite_git_source() abort
-        Gautocmdft denite call s:denite_git_settings()
-
-        function! s:denite_git_settings() abort
-            nnoremap <silent><buffer><expr> ga
-                        \ denite#do_map('do_action', 'add')
-            nnoremap <silent><buffer><expr> gc
-                        \ denite#do_map('do_action', 'commit')
-            nnoremap <silent><buffer><expr> gr
-                        \ denite#do_map('do_action', 'reset')
-        endfunction
-    endfunction
-
-    call dein#add('chemzqm/denite-git', {
-                \ 'depends': 'denite.nvim',
-                \ 'on_source': 'denite.nvim',
-                \ 'hook_add': function('s:chemzqm_denite_git_add'),
-                \ 'hook_source': function('s:chemzqm_denite_git_source'),
-                \ })
-
-    " Session Manager
-    function! s:lambdalisue_session_vim_add() abort
-        nnoremap <silent> <Leader>s :Denite session<CR>
-    endfunction
-
-    function! s:lambdalisue_session_vim_source() abort
-        Gautocmdft denite call s:denite_session_settings()
-
-        function! s:denite_session_settings() abort
-            nnoremap <silent><buffer><expr> so
-                        \ denite#do_map('do_action', 'open')
-            nnoremap <silent><buffer><expr> sf
-                        \ denite#do_map('do_action', 'open_force')
-            nnoremap <silent><buffer><expr> sr
-                        \ denite#do_map('do_action', 'remove')
-        endfunction
-    endfunction
-
-    call dein#add('lambdalisue/session.vim', {
-                \ 'depends': 'denite.nvim',
-                \ 'on_source': 'denite.nvim',
-                \ 'hook_add': function('s:lambdalisue_session_vim_add'),
-                \ 'hook_source': function('s:lambdalisue_session_vim_source')
-                \ })
-
-    call dein#end()
-    call dein#save_state()
-
 endif
+
+function! s:shougo_echodoc_vim() abort
+    let g:echodoc#enable_at_startup = 1
+endfunction
+
+call dein#add('Shougo/echodoc.vim', {
+            \ 'on_source': 'deoplete.nvim',
+            \ 'hook_add': function('s:shougo_echodoc_vim')
+            \ })
+
+function! s:shougo_deoplete_nvim() abort
+    let g:deoplete#enable_at_startup = 1
+endfunction
+
+if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+endif
+call dein#add('Shougo/deoplete.nvim', {
+            \ 'on_i': 1,
+            \ 'hook_add': function('s:shougo_deoplete_nvim')
+            \ })
+
+call dein#add('fszymanski/deoplete-emoji', {
+            \ 'lazy': 1,
+            \ 'depends': 'deoplete.nvim',
+            \ })
+
+" LSP
+function! s:prabirshrestha_vim_lsp() abort
+    nmap <silent> <Leader>] <Plug>(lsp-definition)
+    nmap <silent> <Leader>[ <C-o>
+    " nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
+    " nmap <silent> <Leader>n <Plug>(lsp-document-format)
+    nmap <silent> <Leader>r <Plug>(lsp-rename)
+
+    let g:lsp_diagnostics_enabled = 0
+
+    " pycodestyle
+    " E501 line too long
+    " W503 line break before binary operator
+
+    " pylint
+    " C0301 [line-too-long] Line too long
+    " W0703 [broad-except] Catching too general exception Exception
+
+    let s:workspace_config_python = {
+                \ 'pyls': {'plugins': {
+                \   'pycodestyle': {'ignore': [
+                \       'E501',
+                \       'W503'
+                \   ]},
+                \   'pylint': {'ignore': [
+                \       'C0301',
+                \       'W0703'
+                \   ]},
+                \   'jedi_definition': {
+                \       'follow_imports': v:true,
+                \       'follow_builtin_imports': v:true
+                \   }
+                \ }}
+                \ }
+
+    if (executable('pyls'))
+        Gautocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'pyls',
+                    \ 'cmd': {server_info->['pyls']},
+                    \ 'whitelist': ['python'],
+                    \ 'workspace_config': s:workspace_config_python
+                    \ })
+    endif
+
+    if executable('docker-langserver')
+        Gautocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'docker-langserver',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+                    \ 'whitelist': ['dockerfile'],
+                    \ })
+    endif
+
+    if executable('bash-language-server')
+        Gautocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'bash-language-server',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+                    \ 'whitelist': ['sh'],
+                    \ })
+    endif
+
+    if executable('vscode-json-languageserver')
+        Gautocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'vscode-json-languageserver',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
+                    \ 'whitelist': ['json'],
+                    \ })
+    endif
+
+    if executable('yaml-language-server')
+        Gautocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'yaml-language-server',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
+                    \ 'whitelist': ['yaml'],
+                    \ })
+    endif
+
+    if executable('efm-langserver')
+        Gautocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'efm-langserver-erb',
+                    \ 'cmd': {server_info->['efm-langserver']},
+                    \ 'whitelist': ['vim', 'markdown'],
+                    \ })
+    endif
+
+endfunction
+
+call dein#add('prabirshrestha/async.vim')
+call dein#add('prabirshrestha/vim-lsp', {
+            \ 'depends': 'async.vim',
+            \ 'hook_add': function('s:prabirshrestha_vim_lsp')
+            \ })
+
+call dein#add('lighttiger2505/deoplete-vim-lsp', {
+            \ 'lazy': 1,
+            \ 'depends': ['deoplete.nvim', 'vim-lsp'],
+            \ })
+
+" Snippet
+function! s:Shougo_neosnippet() abort
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+endfunction
+
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/neosnippet', {
+            \ 'depends': 'neosnippet-snippets',
+            \ 'on_i': 1,
+            \ 'hook_source': function('s:Shougo_neosnippet')
+            \ })
+
+" Formatter
+call dein#add('tpope/vim-sleuth')
+
+call dein#add('Vimjas/vim-python-pep8-indent', {
+            \ 'on_i': 1,
+            \ 'on_ft': 'python'
+            \ })
+
+function! s:sbdchd_neoformat_hook_add() abort
+    nnoremap <silent> <Leader>n :Neoformat<CR>
+endfunction
+
+function! s:sbdchd_neoformat_hook_source() abort
+    let g:neoformat_basic_format_align = 1
+    let g:neoformat_basic_format_retab = 1
+    let g:neoformat_basic_format_trim = 1
+endfunction
+
+call dein#add('sbdchd/neoformat', {
+            \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
+            \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
+            \ })
+
+" Linter
+function! s:w0rp_ale() abort
+    let g:ale_sign_error = 'E>'
+    let g:ale_sign_warning = 'W>'
+
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
+
+    let g:ale_linters = {
+                \ 'python': ['flake8', 'pylint'],
+                \ }
+    let g:ale_python_flake8_options = '--ignore=E501'
+    let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
+    let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
+
+    let g:ale_fixers = {
+                \ 'json': ['jq'],
+                \ 'python': ['autopep8', 'yapf', 'isort'],
+                \ 'sh': ['shfmt'],
+                \ }
+    let g:ale_json_jq_options = '--indent 4'
+
+    nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
+    nmap <silent> <Leader>x <Plug>(ale_fix)
+endfunction
+
+call dein#add('w0rp/ale', {
+            \ 'hook_add': function('s:w0rp_ale')
+            \ })
+
+" Status Line
+call dein#add('itchyny/lightline.vim')
+
+call dein#add('maximbaz/lightline-ale', {
+            \ 'depends': ['ale', 'lightline.vim']
+            \ })
+
+" Launcher
+function! s:shougo_denite_nvim_hook_add() abort
+    nnoremap <silent> <Leader>b :Denite buffer<CR>
+    nnoremap <silent> <Leader>e :DeniteBufferDir file/rec<CR>
+    nnoremap <silent> <Leader>f :Denite file/rec<CR>
+    nnoremap <silent> <Leader>o :Denite file/old<CR>
+    nnoremap <silent> <Leader>g :Denite grep -auto-action=preview<CR>
+    nnoremap <silent> <Leader>c :DeniteCursorWord grep -auto-action=preview<CR>
+    nnoremap <silent> <Leader>t :Denite tag -auto-action=preview<CR>
+    nnoremap <silent> <Leader>h :Denite menu<CR>
+endfunction
+
+function! s:shougo_denite_nvim_hook_source() abort
+
+    Gautocmdft denite call s:denite_settings()
+    Gautocmdft denite-filter call s:denite_filter_settings()
+
+    function! s:denite_settings() abort
+        nnoremap <silent><buffer><expr> <CR>
+                    \ denite#do_map('do_action')
+        nnoremap <silent><buffer><expr> t
+                    \ denite#do_map('do_action', 'tabopen')
+        nnoremap <silent><buffer><expr> -
+                    \ denite#do_map('do_action', 'split')
+        nnoremap <silent><buffer><expr> <bar>
+                    \ denite#do_map('do_action', 'vsplit')
+        nnoremap <silent><buffer><expr> p
+                    \ denite#do_map('do_action', 'preview')
+        nnoremap <silent><buffer><expr> d
+                    \ denite#do_map('do_action', 'delete')
+        nnoremap <silent><buffer><expr> <ESC>
+                    \ denite#do_map('quit')
+        nnoremap <silent><buffer><expr> i
+                    \ denite#do_map('open_filter_buffer')
+        nnoremap <silent><buffer><expr> <Space>
+                    \ denite#do_map('toggle_select').'j'
+        nnoremap <silent><buffer><expr> <BS>
+                    \ denite#do_map('move_up_path')
+
+        if exists('&winblend')
+            set winblend=20
+        endif
+    endfunction
+
+    function! s:denite_filter_settings() abort
+        nnoremap <silent><buffer><expr> <ESC>
+                    \ denite#do_map('quit')
+    endfunction
+
+    call denite#custom#option('_', {
+                \ 'prompt': '>',
+                \ 'split': 'floating',
+                \ 'smartcase': 'true',
+                \ })
+
+    if executable('rg')
+        call denite#custom#var('file/rec', 'command',
+                    \ ['rg', '--files', '--glob', '!.git'])
+
+        call denite#custom#var('grep', 'command', ['rg'])
+        call denite#custom#var('grep', 'default_opts',
+                    \ ['-i', '--vimgrep', '--no-heading'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'final_opts', [])
+    endif
+
+    let s:denite_menus = {}
+
+    let s:denite_menus.dotfiles = {
+                \ 'description': 'Edit dotfiles'
+                \ }
+    let s:denite_menus.dotfiles.file_candidates = [
+                \ ['init.vim', '~/.dotfiles/config/nvim/init.vim'],
+                \ ['installer', '~/.dotfiles/install']
+                \ ]
+
+    call denite#custom#var('menu', 'menus', s:denite_menus)
+
+endfunction
+
+call dein#add('Shougo/denite.nvim', {
+            \ 'on_cmd': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord'],
+            \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
+            \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
+            \ })
+
+function! s:pocari_vim_denite_emoji() abort
+    nnoremap <silent> <Leader>u :Denite emoji<CR>
+endfunction
+
+call dein#add('junegunn/vim-emoji')
+call dein#add('pocari/vim-denite-emoji', {
+            \ 'depends': ['denite.nvim', 'vim-emoji'],
+            \ 'on_source': 'denite.nvim',
+            \ 'hook_add': function('s:pocari_vim_denite_emoji'),
+            \ })
+
+function! s:chemzqm_denite_git_add() abort
+    nnoremap <silent> <Leader>gb :Denite gitbranch<CR>
+    nnoremap <silent> <Leader>gg :Denite gitlog<CR>
+    nnoremap <silent> <Leader>gs :Denite gitstatus<CR>
+    nnoremap <silent> <Leader>gd :Denite gitchanged -auto-action=preview<CR>
+endfunction
+
+function! s:chemzqm_denite_git_source() abort
+    Gautocmdft denite call s:denite_git_settings()
+
+    function! s:denite_git_settings() abort
+        nnoremap <silent><buffer><expr> ga
+                    \ denite#do_map('do_action', 'add')
+        nnoremap <silent><buffer><expr> gc
+                    \ denite#do_map('do_action', 'commit')
+        nnoremap <silent><buffer><expr> gr
+                    \ denite#do_map('do_action', 'reset')
+    endfunction
+endfunction
+
+call dein#add('chemzqm/denite-git', {
+            \ 'depends': 'denite.nvim',
+            \ 'on_source': 'denite.nvim',
+            \ 'hook_add': function('s:chemzqm_denite_git_add'),
+            \ 'hook_source': function('s:chemzqm_denite_git_source'),
+            \ })
+
+" Session Manager
+function! s:lambdalisue_session_vim_add() abort
+    nnoremap <silent> <Leader>s :Denite session<CR>
+endfunction
+
+function! s:lambdalisue_session_vim_source() abort
+    Gautocmdft denite call s:denite_session_settings()
+
+    function! s:denite_session_settings() abort
+        nnoremap <silent><buffer><expr> so
+                    \ denite#do_map('do_action', 'open')
+        nnoremap <silent><buffer><expr> sf
+                    \ denite#do_map('do_action', 'open_force')
+        nnoremap <silent><buffer><expr> sr
+                    \ denite#do_map('do_action', 'remove')
+    endfunction
+endfunction
+
+call dein#add('lambdalisue/session.vim', {
+            \ 'depends': 'denite.nvim',
+            \ 'on_source': 'denite.nvim',
+            \ 'hook_add': function('s:lambdalisue_session_vim_add'),
+            \ 'hook_source': function('s:lambdalisue_session_vim_source')
+            \ })
+
+call dein#end()
 
 if dein#check_install()
     call dein#install()
@@ -565,14 +560,28 @@ endif
 
 if !empty(dein#check_clean())
     call map(dein#check_clean(), "delete(v:val, 'rf')")
-    call dein#recache_runtimepath()
 endif
 
-Gautocmd BufWritePost $MYVIMRC call dein#recache_runtimepath()
-"Gautocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+" -----------------------------------------------------------------------------
+" netrw
+" -----------------------------------------------------------------------------
+" one file per line with timestamp information and file size
+let g:netrw_liststyle=1
 
-" Disable netrw
-let g:loaded_netrwPlugin = 1
+" suppress the banner
+let g:netrw_banner=0
+
+" human-readable
+let g:netrw_sizestyle='H'
+
+" specify format string to vim's strftime()
+let g:netrw_timefmt='%Y/%m/%d(%a) %H:%M:%S'
+
+" The home directory for where bookmarks and history are saved
+let g:netrw_home=expand('~')
+
+" the settings that netrw buffers have
+let g:netrw_bufsettings='noma nomod nu rnu nowrap ro nobl'
 
 " -----------------------------------------------------------------------------
 " Color scheme
