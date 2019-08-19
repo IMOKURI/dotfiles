@@ -568,6 +568,9 @@ if !empty(dein#check_clean())
     call dein#recache_runtimepath()
 endif
 
+Gautocmd BufWritePost $MYVIMRC call dein#recache_runtimepath()
+"Gautocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+
 " Disable netrw
 let g:loaded_netrwPlugin = 1
 
@@ -702,6 +705,9 @@ nnoremap <silent> <Leader>q :<C-u>qa<CR>
 
 " すべてのタブを保存せず閉じる
 nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
+
+" セッションを保存する
+nnoremap s :SessionSave
 
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
