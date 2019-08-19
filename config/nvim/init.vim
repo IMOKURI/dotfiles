@@ -149,7 +149,21 @@ if dein#load_state(s:dein_dir)
                 \ })
 
     function! s:cohama_lexima_vim() abort
-        call lexima#add_rule({'char': '「', 'input_after': '」', 'filetype': 'markdown'})
+        " Japanese Bracket
+        call lexima#add_rule({'char': '「', 'input_after': '」'})
+        call lexima#add_rule({'char': '」', 'at': '\%#」', 'leave': 1})
+        call lexima#add_rule({'char': '<BS>', 'at': '「\%#」', 'delete': 1})
+
+        " Jinja2
+        call lexima#add_rule({'char': '%', 'at': '{\%#}', 'input_after': '%'})
+        call lexima#add_rule({'char': '%', 'at': '{%\%#%}', 'leave': 2})
+        call lexima#add_rule({'char': '}', 'at': '{%\%#%}', 'leave': 2})
+        call lexima#add_rule({'char': '<BS>', 'at': '{%\%#%}', 'delete': 1})
+
+        call lexima#add_rule({'char': '<Space>', 'at': '{%\%#%}', 'input_after': '<Space>'})
+        call lexima#add_rule({'char': '%', 'at': '{% \%# %}', 'leave': 3})
+        call lexima#add_rule({'char': '}', 'at': '{% \%# %}', 'leave': 3})
+        call lexima#add_rule({'char': '<BS>', 'at': '{% \%# %}', 'delete': 1})
     endfunction
 
     call dein#add('cohama/lexima.vim', {
