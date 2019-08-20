@@ -761,8 +761,11 @@ nnoremap k gk
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-"nnoremap <C-h> <C-w>h
-nnoremap <BS> <C-w>h
+if has('nvim')
+    nnoremap <BS> <C-w>h
+else
+    nnoremap <C-h> <C-w>h
+endif
 
 " ウィンドウを分割する
 nnoremap <Leader>- <C-w>s
@@ -802,7 +805,9 @@ vnoremap <Leader>P "0P
 inoremap # x<BS>#
 
 " インサートモード中に左右に移動する
-"inoremap <C-h> <left>
+if !has('nvim')
+    inoremap <C-h> <left>
+endif
 inoremap <C-l> <right>
 
 " -----------------------------------------------------------------------------
