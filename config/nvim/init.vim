@@ -187,6 +187,8 @@ call dein#add('thiagoalmeidasa/vim-ansible-vault')
 
 call dein#add('dhruvasagar/vim-table-mode')
 
+call dein#add('AndrewRadev/linediff.vim')
+
 " Completion
 if has('nvim')
     function! s:ncm2_float_preview() abort
