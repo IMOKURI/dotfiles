@@ -658,12 +658,18 @@ let g:lightline = {
             \ }
             \ }
 
-AutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
-
 " This does not work. Use ginit.vim instead.
 "if has('gui_running')
 "    Guifont! Migu 1M:h12
 "endif
+
+" -----------------------------------------------------------------------------
+" FileType settings
+" -----------------------------------------------------------------------------
+
+AutoCmd FilterWritePre * if &diff | setlocal wrap< | endif
+
+AutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
 " -----------------------------------------------------------------------------
 " Useful function
