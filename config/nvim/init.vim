@@ -667,7 +667,7 @@ let g:lightline = {
 " FileType settings
 " -----------------------------------------------------------------------------
 
-AutoCmd FilterWritePre * if &diff | setlocal wrap< | endif
+AutoCmd VimEnter * if &diff | execute 'windo set wrap' | endif
 
 AutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
