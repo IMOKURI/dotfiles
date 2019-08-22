@@ -2,14 +2,15 @@ set encoding=utf-8
 scriptencoding utf-8
 
 if !exists('g:mapleader')
+    nnoremap <Space> <Nop>
     let g:mapleader = "\<Space>"
 endif
 
-augroup GlobalAutoCmd
+augroup MyInitVim
     autocmd!
 augroup END
-command! -nargs=* Gautocmd autocmd GlobalAutoCmd <args>
-command! -nargs=* Gautocmdft autocmd GlobalAutoCmd FileType <args>
+command! -nargs=* AutoCmd autocmd MyInitVim <args>
+command! -nargs=* AutoCmdFt autocmd MyInitVim FileType <args>
 
 " -----------------------------------------------------------------------------
 " Detect platform
@@ -123,7 +124,7 @@ function! s:osyo_manga_vim_anzu() abort
     nmap N <Plug>(is-nohl)<Plug>(anzu-N)
     nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
 
-    Gautocmd WinLeave,TabLeave * call anzu#clear_search_status()
+    AutoCmd WinLeave,TabLeave * call anzu#clear_search_status()
 endfunction
 
 call dein#add('osyo-manga/vim-anzu', {
@@ -231,7 +232,7 @@ call dein#add('fszymanski/deoplete-emoji', {
 " LSP
 function! s:prabirshrestha_vim_lsp() abort
     nmap <silent> <Leader>] <Plug>(lsp-definition)
-    nmap <silent> <Leader>[ <C-o>
+    nmap <silent> <Leader>[ <Plug>(lsp-references)
     " nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
     " nmap <silent> <Leader>n <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
@@ -264,7 +265,7 @@ function! s:prabirshrestha_vim_lsp() abort
                 \ }
 
     if (executable('pyls'))
-        Gautocmd User lsp_setup call lsp#register_server({
+        AutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'pyls',
                     \ 'cmd': {server_info->['pyls']},
                     \ 'whitelist': ['python'],
@@ -273,7 +274,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('docker-langserver')
-        Gautocmd User lsp_setup call lsp#register_server({
+        AutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'docker-langserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
                     \ 'whitelist': ['dockerfile'],
@@ -281,7 +282,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('bash-language-server')
-        Gautocmd User lsp_setup call lsp#register_server({
+        AutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'bash-language-server',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
                     \ 'whitelist': ['sh'],
@@ -289,7 +290,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('vscode-json-languageserver')
-        Gautocmd User lsp_setup call lsp#register_server({
+        AutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'vscode-json-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
                     \ 'whitelist': ['json'],
@@ -297,7 +298,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('yaml-language-server')
-        Gautocmd User lsp_setup call lsp#register_server({
+        AutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'yaml-language-server',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
                     \ 'whitelist': ['yaml'],
@@ -305,7 +306,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('efm-langserver')
-        Gautocmd User lsp_setup call lsp#register_server({
+        AutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'efm-langserver-erb',
                     \ 'cmd': {server_info->['efm-langserver']},
                     \ 'whitelist': ['vim', 'markdown'],
@@ -416,8 +417,8 @@ endfunction
 
 function! s:shougo_denite_nvim_hook_source() abort
 
-    Gautocmdft denite call s:denite_settings()
-    Gautocmdft denite-filter call s:denite_filter_settings()
+    AutoCmdFt denite call s:denite_settings()
+    AutoCmdFt denite-filter call s:denite_filter_settings()
 
     function! s:denite_settings() abort
         nnoremap <silent><buffer><expr> <CR>
@@ -509,7 +510,7 @@ function! s:chemzqm_denite_git_add() abort
 endfunction
 
 function! s:chemzqm_denite_git_source() abort
-    Gautocmdft denite call s:denite_git_settings()
+    AutoCmdFt denite call s:denite_git_settings()
 
     function! s:denite_git_settings() abort
         nnoremap <silent><buffer><expr> ga
@@ -534,7 +535,7 @@ function! s:lambdalisue_session_vim_add() abort
 endfunction
 
 function! s:lambdalisue_session_vim_source() abort
-    Gautocmdft denite call s:denite_session_settings()
+    AutoCmdFt denite call s:denite_session_settings()
 
     function! s:denite_session_settings() abort
         nnoremap <silent><buffer><expr> so
@@ -657,7 +658,7 @@ let g:lightline = {
             \ }
             \ }
 
-Gautocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
+AutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
 " This does not work. Use ginit.vim instead.
 "if has('gui_running')
@@ -668,15 +669,15 @@ Gautocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 " Useful function
 " -----------------------------------------------------------------------------
 
-Gautocmd BufReadPost *
+AutoCmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
             \   exe "normal! g'\"" |
             \ endif
 
-Gautocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-Gautocmd CursorHold,CursorHoldI * setlocal cursorline
+AutoCmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+AutoCmd CursorHold,CursorHoldI * setlocal cursorline
 
-Gautocmd InsertLeave * set nopaste
+AutoCmd InsertLeave * set nopaste
 
 function! s:smart_foldcloser() abort
     if foldlevel('.') == 0
@@ -749,12 +750,6 @@ tnoremap <silent> <ESC> <C-\><C-n>
 nnoremap > >>
 nnoremap < <<
 
-" 加算減算
-nnoremap + <C-a>
-nnoremap - <C-x>
-vnoremap + <C-a>
-vnoremap - <C-x>
-
 " 表示行単位で移動する
 nnoremap j gj
 nnoremap k gk
@@ -764,6 +759,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 if has('nvim')
+    " TERM環境変数が悪そう
     nnoremap <BS> <C-w>h
 else
     nnoremap <C-h> <C-w>h
