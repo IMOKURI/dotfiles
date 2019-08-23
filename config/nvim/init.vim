@@ -799,6 +799,14 @@ nmap # *:%s/<C-r>///g<Left><Left>
 " バッファ内で置換する
 nnoremap S :%s//g<LEFT><LEFT>
 
+" コマンドラインモード内を移動する
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 " レジスタからペーストする
 nnoremap <Leader>p "0p
 nnoremap <Leader>P "0P
