@@ -453,6 +453,7 @@ function! s:shougo_denite_nvim_hook_source() abort
     endfunction
 
     call denite#custom#option('_', {
+                \ 'highlight_matched_char': 'Underlined',
                 \ 'prompt': '>',
                 \ 'split': 'floating',
                 \ 'smartcase': 'true',
