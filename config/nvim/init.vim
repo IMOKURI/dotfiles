@@ -739,6 +739,9 @@ nnoremap s :SessionSave
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
 
+" カーソル下のディレクトリを開く
+nnoremap gd :Explore <C-r><C-f><CR>
+
 " タブを移動する
 nnoremap gn gt
 nnoremap gp gT
