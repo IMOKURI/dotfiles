@@ -183,12 +183,23 @@ call dein#add('junegunn/vim-easy-align', {
             \ 'hook_add': function('s:junegunn_vim_easy_align')
             \ })
 
-
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
 
 call dein#add('dhruvasagar/vim-table-mode')
 
 call dein#add('AndrewRadev/linediff.vim')
+
+function! s:voldikss_vim_floaterm() abort
+    nnoremap <silent> <C-t> :FloatermToggle<CR>i
+    tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
+
+    let g:floaterm_winblend = 20
+endfunction
+
+call dein#add('voldikss/vim-floaterm', {
+            \ 'on_cmd': ['FloatermToggle'],
+            \ 'hook_add': function('s:voldikss_vim_floaterm')
+            \ })
 
 " Completion
 if has('nvim')
