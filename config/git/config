@@ -5,13 +5,7 @@
   name = IMOKURI
   email = nenegi.01mo@gmail.com
 
-[github]
-  user = yoshio-sugiyama
-
 [includeIf "gitdir:~/ghe/"]
-  path = ~/.config/git/config.local
-
-[includeIf "gitdir:/mnt/c/Users/sugiyayo/Documents/GitHub/"]
   path = ~/.config/git/config.local
 
 [core]
@@ -38,6 +32,9 @@
 
 [transfer]
   fsckobjects = true
+
+[credential]
+  helper = store
 
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
