@@ -862,11 +862,13 @@ vnoremap <Leader>P "0P
 " # を入力したときに行頭に移動しない
 inoremap # x<BS>#
 
-" インサートモード中に左右に移動する
-if !has('nvim')
-    inoremap <C-h> <left>
-endif
-inoremap <C-l> <right>
+" インサートモード中に移動する
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-b> <left>
+inoremap <C-f> <right>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
 
 " -----------------------------------------------------------------------------
 " Options
