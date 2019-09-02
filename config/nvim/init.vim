@@ -6,11 +6,11 @@ if !exists('g:mapleader')
     let g:mapleader = "\<Space>"
 endif
 
-augroup MyInitVim
+augroup MyAutoGroup
     autocmd!
 augroup END
-command! -nargs=* AutoCmd autocmd MyInitVim <args>
-command! -nargs=* AutoCmdFt autocmd MyInitVim FileType <args>
+command! -nargs=* MyAutoCmd autocmd MyAutoGroup <args>
+command! -nargs=* MyAutoCmdFt autocmd MyAutoGroup FileType <args>
 
 " -----------------------------------------------------------------------------
 " Detect platform
@@ -124,7 +124,7 @@ function! s:osyo_manga_vim_anzu() abort
     nmap N <Plug>(is-nohl)<Plug>(anzu-N)
     nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
 
-    AutoCmd WinLeave,TabLeave * call anzu#clear_search_status()
+    MyAutoCmd WinLeave,TabLeave * call anzu#clear_search_status()
 endfunction
 
 call dein#add('osyo-manga/vim-anzu', {
@@ -276,7 +276,7 @@ function! s:prabirshrestha_vim_lsp() abort
                 \ }
 
     if (executable('pyls'))
-        AutoCmd User lsp_setup call lsp#register_server({
+        MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'pyls',
                     \ 'cmd': {server_info->['pyls']},
                     \ 'whitelist': ['python'],
@@ -285,7 +285,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('docker-langserver')
-        AutoCmd User lsp_setup call lsp#register_server({
+        MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'docker-langserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
                     \ 'whitelist': ['dockerfile'],
@@ -293,7 +293,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('bash-language-server')
-        AutoCmd User lsp_setup call lsp#register_server({
+        MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'bash-language-server',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
                     \ 'whitelist': ['sh'],
@@ -301,7 +301,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('vscode-json-languageserver')
-        AutoCmd User lsp_setup call lsp#register_server({
+        MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'vscode-json-languageserver',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
                     \ 'whitelist': ['json'],
@@ -309,7 +309,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('yaml-language-server')
-        AutoCmd User lsp_setup call lsp#register_server({
+        MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'yaml-language-server',
                     \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
                     \ 'whitelist': ['yaml'],
@@ -317,7 +317,7 @@ function! s:prabirshrestha_vim_lsp() abort
     endif
 
     if executable('efm-langserver')
-        AutoCmd User lsp_setup call lsp#register_server({
+        MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'efm-langserver-erb',
                     \ 'cmd': {server_info->['efm-langserver']},
                     \ 'whitelist': ['vim', 'markdown'],
@@ -710,23 +710,23 @@ let g:lightline = {
 " FileType settings
 " -----------------------------------------------------------------------------
 
-AutoCmd VimEnter * if &diff | execute 'windo set wrap' | endif
+MyAutoCmd VimEnter * if &diff | execute 'windo set wrap' | endif
 
-AutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
+MyAutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
 " -----------------------------------------------------------------------------
 " Useful function
 " -----------------------------------------------------------------------------
 
-AutoCmd BufReadPost *
+MyAutoCmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
             \   exe "normal! g'\"" |
             \ endif
 
-AutoCmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-AutoCmd CursorHold,CursorHoldI * setlocal cursorline
+MyAutoCmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline
 
-AutoCmd InsertLeave * set nopaste
+MyAutoCmd InsertLeave * set nopaste
 
 function! s:smart_foldcloser() abort
     if foldlevel('.') == 0
