@@ -16,7 +16,7 @@ command! -nargs=* AutoCmdFt autocmd MyInitVim FileType <args>
 " Detect platform
 " -----------------------------------------------------------------------------
 if !exists('g:env')
-    if has('win64') || has('win32') || has('win16')
+    if has('win64') || has('win32')
         let g:env = 'WINDOWS'
     else
         let g:env = toupper(substitute(system('uname'), '\n', '', ''))
@@ -637,6 +637,27 @@ function! LightLineFugitive() abort
     return ''
 endfunction
 
+" ファイル名を下位3階層のみの表示にする
+function! LightLineFilePath() abort
+    try
+        if expand('%:p:~') =~# '^suda://'
+            let g:is_suda = 'suda://'
+        else
+            let g:is_suda = ''
+        endif
+
+        if expand('%:p:~:s?suda://??') =~# '^/[^/]*\/[^/]*\/[^/]*$'
+            return expand('%:p:~')
+        elseif expand('%:p:~:s?suda://??') =~# '/[^/]*\/[^/]*\/[^/]*$'
+            return g:is_suda . expand('%:p:~:s?suda://??:s?.*\(/[^/]*\/[^/]*\/[^/]*\)$?...\1?')
+        else
+            return expand('%:p:~')
+        endif
+    catch
+    endtry
+    return ''
+endfunction
+
 let g:lightline#ale#indicator_checking = '(」・ω・)」うー '
 let g:lightline#ale#indicator_ok = '(/・ω・)/にゃー'
 
@@ -645,7 +666,7 @@ let g:lightline = {
             \ 'active': {
             \   'left': [
             \     [ 'mode', 'paste' ],
-            \     [ 'fugitive', 'readonly', 'relativepath', 'modified' ],
+            \     [ 'fugitive', 'readonly', 'filepath', 'modified' ],
             \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok', 'anzu' ]
             \   ],
             \   'right': [
@@ -666,6 +687,7 @@ let g:lightline = {
             \ },
             \ 'component_function': {
             \   'fugitive': 'LightLineFugitive',
+            \   'filepath': 'LightLineFilePath',
             \   'anzu': 'anzu#search_status'
             \ }
             \ }
