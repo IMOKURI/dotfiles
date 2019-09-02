@@ -244,11 +244,12 @@ call dein#add('fszymanski/deoplete-emoji', {
 function! s:prabirshrestha_vim_lsp() abort
     nmap <silent> <Leader>] <Plug>(lsp-definition)
     nmap <silent> <Leader>[ <Plug>(lsp-references)
-    " nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
-    " nmap <silent> <Leader>n <Plug>(lsp-document-format)
+    nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
+    nmap <silent> <Leader>z <Plug>(lsp-document-format)
+    vmap <silent> <Leader>z <Plug>(lsp-document-format)
     nmap <silent> <Leader>r <Plug>(lsp-rename)
 
-    let g:lsp_diagnostics_enabled = 0
+    "let g:lsp_diagnostics_enabled = 0
 
     " pycodestyle
     " E501 line too long
@@ -316,11 +317,19 @@ function! s:prabirshrestha_vim_lsp() abort
                     \ })
     endif
 
+    if executable('vim-language-server')
+        MyAutoCmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'vim-language-server',
+                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vim-language-server --stdio']},
+                    \ 'whitelist': ['vim'],
+                    \ })
+    endif
+
     if executable('efm-langserver')
         MyAutoCmd User lsp_setup call lsp#register_server({
                     \ 'name': 'efm-langserver-erb',
                     \ 'cmd': {server_info->['efm-langserver']},
-                    \ 'whitelist': ['vim', 'markdown'],
+                    \ 'whitelist': ['markdown'],
                     \ })
     endif
 

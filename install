@@ -175,6 +175,7 @@ npm install \
   doctoc \
   markdownlint-cli \
   neovim \
+  vim-language-server \
   vscode-json-languageserver \
   yaml-language-server
 
