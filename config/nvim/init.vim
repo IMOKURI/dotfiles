@@ -428,8 +428,11 @@ endfunction
 
 function! s:shougo_denite_nvim_hook_source() abort
 
-    AutoCmdFt denite call s:denite_settings()
-    AutoCmdFt denite-filter call s:denite_filter_settings()
+    augroup Denite
+        autocmd!
+        autocmd FileType denite call s:denite_settings()
+        autocmd FileType denite-filter call s:denite_filter_settings()
+    augroup END
 
     function! s:denite_settings() abort
         nnoremap <silent><buffer><expr> <CR>
@@ -522,7 +525,10 @@ function! s:chemzqm_denite_git_add() abort
 endfunction
 
 function! s:chemzqm_denite_git_source() abort
-    AutoCmdFt denite call s:denite_git_settings()
+    augroup DeniteGit
+        autocmd!
+        autocmd FileType denite call s:denite_git_settings()
+    augroup END
 
     function! s:denite_git_settings() abort
         nnoremap <silent><buffer><expr> ga
@@ -547,7 +553,10 @@ function! s:lambdalisue_session_vim_add() abort
 endfunction
 
 function! s:lambdalisue_session_vim_source() abort
-    AutoCmdFt denite call s:denite_session_settings()
+    augroup DeniteSession
+        autocmd!
+        autocmd FileType denite call s:denite_session_settings()
+    augroup END
 
     function! s:denite_session_settings() abort
         nnoremap <silent><buffer><expr> so
