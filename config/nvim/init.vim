@@ -994,6 +994,10 @@ if has('nvim')
     set inccommand=split
 endif
 
+" diffのアルゴリズムを設定
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
+
 " 矩形選択時に文字のないところにカーソルを移動できるようにする
 set virtualedit+=block
 
