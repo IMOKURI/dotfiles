@@ -170,7 +170,14 @@ call dein#add('cohama/lexima.vim', {
             \ 'hook_source': function('s:cohama_lexima_vim')
             \ })
 
-call dein#add('tpope/vim-surround')
+function! s:machakann_vim_sandwich() abort
+    nmap s <Nop>
+    xmap s <Nop>
+endfunction
+
+call dein#add('machakann/vim-sandwich', {
+            \ 'hook_add': function('s:machakann_vim_sandwich')
+            \ })
 
 call dein#add('tpope/vim-commentary')
 
@@ -559,6 +566,7 @@ call dein#add('chemzqm/denite-git', {
 " Session Manager
 function! s:lambdalisue_session_vim_add() abort
     nnoremap <silent> <Leader>s :Denite session<CR>
+    nnoremap ss :SessionSave
 endfunction
 
 function! s:lambdalisue_session_vim_source() abort
@@ -783,9 +791,6 @@ nnoremap <silent> <Leader>q :<C-u>qa<CR>
 
 " すべてのタブを保存せず閉じる
 nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
-
-" セッションを保存する
-nnoremap s :SessionSave
 
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
