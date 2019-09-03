@@ -1,5 +1,4 @@
 FROM centos:7
-MAINTAINER IMOKURI
 
 ARG PROXY
 ENV http_proxy=$PROXY \
