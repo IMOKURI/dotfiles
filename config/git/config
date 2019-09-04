@@ -39,6 +39,15 @@
 [url "git@github.com:"]
   pushInsteadOf = https://github.com/
 
+[diff]
+  tool = nvimdiff
+
+[difftool]
+  prompt = false
+
+[difftool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+
 [diff "ansible-vault"]
   textconv = ansible-vault view
 
