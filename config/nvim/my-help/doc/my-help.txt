@@ -13,6 +13,7 @@ VARIABLES                                     |my-help-variables|
 MAPPING                                                      *my-help-mapping*
 
 - Mapping commands and modes.  |map-overview|
+- Commands on diff mode.  |jumpto-diffs|
 
 
 ===============================================================================
@@ -22,3 +23,4 @@ VARIABLES                                                  *my-help-variables*
 
 
 ===============================================================================
+vim:ft=help
