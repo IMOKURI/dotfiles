@@ -1,31 +1,24 @@
-*my-help.txt*  My neovim help file.                                  *my-help*
+*my-help.txt*  My (neo)vim help file.                                *my-help*
 
-hogehoge
+Cheat sheet of (neo)vim for me!
 
 ===============================================================================
 CONTENTS                                                    *my-help-contents*
 
-INTRODUCTION                                  |my-help-introduction|
 MAPPING                                       |my-help-mapping|
 VARIABLES                                     |my-help-variables|
 
 
 ===============================================================================
-INTRODUCTION                                            *my-help-introduction*
-
-hogehoge
-
-
-===============================================================================
 MAPPING                                                      *my-help-mapping*
 
-hogehoge
+- Mapping commands and modes.  |map-overview|
 
 
 ===============================================================================
 VARIABLES                                                  *my-help-variables*
 
-hogehoge
+- Variable scope.  |internal-variables|
 
 
 ===============================================================================

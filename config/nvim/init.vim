@@ -56,30 +56,6 @@ if &runtimepath !~# '/dein.vim'
     execute 'set runtimepath^=' . s:dein_repo_dir
 endif
 
-"---------------------------------------------------------------------------"
-" Commands \ Modes | Normal | Insert | Command | Visual | Select | Operator |
-"------------------|--------|--------|---------|--------|--------|----------|
-" map  / noremap   |    @   |   -    |    -    |   @    |   @    |    @     |
-" nmap / nnoremap  |    @   |   -    |    -    |   -    |   -    |    -     |
-" vmap / vnoremap  |    -   |   -    |    -    |   @    |   @    |    -     |
-" omap / onoremap  |    -   |   -    |    -    |   -    |   -    |    @     |
-" xmap / xnoremap  |    -   |   -    |    -    |   @    |   -    |    -     |
-" smap / snoremap  |    -   |   -    |    -    |   -    |   @    |    -     |
-" map! / noremap!  |    -   |   @    |    @    |   -    |   -    |    -     |
-" imap / inoremap  |    -   |   @    |    -    |   -    |   -    |    -     |
-" cmap / cnoremap  |    -   |   -    |    @    |   -    |   -    |    -     |
-"---------------------------------------------------------------------------"
-
-" variable prefixes
-" b:    Local to the current buffer.
-" w:    Local to the current window.
-" t:    Local to the current tab page.
-" g:    Global.
-" l:    Local to a function.
-" s:    Local to a :source'ed Vim script.
-" a:    Function argument (only inside a function).
-" v:    Global, predefined by Vim.
-
 call dein#begin(s:dein_dir)
 
 " Plugin Manager
