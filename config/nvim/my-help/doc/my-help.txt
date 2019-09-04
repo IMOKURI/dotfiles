@@ -1,0 +1,31 @@
+*my-help.txt*  My neovim help file.                                  *my-help*
+
+hogehoge
+
+===============================================================================
+CONTENTS                                                    *my-help-contents*
+
+INTRODUCTION                                  |my-help-introduction|
+MAPPING                                       |my-help-mapping|
+VARIABLES                                     |my-help-variables|
+
+
+===============================================================================
+INTRODUCTION                                            *my-help-introduction*
+
+hogehoge
+
+
+===============================================================================
+MAPPING                                                      *my-help-mapping*
+
+hogehoge
+
+
+===============================================================================
+VARIABLES                                                  *my-help-variables*
+
+hogehoge
+
+
+===============================================================================

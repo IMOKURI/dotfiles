@@ -592,6 +592,9 @@ call dein#add('lambdalisue/session.vim', {
             \ 'hook_source': function('s:lambdalisue_session_vim_source')
             \ })
 
+" My Plugins
+call dein#add('~/.config/nvim/my-help')
+
 call dein#end()
 
 if dein#check_install()
