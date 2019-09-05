@@ -634,6 +634,9 @@ if exists('&blend')
     highlight PmenuSel blend=0
 endif
 
+" -----------------------------------------------------------------------------
+" Status line
+" -----------------------------------------------------------------------------
 function! LightLineFugitive() abort
     try
         return exists('*fugitive#head') ? fugitive#head() : ''
@@ -697,22 +700,12 @@ let g:lightline = {
             \ }
             \ }
 
-" This does not work. Use ginit.vim instead.
-"if has('gui_running')
-"    Guifont! Migu 1M:h12
-"endif
-
 " -----------------------------------------------------------------------------
-" FileType settings
+" Auto command
 " -----------------------------------------------------------------------------
-
 MyAutoCmd VimEnter * if &diff | execute 'windo set wrap' | endif
 
 MyAutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
-
-" -----------------------------------------------------------------------------
-" Useful function
-" -----------------------------------------------------------------------------
 
 MyAutoCmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -723,6 +716,17 @@ MyAutoCmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
 MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline
 
 MyAutoCmd InsertLeave * set nopaste
+
+" -----------------------------------------------------------------------------
+" Useful function
+" -----------------------------------------------------------------------------
+function! DeleteHiddenBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout' buf
+    endfor
+endfunction
 
 function! s:smart_foldcloser() abort
     if foldlevel('.') == 0
@@ -740,14 +744,6 @@ function! s:smart_foldcloser() abort
         return
     endif
     norm! zM
-endfunction
-
-function! DeleteHiddenBuffers()
-    let tpbl=[]
-    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-        silent execute 'bwipeout' buf
-    endfor
 endfunction
 
 " -----------------------------------------------------------------------------
@@ -826,12 +822,6 @@ nnoremap <silent> , :<C-u>call <SID>smart_foldcloser()<CR>
 " 現在いるところ以外の折り畳みを閉じる
 nnoremap <silent> z, zMzv
 
-" 現在いる折り畳みと同じ階層までの全ての折り畳みを開く
-nnoremap <silent> zl :<C-u>set foldlevel=<C-r>=foldlevel('.')<CR><CR>
-
-" 検索結果のハイライトをEsc連打でクリアする
-nnoremap <silent> <Esc><Esc> :<C-u>set nohlsearch!<CR>
-
 " カーソル下の単語をハイライトして置換する
 nmap # *:%s/<C-r>///g<Left><Left>
 
@@ -843,8 +833,6 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
 
 " レジスタからペーストする
 nnoremap <Leader>p "0p
@@ -860,8 +848,6 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-b> <left>
 inoremap <C-f> <right>
-inoremap <C-p> <Up>
-inoremap <C-n> <Down>
 
 " -----------------------------------------------------------------------------
 " Options
