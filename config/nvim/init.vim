@@ -749,6 +749,9 @@ endfunction
 " -----------------------------------------------------------------------------
 " Mapping
 " -----------------------------------------------------------------------------
+" Exモード使わない
+nmap Q <Nop>
+
 " ファイル保存
 nnoremap <silent> <Leader>w :<C-u>w<CR>
 
@@ -765,7 +768,7 @@ nnoremap <silent> qq :<C-u>close<CR>
 nnoremap <silent> <Leader>q :<C-u>qa<CR>
 
 " すべてのタブを保存せず閉じる
-nnoremap <silent> <Leader><Leader>q :<C-u>qa!<CR>
+nnoremap <silent> <Leader>Q :<C-u>qa!<CR>
 
 " 新しいタブを開く
 nnoremap <silent> gt :<C-u>tabnew<CR>
