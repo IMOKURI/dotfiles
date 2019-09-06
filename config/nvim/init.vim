@@ -107,6 +107,8 @@ call dein#add('osyo-manga/vim-anzu', {
 
 call dein#add('mechatroner/rainbow_csv')
 
+call dein#add('pearofducks/ansible-vim')
+
 call dein#add('martinda/Jenkinsfile-vim-syntax', {
             \ 'on_path': '.*Jenkinsfile'
             \ })
