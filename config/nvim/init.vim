@@ -6,12 +6,6 @@ if !exists('g:mapleader')
     let g:mapleader = "\<Space>"
 endif
 
-augroup MyAutoGroup
-    autocmd!
-augroup END
-command! -nargs=* MyAutoCmd autocmd MyAutoGroup <args>
-command! -nargs=* MyAutoCmdFt autocmd MyAutoGroup FileType <args>
-
 " -----------------------------------------------------------------------------
 " Detect platform
 " -----------------------------------------------------------------------------
@@ -100,7 +94,10 @@ function! s:osyo_manga_vim_anzu() abort
     nmap N <Plug>(is-nohl)<Plug>(anzu-N)
     nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
 
-    MyAutoCmd WinLeave,TabLeave * call anzu#clear_search_status()
+    augroup Anzu
+        autocmd!
+        autocmd WinLeave,TabLeave * call anzu#clear_search_status()
+    augroup END
 endfunction
 
 call dein#add('osyo-manga/vim-anzu', {
@@ -260,60 +257,81 @@ function! s:prabirshrestha_vim_lsp() abort
                 \ }
 
     if (executable('pyls'))
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'pyls',
-                    \ 'cmd': {server_info->['pyls']},
-                    \ 'whitelist': ['python'],
-                    \ 'workspace_config': s:workspace_config_python
-                    \ })
+        augroup LspPython
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'pyls',
+                        \ 'cmd': {server_info->['pyls']},
+                        \ 'whitelist': ['python'],
+                        \ 'workspace_config': s:workspace_config_python
+                        \ })
+        augroup END
     endif
 
     if executable('docker-langserver')
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'docker-langserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-                    \ 'whitelist': ['dockerfile'],
-                    \ })
+        augroup LspDocker
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'docker-langserver',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+                        \ 'whitelist': ['dockerfile'],
+                        \ })
+        augroup END
     endif
 
     if executable('bash-language-server')
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'bash-language-server',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                    \ 'whitelist': ['sh'],
-                    \ })
+        augroup LspBash
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'bash-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+                        \ 'whitelist': ['sh'],
+                        \ })
+        augroup END
     endif
 
     if executable('vscode-json-languageserver')
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'vscode-json-languageserver',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
-                    \ 'whitelist': ['json'],
-                    \ })
+        augroup LspJson
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'vscode-json-languageserver',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
+                        \ 'whitelist': ['json'],
+                        \ })
+        augroup END
     endif
 
     if executable('yaml-language-server')
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'yaml-language-server',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
-                    \ 'whitelist': ['yaml'],
-                    \ })
+        augroup LspYaml
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'yaml-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
+                        \ 'whitelist': ['yaml'],
+                        \ })
+        augroup END
     endif
 
     if executable('vim-language-server')
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'vim-language-server',
-                    \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vim-language-server --stdio']},
-                    \ 'whitelist': ['vim'],
-                    \ })
+        augroup LspVim
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'vim-language-server',
+                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vim-language-server --stdio']},
+                        \ 'whitelist': ['vim'],
+                        \ })
+        augroup END
     endif
 
     if executable('efm-langserver')
-        MyAutoCmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'efm-langserver-erb',
-                    \ 'cmd': {server_info->['efm-langserver']},
-                    \ 'whitelist': ['markdown'],
-                    \ })
+        augroup LspEfm
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                        \ 'name': 'efm-langserver-erb',
+                        \ 'cmd': {server_info->['efm-langserver']},
+                        \ 'whitelist': ['markdown'],
+                        \ })
+        augroup END
     endif
 
 endfunction
@@ -703,19 +721,24 @@ let g:lightline = {
 " -----------------------------------------------------------------------------
 " Auto command
 " -----------------------------------------------------------------------------
-MyAutoCmd VimEnter * if &diff | execute 'windo set wrap' | endif
+augroup MyAutoCmd
+    autocmd!
 
-MyAutoCmd BufRead,BufNewFile Dockerfile.* setf dockerfile
+    autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
 
-MyAutoCmd BufReadPost *
-            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-            \   exe "normal! g'\"" |
-            \ endif
+    autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
-MyAutoCmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-MyAutoCmd CursorHold,CursorHoldI * setlocal cursorline
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \   exe "normal! g'\"" |
+                \ endif
 
-MyAutoCmd InsertLeave * set nopaste
+    autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+    autocmd CursorHold,CursorHoldI * setlocal cursorline
+
+    autocmd InsertLeave * set nopaste
+
+augroup END
 
 " -----------------------------------------------------------------------------
 " Useful function
