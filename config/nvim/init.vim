@@ -695,12 +695,12 @@ let g:lightline = {
             \   'left': [
             \     [ 'mode', 'paste' ],
             \     [ 'fugitive', 'readonly', 'filepath', 'modified' ],
-            \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok', 'anzu' ]
+            \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ]
             \   ],
             \   'right': [
             \     [ 'percent', 'lineinfo' ],
             \     [ 'filetype' ],
-            \     [ 'fileformat', 'fileencoding' ]
+            \     [ 'anzu', 'fileformat', 'fileencoding' ]
             \   ]
             \ },
             \ 'component_expand': {
