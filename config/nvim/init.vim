@@ -690,7 +690,7 @@ let g:lightline#ale#indicator_checking = '(」・ω・)」うー '
 let g:lightline#ale#indicator_ok = '(/・ω・)/にゃー'
 
 let g:lightline = {
-            \ 'colorscheme': 'tender',
+            \ 'colorscheme': 'challenger_deep',
             \ 'active': {
             \   'left': [
             \     [ 'mode', 'paste' ],
