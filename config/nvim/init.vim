@@ -628,28 +628,6 @@ let g:lightline = {
             \ }
 
 " -----------------------------------------------------------------------------
-" Auto command
-" -----------------------------------------------------------------------------
-augroup MyAutoCmd
-    autocmd!
-
-    autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
-
-    autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
-
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal! g'\"" |
-                \ endif
-
-    autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-    autocmd CursorHold,CursorHoldI * setlocal cursorline
-
-    autocmd InsertLeave * set nopaste
-
-augroup END
-
-" -----------------------------------------------------------------------------
 " Useful function
 " -----------------------------------------------------------------------------
 function! DeleteHiddenBuffers()
@@ -677,6 +655,35 @@ function! s:smart_foldcloser() abort
     endif
     norm! zM
 endfunction
+
+function! s:auto_mkdir(dir, force) abort
+    if !isdirectory(a:dir) && (a:force || input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+        call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+endfunction
+
+" -----------------------------------------------------------------------------
+" Auto command
+" -----------------------------------------------------------------------------
+augroup MyAutoCmd
+    autocmd!
+
+    autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
+
+    autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
+
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                \   exe "normal! g'\"" |
+                \ endif
+
+    autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+    autocmd CursorHold,CursorHoldI * setlocal cursorline
+
+    autocmd InsertLeave * set nopaste
+
+    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+augroup END
 
 " -----------------------------------------------------------------------------
 " Mapping
