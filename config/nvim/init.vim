@@ -662,6 +662,17 @@ function! s:auto_mkdir(dir, force) abort
     endif
 endfunction
 
+function! s:hint_cmd_output(prefix, cmd) abort
+    redir => str
+        execute a:cmd
+    redir END
+    let more_old = &more
+    set nomore
+    echo str
+    let &more = more_old
+    return a:prefix . nr2char(getchar())
+endfunction
+
 " -----------------------------------------------------------------------------
 " Auto command
 " -----------------------------------------------------------------------------
@@ -776,6 +787,9 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
+
+" レジストリをリストアップする
+nnoremap <expr> " <SID>hint_cmd_output('"', 'registers')
 
 " レジスタからペーストする
 nnoremap <Leader>p "0p
