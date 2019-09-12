@@ -158,6 +158,7 @@ _banner "Install Python Packages..."
 
 pip install --user \
   ansible \
+  jedi \
   neovim \
   pipenv \
   pipenv-pipes \
@@ -176,6 +177,7 @@ npm install \
   doctoc \
   markdownlint-cli \
   neovim \
+  prettier \
   vim-language-server \
   vscode-json-languageserver \
   yaml-language-server
@@ -186,6 +188,7 @@ _banner "Install Go Packages..."
 
 go get \
   github.com/mattn/efm-langserver \
+  github.com/mrtazz/checkmake \
   github.com/tokuhirom/git-xlsx-textconv \
   mvdan.cc/sh/cmd/shfmt
 

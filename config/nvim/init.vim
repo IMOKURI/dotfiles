@@ -102,6 +102,17 @@ call dein#add('t9md/vim-quickhl', {
 
 call dein#add('itchyny/vim-cursorword')
 
+call dein#add('Shougo/context_filetype.vim')
+
+call dein#add('mechatroner/rainbow_csv')
+
+call dein#add('pearofducks/ansible-vim')
+
+call dein#add('martinda/Jenkinsfile-vim-syntax', {
+            \ 'on_path': '.*Jenkinsfile'
+            \ })
+
+" Utility
 call dein#add('haya14busa/is.vim')
 
 function! s:osyo_manga_vim_anzu() abort
@@ -120,15 +131,6 @@ call dein#add('osyo-manga/vim-anzu', {
             \ 'hook_add': function('s:osyo_manga_vim_anzu')
             \ })
 
-call dein#add('mechatroner/rainbow_csv')
-
-call dein#add('pearofducks/ansible-vim')
-
-call dein#add('martinda/Jenkinsfile-vim-syntax', {
-            \ 'on_path': '.*Jenkinsfile'
-            \ })
-
-" Utility
 function! s:lambdalisue_suda_vim() abort
     let g:suda_smart_edit = 1
 endfunction
@@ -198,170 +200,112 @@ call dein#add('voldikss/vim-floaterm', {
             \ 'hook_add': function('s:voldikss_vim_floaterm')
             \ })
 
+
+" LSP
+
+
 " Completion
-if has('nvim')
-    function! s:ncm2_float_preview() abort
-        let g:float_preview#docked = 1
-    endfunction
 
-    call dein#add('ncm2/float-preview.nvim', {
-                \ 'on_source': 'deoplete.nvim',
-                \ 'hook_add': function('s:ncm2_float_preview')
-                \ })
-endif
-
-function! s:shougo_echodoc_vim() abort
-    let g:echodoc#enable_at_startup = 1
+function! s:shougo_deoplete_nvim_hook_add() abort
+    let g:deoplete#enable_at_startup = 1
 endfunction
 
-call dein#add('Shougo/echodoc.vim', {
-            \ 'on_source': 'deoplete.nvim',
-            \ 'hook_add': function('s:shougo_echodoc_vim')
-            \ })
+function! s:shougo_deoplete_nvim_hook_source() abort
+    call deoplete#custom#var('around', {
+                \ 'range_above': 30,
+                \ 'range_below': 30,
+                \ 'mark_above': '[↑]',
+                \ 'mark_below': '[↓]',
+                \ 'mark_changes': '[*]',
+                \ })
 
-function! s:shougo_deoplete_nvim() abort
-    let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#var('buffer', {
+                \ 'require_same_filetype': v:false
+                \ })
+
+    call deoplete#custom#var('file', {
+                \ 'force_completion_length': 1
+                \ })
 endfunction
 
 if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
 endif
-call dein#add('Shougo/deoplete.nvim', {
+call dein#add('shougo/deoplete.nvim', {
             \ 'on_i': 1,
-            \ 'hook_add': function('s:shougo_deoplete_nvim')
+            \ 'hook_add': function('s:shougo_deoplete_nvim_hook_add'),
+            \ 'hook_source': function('s:shougo_deoplete_nvim_hook_source')
             \ })
 
-call dein#add('fszymanski/deoplete-emoji', {
-            \ 'lazy': 1,
-            \ 'depends': 'deoplete.nvim',
-            \ })
+function! s:shougo_echodoc_vim() abort
+    let g:echodoc#enable_at_startup = 1
 
-" LSP
-function! s:prabirshrestha_vim_lsp() abort
-    nmap <silent> <Leader>] <Plug>(lsp-definition)
-    nmap <silent> <Leader>[ <Plug>(lsp-references)
-    nmap <silent> <Leader>d <Plug>(lsp-document-diagnostics)
-    nmap <silent> <Leader>z <Plug>(lsp-document-format)
-    vmap <silent> <Leader>z <Plug>(lsp-document-format)
-    nmap <silent> <Leader>r <Plug>(lsp-rename)
-
-    "let g:lsp_diagnostics_enabled = 0
-
-    " pycodestyle
-    " E501 line too long
-    " W503 line break before binary operator
-
-    " pylint
-    " C0301 [line-too-long] Line too long
-    " W0703 [broad-except] Catching too general exception Exception
-
-    let s:workspace_config_python = {
-                \ 'pyls': {'plugins': {
-                \   'pycodestyle': {'ignore': [
-                \       'E501',
-                \       'W503'
-                \   ]},
-                \   'pylint': {'ignore': [
-                \       'C0301',
-                \       'W0703'
-                \   ]},
-                \   'jedi_definition': {
-                \       'follow_imports': v:true,
-                \       'follow_builtin_imports': v:true
-                \   }
-                \ }}
-                \ }
-
-    if (executable('pyls'))
-        augroup LspPython
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'pyls',
-                        \ 'cmd': {server_info->['pyls']},
-                        \ 'whitelist': ['python'],
-                        \ 'workspace_config': s:workspace_config_python
-                        \ })
-        augroup END
-    endif
-
-    if executable('docker-langserver')
-        augroup LspDocker
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'docker-langserver',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-                        \ 'whitelist': ['dockerfile'],
-                        \ })
-        augroup END
-    endif
-
-    if executable('bash-language-server')
-        augroup LspBash
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'bash-language-server',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-                        \ 'whitelist': ['sh'],
-                        \ })
-        augroup END
-    endif
-
-    if executable('vscode-json-languageserver')
-        augroup LspJson
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'vscode-json-languageserver',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vscode-json-languageserver --stdio']},
-                        \ 'whitelist': ['json'],
-                        \ })
-        augroup END
-    endif
-
-    if executable('yaml-language-server')
-        augroup LspYaml
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'yaml-language-server',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'yaml-language-server --stdio']},
-                        \ 'whitelist': ['yaml'],
-                        \ })
-        augroup END
-    endif
-
-    if executable('vim-language-server')
-        augroup LspVim
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'vim-language-server',
-                        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'vim-language-server --stdio']},
-                        \ 'whitelist': ['vim'],
-                        \ })
-        augroup END
-    endif
-
-    if executable('efm-langserver')
-        augroup LspEfm
-            autocmd!
-            autocmd User lsp_setup call lsp#register_server({
-                        \ 'name': 'efm-langserver-erb',
-                        \ 'cmd': {server_info->['efm-langserver']},
-                        \ 'whitelist': ['markdown'],
-                        \ })
-        augroup END
-    endif
-
+    set completeopt-=preview
 endfunction
 
-call dein#add('prabirshrestha/async.vim')
-call dein#add('prabirshrestha/vim-lsp', {
-            \ 'depends': 'async.vim',
-            \ 'hook_add': function('s:prabirshrestha_vim_lsp')
+call dein#add('Shougo/echodoc.vim', {
+            \ 'depends': 'deoplete.nvim',
+            \ 'on_source': 'deoplete.nvim',
+            \ 'hook_add': function('s:shougo_echodoc_vim')
             \ })
 
-call dein#add('lighttiger2505/deoplete-vim-lsp', {
-            \ 'lazy': 1,
-            \ 'depends': ['deoplete.nvim', 'vim-lsp'],
+call dein#add('Shougo/neco-syntax', {
+            \ 'depends': 'deoplete.nvim',
+            \ 'on_source': 'deoplete.nvim'
+            \ })
+
+call dein#add('Shougo/neco-vim', {
+            \ 'on_ft': 'vim',
+            \ 'depends': 'deoplete.nvim',
+            \ 'on_source': 'deoplete.nvim'
+            \ })
+
+call dein#add('deoplete-plugins/deoplete-jedi', {
+            \ 'on_ft': 'python',
+            \ 'depends': 'deoplete.nvim',
+            \ 'on_source': 'deoplete.nvim'
+            \ })
+
+" Linter
+function! s:w0rp_ale() abort
+    let g:ale_sign_error = 'E>'
+    let g:ale_sign_warning = 'W>'
+
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
+
+    let g:ale_linters = {
+                \ 'awk': ['gawk'],
+                \ 'json': ['jq'],
+                \ 'make': ['checkmake'],
+                \ 'python': ['flake8', 'pylint'],
+                \ 'sh': ['language_server'],
+                \ 'vim': ['vint'],
+                \ 'yaml': ['yamllint']
+                \ }
+
+    let g:ale_fixers = {
+                \ 'json': ['jq'],
+                \ 'python': ['autopep8', 'yapf', 'isort'],
+                \ 'sh': ['shfmt'],
+                \ 'yaml': ['prettier']
+                \ }
+
+    let g:ale_json_jq_options = '--indent 4'
+    let g:ale_python_flake8_options = '--ignore=E501'
+    let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
+    let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
+
+    nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
+    nmap <silent> <Leader>x <Plug>(ale_fix)
+endfunction
+
+call dein#add('w0rp/ale', {
+            \ 'hook_add': function('s:w0rp_ale')
             \ })
 
 " Snippet
@@ -379,59 +323,9 @@ call dein#add('Shougo/neosnippet', {
             \ })
 
 " Formatter
-call dein#add('tpope/vim-sleuth')
-
 call dein#add('Vimjas/vim-python-pep8-indent', {
             \ 'on_i': 1,
             \ 'on_ft': 'python'
-            \ })
-
-function! s:sbdchd_neoformat_hook_add() abort
-    nnoremap <silent> <Leader>n :Neoformat<CR>
-endfunction
-
-function! s:sbdchd_neoformat_hook_source() abort
-    let g:neoformat_basic_format_align = 1
-    let g:neoformat_basic_format_retab = 1
-    let g:neoformat_basic_format_trim = 1
-endfunction
-
-call dein#add('sbdchd/neoformat', {
-            \ 'hook_add': function('s:sbdchd_neoformat_hook_add'),
-            \ 'hook_source': function('s:sbdchd_neoformat_hook_source')
-            \ })
-
-" Linter
-function! s:w0rp_ale() abort
-    let g:ale_sign_error = 'E>'
-    let g:ale_sign_warning = 'W>'
-
-    let g:ale_echo_msg_error_str = 'E'
-    let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
-
-    let g:ale_linters = {
-                \ 'python': ['flake8', 'pylint'],
-                \ }
-    let g:ale_python_flake8_options = '--ignore=E501'
-    let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
-    let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
-
-    let g:ale_fixers = {
-                \ 'json': ['jq'],
-                \ 'python': ['autopep8', 'yapf', 'isort'],
-                \ 'sh': ['shfmt'],
-                \ }
-    let g:ale_json_jq_options = '--indent 4'
-
-    nmap <silent> <C-p> <Plug>(ale_previous_wrap)
-    nmap <silent> <C-n> <Plug>(ale_next_wrap)
-
-    nmap <silent> <Leader>x <Plug>(ale_fix)
-endfunction
-
-call dein#add('w0rp/ale', {
-            \ 'hook_add': function('s:w0rp_ale')
             \ })
 
 " Status Line
@@ -847,7 +741,8 @@ nnoremap <Leader><bar> <C-w>v
 nnoremap <Leader><Tab> <C-^>
 
 " 折りたたみを開く
-nnoremap <expr>l  foldclosed('.') != -1 ? 'zo' : 'l'
+nnoremap <expr> l foldclosed('.') != -1 ? 'zo' : 'l'
+nnoremap <silent> zl zO
 
 " 折りたたみを閉じる
 nnoremap <silent> , :<C-u>call <SID>smart_foldcloser()<CR>
