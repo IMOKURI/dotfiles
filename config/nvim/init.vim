@@ -788,6 +788,10 @@ cnoremap <C-e> <End>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
+" マークをリストアップして{保存,復旧}する
+nnoremap <expr> m  <SID>hint_cmd_output('m', 'marks')
+nnoremap <expr> `  <SID>hint_cmd_output('`', 'marks') . 'zz'
+
 " レジストリをリストアップする
 nnoremap <expr> " <SID>hint_cmd_output('"', 'registers')
 
