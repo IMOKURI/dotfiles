@@ -31,11 +31,11 @@ if empty($XDG_DATA_HOME)
     endif
 endif
 
-let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
-
 " -----------------------------------------------------------------------------
 " Provider settings
 " -----------------------------------------------------------------------------
+let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
+
 if g:env =~# 'LINUX'
     let g:python3_host_prog = s:provider_dir . '/.venv/bin/python'
     let g:python_host_prog = '/usr/bin/python2'
@@ -51,12 +51,7 @@ endif
 " -----------------------------------------------------------------------------
 " Plugin settings
 " -----------------------------------------------------------------------------
-if !exists('g:mapleader')
-    nnoremap <Space> <Nop>
-    let g:mapleader = "\<Space>"
-endif
-
-let s:dein_dir = expand('~/.cache/dein')
+let s:dein_dir = $XDG_DATA_HOME . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
@@ -64,6 +59,11 @@ if &runtimepath !~# '/dein.vim'
         execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
     endif
     execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+
+if !exists('g:mapleader')
+    nnoremap <Space> <Nop>
+    let g:mapleader = "\<Space>"
 endif
 
 call dein#begin(s:dein_dir)
@@ -205,7 +205,6 @@ call dein#add('voldikss/vim-floaterm', {
 
 
 " Completion
-
 function! s:shougo_deoplete_nvim_hook_add() abort
     let g:deoplete#enable_at_startup = 1
 endfunction
@@ -308,24 +307,33 @@ call dein#add('w0rp/ale', {
             \ 'hook_add': function('s:w0rp_ale')
             \ })
 
+" Formatter
+call dein#add('Vimjas/vim-python-pep8-indent', {
+            \ 'on_i': 1,
+            \ 'on_ft': 'python'
+            \ })
+
 " Snippet
-function! s:Shougo_neosnippet() abort
+call dein#add('phenomenes/ansible-snippets')
+call dein#add('Shougo/neosnippet-snippets')
+
+function! s:Shougo_neosnippet_hook_add() abort
+    let g:neosnippet#snippets_directory = [
+                \ $XDG_DATA_HOME . '/dein/**/snippets'
+                \ ]
+endfunction
+
+function! s:Shougo_neosnippet_hook_source() abort
     imap <C-k> <Plug>(neosnippet_expand_or_jump)
     smap <C-k> <Plug>(neosnippet_expand_or_jump)
     xmap <C-k> <Plug>(neosnippet_expand_target)
 endfunction
 
-call dein#add('Shougo/neosnippet-snippets')
 call dein#add('Shougo/neosnippet', {
-            \ 'depends': 'neosnippet-snippets',
+            \ 'depends': ['ansible-snippets', 'neosnippet-snippets'],
             \ 'on_i': 1,
-            \ 'hook_source': function('s:Shougo_neosnippet')
-            \ })
-
-" Formatter
-call dein#add('Vimjas/vim-python-pep8-indent', {
-            \ 'on_i': 1,
-            \ 'on_ft': 'python'
+            \ 'hook_add': function('s:Shougo_neosnippet_hook_add'),
+            \ 'hook_source': function('s:Shougo_neosnippet_hook_source')
             \ })
 
 " Status Line
