@@ -689,7 +689,7 @@ augroup MyAutoCmd
                 \ endif
 
     autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-    autocmd CursorHold,CursorHoldI * setlocal cursorline
+    autocmd CursorHold,CursorHoldI,WinEnter * setlocal cursorline
 
     autocmd InsertLeave * set nopaste
 
