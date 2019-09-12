@@ -28,13 +28,13 @@ GITPATH="$HOME/src/git"
 ##### Functions ###############################################################
 
 function _banner() {
-  sep=$(for ((i = 1; i < $(tput cols); i++)); do echo -n =; done)
-  printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
+    sep=$(for ((i = 1; i < $(tput cols); i++)); do echo -n =; done)
+    printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
 function _logger() {
-  COLOR="${1}"
-  printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
+    COLOR="${1}"
+    printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
 
 ##### Set Proxy ###############################################################
@@ -42,9 +42,9 @@ function _logger() {
 _banner "Set Proxy if Available..."
 
 if [[ "${http_proxy}" ]]; then
-  if ! grep -q proxy /etc/yum.conf; then
-    echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
-  fi
+    if ! grep -q proxy /etc/yum.conf; then
+        echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
+    fi
 fi
 
 ##### Setup repositories ######################################################
@@ -52,13 +52,13 @@ fi
 _banner "Setup repositories..."
 
 if [[ ! -f /etc/yum.repos.d/github_git-lfs.repo ]]; then
-  _logger "${INFO}" "Install Git LFS repository"
-  curl -fsSL https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo -E bash
+    _logger "${INFO}" "Install Git LFS repository"
+    curl -fsSL https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo -E bash
 fi
 
 if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
-  _logger "${INFO}" "Install Nodejs repository"
-  curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+    _logger "${INFO}" "Install Nodejs repository"
+    curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
 fi
 
 ##### Install packages ########################################################
@@ -66,42 +66,42 @@ fi
 _banner "Install Packages..."
 
 sudo -E yum install -y \
-  https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 sudo -E yum install -y \
-  autoconf \
-  automake \
-  cmake3 \
-  ctags \
-  expat-devel \
-  gcc \
-  gcc-c++ \
-  gettext \
-  git \
-  golang \
-  libcurl-devel \
-  libffi-devel \
-  libtool \
-  lua \
-  lua-devel \
-  lua-term \
-  luajit \
-  luajit-devel \
-  make \
-  ncurses-devel \
-  ninja-build \
-  nodejs \
-  openssl-devel \
-  patch \
-  pkgconfig \
-  python \
-  python-devel \
-  python36 \
-  python36-devel \
-  unzip \
-  wget \
-  which \
-  words
+    autoconf \
+    automake \
+    cmake3 \
+    ctags \
+    expat-devel \
+    gcc \
+    gcc-c++ \
+    gettext \
+    git \
+    golang \
+    libcurl-devel \
+    libffi-devel \
+    libtool \
+    lua \
+    lua-devel \
+    lua-term \
+    luajit \
+    luajit-devel \
+    make \
+    ncurses-devel \
+    ninja-build \
+    nodejs \
+    openssl-devel \
+    patch \
+    pkgconfig \
+    python \
+    python-devel \
+    python36 \
+    python36-devel \
+    unzip \
+    wget \
+    which \
+    words
 
 sudo alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 30
 
@@ -110,14 +110,14 @@ sudo alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 30
 _banner "Clone Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
-  _logger "${INFO}" "Clone dotfiles repository"
-  git clone https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
+    _logger "${INFO}" "Clone dotfiles repository"
+    git clone https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
 else
-  _logger "${INFO}" "Update dotfiles repository"
-  pushd "$(pwd)"
-  cd "${DOTPATH}"
-  git pull
-  popd
+    _logger "${INFO}" "Update dotfiles repository"
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    git pull
+    popd
 fi
 
 ##### Clone git ###############################################################
@@ -125,14 +125,14 @@ fi
 _banner "Clone Git..."
 
 if [[ ! -d "${GITPATH}" ]]; then
-  _logger "${INFO}" "Clone git"
-  git clone https://github.com/git/git.git "${GITPATH}"
+    _logger "${INFO}" "Clone git"
+    git clone https://github.com/git/git.git "${GITPATH}"
 else
-  _logger "${INFO}" "Update git repository"
-  pushd "$(pwd)"
-  cd "${DOTPATH}"
-  make update-git
-  popd
+    _logger "${INFO}" "Update git repository"
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    make update-git
+    popd
 fi
 
 ##### Install git #############################################################
@@ -157,51 +157,51 @@ command -v pip3 &>/dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py"
 _banner "Install Python Packages..."
 
 pip install --user \
-  ansible \
-  jedi \
-  neovim \
-  pipenv \
-  pipenv-pipes \
-  pysnooper \
-  vim-vint \
-  yamllint \
-  'python-language-server[all]'
+    ansible \
+    jedi \
+    neovim \
+    pipenv \
+    pipenv-pipes \
+    pysnooper \
+    vim-vint \
+    yamllint \
+    'python-language-server[all]'
 
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
 
 npm install \
-  bash-language-server \
-  dockerfile-language-server-nodejs \
-  doctoc \
-  markdownlint-cli \
-  neovim \
-  prettier \
-  vim-language-server \
-  vscode-json-languageserver \
-  yaml-language-server
+    bash-language-server \
+    dockerfile-language-server-nodejs \
+    doctoc \
+    markdownlint-cli \
+    neovim \
+    prettier \
+    vim-language-server \
+    vscode-json-languageserver \
+    yaml-language-server
 
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
 
 go get \
-  github.com/mattn/efm-langserver \
-  github.com/mrtazz/checkmake \
-  github.com/tokuhirom/git-xlsx-textconv \
-  mvdan.cc/sh/cmd/shfmt
+    github.com/mattn/efm-langserver \
+    github.com/mrtazz/checkmake \
+    github.com/tokuhirom/git-xlsx-textconv \
+    mvdan.cc/sh/cmd/shfmt
 
 ##### Install ripgrep #########################################################
 
 _banner "Install RipGrep..."
 
 if [[ ! -f "${HOME}/bin/rg" ]]; then
-  curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.0/ripgrep-11.0.0-x86_64-unknown-linux-musl.tar.gz
+    curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.0/ripgrep-11.0.0-x86_64-unknown-linux-musl.tar.gz
 
-  tar xf /tmp/rg.tar.gz -C "$HOME/src/"
+    tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
-  ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
+    ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
 fi
 
 ##### Install bashmarks #######################################################
@@ -209,11 +209,11 @@ fi
 _banner "Install Bashmarks..."
 
 if [[ ! -d "${HOME}/src/bashmarks" ]]; then
-  git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
-  pushd "$(pwd)"
-  cd "${HOME}/src/bashmarks"
-  make install
-  popd
+    git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
+    pushd "$(pwd)"
+    cd "${HOME}/src/bashmarks"
+    make install
+    popd
 fi
 
 ##### Clone neovim ############################################################
@@ -221,14 +221,14 @@ fi
 _banner "Clone Neovim..."
 
 if [[ ! -d "${NEOVIMPATH}" ]]; then
-  _logger "${INFO}" "Clone neovim"
-  git clone https://github.com/neovim/neovim.git "${NEOVIMPATH}"
+    _logger "${INFO}" "Clone neovim"
+    git clone https://github.com/neovim/neovim.git "${NEOVIMPATH}"
 else
-  _logger "${INFO}" "Update neovim repository"
-  pushd "$(pwd)"
-  cd "${DOTPATH}"
-  make update-neovim
-  popd
+    _logger "${INFO}" "Update neovim repository"
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    make update-neovim
+    popd
 fi
 
 ##### Install neovim ##########################################################
@@ -245,14 +245,14 @@ popd
 _banner "Clone Vim..."
 
 if [[ ! -d "${VIMPATH}" ]]; then
-  _logger "${INFO}" "Clone vim"
-  git clone https://github.com/vim/vim.git "${VIMPATH}"
+    _logger "${INFO}" "Clone vim"
+    git clone https://github.com/vim/vim.git "${VIMPATH}"
 else
-  _logger "${INFO}" "Update vim repository"
-  pushd "$(pwd)"
-  cd "${DOTPATH}"
-  make update-vim
-  popd
+    _logger "${INFO}" "Update vim repository"
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    make update-vim
+    popd
 fi
 
 ##### Install vim #############################################################
@@ -273,10 +273,10 @@ pushd "$(pwd)"
 cd "${DOTPATH}"
 make install
 if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
-  echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
+    echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
 fi
 if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
-  echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
+    echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
 fi
 popd
 
