@@ -104,9 +104,13 @@ call dein#add('itchyny/vim-cursorword')
 
 call dein#add('Shougo/context_filetype.vim')
 
-call dein#add('mechatroner/rainbow_csv')
+call dein#add('mechatroner/rainbow_csv', {
+            \ 'on_ft': 'csv'
+            \ })
 
-call dein#add('pearofducks/ansible-vim')
+call dein#add('pearofducks/ansible-vim', {
+            \ 'on_ft': 'yaml'
+            \ })
 
 call dein#add('martinda/Jenkinsfile-vim-syntax', {
             \ 'on_path': '.*Jenkinsfile'
