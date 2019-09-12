@@ -33,7 +33,8 @@ update: ## Update repository
 	git pull
 
 pipenv: ## Setup pipenv
-	cd config/nvim/ && \
+	mkdir -p $(HOME)/.local/share/provider.nvim
+	cd $(HOME)/.local/share/provider.nvim/ && \
 	PIPENV_VENV_IN_PROJECT=true pipenv install pynvim
 
 deploy: ## Create symlink
