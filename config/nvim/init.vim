@@ -1,11 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-if !exists('g:mapleader')
-    nnoremap <Space> <Nop>
-    let g:mapleader = "\<Space>"
-endif
-
 " -----------------------------------------------------------------------------
 " Detect platform
 " -----------------------------------------------------------------------------
@@ -17,6 +12,9 @@ if !exists('g:env')
     endif
 endif
 
+" -----------------------------------------------------------------------------
+" Determine XDG base directory
+" -----------------------------------------------------------------------------
 if empty($XDG_CONFIG_HOME)
     if g:env =~# 'LINUX'
         let $XDG_CONFIG_HOME = expand('~/.config')
@@ -25,19 +23,37 @@ if empty($XDG_CONFIG_HOME)
     endif
 endif
 
+if empty($XDG_DATA_HOME)
+    if g:env =~# 'LINUX'
+        let $XDG_DATA_HOME = expand('~/.local/share')
+    elseif g:env =~# 'WINDOWS'
+        let $XDG_DATA_HOME = expand('~/AppData/Local')
+    endif
+endif
+
+let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
+
+" -----------------------------------------------------------------------------
+" Provider settings
+" -----------------------------------------------------------------------------
+if g:env =~# 'LINUX'
+    let g:python3_host_prog = s:provider_dir . '/.venv/bin/python'
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:node_host_prog = expand('~/node_modules/.bin/neovim-node-host')
+
+elseif g:env =~# 'WINDOWS'
+    let g:python3_host_prog = s:provider_dir . '/.venv/Scripts/python'
+    let g:python_host_prog = ''
+    let g:node_host_prog = ''
+
+endif
+
 " -----------------------------------------------------------------------------
 " Plugin settings
 " -----------------------------------------------------------------------------
-let s:nvim_dir = $XDG_CONFIG_HOME . '/nvim'
-
-if g:env =~# 'LINUX'
-    let g:python3_host_prog = s:nvim_dir . '/.venv/bin/python'
-    let g:python_host_prog = '/usr/bin/python2'
-    let g:node_host_prog = expand('~/node_modules/.bin/neovim-node-host')
-elseif g:env =~# 'WINDOWS'
-    let g:python3_host_prog = s:nvim_dir . '/.venv/Scripts/python'
-    let g:python_host_prog = ''
-    let g:node_host_prog = ''
+if !exists('g:mapleader')
+    nnoremap <Space> <Nop>
+    let g:mapleader = "\<Space>"
 endif
 
 let s:dein_dir = expand('~/.cache/dein')
@@ -58,7 +74,6 @@ call dein#add('wsdjeg/dein-ui.vim')
 
 " Color Scheme
 call dein#add('challenger-deep-theme/vim')
-call dein#add('jacoborus/tender.vim')
 
 " Git
 call dein#add('airblade/vim-gitgutter')
@@ -505,6 +520,7 @@ function! s:shougo_denite_nvim_hook_source() abort
                 \ }
     let s:denite_menus.dotfiles.file_candidates = [
                 \ ['init.vim', '~/.dotfiles/config/nvim/init.vim'],
+                \ ['my-help-doc', '~/.dotfiles/config/nvim/my-help/doc/my-help.txt'],
                 \ ['installer', '~/.dotfiles/install']
                 \ ]
 
@@ -518,25 +534,14 @@ call dein#add('Shougo/denite.nvim', {
             \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
             \ })
 
-function! s:pocari_vim_denite_emoji() abort
-    nnoremap <silent> <Leader>u :Denite emoji<CR>
-endfunction
-
-call dein#add('junegunn/vim-emoji')
-call dein#add('pocari/vim-denite-emoji', {
-            \ 'depends': ['denite.nvim', 'vim-emoji'],
-            \ 'on_source': 'denite.nvim',
-            \ 'hook_add': function('s:pocari_vim_denite_emoji'),
-            \ })
-
-function! s:chemzqm_denite_git_add() abort
+function! s:chemzqm_denite_git_hook_add() abort
     nnoremap <silent> <Leader>gb :Denite gitbranch<CR>
     nnoremap <silent> <Leader>gg :Denite gitlog<CR>
     nnoremap <silent> <Leader>gs :Denite gitstatus<CR>
     nnoremap <silent> <Leader>gd :Denite gitchanged -auto-action=preview<CR>
 endfunction
 
-function! s:chemzqm_denite_git_source() abort
+function! s:chemzqm_denite_git_hook_source() abort
     augroup DeniteGit
         autocmd!
         autocmd FileType denite call s:denite_git_settings()
@@ -555,17 +560,17 @@ endfunction
 call dein#add('chemzqm/denite-git', {
             \ 'depends': 'denite.nvim',
             \ 'on_source': 'denite.nvim',
-            \ 'hook_add': function('s:chemzqm_denite_git_add'),
-            \ 'hook_source': function('s:chemzqm_denite_git_source'),
+            \ 'hook_add': function('s:chemzqm_denite_git_hook_add'),
+            \ 'hook_source': function('s:chemzqm_denite_git_hook_source'),
             \ })
 
 " Session Manager
-function! s:lambdalisue_session_vim_add() abort
+function! s:lambdalisue_session_vim_hook_add() abort
     nnoremap <silent> <Leader>s :Denite session<CR>
     nnoremap ss :SessionSave
 endfunction
 
-function! s:lambdalisue_session_vim_source() abort
+function! s:lambdalisue_session_vim_hook_source() abort
     augroup DeniteSession
         autocmd!
         autocmd FileType denite call s:denite_session_settings()
@@ -584,8 +589,8 @@ endfunction
 call dein#add('lambdalisue/session.vim', {
             \ 'depends': 'denite.nvim',
             \ 'on_source': 'denite.nvim',
-            \ 'hook_add': function('s:lambdalisue_session_vim_add'),
-            \ 'hook_source': function('s:lambdalisue_session_vim_source')
+            \ 'hook_add': function('s:lambdalisue_session_vim_hook_add'),
+            \ 'hook_source': function('s:lambdalisue_session_vim_hook_source')
             \ })
 
 " My Plugins
@@ -961,9 +966,6 @@ set colorcolumn=80
 " 有効なときのみ再描画する
 set lazyredraw
 
-" preview windowを表示しない
-set completeopt-=preview
-
 " ポップアップメニューを透過する
 if exists('&pumblend')
     set pumblend=20
@@ -1007,6 +1009,9 @@ set undofile
 
 " スワップファイルを作成する
 set swapfile
+
+" 補完ディクショナリ設定
+set dictionary=/usr/share/dict/words
 
 " バックアップファイルを作成しない
 set nobackup
