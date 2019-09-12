@@ -1,4 +1,4 @@
-.PHONY: help
+.PHONY: all help test clean install proxy git neovim vim
 .DEFAULT_GOAL := help
 
 DOTFILES_EXCLUDES    := README.md LICENSE Makefile install config $(wildcard .??*)
