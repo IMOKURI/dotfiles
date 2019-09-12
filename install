@@ -58,7 +58,7 @@ fi
 
 if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
     _logger "${INFO}" "Install Nodejs repository"
-    curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+    curl -fsSL https://rpm.nodesource.com/setup_11.x | sudo -E bash -
 fi
 
 ##### Install packages ########################################################

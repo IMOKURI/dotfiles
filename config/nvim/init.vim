@@ -235,7 +235,7 @@ if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
 endif
-call dein#add('shougo/deoplete.nvim', {
+call dein#add('Shougo/deoplete.nvim', {
             \ 'on_i': 1,
             \ 'hook_add': function('s:shougo_deoplete_nvim_hook_add'),
             \ 'hook_source': function('s:shougo_deoplete_nvim_hook_source')
