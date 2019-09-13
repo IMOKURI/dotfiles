@@ -162,7 +162,7 @@ function! s:cohama_lexima_vim() abort
 endfunction
 
 call dein#add('cohama/lexima.vim', {
-            \ 'on_i': 1,
+            \ 'on_event': 'InsertEnter',
             \ 'hook_source': function('s:cohama_lexima_vim')
             \ })
 
@@ -236,7 +236,7 @@ if !has('nvim')
     call dein#add('roxma/vim-hug-neovim-rpc')
 endif
 call dein#add('Shougo/deoplete.nvim', {
-            \ 'on_i': 1,
+            \ 'on_event': 'InsertEnter',
             \ 'hook_add': function('s:shougo_deoplete_nvim_hook_add'),
             \ 'hook_source': function('s:shougo_deoplete_nvim_hook_source')
             \ })
@@ -305,7 +305,7 @@ call dein#add('w0rp/ale', {
 
 " Formatter
 call dein#add('Vimjas/vim-python-pep8-indent', {
-            \ 'on_i': 1,
+            \ 'on_event': 'InsertEnter',
             \ 'on_ft': 'python'
             \ })
 
@@ -327,7 +327,7 @@ endfunction
 
 call dein#add('Shougo/neosnippet', {
             \ 'depends': ['ansible-snippets', 'neosnippet-snippets'],
-            \ 'on_i': 1,
+            \ 'on_event': 'InsertEnter',
             \ 'hook_add': function('s:Shougo_neosnippet_hook_add'),
             \ 'hook_source': function('s:Shougo_neosnippet_hook_source')
             \ })
