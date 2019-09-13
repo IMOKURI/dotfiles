@@ -282,8 +282,7 @@ if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
 fi
 
 _logger "${INFO}" "Update neovim plugins."
-NVIM_NODE_LOG_FILE=/tmp/nvim.log nvim +UpdateRemotePlugins +qall
-cat /tmp/nvim.log
+nvim +UpdateRemotePlugins +qall
 
 popd
 
