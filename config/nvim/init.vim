@@ -248,26 +248,18 @@ function! s:shougo_echodoc_vim() abort
 endfunction
 
 call dein#add('Shougo/echodoc.vim', {
-            \ 'depends': 'deoplete.nvim',
             \ 'on_source': 'deoplete.nvim',
             \ 'hook_add': function('s:shougo_echodoc_vim')
             \ })
 
-call dein#add('Shougo/neco-syntax', {
-            \ 'depends': 'deoplete.nvim',
-            \ 'on_source': 'deoplete.nvim'
-            \ })
+call dein#add('Shougo/neco-syntax')
 
 call dein#add('Shougo/neco-vim', {
             \ 'on_ft': 'vim',
-            \ 'depends': 'deoplete.nvim',
-            \ 'on_source': 'deoplete.nvim'
             \ })
 
 call dein#add('deoplete-plugins/deoplete-jedi', {
             \ 'on_ft': 'python',
-            \ 'depends': 'deoplete.nvim',
-            \ 'on_source': 'deoplete.nvim'
             \ })
 
 " Linter
@@ -323,7 +315,7 @@ call dein#add('Shougo/neosnippet-snippets')
 
 function! s:Shougo_neosnippet_hook_add() abort
     let g:neosnippet#snippets_directory = [
-                \ $XDG_DATA_HOME . '/dein/**/snippets'
+                \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets'
                 \ ]
 endfunction
 
