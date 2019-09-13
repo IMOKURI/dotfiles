@@ -204,7 +204,6 @@ call dein#add('voldikss/vim-floaterm', {
             \ 'hook_add': function('s:voldikss_vim_floaterm')
             \ })
 
-
 " LSP
 
 
@@ -252,14 +251,18 @@ call dein#add('Shougo/echodoc.vim', {
             \ 'hook_add': function('s:shougo_echodoc_vim')
             \ })
 
+call dein#add('tbodt/deoplete-tabnine', {
+            \ 'build': './install.sh'
+            \ })
+
 call dein#add('Shougo/neco-syntax')
 
 call dein#add('Shougo/neco-vim', {
-            \ 'on_ft': 'vim',
+            \ 'on_ft': 'vim'
             \ })
 
 call dein#add('deoplete-plugins/deoplete-jedi', {
-            \ 'on_ft': 'python',
+            \ 'on_ft': 'python'
             \ })
 
 " Linter
