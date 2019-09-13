@@ -2,9 +2,29 @@
 
 set -e
 
-export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
+##### Build target ############################################################
+
+: << COMMENT
++-----------------+--------------------+
+| BUILD env value | Use case           |
++=================+====================+
+| minimal         | No internet access |
+| default         | My typical setting |
+| all             | All feature        |
++-----------------+--------------------+
+COMMENT
+
+if [[ -z "${BUILD}" ]]; then
+    BUILD="default"
+elif [[ "${BUILD,,}" == "minimal" || "${BUILD,,}" == "all" ]]; then
+    BUILD="${BUILD,,}"
+else
+    BUILD="default"
+fi
 
 ##### Variables ###############################################################
+
+export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
 
 # Defind Colors
 #RED="\033[38;2;255;84;88m"
@@ -257,13 +277,15 @@ fi
 
 ##### Install vim #############################################################
 
-_banner "Install Vim..."
-
-pushd "$(pwd)"
-cd "${DOTPATH}"
-# make build-vim
-_logger "${INFO}" "Skip to build vim."
-popd
+if [[ "${BUILD}" == "all" ]]; then
+    _banner "Install Vim..."
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    make build-vim
+    popd
+else
+    _banner "Skip to build vim."
+fi
 
 ##### Install dotfiles ########################################################
 

@@ -13,6 +13,7 @@ export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/node_modules/.bin:$HOME/.local/
 export LESS='-i -M -R -W -z-3 -x4 -F -X'
 
 export EDITOR="vi"
+export KUBE_EDITOR="/usr/bin/vi"
 
 if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts

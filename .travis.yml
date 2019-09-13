@@ -18,8 +18,13 @@ env:
     - INIT: /usr/lib/systemd/systemd
     - RUN_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   matrix:
-    - PROXY: true
-    - PROXY: false
+    include:
+      - PROXY: true
+        BUILD: all
+      - PROXY: false
+        BUILD: all
+      - PROXY: false
+        BUILD: minimal
 
 before_install:
   - docker pull ${DISTRIBUTION}:${VERSION}
