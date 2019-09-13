@@ -271,13 +271,20 @@ _banner "Install dotfiles..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
+
 make install
+
 if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
     echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
 fi
 if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
     echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
 fi
+
+_logger "${INFO}" "Update neovim plugins."
+NVIM_NODE_LOG_FILE=/tmp/nvim.log nvim +UpdateRemotePlugins +qall
+cat /tmp/nvim.log
+
 popd
 
 _banner "Finished!"
