@@ -320,7 +320,7 @@ if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
 fi
 
 _logger "${INFO}" "Update neovim plugins."
-nvim --headless +UpdateRemotePlugins "+qall!"
+nvim --headless +qall
 
 popd
 
