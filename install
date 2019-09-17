@@ -64,7 +64,12 @@ _banner "Set Proxy if Available..."
 if [[ "${http_proxy}" ]]; then
     if ! grep -q proxy /etc/yum.conf; then
         echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
+        _logger "${INFO}" "Set proxy."
+    else
+        _logger "${INFO}" "Already set proxy."
     fi
+else
+    _logger "${INFO}" "No proxy configured."
 fi
 
 ##### Setup repositories ######################################################
@@ -142,37 +147,41 @@ fi
 
 ##### Clone git ###############################################################
 
-_banner "Clone Git..."
-
-if [[ ! -d "${GITPATH}" ]]; then
-    _logger "${INFO}" "Clone git"
-    git clone https://github.com/git/git.git "${GITPATH}"
+if [[ "${BUILD}" != "minimal" ]]; then
+    if [[ ! -d "${GITPATH}" ]]; then
+        _banner "Clone Git Repository..."
+        git clone https://github.com/git/git.git "${GITPATH}"
+    else
+        _banner "Update Git Repository..."
+        pushd "$(pwd)"
+        cd "${DOTPATH}"
+        make update-git
+        popd
+    fi
 else
-    _logger "${INFO}" "Update git repository"
-    pushd "$(pwd)"
-    cd "${DOTPATH}"
-    make update-git
-    popd
+    _banner "Skip to clone Git."
 fi
 
 ##### Install git #############################################################
 
-_banner "Install Git..."
+if [[ "${BUILD}" != "minimal" ]]; then
+    _banner "Install Git..."
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    make build-git
+    popd
 
-pushd "$(pwd)"
-cd "${DOTPATH}"
-make build-git
-popd
-
-_logger "${INFO}" "Install Git-LFS"
-
-sudo -E yum install -y git-lfs
+    _banner "Install Git-LFS"
+    sudo -E yum install -y git-lfs
+else
+    _banner "Skip to install Git."
+fi
 
 ##### Install python packages #################################################
 
 _banner "Install Pip..."
 
-command -v pip3 &>/dev/null || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
+command -v pip3 || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
 
 _banner "Install Python Packages..."
 
