@@ -4,7 +4,8 @@
 
 ## Feature
 
-- Install/Build latest Git and Neovim, Vim.
+- Install/Build latest Neovim, Vim.
+- Install/Build latest stable Git.
 - Install Python, Node.js, Go.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
@@ -12,7 +13,7 @@
 ## Support
 
 - CentOS/RHEL 7
-- Ubuntu (wo installer)
+- Ubuntu (no installer)
 
 ## Requirement
 

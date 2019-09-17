@@ -136,7 +136,7 @@ else
     _logger "${INFO}" "Update dotfiles repository"
     pushd "$(pwd)"
     cd "${DOTPATH}"
-    git pull
+    git fetch
     popd
 fi
 

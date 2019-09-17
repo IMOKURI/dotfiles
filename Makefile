@@ -47,11 +47,12 @@ git: update-git build-git ## Get latest git
 
 update-git: ## Update git repository
 	cd $(HOME)/src/git && \
-	git pull
+	git fetch
 
 build-git: ## Build git
 	cd $(HOME)/src/git && \
 	make clean && \
+	git checkout $$(git describe --abbrev=0) && \
 	make all && \
 	make install
 
