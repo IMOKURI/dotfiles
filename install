@@ -181,7 +181,7 @@ fi
 
 _banner "Install Pip..."
 
-command -v pip3 || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
+ls /usr/local/bin/pip || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
 
 _banner "Install Python Packages..."
 
