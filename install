@@ -27,17 +27,17 @@ fi
 export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
 
 # Defind Colors
-#RED="\033[38;2;255;84;88m"
-#GREEN="\033[38;2;98;209;150m"
-#YELLOW="\033[38;2;255;179;120m"
+RED="\033[38;2;255;84;88m"
+GREEN="\033[38;2;98;209;150m"
+YELLOW="\033[38;2;255;179;120m"
 BLUE="\033[38;2;101;178;255m"
-#MAGENTA="\033[38;2;144;108;255m"
-#CYAN="\033[38;2;99;242;241m"
+MAGENTA="\033[38;2;144;108;255m"
+CYAN="\033[38;2;99;242;241m"
 CLEAR_COLOR="\033[0m"
 
 INFO="GREEN"
-#WARN="YELLOW"
-#ERROR="RED"
+WARN="YELLOW"
+ERROR="RED"
 
 # Define path
 DOTPATH="$HOME/.dotfiles"
@@ -329,7 +329,7 @@ if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
 fi
 
 _logger "${INFO}" "Update neovim plugins."
-nvim --headless +qall
+nvim --headless "+call dein#source(['deoplete.nvim', 'denite.nvim'])" +UpdateRemotePlugins +qall
 
 popd
 

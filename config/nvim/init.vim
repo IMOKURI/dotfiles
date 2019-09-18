@@ -55,7 +55,11 @@ endif
 " -----------------------------------------------------------------------------
 " Plugin settings
 " -----------------------------------------------------------------------------
-let s:dein_dir = $XDG_DATA_HOME . '/dein'
+if has('nvim')
+    let s:dein_dir = $XDG_DATA_HOME . '/dein/nvim'
+else
+    let s:dein_dir = $XDG_DATA_HOME . '/dein/vim'
+endif
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
@@ -505,6 +509,7 @@ call dein#end()
 
 if dein#check_install()
     call dein#install()
+    call dein#source(['deoplete.nvim', 'denite.nvim'])
     call dein#remote_plugins()
 endif
 
