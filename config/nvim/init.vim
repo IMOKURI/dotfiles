@@ -726,7 +726,7 @@ augroup MyAutoCmd
 
     autocmd InsertLeave * set nopaste
 
-    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
 augroup END
 
 " -----------------------------------------------------------------------------
