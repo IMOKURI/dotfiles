@@ -148,6 +148,7 @@ function! s:lambdalisue_suda_vim() abort
 endfunction
 
 call dein#add('lambdalisue/suda.vim', {
+            \ 'on_event': 'BufRead',
             \ 'hook_add': function('s:lambdalisue_suda_vim')
             \ })
 
@@ -216,11 +217,25 @@ call dein#add('voldikss/vim-floaterm', {
 
 
 " Completion
-function! s:shougo_deoplete_nvim_hook_add() abort
-    let g:deoplete#enable_at_startup = 1
-endfunction
+if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+endif
 
-function! s:shougo_deoplete_nvim_hook_source() abort
+if has('nvim')
+    function! s:ncm2_float_preview_nvim() abort
+        let g:float_preview#docked = 0
+        let g:float_preview#max_width = 60
+        let g:float_preview#max_height = 20
+    endfunction
+
+    call dein#add('ncm2/float-preview.nvim', {
+                \ 'on_source': 'deoplete.nvim',
+                \ 'hook_source': function('s:ncm2_float_preview_nvim')
+                \ })
+endif
+
+function! s:shougo_deoplete_nvim() abort
     call deoplete#custom#var('around', {
                 \ 'range_above': 30,
                 \ 'range_below': 30,
@@ -236,27 +251,32 @@ function! s:shougo_deoplete_nvim_hook_source() abort
     call deoplete#custom#var('file', {
                 \ 'force_completion_length': 1
                 \ })
+
+    call deoplete#custom#option({
+                \ 'auto_refresh_delay': 10
+                \ })
+
+    call deoplete#custom#source('tabnine', {
+                \ 'rank': 100
+                \ })
+
+    call deoplete#enable()
 endfunction
 
-if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-endif
 call dein#add('Shougo/deoplete.nvim', {
+            \ 'depends': 'context_filetype.vim',
             \ 'on_event': 'InsertEnter',
-            \ 'hook_add': function('s:shougo_deoplete_nvim_hook_add'),
-            \ 'hook_source': function('s:shougo_deoplete_nvim_hook_source')
+            \ 'hook_source': function('s:shougo_deoplete_nvim')
             \ })
 
 function! s:shougo_echodoc_vim() abort
-    let g:echodoc#enable_at_startup = 1
-
-    set completeopt-=preview
+    let g:echodoc#type = 'virtual'
+    call echodoc#enable()
 endfunction
 
 call dein#add('Shougo/echodoc.vim', {
-            \ 'on_source': 'deoplete.nvim',
-            \ 'hook_add': function('s:shougo_echodoc_vim')
+            \ 'on_event': 'CompleteDone',
+            \ 'hook_source': function('s:shougo_echodoc_vim')
             \ })
 
 call dein#add('tbodt/deoplete-tabnine', {
@@ -294,7 +314,7 @@ function! s:w0rp_ale() abort
 
     let g:ale_fixers = {
                 \ 'json': ['jq'],
-                \ 'python': ['autopep8', 'yapf', 'isort'],
+                \ 'python': ['autopep8', 'yapf', 'black', 'isort'],
                 \ 'sh': ['shfmt'],
                 \ 'yaml': ['prettier']
                 \ }
@@ -324,23 +344,21 @@ call dein#add('Vimjas/vim-python-pep8-indent', {
 call dein#add('phenomenes/ansible-snippets')
 call dein#add('Shougo/neosnippet-snippets')
 
-function! s:Shougo_neosnippet_hook_add() abort
+function! s:Shougo_neosnippet() abort
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+
     let g:neosnippet#snippets_directory = [
                 \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets'
                 \ ]
 endfunction
 
-function! s:Shougo_neosnippet_hook_source() abort
-    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k> <Plug>(neosnippet_expand_target)
-endfunction
-
 call dein#add('Shougo/neosnippet', {
-            \ 'depends': ['ansible-snippets', 'neosnippet-snippets'],
-            \ 'on_event': 'InsertEnter',
-            \ 'hook_add': function('s:Shougo_neosnippet_hook_add'),
-            \ 'hook_source': function('s:Shougo_neosnippet_hook_source')
+            \ 'depends': ['ansible-snippets', 'neosnippet-snippets', 'context_filetype.vim'],
+            \ 'on_event': 'InsertCharPre',
+            \ 'on_ft': 'snippet',
+            \ 'hook_source': function('s:Shougo_neosnippet')
             \ })
 
 " Status Line
@@ -955,6 +973,9 @@ set swapfile
 
 " 補完ディクショナリ設定
 set dictionary=/usr/share/dict/words
+
+" 補完時にpreviewを表示しない
+set completeopt-=preview
 
 " バックアップファイルを作成しない
 set nobackup

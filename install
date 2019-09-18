@@ -187,6 +187,11 @@ _banner "Install Python Packages..."
 
 pip install --user \
     ansible \
+    autopep8 \
+    black \
+    flake8 \
+    flake8-import-order \
+    isort \
     jedi \
     neovim \
     pipenv \
@@ -207,6 +212,10 @@ if [[ "${BUILD}" != "minimal" ]]; then
         markdownlint-cli \
         neovim \
         prettier \
+        textlint \
+        textlint-rule-preset-ja-spacing \
+        textlint-rule-preset-ja-technical-writing \
+        textlint-rule-spellcheck-tech-word \
         vim-language-server \
         vscode-json-languageserver \
         yaml-language-server
