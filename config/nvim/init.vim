@@ -402,10 +402,17 @@ function! s:shougo_denite_nvim_hook_source() abort
                     \ denite#do_map('quit')
     endfunction
 
+    let s:denite_win_width_percent = 0.85
+    let s:denite_win_height_percent = 0.7
+
     call denite#custom#option('_', {
                 \ 'highlight_matched_char': 'Underlined',
                 \ 'prompt': '>',
                 \ 'split': 'floating',
+                \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+                \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+                \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+                \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) * 4 / 5),
                 \ 'smartcase': 'true',
                 \ })
 
