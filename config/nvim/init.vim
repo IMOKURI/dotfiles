@@ -201,16 +201,23 @@ call dein#add('dhruvasagar/vim-table-mode')
 
 call dein#add('AndrewRadev/linediff.vim')
 
-function! s:voldikss_vim_floaterm() abort
-    nnoremap <silent> <C-t> :FloatermToggle<CR>i
-    tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
+function! s:kassio_neoterm() abort
+    let g:neoterm_autoscroll = 1
+    let g:neoterm_default_mod = 'botright'
 
-    let g:floaterm_winblend = 20
+    nnoremap <silent> <C-t> :Ttoggle<CR>
+    tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
+
+    nnoremap <silent> <C-y> :Topen<CR><C-w>ji
+    tnoremap <silent> <C-y> <C-\><C-n><C-w>k
+
+    " nmap <silent> <Leader><CR> <Plug>(neoterm-repl-send-line)
+    " xmap <silent> <Leader><CR> <Plug>(neoterm-repl-send)
 endfunction
 
-call dein#add('voldikss/vim-floaterm', {
-            \ 'on_cmd': ['FloatermToggle'],
-            \ 'hook_add': function('s:voldikss_vim_floaterm')
+call dein#add('kassio/neoterm', {
+            \ 'on_cmd': ['Ttoggle', 'Topen'],
+            \ 'hook_add': function('s:kassio_neoterm')
             \ })
 
 " LSP
@@ -671,6 +678,19 @@ function! DeleteHiddenBuffers()
     endfor
 endfunction
 
+function! REPLSend(lines) abort
+    call jobsend(g:last_terminal_job_id, add(a:lines, ''))
+endfunction
+
+function! s:get_visual()
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][:col2 - 2]
+  let lines[0] = lines[0][col1 - 1:]
+  return lines
+endfunction
+
 function! s:smart_foldcloser() abort
     if foldlevel('.') == 0
         norm! zM
@@ -707,6 +727,13 @@ function! s:hint_cmd_output(prefix, cmd) abort
 endfunction
 
 " -----------------------------------------------------------------------------
+" Command
+" -----------------------------------------------------------------------------
+
+command! -range=% REPLSendSelection call REPLSend(s:get_visual())
+command! REPLSendLine call REPLSend([getline('.')])
+
+" -----------------------------------------------------------------------------
 " Auto command
 " -----------------------------------------------------------------------------
 augroup MyAutoCmd
@@ -727,6 +754,8 @@ augroup MyAutoCmd
     autocmd InsertLeave * set nopaste
 
     autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
+
+    autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
 augroup END
 
 " -----------------------------------------------------------------------------
@@ -772,6 +801,10 @@ nnoremap <silent> te :terminal<CR>i
 
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
+
+" 行/選択範囲をターミナルに送る
+nnoremap <silent> <Leader><CR> :REPLSendLine<CR>
+vnoremap <silent> <Leader><CR> :REPLSendSelection<CR>
 
 " インデントをコマンド1回にする
 nnoremap > >>
