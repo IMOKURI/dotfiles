@@ -84,7 +84,18 @@ call dein#add('wsdjeg/dein-ui.vim')
 call dein#add('challenger-deep-theme/vim')
 
 " Git
-call dein#add('airblade/vim-gitgutter')
+function! s:airblade_vim_gitgutter() abort
+    let g:gitgutter_highlight_linenrs = 1
+    let g:gitgutter_diff_args = '-w'
+
+    nmap <Leader>ga <Plug>(GitGutterStageHunk)
+    nmap <Leader>gp <Plug>(GitGutterPreviewHunk)
+endfunction
+
+call dein#add('airblade/vim-gitgutter', {
+            \ 'hook_source': function('s:airblade_vim_gitgutter')
+            \ })
+
 call dein#add('tpope/vim-fugitive')
 
 " Project
@@ -204,6 +215,7 @@ call dein#add('AndrewRadev/linediff.vim')
 function! s:kassio_neoterm() abort
     let g:neoterm_autoscroll = 1
     let g:neoterm_default_mod = 'botright'
+    let g:neoterm_repl_python = 'python'
 
     nnoremap <silent> <C-t> :Ttoggle<CR>
     tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
