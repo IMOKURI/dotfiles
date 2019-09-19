@@ -385,6 +385,13 @@ function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>c :DeniteCursorWord grep -auto-action=preview<CR>
     nnoremap <silent> <Leader>t :Denite tag -auto-action=preview<CR>
     nnoremap <silent> <Leader>h :Denite menu<CR>
+
+    nnoremap <silent> <Leader>gb :Denite gitbranch<CR>
+    nnoremap <silent> <Leader>gg :Denite gitlog<CR>
+    nnoremap <silent> <Leader>gs :Denite gitstatus<CR>
+    nnoremap <silent> <Leader>gd :Denite gitchanged -auto-action=preview<CR>
+
+    nnoremap <silent> <Leader>s :Denite session<CR>
 endfunction
 
 function! s:shougo_denite_nvim_hook_source() abort
@@ -416,6 +423,18 @@ function! s:shougo_denite_nvim_hook_source() abort
                     \ denite#do_map('toggle_select').'j'
         nnoremap <silent><buffer><expr> <BS>
                     \ denite#do_map('move_up_path')
+
+        " for git status
+        nnoremap <silent><buffer><expr> ga
+                    \ denite#do_map('do_action', 'add')
+        nnoremap <silent><buffer><expr> gr
+                    \ denite#do_map('do_action', 'reset')
+
+        " for session manager
+        nnoremap <silent><buffer><expr> sf
+                    \ denite#do_map('do_action', 'open_force')
+        nnoremap <silent><buffer><expr> sr
+                    \ denite#do_map('do_action', 'remove')
 
         if exists('&winblend')
             set winblend=20
@@ -470,68 +489,24 @@ function! s:shougo_denite_nvim_hook_source() abort
 endfunction
 
 call dein#add('Shougo/denite.nvim', {
+            \ 'depends': ['denite-git', 'session.vim'],
             \ 'on_cmd': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord'],
             \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
             \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
             \ })
 
-function! s:chemzqm_denite_git_hook_add() abort
-    nnoremap <silent> <Leader>gb :Denite gitbranch<CR>
-    nnoremap <silent> <Leader>gg :Denite gitlog<CR>
-    nnoremap <silent> <Leader>gs :Denite gitstatus<CR>
-    nnoremap <silent> <Leader>gd :Denite gitchanged -auto-action=preview<CR>
-endfunction
-
-function! s:chemzqm_denite_git_hook_source() abort
-    augroup DeniteGit
-        autocmd!
-        autocmd FileType denite call s:denite_git_settings()
-    augroup END
-
-    function! s:denite_git_settings() abort
-        nnoremap <silent><buffer><expr> ga
-                    \ denite#do_map('do_action', 'add')
-        nnoremap <silent><buffer><expr> gc
-                    \ denite#do_map('do_action', 'commit')
-        nnoremap <silent><buffer><expr> gr
-                    \ denite#do_map('do_action', 'reset')
-    endfunction
-endfunction
-
-call dein#add('chemzqm/denite-git', {
-            \ 'depends': 'denite.nvim',
-            \ 'on_source': 'denite.nvim',
-            \ 'hook_add': function('s:chemzqm_denite_git_hook_add'),
-            \ 'hook_source': function('s:chemzqm_denite_git_hook_source'),
+call dein#add('neoclide/denite-git', {
+            \ 'on_source': 'denite.nvim'
             \ })
 
 " Session Manager
-function! s:lambdalisue_session_vim_hook_add() abort
-    nnoremap <silent> <Leader>s :Denite session<CR>
+function! s:lambdalisue_session_vim() abort
     nnoremap ss :SessionSave
 endfunction
 
-function! s:lambdalisue_session_vim_hook_source() abort
-    augroup DeniteSession
-        autocmd!
-        autocmd FileType denite call s:denite_session_settings()
-    augroup END
-
-    function! s:denite_session_settings() abort
-        nnoremap <silent><buffer><expr> so
-                    \ denite#do_map('do_action', 'open')
-        nnoremap <silent><buffer><expr> sf
-                    \ denite#do_map('do_action', 'open_force')
-        nnoremap <silent><buffer><expr> sr
-                    \ denite#do_map('do_action', 'remove')
-    endfunction
-endfunction
-
 call dein#add('lambdalisue/session.vim', {
-            \ 'depends': 'denite.nvim',
             \ 'on_source': 'denite.nvim',
-            \ 'hook_add': function('s:lambdalisue_session_vim_hook_add'),
-            \ 'hook_source': function('s:lambdalisue_session_vim_hook_source')
+            \ 'hook_add': function('s:lambdalisue_session_vim'),
             \ })
 
 " My Plugins
