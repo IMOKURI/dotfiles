@@ -1,6 +1,10 @@
 @echo off
 
-SET NVIMPATH="%USERPROFILE%\AppData\Local\nvim"
+SET XDG_DATA_HOME="%USERPROFILE%\AppData\Local"
+
+SET NVIMPATH="%XDG_DATA_HOME%\nvim"
+SET PROVIDERPATH="%XDG_DATA_HOME%\provider.nvim"
+
 SET DOTPATH="%USERPROFILE%\dotfiles"
 
 :Menu
@@ -40,7 +44,7 @@ SET DOTPATH="%USERPROFILE%\dotfiles"
 :Pipenv
     cls
 
-    pushd %NVIMPATH%
+    pushd %PROVIDERPATH%
 
     SET PIPENV_VENV_IN_PROJECT=true
     pipenv install pynvim
