@@ -665,8 +665,14 @@ function! DeleteHiddenBuffers()
     endfor
 endfunction
 
-function! REPLSend(lines) abort
-    call jobsend(g:last_terminal_job_id, add(a:lines, ''))
+function! REPLSend(str) abort
+    let s:str = a:str
+    if s:str[-1] !=# "\n"
+        let s:str .= "\n"
+    endif
+    let s:str = substitute(s:str, "\n", "\<CR>", 'g')
+
+    call jobsend(g:last_terminal_job_id, [s:str])
 endfunction
 
 function! s:get_visual()
@@ -675,7 +681,7 @@ function! s:get_visual()
   let lines = getline(lnum1, lnum2)
   let lines[-1] = lines[-1][:col2 - 2]
   let lines[0] = lines[0][col1 - 1:]
-  return lines
+  return join(lines, "\n")
 endfunction
 
 function! s:smart_foldcloser() abort
@@ -718,7 +724,7 @@ endfunction
 " -----------------------------------------------------------------------------
 
 command! -range=% REPLSendSelection call REPLSend(s:get_visual())
-command! REPLSendLine call REPLSend([getline('.')])
+command! REPLSendLine call REPLSend(getline('.'))
 
 " -----------------------------------------------------------------------------
 " Auto command
