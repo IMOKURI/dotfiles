@@ -289,7 +289,9 @@ call dein#add('Shougo/deoplete.nvim', {
             \ })
 
 function! s:shougo_echodoc_vim() abort
-    let g:echodoc#type = 'virtual'
+    if has('nvim')
+        let g:echodoc#type = 'virtual'
+    endif
     call echodoc#enable()
 endfunction
 
@@ -382,10 +384,7 @@ call dein#add('Shougo/neosnippet', {
 
 " Status Line
 call dein#add('itchyny/lightline.vim')
-
-call dein#add('maximbaz/lightline-ale', {
-            \ 'depends': ['ale', 'lightline.vim']
-            \ })
+call dein#add('maximbaz/lightline-ale')
 
 " Launcher
 function! s:shougo_denite_nvim_hook_add() abort
@@ -672,16 +671,20 @@ function! REPLSend(str) abort
     endif
     let s:str = substitute(s:str, "\n", "\<CR>", 'g')
 
-    call jobsend(g:last_terminal_job_id, [s:str])
+    if has('nvim')
+        call chansend(g:last_terminal_job_id, [s:str])
+    else
+        call term_sendkeys(g:last_terminal_job_id, s:str)
+    endif
 endfunction
 
 function! s:get_visual()
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][:col2 - 2]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+    let lines = getline(lnum1, lnum2)
+    let lines[-1] = lines[-1][:col2 - 2]
+    let lines[0] = lines[0][col1 - 1:]
+    return join(lines, "\n")
 endfunction
 
 function! s:smart_foldcloser() abort
@@ -748,7 +751,11 @@ augroup MyAutoCmd
 
     autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
 
-    autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
+    if has('nvim')
+        autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
+    else
+        autocmd TerminalOpen * let g:last_terminal_job_id = bufnr('')
+    endif
 augroup END
 
 " -----------------------------------------------------------------------------
@@ -937,6 +944,11 @@ set fillchars=fold:\
 
 " 画面端が3行見える状態でスクロールする
 set scrolloff=3
+
+" ステータスラインを常に表示する
+if !has('nvim')
+    set laststatus=2
+endif
 
 " モードを非表示にする
 set noshowmode
