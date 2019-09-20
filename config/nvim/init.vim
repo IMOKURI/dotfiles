@@ -531,7 +531,7 @@ call dein#add('lambdalisue/session.vim', {
             \ })
 
 " My Plugins
-call dein#add($XDG_DATA_HOME . '/nvim/my-help')
+call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
 
 call dein#end()
 
