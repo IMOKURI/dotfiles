@@ -300,9 +300,15 @@ call dein#add('Shougo/echodoc.vim', {
             \ 'hook_source': function('s:shougo_echodoc_vim')
             \ })
 
-call dein#add('tbodt/deoplete-tabnine', {
-            \ 'build': './install.sh'
-            \ })
+if g:env =~# 'WINDOWS'
+    call dein#add('tbodt/deoplete-tabnine', {
+                \ 'build': 'powershell.exe .\install.ps1'
+                \ })
+else
+    call dein#add('tbodt/deoplete-tabnine', {
+                \ 'build': './install.sh'
+                \ })
+endif
 
 call dein#add('Shougo/neco-syntax')
 
