@@ -15,6 +15,10 @@ endif
 " -----------------------------------------------------------------------------
 " Determine XDG base directory
 " -----------------------------------------------------------------------------
+if g:env =~# 'WINDOWS'
+    set shellslash
+endif
+
 if empty($XDG_CONFIG_HOME)
     if g:env =~# 'LINUX'
         let $XDG_CONFIG_HOME = expand('~/.config')
