@@ -14,21 +14,25 @@ shopt -s globstar
 ##### User specific alias #####################################################
 
 if [ -f /etc/redhat-release ]; then
-  alias vi="$HOME/neovim/bin/nvim"
+    if [[ -n "${NVIM_LISTEN_ADDRESS}" && -x "$(command -v nvr)" ]]; then
+        alias vi="nvr -s"
+    else
+        alias vi="$HOME/neovim/bin/nvim"
+    fi
 fi
 
 alias cd='cdls'
 
-cdls () {
-  \cd "$@" && pwd && ls -l --color=always | less
+cdls() {
+    \cd "$@" && pwd && ls -l --color=always | less
 }
 
-cdd () {
-  cd ~/.dotfiles/
+cdd() {
+    cd ~/.dotfiles/
 }
 
-cdr () {
-  cd "$(git rev-parse --show-toplevel)" || return
+cdr() {
+    cd "$(git rev-parse --show-toplevel)" || return
 }
 
 #alias g='git'
@@ -59,13 +63,12 @@ alias gbd='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git b
 
 # Delere squash merged branch
 function gbds() {
-  git checkout -q master
-  git for-each-ref refs/heads/ "--format=%(refname:short)" | \
-    while read branch; do
-      mergeBase=$(git merge-base master "$branch")
-      if [[ $(git cherry master "$(git commit-tree "$(git rev-parse "$branch"^{tree})" -p "$mergeBase" -m _)") == "-"* ]]; then
-        git branch -D "$branch"
-      fi
+    git checkout -q master
+    git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do
+        mergeBase=$(git merge-base master "$branch")
+        if [[ $(git cherry master "$(git commit-tree "$(git rev-parse "$branch"^{tree})" -p "$mergeBase" -m _)") == "-"* ]]; then
+            git branch -D "$branch"
+        fi
     done
 }
 alias gbds=gbds
@@ -78,52 +81,55 @@ alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenki
 ##### Load bashmarks ##########################################################
 
 if [ -f ~/.local/bin/bashmarks.sh ]; then
-  . ~/.local/bin/bashmarks.sh
+    . ~/.local/bin/bashmarks.sh
 fi
 
 ##### Enterprise Linux specific configurations ################################
 
 if [ -f /etc/redhat-release ]; then
 
-##### For git completion and prompt ###########################################
+    ##### For git completion and prompt ###########################################
 
-source "$HOME/src/git/contrib/completion/git-completion.bash"
-source "$HOME/src/git/contrib/completion/git-prompt.sh"
+    source "$HOME/src/git/contrib/completion/git-completion.bash"
+    source "$HOME/src/git/contrib/completion/git-prompt.sh"
 
-# Unstaged (*) and staged (+) changes will be shown next to the branch name
-GIT_PS1_SHOWDIRTYSTATE=true
+    # Unstaged (*) and staged (+) changes will be shown next to the branch name
+    GIT_PS1_SHOWDIRTYSTATE=true
 
-# A "<" indicates you are behind, ">" indicates you are ahead,
-# "<>" indicates you have diverged and "=" indicates that there is no difference.
-GIT_PS1_SHOWUPSTREAM=auto
+    # A "<" indicates you are behind, ">" indicates you are ahead,
+    # "<>" indicates you have diverged and "=" indicates that there is no difference.
+    GIT_PS1_SHOWUPSTREAM=auto
 
-# If there're untracked files, then a '%' will be shown next to the branch name.
-GIT_PS1_SHOWUNTRACKEDFILES=true
+    # If there're untracked files, then a '%' will be shown next to the branch name.
+    GIT_PS1_SHOWUNTRACKEDFILES=true
 
-# If something is stashed, then a '$' will be shown next to the branch name.
-GIT_PS1_SHOWSTASHSTATE=true
+    # If something is stashed, then a '$' will be shown next to the branch name.
+    GIT_PS1_SHOWSTASHSTATE=true
 
-##### Set prompt ##############################################################
+    ##### Set prompt ##############################################################
 
-# Defind Colors
-RED="\033[38;2;255;84;88m"
-GREEN="\033[38;2;98;209;150m"
-YELLOW="\033[38;2;255;179;120m"
-BLUE="\033[38;2;101;178;255m"
-MAGENTA="\033[38;2;144;108;255m"
-CYAN="\033[38;2;99;242;241m"
-CLEAR="\033[0m"
+    # Defind Colors
+    RED="\033[38;2;255;84;88m"
+    GREEN="\033[38;2;98;209;150m"
+    YELLOW="\033[38;2;255;179;120m"
+    BLUE="\033[38;2;101;178;255m"
+    MAGENTA="\033[38;2;144;108;255m"
+    CYAN="\033[38;2;99;242;241m"
+    CLEAR="\033[0m"
 
-# Hostname hash
-#HMD5="$(hostname | md5sum)"
-#PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:0:2} 0x${HMD5:2:2} 0x${HMD5:4:2})"
-#PROMPT_COLOR="\033[38;2;${PROMPT_RGB}m"
-#GIT_PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:6:2} 0x${HMD5:8:2} 0x${HMD5:10:2})"
-#GIT_PROMPT_COLOR="\033[38;2;${GIT_PROMPT_RGB}m"
+    # Hostname hash
+    #HMD5="$(hostname | md5sum)"
+    #PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:0:2} 0x${HMD5:2:2} 0x${HMD5:4:2})"
+    #PROMPT_COLOR="\033[38;2;${PROMPT_RGB}m"
+    #GIT_PROMPT_RGB="$(printf "%d;%d;%d" 0x${HMD5:6:2} 0x${HMD5:8:2} 0x${HMD5:10:2})"
+    #GIT_PROMPT_COLOR="\033[38;2;${GIT_PROMPT_RGB}m"
 
-PROMPT_DIRTRIM=3
+    PROMPT_DIRTRIM=3
 
-# Set prompt
-PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\w\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$\[${CLEAR}\] "
-
+    # Set prompt
+    if [[ -n "${NVIM_LISTEN_ADDRESS}" ]]; then
+        PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\w\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$>\[${CLEAR}\] "
+    else
+        PS1="\[${RED}\]\${?##0}\[${MAGENTA}\]\u\[${BLUE}\]@\h \[${GREEN}\]\w\[${YELLOW}\]\$(__git_ps1)\[${RED}\]\\$\[${CLEAR}\] "
+    fi
 fi

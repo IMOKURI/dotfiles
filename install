@@ -194,6 +194,7 @@ pip install --user \
     isort \
     jedi \
     neovim \
+    neovim-remote \
     pipenv \
     pipenv-pipes \
     pysnooper \
