@@ -97,8 +97,8 @@ function! s:airblade_vim_gitgutter() abort
 endfunction
 
 call dein#add('airblade/vim-gitgutter', {
-            \ 'hook_source': function('s:airblade_vim_gitgutter')
-            \ })
+    \ 'hook_source': function('s:airblade_vim_gitgutter')
+    \ })
 
 call dein#add('tpope/vim-fugitive')
 
@@ -109,8 +109,8 @@ function! s:airblade_vim_rooter() abort
 endfunction
 
 call dein#add('airblade/vim-rooter', {
-            \ 'hook_add': function('s:airblade_vim_rooter')
-            \ })
+    \ 'hook_add': function('s:airblade_vim_rooter')
+    \ })
 
 " Highlight
 function! s:t9md_vim_quickhl() abort
@@ -120,24 +120,24 @@ function! s:t9md_vim_quickhl() abort
 endfunction
 
 call dein#add('t9md/vim-quickhl', {
-            \ 'hook_add': function('s:t9md_vim_quickhl')
-            \ })
+    \ 'hook_add': function('s:t9md_vim_quickhl')
+    \ })
 
 call dein#add('itchyny/vim-cursorword')
 
 call dein#add('Shougo/context_filetype.vim')
 
 call dein#add('mechatroner/rainbow_csv', {
-            \ 'on_ft': 'csv'
-            \ })
+    \ 'on_ft': 'csv'
+    \ })
 
 call dein#add('pearofducks/ansible-vim', {
-            \ 'on_ft': 'yaml'
-            \ })
+    \ 'on_ft': 'yaml'
+    \ })
 
 call dein#add('martinda/Jenkinsfile-vim-syntax', {
-            \ 'on_path': '.*Jenkinsfile'
-            \ })
+    \ 'on_path': '.*Jenkinsfile'
+    \ })
 
 " Utility
 call dein#add('haya14busa/is.vim')
@@ -154,18 +154,18 @@ function! s:osyo_manga_vim_anzu() abort
 endfunction
 
 call dein#add('osyo-manga/vim-anzu', {
-            \ 'depends': 'is.vim',
-            \ 'hook_add': function('s:osyo_manga_vim_anzu')
-            \ })
+    \ 'depends': 'is.vim',
+    \ 'hook_add': function('s:osyo_manga_vim_anzu')
+    \ })
 
 function! s:lambdalisue_suda_vim() abort
     let g:suda_smart_edit = 1
 endfunction
 
 call dein#add('lambdalisue/suda.vim', {
-            \ 'on_event': 'BufRead',
-            \ 'hook_add': function('s:lambdalisue_suda_vim')
-            \ })
+    \ 'on_event': 'BufRead',
+    \ 'hook_add': function('s:lambdalisue_suda_vim')
+    \ })
 
 function! s:cohama_lexima_vim() abort
     " Japanese Bracket
@@ -186,9 +186,9 @@ function! s:cohama_lexima_vim() abort
 endfunction
 
 call dein#add('cohama/lexima.vim', {
-            \ 'on_event': 'InsertEnter',
-            \ 'hook_source': function('s:cohama_lexima_vim')
-            \ })
+    \ 'on_event': 'InsertEnter',
+    \ 'hook_source': function('s:cohama_lexima_vim')
+    \ })
 
 function! s:machakann_vim_sandwich() abort
     nmap s <Nop>
@@ -196,8 +196,8 @@ function! s:machakann_vim_sandwich() abort
 endfunction
 
 call dein#add('machakann/vim-sandwich', {
-            \ 'hook_add': function('s:machakann_vim_sandwich')
-            \ })
+    \ 'hook_add': function('s:machakann_vim_sandwich')
+    \ })
 
 call dein#add('tpope/vim-commentary')
 
@@ -207,8 +207,8 @@ function! s:junegunn_vim_easy_align() abort
 endfunction
 
 call dein#add('junegunn/vim-easy-align', {
-            \ 'hook_add': function('s:junegunn_vim_easy_align')
-            \ })
+    \ 'hook_add': function('s:junegunn_vim_easy_align')
+    \ })
 
 call dein#add('thiagoalmeidasa/vim-ansible-vault')
 
@@ -232,9 +232,9 @@ function! s:kassio_neoterm() abort
 endfunction
 
 call dein#add('kassio/neoterm', {
-            \ 'on_cmd': ['Ttoggle', 'Topen'],
-            \ 'hook_add': function('s:kassio_neoterm')
-            \ })
+    \ 'on_cmd': ['Ttoggle', 'Topen'],
+    \ 'hook_add': function('s:kassio_neoterm')
+    \ })
 
 " LSP
 
@@ -253,44 +253,44 @@ if has('nvim')
     endfunction
 
     call dein#add('ncm2/float-preview.nvim', {
-                \ 'on_source': 'deoplete.nvim',
-                \ 'hook_source': function('s:ncm2_float_preview_nvim')
-                \ })
+        \ 'on_source': 'deoplete.nvim',
+        \ 'hook_source': function('s:ncm2_float_preview_nvim')
+        \ })
 endif
 
 function! s:shougo_deoplete_nvim() abort
     call deoplete#custom#var('around', {
-                \ 'range_above': 30,
-                \ 'range_below': 30,
-                \ 'mark_above': '[↑]',
-                \ 'mark_below': '[↓]',
-                \ 'mark_changes': '[*]',
-                \ })
+        \ 'range_above': 30,
+        \ 'range_below': 30,
+        \ 'mark_above': '[↑]',
+        \ 'mark_below': '[↓]',
+        \ 'mark_changes': '[*]',
+        \ })
 
     call deoplete#custom#var('buffer', {
-                \ 'require_same_filetype': v:false
-                \ })
+        \ 'require_same_filetype': v:false
+        \ })
 
     call deoplete#custom#var('file', {
-                \ 'force_completion_length': 1
-                \ })
+        \ 'force_completion_length': 1
+        \ })
 
     call deoplete#custom#option({
-                \ 'auto_refresh_delay': 10
-                \ })
+        \ 'auto_refresh_delay': 10
+        \ })
 
     call deoplete#custom#source('tabnine', {
-                \ 'rank': 100
-                \ })
+        \ 'rank': 100
+        \ })
 
     call deoplete#enable()
 endfunction
 
 call dein#add('Shougo/deoplete.nvim', {
-            \ 'depends': 'context_filetype.vim',
-            \ 'on_event': 'InsertEnter',
-            \ 'hook_source': function('s:shougo_deoplete_nvim')
-            \ })
+    \ 'depends': 'context_filetype.vim',
+    \ 'on_event': 'InsertEnter',
+    \ 'hook_source': function('s:shougo_deoplete_nvim')
+    \ })
 
 function! s:shougo_echodoc_vim() abort
     if has('nvim')
@@ -300,29 +300,29 @@ function! s:shougo_echodoc_vim() abort
 endfunction
 
 call dein#add('Shougo/echodoc.vim', {
-            \ 'on_event': 'CompleteDone',
-            \ 'hook_source': function('s:shougo_echodoc_vim')
-            \ })
+    \ 'on_event': 'CompleteDone',
+    \ 'hook_source': function('s:shougo_echodoc_vim')
+    \ })
 
 if g:env =~# 'WINDOWS'
     call dein#add('tbodt/deoplete-tabnine', {
-                \ 'build': 'powershell.exe .\install.ps1'
-                \ })
+        \ 'build': 'powershell.exe .\install.ps1'
+        \ })
 else
     call dein#add('tbodt/deoplete-tabnine', {
-                \ 'build': './install.sh'
-                \ })
+        \ 'build': './install.sh'
+        \ })
 endif
 
 call dein#add('Shougo/neco-syntax')
 
 call dein#add('Shougo/neco-vim', {
-            \ 'on_ft': 'vim'
-            \ })
+    \ 'on_ft': 'vim'
+    \ })
 
 call dein#add('deoplete-plugins/deoplete-jedi', {
-            \ 'on_ft': 'python'
-            \ })
+    \ 'on_ft': 'python'
+    \ })
 
 " Linter
 function! s:w0rp_ale() abort
@@ -334,21 +334,21 @@ function! s:w0rp_ale() abort
     let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
 
     let g:ale_linters = {
-                \ 'awk': ['gawk'],
-                \ 'json': ['jq'],
-                \ 'make': ['checkmake'],
-                \ 'python': ['flake8', 'pylint'],
-                \ 'sh': ['language_server'],
-                \ 'vim': ['vint'],
-                \ 'yaml': ['yamllint']
-                \ }
+        \ 'awk': ['gawk'],
+        \ 'json': ['jq'],
+        \ 'make': ['checkmake'],
+        \ 'python': ['flake8', 'pylint'],
+        \ 'sh': ['language_server'],
+        \ 'vim': ['vint'],
+        \ 'yaml': ['yamllint']
+        \ }
 
     let g:ale_fixers = {
-                \ 'json': ['jq'],
-                \ 'python': ['autopep8', 'yapf', 'black', 'isort'],
-                \ 'sh': ['shfmt'],
-                \ 'yaml': ['prettier']
-                \ }
+        \ 'json': ['jq'],
+        \ 'python': ['autopep8', 'yapf', 'black', 'isort'],
+        \ 'sh': ['shfmt'],
+        \ 'yaml': ['prettier']
+        \ }
 
     let g:ale_json_jq_options = '--indent 4'
     let g:ale_python_flake8_options = '--ignore=E501'
@@ -362,14 +362,14 @@ function! s:w0rp_ale() abort
 endfunction
 
 call dein#add('w0rp/ale', {
-            \ 'hook_add': function('s:w0rp_ale')
-            \ })
+    \ 'hook_add': function('s:w0rp_ale')
+    \ })
 
 " Formatter
 call dein#add('Vimjas/vim-python-pep8-indent', {
-            \ 'on_event': 'InsertEnter',
-            \ 'on_ft': 'python'
-            \ })
+    \ 'on_event': 'InsertEnter',
+    \ 'on_ft': 'python'
+    \ })
 
 " Snippet
 call dein#add('phenomenes/ansible-snippets')
@@ -381,16 +381,16 @@ function! s:Shougo_neosnippet() abort
     xmap <C-k> <Plug>(neosnippet_expand_target)
 
     let g:neosnippet#snippets_directory = [
-                \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets'
-                \ ]
+        \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets'
+        \ ]
 endfunction
 
 call dein#add('Shougo/neosnippet', {
-            \ 'depends': ['ansible-snippets', 'neosnippet-snippets', 'context_filetype.vim'],
-            \ 'on_event': 'InsertCharPre',
-            \ 'on_ft': 'snippet',
-            \ 'hook_source': function('s:Shougo_neosnippet')
-            \ })
+    \ 'depends': ['ansible-snippets', 'neosnippet-snippets', 'context_filetype.vim'],
+    \ 'on_event': 'InsertCharPre',
+    \ 'on_ft': 'snippet',
+    \ 'hook_source': function('s:Shougo_neosnippet')
+    \ })
 
 " Status Line
 call dein#add('itchyny/lightline.vim')
@@ -425,37 +425,37 @@ function! s:shougo_denite_nvim_hook_source() abort
 
     function! s:denite_settings() abort
         nnoremap <silent><buffer><expr> <CR>
-                    \ denite#do_map('do_action')
+            \ denite#do_map('do_action')
         nnoremap <silent><buffer><expr> t
-                    \ denite#do_map('do_action', 'tabopen')
+            \ denite#do_map('do_action', 'tabopen')
         nnoremap <silent><buffer><expr> -
-                    \ denite#do_map('do_action', 'split')
+            \ denite#do_map('do_action', 'split')
         nnoremap <silent><buffer><expr> <bar>
-                    \ denite#do_map('do_action', 'vsplit')
+            \ denite#do_map('do_action', 'vsplit')
         nnoremap <silent><buffer><expr> p
-                    \ denite#do_map('do_action', 'preview')
+            \ denite#do_map('do_action', 'preview')
         nnoremap <silent><buffer><expr> d
-                    \ denite#do_map('do_action', 'delete')
+            \ denite#do_map('do_action', 'delete')
         nnoremap <silent><buffer><expr> <ESC>
-                    \ denite#do_map('quit')
+            \ denite#do_map('quit')
         nnoremap <silent><buffer><expr> i
-                    \ denite#do_map('open_filter_buffer')
+            \ denite#do_map('open_filter_buffer')
         nnoremap <silent><buffer><expr> <Space>
-                    \ denite#do_map('toggle_select').'j'
+            \ denite#do_map('toggle_select').'j'
         nnoremap <silent><buffer><expr> <BS>
-                    \ denite#do_map('move_up_path')
+            \ denite#do_map('move_up_path')
 
         " for git status
         nnoremap <silent><buffer><expr> ga
-                    \ denite#do_map('do_action', 'add')
+            \ denite#do_map('do_action', 'add')
         nnoremap <silent><buffer><expr> gr
-                    \ denite#do_map('do_action', 'reset')
+            \ denite#do_map('do_action', 'reset')
 
         " for session manager
         nnoremap <silent><buffer><expr> sf
-                    \ denite#do_map('do_action', 'open_force')
+            \ denite#do_map('do_action', 'open_force')
         nnoremap <silent><buffer><expr> sr
-                    \ denite#do_map('do_action', 'remove')
+            \ denite#do_map('do_action', 'remove')
 
         if exists('&winblend')
             set winblend=20
@@ -464,30 +464,30 @@ function! s:shougo_denite_nvim_hook_source() abort
 
     function! s:denite_filter_settings() abort
         nnoremap <silent><buffer><expr> <ESC>
-                    \ denite#do_map('quit')
+            \ denite#do_map('quit')
     endfunction
 
     let s:denite_win_width_percent = 0.85
     let s:denite_win_height_percent = 0.7
 
     call denite#custom#option('_', {
-                \ 'highlight_matched_char': 'Underlined',
-                \ 'prompt': '>',
-                \ 'split': 'floating',
-                \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-                \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-                \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-                \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) * 4 / 5),
-                \ 'smartcase': 'true',
-                \ })
+        \ 'highlight_matched_char': 'Underlined',
+        \ 'prompt': '>',
+        \ 'split': 'floating',
+        \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
+        \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
+        \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
+        \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) * 4 / 5),
+        \ 'smartcase': 'true',
+        \ })
 
     if executable('rg')
         call denite#custom#var('file/rec', 'command',
-                    \ ['rg', '--files', '--glob', '!.git'])
+            \ ['rg', '--files', '--glob', '!.git'])
 
         call denite#custom#var('grep', 'command', ['rg'])
         call denite#custom#var('grep', 'default_opts',
-                    \ ['-i', '--vimgrep', '--no-heading'])
+            \ ['-i', '--vimgrep', '--no-heading'])
         call denite#custom#var('grep', 'recursive_opts', [])
         call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
         call denite#custom#var('grep', 'separator', ['--'])
@@ -497,28 +497,28 @@ function! s:shougo_denite_nvim_hook_source() abort
     let s:denite_menus = {}
 
     let s:denite_menus.dotfiles = {
-                \ 'description': 'Edit dotfiles'
-                \ }
+        \ 'description': 'Edit dotfiles'
+        \ }
     let s:denite_menus.dotfiles.file_candidates = [
-                \ ['init.vim', '~/.dotfiles/config/nvim/init.vim'],
-                \ ['my-help-doc', '~/.dotfiles/config/nvim/my-help/doc/my-help.txt'],
-                \ ['installer', '~/.dotfiles/install']
-                \ ]
+        \ ['init.vim', '~/.dotfiles/config/nvim/init.vim'],
+        \ ['my-help-doc', '~/.dotfiles/config/nvim/my-help/doc/my-help.txt'],
+        \ ['installer', '~/.dotfiles/install']
+        \ ]
 
     call denite#custom#var('menu', 'menus', s:denite_menus)
 
 endfunction
 
 call dein#add('Shougo/denite.nvim', {
-            \ 'depends': ['denite-git', 'session.vim'],
-            \ 'on_cmd': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord'],
-            \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
-            \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
-            \ })
+    \ 'depends': ['denite-git', 'session.vim'],
+    \ 'on_cmd': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord'],
+    \ 'hook_add': function('s:shougo_denite_nvim_hook_add'),
+    \ 'hook_source': function('s:shougo_denite_nvim_hook_source')
+    \ })
 
 call dein#add('neoclide/denite-git', {
-            \ 'on_source': 'denite.nvim'
-            \ })
+    \ 'on_source': 'denite.nvim'
+    \ })
 
 " Session Manager
 function! s:lambdalisue_session_vim() abort
@@ -526,9 +526,9 @@ function! s:lambdalisue_session_vim() abort
 endfunction
 
 call dein#add('lambdalisue/session.vim', {
-            \ 'on_source': 'denite.nvim',
-            \ 'hook_add': function('s:lambdalisue_session_vim'),
-            \ })
+    \ 'on_source': 'denite.nvim',
+    \ 'hook_add': function('s:lambdalisue_session_vim'),
+    \ })
 
 " My Plugins
 call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
@@ -633,35 +633,35 @@ let g:lightline#ale#indicator_checking = '(」・ω・)」うー '
 let g:lightline#ale#indicator_ok = '(/・ω・)/にゃー'
 
 let g:lightline = {
-            \ 'colorscheme': 'challenger_deep',
-            \ 'active': {
-            \   'left': [
-            \     [ 'mode', 'paste' ],
-            \     [ 'fugitive', 'readonly', 'filepath', 'modified' ],
-            \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ]
-            \   ],
-            \   'right': [
-            \     [ 'percent', 'lineinfo' ],
-            \     [ 'filetype' ],
-            \     [ 'anzu', 'fileformat', 'fileencoding' ]
-            \   ]
-            \ },
-            \ 'component_expand': {
-            \   'linter_checking': 'lightline#ale#checking',
-            \   'linter_warnings': 'lightline#ale#warnings',
-            \   'linter_errors': 'lightline#ale#errors',
-            \   'linter_ok': 'lightline#ale#ok',
-            \ },
-            \ 'component_type': {
-            \   'linter_warnings': 'warning',
-            \   'linter_errors': 'error',
-            \ },
-            \ 'component_function': {
-            \   'fugitive': 'LightLineFugitive',
-            \   'filepath': 'LightLineFilePath',
-            \   'anzu': 'anzu#search_status'
-            \ }
-            \ }
+    \ 'colorscheme': 'challenger_deep',
+    \ 'active': {
+    \   'left': [
+    \     [ 'mode', 'paste' ],
+    \     [ 'fugitive', 'readonly', 'filepath', 'modified' ],
+    \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ]
+    \   ],
+    \   'right': [
+    \     [ 'percent', 'lineinfo' ],
+    \     [ 'filetype' ],
+    \     [ 'anzu', 'fileformat', 'fileencoding' ]
+    \   ]
+    \ },
+    \ 'component_expand': {
+    \   'linter_checking': 'lightline#ale#checking',
+    \   'linter_warnings': 'lightline#ale#warnings',
+    \   'linter_errors': 'lightline#ale#errors',
+    \   'linter_ok': 'lightline#ale#ok',
+    \ },
+    \ 'component_type': {
+    \   'linter_warnings': 'warning',
+    \   'linter_errors': 'error',
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightLineFugitive',
+    \   'filepath': 'LightLineFilePath',
+    \   'anzu': 'anzu#search_status'
+    \ }
+    \ }
 
 " -----------------------------------------------------------------------------
 " Useful function
@@ -750,9 +750,9 @@ augroup MyAutoCmd
     autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
 
     autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal! g'\"" |
-                \ endif
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
 
     autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
     autocmd CursorHold,CursorHoldI,WinEnter * setlocal cursorline
@@ -766,6 +766,8 @@ augroup MyAutoCmd
     else
         autocmd TerminalOpen * let g:last_terminal_job_id = bufnr('')
     endif
+
+    autocmd FileType vim let g:vim_indent_cont = &shiftwidth
 augroup END
 
 " -----------------------------------------------------------------------------
