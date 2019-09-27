@@ -674,6 +674,10 @@ let g:lightline = {
     \     [ 'anzu', 'fileformat', 'fileencoding' ]
     \   ]
     \ },
+    \ 'tabline': {
+    \   'left': [[ 'tabs' ]],
+    \   'right': [[ 'none' ]]
+    \ },
     \ 'component_expand': {
     \   'linter_checking': 'lightline#ale#checking',
     \   'linter_warnings': 'lightline#ale#warnings',
