@@ -592,6 +592,9 @@ let s:dark_red       = {'gui': '#ff5458', 'cterm': '203'}
 let s:yellow         = {'gui': '#ffe9aa', 'cterm': '228'}
 let s:dark_yellow    = {'gui': '#ffb378', 'cterm': '215'}
 
+let s:purple         = {'gui': '#c991e1', 'cterm': '141'}
+let s:dark_purple    = {'gui': '#906cff', 'cterm': '135'}
+
 let s:clouds         = {'gui': '#cbe3e7', 'cterm': '253'}
 let s:dark_clouds    = {'gui': '#a6b3cc', 'cterm': '252'}
 
@@ -694,6 +697,16 @@ let g:lightline = {
     \   'anzu': 'anzu#search_status'
     \ }
     \ }
+
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.inactive.left = [
+    \ [ s:bg_subtle.gui, s:purple.gui,      s:bg_subtle.cterm, s:purple.cterm ],
+    \ [ s:bg_subtle.gui, s:dark_purple.gui, s:bg_subtle.cterm, s:dark_purple.cterm ]
+    \ ]
+let s:palette.inactive.right = [
+    \ [ s:bg_subtle.gui, s:purple.gui,      s:bg_subtle.cterm, s:purple.cterm ],
+    \ [ s:bg_subtle.gui, s:dark_purple.gui, s:bg_subtle.cterm, s:dark_purple.cterm ]
+    \ ]
 
 " -----------------------------------------------------------------------------
 " Useful function
