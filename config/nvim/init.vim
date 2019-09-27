@@ -578,19 +578,47 @@ syntax on
 
 colorscheme challenger_deep
 
-highlight Folded guibg=#565575 ctermbg=236
+function! s:colorize(group, style) abort
+    execute 'highlight' a:group
+        \ 'guifg='   (has_key(a:style, 'fg')    ? a:style.fg.gui   : 'NONE')
+        \ 'guibg='   (has_key(a:style, 'bg')    ? a:style.bg.gui   : 'NONE')
+        \ 'ctermfg=' (has_key(a:style, 'fg')    ? a:style.fg.cterm : 'NONE')
+        \ 'ctermbg=' (has_key(a:style, 'bg')    ? a:style.bg.cterm : 'NONE')
+endfunction
+
+let s:red            = {'gui': '#ff8080', 'cterm': '204'}
+let s:dark_red       = {'gui': '#ff5458', 'cterm': '203'}
+
+let s:yellow         = {'gui': '#ffe9aa', 'cterm': '228'}
+let s:dark_yellow    = {'gui': '#ffb378', 'cterm': '215'}
+
+let s:clouds         = {'gui': '#cbe3e7', 'cterm': '253'}
+let s:dark_clouds    = {'gui': '#a6b3cc', 'cterm': '252'}
+
+let s:asphalt        = {'gui': '#1e1c31', 'cterm': '233'}
+let s:asphalt_subtle = {'gui': '#100E23', 'cterm': '232'}
+let s:dark_asphalt   = {'gui': '#565575', 'cterm': '236'}
+
+let s:norm        = s:clouds
+let s:norm_subtle = s:dark_clouds
+
+let s:bg          = s:asphalt
+let s:bg_subtle   = s:asphalt_subtle
+let s:bg_dark     = s:dark_asphalt
+
+call s:colorize('Folded', {'bg': s:bg_dark, 'fg': s:bg_subtle})
 
 if has('nvim')
-    highlight ActiveWindow guibg=#1e1c31 ctermbg=233
-    highlight InactiveWindow guibg=#100E23 ctermbg=232
+    call s:colorize('ActiveWindow',   {'bg': s:bg,        'fg': s:norm})
+    call s:colorize('InactiveWindow', {'bg': s:bg_subtle, 'fg': s:norm})
     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endif
 
 if has('nvim-0.3.2')
-    highlight ALEErrorSignLineNr guifg=#ff5458 guibg=#100E23 ctermbg=232
-    highlight ALEStyleErrorSignLineNr guifg=#ff5458 guibg=#100E23 ctermbg=232
-    highlight ALEWarningSignLineNr guifg=#ffb378 guibg=#100E23 ctermbg=232
-    highlight ALEStyleWarningSignLineNr guifg=#ffb378 guibg=#100E23 ctermbg=232
+    call s:colorize('ALEErrorSignLineNr',        {'bg': s:bg_subtle, 'fg': s:dark_red})
+    call s:colorize('ALEStyleErrorSignLineNr',   {'bg': s:bg_subtle, 'fg': s:dark_red})
+    call s:colorize('ALEWarningSignLineNr',      {'bg': s:bg_subtle, 'fg': s:dark_yellow})
+    call s:colorize('ALEStyleWarningSignLineNr', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
 endif
 
 if exists('&blend')
