@@ -2,26 +2,6 @@
 
 set -e
 
-##### Build target ############################################################
-
-: << COMMENT
-+-----------------+--------------------+
-| BUILD env value | Use case           |
-+=================+====================+
-| minimal         | No internet access |
-| default         | My typical setting |
-| all             | All feature        |
-+-----------------+--------------------+
-COMMENT
-
-if [[ -z "${BUILD}" ]]; then
-    BUILD="default"
-elif [[ "${BUILD,,}" == "minimal" || "${BUILD,,}" == "all" ]]; then
-    BUILD="${BUILD,,}"
-else
-    BUILD="default"
-fi
-
 ##### Variables ###############################################################
 
 export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
@@ -56,6 +36,30 @@ function _logger() {
     COLOR="${1}"
     printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
+
+##### Build target ############################################################
+
+_banner "Check build target..."
+
+: << COMMENT
++-----------------+--------------------+
+| BUILD env value | Use case           |
++=================+====================+
+| minimal         | No internet access |
+| default         | My typical setting |
+| all             | All feature        |
++-----------------+--------------------+
+COMMENT
+
+if [[ -z "${BUILD}" ]]; then
+    BUILD="default"
+elif [[ "${BUILD,,}" == "minimal" || "${BUILD,,}" == "all" ]]; then
+    BUILD="${BUILD,,}"
+else
+    BUILD="default"
+fi
+
+_logger "${INFO}" "Build target is ${BUILD^^}."
 
 ##### Set Proxy ###############################################################
 
@@ -287,13 +291,15 @@ else
     popd
 fi
 
-##### Install neovim ##########################################################
+##### Build neovim ############################################################
 
-_banner "Install Neovim..."
+_banner "Build Neovim..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-make build-neovim
+for i in {1..3}; do
+    make build-neovim && break || sleep 10
+done
 popd
 
 ##### Clone vim ###############################################################
@@ -314,13 +320,15 @@ else
     _banner "Skip to clone vim."
 fi
 
-##### Install vim #############################################################
+##### Build vim ###############################################################
 
 if [[ "${BUILD}" == "all" ]]; then
-    _banner "Install Vim..."
+    _banner "Build Vim..."
     pushd "$(pwd)"
     cd "${DOTPATH}"
-    make build-vim
+    for i in {1..3}; do
+        make build-vim && break || sleep 10
+    done
     popd
 else
     _banner "Skip to build vim."
