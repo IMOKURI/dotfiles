@@ -96,7 +96,6 @@ sudo -E yum install -y \
 sudo -E yum install -y \
     autoconf \
     automake \
-    cmake3 \
     ctags \
     expat-devel \
     gcc \
@@ -127,8 +126,6 @@ sudo -E yum install -y \
     wget \
     which \
     words
-
-sudo alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 30
 
 ##### Clone Dotfiles ##########################################################
 
@@ -185,10 +182,11 @@ ls /usr/local/bin/pip || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sud
 
 _banner "Install Python Packages..."
 
-pip install --user \
+pip install --user -U \
     ansible \
     autopep8 \
     black \
+    cmake \
     flake8 \
     flake8-import-order \
     isort \
