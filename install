@@ -90,8 +90,11 @@ fi
 
 _banner "Install Packages..."
 
-sudo -E yum install -y \
-    https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+if [[ ! -f /etc/yum.repos.d/epel.repo ]]; then
+    _logger "${INFO}" "Install EPEL repository"
+    sudo -E yum install -y \
+        https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+fi
 
 sudo -E yum install -y \
     autoconf \
