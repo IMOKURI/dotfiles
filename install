@@ -229,7 +229,7 @@ fi
 
 if [[ "${BUILD}" != "minimal" ]]; then
     _banner "Install Go Packages..."
-    go get \
+    go get -u \
         github.com/mattn/efm-langserver \
         github.com/mrtazz/checkmake \
         github.com/tokuhirom/git-xlsx-textconv \
