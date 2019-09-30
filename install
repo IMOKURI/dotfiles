@@ -351,6 +351,7 @@ if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
 fi
 
 _logger "${INFO}" "Update neovim plugins."
+nvim --headless "+call dein#update()" +qall
 nvim --headless "+call dein#source(['deoplete.nvim', 'denite.nvim'])" +UpdateRemotePlugins +qall
 
 popd
