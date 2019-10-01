@@ -381,7 +381,8 @@ function! s:Shougo_neosnippet() abort
     xmap <C-k> <Plug>(neosnippet_expand_target)
 
     let g:neosnippet#snippets_directory = [
-        \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets'
+        \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets',
+        \ $XDG_CONFIG_HOME . '/nvim/neosnippets'
         \ ]
 endfunction
 
