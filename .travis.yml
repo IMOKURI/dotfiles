@@ -23,6 +23,8 @@ env:
     - PROXY: false
       BUILD: all
     - PROXY: false
+      BUILD: default
+    - PROXY: false
       BUILD: minimal
 
 before_install:
