@@ -187,6 +187,8 @@ _banner "Install Pip..."
 
 ls /usr/local/bin/pip || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
 
+sudo -E /usr/local/bin/pip install -U pip
+
 _banner "Install Python Packages..."
 
 pip install --user -U \
@@ -195,6 +197,9 @@ pip install --user -U \
     black \
     cmake \
     flake8 \
+    flake8-black \
+    flake8-blind-except \
+    flake8-builtins \
     flake8-import-order \
     isort \
     jedi \
