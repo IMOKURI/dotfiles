@@ -141,6 +141,9 @@ call dein#add('martinda/Jenkinsfile-vim-syntax', {
 
 " Utility
 function! s:LeafCage_yankround_vim() abort
+    let g:yankround_dir = $XDG_DATA_HOME . '/yankround'
+    let g:yankround_use_region_hl = 1
+
     nmap p <Plug>(yankround-p)
     xmap p <Plug>(yankround-p)
     nmap P <Plug>(yankround-P)
@@ -649,6 +652,8 @@ if has('nvim-0.3.2')
     call s:colorize('ALEWarningSignLineNr',      {'bg': s:bg_subtle, 'fg': s:dark_yellow})
     call s:colorize('ALEStyleWarningSignLineNr', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
 endif
+
+call s:colorize('YankRoundRegion', {'bg': s:norm_subtle, 'fg': s:bg_subtle})
 
 if exists('&blend')
     highlight PmenuSel blend=0
