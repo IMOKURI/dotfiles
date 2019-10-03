@@ -140,6 +140,18 @@ call dein#add('martinda/Jenkinsfile-vim-syntax', {
     \ })
 
 " Utility
+function! s:LeafCage_yankround_vim() abort
+    nmap p <Plug>(yankround-p)
+    xmap p <Plug>(yankround-p)
+    nmap P <Plug>(yankround-P)
+    nmap <C-p> <Plug>(yankround-prev)
+    nmap <C-n> <Plug>(yankround-next)
+endfunction
+
+call dein#add('LeafCage/yankround.vim', {
+    \ 'hook_add': function('s:LeafCage_yankround_vim')
+    \ })
+
 call dein#add('haya14busa/is.vim')
 
 function! s:osyo_manga_vim_anzu() abort
@@ -355,8 +367,8 @@ function! s:w0rp_ale() abort
     let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
     let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
 
-    nmap <silent> <C-p> <Plug>(ale_previous_wrap)
-    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+    nmap <silent> <Leader>p <Plug>(ale_previous_wrap)
+    nmap <silent> <Leader>n <Plug>(ale_next_wrap)
 
     nmap <silent> <Leader>x <Plug>(ale_fix)
 endfunction
@@ -972,12 +984,6 @@ nnoremap <expr> `  <SID>hint_cmd_output('`', 'marks') . 'zz'
 
 " レジストリをリストアップする
 nnoremap <expr> " <SID>hint_cmd_output('"', 'registers')
-
-" レジスタからペーストする
-nnoremap <Leader>p "0p
-nnoremap <Leader>P "0P
-vnoremap <Leader>p "0p
-vnoremap <Leader>P "0P
 
 " # を入力したときに行頭に移動しない
 inoremap # x<BS>#
