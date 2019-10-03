@@ -928,7 +928,7 @@ tnoremap <silent> <ESC> <C-\><C-n>
 
 " 行/選択範囲をターミナルに送る
 nnoremap <silent> <Leader><CR> :REPLSendLine<CR>
-vnoremap <silent> <Leader><CR> :REPLSendSelection<CR>
+xnoremap <silent> <Leader><CR> :REPLSendSelection<CR>
 
 " インデントをコマンド1回にする
 nnoremap > >>
