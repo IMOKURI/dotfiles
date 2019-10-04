@@ -866,7 +866,7 @@ endfunction
 
 command! -range=% REPLSendSelection call REPLSend(s:get_visual())
 command! REPLSendLine call REPLSend(getline('.'))
-command! -nargs=+ REPLMap call REPLMapFor(<q-args>)
+command! -complete=shellcmd -nargs=+ REPLMap call REPLMapFor(<q-args>)
 
 " -----------------------------------------------------------------------------
 " Auto command
