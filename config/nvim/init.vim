@@ -784,7 +784,7 @@ let s:palette.inactive.right = [
 " -----------------------------------------------------------------------------
 " Useful function
 " -----------------------------------------------------------------------------
-function! DeleteHiddenBuffers()
+function! DeleteHiddenBuffers() abort
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
     for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
@@ -806,13 +806,23 @@ function! REPLSend(str) abort
     endif
 endfunction
 
-function! s:get_visual()
+function! s:get_visual() abort
     let [lnum1, col1] = getpos("'<")[1:2]
     let [lnum2, col2] = getpos("'>")[1:2]
     let lines = getline(lnum1, lnum2)
     let lines[-1] = lines[-1][:col2 - 2]
     let lines[0] = lines[0][col1 - 1:]
     return join(lines, "\n")
+endfunction
+
+function! REPLMapFor(cmd) abort
+    exec 'nnoremap <silent> tt :call REPLSend("' . s:replmap_expand(a:cmd) . '")<CR>'
+endfunction
+
+function! s:replmap_expand(cmd) abort
+    let l:cmd = substitute(a:cmd, '[^\\]\zs%', expand('%'), 'g')
+
+    return l:cmd
 endfunction
 
 function! s:smart_foldcloser() abort
@@ -856,6 +866,7 @@ endfunction
 
 command! -range=% REPLSendSelection call REPLSend(s:get_visual())
 command! REPLSendLine call REPLSend(getline('.'))
+command! -nargs=+ REPLMap call REPLMapFor(<q-args>)
 
 " -----------------------------------------------------------------------------
 " Auto command
@@ -886,6 +897,10 @@ augroup MyAutoCmd
     endif
 
     autocmd FileType vim let g:vim_indent_cont = &shiftwidth
+
+    autocmd FileType python nnoremap <silent> <CR><CR> :call REPLSend('python ' . expand('%'))<CR>
+    autocmd FileType bash,sh nnoremap <silent> <CR><CR> :call REPLSend('bash ' . expand('%'))<CR>
+    autocmd FileType yaml nnoremap <silent> <CR><CR> :call REPLSend('ansible-playbook ' . expand('%'))<CR>
 augroup END
 
 " -----------------------------------------------------------------------------
