@@ -370,13 +370,14 @@ function! s:w0rp_ale() abort
     let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
     let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
 
-    nmap <silent> <Leader>p <Plug>(ale_previous_wrap)
-    nmap <silent> <Leader>n <Plug>(ale_next_wrap)
+    nmap <silent><expr> <C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "\<Plug>(ale_previous_wrap)"
+    nmap <silent><expr> <C-n> yankround#is_active() ? "\<Plug>(yankround-next)" : "\<Plug>(ale_next_wrap)"
 
     nmap <silent> <Leader>x <Plug>(ale_fix)
 endfunction
 
 call dein#add('w0rp/ale', {
+    \ 'depends': 'yankround.vim',
     \ 'hook_add': function('s:w0rp_ale')
     \ })
 
