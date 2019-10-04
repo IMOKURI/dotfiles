@@ -959,6 +959,12 @@ endif
 nnoremap <Leader>- <C-w>s
 nnoremap <Leader><bar> <C-w>v
 
+" ウィンドウの大きさを変更する
+nnoremap <Leader><Up> <C-w>+
+nnoremap <Leader><Down> <C-w>-
+nnoremap <Leader><Right> <C-w>>
+nnoremap <Leader><Left> <C-w><
+
 " 直前のバッファに移動する
 nnoremap <Leader><Tab> <C-^>
 
