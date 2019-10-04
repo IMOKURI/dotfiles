@@ -425,6 +425,8 @@ function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>o :Denite file/old<CR>
     nnoremap <silent> <Leader>g :Denite grep -auto-action=preview<CR>
     nnoremap <silent> <Leader>c :DeniteCursorWord grep -auto-action=preview<CR>
+    nnoremap <silent> <Leader>l :Denite line<CR>
+    nnoremap <silent> <Leader>` :Denite mark -auto-action=preview<CR>
     nnoremap <silent> <Leader>t :Denite tag -auto-action=preview<CR>
     nnoremap <silent> <Leader>h :Denite menu<CR>
 
@@ -1013,7 +1015,7 @@ nnoremap <expr> `  <SID>hint_cmd_output('`', 'marks') . 'zz'
 nnoremap <expr> " <SID>hint_cmd_output('"', 'registers')
 
 " # を入力したときに行頭に移動しない
-inoremap # x<BS>#
+"inoremap # x<BS>#
 
 " インサートモード中に移動する
 inoremap <C-a> <Home>

@@ -4,9 +4,9 @@
 
 ## Feature
 
-- Install/Build latest Neovim, Vim.
-- Install/Build latest stable Git.
-- Install Python, Node.js, Go.
+- Install/Build edge Neovim and Vim.
+- Install/Build latest Git.
+- Install Python3, Node.js and Go with some packages.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
 
