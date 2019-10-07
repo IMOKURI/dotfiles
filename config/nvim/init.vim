@@ -89,7 +89,7 @@ call dein#add('challenger-deep-theme/vim')
 
 " Git
 function! s:airblade_vim_gitgutter() abort
-    let g:gitgutter_highlight_linenrs = 1
+    " let g:gitgutter_highlight_linenrs = 1
     let g:gitgutter_diff_args = '-w'
 
     nmap <Leader>ga <Plug>(GitGutterStageHunk)
@@ -555,6 +555,14 @@ call dein#add('lambdalisue/session.vim', {
 
 " My Plugins
 call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
+
+function! s:line_number_interval_nvim() abort
+    let g:line_number_interval#enable = 1
+endfunction
+
+call dein#add('IMOKURI/line-number-interval.nvim', {
+    \ 'hook_add': function('s:line_number_interval_nvim')
+    \ })
 
 call dein#end()
 
