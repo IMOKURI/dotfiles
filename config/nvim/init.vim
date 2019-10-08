@@ -352,6 +352,7 @@ call dein#add('deoplete-plugins/deoplete-jedi', {
 function! s:w0rp_ale() abort
     let g:ale_sign_error = 'E>'
     let g:ale_sign_warning = 'W>'
+    let g:ale_sign_highlight_linenrs = 1
 
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
