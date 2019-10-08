@@ -155,6 +155,15 @@ call dein#add('LeafCage/yankround.vim', {
     \ 'hook_add': function('s:LeafCage_yankround_vim')
     \ })
 
+function! s:LeafCage_vimhelpgenerator() abort
+    let g:vimhelpgenerator_defaultlanguage = 'en'
+    let g:vimhelpgenerator_gitignore_lines = []
+endfunction
+
+call dein#add('LeafCage/vimhelpgenerator', {
+    \ 'hook_add': function('s:LeafCage_vimhelpgenerator')
+    \ })
+
 call dein#add('haya14busa/is.vim')
 
 function! s:osyo_manga_vim_anzu() abort
