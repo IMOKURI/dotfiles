@@ -566,7 +566,7 @@ call dein#add('lambdalisue/session.vim', {
 call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
 
 function! s:line_number_interval_nvim() abort
-    let g:line_number_interval#enable = 1
+    let g:line_number_interval#enable_at_startup = 1
 endfunction
 
 call dein#add('IMOKURI/line-number-interval.nvim', {
