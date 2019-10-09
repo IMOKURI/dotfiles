@@ -674,7 +674,9 @@ if has('nvim-0.3.2')
     call s:colorize('ALEStyleWarningSignLineNr', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
 endif
 
-call s:colorize('LineNr', {'bg': s:bg_subtle, 'fg': s:green})
+call s:colorize('CursorLineNr',      {'bg': s:bg_subtle, 'fg': s:yellow})
+call s:colorize('DimLineNr',         {'bg': s:bg_subtle, 'fg': s:dark_asphalt})
+call s:colorize('HighlightedLineNr', {'bg': s:bg_subtle, 'fg': s:blue})
 
 call s:colorize('YankRoundRegion', {'bg': s:norm_subtle, 'fg': s:bg_subtle})
 
