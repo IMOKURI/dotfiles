@@ -1109,9 +1109,6 @@ set foldminlines=3
 " 折りたたみの最大の深さ
 set foldnestmax=10
 
-" foldの余白は空白で埋める
-set fillchars=fold:\ 
-
 " 画面端が3行見える状態でスクロールする
 set scrolloff=3
 
