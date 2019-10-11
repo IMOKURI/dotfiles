@@ -690,10 +690,14 @@ endif
 " -----------------------------------------------------------------------------
 function! LightLineFugitive() abort
     try
-        return exists('*fugitive#head') ? fugitive#head() : ''
+        return exists('*fugitive#head') ? ' ' . fugitive#head() : ''
     catch
     endtry
     return ''
+endfunction
+
+function! LightLineReadOnly()
+    return &filetype !~? 'help' && &readonly ? '' : ''
 endfunction
 
 " ファイル名を下位3階層のみの表示にする
@@ -750,15 +754,22 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightLineFugitive',
+    \   'readonly': 'LightLineReadOnly',
     \   'filepath': 'LightLineFilePath',
     \   'anzu': 'anzu#search_status'
-    \ }
+    \ },
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
     \ }
 
 let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
 
 let s:palette.tabline.tabsel = [
     \ [ s:bg_subtle.gui, s:cyan.gui,      s:bg_subtle.cterm, s:cyan.cterm ]
+    \ ]
+
+let s:palette.tabline.right = [
+    \ [ s:bg_subtle.gui, s:bg_subtle.gui, s:bg_subtle.cterm, s:bg_subtle.cterm ]
     \ ]
 
 let s:palette.normal.left = [
