@@ -112,6 +112,8 @@ sudo -E yum install -y \
     golang \
     libcurl-devel \
     libffi-devel \
+    libjpeg-turbo-devel \
+    libpng-devel \
     libtool \
     lua \
     lua-devel \
@@ -261,6 +263,25 @@ if [[ "${BUILD}" != "minimal" ]]; then
     fi
 else
     _banner "Skip to install RipGrep."
+fi
+
+##### Install sixel ###########################################################
+
+if [[ "${BUILD}" != "minimal" ]]; then
+    _banner "Install Sixel..."
+    if [[ ! -d "${HOME}/src/libsixel" ]]; then
+        git clone https://github.com/saitoha/libsixel.git "${HOME}/src/libsixel"
+        pushd "$(pwd)"
+        cd "${HOME}/src/libsixel"
+        ./configure
+        make
+        sudo make install
+        popd
+    else
+        _logger "${INFO}" "Already installed."
+    fi
+else
+    _banner "Skip to install Sixel."
 fi
 
 ##### Install bashmarks #######################################################
