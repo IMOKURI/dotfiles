@@ -195,6 +195,7 @@ _banner "Install Python Packages..."
 
 pip install --user -U \
     ansible \
+    ansible-lint \
     autopep8 \
     black \
     cmake \
