@@ -246,6 +246,20 @@ call dein#add('dhruvasagar/vim-table-mode')
 
 call dein#add('AndrewRadev/linediff.vim')
 
+function! s:voldikss_vim_floaterm() abort
+    let g:floaterm_winblend = 20
+
+    nnoremap <silent> <C-u> :FloatermToggle<CR>i
+    tnoremap <silent> <C-u> <C-\><C-n>:FloatermToggle<CR>
+endfunction
+" }}}
+
+" Terminal {{{
+call dein#add('voldikss/vim-floaterm', {
+    \ 'on_cmd': ['FloatermToggle'],
+    \ 'hook_add': function('s:voldikss_vim_floaterm')
+    \ })
+
 function! s:kassio_neoterm() abort
     let g:neoterm_autoscroll = 1
     let g:neoterm_default_mod = 'botright'
