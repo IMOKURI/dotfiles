@@ -2,8 +2,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " -----------------------------------------------------------------------------
-" Detect platform
-" -----------------------------------------------------------------------------
+" Detect platform {{{
 if !exists('g:env')
     if has('win64') || has('win32')
         let g:env = 'WINDOWS'
@@ -11,10 +10,10 @@ if !exists('g:env')
         let g:env = toupper(substitute(system('uname'), '\n', '', ''))
     endif
 endif
+" }}}
 
 " -----------------------------------------------------------------------------
-" Determine XDG base directory
-" -----------------------------------------------------------------------------
+" Determine XDG base directory {{{
 if g:env =~# 'WINDOWS'
     set shellslash
 endif
@@ -34,10 +33,10 @@ if empty($XDG_DATA_HOME)
         let $XDG_DATA_HOME = expand('~/AppData/Local')
     endif
 endif
+" }}}
 
 " -----------------------------------------------------------------------------
-" Provider settings
-" -----------------------------------------------------------------------------
+" Provider settings {{{
 let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
 
 if g:env =~# 'LINUX'
@@ -55,10 +54,11 @@ elseif g:env =~# 'WINDOWS'
     let g:loaded_ruby_provider = 0
 
 endif
+" }}}
 
 " -----------------------------------------------------------------------------
-" Plugin settings
-" -----------------------------------------------------------------------------
+" Plugin settings {{{
+" dein install {{{
 if has('nvim')
     let s:dein_dir = $XDG_DATA_HOME . '/dein/nvim'
 else
@@ -72,6 +72,7 @@ if &runtimepath !~# '/dein.vim'
     endif
     execute 'set runtimepath^=' . s:dein_repo_dir
 endif
+" }}}
 
 if !exists('g:mapleader')
     nnoremap <Space> <Nop>
@@ -80,14 +81,16 @@ endif
 
 call dein#begin(s:dein_dir)
 
-" Plugin Manager
+" Plugin Manager {{{
 call dein#add('Shougo/dein.vim')
 call dein#add('wsdjeg/dein-ui.vim')
+" }}}
 
-" Color Scheme
+" Color Scheme {{{
 call dein#add('challenger-deep-theme/vim')
+" }}}
 
-" Git
+" Git {{{
 function! s:airblade_vim_gitgutter() abort
     " let g:gitgutter_highlight_linenrs = 1
     let g:gitgutter_diff_args = '-w'
@@ -101,8 +104,9 @@ call dein#add('airblade/vim-gitgutter', {
     \ })
 
 call dein#add('tpope/vim-fugitive')
+" }}}
 
-" Project
+" Project {{{
 function! s:airblade_vim_rooter() abort
     let g:rooter_change_directory_for_non_project_files = 'current'
     let g:rooter_patterns = ['.git', '.git/']
@@ -111,8 +115,9 @@ endfunction
 call dein#add('airblade/vim-rooter', {
     \ 'hook_add': function('s:airblade_vim_rooter')
     \ })
+" }}}
 
-" Highlight
+" Highlight {{{
 function! s:t9md_vim_quickhl() abort
     nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
     xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
@@ -138,8 +143,9 @@ call dein#add('pearofducks/ansible-vim', {
 call dein#add('martinda/Jenkinsfile-vim-syntax', {
     \ 'on_path': '.*Jenkinsfile'
     \ })
+" }}}
 
-" Utility
+" Utility {{{
 function! s:LeafCage_yankround_vim() abort
     let g:yankround_dir = $XDG_DATA_HOME . '/yankround'
     let g:yankround_use_region_hl = 1
@@ -259,11 +265,12 @@ call dein#add('kassio/neoterm', {
     \ 'on_cmd': ['Ttoggle', 'Topen'],
     \ 'hook_add': function('s:kassio_neoterm')
     \ })
+" }}}
 
-" LSP
+" LSP {{{
+" }}}
 
-
-" Completion
+" Completion {{{
 if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
@@ -347,8 +354,9 @@ call dein#add('Shougo/neco-vim', {
 call dein#add('deoplete-plugins/deoplete-jedi', {
     \ 'on_ft': 'python'
     \ })
+" }}}
 
-" Linter
+" Linter {{{
 function! s:w0rp_ale() abort
     let g:ale_sign_error = 'E>'
     let g:ale_sign_warning = 'W>'
@@ -392,14 +400,16 @@ call dein#add('w0rp/ale', {
     \ 'depends': 'yankround.vim',
     \ 'hook_add': function('s:w0rp_ale')
     \ })
+" }}}
 
-" Formatter
+" Formatter {{{
 call dein#add('Vimjas/vim-python-pep8-indent', {
     \ 'on_event': 'InsertEnter',
     \ 'on_ft': 'python'
     \ })
+" }}}
 
-" Snippet
+" Snippet {{{
 call dein#add('phenomenes/ansible-snippets')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('honza/vim-snippets')
@@ -424,12 +434,14 @@ call dein#add('Shougo/neosnippet', {
     \ 'on_ft': 'snippet',
     \ 'hook_source': function('s:Shougo_neosnippet')
     \ })
+" }}}
 
-" Status Line
+" Status Line {{{
 call dein#add('itchyny/lightline.vim')
 call dein#add('maximbaz/lightline-ale')
+" }}}
 
-" Launcher
+" Launcher {{{
 function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>b :Denite buffer<CR>
     nnoremap <silent> <Leader>e :DeniteBufferDir file/rec<CR>
@@ -458,7 +470,7 @@ function! s:shougo_denite_nvim_hook_source() abort
         autocmd FileType denite-filter call s:denite_filter_settings()
     augroup END
 
-    function! s:denite_settings() abort
+    function! s:denite_settings() abort " {{{
         nnoremap <silent><buffer><expr> <CR>
             \ denite#do_map('do_action')
         nnoremap <silent><buffer><expr> t
@@ -495,12 +507,12 @@ function! s:shougo_denite_nvim_hook_source() abort
         if exists('&winblend')
             set winblend=20
         endif
-    endfunction
+    endfunction " }}}
 
-    function! s:denite_filter_settings() abort
+    function! s:denite_filter_settings() abort " {{{
         nnoremap <silent><buffer><expr> <ESC>
             \ denite#do_map('quit')
-    endfunction
+    endfunction " }}}
 
     let s:denite_win_width_percent = 0.85
     let s:denite_win_height_percent = 0.7
@@ -554,8 +566,9 @@ call dein#add('Shougo/denite.nvim', {
 call dein#add('neoclide/denite-git', {
     \ 'on_source': 'denite.nvim'
     \ })
+" }}}
 
-" Session Manager
+" Session Manager {{{
 function! s:lambdalisue_session_vim() abort
     nnoremap ss :SessionSave
 endfunction
@@ -564,8 +577,9 @@ call dein#add('lambdalisue/session.vim', {
     \ 'on_source': 'denite.nvim',
     \ 'hook_add': function('s:lambdalisue_session_vim'),
     \ })
+" }}}
 
-" My Plugins
+" My Plugins {{{
 call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
 
 if has('nvim-0.3.2')
@@ -578,6 +592,7 @@ if has('nvim-0.3.2')
         \ 'hook_add': function('s:line_number_interval_nvim')
         \ })
 endif
+" }}}
 
 call dein#end()
 
@@ -590,10 +605,10 @@ endif
 if !empty(dein#check_clean())
     call map(dein#check_clean(), "delete(v:val, 'rf')")
 endif
+" }}}
 
 " -----------------------------------------------------------------------------
-" netrw
-" -----------------------------------------------------------------------------
+" Netrw {{{
 " one file per line with timestamp information and file size
 let g:netrw_liststyle=1
 
@@ -611,10 +626,10 @@ let g:netrw_home=expand('~')
 
 " the settings that netrw buffers have
 let g:netrw_bufsettings='noma nomod nu rnu nowrap ro nobl'
+" }}}
 
 " -----------------------------------------------------------------------------
-" Color scheme
-" -----------------------------------------------------------------------------
+" Color scheme {{{
 if has('nvim') || has('termguicolors')
     set termguicolors
 endif
@@ -624,14 +639,15 @@ syntax on
 
 colorscheme challenger_deep
 
-function! s:colorize(group, style) abort
+function! s:colorize(group, style) abort " {{{
     execute 'highlight' a:group
         \ 'guifg='   (has_key(a:style, 'fg')    ? a:style.fg.gui   : 'NONE')
         \ 'guibg='   (has_key(a:style, 'bg')    ? a:style.bg.gui   : 'NONE')
         \ 'ctermfg=' (has_key(a:style, 'fg')    ? a:style.fg.cterm : 'NONE')
         \ 'ctermbg=' (has_key(a:style, 'bg')    ? a:style.bg.cterm : 'NONE')
-endfunction
+endfunction " }}}
 
+" Palette {{{
 let s:red            = {'gui': '#ff8080', 'cterm': '204'}
 let s:dark_red       = {'gui': '#ff5458', 'cterm': '203'}
 
@@ -663,8 +679,7 @@ let s:norm_subtle = s:dark_clouds
 let s:bg          = s:asphalt
 let s:bg_subtle   = s:asphalt_subtle
 let s:bg_dark     = s:dark_asphalt
-
-call s:colorize('Folded', {'bg': s:bg_dark, 'fg': s:bg_subtle})
+" }}}
 
 if has('nvim')
     call s:colorize('ActiveWindow',   {'bg': s:bg,        'fg': s:norm})
@@ -672,6 +687,7 @@ if has('nvim')
     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endif
 
+" ALE Highlight {{{
 call s:colorize('ALEError',   {'bg': s:bg_subtle, 'fg': s:dark_red})
 call s:colorize('ALEWarning', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
 
@@ -681,34 +697,37 @@ if has('nvim-0.3.2')
     call s:colorize('ALEWarningSignLineNr',      {'bg': s:bg_subtle, 'fg': s:dark_yellow})
     call s:colorize('ALEStyleWarningSignLineNr', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
 endif
+" }}}
 
-call s:colorize('CursorLineNr',      {'bg': s:bg_subtle, 'fg': s:blue})
-call s:colorize('DimLineNr',         {'bg': s:bg_subtle, 'fg': s:dark_asphalt})
-call s:colorize('HighlightedLineNr', {'bg': s:bg_subtle, 'fg': s:green})
+call s:colorize('Folded',            {'bg': s:bg_subtle,   'fg': s:blue})
 
-call s:colorize('YankRoundRegion', {'bg': s:norm_subtle, 'fg': s:bg_subtle})
+call s:colorize('CursorLineNr',      {'bg': s:bg_subtle,   'fg': s:yellow})
+call s:colorize('DimLineNr',         {'bg': s:bg_subtle,   'fg': s:dark_asphalt})
+call s:colorize('HighlightedLineNr', {'bg': s:bg_subtle,   'fg': s:green})
+
+call s:colorize('YankRoundRegion',   {'bg': s:norm_subtle, 'fg': s:bg_subtle})
 
 if exists('&blend')
     highlight PmenuSel blend=0
 endif
+" }}}
 
 " -----------------------------------------------------------------------------
-" Status line
-" -----------------------------------------------------------------------------
-function! LightLineFugitive() abort
+" Status line {{{
+function! LightLineFugitive() abort " {{{
     try
         return exists('*fugitive#head') ? ' ' . fugitive#head() : ''
     catch
     endtry
     return ''
-endfunction
+endfunction " }}}
 
-function! LightLineReadOnly()
+function! LightLineReadOnly() " {{{
     return &filetype !~? 'help' && &readonly ? '' : ''
-endfunction
+endfunction " }}}
 
-" ファイル名を下位3階層のみの表示にする
-function! LightLineFilePath() abort
+function! LightLineFilePath() abort " {{{
+    " ファイル名を下位3階層のみの表示にする
     try
         if expand('%:p:~') =~# '^suda://'
             let g:is_suda = 'suda://'
@@ -726,11 +745,12 @@ function! LightLineFilePath() abort
     catch
     endtry
     return ''
-endfunction
+endfunction "}}}
 
 let g:lightline#ale#indicator_checking = '(」・ω・)」うー '
 let g:lightline#ale#indicator_ok = '(/・ω・)/にゃー'
 
+" LightLine settings {{{
 let g:lightline = {
     \ 'colorscheme': 'challenger_deep',
     \ 'active': {
@@ -764,11 +784,16 @@ let g:lightline = {
     \   'readonly': 'LightLineReadOnly',
     \   'filepath': 'LightLineFilePath',
     \   'anzu': 'anzu#search_status'
-    \ },
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' }
+    \ }
     \ }
 
+if g:env =~# 'LINUX'
+    let g:lightline.separator    = { 'left': '', 'right': '' }
+    let g:lightline.subseparator = { 'left': '', 'right': '' }
+endif
+" }}}
+
+" LightLine color palette {{{
 let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
 
 let s:palette.tabline.tabsel = [
@@ -823,19 +848,20 @@ let s:palette.inactive.right = [
     \ [ s:bg_subtle.gui, s:purple.gui,      s:bg_subtle.cterm, s:purple.cterm ],
     \ [ s:bg_subtle.gui, s:dark_purple.gui, s:bg_subtle.cterm, s:dark_purple.cterm ]
     \ ]
+" }}}
+" }}}
 
 " -----------------------------------------------------------------------------
-" Useful function
-" -----------------------------------------------------------------------------
-function! DeleteHiddenBuffers() abort
+" Useful functions {{{
+function! DeleteHiddenBuffers() abort " {{{
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
     for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
         silent execute 'bwipeout' buf
     endfor
-endfunction
+endfunction " }}}
 
-function! REPLSend(str) abort
+function! REPLSend(str) abort " {{{
     let s:str = a:str
     if s:str[-1] !=# "\n"
         let s:str .= "\n"
@@ -847,28 +873,27 @@ function! REPLSend(str) abort
     else
         call term_sendkeys(g:last_terminal_job_id, s:str)
     endif
-endfunction
+endfunction " }}}
 
-function! s:get_visual() abort
+function! s:get_visual() abort " {{{
     let [lnum1, col1] = getpos("'<")[1:2]
     let [lnum2, col2] = getpos("'>")[1:2]
     let lines = getline(lnum1, lnum2)
     let lines[-1] = lines[-1][:col2 - 2]
     let lines[0] = lines[0][col1 - 1:]
     return join(lines, "\n")
-endfunction
+endfunction " }}}
 
-function! REPLMapFor(cmd) abort
+function! REPLMapFor(cmd) abort " {{{
     exec 'nnoremap <silent> tt :call REPLSend("' . s:replmap_expand(a:cmd) . '")<CR>'
-endfunction
+endfunction " }}}
 
-function! s:replmap_expand(cmd) abort
+function! s:replmap_expand(cmd) abort " {{{
     let l:cmd = substitute(a:cmd, '[^\\]\zs%', expand('%'), 'g')
-
     return l:cmd
-endfunction
+endfunction " }}}
 
-function! s:smart_foldcloser() abort
+function! s:smart_foldcloser() abort " {{{
     if foldlevel('.') == 0
         norm! zM
         return
@@ -884,15 +909,15 @@ function! s:smart_foldcloser() abort
         return
     endif
     norm! zM
-endfunction
+endfunction " }}}
 
-function! s:auto_mkdir(dir, force) abort
+function! s:auto_mkdir(dir, force) abort " {{{
     if !isdirectory(a:dir) && (a:force || input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
         call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
     endif
-endfunction
+endfunction " }}}
 
-function! s:hint_cmd_output(prefix, cmd) abort
+function! s:hint_cmd_output(prefix, cmd) abort " {{{
     redir => str
         execute a:cmd
     redir END
@@ -901,20 +926,19 @@ function! s:hint_cmd_output(prefix, cmd) abort
     echo str
     let &more = more_old
     return a:prefix . nr2char(getchar())
-endfunction
+endfunction " }}}
+" }}}
 
 " -----------------------------------------------------------------------------
-" Command
-" -----------------------------------------------------------------------------
-
+" Commands {{{
 command! -range=% REPLSendSelection call REPLSend(s:get_visual())
 command! REPLSendLine call REPLSend(getline('.'))
 command! -complete=shellcmd -nargs=+ REPLMap call REPLMapFor(<q-args>)
+" }}}
 
 " -----------------------------------------------------------------------------
-" Auto command
-" -----------------------------------------------------------------------------
-augroup MyAutoCmd
+" Autocommands {{{
+augroup MyAutoCmd " {{{
     autocmd!
 
     autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
@@ -938,17 +962,21 @@ augroup MyAutoCmd
     else
         autocmd TerminalOpen * let g:last_terminal_job_id = bufnr('')
     endif
+augroup END " }}}
+
+augroup MyAutoCmdFileType " {{{
+    autocmd!
 
     autocmd FileType vim let g:vim_indent_cont = &shiftwidth
 
     autocmd FileType python nnoremap <silent> <CR><CR> :call REPLSend('python ' . expand('%'))<CR>
     autocmd FileType bash,sh nnoremap <silent> <CR><CR> :call REPLSend('bash ' . expand('%'))<CR>
     autocmd FileType yaml nnoremap <silent> <CR><CR> :call REPLSend('ansible-playbook ' . expand('%'))<CR>
-augroup END
+augroup END " }}}
+" }}}
 
 " -----------------------------------------------------------------------------
-" Mapping
-" -----------------------------------------------------------------------------
+" Mappings {{{
 " Exモード使わない
 nmap Q <Nop>
 
@@ -1063,10 +1091,10 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-b> <left>
 inoremap <C-f> <right>
+" }}}
 
 " -----------------------------------------------------------------------------
-" Options
-" -----------------------------------------------------------------------------
+" Options {{{
 " 文字コード判別
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 
@@ -1202,3 +1230,6 @@ set completeopt-=preview
 
 " バックアップファイルを作成しない
 set nobackup
+" }}}
+
+" vim:set foldmethod=marker:
