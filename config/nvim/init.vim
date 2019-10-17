@@ -74,10 +74,12 @@ if &runtimepath !~# '/dein.vim'
 endif
 " }}}
 
+" Leader {{{
 if !exists('g:mapleader')
     nnoremap <Space> <Nop>
     let g:mapleader = "\<Space>"
 endif
+" }}}
 
 call dein#begin(s:dein_dir)
 
@@ -245,16 +247,19 @@ call dein#add('thiagoalmeidasa/vim-ansible-vault')
 call dein#add('dhruvasagar/vim-table-mode')
 
 call dein#add('AndrewRadev/linediff.vim')
+" }}}
 
+" Terminal {{{
 function! s:voldikss_vim_floaterm() abort
     let g:floaterm_winblend = 20
+    let g:floaterm_position = 'center'
+    let g:floaterm_width = float2nr(0.85 * winwidth(0))
+    let g:floaterm_height = float2nr(0.8 * winheight(0))
 
     nnoremap <silent> <C-u> :FloatermToggle<CR>i
     tnoremap <silent> <C-u> <C-\><C-n>:FloatermToggle<CR>
 endfunction
-" }}}
 
-" Terminal {{{
 call dein#add('voldikss/vim-floaterm', {
     \ 'on_cmd': ['FloatermToggle'],
     \ 'hook_add': function('s:voldikss_vim_floaterm')
