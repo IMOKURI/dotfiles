@@ -354,6 +354,8 @@ function! s:w0rp_ale() abort
     let g:ale_sign_warning = 'W>'
     let g:ale_sign_highlight_linenrs = 1
 
+    let g:ale_virtualtext_cursor = 1
+
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
@@ -566,14 +568,16 @@ call dein#add('lambdalisue/session.vim', {
 " My Plugins
 call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
 
-function! s:line_number_interval_nvim() abort
-    let g:line_number_interval#enable_at_startup = 1
-    " let g:line_number_interval#use_custom = 1
-endfunction
+if has('nvim-0.3.2')
+    function! s:line_number_interval_nvim() abort
+        let g:line_number_interval#enable_at_startup = 1
+        " let g:line_number_interval#use_custom = 1
+    endfunction
 
-call dein#add('IMOKURI/line-number-interval.nvim', {
-    \ 'hook_add': function('s:line_number_interval_nvim')
-    \ })
+    call dein#add('IMOKURI/line-number-interval.nvim', {
+        \ 'hook_add': function('s:line_number_interval_nvim')
+        \ })
+endif
 
 call dein#end()
 
@@ -668,6 +672,9 @@ if has('nvim')
     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endif
 
+call s:colorize('ALEError',   {'bg': s:bg_subtle, 'fg': s:dark_red})
+call s:colorize('ALEWarning', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
+
 if has('nvim-0.3.2')
     call s:colorize('ALEErrorSignLineNr',        {'bg': s:bg_subtle, 'fg': s:dark_red})
     call s:colorize('ALEStyleErrorSignLineNr',   {'bg': s:bg_subtle, 'fg': s:dark_red})
@@ -675,9 +682,9 @@ if has('nvim-0.3.2')
     call s:colorize('ALEStyleWarningSignLineNr', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
 endif
 
-call s:colorize('CursorLineNr',      {'bg': s:bg_subtle, 'fg': s:yellow})
+call s:colorize('CursorLineNr',      {'bg': s:bg_subtle, 'fg': s:blue})
 call s:colorize('DimLineNr',         {'bg': s:bg_subtle, 'fg': s:dark_asphalt})
-call s:colorize('HighlightedLineNr', {'bg': s:bg_subtle, 'fg': s:blue})
+call s:colorize('HighlightedLineNr', {'bg': s:bg_subtle, 'fg': s:green})
 
 call s:colorize('YankRoundRegion', {'bg': s:norm_subtle, 'fg': s:bg_subtle})
 
