@@ -145,6 +145,10 @@ call dein#add('pearofducks/ansible-vim', {
 call dein#add('martinda/Jenkinsfile-vim-syntax', {
     \ 'on_path': '.*Jenkinsfile'
     \ })
+
+call dein#add('RRethy/vim-hexokinase', {
+    \ 'build': 'make hexokinase'
+    \ })
 " }}}
 
 " Utility {{{
