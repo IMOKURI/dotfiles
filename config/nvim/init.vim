@@ -260,7 +260,7 @@ function! s:voldikss_vim_floaterm() abort
     let g:floaterm_width = float2nr(0.85 * winwidth(0))
     let g:floaterm_height = float2nr(0.8 * winheight(0))
 
-    nnoremap <silent> <C-u> :FloatermToggle<CR>i
+    nnoremap <silent> <C-u> :FloatermToggle<CR>
     tnoremap <silent> <C-u> <C-\><C-n>:FloatermToggle<CR>
 endfunction
 
