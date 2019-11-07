@@ -27,7 +27,7 @@ install: proxy update pipenv deploy ## Do proxy, update, pipenv and deploy
 proxy: ## Set proxy
 ifdef http_proxy
 	if grep -q proxy /etc/yum.conf; then \
-		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g /etc/yum.conf'; \
+		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g' /etc/yum.conf; \
 	else \
 		echo "proxy=$(http_proxy)" | sudo tee -a /etc/yum.conf; \
 	fi
