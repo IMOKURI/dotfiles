@@ -1,6 +1,8 @@
 .PHONY: all help test clean install proxy git neovim vim
 .DEFAULT_GOAL := help
 
+SHELL := /bin/bash
+
 # List up dotfiles
 DOTFILES_EXCLUDES   := README.md LICENSE Makefile config $(wildcard install*) $(wildcard .??*)
 DOTFILES_TARGET     := $(shell ls)
