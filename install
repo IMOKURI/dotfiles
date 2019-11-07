@@ -222,8 +222,6 @@ pip install --user -U \
 if [[ "${BUILD}" != "minimal" ]]; then
     _banner "Install NodeJS Packages..."
     npm install \
-        bash-language-server \
-        dockerfile-language-server-nodejs \
         doctoc \
         markdownlint-cli \
         neovim \
@@ -231,10 +229,7 @@ if [[ "${BUILD}" != "minimal" ]]; then
         textlint \
         textlint-rule-preset-ja-spacing \
         textlint-rule-preset-ja-technical-writing \
-        textlint-rule-spellcheck-tech-word \
-        vim-language-server \
-        vscode-json-languageserver \
-        yaml-language-server
+        textlint-rule-spellcheck-tech-word
 else
     _banner "Skip to install NodeJS Packages."
 fi
@@ -270,7 +265,7 @@ fi
 
 ##### Install sixel ###########################################################
 
-if [[ "${BUILD}" != "minimal" ]]; then
+if [[ "${BUILD}" == "all" ]]; then
     _banner "Install Sixel..."
     if [[ ! -d "${HOME}/src/libsixel" ]]; then
         git clone https://github.com/saitoha/libsixel.git "${HOME}/src/libsixel"

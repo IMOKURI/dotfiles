@@ -2,10 +2,14 @@
 
 [![Build Status](https://travis-ci.org/IMOKURI/dotfiles.svg?branch=master)](https://travis-ci.org/IMOKURI/dotfiles)
 
+This repository can be installed by one command for CentOS/RHEL 7.
+
+And, pre installed docker container is [available](https://hub.docker.com/repository/docker/imokuri123/imokuri-dev)!
+
 ## Feature
 
-- Install/Build edge Neovim and Vim.
-- Install/Build latest Git.
+- Build edge Neovim and Vim.
+- Build latest Git.
 - Install Python3, Node.js and Go with some packages.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
@@ -45,6 +49,9 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 
 ```bash
 cd ~/.dotfiles
+
+# all packages
+BUILD=all ./install
 
 # dotfiles
 make update
