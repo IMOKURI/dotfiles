@@ -1,34 +1,40 @@
 .PHONY: all help test clean install proxy git neovim vim
 .DEFAULT_GOAL := help
 
-DOTFILES_EXCLUDES    := README.md LICENSE Makefile config $(wildcard install*) $(wildcard .??*)
-DOTFILES_TARGET      := $(shell ls)
-DOTFILES_FILES       := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
-DOTFILES_CONFIG      := $(shell ls config)
+# List up dotfiles
+DOTFILES_EXCLUDES   := README.md LICENSE Makefile config $(wildcard install*) $(wildcard .??*)
+DOTFILES_TARGET     := $(shell ls)
+DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
+DOTFILES_XDG_CONFIG := $(shell ls config)
 
-PROXY_TEMPLATE       := config/profile.d/proxy.sh.template
-PROXY_SETTINGS       := config/profile.d/proxy.sh
+# Define path
+VIMPATH    := $(HOME)/src/vim
+NEOVIMPATH := $(HOME)/src/neovim
+GITPATH    := $(HOME)/src/git
 
-GIT_PROXY_TEMPLATE   := config/git/config.local.template
-GIT_PROXY_SETTINGS   := config/git/config.local
+# Proxy settings
+PROXY_TEMPLATE     := config/profile.d/proxy.sh.template
+PROXY_SETTING      := config/profile.d/proxy.sh
+GIT_PROXY_TEMPLATE := config/git/config.local.template
+GIT_PROXY_SETTING  := config/git/config.local
 
 list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
-	@$(foreach val, $(DOTFILES_CONFIG), ls -dF config/$(val);)
+	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
 install: proxy update pipenv deploy ## Do proxy, update, pipenv and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
-ifeq ("$(wildcard $(PROXY_SETTINGS))","")
-	@sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTINGS)
+ifeq ("$(wildcard $(PROXY_SETTING))","")
+	@sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
 endif
-ifeq ("$(wildcard $(GIT_PROXY_SETTINGS))","")
-	@sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTINGS)
+ifeq ("$(wildcard $(GIT_PROXY_SETTING))","")
+	@sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
 endif
 endif
 
-update: ## Update repository
+update: ## Update dotfiles repository
 	git fetch
 	git pull
 
@@ -40,14 +46,17 @@ pipenv: ## Setup pipenv
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
-	@$(foreach val, $(DOTFILES_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
+	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 	@ln -sfnv $(abspath config/nvim/init.vim) $(HOME)/.vimrc
 
 git: update-git build-git ## Get latest git
 
 update-git: ## Update git repository
-	cd $(HOME)/src/git && \
-	git fetch
+	if [[ -d "$(GITPATH)" ]]; then \
+		cd $(HOME)/src/git && git fetch; \
+	else \
+		git clone https://github.com/git/git.git "$(GITPATH)"; \
+	fi
 
 build-git: ## Build git
 	cd $(HOME)/src/git && \
@@ -56,11 +65,14 @@ build-git: ## Build git
 	make all && \
 	make install
 
-neovim: update-neovim build-neovim ## Get latest neovim
+neovim: update-neovim build-neovim ## Get edge neovim
 
 update-neovim: ## Update neovim repository
-	cd $(HOME)/src/neovim && \
-	git pull
+	if [[ -d "$(NEOVIMPATH)" ]]; then \
+		cd $(HOME)/src/neovim && git pull; \
+	else \
+		git clone https://github.com/neovim/neovim.git "$(NEOVIMPATH)"; \
+	fi
 
 build-neovim: ## Build neovim
 	cd $(HOME)/src/neovim && \
@@ -70,11 +82,14 @@ build-neovim: ## Build neovim
 	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
 	make install
 
-vim: update-vim build-vim ## Get latest vim
+vim: update-vim build-vim ## Get edge vim
 
 update-vim: ## Update vim repository
-	cd $(HOME)/src/vim && \
-	git pull
+	if [[ -d "$(VIMPATH)" ]]; then \
+		cd $(HOME)/src/vim && git pull; \
+	else \
+		git clone https://github.com/vim/vim.git "$(VIMPATH)"; \
+	fi
 
 build-vim: ## Build vim
 	cd $(HOME)/src/vim/src && \
