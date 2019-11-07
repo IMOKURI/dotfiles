@@ -63,7 +63,7 @@ script:
 
 after_success:
   - |
-    if [ ${PUSH_DOCKERHUB} == true && "${TRAVIS_BRANCH}" == "master" ]; then
+    if [ ${PUSH_DOCKERHUB} == true ] && [ "${TRAVIS_BRANCH}" == "master" ]; then
       docker commit "$(cat ${CONTAINER_ID})" ${IMAGE}
       docker tag ${IMAGE} ${DOCKERHUB_USER}/${IMAGE}
       docker login --username ${DOCKERHUB_USER} --password ${DOCKERHUB_PASS}
