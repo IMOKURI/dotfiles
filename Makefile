@@ -26,12 +26,14 @@ install: proxy update pipenv deploy ## Do proxy, update, pipenv and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
-ifeq ("$(wildcard $(PROXY_SETTING))","")
-	@sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
-endif
-ifeq ("$(wildcard $(GIT_PROXY_SETTING))","")
-	@sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
-endif
+	if grep -q proxy /etc/yum.conf; then \
+		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g /etc/yum.conf'; \
+	else \
+		echo "proxy=$(http_proxy)" | sudo tee -a /etc/yum.conf; \
+	fi
+
+	sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
+	sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
 endif
 
 update: ## Update dotfiles repository
