@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/IMOKURI/dotfiles.svg?branch=master)](https://travis-ci.org/IMOKURI/dotfiles)
 
-This repository can be installed by one command for CentOS/RHEL 7.
+The dotfiles can be installed by one command for CentOS/RHEL 7.
 
-And, pre installed docker container is [available](https://hub.docker.com/repository/docker/imokuri123/imokuri-dev)!
+And, the dotfiles pre-installed docker container is also [available](https://hub.docker.com/repository/docker/imokuri123/imokuri-dev)!
 
 ## Feature
 
@@ -74,8 +74,14 @@ docker pull imokuri123/imokuri-dev
 docker run -dt --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --name dev imokuri123/imokuri-dev
 docker exec -it dev /bin/bash --login
 
-# (Optional) Backup Environment as Image
+# (Optional) Backup Environment as Image.
 docker stop dev
 docker commit dev dev-image
 docker start dev
+
+# (Optional) Use Proxy.
+# Execute following commands inside container.
+export http_proxy=http://<proxy address>:<proxy port>/
+cdd  # alias of cd ~/.dotfiles
+make proxy
 ```

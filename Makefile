@@ -34,6 +34,8 @@ ifdef http_proxy
 
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
+
+	source $(PROXY_SETTING)
 endif
 
 update: ## Update dotfiles repository

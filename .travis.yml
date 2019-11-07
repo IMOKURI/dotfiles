@@ -22,10 +22,6 @@ env:
     - PROXY: true
       BUILD: all
       PUSH_DOCKERHUB: false
-    - PROXY: true
-      BUILD: default
-      PUSH_DOCKERHUB: true
-      IMAGE: imokuri-devp
     - PROXY: false
       BUILD: all
       PUSH_DOCKERHUB: false
