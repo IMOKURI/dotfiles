@@ -62,19 +62,13 @@ make vim
 ## Docker
 
 ```bash
-# Build Environment
-docker build --build-arg PROXY=<http://proxy.example.com:port> -t imokuri-base-image .
-docker run -dt --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --name imokuri-dev imokuri-base-image
-docker exec -t imokuri-dev bash -c "$(curl -fsSL https://git.io/imokuri)"
-
-# (Optional) Backup Environment
-docker stop imokuri-dev
-docker commit imokuri-dev imokuri-image
-docker start imokuri-dev
-
 # Let's Develop!
-docker exec -it imokuri-dev /bin/bash
+docker pull imokuri123/imokuri-dev
+docker run -dt --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro --name dev imokuri123/imokuri-dev
+docker exec -it dev /bin/bash --login
 
-# Recreate Environment
-docker run -it imokuri-image /bin/bash
+# (Optional) Backup Environment as Image
+docker stop dev
+docker commit dev dev-image
+docker start dev
 ```
