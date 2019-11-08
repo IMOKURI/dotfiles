@@ -24,7 +24,7 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
-install: proxy update pipenv deploy ## Do proxy, update, pipenv and deploy
+install: proxy update deploy ## Do proxy, update and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
@@ -43,11 +43,6 @@ endif
 update: ## Update dotfiles repository
 	git fetch
 	git pull
-
-pipenv: ## Setup pipenv
-	mkdir -p $(HOME)/.local/share/provider.nvim
-	cd $(HOME)/.local/share/provider.nvim/ && \
-	PIPENV_VENV_IN_PROJECT=true pipenv install pynvim
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}

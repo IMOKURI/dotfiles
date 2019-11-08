@@ -24,6 +24,7 @@ DOTPATH="$HOME/.dotfiles"
 VIMPATH="$HOME/src/vim"
 NEOVIMPATH="$HOME/src/neovim"
 GITPATH="$HOME/src/git"
+PROVIDER_NVIM="$HOME/.local/share/provider.nvim"
 
 ##### Functions ###############################################################
 
@@ -200,11 +201,18 @@ pip install --user -U \
     yamllint \
     'python-language-server[all]'
 
+mkdir -p "${PROVIDER_NVIM}/python"
+pushd "$(pwd)"
+cd "${PROVIDER_NVIM}/python"
+PIPENV_VENV_IN_PROJECT=true pipenv install pynvim
+popd
+
 ##### Install nodejs packages #################################################
 
 if [[ "${BUILD}" != "minimal" ]]; then
     _banner "Install NodeJS Packages..."
-    npm install \
+    mkdir -p "${PROVIDER_NVIM}/nodejs"
+    npm install --prefix "${PROVIDER_NVIM}/nodejs" \
         doctoc \
         markdownlint-cli \
         neovim \

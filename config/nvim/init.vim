@@ -40,14 +40,14 @@ endif
 let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
 
 if g:env =~# 'LINUX'
-    let g:python3_host_prog = s:provider_dir . '/.venv/bin/python'
-    let g:node_host_prog = expand('~/node_modules/.bin/neovim-node-host')
+    let g:python3_host_prog = s:provider_dir . '/python/.venv/bin/python'
+    let g:node_host_prog = provider_dir . '/nodejs/node_modules/.bin/neovim-node-host'
 
     let g:loaded_python_provider = 0
     let g:loaded_ruby_provider = 0
 
 elseif g:env =~# 'WINDOWS'
-    let g:python3_host_prog = s:provider_dir . '/.venv/Scripts/python'
+    let g:python3_host_prog = s:provider_dir . '/python/.venv/Scripts/python'
 
     let g:loaded_node_provider = 0
     let g:loaded_python_provider = 0
