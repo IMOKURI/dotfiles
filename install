@@ -211,8 +211,7 @@ popd
 
 if [[ "${BUILD}" != "minimal" ]]; then
     _banner "Install NodeJS Packages..."
-    mkdir -p "${PROVIDER_NVIM}/nodejs"
-    npm install --prefix "${PROVIDER_NVIM}/nodejs" \
+    npm install --prefix "${HOME}" \
         doctoc \
         markdownlint-cli \
         neovim \
@@ -221,6 +220,9 @@ if [[ "${BUILD}" != "minimal" ]]; then
         textlint-rule-preset-ja-spacing \
         textlint-rule-preset-ja-technical-writing \
         textlint-rule-spellcheck-tech-word
+
+    mkdir -p "${PROVIDER_NVIM}/nodejs"
+    npm install --prefix "${PROVIDER_NVIM}/nodejs" neovim
 else
     _banner "Skip to install NodeJS Packages."
 fi
