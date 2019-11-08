@@ -93,6 +93,11 @@ if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
     curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
 fi
 
+if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
+    _logger "${INFO}" "Install Yarn repository"
+    curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | sudo -E tee /etc/yum.repos.d/yarn.repo
+fi
+
 ##### Install packages ########################################################
 
 _banner "Install Packages..."
@@ -137,7 +142,8 @@ sudo -E yum install -y \
     unzip \
     wget \
     which \
-    words
+    words \
+    yarn
 
 ##### Clone Dotfiles ##########################################################
 
