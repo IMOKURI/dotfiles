@@ -66,6 +66,15 @@ make neovim
 make vim
 ```
 
+or set cron as follows.
+
+```bash
+SHELL=/bin/bash
+BUILD=all
+
+1 4 * * * ~/.dotfiles/install &> ~/.dotfiles_install.log
+```
+
 ## Docker
 
 ```bash
