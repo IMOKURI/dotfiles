@@ -28,8 +28,14 @@ PROVIDER_NVIM="$HOME/.local/share/provider.nvim"
 
 ##### Functions ###############################################################
 
+if [[ -t 1 ]]; then
+    COL=$(tput cols)
+else
+    COL=80
+fi
+
 function _banner() {
-    sep=$(for ((i = 1; i < $(tput cols); i++)); do echo -n =; done)
+    sep=$(for ((i = 1; i < ${COL}; i++)); do echo -n =; done)
     printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
