@@ -4,7 +4,7 @@ set -e
 
 ##### Variables ###############################################################
 
-export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # Defind Colors
 RED="\033[38;2;255;84;88m"
