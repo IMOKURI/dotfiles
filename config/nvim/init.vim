@@ -1052,6 +1052,8 @@ nnoremap < <<
 " 表示行単位で移動する
 nnoremap j gj
 nnoremap k gk
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
 
 " ウィンドウを移動する
 nnoremap <C-j> <C-w>j
