@@ -393,18 +393,22 @@ function! s:w0rp_ale() abort
 
     let g:ale_linters = {
         \ 'awk': ['gawk'],
+        \ 'javascript': ['eslint'],
         \ 'json': ['jq'],
         \ 'make': ['checkmake'],
         \ 'python': ['flake8', 'pylint'],
         \ 'sh': ['language_server'],
         \ 'vim': ['vint'],
+        \ 'vue': ['eslint'],
         \ 'yaml': ['yamllint']
         \ }
 
     let g:ale_fixers = {
+        \ 'javascript': ['eslint'],
         \ 'json': ['jq'],
         \ 'python': ['autopep8', 'yapf', 'black', 'isort'],
         \ 'sh': ['shfmt'],
+        \ 'vue': ['eslint'],
         \ 'yaml': ['prettier']
         \ }
 
