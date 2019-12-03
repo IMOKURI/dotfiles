@@ -79,6 +79,15 @@ alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins
 
 alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenkins.docker.hpecorp.net/'
 
+alias k='kubectl'
+alias ka='kubectl apply'
+alias kc='kubectl create'
+alias kd='kubectl delete'
+alias ke='kubectl exec'
+alias kg='kubectl get'
+alias kga='kubectl get all'
+alias kl='kubectl logs'
+
 ##### Load bashmarks ##########################################################
 
 if [ -f ~/.local/bin/bashmarks.sh ]; then
