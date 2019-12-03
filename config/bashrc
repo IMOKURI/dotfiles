@@ -88,6 +88,10 @@ alias kg='kubectl get'
 alias kga='kubectl get all'
 alias kl='kubectl logs'
 
+alias a='ansible'
+alias ap='ansible-playbook'
+alias av='ansible-vault'
+
 ##### Load bashmarks ##########################################################
 
 if [ -f ~/.local/bin/bashmarks.sh ]; then
