@@ -87,6 +87,7 @@ alias ke='kubectl exec'
 alias kg='kubectl get'
 alias kga='kubectl get all'
 alias kl='kubectl logs'
+alias ks='kubectl describe'
 
 alias a='ansible'
 alias ap='ansible-playbook'
