@@ -377,6 +377,8 @@ call dein#add('Shougo/neco-vim', {
 call dein#add('deoplete-plugins/deoplete-jedi', {
     \ 'on_ft': 'python'
     \ })
+
+call dein#add('fszymanski/deoplete-emoji')
 " }}}
 
 " Linter {{{
