@@ -732,6 +732,8 @@ if has('nvim')
     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 endif
 
+call s:colorize('NormalFloat', {'bg': s:bg, 'fg': s:norm})
+
 " ALE Highlight {{{
 call s:colorize('ALEError',   {'bg': s:bg_subtle, 'fg': s:dark_red})
 call s:colorize('ALEWarning', {'bg': s:bg_subtle, 'fg': s:dark_yellow})
