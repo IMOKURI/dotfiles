@@ -208,6 +208,8 @@ pip install --user -U \
     neovim-remote \
     pipenv \
     pipenv-pipes \
+    pyls-black \
+    pyls-isort \
     pysnooper \
     vim-vint \
     yamllint \

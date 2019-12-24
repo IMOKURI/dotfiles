@@ -291,6 +291,20 @@ call dein#add('voldikss/vim-floaterm', {
 " }}}
 
 " LSP {{{
+if has('nvim')
+    function! s:neovim_nvim_lsp() abort
+        lua require'nvim_lsp'.pyls.setup{}
+
+        nnoremap <silent> <Leader>] <cmd>lua vim.lsp.buf.definition()<CR>
+        nnoremap <silent> <Leader>k <cmd>lua vim.lsp.buf.signature_help()<CR>
+        nnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>
+        nnoremap <silent> K         <cmd>lua vim.lsp.buf.hover()<CR>
+    endfunction
+
+    call dein#add('neovim/nvim-lsp', {
+        \ 'hook_source': function('s:neovim_nvim_lsp')
+        \ })
+endif
 " }}}
 
 " Completion {{{
@@ -374,11 +388,13 @@ call dein#add('Shougo/neco-vim', {
     \ 'on_ft': 'vim'
     \ })
 
-call dein#add('deoplete-plugins/deoplete-jedi', {
-    \ 'on_ft': 'python'
-    \ })
+" call dein#add('deoplete-plugins/deoplete-jedi', {
+"     \ 'on_ft': 'python'
+"     \ })
 
 call dein#add('fszymanski/deoplete-emoji')
+
+call dein#add('Shougo/deoplete-lsp')
 " }}}
 
 " Linter {{{
