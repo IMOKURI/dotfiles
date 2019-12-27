@@ -12,6 +12,8 @@ export LANG="en_US.UTF-8"
 
 export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
 
+export GOPATH=$HOME/go
+
 export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
 export EDITOR="vi"
