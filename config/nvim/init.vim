@@ -294,6 +294,8 @@ call dein#add('voldikss/vim-floaterm', {
 if has('nvim')
     function! s:neovim_nvim_lsp() abort
         lua require'nvim_lsp'.pyls.setup{}
+        lua require'nvim_lsp'.vimls.setup{}
+        lua require'nvim_lsp'.yamlls.setup{}
 
         nnoremap <silent> <Leader>] <cmd>lua vim.lsp.buf.definition()<CR>
         nnoremap <silent> <Leader>k <cmd>lua vim.lsp.buf.signature_help()<CR>
