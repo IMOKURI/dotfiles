@@ -138,6 +138,10 @@ call dein#add('mechatroner/rainbow_csv', {
     \ 'on_ft': 'csv'
     \ })
 
+call dein#add('cespare/vim-toml', {
+    \ 'on_ft': 'toml'
+    \ })
+
 call dein#add('pearofducks/ansible-vim', {
     \ 'on_ft': 'yaml'
     \ })
