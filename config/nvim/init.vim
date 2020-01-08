@@ -189,6 +189,13 @@ call dein#add('thiagoalmeidasa/vim-ansible-vault')
 call dein#add('dhruvasagar/vim-table-mode')
 
 call dein#add('AndrewRadev/linediff.vim')
+
+" function! s:rhysd_reply_vim() abort
+" endfunction
+
+" call dein#add('rhysd/reply.vim', {
+"     \ 'hook_add': function('s:rhysd_reply_vim')
+"     \ })
 " }}}
 
 " Terminal {{{
@@ -207,25 +214,26 @@ call dein#add('voldikss/vim-floaterm', {
     \ 'hook_add': function('s:voldikss_vim_floaterm')
     \ })
 
-" function! s:kassio_neoterm() abort
-"     let g:neoterm_autoscroll = 1
-"     let g:neoterm_default_mod = 'botright'
-"     let g:neoterm_repl_python = 'python'
+function! s:kassio_neoterm() abort
+    let g:neoterm_autoscroll = 1
+    let g:neoterm_default_mod = 'botright'
+    let g:neoterm_repl_python = 'python'
 
-"     nnoremap <silent> <C-t> :Ttoggle<CR>
-"     tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
+    nnoremap <silent> <C-t> :Ttoggle<CR>
+    tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
 
-"     nnoremap <silent> <C-y> :Topen<CR><C-w>ji
-"     tnoremap <silent> <C-y> <C-\><C-n><C-w>k
+    nnoremap <silent> <C-y> :Topen<CR><C-w>ji
+    tnoremap <silent> <C-y> <C-\><C-n><C-w>k
 
-"     " nmap <silent> <Leader><CR> <Plug>(neoterm-repl-send-line)
-"     " xmap <silent> <Leader><CR> <Plug>(neoterm-repl-send)
-" endfunction
+    " nnoremap <silent> <CR><CR> :TREPLSendFile<CR>
+    " nnoremap <silent> <Leader><CR> :TREPLSendLine<CR>
+    " xnoremap <silent> <Leader><CR> :TREPLSendSelection<CR>
+endfunction
 
-" call dein#add('kassio/neoterm', {
-"     \ 'on_cmd': ['Ttoggle', 'Topen'],
-"     \ 'hook_add': function('s:kassio_neoterm')
-"     \ })
+call dein#add('kassio/neoterm', {
+    \ 'on_cmd': ['Ttoggle', 'Topen'],
+    \ 'hook_add': function('s:kassio_neoterm')
+    \ })
 " }}}
 
 " LSP {{{

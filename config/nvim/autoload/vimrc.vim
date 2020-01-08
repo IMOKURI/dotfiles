@@ -73,5 +73,4 @@ function! vimrc#smart_fold_closer() abort " {{{
     norm! zM
 endfunction " }}}
 
-
 " vim:set foldmethod=marker:
