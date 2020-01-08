@@ -48,7 +48,6 @@ deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
-	@ln -sfnv $(abspath config/nvim/init.vim) $(HOME)/.vimrc
 
 git: update-git build-git ## Get latest git
 
