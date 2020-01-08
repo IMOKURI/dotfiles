@@ -559,8 +559,6 @@ call dein#add('lambdalisue/session.vim', {
 " }}}
 
 " My Plugins {{{
-call dein#add($XDG_CONFIG_HOME . '/nvim/my-help')
-
 if has('nvim-0.3.2')
     function! s:line_number_interval_nvim() abort
         let g:line_number_interval#enable_at_startup = 1
