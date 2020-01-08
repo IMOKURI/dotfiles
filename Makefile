@@ -4,7 +4,7 @@
 SHELL := /bin/bash
 
 # List up dotfiles
-DOTFILES_EXCLUDES   := README.md LICENSE Makefile config $(wildcard install*) $(wildcard .??*)
+DOTFILES_EXCLUDES   := README.md LICENSE Makefile config install $(wildcard .??*)
 DOTFILES_TARGET     := $(shell ls)
 DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)

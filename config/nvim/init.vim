@@ -2,57 +2,26 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " -----------------------------------------------------------------------------
-" Detect platform {{{
-if !exists('g:env')
-    if has('win64') || has('win32')
-        let g:env = 'WINDOWS'
-    else
-        let g:env = toupper(substitute(system('uname'), '\n', '', ''))
-    endif
-endif
-" }}}
-
-" -----------------------------------------------------------------------------
 " Determine XDG base directory {{{
-if g:env =~# 'WINDOWS'
-    set shellslash
-endif
-
 if empty($XDG_CONFIG_HOME)
-    if g:env =~# 'LINUX'
-        let $XDG_CONFIG_HOME = expand('~/.config')
-    elseif g:env =~# 'WINDOWS'
-        let $XDG_CONFIG_HOME = expand('~/AppData/Local')
-    endif
+    let $XDG_CONFIG_HOME = expand('~/.config')
 endif
 
 if empty($XDG_DATA_HOME)
-    if g:env =~# 'LINUX'
-        let $XDG_DATA_HOME = expand('~/.local/share')
-    elseif g:env =~# 'WINDOWS'
-        let $XDG_DATA_HOME = expand('~/AppData/Local')
-    endif
+    let $XDG_DATA_HOME = expand('~/.local/share')
 endif
 " }}}
 
 " -----------------------------------------------------------------------------
 " Provider settings {{{
-let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
+if has('nvim')
+    let s:provider_dir = $XDG_DATA_HOME . '/provider.nvim'
 
-if g:env =~# 'LINUX'
     let g:python3_host_prog = s:provider_dir . '/python/.venv/bin/python'
     let g:node_host_prog = s:provider_dir . '/nodejs/node_modules/.bin/neovim-node-host'
 
     let g:loaded_python_provider = 0
     let g:loaded_ruby_provider = 0
-
-elseif g:env =~# 'WINDOWS'
-    let g:python3_host_prog = s:provider_dir . '/python/.venv/Scripts/python'
-
-    let g:loaded_node_provider = 0
-    let g:loaded_python_provider = 0
-    let g:loaded_ruby_provider = 0
-
 endif
 " }}}
 
@@ -378,15 +347,9 @@ call dein#add('Shougo/echodoc.vim', {
     \ 'hook_source': function('s:shougo_echodoc_vim')
     \ })
 
-if g:env =~# 'WINDOWS'
-    call dein#add('tbodt/deoplete-tabnine', {
-        \ 'build': 'powershell.exe .\install.ps1'
-        \ })
-else
-    call dein#add('tbodt/deoplete-tabnine', {
-        \ 'build': './install.sh'
-        \ })
-endif
+call dein#add('tbodt/deoplete-tabnine', {
+    \ 'build': './install.sh'
+    \ })
 
 call dein#add('Shougo/neco-syntax')
 
@@ -840,10 +803,8 @@ let g:lightline = {
     \ }
     \ }
 
-if g:env =~# 'LINUX'
-    let g:lightline.separator    = { 'left': '', 'right': '' }
-    let g:lightline.subseparator = { 'left': '', 'right': '' }
-endif
+let g:lightline.separator    = { 'left': '', 'right': '' }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
 " }}}
 
 " LightLine color palette {{{
