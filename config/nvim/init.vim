@@ -1154,8 +1154,8 @@ inoremap <C-f> <right>
 " 文字コード判別
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 
-" 曖昧な幅の文字の論理幅を1に
-set ambiwidth=single
+" 曖昧な幅の文字の論理幅を2に
+set ambiwidth=double
 
 " 行番号を表示
 set number
