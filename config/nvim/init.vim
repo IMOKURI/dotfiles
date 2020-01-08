@@ -1284,6 +1284,9 @@ set dictionary=/usr/share/dict/words
 " 補完時にpreviewを表示しない
 set completeopt-=preview
 
+" packpath無効化
+set packpath=
+
 " バックアップファイルを作成しない
 set nobackup
 " }}}
