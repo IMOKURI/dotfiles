@@ -16,29 +16,6 @@ call dein#load_toml(s:default_toml, {'lazy': 0})
 call dein#load_toml(s:lazy_toml, {'lazy' : 1})
 
 " Utility {{{
-function! s:LeafCage_yankround_vim() abort
-    let g:yankround_dir = $XDG_DATA_HOME . '/yankround'
-    let g:yankround_use_region_hl = 1
-
-    nmap p <Plug>(yankround-p)
-    xmap p <Plug>(yankround-p)
-    nmap P <Plug>(yankround-P)
-    nmap <C-p> <Plug>(yankround-prev)
-    nmap <C-n> <Plug>(yankround-next)
-endfunction
-
-call dein#add('LeafCage/yankround.vim', {
-    \ 'hook_add': function('s:LeafCage_yankround_vim')
-    \ })
-
-function! s:LeafCage_vimhelpgenerator() abort
-    let g:vimhelpgenerator_defaultlanguage = 'en'
-    let g:vimhelpgenerator_gitignore_lines = []
-endfunction
-
-call dein#add('LeafCage/vimhelpgenerator', {
-    \ 'hook_add': function('s:LeafCage_vimhelpgenerator')
-    \ })
 
 call dein#add('haya14busa/is.vim')
 
