@@ -45,9 +45,6 @@ set breakindentopt=sbr
 " indentの階層で折りたたみを行う
 set foldmethod=indent
 
-" 3行以上が対象となる場合のみ折りたたむ
-set foldminlines=3
-
 " 折りたたみの最大の深さ
 set foldnestmax=10
 
