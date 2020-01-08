@@ -5,6 +5,8 @@ if has('vim_starting')
     execute 'source' fnamemodify(expand('<sfile>'), ':h').'/rc/init.rc.vim'
 endif
 
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/rc/options.rc.vim'
+
 " -----------------------------------------------------------------------------
 " Plugin settings {{{
 if has('nvim')
@@ -1071,148 +1073,6 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-b> <left>
 inoremap <C-f> <right>
-" }}}
-
-" -----------------------------------------------------------------------------
-" Options {{{
-" 文字コード判別
-set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
-
-" 曖昧な幅の文字の論理幅を1に
-"set ambiwidth=double
-
-" 行番号を表示
-set number
-
-" 行番号を相対位置で表示
-set relativenumber
-
-" 制御文字を表示
-set list
-
-" タブをスペースに変換
-set expandtab
-
-" インデントをスペース4つ分に設定
-set tabstop=4
-
-" タブとその削除をスペース4つ分に設定
-set softtabstop=4
-
-" >> コマンドで挿入される幅
-set shiftwidth=4
-
-" >> で挿入する際、shiftwidthの倍数になるように調整
-set shiftround
-
-" スマートインデント有効化
-set smartindent
-
-" カーソルラインをハイライト
-set cursorline
-
-" 行頭に移動しない
-set nostartofline
-
-" 括弧入力時の対応する括弧を表示
-set showmatch
-
-" 折返しのときにインデントがつく
-set breakindent
-
-" breakindentの記号
-set showbreak=(//_//)
-
-" showbreakを左端に表示する
-set breakindentopt=sbr
-
-" indentの階層で折りたたみを行う
-set foldmethod=indent
-
-" 3行以上が対象となる場合のみ折りたたむ
-set foldminlines=3
-
-" 折りたたみの最大の深さ
-set foldnestmax=10
-
-" 画面端が3行見える状態でスクロールする
-set scrolloff=3
-
-" ステータスラインを常に表示する
-if !has('nvim')
-    set laststatus=2
-endif
-
-" モードを非表示にする
-set noshowmode
-
-" 保存していなくても移動できる
-set hidden
-
-" 画面の更新時間を設定(ms)
-set updatetime=250
-
-" 80文字目にラインを表示
-set colorcolumn=80
-
-" 有効なときのみ再描画する
-set lazyredraw
-
-" ポップアップメニューを透過する
-if exists('&pumblend')
-    set pumblend=20
-endif
-
-" ポップアップメニューで表示する数
-set pumheight=10
-
-" 大文字/小文字の区別なく検索する
-set ignorecase
-
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-
-" ファイルを検索する際大文字/小文字を区別しない
-set fileignorecase
-
-" ファイル名を補完する
-set wildmode=longest,full
-
-" 置換内容を表示
-if has('nvim')
-    set inccommand=split
-endif
-
-" diffのアルゴリズムを設定
-set diffopt+=algorithm:patience
-set diffopt+=indent-heuristic
-
-" 矩形選択時に文字のないところにカーソルを移動できるようにする
-set virtualedit+=block
-
-" clipboard設定
-set clipboard+=unnamedplus
-
-" undoファイルを作成する
-set undofile
-
-" スワップファイルを作成する
-set swapfile
-
-" 補完ディクショナリ設定
-set dictionary=/usr/share/dict/words
-
-" 補完時にpreviewを表示しない
-set completeopt-=preview
-
-" packpath無効化
-set packpath=
-
-" バックアップファイルを作成しない
-set nobackup
 " }}}
 
 " vim:set foldmethod=marker:
