@@ -587,27 +587,6 @@ endif
 " }}}
 
 " -----------------------------------------------------------------------------
-" Netrw {{{
-" one file per line with timestamp information and file size
-let g:netrw_liststyle=1
-
-" suppress the banner
-let g:netrw_banner=0
-
-" human-readable
-let g:netrw_sizestyle='H'
-
-" specify format string to vim's strftime()
-let g:netrw_timefmt='%Y/%m/%d(%a) %H:%M:%S'
-
-" The home directory for where bookmarks and history are saved
-let g:netrw_home=expand('~')
-
-" the settings that netrw buffers have
-let g:netrw_bufsettings='noma nomod nu rnu nowrap ro nobl'
-" }}}
-
-" -----------------------------------------------------------------------------
 " Color scheme {{{
 if has('nvim') || has('termguicolors')
     set termguicolors
@@ -831,88 +810,10 @@ let s:palette.inactive.right = [
 " }}}
 
 " -----------------------------------------------------------------------------
-" Useful functions {{{
-function! DeleteHiddenBuffers() abort " {{{
-    let tpbl=[]
-    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-        silent execute 'bwipeout' buf
-    endfor
-endfunction " }}}
-
-function! REPLSend(str) abort " {{{
-    let s:str = a:str
-    if s:str[-1] !=# "\n"
-        let s:str .= "\n"
-    endif
-    let s:str = substitute(s:str, "\n", "\<CR>", 'g')
-
-    if has('nvim')
-        call chansend(g:last_terminal_job_id, [s:str])
-    else
-        call term_sendkeys(g:last_terminal_job_id, s:str)
-    endif
-endfunction " }}}
-
-function! s:get_visual() abort " {{{
-    let [lnum1, col1] = getpos("'<")[1:2]
-    let [lnum2, col2] = getpos("'>")[1:2]
-    let lines = getline(lnum1, lnum2)
-    let lines[-1] = lines[-1][:col2 - 2]
-    let lines[0] = lines[0][col1 - 1:]
-    return join(lines, "\n")
-endfunction " }}}
-
-function! REPLMapFor(cmd) abort " {{{
-    exec 'nnoremap <silent> tt :call REPLSend("' . s:replmap_expand(a:cmd) . '")<CR>'
-endfunction " }}}
-
-function! s:replmap_expand(cmd) abort " {{{
-    let l:cmd = substitute(a:cmd, '[^\\]\zs%', expand('%'), 'g')
-    return l:cmd
-endfunction " }}}
-
-function! s:smart_foldcloser() abort " {{{
-    if foldlevel('.') == 0
-        norm! zM
-        return
-    endif
-
-    let foldc_lnum = foldclosed('.')
-    norm! zc
-    if foldc_lnum == -1
-        return
-    endif
-
-    if foldclosed('.') != foldc_lnum
-        return
-    endif
-    norm! zM
-endfunction " }}}
-
-function! s:auto_mkdir(dir, force) abort " {{{
-    if !isdirectory(a:dir) && (a:force || input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-        call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-endfunction " }}}
-
-function! s:hint_cmd_output(prefix, cmd) abort " {{{
-    redir => str
-        execute a:cmd
-    redir END
-    let more_old = &more
-    set nomore
-    echo str
-    let &more = more_old
-    return a:prefix . nr2char(getchar())
-endfunction " }}}
-" }}}
-
-" -----------------------------------------------------------------------------
 " Commands {{{
-command! -range=% REPLSendSelection call REPLSend(s:get_visual())
-command! REPLSendLine call REPLSend(getline('.'))
-command! -complete=shellcmd -nargs=+ REPLMap call REPLMapFor(<q-args>)
+command! -range=% REPLSendSelection call vimrc#repl_send(vimrc#get_visual())
+command! REPLSendLine call vimrc#repl_send(getline('.'))
+command! -complete=shellcmd -nargs=+ REPLMap call vimrc#repl_map_for(<q-args>)
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -934,7 +835,7 @@ augroup MyAutoCmd " {{{
 
     autocmd InsertLeave * set nopaste
 
-    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
+    autocmd BufWritePre * call vimrc#auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
 
     if has('nvim')
         autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
@@ -949,9 +850,9 @@ augroup MyAutoCmdFileType " {{{
     autocmd FileType vim let g:vim_indent_cont = &shiftwidth
     autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-    autocmd FileType python nnoremap <silent> <CR><CR> :call REPLSend('python ' . expand('%'))<CR>
-    autocmd FileType bash,sh nnoremap <silent> <CR><CR> :call REPLSend('bash ' . expand('%'))<CR>
-    autocmd FileType yaml nnoremap <silent> <CR><CR> :call REPLSend('ansible-playbook ' . expand('%'))<CR>
+    autocmd FileType python nnoremap <silent> <CR><CR> :call vimrc#repl_send('python ' . expand('%'))<CR>
+    autocmd FileType bash,sh nnoremap <silent> <CR><CR> :call vimrc#repl_send('bash ' . expand('%'))<CR>
+    autocmd FileType yaml nnoremap <silent> <CR><CR> :call vimrc#repl_send('ansible-playbook ' . expand('%'))<CR>
 augroup END " }}}
 " }}}
 
@@ -1041,7 +942,7 @@ nnoremap <expr> l foldclosed('.') != -1 ? 'zo' : 'l'
 nnoremap <silent> zl zO
 
 " 折りたたみを閉じる
-nnoremap <silent> , :<C-u>call <SID>smart_foldcloser()<CR>
+nnoremap <silent> , :<C-u>call vimrc#smart_fold_closer()<CR>
 
 " 現在いるところ以外の折り畳みを閉じる
 nnoremap <silent> z, zMzv
@@ -1059,11 +960,11 @@ cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
 " マークをリストアップして{保存,復旧}する
-nnoremap <expr> m  <SID>hint_cmd_output('m', 'marks')
-nnoremap <expr> `  <SID>hint_cmd_output('`', 'marks') . 'zz'
+nnoremap <expr> m  vimrc#hint_cmd_output('m', 'marks')
+nnoremap <expr> `  vimrc#hint_cmd_output('`', 'marks') . 'zz'
 
 " レジストリをリストアップする
-nnoremap <expr> " <SID>hint_cmd_output('"', 'registers')
+nnoremap <expr> " vimrc#hint_cmd_output('"', 'registers')
 
 " # を入力したときに行頭に移動しない
 "inoremap # x<BS>#
