@@ -119,3 +119,32 @@ on_ft = 'markdown'
 
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
+
+[[plugins]]
+repo = 'voldikss/vim-floaterm'
+on_cmd = 'FloatermToggle'
+hook_add = '''
+    let g:floaterm_winblend = 20
+    let g:floaterm_position = 'center'
+    let g:floaterm_width = float2nr(0.85 * winwidth(0))
+    let g:floaterm_height = float2nr(0.8 * winheight(0))
+
+    nnoremap <silent> <C-u> :FloatermToggle<CR>
+    tnoremap <silent> <C-u> <C-\><C-n>:FloatermToggle<CR>
+'''
+
+[[plugins]]
+repo = 'kassio/neoterm'
+on_cmd = ['Ttoggle', 'Topen']
+hook_add = '''
+    let g:neoterm_autoscroll = 1
+    let g:neoterm_default_mod = 'botright'
+    let g:neoterm_repl_python = 'python'
+
+    nnoremap <silent> <C-t> :Ttoggle<CR>
+    tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
+
+    nnoremap <silent> <C-y> :Topen<CR><C-w>ji
+    tnoremap <silent> <C-y> <C-\><C-n><C-w>k
+'''
+

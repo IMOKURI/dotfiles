@@ -15,44 +15,6 @@ call dein#begin(s:dein_dir, [expand('<sfile>'), s:default_toml, s:lazy_toml])
 call dein#load_toml(s:default_toml, {'lazy': 0})
 call dein#load_toml(s:lazy_toml, {'lazy' : 1})
 
-" Terminal {{{
-function! s:voldikss_vim_floaterm() abort
-    let g:floaterm_winblend = 20
-    let g:floaterm_position = 'center'
-    let g:floaterm_width = float2nr(0.85 * winwidth(0))
-    let g:floaterm_height = float2nr(0.8 * winheight(0))
-
-    nnoremap <silent> <C-u> :FloatermToggle<CR>
-    tnoremap <silent> <C-u> <C-\><C-n>:FloatermToggle<CR>
-endfunction
-
-call dein#add('voldikss/vim-floaterm', {
-    \ 'on_cmd': ['FloatermToggle'],
-    \ 'hook_add': function('s:voldikss_vim_floaterm')
-    \ })
-
-function! s:kassio_neoterm() abort
-    let g:neoterm_autoscroll = 1
-    let g:neoterm_default_mod = 'botright'
-    let g:neoterm_repl_python = 'python'
-
-    nnoremap <silent> <C-t> :Ttoggle<CR>
-    tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
-
-    nnoremap <silent> <C-y> :Topen<CR><C-w>ji
-    tnoremap <silent> <C-y> <C-\><C-n><C-w>k
-
-    " nnoremap <silent> <CR><CR> :TREPLSendFile<CR>
-    " nnoremap <silent> <Leader><CR> :TREPLSendLine<CR>
-    " xnoremap <silent> <Leader><CR> :TREPLSendSelection<CR>
-endfunction
-
-call dein#add('kassio/neoterm', {
-    \ 'on_cmd': ['Ttoggle', 'Topen'],
-    \ 'hook_add': function('s:kassio_neoterm')
-    \ })
-" }}}
-
 " LSP {{{
 if has('nvim')
     function! s:neovim_nvim_lsp() abort
