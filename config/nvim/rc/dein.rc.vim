@@ -375,4 +375,8 @@ if !empty(dein#check_clean())
     call map(dein#check_clean(), "delete(v:val, 'rf')")
 endif
 
+" Neoterm calls autoload functions in ftdetect.
+" So source neoterm before filetype on.
+call dein#source('neoterm')
+
 " vim:set foldmethod=marker:
