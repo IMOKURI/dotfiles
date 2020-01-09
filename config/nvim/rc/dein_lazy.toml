@@ -62,3 +62,61 @@ hook_add = '''
     let g:vimhelpgenerator_defaultlanguage = 'en'
     let g:vimhelpgenerator_gitignore_lines = []
 '''
+
+[[plugins]]
+repo = 'lambdalisue/suda.vim'
+on_event = 'BufRead'
+hook_add = '''
+    let g:suda_smart_edit = 1
+'''
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_event = 'InsertEnter'
+hook_source = '''
+    " Japanese Bracket
+    call lexima#add_rule({'char': '「', 'input_after': '」'})
+    call lexima#add_rule({'char': '」', 'at': '\%#」', 'leave': 1})
+    call lexima#add_rule({'char': '<BS>', 'at': '「\%#」', 'delete': 1})
+
+    " Jinja2
+    call lexima#add_rule({'char': '%', 'at': '{\%#}', 'input_after': '%'})
+    call lexima#add_rule({'char': '%', 'at': '{%\%#%}', 'leave': 2})
+    call lexima#add_rule({'char': '}', 'at': '{%\%#%}', 'leave': 2})
+    call lexima#add_rule({'char': '<BS>', 'at': '{%\%#%}', 'delete': 1})
+
+    call lexima#add_rule({'char': '<Space>', 'at': '{%\%#%}', 'input_after': '<Space>'})
+    call lexima#add_rule({'char': '%', 'at': '{% \%# %}', 'leave': 3})
+    call lexima#add_rule({'char': '}', 'at': '{% \%# %}', 'leave': 3})
+    call lexima#add_rule({'char': '<BS>', 'at': '{% \%# %}', 'delete': 1})
+'''
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+hook_add = '''
+    nmap s <Nop>
+    xmap s <Nop>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = '<Plug>(EasyAlign)'
+hook_add = '''
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 'thiagoalmeidasa/vim-ansible-vault'
+on_ft = 'yaml'
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_ft = 'markdown'
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
+on_cmd = 'Linediff'

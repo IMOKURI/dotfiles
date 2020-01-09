@@ -8,6 +8,9 @@ repo = 'wsdjeg/dein-ui.vim'
 repo = 'challenger-deep-theme/vim'
 
 [[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
@@ -15,5 +18,22 @@ repo = 'airblade/vim-rooter'
 hook_add = '''
     let g:rooter_change_directory_for_non_project_files = 'current'
     let g:rooter_patterns = ['.git', '.git/']
+'''
+
+[[plugins]]
+repo = 'haya14busa/is.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+depends = 'is.vim'
+hook_add = '''
+    nmap n <Plug>(is-nohl)<Plug>(anzu-n)
+    nmap N <Plug>(is-nohl)<Plug>(anzu-N)
+    nmap * <Plug>(anzu-star)<Plug>(is-nohl-1)
+
+    augroup Anzu
+        autocmd!
+        autocmd WinLeave,TabLeave * call anzu#clear_search_status()
+    augroup END
 '''
 
