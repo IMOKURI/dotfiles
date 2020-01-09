@@ -119,4 +119,3 @@ on_ft = 'markdown'
 
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
-on_cmd = 'Linediff'
