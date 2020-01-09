@@ -257,9 +257,6 @@ augroup MyAutoCmd " {{{
 
     autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
 
-    autocmd BufRead,BufNewFile Dockerfile.* setf dockerfile
-    autocmd BufRead,BufNewFile .*Jenkinsfile setf Jenkinsfile
-
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
         \   exe "normal! g'\"" |
