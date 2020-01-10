@@ -4,6 +4,14 @@ function! vimrc#auto_mkdir(dir, force) abort " {{{
     endif
 endfunction " }}}
 
+function! vimrc#colorize(group, style) abort " {{{
+    execute 'highlight' a:group
+        \ 'guifg='   (has_key(a:style, 'fg')    ? a:style.fg.gui   : 'NONE')
+        \ 'guibg='   (has_key(a:style, 'bg')    ? a:style.bg.gui   : 'NONE')
+        \ 'ctermfg=' (has_key(a:style, 'fg')    ? a:style.fg.cterm : 'NONE')
+        \ 'ctermbg=' (has_key(a:style, 'bg')    ? a:style.bg.cterm : 'NONE')
+endfunction " }}}
+
 function! vimrc#delete_hidden_buffers() abort " {{{
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
