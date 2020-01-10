@@ -13,13 +13,10 @@ endif
 " }}}
 
 " -----------------------------------------------------------------------------
-" Set augroup {{{
+" Reset augroup {{{
 augroup MyAutoCmd
     autocmd!
-    autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
-        \ call vimrc#on_filetype()
 augroup END
-
 " }}}
 
 if has('vim_starting')
@@ -30,16 +27,7 @@ call vimrc#source_rc('options.rc.vim')
 
 call vimrc#source_rc('dein.rc.vim')
 
-" -----------------------------------------------------------------------------
-" Color scheme {{{
-syntax on
-
-if has('vim_starting') && !empty(argv())
-    call vimrc#on_filetype()
-endif
-
-colorscheme challenger_deep
-" }}}
+call vimrc#source_rc('syntax.rc.vim')
 
 " -----------------------------------------------------------------------------
 " Autocommands {{{
