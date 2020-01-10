@@ -206,11 +206,6 @@ call dein#add('Vimjas/vim-python-pep8-indent', {
 "     \ })
 " }}}
 
-" Status Line {{{
-call dein#add('itchyny/lightline.vim')
-call dein#add('maximbaz/lightline-ale')
-" }}}
-
 " Launcher {{{
 function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>b :Denite buffer<CR>
