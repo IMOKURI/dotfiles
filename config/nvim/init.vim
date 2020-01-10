@@ -192,12 +192,6 @@ augroup MyAutoCmdOld " {{{
 
 augroup END " }}}
 
-augroup MyAutoCmdFileType " {{{
-    autocmd!
-
-    autocmd FileType vim let g:vim_indent_cont = &shiftwidth
-    autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-augroup END " }}}
 " }}}
 
 " -----------------------------------------------------------------------------
