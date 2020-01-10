@@ -110,14 +110,10 @@ call s:colorize('HighlightedLineNr', {'bg': s:bg_subtle,   'fg': s:green})
 
 call s:colorize('YankRoundRegion',   {'bg': s:norm_subtle, 'fg': s:bg_subtle})
 
-if exists('&blend')
-    highlight PmenuSel blend=0
-endif
 " }}}
 
 " -----------------------------------------------------------------------------
 " Status line {{{
-
 " LightLine color palette {{{
 let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
 
@@ -176,12 +172,6 @@ let s:palette.inactive.right = [
 " }}}
 " }}}
 
-" -----------------------------------------------------------------------------
-" Commands {{{
-command! -range=% REPLSendSelection call vimrc#repl_send(vimrc#get_visual())
-command! REPLSendLine call vimrc#repl_send(getline('.'))
-command! -complete=shellcmd -nargs=+ REPLMap call vimrc#repl_map_for(<q-args>)
-" }}}
 
 " -----------------------------------------------------------------------------
 " Autocommands {{{
@@ -200,11 +190,6 @@ augroup MyAutoCmdOld " {{{
 
     autocmd BufWritePre * call vimrc#auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
 
-    if has('nvim')
-        autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
-    else
-        autocmd TerminalOpen * let g:last_terminal_job_id = bufnr('')
-    endif
 augroup END " }}}
 
 augroup MyAutoCmdFileType " {{{
@@ -212,10 +197,6 @@ augroup MyAutoCmdFileType " {{{
 
     autocmd FileType vim let g:vim_indent_cont = &shiftwidth
     autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-    autocmd FileType python nnoremap <silent> <CR><CR> :call vimrc#repl_send('python ' . expand('%'))<CR>
-    autocmd FileType bash,sh nnoremap <silent> <CR><CR> :call vimrc#repl_send('bash ' . expand('%'))<CR>
-    autocmd FileType yaml nnoremap <silent> <CR><CR> :call vimrc#repl_send('ansible-playbook ' . expand('%'))<CR>
 augroup END " }}}
 " }}}
 
@@ -257,10 +238,6 @@ nnoremap <silent> te :terminal<CR>i
 
 " ESCでターミナルモードからコマンドモードにする
 tnoremap <silent> <ESC> <C-\><C-n>
-
-" 行/選択範囲をターミナルに送る
-nnoremap <silent> <Leader><CR> :REPLSendLine<CR>
-xnoremap <silent> <Leader><CR> :REPLSendSelection<CR>
 
 " インデントをコマンド1回にする
 nnoremap > >>
