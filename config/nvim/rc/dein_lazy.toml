@@ -92,13 +92,6 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'machakann/vim-sandwich'
-hook_add = '''
-    nmap s <Nop>
-    xmap s <Nop>
-'''
-
-[[plugins]]
 repo = 'tpope/vim-commentary'
 
 [[plugins]]
@@ -116,9 +109,6 @@ on_ft = 'yaml'
 [[plugins]]
 repo = 'dhruvasagar/vim-table-mode'
 on_ft = 'markdown'
-
-[[plugins]]
-repo = 'AndrewRadev/linediff.vim'
 
 [[plugins]]
 repo = 'voldikss/vim-floaterm'

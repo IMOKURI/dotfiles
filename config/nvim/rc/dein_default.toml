@@ -51,3 +51,13 @@ hook_add = '''
     tnoremap <silent> <C-y> <C-\><C-n><C-w>k
 '''
 
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+hook_add = '''
+    nmap s <Nop>
+    xmap s <Nop>
+'''
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
+

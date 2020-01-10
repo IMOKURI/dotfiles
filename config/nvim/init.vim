@@ -12,6 +12,16 @@ if empty($XDG_DATA_HOME)
 endif
 " }}}
 
+" -----------------------------------------------------------------------------
+" Set augroup {{{
+augroup MyAutoCmd
+    autocmd!
+    autocmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
+        \ call vimrc#on_filetype()
+augroup END
+
+" }}}
+
 if has('vim_starting')
     call vimrc#source_rc('init.rc.vim')
 endif
@@ -22,12 +32,11 @@ call vimrc#source_rc('dein.rc.vim')
 
 " -----------------------------------------------------------------------------
 " Color scheme {{{
-if has('nvim') || has('termguicolors')
-    set termguicolors
-endif
-
-filetype plugin indent on
 syntax on
+
+if has('vim_starting') && !empty(argv())
+    call vimrc#on_filetype()
+endif
 
 colorscheme challenger_deep
 
@@ -252,10 +261,8 @@ command! -complete=shellcmd -nargs=+ REPLMap call vimrc#repl_map_for(<q-args>)
 
 " -----------------------------------------------------------------------------
 " Autocommands {{{
-augroup MyAutoCmd " {{{
+augroup MyAutoCmdOld " {{{
     autocmd!
-
-    autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
 
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |

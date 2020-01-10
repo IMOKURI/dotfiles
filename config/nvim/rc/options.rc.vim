@@ -77,6 +77,11 @@ set pumheight=10
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
 
+" 24-bit RGB colorを有効化
+if has('nvim') || has('termguicolors')
+    set termguicolors
+endif
+
 " }}}
 
 " -----------------------------------------------------------------------------

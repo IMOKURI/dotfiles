@@ -1,7 +1,11 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+let g:dein#auto_recache = 1
+
 if has('nvim')
+    let g:dein#install_progress_type = 'title'
+
     let s:dein_dir = $XDG_DATA_HOME . '/dein/nvim'
 else
     let s:dein_dir = $XDG_DATA_HOME . '/dein/vim'
@@ -371,8 +375,9 @@ if dein#check_install()
     call dein#remote_plugins()
 endif
 
-if !empty(dein#check_clean())
-    call map(dein#check_clean(), "delete(v:val, 'rf')")
+if !has('vim_starting')
+    call dein#call_hook('source')
+    call dein#call_hook('post_source')
 endif
 
 " Neoterm calls autoload functions in ftdetect.
