@@ -179,33 +179,6 @@ call dein#add('Vimjas/vim-python-pep8-indent', {
     \ })
 " }}}
 
-" Snippet {{{
-" call dein#add('phenomenes/ansible-snippets')
-" call dein#add('Shougo/neosnippet-snippets')
-" call dein#add('honza/vim-snippets')
-
-" function! s:Shougo_neosnippet() abort
-"     imap <C-k> <Plug>(neosnippet_expand_or_jump)
-"     smap <C-k> <Plug>(neosnippet_expand_or_jump)
-"     xmap <C-k> <Plug>(neosnippet_expand_target)
-
-"     let g:neosnippet#enable_snipmate_compatibility = 1
-
-"     let g:neosnippet#snippets_directory = [
-"         \ $XDG_DATA_HOME . '/dein/repos/github.com/phenomenes/ansible-snippets/snippets',
-"         \ $XDG_DATA_HOME . '/dein/repos/github.com/honza/vim-snippets/snippets',
-"         \ $XDG_CONFIG_HOME . '/nvim/neosnippets'
-"         \ ]
-" endfunction
-
-" call dein#add('Shougo/neosnippet', {
-"     \ 'depends': ['ansible-snippets', 'neosnippet-snippets', 'context_filetype.vim'],
-"     \ 'on_event': 'InsertCharPre',
-"     \ 'on_ft': 'snippet',
-"     \ 'hook_source': function('s:Shougo_neosnippet')
-"     \ })
-" }}}
-
 " Launcher {{{
 function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>b :Denite buffer<CR>
