@@ -328,10 +328,6 @@ nnoremap gd :Explore <C-r><C-f><CR>
 nnoremap gn gt
 nnoremap gp gT
 
-" 先頭/末尾に移動する
-noremap H ^
-noremap L $
-
 " ターミナルを開く
 nnoremap <silent> te :terminal<CR>i
 
@@ -376,9 +372,12 @@ nnoremap <Leader><Left> <C-w><
 " 直前のバッファに移動する
 nnoremap <Leader><Tab> <C-^>
 
+" 先頭に移動する
+noremap H ^
+
 " 折りたたみを開く
 nnoremap <expr> l foldclosed('.') != -1 ? 'zo' : 'l'
-nnoremap <silent> zl zO
+nnoremap <expr> L foldclosed('.') != -1 ? 'zO' : '$'
 
 " 折りたたみを閉じる
 nnoremap <silent> , :<C-u>call vimrc#smart_fold_closer()<CR>
