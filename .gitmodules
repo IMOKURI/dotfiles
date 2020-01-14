@@ -25,3 +25,24 @@
 [submodule "config/nvim/pack/_/opt/vim-ansible-vault"]
 	path = config/nvim/pack/_/opt/vim-ansible-vault
 	url = https://github.com/thiagoalmeidasa/vim-ansible-vault.git
+[submodule "config/nvim/pack/_/opt/nvim-yarp"]
+	path = config/nvim/pack/_/opt/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp.git
+[submodule "config/nvim/pack/_/opt/vim-hug-neovim-rpc"]
+	path = config/nvim/pack/_/opt/vim-hug-neovim-rpc
+	url = https://github.com/roxma/vim-hug-neovim-rpc.git
+[submodule "config/nvim/pack/_/opt/float-preview.nvim"]
+	path = config/nvim/pack/_/opt/float-preview.nvim
+	url = https://github.com/ncm2/float-preview.nvim.git
+[submodule "config/nvim/pack/_/opt/deoplete.nvim"]
+	path = config/nvim/pack/_/opt/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim.git
+[submodule "config/nvim/pack/_/opt/echodoc.vim"]
+	path = config/nvim/pack/_/opt/echodoc.vim
+	url = https://github.com/Shougo/echodoc.vim.git
+[submodule "config/nvim/pack/_/opt/deoplete-tabnine"]
+	path = config/nvim/pack/_/opt/deoplete-tabnine
+	url = https://github.com/tbodt/deoplete-tabnine.git
+[submodule "config/nvim/pack/_/opt/deoplete-emoji"]
+	path = config/nvim/pack/_/opt/deoplete-emoji
+	url = https://github.com/fszymanski/deoplete-emoji.git

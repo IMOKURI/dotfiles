@@ -1,6 +1,3 @@
-if &runtimepath !~# '/lightline.vim'
-    finish
-endif
 
 " g:lightline {{{
 let g:lightline = {

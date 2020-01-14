@@ -1,6 +1,3 @@
-if &runtimepath !~# '/neoterm'
-    finish
-endif
 
 let g:neoterm_autoscroll = 1
 let g:neoterm_default_mod = 'botright'

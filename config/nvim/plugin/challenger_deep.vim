@@ -1,6 +1,3 @@
-if &runtimepath !~# '/challenger-deep'
-    finish
-endif
 
 " Palette {{{
 let s:red            = {'gui': '#ff8080', 'cterm': '204'}
