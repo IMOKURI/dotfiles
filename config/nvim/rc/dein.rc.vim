@@ -172,13 +172,6 @@ call dein#add('w0rp/ale', {
     \ })
 " }}}
 
-" Formatter {{{
-call dein#add('Vimjas/vim-python-pep8-indent', {
-    \ 'on_event': 'InsertEnter',
-    \ 'on_ft': 'python'
-    \ })
-" }}}
-
 " Launcher {{{
 function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>b :Denite buffer<CR>

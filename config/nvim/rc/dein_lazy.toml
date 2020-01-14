@@ -29,6 +29,11 @@ repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
 [[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_event = 'InsertEnter'
+on_ft = 'python'
+
+[[plugins]]
 repo = 'pearofducks/ansible-vim'
 on_ft = ['yaml', 'jinja2']
 hook_add = '''
@@ -90,9 +95,6 @@ hook_source = '''
     call lexima#add_rule({'char': '}', 'at': '{% \%# %}', 'leave': 3})
     call lexima#add_rule({'char': '<BS>', 'at': '{% \%# %}', 'delete': 1})
 '''
-
-[[plugins]]
-repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'

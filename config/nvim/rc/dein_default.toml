@@ -190,6 +190,9 @@ hook_add = '''
 repo = 'AndrewRadev/linediff.vim'
 
 [[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
 repo =  'itchyny/lightline.vim'
 hook_add = '''
     " g:lightline {{{
