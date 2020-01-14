@@ -103,25 +103,3 @@ hook_add = '''
     nmap ga <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
 '''
-
-[[plugins]]
-repo = 'thiagoalmeidasa/vim-ansible-vault'
-on_ft = 'yaml'
-
-[[plugins]]
-repo = 'dhruvasagar/vim-table-mode'
-on_ft = 'markdown'
-
-[[plugins]]
-repo = 'voldikss/vim-floaterm'
-on_cmd = 'FloatermToggle'
-hook_add = '''
-    let g:floaterm_winblend = 20
-    let g:floaterm_position = 'center'
-    let g:floaterm_width = float2nr(0.85 * winwidth(0))
-    let g:floaterm_height = float2nr(0.8 * winheight(0))
-
-    nnoremap <silent> <C-u> :FloatermToggle<CR>
-    tnoremap <silent> <C-u> <C-\><C-n>:FloatermToggle<CR>
-'''
-

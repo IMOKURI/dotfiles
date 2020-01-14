@@ -1,0 +1,27 @@
+[submodule "config/nvim/pack/_/start/challenger-deep"]
+	path = config/nvim/pack/_/start/challenger-deep
+	url = https://github.com/challenger-deep-theme/vim.git
+[submodule "config/nvim/pack/_/start/lightline.vim"]
+	path = config/nvim/pack/_/start/lightline.vim
+	url = https://github.com/itchyny/lightline.vim.git
+[submodule "config/nvim/pack/_/start/lightline-ale"]
+	path = config/nvim/pack/_/start/lightline-ale
+	url = https://github.com/maximbaz/lightline-ale.git
+[submodule "config/nvim/pack/_/start/fugitive.vim"]
+	path = config/nvim/pack/_/start/fugitive.vim
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "config/nvim/pack/_/start/vim-gitgutter"]
+	path = config/nvim/pack/_/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "config/nvim/pack/_/start/vim-sandwich"]
+	path = config/nvim/pack/_/start/vim-sandwich
+	url = https://github.com/machakann/vim-sandwich.git
+[submodule "config/nvim/pack/_/start/neoterm"]
+	path = config/nvim/pack/_/start/neoterm
+	url = https://github.com/kassio/neoterm.git
+[submodule "config/nvim/pack/_/opt/vim-table-mode"]
+	path = config/nvim/pack/_/opt/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode.git
+[submodule "config/nvim/pack/_/opt/vim-ansible-vault"]
+	path = config/nvim/pack/_/opt/vim-ansible-vault
+	url = https://github.com/thiagoalmeidasa/vim-ansible-vault.git

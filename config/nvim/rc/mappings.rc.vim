@@ -160,6 +160,10 @@ nnoremap <expr> " vimrc#hint_cmd_output('"', 'registers')
 " Exモード使わない
 nmap Q <Nop>
 
+" 削除してinsertモード使わない(vim-sandwichのため)
+nmap s <Nop>
+xmap s <Nop>
+
 " }}}
 
 " vim:set foldmethod=marker:

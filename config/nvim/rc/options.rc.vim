@@ -7,9 +7,6 @@ scriptencoding utf-8
 " 文字コード判別
 set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,euc-jp,cp932
 
-" packpath無効化
-set packpath=
-
 " }}}
 
 " -----------------------------------------------------------------------------

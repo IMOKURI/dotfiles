@@ -15,23 +15,6 @@ endif
 " }}}
 
 " -----------------------------------------------------------------------------
-" dein install {{{
-if has('nvim')
-    let s:dein_dir = $XDG_DATA_HOME . '/dein/nvim'
-else
-    let s:dein_dir = $XDG_DATA_HOME . '/dein/vim'
-endif
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-    endif
-    execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-" }}}
-
-" -----------------------------------------------------------------------------
 " Map leader {{{
 if !exists('g:mapleader')
     nnoremap <Space> <Nop>

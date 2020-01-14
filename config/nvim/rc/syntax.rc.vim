@@ -7,5 +7,3 @@ autocmd MyAutoCmd FileType,Syntax,BufNewFile,BufNew,BufRead *?
 if has('vim_starting') && !empty(argv())
     call vimrc#on_filetype()
 endif
-
-colorscheme challenger_deep
