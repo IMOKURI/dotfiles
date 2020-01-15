@@ -49,8 +49,7 @@ update-repository: ## update dotfiles repository
 	git submodule foreach git pull origin master
 
 update-plugins: ## update neovim plugins
-	cd config/nvim/pack/_/opt/deoplete-tabnine/ && ./install.sh
-	nvim --headless "+packadd deoplete" +UpdateRemotePlugins +qall
+	nvim --headless +UpdateRemotePlugins +qall
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}

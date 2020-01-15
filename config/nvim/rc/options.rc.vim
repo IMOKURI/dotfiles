@@ -153,9 +153,6 @@ set wildmode=longest,full
 " 補完ディクショナリ設定
 set dictionary=/usr/share/dict/words
 
-" 補完時にpreviewを表示しない
-set completeopt-=preview
-
 " }}}
 
 " -----------------------------------------------------------------------------

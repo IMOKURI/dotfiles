@@ -227,6 +227,8 @@ if [[ "${BUILD}" != "minimal" ]]; then
     _banner "Install NodeJS Packages..."
     sudo -E npm install -g npm
     npm install --prefix "${HOME}" \
+        bash-language-server \
+        dockerfile-language-server-nodejs \
         doctoc \
         eslint \
         markdownlint-cli \
@@ -237,6 +239,7 @@ if [[ "${BUILD}" != "minimal" ]]; then
         textlint-rule-preset-ja-technical-writing \
         textlint-rule-spellcheck-tech-word \
         vim-language-server \
+        vscode-json-languageserver-bin \
         yaml-language-server
 
     mkdir -p "${PROVIDER_NVIM}/nodejs"
