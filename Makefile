@@ -60,7 +60,7 @@ git: update-git build-git ## Get latest git
 
 update-git: ## Update git repository
 	if [[ -d "$(GITPATH)" ]]; then \
-		cd $(HOME)/src/git && git fetch; \
+		cd $(HOME)/src/git && git checkout master && git fetch && git pull; \
 	else \
 		git clone https://github.com/git/git.git "$(GITPATH)"; \
 	fi
