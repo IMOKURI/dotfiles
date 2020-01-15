@@ -15,7 +15,4 @@ hook_add = '''
     augroup END
 '''
 
-[[plugins]]
-repo = 'tpope/vim-commentary'
-
 # vim:set foldmethod=marker:
