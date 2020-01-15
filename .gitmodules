@@ -53,3 +53,6 @@
 [submodule "config/nvim/pack/_/opt/ale"]
 	path = config/nvim/pack/_/opt/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "config/nvim/pack/_/opt/ctrlp.vim"]
+	path = config/nvim/pack/_/opt/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
