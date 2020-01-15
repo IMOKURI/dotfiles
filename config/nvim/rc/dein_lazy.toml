@@ -1,13 +1,4 @@
 [[plugins]]
-repo = 't9md/vim-quickhl'
-on_map = '<Plug>(quickhl-'
-hook_add = '''
-    nmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-    xmap <silent> <Leader>m <Plug>(quickhl-manual-this)
-    nmap <silent> <Leader>M <Plug>(quickhl-manual-reset)
-'''
-
-[[plugins]]
 repo = 'itchyny/vim-cursorword'
 on_event = ['FocusLost', 'CursorHold']
 

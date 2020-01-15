@@ -62,3 +62,6 @@
 [submodule "config/nvim/pack/_/opt/vim-commentary"]
 	path = config/nvim/pack/_/opt/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "config/nvim/pack/_/opt/vim-quickhl"]
+	path = config/nvim/pack/_/opt/vim-quickhl
+	url = https://github.com/t9md/vim-quickhl.git
