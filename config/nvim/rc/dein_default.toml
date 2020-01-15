@@ -16,9 +16,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'AndrewRadev/linediff.vim'
-
-[[plugins]]
 repo = 'tpope/vim-commentary'
 
 # vim:set foldmethod=marker:

@@ -56,3 +56,6 @@
 [submodule "config/nvim/pack/_/opt/ctrlp.vim"]
 	path = config/nvim/pack/_/opt/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "config/nvim/pack/_/opt/linediff.vim"]
+	path = config/nvim/pack/_/opt/linediff.vim
+	url = https://github.com/AndrewRadev/linediff.vim.git
