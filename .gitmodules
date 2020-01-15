@@ -88,3 +88,9 @@
 [submodule "config/nvim/pack/_/start/suda.vim"]
 	path = config/nvim/pack/_/start/suda.vim
 	url = https://github.com/lambdalisue/suda.vim.git
+[submodule "config/nvim/pack/_/start/Jenkinsfile-vim-syntax"]
+	path = config/nvim/pack/_/start/Jenkinsfile-vim-syntax
+	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git
+[submodule "config/nvim/pack/_/start/ansible-vim"]
+	path = config/nvim/pack/_/start/ansible-vim
+	url = https://github.com/pearofducks/ansible-vim.git

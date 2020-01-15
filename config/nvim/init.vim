@@ -29,8 +29,6 @@ call vimrc#source_rc('mappings.rc.vim')
 
 call vimrc#source_rc('autocmd.rc.vim')
 
-" call vimrc#source_rc('dein.rc.vim')
-
 call vimrc#source_rc('syntax.rc.vim')
 
 " vim:set foldmethod=marker:

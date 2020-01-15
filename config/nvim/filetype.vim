@@ -7,8 +7,4 @@ augroup filetypedetect
     autocmd BufNewFile,BufRead Dockerfile.*
         \ setfiletype dockerfile
 
-    " Jenkinsfile
-    autocmd BufNewFile,BufRead .*Jenkinsfile
-        \ setfiletype Jenkinsfile
-
 augroup END
