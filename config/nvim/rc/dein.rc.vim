@@ -38,56 +38,6 @@ if has('nvim')
 endif
 " }}}
 
-" Linter {{{
-function! s:w0rp_ale() abort
-    let g:ale_sign_error = 'E>'
-    let g:ale_sign_warning = 'W>'
-    let g:ale_sign_highlight_linenrs = 1
-
-    let g:ale_virtualtext_cursor = 1
-
-    let g:ale_echo_msg_error_str = 'E'
-    let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
-
-    let g:ale_linters = {
-        \ 'awk': ['gawk'],
-        \ 'javascript': ['eslint'],
-        \ 'json': ['jq'],
-        \ 'make': ['checkmake'],
-        \ 'python': ['flake8', 'pylint'],
-        \ 'sh': ['language_server'],
-        \ 'vim': ['vint'],
-        \ 'vue': ['eslint'],
-        \ 'yaml': ['yamllint']
-        \ }
-
-    let g:ale_fixers = {
-        \ 'javascript': ['eslint'],
-        \ 'json': ['jq'],
-        \ 'python': ['autopep8', 'yapf', 'black', 'isort'],
-        \ 'sh': ['shfmt'],
-        \ 'vue': ['eslint'],
-        \ 'yaml': ['prettier']
-        \ }
-
-    let g:ale_json_jq_options = '--indent 4'
-    let g:ale_python_flake8_options = '--ignore=E501'
-    let g:ale_python_pylint_options = '--max-line-length=120 --disable=missing-docstring'
-    let g:ale_yaml_yamllint_options='-d "{rules: {line-length: disable}}"'
-
-    nmap <silent><expr> <C-p> yankround#is_active() ? "\<Plug>(yankround-prev)" : "\<Plug>(ale_previous_wrap)"
-    nmap <silent><expr> <C-n> yankround#is_active() ? "\<Plug>(yankround-next)" : "\<Plug>(ale_next_wrap)"
-
-    nmap <silent> <Leader>x <Plug>(ale_fix)
-endfunction
-
-call dein#add('w0rp/ale', {
-    \ 'depends': 'yankround.vim',
-    \ 'hook_add': function('s:w0rp_ale')
-    \ })
-" }}}
-
 " Launcher {{{
 function! s:shougo_denite_nvim_hook_add() abort
     nnoremap <silent> <Leader>b :Denite buffer<CR>

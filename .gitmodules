@@ -43,6 +43,13 @@
 [submodule "config/nvim/pack/_/opt/deoplete-tabnine"]
 	path = config/nvim/pack/_/opt/deoplete-tabnine
 	url = https://github.com/tbodt/deoplete-tabnine.git
+	ignore = dirty
 [submodule "config/nvim/pack/_/opt/deoplete-emoji"]
 	path = config/nvim/pack/_/opt/deoplete-emoji
 	url = https://github.com/fszymanski/deoplete-emoji.git
+[submodule "config/nvim/pack/_/start/yankround.vim"]
+	path = config/nvim/pack/_/start/yankround.vim
+	url = https://github.com/LeafCage/yankround.vim.git
+[submodule "config/nvim/pack/_/opt/ale"]
+	path = config/nvim/pack/_/opt/ale
+	url = https://github.com/dense-analysis/ale.git

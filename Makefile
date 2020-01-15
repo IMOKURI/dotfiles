@@ -40,9 +40,17 @@ ifdef http_proxy
 	source $(PROXY_SETTING)
 endif
 
-update: ## Update dotfiles repository
+update: update-repository update-plugins ## Update dotfiles
+
+update-repository: ## update dotfiles repository
 	git fetch
 	git pull
+	git submodule update --init --recursive
+	git submodule foreach git pull origin master
+
+update-plugins: ## update neovim plugins
+	cd config/nvim/pack/_/opt/deoplete-tabnine/ && ./install.sh
+	nvim --headless "+packadd deoplete" +UpdateRemotePlugins +qall
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}

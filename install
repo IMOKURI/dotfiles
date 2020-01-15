@@ -157,12 +157,12 @@ _banner "Clone Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
     _logger "${INFO}" "Clone dotfiles repository"
-    git clone https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
+    git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
 else
     _logger "${INFO}" "Update dotfiles repository"
     pushd "$(pwd)"
     cd "${DOTPATH}"
-    git fetch
+    make update-repository
     popd
 fi
 
@@ -351,10 +351,6 @@ fi
 if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
     echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
 fi
-
-_logger "${INFO}" "Update neovim plugins."
-nvim --headless "+call dein#update()" +qall
-nvim --headless "+call dein#source(['deoplete.nvim', 'denite.nvim'])" +UpdateRemotePlugins +qall
 
 popd
 
