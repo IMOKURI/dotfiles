@@ -40,16 +40,15 @@ ifdef http_proxy
 	source $(PROXY_SETTING)
 endif
 
-update: update-repository update-plugins ## Update dotfiles
+update: update-repo update-plugin ## Update dotfiles
 
-update-repository: ## update dotfiles repository
+update-repo: ## update dotfiles repository
 	git fetch
 	git pull
 	git submodule update --init --recursive
-	git submodule foreach git pull origin master
 
-update-plugins: ## update neovim plugins
-	nvim --headless +UpdateRemotePlugins +qall
+update-plugin: ## update neovim plugins
+	git submodule foreach git pull origin master
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
