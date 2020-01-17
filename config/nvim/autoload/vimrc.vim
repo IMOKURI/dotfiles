@@ -31,14 +31,6 @@ function! vimrc#hint_cmd_output(prefix, cmd) abort " {{{
     return a:prefix . nr2char(getchar())
 endfunction " }}}
 
-function! vimrc#on_filetype() abort " {{{
-  if execute('filetype') =~# 'OFF'
-    " Lazy loading
-    silent! filetype plugin indent on
-    filetype detect
-  endif
-endfunction " }}}
-
 function! vimrc#smart_fold_closer() abort " {{{
     if foldlevel('.') == 0
         norm! zM
