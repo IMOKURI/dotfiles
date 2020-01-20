@@ -22,7 +22,7 @@ function! repl#repl_send(str) abort " {{{
 endfunction " }}}
 
 function! repl#repl_map_for(cmd) abort " {{{
-    exec 'nnoremap <silent> tt :call repl#repl_send("' . s:repl_map_expand(a:cmd) . '")<CR>'
+    exec 'nnoremap <silent> <Leader><Leader><CR> :call repl#repl_send("' . s:repl_map_expand(a:cmd) . '")<CR>'
 endfunction " }}}
 
 function! s:repl_map_expand(cmd) abort " {{{

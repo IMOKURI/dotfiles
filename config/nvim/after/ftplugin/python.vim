@@ -1,6 +1,4 @@
 
-nnoremap <silent> <CR><CR> :call repl#repl_send('python ' . expand('%'))<CR>
-
 let g:ale_linters = {
     \ 'python': ['flake8', 'pylint']
     \ }
