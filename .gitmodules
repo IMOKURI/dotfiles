@@ -94,3 +94,6 @@
 [submodule "config/nvim/pack/_/start/ansible-vim"]
 	path = config/nvim/pack/_/start/ansible-vim
 	url = https://github.com/pearofducks/ansible-vim.git
+[submodule "config/nvim/pack/_/opt/capture.vim"]
+	path = config/nvim/pack/_/opt/capture.vim
+	url = https://github.com/tyru/capture.vim.git
