@@ -97,3 +97,9 @@
 [submodule "config/nvim/pack/_/opt/capture.vim"]
 	path = config/nvim/pack/_/opt/capture.vim
 	url = https://github.com/tyru/capture.vim.git
+[submodule "config/nvim/pack/_/start/asyncomplete-necosyntax.vim"]
+	path = config/nvim/pack/_/start/asyncomplete-necosyntax.vim
+	url = https://github.com/prabirshrestha/asyncomplete-necosyntax.vim.git
+[submodule "config/nvim/pack/_/start/neco-syntax"]
+	path = config/nvim/pack/_/start/neco-syntax
+	url = https://github.com/Shougo/neco-syntax.git
