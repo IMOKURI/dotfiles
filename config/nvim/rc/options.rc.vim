@@ -13,6 +13,9 @@ set relativenumber
 " 制御文字を表示
 set list
 
+" 制御文字を指定
+set listchars=tab:→\ ,nbsp:␣,trail:-,extends:»,precedes:«
+
 " カーソルラインをハイライト
 set cursorline
 
@@ -26,7 +29,7 @@ set colorcolumn=80
 set breakindent
 
 " breakindentの記号
-set showbreak=(//_//)
+set showbreak=↳
 
 " showbreakを左端に表示する
 set breakindentopt=sbr
