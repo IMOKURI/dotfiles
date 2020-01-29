@@ -20,18 +20,10 @@ env:
     - DOCKERHUB_USER: imokuri123
   matrix:
     - PROXY: true
-      BUILD: all
       PUSH_DOCKERHUB: false
     - PROXY: false
-      BUILD: all
-      PUSH_DOCKERHUB: false
-    - PROXY: false
-      BUILD: default
       PUSH_DOCKERHUB: true
       IMAGE: imokuri-dev
-    - PROXY: false
-      BUILD: minimal
-      PUSH_DOCKERHUB: false
 
 before_install:
   - docker pull ${DISTRIBUTION}:${VERSION}
@@ -53,9 +45,9 @@ before_install:
 script:
   - |
     if [ ${PROXY} == true ]; then
-      docker exec --tty "$(cat ${CONTAINER_ID})" env LANG=en_US.utf8 LC_ALL=en_US.utf8 BUILD=${BUILD} http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
+      docker exec --tty "$(cat ${CONTAINER_ID})" env LANG=en_US.utf8 LC_ALL=en_US.utf8 http_proxy=http://${squid_container_ip}:3128 bash -c "$(curl -fsSL https://git.io/imokuri)"
     else
-      docker exec --tty "$(cat ${CONTAINER_ID})" env LANG=en_US.utf8 LC_ALL=en_US.utf8 BUILD=${BUILD} bash -c "$(curl -fsSL https://git.io/imokuri)"
+      docker exec --tty "$(cat ${CONTAINER_ID})" env LANG=en_US.utf8 LC_ALL=en_US.utf8 bash -c "$(curl -fsSL https://git.io/imokuri)"
     fi
 
   - docker stop "$(cat ${CONTAINER_ID})"

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+: << COMMENT
+Work in Progress...
+COMMENT
+
 set -e
 
 ##### Variables ###############################################################
@@ -44,31 +48,39 @@ function _logger() {
     printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
 
-##### Build target ############################################################
+##### Detect OS Distribution ##################################################
 
-_banner "Check build target..."
+_banner "Detect OS Distribution"
 
-: << COMMENT
-Work in Progress...
+if [[ -f /etc/os-release ]]; then
+    . /etc/os-release
 
-+-----------------+--------------------+
-| BUILD env value | Use case           |
-+=================+====================+
-| minimal         | No internet access |
-| default         | My typical setting |
-| all             | All feature        |
-+-----------------+--------------------+
-COMMENT
+    is_redhat=false
+    is_ubuntu=false
 
-if [[ -z "${BUILD}" ]]; then
-    BUILD="default"
-elif [[ "${BUILD,,}" == "minimal" || "${BUILD,,}" == "all" ]]; then
-    BUILD="${BUILD,,}"
+    case "${NAME}" in
+        Red*)
+            # Red Hat Enterprise Linux Server
+            is_redhat=true
+            ;;
+        CentOS*)
+            # CentOS Linux
+            is_redhat=true
+            ;;
+        Ubuntu*)
+            # Ubuntu
+            is_ubuntu=true
+            ;;
+        *)
+            _logger "${ERROR}" "Unknown OS is detected."
+            exit 1
+    esac
 else
-    BUILD="default"
+    _logger "${ERROR}" "No such file. /etc/os-release"
+    exit 1
 fi
 
-_logger "${INFO}" "Build target is ${BUILD^^}."
+_logger "${INFO}" "${PRETTY_NAME} is detected."
 
 ##### Set Proxy ###############################################################
 
@@ -168,18 +180,14 @@ fi
 
 ##### Build git ###############################################################
 
-if [[ "${BUILD}" != "minimal" ]]; then
-    _banner "Install Git..."
-    pushd "$(pwd)"
-    cd "${DOTPATH}"
-    make git
-    popd
+_banner "Install Git..."
+pushd "$(pwd)"
+cd "${DOTPATH}"
+make git
+popd
 
-    _banner "Install Git-LFS"
-    sudo -E yum install -y git-lfs
-else
-    _banner "Skip to install Git."
-fi
+_banner "Install Git-LFS"
+sudo -E yum install -y git-lfs
 
 ##### Install python packages #################################################
 
@@ -223,95 +231,75 @@ popd
 
 ##### Install nodejs packages #################################################
 
-if [[ "${BUILD}" != "minimal" ]]; then
-    _banner "Install NodeJS Packages..."
-    sudo -E npm install -g npm
-    npm install --prefix "${HOME}" \
-        bash-language-server \
-        dockerfile-language-server-nodejs \
-        doctoc \
-        eslint \
-        markdownlint-cli \
-        neovim \
-        prettier \
-        textlint \
-        textlint-rule-preset-ja-spacing \
-        textlint-rule-preset-ja-technical-writing \
-        textlint-rule-spellcheck-tech-word \
-        vim-language-server \
-        vscode-json-languageserver-bin \
-        yaml-language-server
+_banner "Install NodeJS Packages..."
+sudo -E npm install -g npm
+npm install --prefix "${HOME}" \
+    bash-language-server \
+    dockerfile-language-server-nodejs \
+    doctoc \
+    eslint \
+    markdownlint-cli \
+    neovim \
+    prettier \
+    textlint \
+    textlint-rule-preset-ja-spacing \
+    textlint-rule-preset-ja-technical-writing \
+    textlint-rule-spellcheck-tech-word \
+    vim-language-server \
+    vscode-json-languageserver-bin \
+    yaml-language-server
 
-    mkdir -p "${PROVIDER_NVIM}/nodejs"
-    npm install --prefix "${PROVIDER_NVIM}/nodejs" neovim
-else
-    _banner "Skip to install NodeJS Packages."
-fi
+mkdir -p "${PROVIDER_NVIM}/nodejs"
+npm install --prefix "${PROVIDER_NVIM}/nodejs" neovim
 
 ##### Install go packages #####################################################
 
-if [[ "${BUILD}" != "minimal" ]]; then
-    _banner "Install Go Packages..."
-    go get -u \
-        github.com/itchyny/mmv/cmd/mmv \
-        github.com/mrtazz/checkmake \
-        github.com/tokuhirom/git-xlsx-textconv \
-        mvdan.cc/sh/cmd/shfmt
-else
-    _banner "Skip to install Go Packages."
-fi
+_banner "Install Go Packages..."
+go get -u \
+    github.com/itchyny/mmv/cmd/mmv \
+    github.com/mrtazz/checkmake \
+    github.com/tokuhirom/git-xlsx-textconv \
+    mvdan.cc/sh/cmd/shfmt
 
 ##### Install ripgrep #########################################################
 
-if [[ "${BUILD}" != "minimal" ]]; then
-    _banner "Install RipGrep..."
-    if [[ ! -f "${HOME}/bin/rg" ]]; then
-        curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep-11.0.2-x86_64-unknown-linux-musl.tar.gz
+_banner "Install RipGrep..."
+if [[ ! -f "${HOME}/bin/rg" ]]; then
+    curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep-11.0.2-x86_64-unknown-linux-musl.tar.gz
 
-        tar xf /tmp/rg.tar.gz -C "$HOME/src/"
+    tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
-        ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
-    else
-        _logger "${INFO}" "Already installed."
-    fi
+    ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
 else
-    _banner "Skip to install RipGrep."
+    _logger "${INFO}" "Already installed."
 fi
 
 ##### Install sixel ###########################################################
 
-if [[ "${BUILD}" == "all" ]]; then
-    _banner "Install Sixel..."
-    if [[ ! -d "${HOME}/src/libsixel" ]]; then
-        git clone https://github.com/saitoha/libsixel.git "${HOME}/src/libsixel"
-        pushd "$(pwd)"
-        cd "${HOME}/src/libsixel"
-        ./configure
-        make
-        sudo make install
-        popd
-    else
-        _logger "${INFO}" "Already installed."
-    fi
+_banner "Install Sixel..."
+if [[ ! -d "${HOME}/src/libsixel" ]]; then
+    git clone https://github.com/saitoha/libsixel.git "${HOME}/src/libsixel"
+    pushd "$(pwd)"
+    cd "${HOME}/src/libsixel"
+    ./configure
+    make
+    sudo make install
+    popd
 else
-    _banner "Skip to install Sixel."
+    _logger "${INFO}" "Already installed."
 fi
 
 ##### Install bashmarks #######################################################
 
-if [[ "${BUILD}" != "minimal" ]]; then
-    _banner "Install Bashmarks..."
-    if [[ ! -d "${HOME}/src/bashmarks" ]]; then
-        git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
-        pushd "$(pwd)"
-        cd "${HOME}/src/bashmarks"
-        make install
-        popd
-    else
-        _logger "${INFO}" "Already installed."
-    fi
+_banner "Install Bashmarks..."
+if [[ ! -d "${HOME}/src/bashmarks" ]]; then
+    git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
+    pushd "$(pwd)"
+    cd "${HOME}/src/bashmarks"
+    make install
+    popd
 else
-    _banner "Skip to install Bashmarks."
+    _logger "${INFO}" "Already installed."
 fi
 
 ##### Build neovim ############################################################
@@ -327,17 +315,13 @@ popd
 
 ##### Build vim ###############################################################
 
-if [[ "${BUILD}" == "all" ]]; then
-    _banner "Build Vim..."
-    pushd "$(pwd)"
-    cd "${DOTPATH}"
-    for i in {1..3}; do
-        make vim && break || sleep 10
-    done
-    popd
-else
-    _banner "Skip to build vim."
-fi
+_banner "Build Vim..."
+pushd "$(pwd)"
+cd "${DOTPATH}"
+for i in {1..3}; do
+    make vim && break || sleep 10
+done
+popd
 
 ##### Install dotfiles ########################################################
 
