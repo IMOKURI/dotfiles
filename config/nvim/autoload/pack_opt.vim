@@ -49,5 +49,3 @@ function! pack_opt#lexima() abort " {{{
     call lexima#add_rule({'char': '}', 'at': '{% \%# %}', 'leave': 3})
     call lexima#add_rule({'char': '<BS>', 'at': '{% \%# %}', 'delete': 1})
 endfunction " }}}
-
-" vim:set foldmethod=marker:

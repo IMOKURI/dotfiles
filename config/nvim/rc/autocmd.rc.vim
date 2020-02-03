@@ -14,5 +14,3 @@ augroup MyAutoCmd " {{{
     autocmd BufWritePre * call vimrc#auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
 
 augroup END " }}}
-
-" vim:set foldmethod=marker:

@@ -1,4 +1,8 @@
 
+if g:colors_name !=# 'challenger_deep'
+    finish
+endif
+
 " Palette {{{
 let s:red            = {'gui': '#ff8080', 'cterm': '204'}
 let s:dark_red       = {'gui': '#ff5458', 'cterm': '203'}
@@ -118,7 +122,6 @@ function! CustomizeColors() abort " {{{
         \ [ s:bg_subtle.gui, s:dark_purple.gui, s:bg_subtle.cterm, s:dark_purple.cterm ]
         \ ]
     " }}}
-
 endfunction " }}}
 
 augroup CustomizeColors
@@ -126,6 +129,4 @@ augroup CustomizeColors
     autocmd ColorScheme * call CustomizeColors()
 augroup END
 
-colorscheme challenger_deep
-
-" vim:set foldmethod=marker:
+doautocmd ColorScheme

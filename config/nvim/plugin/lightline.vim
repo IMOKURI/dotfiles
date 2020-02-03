@@ -1,3 +1,5 @@
+set encoding=utf-8
+scriptencoding utf-8
 
 " g:lightline {{{
 let g:lightline = {
@@ -73,5 +75,3 @@ function! LightLineFilePath() abort " {{{
     endtry
     return ''
 endfunction "}}}
-
-" vim:set foldmethod=marker:

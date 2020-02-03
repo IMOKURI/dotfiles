@@ -28,6 +28,7 @@ augroup MyAutoCmd
 augroup END
 " }}}
 
+" -----------------------------------------------------------------------------
 call vimrc#source_rc('options.rc.vim')
 
 call vimrc#source_rc('mappings.rc.vim')
@@ -38,6 +39,8 @@ call vimrc#source_rc('autocmd.rc.vim')
 " Syntax {{{
 filetype plugin indent on
 syntax enable
+
+colorscheme challenger_deep
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -50,5 +53,3 @@ if has('nvim')
     let g:loaded_ruby_provider = 0
 endif
 " }}}
-
-" vim:set foldmethod=marker:

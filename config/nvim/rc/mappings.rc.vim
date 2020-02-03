@@ -165,5 +165,3 @@ nmap s <Nop>
 xmap s <Nop>
 
 " }}}
-
-" vim:set foldmethod=marker:

@@ -149,5 +149,3 @@ set wildmode=longest,full
 set dictionary=/usr/share/dict/words
 
 " }}}
-
-" vim:set foldmethod=marker:

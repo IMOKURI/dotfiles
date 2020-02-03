@@ -74,5 +74,3 @@ function! vimrc#source_rc(path, ...) abort " {{{
     endif
   endtry
 endfunction " }}}
-
-" vim:set foldmethod=marker:
