@@ -1,0 +1,8 @@
+- hosts: localhost
+  tasks:
+    - debug:
+        msg: {{_cursor_}}
+
+- hosts: localhost
+  roles:
+    - role_name
