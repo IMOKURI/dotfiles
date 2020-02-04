@@ -3,6 +3,17 @@ $if Bash
   set visible-stats on
   set bell-style none
 
+  set bind-tty-special-chars off
+  "\C-u": unix-word-rubout
+
+  "\C-h": backward-word
+  "\C-l": forward-word
+
   "\C-j": menu-complete
   "\C-k": menu-complete-backward
+
+  # Keyboard Macro
+  # start-kbd-macro (C-x ()
+  # end-kbd-macro (C-x ))
+  # call-last-kbd-macro (C-x e)
 $endif
