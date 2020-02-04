@@ -74,3 +74,8 @@ function! vimrc#source_rc(path, ...) abort " {{{
     endif
   endtry
 endfunction " }}}
+
+function! vimrc#helptags() abort " {{{
+    packloadall
+    silent! helptags ALL
+endfunction " }}}
