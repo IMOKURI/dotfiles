@@ -6,7 +6,7 @@ $if Bash
   set bind-tty-special-chars off
   "\C-u": unix-word-rubout
 
-  "\C-h": backward-word
+  "\C-g": backward-word
   "\C-l": forward-word
 
   "\C-j": menu-complete
