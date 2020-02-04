@@ -5,4 +5,7 @@
 
 - hosts: localhost
   roles:
-    - role_name
+    - role: role_name
+      tags:
+        - aaa
+        - bbb

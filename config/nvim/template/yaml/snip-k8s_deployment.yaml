@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{_input_:name}}
+  labels:
+    app: {{_input_:name}}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{_input_:name}}
+  template:
+    metadata:
+      labels:
+        app: {{_input_:name}}
+    spec:
+      containers:
+        - name: {{_input_:name}}
+          image: docker.io/centos/tools:latest
