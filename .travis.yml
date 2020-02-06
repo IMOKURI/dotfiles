@@ -53,15 +53,15 @@ script:
   - docker stop "$(cat ${CONTAINER_ID})"
   - if [ ${PROXY} == true ]; then docker stop "$(cat ${SQUID_CONTAINER_ID})"; fi
 
-after_success:
-  - |
-    if [ ${PUSH_DOCKERHUB} == true ] && [ "${TRAVIS_BRANCH}" == "master" ]; then
-      docker commit "$(cat ${CONTAINER_ID})" ${IMAGE}
-      docker tag ${IMAGE} ${DOCKERHUB_USER}/${IMAGE}
-      docker login --username ${DOCKERHUB_USER} --password ${DOCKERHUB_PASS}
-      docker push ${DOCKERHUB_USER}/${IMAGE}
-      docker logout
-    fi
+# after_success:
+#   - |
+#     if [ ${PUSH_DOCKERHUB} == true ] && [ "${TRAVIS_BRANCH}" == "master" ]; then
+#       docker commit "$(cat ${CONTAINER_ID})" ${IMAGE}
+#       docker tag ${IMAGE} ${DOCKERHUB_USER}/${IMAGE}
+#       docker login --username ${DOCKERHUB_USER} --password ${DOCKERHUB_PASS}
+#       docker push ${DOCKERHUB_USER}/${IMAGE}
+#       docker logout
+#     fi
 
 notifications:
   email: false
