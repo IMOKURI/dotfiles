@@ -211,7 +211,6 @@ pip install --user -U \
     flake8-builtins \
     flake8-import-order \
     isort \
-    jedi \
     neovim \
     neovim-remote \
     pipenv \
