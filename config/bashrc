@@ -35,6 +35,13 @@ cdr() {
     cd "$(git rev-parse --show-toplevel)" || return
 }
 
+docker-clean() {
+    docker container prune -f
+    docker volume prune -f
+    docker image prune -f
+    # docker system prune --volumes -f
+}
+
 #alias g='git'
 #complete -o default -o nospace -F _git g
 
