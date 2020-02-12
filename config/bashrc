@@ -134,7 +134,7 @@ CLEAR="\[\033[0m\]"
 PROMPT_DIRTRIM=3
 
 # Set prompt
-PS1="${MAGENTA}\u${BLUE}@\h ${GREEN}\w"
+PS1="${MAGENTA}\u${BLUE}@\h ${CYAN}\w"
 PS1+=" \${GITSTATUS_PROMPT}\n"
 PS1+="\$([ \$? = "0" ] && echo -n '${GREEN}' || echo -n '${RED}')\\$"
 PS1+="$([ -n "${NVIM_LISTEN_ADDRESS}" ] && echo -n '>' || echo -n '')"
