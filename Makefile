@@ -10,9 +10,10 @@ DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
-VIMPATH    := $(HOME)/src/vim
-NEOVIMPATH := $(HOME)/src/neovim
-GITPATH    := $(HOME)/src/git
+VIMPATH       := $(HOME)/src/vim
+NEOVIMPATH    := $(HOME)/src/neovim
+GITPATH       := $(HOME)/src/git
+GITSTATUSPATH := $(HOME)/src/gitstatus
 
 # Proxy settings
 PROXY_TEMPLATE     := config/profile.d/proxy.sh.template
@@ -55,33 +56,39 @@ deploy: ## Create symlink
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
-git: update-git build-git ## Get latest git
+git: update-git build-git update-gitstatus ## Get latest git
 
 update-git: ## Update git repository
 	if [[ -d "$(GITPATH)" ]]; then \
-		cd $(HOME)/src/git && git checkout master && git fetch && git pull; \
+		cd $(GITPATH) && git pull --depth 1; \
 	else \
-		git clone https://github.com/git/git.git "$(GITPATH)"; \
+		git clone --depth 1 https://github.com/git/git.git "$(GITPATH)"; \
 	fi
 
 build-git: ## Build git
-	cd $(HOME)/src/git && \
+	cd $(GITPATH) && \
 	make clean && \
-	git checkout $$(git describe --abbrev=0) && \
 	make all && \
 	make install
+
+update-gitstatus: ## Update gitstatus repository
+	if [[ -d "$(GITSTATUSPATH)" ]]; then \
+		cd $(GITSTATUSPATH) && git pull --depth 1; \
+	else \
+		git clone --depth 1 https://github.com/romkatv/gitstatus.git "$(GITSTATUSPATH)"; \
+	fi
 
 neovim: update-neovim build-neovim ## Get edge neovim
 
 update-neovim: ## Update neovim repository
 	if [[ -d "$(NEOVIMPATH)" ]]; then \
-		cd $(HOME)/src/neovim && git pull; \
+		cd $(NEOVIMPATH) && git pull --depth 1; \
 	else \
-		git clone https://github.com/neovim/neovim.git "$(NEOVIMPATH)"; \
+		git clone --depth 1 https://github.com/neovim/neovim.git "$(NEOVIMPATH)"; \
 	fi
 
 build-neovim: ## Build neovim
-	cd $(HOME)/src/neovim && \
+	cd $(NEOVIMPATH) && \
 	rm -fr .deps build/ && \
 	make distclean && \
 	make clean && \
@@ -92,13 +99,13 @@ vim: update-vim build-vim ## Get edge vim
 
 update-vim: ## Update vim repository
 	if [[ -d "$(VIMPATH)" ]]; then \
-		cd $(HOME)/src/vim && git pull; \
+		cd $(VIMPATH) && git pull --depth 1; \
 	else \
-		git clone https://github.com/vim/vim.git "$(VIMPATH)"; \
+		git clone --depth 1 https://github.com/vim/vim.git "$(VIMPATH)"; \
 	fi
 
 build-vim: ## Build vim
-	cd $(HOME)/src/vim/src && \
+	cd $(VIMPATH) && \
 	(make clean || :) && \
 	./configure --with-features=huge --enable-python3interp --enable-luainterp --enable-fail-if-missing --with-luajit --prefix=$(HOME)/vim && \
 	make && \
