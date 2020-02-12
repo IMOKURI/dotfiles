@@ -28,7 +28,6 @@ DOTPATH="$HOME/.dotfiles"
 VIMPATH="$HOME/src/vim"
 NEOVIMPATH="$HOME/src/neovim"
 GITPATH="$HOME/src/git"
-PROVIDER_NVIM="$HOME/.local/share/provider.nvim"
 
 ##### Functions ###############################################################
 
@@ -211,7 +210,6 @@ pip install --user -U \
     flake8-builtins \
     flake8-import-order \
     isort \
-    neovim \
     neovim-remote \
     pipenv \
     pipenv-pipes \
@@ -221,12 +219,6 @@ pip install --user -U \
     vim-vint \
     yamllint \
     'python-language-server[all]'
-
-mkdir -p "${PROVIDER_NVIM}/python"
-pushd "$(pwd)"
-cd "${PROVIDER_NVIM}/python"
-PIPENV_VENV_IN_PROJECT=true pipenv install pynvim
-popd
 
 ##### Install nodejs packages #################################################
 
@@ -238,7 +230,6 @@ npm install --prefix "${HOME}" \
     doctoc \
     eslint \
     markdownlint-cli \
-    neovim \
     prettier \
     textlint \
     textlint-rule-preset-ja-spacing \
@@ -247,9 +238,6 @@ npm install --prefix "${HOME}" \
     vim-language-server \
     vscode-json-languageserver-bin \
     yaml-language-server
-
-mkdir -p "${PROVIDER_NVIM}/nodejs"
-npm install --prefix "${PROVIDER_NVIM}/nodejs" neovim
 
 ##### Install go packages #####################################################
 
