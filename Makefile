@@ -21,6 +21,14 @@ PROXY_SETTING      := config/profile.d/proxy.sh
 GIT_PROXY_TEMPLATE := config/git/config.local.template
 GIT_PROXY_SETTING  := config/git/config.local
 
+define repo
+	if [[ -d "$1" ]]; then \
+		cd $1 && git pull --depth 1; \
+	else \
+		git clone --depth 1 https://github.com/$2 "$1"; \
+	fi
+endef
+
 list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
@@ -41,9 +49,9 @@ ifdef http_proxy
 	source $(PROXY_SETTING)
 endif
 
-update: update-repo update-plugin ## Update dotfiles
+update: update-dot update-plugin ## Update dotfiles
 
-update-repo: ## update dotfiles repository
+update-dot: ## update dotfiles repository
 	git fetch
 	git pull
 	git submodule update --init --recursive
@@ -59,11 +67,7 @@ deploy: ## Create symlink
 git: update-git build-git update-gitstatus ## Get latest git
 
 update-git: ## Update git repository
-	if [[ -d "$(GITPATH)" ]]; then \
-		cd $(GITPATH) && git pull --depth 1; \
-	else \
-		git clone --depth 1 https://github.com/git/git.git "$(GITPATH)"; \
-	fi
+	$(call repo,$(GITPATH),git/git)
 
 build-git: ## Build git
 	cd $(GITPATH) && \
@@ -72,20 +76,12 @@ build-git: ## Build git
 	make install
 
 update-gitstatus: ## Update gitstatus repository
-	if [[ -d "$(GITSTATUSPATH)" ]]; then \
-		cd $(GITSTATUSPATH) && git pull --depth 1; \
-	else \
-		git clone --depth 1 https://github.com/romkatv/gitstatus.git "$(GITSTATUSPATH)"; \
-	fi
+	$(call repo,$(GITSTATUSPATH),romkatv/gitstatus)
 
 neovim: update-neovim build-neovim ## Get edge neovim
 
 update-neovim: ## Update neovim repository
-	if [[ -d "$(NEOVIMPATH)" ]]; then \
-		cd $(NEOVIMPATH) && git pull --depth 1; \
-	else \
-		git clone --depth 1 https://github.com/neovim/neovim.git "$(NEOVIMPATH)"; \
-	fi
+	$(call repo,$(NEOVIMPATH),neovim/neovim)
 
 build-neovim: ## Build neovim
 	cd $(NEOVIMPATH) && \
@@ -98,11 +94,7 @@ build-neovim: ## Build neovim
 vim: update-vim build-vim ## Get edge vim
 
 update-vim: ## Update vim repository
-	if [[ -d "$(VIMPATH)" ]]; then \
-		cd $(VIMPATH) && git pull --depth 1; \
-	else \
-		git clone --depth 1 https://github.com/vim/vim.git "$(VIMPATH)"; \
-	fi
+	$(call repo,$(VIMPATH),vim/vim)
 
 build-vim: ## Build vim
 	cd $(VIMPATH) && \
@@ -112,4 +104,6 @@ build-vim: ## Build vim
 	make install
 
 help: ## Show this help
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[38;2;98;209;150m%-15s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / \
+		{printf "\033[38;2;98;209;150m%-20s\033[0m %s\n", $$1, $$2}' \
+		$(MAKEFILE_LIST)

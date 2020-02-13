@@ -137,8 +137,6 @@ sudo -E yum install -y \
     golang \
     libcurl-devel \
     libffi-devel \
-    libjpeg-turbo-devel \
-    libpng-devel \
     libtool \
     lua \
     lua-devel \
@@ -257,21 +255,6 @@ if [[ ! -f "${HOME}/bin/rg" ]]; then
     tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
     ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
-else
-    _logger "${INFO}" "Already installed."
-fi
-
-##### Install sixel ###########################################################
-
-_banner "Install Sixel..."
-if [[ ! -d "${HOME}/src/libsixel" ]]; then
-    git clone https://github.com/saitoha/libsixel.git "${HOME}/src/libsixel"
-    pushd "$(pwd)"
-    cd "${HOME}/src/libsixel"
-    ./configure
-    make
-    sudo make install
-    popd
 else
     _logger "${INFO}" "Already installed."
 fi
