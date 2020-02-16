@@ -171,7 +171,7 @@ else
     _logger "${INFO}" "Update dotfiles repository"
     pushd "$(pwd)"
     cd "${DOTPATH}"
-    make update-repo
+    make update
     popd
 fi
 
