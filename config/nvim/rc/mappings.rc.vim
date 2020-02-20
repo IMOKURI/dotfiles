@@ -62,6 +62,7 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 " 先頭に移動する
 " (末尾は L をFoldとの複合でマッピング)
 noremap H ^
+xnoremap L $
 
 " コマンドラインモード内を移動する
 cnoremap <C-a> <Home>

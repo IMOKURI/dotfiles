@@ -23,9 +23,9 @@ GIT_PROXY_SETTING  := config/git/config.local
 
 define repo
 	if [[ -d "$1" ]]; then \
-		cd $1 && git pull --depth 1; \
+		cd $1 && git pull; \
 	else \
-		git clone --depth 1 https://github.com/$2 "$1"; \
+		git clone https://github.com/$2 "$1"; \
 	fi
 endef
 
