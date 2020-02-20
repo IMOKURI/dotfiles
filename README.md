@@ -51,7 +51,7 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 cd ~/.dotfiles
 
 # all packages
-BUILD=all ./install
+./install
 
 # dotfiles
 make update
@@ -70,7 +70,6 @@ or set cron as follows.
 
 ```bash
 SHELL=/bin/bash
-BUILD=all
 
 1 4 * * * ~/.dotfiles/install &> ~/.dotfiles_install.log
 ```

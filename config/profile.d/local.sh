@@ -10,7 +10,7 @@ fi
 
 export LANG="en_US.UTF-8"
 
-export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
 
 export GOPATH=$HOME/go
 

@@ -100,16 +100,6 @@ fi
 
 _banner "Setup repositories..."
 
-if [[ ! -f /etc/yum.repos.d/github_git-lfs.repo ]]; then
-    _logger "${INFO}" "Install Git LFS repository"
-    curl -fsSL https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo -E bash
-fi
-
-if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
-    _logger "${INFO}" "Install Nodejs repository"
-    curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
-fi
-
 if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
     _logger "${INFO}" "Install Yarn repository"
     curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | sudo -E tee /etc/yum.repos.d/yarn.repo
@@ -149,6 +139,7 @@ sudo -E yum install -y \
     nodejs \
     openssl-devel \
     patch \
+    perl-Digest-SHA \
     pkgconfig \
     python \
     python-devel \
@@ -182,9 +173,6 @@ pushd "$(pwd)"
 cd "${DOTPATH}"
 make git
 popd
-
-_banner "Install Git-LFS"
-sudo -E yum install -y git-lfs
 
 ##### Install python packages #################################################
 
@@ -221,8 +209,7 @@ pip install --user -U \
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
-sudo -E npm install -g npm
-npm install --prefix "${HOME}" \
+yarn global add --prefix "${HOME}" \
     bash-language-server \
     dockerfile-language-server-nodejs \
     doctoc \
