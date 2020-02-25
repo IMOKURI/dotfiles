@@ -7,4 +7,7 @@ augroup filetypedetect
     autocmd BufNewFile,BufRead Dockerfile.*
         \ setfiletype dockerfile
 
+    autocmd BufNewFile,BufRead *.csv
+        \ setfiletype csv
+
 augroup END
