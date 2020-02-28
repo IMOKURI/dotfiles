@@ -13,26 +13,29 @@ env:
   global:
     - LANG: en_US.utf8
     - LC_ALL: en_US.utf8
-    - INIT: /usr/lib/systemd/systemd
     - RUN_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     - DOCKERHUB_USER: imokuri123
     - IMAGE: imokuri-dev
   matrix:
     - DISTRIBUTION: centos
       VERSION: 7
+      INIT: /usr/lib/systemd/systemd
       PROXY: true
       PUSH_DOCKERHUB: false
     - DISTRIBUTION: centos
       VERSION: 7
+      INIT: /usr/lib/systemd/systemd
       PROXY: false
       # PUSH_DOCKERHUB: true
       PUSH_DOCKERHUB: false
     - DISTRIBUTION: jrei/systemd-ubuntu
       VERSION: 18.04
+      INIT: /lib/systemd/systemd
       PROXY: true
       PUSH_DOCKERHUB: false
     - DISTRIBUTION: jrei/systemd-ubuntu
       VERSION: 18.04
+      INIT: /lib/systemd/systemd
       PROXY: false
       # PUSH_DOCKERHUB: true
       PUSH_DOCKERHUB: false
