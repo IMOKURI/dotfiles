@@ -63,10 +63,10 @@ before_install:
     else
       if [ ${PROXY} == true ]; then
         docker exec --tty "$(cat ${CONTAINER_ID})" env http_proxy=http://${squid_container_ip}:3128 apt update
-        docker exec --tty "$(cat ${CONTAINER_ID})" env http_proxy=http://${squid_container_ip}:3128 apt install -y sudo software-properties-common
+        docker exec --tty "$(cat ${CONTAINER_ID})" env http_proxy=http://${squid_container_ip}:3128 apt install -y curl sudo software-properties-common
       else
         docker exec --tty "$(cat ${CONTAINER_ID})" apt update
-        docker exec --tty "$(cat ${CONTAINER_ID})" apt install -y sudo software-properties-common
+        docker exec --tty "$(cat ${CONTAINER_ID})" apt install -y curl sudo software-properties-common
       fi
     fi
 
