@@ -13,17 +13,29 @@ env:
   global:
     - LANG: en_US.utf8
     - LC_ALL: en_US.utf8
-    - DISTRIBUTION: centos
-    - VERSION: 7
     - INIT: /usr/lib/systemd/systemd
     - RUN_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     - DOCKERHUB_USER: imokuri123
+    - IMAGE: imokuri-dev
   matrix:
-    - PROXY: true
+    - DISTRIBUTION: centos
+      VERSION: 7
+      PROXY: true
       PUSH_DOCKERHUB: false
-    - PROXY: false
-      PUSH_DOCKERHUB: true
-      IMAGE: imokuri-dev
+    - DISTRIBUTION: centos
+      VERSION: 7
+      PROXY: false
+      # PUSH_DOCKERHUB: true
+      PUSH_DOCKERHUB: false
+    - DISTRIBUTION: jrei/systemd-ubuntu
+      VERSION: 18.04
+      PROXY: true
+      PUSH_DOCKERHUB: false
+    - DISTRIBUTION: jrei/systemd-ubuntu
+      VERSION: 18.04
+      PROXY: false
+      # PUSH_DOCKERHUB: true
+      PUSH_DOCKERHUB: false
 
 before_install:
   - docker pull ${DISTRIBUTION}:${VERSION}
@@ -56,10 +68,10 @@ script:
 # after_success:
 #   - |
 #     if [ ${PUSH_DOCKERHUB} == true ] && [ "${TRAVIS_BRANCH}" == "master" ]; then
-#       docker commit "$(cat ${CONTAINER_ID})" ${IMAGE}
+#       docker commit "$(cat ${CONTAINER_ID})" ${IMAGE}:${DISTRIBUTION}-${VERSION}
 #       docker tag ${IMAGE} ${DOCKERHUB_USER}/${IMAGE}
 #       docker login --username ${DOCKERHUB_USER} --password ${DOCKERHUB_PASS}
-#       docker push ${DOCKERHUB_USER}/${IMAGE}
+#       docker push ${DOCKERHUB_USER}/${IMAGE}:${DISTRIBUTION}-${VERSION}
 #       docker logout
 #     fi
 

@@ -54,21 +54,21 @@ _banner "Detect OS Distribution"
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
 
-    is_redhat=false
-    is_ubuntu=false
+    is_el=false
+    is_deb=false
 
     case "${NAME}" in
         Red*)
             # Red Hat Enterprise Linux Server
-            is_redhat=true
+            is_el=true
             ;;
         CentOS*)
             # CentOS Linux
-            is_redhat=true
+            is_el=true
             ;;
         Ubuntu*)
             # Ubuntu
-            is_ubuntu=true
+            is_deb=true
             ;;
         *)
             _logger "${ERROR}" "Unknown OS is detected."
@@ -83,78 +83,179 @@ _logger "${INFO}" "${PRETTY_NAME} is detected."
 
 ##### Set Proxy ###############################################################
 
-_banner "Set Proxy if Available..."
+function set_yum_proxy() {
+    _banner "Set Yum Proxy if Available..."
 
-if [[ "${http_proxy}" ]]; then
-    if ! grep -q proxy /etc/yum.conf; then
-        echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
-        _logger "${INFO}" "Set proxy."
-    else
-        _logger "${INFO}" "Already set proxy."
+    if "${is_deb}"; then
+        _logger "${INFO}" "Skip due to Ubuntu."
+        return
     fi
-else
-    _logger "${INFO}" "No proxy configured."
-fi
+
+    if [[ ! "${http_proxy}" ]]; then
+        _logger "${INFO}" "No proxy configured."
+        return
+    fi
+
+    if grep -q proxy /etc/yum.conf; then
+        _logger "${INFO}" "Already set proxy."
+        return
+    fi
+
+    echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
+    _logger "${INFO}" "Configure yum proxy."
+}
+
+set_yum_proxy
 
 ##### Setup repositories ######################################################
 
-_banner "Setup repositories..."
+function setup_repository_el() {
+    _banner "Setup repositories for RHEL/CentOS..."
 
-if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
-    _logger "${INFO}" "Install Nodejs repository"
-    curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
-fi
+    if "${is_deb}"; then
+        _logger "${INFO}" "Skip due to Debian/Ubuntu."
+        return
+    fi
 
-if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
-    _logger "${INFO}" "Install Yarn repository"
-    curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | sudo -E tee /etc/yum.repos.d/yarn.repo
-fi
+    if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
+        _logger "${INFO}" "Install Nodejs repository"
+        curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+    fi
+
+    if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
+        _logger "${INFO}" "Install Yarn repository"
+        curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | sudo -E tee /etc/yum.repos.d/yarn.repo
+    fi
+
+    if [[ ! -f /etc/yum.repos.d/epel.repo ]]; then
+        _logger "${INFO}" "Install EPEL repository"
+        sudo -E yum install -y \
+            https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    fi
+}
+
+function setup_repository_deb() {
+    _banner "Setup repositories for Debian/Ubuntu..."
+
+    if "${is_el}"; then
+        _logger "${INFO}" "Skip due to RHEL/CentOS."
+        return
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/neovim-ppa-ubuntu-unstable-bionic.list ]]; then
+        _logger "${INFO}" "Install Neovim repository"
+        sudo -E add-apt-repository -y ppa:neovim-ppa/unstable
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/jonathonf-ubuntu-vim-bionic.list ]]; then
+        _logger "${INFO}" "Install Vim repository"
+        sudo -E add-apt-repository -y ppa:jonathonf/vim
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
+        _logger "${INFO}" "Install Git-LFS repository"
+        curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/ansible-ubuntu-ansible-bionic.list ]]; then
+        _logger "${INFO}" "Install Ansible repository"
+        sudo -E add-apt-repository -y ppa:ansible/ansible
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/longsleep-ubuntu-golang-backports-bionic.list ]]; then
+        _logger "${INFO}" "Install Golang repository"
+        sudo -E add-apt-repository -y ppa:longsleep/golang-backports
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
+        _logger "${INFO}" "Install Node.js repository"
+        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
+        _logger "${INFO}" "Install Yarn repository"
+        curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    fi
+}
+
+setup_repository_el
+setup_repository_deb
 
 ##### Install packages ########################################################
 
-_banner "Install Packages..."
+function install_packages_el() {
+    _banner "Install Packages for RHEL/CentOS..."
 
-if [[ ! -f /etc/yum.repos.d/epel.repo ]]; then
-    _logger "${INFO}" "Install EPEL repository"
+    if "${is_deb}"; then
+        _logger "${INFO}" "Skip due to Ubuntu."
+        return
+    fi
+
     sudo -E yum install -y \
-        https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-fi
+        autoconf \
+        automake \
+        ctags \
+        expat-devel \
+        gcc \
+        gcc-c++ \
+        gettext \
+        git \
+        golang \
+        libcurl-devel \
+        libffi-devel \
+        libtool \
+        lua \
+        lua-devel \
+        lua-term \
+        luajit \
+        luajit-devel \
+        make \
+        ncurses-devel \
+        ninja-build \
+        nodejs \
+        openssl-devel \
+        patch \
+        perl-Digest-SHA \
+        pkgconfig \
+        python \
+        python-devel \
+        python36 \
+        python36-devel \
+        unzip \
+        wget \
+        which \
+        words \
+        yarn
+}
 
-sudo -E yum install -y \
-    autoconf \
-    automake \
-    ctags \
-    expat-devel \
-    gcc \
-    gcc-c++ \
-    gettext \
-    git \
-    golang \
-    libcurl-devel \
-    libffi-devel \
-    libtool \
-    lua \
-    lua-devel \
-    lua-term \
-    luajit \
-    luajit-devel \
-    make \
-    ncurses-devel \
-    ninja-build \
-    nodejs \
-    openssl-devel \
-    patch \
-    perl-Digest-SHA \
-    pkgconfig \
-    python \
-    python-devel \
-    python36 \
-    python36-devel \
-    unzip \
-    wget \
-    which \
-    words \
-    yarn
+function install_packages_deb() {
+    _banner "Install Packages for Debian/Ubuntu..."
+
+    if "${is_el}"; then
+        _logger "${INFO}" "Skip due to Redhat/CentOS."
+        return
+    fi
+
+    sudo -E apt update
+    sudo -E apt upgrade -y
+    sudo -E apt install -y \
+        ansible \
+        gcc \
+        git \
+        git-lfs \
+        golang-go \
+        make \
+        neovim \
+        nodejs \
+        python3-dev \
+        python3-distutils \
+        vim \
+        yarn
+}
+
+install_packages_el
+install_packages_deb
 
 ##### Clone Dotfiles ##########################################################
 
@@ -176,7 +277,12 @@ fi
 _banner "Install Git..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
-make git
+if "${is_el}"; then
+    make git
+else
+    make update-git
+    make update-gitstatus
+fi
 popd
 
 ##### Install python packages #################################################
@@ -206,7 +312,6 @@ pip install --user -U \
     pipenv-pipes \
     pyls-black \
     pyls-isort \
-    pysnooper \
     vim-vint \
     yamllint \
     'python-language-server[all]'
@@ -233,7 +338,6 @@ yarn global add --prefix "${HOME}" \
 
 _banner "Install Go Packages..."
 go get -u \
-    github.com/itchyny/mmv/cmd/mmv \
     github.com/mrtazz/checkmake \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
@@ -259,6 +363,7 @@ if [[ ! -d "${HOME}/src/bashmarks" ]]; then
     pushd "$(pwd)"
     cd "${HOME}/src/bashmarks"
     make install
+    sed -i 's/^alias l=/#&/' ${HOME}/.bashrc
     popd
 else
     _logger "${INFO}" "Already installed."
@@ -268,22 +373,27 @@ fi
 
 _banner "Build Neovim..."
 
-pushd "$(pwd)"
-cd "${DOTPATH}"
-for i in {1..3}; do
-    make neovim && break || sleep 10
-done
-popd
+if "${is_el}"; then
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    for i in {1..3}; do
+        make neovim && break || sleep 10
+    done
+    popd
+fi
 
 ##### Build vim ###############################################################
 
 _banner "Build Vim..."
-pushd "$(pwd)"
-cd "${DOTPATH}"
-for i in {1..3}; do
-    make vim && break || sleep 10
-done
-popd
+
+if "${is_el}"; then
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    for i in {1..3}; do
+        make vim && break || sleep 10
+    done
+    popd
+fi
 
 ##### Install dotfiles ########################################################
 
@@ -297,8 +407,15 @@ make install
 if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
     echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
 fi
-if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
-    echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
+
+if "${is_el}"; then
+    if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
+        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
+    fi
+else
+    if ! grep -q '.config/profile.d/local.sh' ${HOME}/.profile; then
+        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.profile"
+    fi
 fi
 
 popd
