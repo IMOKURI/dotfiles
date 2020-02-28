@@ -54,9 +54,6 @@ before_install:
       squid_container_ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(cat "${SQUID_CONTAINER_ID}"))
       if [ ${DISTRIBUTION} == "centos" ]; then
         docker exec --tty "$(cat ${CONTAINER_ID})" sed -i "\$aproxy=http://${squid_container_ip}:3128" /etc/yum.conf
-      else
-        docker exec --tty "$(cat ${CONTAINER_ID})" echo "Acquire::http::proxy \"http://${squid_container_ip}:3128/\";" > /etc/apt/apt.conf.d/00proxy
-        docker exec --tty "$(cat ${CONTAINER_ID})" echo "Acquire::https::proxy \"http://${squid_container_ip}:3128/\";" >> /etc/apt/apt.conf.d/00proxy
       fi
     fi
 
@@ -64,8 +61,13 @@ before_install:
     if [ ${DISTRIBUTION} == "centos" ]; then
       docker exec --tty "$(cat ${CONTAINER_ID})" yum install -y sudo
     else
-      docker exec --tty "$(cat ${CONTAINER_ID})" apt update
-      docker exec --tty "$(cat ${CONTAINER_ID})" apt install -y sudo
+      if [ ${PROXY} == true ]; then
+        docker exec --tty "$(cat ${CONTAINER_ID})" env http_proxy=http://${squid_container_ip}:3128 apt update
+        docker exec --tty "$(cat ${CONTAINER_ID})" env http_proxy=http://${squid_container_ip}:3128 apt install -y sudo software-properties-common
+      else
+        docker exec --tty "$(cat ${CONTAINER_ID})" apt update
+        docker exec --tty "$(cat ${CONTAINER_ID})" apt install -y sudo software-properties-common
+      fi
     fi
 
 script:
