@@ -109,6 +109,12 @@ if [ -f ~/.local/bin/bashmarks.sh ]; then
     . ~/.local/bin/bashmarks.sh
 fi
 
+##### Load pyenv ##############################################################
+
+export PATH=$HOME/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 ##### Set prompt ##############################################################
 
 source "$HOME/src/gitstatus/gitstatus.prompt.sh"

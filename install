@@ -8,7 +8,7 @@ set -e
 
 ##### Variables ###############################################################
 
-export PATH=$HOME/neovim/bin:$HOME/node_modules/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # Defind Colors
 RED="\033[38;2;255;84;88m"
@@ -195,6 +195,8 @@ function install_packages_el() {
     sudo -E yum install -y \
         autoconf \
         automake \
+        bzip2 \
+        bzip2-devel \
         ctags \
         expat-devel \
         gcc \
@@ -222,11 +224,16 @@ function install_packages_el() {
         python-devel \
         python36 \
         python36-devel \
+        readline-devel \
+        sqlite \
+        sqlite-devel \
+        tk-devel \
         unzip \
         wget \
         which \
         words \
-        yarn
+        yarn \
+        zlib-devel
 }
 
 function install_packages_deb() {
@@ -252,6 +259,26 @@ function install_packages_deb() {
         python3-distutils \
         vim \
         yarn
+
+    # for pyenv
+    sudo -E apt install -y --no-install-recommends \
+        make \
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        wget \
+        curl \
+        llvm \
+        libncurses5-dev \
+        xz-utils \
+        tk-dev \
+        libxml2-dev \
+        libxmlsec1-dev \
+        libffi-dev \
+        liblzma-dev
 }
 
 install_packages_el
@@ -293,6 +320,23 @@ ls /usr/local/bin/pip || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sud
 
 sudo -E /usr/local/bin/pip install -U pip
 
+_banner "Install Poetry..."
+
+if [[ ! -f "${HOME}/.poetry/bin/poetry" ]]; then
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+    poetry completions bash >> ${HOME}/.bash_completion
+else
+    poetry self update
+fi
+
+_banner "Install Pyenv..."
+
+if [[ ! -f "${HOME}/.pyenv/bin/pyenv" ]]; then
+    curl https://pyenv.run | bash
+else
+    pyenv update
+fi
+
 _banner "Install Python Packages..."
 
 pip install --user -U \
@@ -308,8 +352,6 @@ pip install --user -U \
     flake8-import-order \
     isort \
     neovim-remote \
-    pipenv \
-    pipenv-pipes \
     pyls-black \
     pyls-isort \
     vim-vint \

@@ -10,7 +10,13 @@ fi
 
 export LANG="en_US.UTF-8"
 
-export PATH=$HOME/neovim/bin:$HOME/vim/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+# Go
+export PATH=$HOME/go/bin:$PATH
+# Python
+export PATH=$HOME/.poetry/bin:$PATH
+# Neovim/Vim
+export PATH=$HOME/neovim/bin:$HOME/vim/bin:$PATH
 
 export GOPATH=$HOME/go
 
@@ -21,5 +27,3 @@ export EDITOR="vi"
 if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts
 fi
-
-export PIPENV_VENV_IN_PROJECT=true
