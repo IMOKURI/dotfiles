@@ -87,7 +87,7 @@ function set_yum_proxy() {
     _banner "Set Yum Proxy if Available..."
 
     if "${is_deb}"; then
-        _logger "${INFO}" "Skip due to Ubuntu."
+        _logger "${INFO}" "Skip due to Debian/Ubuntu."
         return
     fi
 
@@ -188,7 +188,7 @@ function install_packages_el() {
     _banner "Install Packages for RHEL/CentOS..."
 
     if "${is_deb}"; then
-        _logger "${INFO}" "Skip due to Ubuntu."
+        _logger "${INFO}" "Skip due to Debian/Ubuntu."
         return
     fi
 
