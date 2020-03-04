@@ -1,13 +1,10 @@
 $if Bash
   set completion-ignore-case on
+
   set visible-stats on
+
   set bell-style none
-
-  set bind-tty-special-chars off
-  "\C-u": unix-word-rubout
-
-  "\C-t": backward-word
-  "\C-y": forward-word
+  set bell-style visible
 
   "\C-j": menu-complete
   "\C-k": menu-complete-backward
