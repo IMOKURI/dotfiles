@@ -307,7 +307,6 @@ cd "${DOTPATH}"
 if "${is_el}"; then
     make git
 else
-    make update-git
     make update-gitstatus
 fi
 popd

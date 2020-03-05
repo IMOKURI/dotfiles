@@ -46,7 +46,11 @@ docker-clean() {
 #alias g='git'
 #complete -o default -o nospace -F _git g
 
-source "$HOME/src/git/contrib/completion/git-completion.bash"
+if [[ -f /etc/redhat-release ]]; then
+    source "$HOME/src/git/contrib/completion/git-completion.bash"
+else
+    source "/usr/share/bash-completion/completions/git"
+fi
 
 alias ga='git add'
 alias gaa='git add -A'
