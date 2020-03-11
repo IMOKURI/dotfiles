@@ -20,6 +20,8 @@ export PATH=$HOME/neovim/bin:$HOME/vim/bin:$PATH
 
 export GOPATH=$HOME/go
 
+export PYLINTRC=$HOME/.config/pylintrc
+
 export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
 export EDITOR="vi"

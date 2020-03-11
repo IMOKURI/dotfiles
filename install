@@ -351,6 +351,8 @@ pip install --user -U \
     flake8-import-order \
     isort \
     neovim-remote \
+    pylint \
+    pylint-venv \
     pyls-black \
     pyls-isort \
     vim-vint \
