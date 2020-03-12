@@ -6,3 +6,5 @@ let g:ale_linters = {
 let g:ale_fixers = {
     \ 'vue': ['eslint']
     \ }
+
+call pack_opt#ale()
