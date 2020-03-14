@@ -130,7 +130,10 @@ nnoremap <silent> z, zMzv
 nmap # *:%s/<C-r>///g<Left><Left>
 
 " バッファ内で置換する
-nnoremap S :%s//g<LEFT><LEFT>
+nnoremap S :%s//g<Left><Left>
+
+" 検索のハイライト表示を消す
+nnoremap <Esc><Esc> :nohlsearch<CR>
 
 " }}}
 
