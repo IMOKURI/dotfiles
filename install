@@ -204,6 +204,7 @@ function install_packages_el() {
         gettext \
         git \
         golang \
+        jq \
         libcurl-devel \
         libffi-devel \
         libtool \
@@ -252,6 +253,7 @@ function install_packages_deb() {
         git \
         git-lfs \
         golang-go \
+        jq \
         make \
         neovim \
         nodejs \
@@ -363,7 +365,6 @@ yarn global add --prefix "${HOME}" \
     textlint-rule-preset-ja-technical-writing \
     textlint-rule-spellcheck-tech-word \
     vim-language-server \
-    vscode-json-languageserver-bin \
     yaml-language-server
 
 ##### Install go packages #####################################################

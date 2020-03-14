@@ -1,6 +1,4 @@
 
-" https://github.com/palantir/python-language-server/blob/develop/vscode-client/package.json
-
 let g:lsp_settings = {
     \ 'pyls': {
     \   'workspace_config': {
@@ -37,22 +35,7 @@ let g:lsp_settings = {
     \   }
     \ },
     \ 'yaml-language-server': {
-    \   'whitelist': ['yaml', 'yaml.ansible'],
-    \   'workspace_config': {
-    \       'yaml': {
-    \           'format': {
-    \               'enable': 1
-    \           },
-    \           'validate': 1,
-    \           'hover': 1,
-    \           'completion': 1,
-    \           'customTags': [],
-    \           'schemas': {},
-    \           'schemaStore': {
-    \               'enable': 1
-    \           }
-    \       }
-    \   }
+    \   'whitelist': ['yaml', 'yaml.ansible']
     \ }
     \ }
 
