@@ -85,14 +85,14 @@ inoremap <C-f> <right>
 nnoremap <Leader><Tab> <C-^>
 
 " ウィンドウを移動する
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <silent> <C-j> :call vimrc#move_win('j')<CR>
+nnoremap <silent> <C-k> :call vimrc#move_win('k')<CR>
+nnoremap <silent> <C-l> :call vimrc#move_win('l')<CR>
 if has('nvim')
     " TERM環境変数が悪そう
-    nnoremap <BS> <C-w>h
+    nnoremap <silent> <BS> :call vimrc#move_win('h')<CR>
 else
-    nnoremap <C-h> <C-w>h
+    nnoremap <silent> <C-h> :call vimrc#move_win('h')<CR>
 endif
 
 " ウィンドウを分割する
