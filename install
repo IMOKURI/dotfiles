@@ -342,7 +342,6 @@ _banner "Install Python Packages..."
 
 pip install --user -U \
     ansible \
-    ansible-lint \
     cmake \
     neovim-remote \
     pylint-venv \
@@ -359,11 +358,6 @@ yarn global add --prefix "${HOME}" \
     dockerfile-language-server-nodejs \
     doctoc \
     eslint \
-    markdownlint-cli \
-    textlint \
-    textlint-rule-preset-ja-spacing \
-    textlint-rule-preset-ja-technical-writing \
-    textlint-rule-spellcheck-tech-word \
     vim-language-server \
     yaml-language-server
 
