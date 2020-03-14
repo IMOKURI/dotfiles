@@ -347,7 +347,6 @@ pip install --user -U \
     pyls-black \
     pyls-isort \
     pyls-mypy \
-    vim-vint \
     yamllint \
     'python-language-server[all]'
 
