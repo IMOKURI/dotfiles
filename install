@@ -347,7 +347,6 @@ pip install --user -U \
     pyls-black \
     pyls-isort \
     pyls-mypy \
-    yamllint \
     'python-language-server[all]'
 
 ##### Install nodejs packages #################################################
@@ -359,7 +358,6 @@ yarn global add --prefix "${HOME}" \
     doctoc \
     eslint \
     markdownlint-cli \
-    prettier \
     textlint \
     textlint-rule-preset-ja-spacing \
     textlint-rule-preset-ja-technical-writing \
