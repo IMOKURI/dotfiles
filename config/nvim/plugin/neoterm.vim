@@ -6,5 +6,5 @@ let g:neoterm_repl_python = 'python'
 nnoremap <silent> <C-t> :Ttoggle<CR>
 tnoremap <silent> <C-t> <C-\><C-n>:Ttoggle<CR>
 
-nnoremap <silent> <C-y> :Topen<CR><C-w>ji
-tnoremap <silent> <C-y> <C-\><C-n><C-w>k
+nnoremap <silent> <C-u> :Topen<CR><C-w>ji
+tnoremap <silent> <C-u> <C-\><C-n><C-w>k

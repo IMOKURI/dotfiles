@@ -1,6 +1,4 @@
 
-imap <expr> <C-k> pumvisible() ? asyncomplete#close_popup() : "\<C-k>"
-
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'whitelist': ['*'],

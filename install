@@ -341,20 +341,12 @@ _banner "Install Python Packages..."
 pip install --user -U \
     ansible \
     ansible-lint \
-    autopep8 \
-    black \
     cmake \
-    flake8 \
-    flake8-black \
-    flake8-blind-except \
-    flake8-builtins \
-    flake8-import-order \
-    isort \
     neovim-remote \
-    pylint \
     pylint-venv \
     pyls-black \
     pyls-isort \
+    pyls-mypy \
     vim-vint \
     yamllint \
     'python-language-server[all]'

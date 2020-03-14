@@ -3,9 +3,7 @@ import argparse
 
 
 def main():
-    # コマンドライン引数処理
     args = get_args()
-
     print(args)
 
 

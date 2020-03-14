@@ -7,7 +7,6 @@ LOG_LEVEL = 'INFO'
 
 
 def main():
-    # logger設定
     logger = set_logger()
 
     logger.info('Started...')

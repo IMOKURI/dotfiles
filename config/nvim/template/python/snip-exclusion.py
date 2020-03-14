@@ -4,7 +4,6 @@ import sys
 
 
 def main():
-    # 二重起動チェック
     with open(__file__.replace('.py', '.lock'), 'w') as fp:
         try:
             fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
