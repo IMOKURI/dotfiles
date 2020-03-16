@@ -1,4 +1,4 @@
-.PHONY: all help test clean install proxy git neovim vim
+.PHONY: install
 .DEFAULT_GOAL := help
 
 SHELL := /bin/bash
