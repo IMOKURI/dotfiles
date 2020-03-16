@@ -26,7 +26,7 @@ define repo
 	if [[ -d "$1" ]]; then \
 		cd $1 && git pull; \
 	else \
-		git clone https://github.com/$2 "$1"; \
+		git clone --depth 1 https://github.com/$2 "$1"; \
 	fi
 endef
 
