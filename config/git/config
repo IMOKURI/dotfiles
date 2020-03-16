@@ -35,6 +35,7 @@
 
 [diff]
   tool = nvimdiff
+  noprefix = true
 
 [difftool]
   prompt = false
