@@ -1,5 +1,6 @@
 ---
-sudo: required
+os: linux
+dist: bionic
 
 language: ruby
 
@@ -16,7 +17,7 @@ env:
     - RUN_OPTS: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     - DOCKERHUB_USER: imokuri123
     - IMAGE: imokuri-dev
-  matrix:
+  jobs:
     - DISTRIBUTION: centos
       VERSION: 7
       INIT: /usr/lib/systemd/systemd
