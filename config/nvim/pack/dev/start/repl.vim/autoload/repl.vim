@@ -8,6 +8,18 @@ function! repl#get_visual() abort " {{{
 endfunction " }}}
 
 function! repl#repl_send(str) abort " {{{
+    " Create terminal if not exist.
+    if !exists('g:last_terminal_job_id')
+        execute 'Ttoggle'
+        execute 'sleep 1'
+    endif
+
+    " Open terminal if not display in current window.
+    let s:chan_info = nvim_get_chan_info(g:last_terminal_job_id)
+    if bufwinnr(s:chan_info.buffer) == -1
+        execute 'Ttoggle'
+    endif
+
     let s:str = a:str
     if s:str[-1] !=# "\n"
         let s:str .= "\n"
