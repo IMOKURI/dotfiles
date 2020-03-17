@@ -10,7 +10,8 @@ let g:lightline = {
     \   'left': [
     \     [ 'mode', 'paste' ],
     \     [ 'fugitive', 'readonly', 'filepath', 'modified' ],
-    \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ]
+    \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok',
+    \       'lsp_warnings', 'lsp_errors' ]
     \   ],
     \   'right': [
     \     [ 'percent', 'lineinfo' ],
@@ -31,11 +32,15 @@ let g:lightline = {
     \ 'component_type': {
     \   'linter_warnings': 'warning',
     \   'linter_errors': 'error',
+    \   'lsp_warnings': 'warning',
+    \   'lsp_errors': 'error',
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightLineFugitive',
     \   'readonly': 'LightLineReadOnly',
-    \   'filepath': 'LightLineFilePath'
+    \   'filepath': 'LightLineFilePath',
+    \   'lsp_warnings': 'LightLineLSPWarning',
+    \   'lsp_errors': 'LightLineLSPError',
     \ }
     \ }
 " }}}
@@ -75,3 +80,13 @@ function! LightLineFilePath() abort " {{{
     endtry
     return ''
 endfunction "}}}
+
+function! LightLineLSPWarning() abort
+    let l:count = lsp#get_buffer_diagnostics_counts().warning
+    return l:count == 0 ? '' : ' W:' . l:count
+endfunction
+
+function! LightLineLSPError() abort
+    let l:count = lsp#get_buffer_diagnostics_counts().error
+    return l:count == 0 ? '' : ' E:' . l:count
+endfunction
