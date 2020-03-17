@@ -81,12 +81,12 @@ function! LightLineFilePath() abort " {{{
     return ''
 endfunction "}}}
 
-function! LightLineLSPWarning() abort
+function! LightLineLSPWarning() abort " {{{
     let l:count = lsp#get_buffer_diagnostics_counts().warning
-    return l:count == 0 ? '' : ' W:' . l:count
-endfunction
+    return l:count == 0 ? '' : 'W:' . l:count
+endfunction " }}}
 
-function! LightLineLSPError() abort
+function! LightLineLSPError() abort " {{{
     let l:count = lsp#get_buffer_diagnostics_counts().error
-    return l:count == 0 ? '' : ' E:' . l:count
-endfunction
+    return l:count == 0 ? '' : 'E:' . l:count
+endfunction " }}}
