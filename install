@@ -354,6 +354,7 @@ pip install --user -U \
 
 _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
+    @gridsome/cli \
     bash-language-server \
     dockerfile-language-server-nodejs \
     doctoc \
