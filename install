@@ -376,6 +376,7 @@ go get -u \
 
 _banner "Install Nextword Data..."
 if [[ ! -d "${NEXTWORD_DATA}" ]]; then
+    mkdir -p "$HOME/.local/share"
     curl -fsSL -o /tmp/small.tar.gz https://github.com/high-moctane/nextword-data/archive/small.tar.gz
 
     tar xf /tmp/small.tar.gz -C "$HOME/.local/share/"
