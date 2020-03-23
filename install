@@ -343,13 +343,13 @@ fi
 _banner "Install Python Packages..."
 
 # Travis can not display unicode emoji.
-pipx install ansible 2> /dev/null
-pipx install cmake 2> /dev/null
-pipx install neovim-remote 2> /dev/null
-pipx install 'python-language-server[all]' 2> /dev/null
-pipx install --include-deps pyls-black 2> /dev/null
-pipx install --include-deps pyls-isort 2> /dev/null
-pipx install --include-deps pyls-mypy 2> /dev/null
+pipx install ansible
+pipx install cmake
+pipx install neovim-remote
+pipx install 'python-language-server[all]'
+pipx install --include-deps pyls-black
+pipx install --include-deps pyls-isort
+pipx install --include-deps pyls-mypy
 
 # pipx upgrade-all
 
