@@ -19,6 +19,17 @@ let g:lightline = {
     \     [ 'fileformat', 'fileencoding' ]
     \   ]
     \ },
+    \ 'inactive': {
+    \   'left': [
+    \     [ 'inactive' ],
+    \     [ 'fugitive', 'readonly', 'filepath', 'modified' ]
+    \   ],
+    \   'right': [
+    \     [ 'percent', 'lineinfo' ],
+    \     [ 'filetype' ],
+    \     [ 'fileformat', 'fileencoding' ]
+    \   ]
+    \ },
     \ 'tabline': {
     \   'left': [[ 'tabs' ]],
     \   'right': [[ 'none' ]]
@@ -37,6 +48,7 @@ let g:lightline = {
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightLineFugitive',
+    \   'inactive': 'LightLineInactive',
     \   'readonly': 'LightLineReadOnly',
     \   'filepath': 'LightLineFilePath',
     \   'lsp_warnings': 'LightLineLSPWarning',
@@ -54,6 +66,10 @@ function! LightLineFugitive() abort " {{{
     catch
     endtry
     return ''
+endfunction " }}}
+
+function! LightLineInactive() abort " {{{
+    return 'INACTIVE'
 endfunction " }}}
 
 function! LightLineReadOnly() abort " {{{
