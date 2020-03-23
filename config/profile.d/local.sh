@@ -22,6 +22,8 @@ export GOPATH=$HOME/go
 
 export PYLINTRC=$HOME/.config/pylintrc
 
+export NEXTWORD_DATA_PATH=$HOME/.local/share/nextword-data-small
+
 export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
 export EDITOR="vi"

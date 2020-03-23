@@ -118,3 +118,6 @@
 [submodule "config/nvim/pack/_/opt/vscode-python"]
 	path = config/nvim/pack/_/opt/vscode-python
 	url = https://github.com/microsoft/vscode-python.git
+[submodule "config/nvim/pack/_/start/asyncomplete-nextword.vim"]
+	path = config/nvim/pack/_/start/asyncomplete-nextword.vim
+	url = https://github.com/high-moctane/asyncomplete-nextword.vim

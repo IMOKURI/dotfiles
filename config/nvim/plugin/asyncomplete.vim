@@ -25,3 +25,10 @@ call asyncomplete#register_source(asyncomplete#sources#emoji#get_source_options(
     \ 'whitelist': ['markdown', 'txt', 'gitcommit'],
     \ 'completor': function('asyncomplete#sources#emoji#completor'),
     \ }))
+
+call asyncomplete#register_source(asyncomplete#sources#nextword#get_source_options({
+    \ 'name': 'nextword',
+    \ 'whitelist': ['*'],
+    \ 'args': ['-g'],
+    \ 'completor': function('asyncomplete#sources#nextword#completor')
+    \ }))
