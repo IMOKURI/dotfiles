@@ -351,7 +351,7 @@ pipx install --include-deps pyls-black 2> /dev/null
 pipx install --include-deps pyls-isort 2> /dev/null
 pipx install --include-deps pyls-mypy 2> /dev/null
 
-pipx upgrade-all &> /dev/null
+# pipx upgrade-all
 
 ##### Install nodejs packages #################################################
 
