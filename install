@@ -260,6 +260,7 @@ function install_packages_deb() {
         nodejs \
         python3-dev \
         python3-distutils \
+        python3-venv \
         vim \
         yarn
 
@@ -320,7 +321,7 @@ _banner "Install Pip..."
 
 ls /usr/local/bin/pip || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
 
-sudo -E /usr/local/bin/pip install -U pip
+sudo -E /usr/local/bin/pip install -U pip pipx
 
 _banner "Install Poetry..."
 
@@ -341,15 +342,15 @@ fi
 
 _banner "Install Python Packages..."
 
-pip install --user -U \
-    ansible \
-    cmake \
-    neovim-remote \
-    pylint-venv \
-    pyls-black \
-    pyls-isort \
-    pyls-mypy \
-    'python-language-server[all]'
+pipx install ansible
+pipx install cmake
+pipx install neovim-remote
+pipx install 'python-language-server[all]'
+pipx install --include-deps pyls-black
+pipx install --include-deps pyls-isort
+pipx install --include-deps pyls-mypy
+
+pipx upgrade-all
 
 ##### Install nodejs packages #################################################
 
