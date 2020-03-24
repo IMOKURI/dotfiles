@@ -317,11 +317,11 @@ popd
 
 ##### Install python packages #################################################
 
-_banner "Install Pip..."
+_banner "Install Pip, Pipx..."
 
-ls /usr/local/bin/pip || curl -fsSL "https://bootstrap.pypa.io/get-pip.py" | sudo -E python3
+python -m ensurepip --upgrade
 
-sudo -E /usr/local/bin/pip install -U pip pipx
+python3 -m pip install --user -U pipx
 
 _banner "Install Poetry..."
 
