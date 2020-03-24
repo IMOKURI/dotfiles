@@ -226,6 +226,7 @@ function install_packages_el() {
         python-devel \
         python3 \
         python3-devel \
+        python3-pip \
         readline-devel \
         sqlite \
         sqlite-devel \
@@ -260,6 +261,7 @@ function install_packages_deb() {
         nodejs \
         python3-dev \
         python3-distutils \
+        python3-pip \
         python3-venv \
         vim \
         yarn
@@ -317,9 +319,9 @@ popd
 
 ##### Install python packages #################################################
 
-_banner "Install Pip, Pipx..."
+_banner "Install Pipx..."
 
-python3 -m ensurepip --upgrade
+# python3 -m ensurepip --upgrade
 
 python3 -m pip install --user -U pipx
 
