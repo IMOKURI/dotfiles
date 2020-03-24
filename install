@@ -319,7 +319,7 @@ popd
 
 _banner "Install Pip, Pipx..."
 
-python -m ensurepip --upgrade
+python3 -m ensurepip --upgrade
 
 python3 -m pip install --user -U pipx
 
