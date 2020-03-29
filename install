@@ -392,7 +392,7 @@ fi
 
 _banner "Install RipGrep..."
 if [[ ! -f "${HOME}/bin/rg" ]]; then
-    curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/12.0.0/ripgrep-12.0.0-x86_64-unknown-linux-musl.tar.gz
+    curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep-12.0.1-x86_64-unknown-linux-musl.tar.gz
 
     tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
