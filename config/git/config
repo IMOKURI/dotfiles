@@ -27,6 +27,9 @@
   default = current
   followTags = true
 
+[pull]
+  rebase = true
+
 [transfer]
   fsckobjects = true
 
