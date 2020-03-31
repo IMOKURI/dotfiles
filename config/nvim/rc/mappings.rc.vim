@@ -137,9 +137,6 @@ nnoremap <silent> z, zMzv
 " カーソル下の単語をハイライトして置換する
 nmap # *:%s/<C-r>///g<Left><Left>
 
-" バッファ内で置換する
-nnoremap S :%s//g<Left><Left>
-
 " 検索のハイライト表示を消す
 nnoremap <Esc><Esc> :nohlsearch<CR>
 
