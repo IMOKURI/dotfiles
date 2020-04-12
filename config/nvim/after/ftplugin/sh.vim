@@ -1,4 +1,8 @@
 
+let g:sh_fold_enabled = 7
+
+set foldmethod=syntax
+
 let g:ale_linters = {
     \ 'sh': ['language_server']
     \ }
