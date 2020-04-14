@@ -31,6 +31,19 @@ function! vimrc#hint_cmd_output(prefix, cmd) abort " {{{
     return a:prefix . nr2char(getchar())
 endfunction " }}}
 
+function! vimrc#same_indent(dir) abort " {{{
+    let lnum = line('.')
+    let width = col('.') <= 1 ? 0 : strdisplaywidth(matchstr(getline(lnum)[: col('.')-2], '^\s*'))
+    while 1 <= lnum && lnum <= line('$')
+        let lnum += (a:dir ==# '+' ? 1 : -1)
+        let line = getline(lnum)
+        if width >= strdisplaywidth(matchstr(line, '^\s*')) && line =~# '^\s*\S'
+            break
+        endif
+    endwhile
+    return abs(line('.') - lnum) . a:dir
+endfunction " }}}
+
 function! vimrc#smart_fold_closer() abort " {{{
     if foldlevel('.') == 0
         norm! zM

@@ -72,6 +72,14 @@ nnoremap H ^
 xnoremap H ^
 xnoremap L $
 
+" 同一階層のインデントに移動する
+nnoremap <expr><silent> sj vimrc#same_indent('+')
+nnoremap <expr><silent> sk vimrc#same_indent('-')
+onoremap <expr><silent> sj vimrc#same_indent('+')
+onoremap <expr><silent> sk vimrc#same_indent('-')
+xnoremap <expr><silent> sj vimrc#same_indent('+')
+xnoremap <expr><silent> sk vimrc#same_indent('-')
+
 " コマンドラインモード内を移動する
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
