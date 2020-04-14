@@ -1,5 +1,5 @@
 
-g:vsnip_snippet_dir = '$XDG_CONFIG_HOME/nvim/snippet'
+" g:vsnip_snippet_dir = '$XDG_CONFIG_HOME/nvim/snippet'
 
 imap <expr> <C-k> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
 smap <expr> <C-k> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-k>'
