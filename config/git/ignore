@@ -2,6 +2,7 @@
 *.retry
 
 # (neo)vim
+.nvimlog
 tags
 .vimsessions
 
