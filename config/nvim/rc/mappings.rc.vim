@@ -59,6 +59,8 @@ tnoremap <silent> <ESC> <C-\><C-n>
 " 表示行単位で移動する
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
+xnoremap <expr> j v:count ? 'j' : 'gj'
+xnoremap <expr> k v:count ? 'k' : 'gk'
 nmap <Leader>j 10j
 nmap <Leader>k 10k
 nmap <Leader><Leader>j 20j
@@ -144,6 +146,9 @@ nnoremap <silent> z, zMzv
 
 " カーソル下の単語をハイライトして置換する
 nmap # *:%s/<C-r>///g<Left><Left>
+
+" 選択範囲を検索する
+xnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>")
 
 " 検索のハイライト表示を消す
 nnoremap <Esc><Esc> :nohlsearch<CR>
