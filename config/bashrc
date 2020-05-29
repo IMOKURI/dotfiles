@@ -43,6 +43,11 @@ docker-clean() {
     # docker system prune --volumes -f
 }
 
+venv() {
+    python -m venv .venv
+    . .venv/bin/activate
+}
+
 #alias g='git'
 #complete -o default -o nospace -F _git g
 
