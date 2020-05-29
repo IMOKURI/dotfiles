@@ -13,8 +13,8 @@ nnoremap <silent> <Leader><Leader>w :<C-u>wa<CR>
 " root権限でファイルを保存する
 cnoremap w!! w !sudo tee > /dev/null %
 
-" bufferを閉じる
-nnoremap <silent> qq :<C-u>bdelete<CR>
+" windowを閉じる
+nnoremap <silent> qq :<C-u>close<CR>
 
 " bufferを保存せず閉じる
 nnoremap <silent> QQ :<C-u>bdelete!<CR>
