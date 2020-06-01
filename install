@@ -390,7 +390,7 @@ fi
 
 ##### Install ripgrep #########################################################
 
-RIPGREP_VERSION="12.1.0"
+RIPGREP_VERSION="12.1.1"
 
 _banner "Install RipGrep..."
 if [[ ! -f "${HOME}/bin/rg" ]]; then
