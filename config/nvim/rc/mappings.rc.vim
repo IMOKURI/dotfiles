@@ -85,14 +85,14 @@ xnoremap <expr><silent> sk vimrc#same_indent('-')
 " コマンドラインモード内を移動する
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
 
 " インサートモード中に移動する
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
-inoremap <C-b> <left>
-inoremap <C-f> <right>
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " }}}
 
@@ -106,12 +106,7 @@ nnoremap <Leader><Tab> <C-^>
 nnoremap <silent> <C-j> :call vimrc#move_win('j')<CR>
 nnoremap <silent> <C-k> :call vimrc#move_win('k')<CR>
 nnoremap <silent> <C-l> :call vimrc#move_win('l')<CR>
-if has('nvim')
-    " TERM環境変数が悪そう
-    nnoremap <silent> <BS> :call vimrc#move_win('h')<CR>
-else
-    nnoremap <silent> <C-h> :call vimrc#move_win('h')<CR>
-endif
+nnoremap <silent> <C-h> :call vimrc#move_win('h')<CR>
 
 " ウィンドウを分割する
 nnoremap <Leader>- <C-w>s
