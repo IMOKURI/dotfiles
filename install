@@ -263,6 +263,7 @@ function install_packages_deb() {
         python3-distutils \
         python3-pip \
         python3-venv \
+        unzip \
         vim \
         yarn
 
@@ -399,6 +400,20 @@ if [[ ! -f "${HOME}/bin/rg" ]]; then
     tar xf /tmp/rg.tar.gz -C "$HOME/src/"
 
     ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
+else
+    _logger "${INFO}" "Already installed."
+fi
+
+##### Install terraform #######################################################
+
+TERRAFORM_VERSION="0.12.26"
+
+_banner "Install Terraform..."
+if [[ ! -f "${HOME}/bin/terraform" ]]; then
+    curl -fsSL -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
+    unzip /tmp/terraform.zip -d ${HOME}/bin/
+
 else
     _logger "${INFO}" "Already installed."
 fi
