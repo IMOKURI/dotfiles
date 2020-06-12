@@ -136,3 +136,6 @@
 [submodule "config/nvim/pack/_/start/vim-terraform"]
 	path = config/nvim/pack/_/start/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
+[submodule "config/nvim/pack/_/opt/nvim-colorizer.lua"]
+	path = config/nvim/pack/_/opt/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua.git
