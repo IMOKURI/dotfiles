@@ -425,6 +425,19 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
+TERRAFORM_LSP_VERSION="0.0.11-beta2"
+
+_banner "Install Terraform LSP..."
+if [[ ! -f "${HOME}/bin/terraform-lsp" ]]; then
+    curl -fsSL -o /tmp/terraform-lsp.tar.gz https://github.com/juliosueiras/terraform-lsp/releases/download/v${TERRAFORM_LSP_VERSION}/terraform-lsp_${TERRAFORM_LSP_VERSION}_linux_amd64.tar.gz
+
+    tar xf /tmp/terraform-lsp.tar.gz -C /tmp
+    mv /tmp/terraform-lsp ${HOME}/bin/
+
+else
+    _logger "${INFO}" "Already installed."
+fi
+
 ##### Install bashmarks #######################################################
 
 _banner "Install Bashmarks..."
