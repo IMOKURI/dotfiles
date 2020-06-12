@@ -143,11 +143,6 @@ function setup_repository_deb() {
         return
     fi
 
-    if [[ ! -f /etc/apt/sources.list.d/neovim-ppa-ubuntu-unstable-bionic.list ]]; then
-        _logger "${INFO}" "Install Neovim repository"
-        sudo -E add-apt-repository -y ppa:neovim-ppa/unstable
-    fi
-
     if [[ ! -f /etc/apt/sources.list.d/jonathonf-ubuntu-vim-bionic.list ]]; then
         _logger "${INFO}" "Install Vim repository"
         sudo -E add-apt-repository -y ppa:jonathonf/vim
@@ -257,7 +252,6 @@ function install_packages_deb() {
         golang-go \
         jq \
         make \
-        neovim \
         nodejs \
         python3-dev \
         python3-distutils \
@@ -266,6 +260,19 @@ function install_packages_deb() {
         unzip \
         vim \
         yarn
+
+    # for neovim
+    sudo -E apt install -y \
+        autoconf \
+        automake \
+        cmake \
+        g++ \
+        gettext \
+        libtool \
+        libtool-bin \
+        ninja-build \
+        pkg-config \
+        unzip
 
     # for pyenv
     sudo -E apt install -y --no-install-recommends \
@@ -436,14 +443,12 @@ fi
 
 _banner "Build Neovim..."
 
-if "${is_el}"; then
-    pushd "$(pwd)"
-    cd "${DOTPATH}"
-    for i in {1..3}; do
-        make neovim && break || sleep 10
-    done
-    popd
-fi
+pushd "$(pwd)"
+cd "${DOTPATH}"
+for i in {1..3}; do
+    make neovim && break || sleep 10
+done
+popd
 
 ##### Build vim ###############################################################
 
