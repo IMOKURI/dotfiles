@@ -64,7 +64,8 @@ function! CustomizeColors() abort " {{{
     call vimrc#colorize('DimLineNr',         {'bg': s:bg_subtle,   'fg': s:dark_asphalt})
     call vimrc#colorize('HighlightedLineNr', {'bg': s:bg_subtle,   'fg': s:green})
 
-    call vimrc#colorize('YankRoundRegion',   {'bg': s:norm_subtle, 'fg': s:bg_subtle})
+    call vimrc#colorize('IncSearch',       {'bg': s:norm_subtle, 'fg': s:bg_subtle})
+    call vimrc#colorize('YankRoundRegion', {'bg': s:norm_subtle, 'fg': s:bg_subtle})
 
     " LightLine color palette {{{
     let s:palette = g:lightline#colorscheme#challenger_deep#palette

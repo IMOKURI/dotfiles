@@ -14,7 +14,9 @@ augroup MyAutoCmd " {{{
 
     autocmd InsertLeave * set nopaste
 
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+    if has('nvim-0.5.0')
+        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+    endif
 
     autocmd BufWritePre * call vimrc#auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
 
