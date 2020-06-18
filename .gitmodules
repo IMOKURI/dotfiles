@@ -139,3 +139,9 @@
 [submodule "config/nvim/pack/_/opt/nvim-colorizer.lua"]
 	path = config/nvim/pack/_/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua.git
+[submodule "config/nvim/pack/_/start/indentLine"]
+	path = config/nvim/pack/_/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule "config/nvim/pack/_/start/indent-blankline.nvim"]
+	path = config/nvim/pack/_/start/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim.git
