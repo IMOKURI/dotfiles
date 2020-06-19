@@ -61,12 +61,6 @@ nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 xnoremap <expr> j v:count ? 'j' : 'gj'
 xnoremap <expr> k v:count ? 'k' : 'gk'
-nmap <Leader>j 10j
-nmap <Leader>k 10k
-nmap <Leader><Leader>j 20j
-nmap <Leader><Leader>k 20k
-nmap <Leader><Leader><Leader>j 30j
-nmap <Leader><Leader><Leader>k 30k
 
 " 先頭に移動する
 " (末尾は L をFoldとの複合でマッピング)
