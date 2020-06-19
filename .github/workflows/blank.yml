@@ -15,12 +15,12 @@ jobs:
 
   ubuntu:
     strategy:
+      fail-fast: true
       matrix:
         os_version:
           - 18.04
           - 20.04
 
-      fail-fast: true
     runs-on: ubuntu-latest
     container: jrei/systemd-ubuntu:${{ matrix.os_version }}
 
@@ -34,8 +34,36 @@ jobs:
       run: |
         env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
 
+  ubuntu_proxy:
+    strategy:
+      fail-fast: true
+      matrix:
+        os_version:
+          - 18.04
+          - 20.04
+
+    runs-on: ubuntu-latest
+    container: jrei/systemd-ubuntu:${{ matrix.os_version }}
+
+    services:
+      squid:
+        image: wernight/squid
+        ports:
+          - 3128:3128
+
+    steps:
+    - name: Install requirements
+      run: |
+        env HTTP_PROXY=http://squid:3128 apt update
+        env HTTP_PROXY=http://squid:3128 apt install -y curl sudo software-properties-common
+
+    - name: Install dotfiles
+      run: |
+        env HTTP_PROXY=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+
   centos:
     strategy:
+      fail-fast: true
       matrix:
         os_version:
           - 7
