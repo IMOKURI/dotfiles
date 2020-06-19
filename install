@@ -85,25 +85,26 @@ _logger "${INFO}" "${PRETTY_NAME} is detected."
 ##### Set Proxy ###############################################################
 
 function set_yum_proxy() {
-    _banner "Set Yum Proxy if Available..."
-
-    if "${is_deb}"; then
-        _logger "${INFO}" "Skip due to Debian/Ubuntu."
-        return
-    fi
+    _banner "Check if set proxy..."
 
     if [[ ! "${http_proxy}" ]]; then
         _logger "${INFO}" "No proxy configured."
         return
+    else
+        _logger "${INFO}" "Proxy environment variable: ${http_proxy}"
+    fi
+
+    if "${is_deb}"; then
+        return
     fi
 
     if grep -q proxy /etc/yum.conf; then
-        _logger "${INFO}" "Already set proxy."
+        _logger "${INFO}" "Already set proxy setting."
         return
     fi
 
     echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
-    _logger "${INFO}" "Configure yum proxy."
+    _logger "${INFO}" "Configured yum proxy setting."
 }
 
 set_yum_proxy
