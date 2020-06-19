@@ -153,12 +153,12 @@ function setup_repository_deb() {
         curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
     fi
 
-    if [[ ! -f /etc/apt/sources.list.d/ansible-ubuntu-ansible-bionic.list ]]; then
+    if [[ ! -f /etc/apt/sources.list.d/ansible-ubuntu-ansible-bionic.list && ${VERSION_ID} == "18.04" ]]; then
         _logger "${INFO}" "Install Ansible repository"
         sudo -E add-apt-repository -y ppa:ansible/ansible
     fi
 
-    if [[ ! -f /etc/apt/sources.list.d/longsleep-ubuntu-golang-backports-bionic.list ]]; then
+    if [[ ! -f /etc/apt/sources.list.d/longsleep-ubuntu-golang-backports-bionic.list && ${VERSION_ID} == "18.04" ]]; then
         _logger "${INFO}" "Install Golang repository"
         sudo -E add-apt-repository -y ppa:longsleep/golang-backports
     fi
@@ -249,7 +249,7 @@ function install_packages_deb() {
         gcc \
         git \
         git-lfs \
-        golang-go \
+        golang-1.14-go \
         jq \
         make \
         nodejs \
@@ -465,16 +465,16 @@ popd
 
 ##### Build vim ###############################################################
 
-_banner "Build Vim..."
+# _banner "Build Vim..."
 
-if "${is_el}"; then
-    pushd "$(pwd)"
-    cd "${DOTPATH}"
-    for i in {1..3}; do
-        make vim && break || sleep 10
-    done
-    popd
-fi
+# if "${is_el}"; then
+#     pushd "$(pwd)"
+#     cd "${DOTPATH}"
+#     for i in {1..3}; do
+#         make vim && break || sleep 10
+#     done
+#     popd
+# fi
 
 ##### Install dotfiles ########################################################
 

@@ -18,6 +18,7 @@ jobs:
       matrix:
         os_version:
           - 18.04
+          - 20.04
 
       fail-fast: true
     runs-on: ubuntu-latest
