@@ -356,6 +356,7 @@ _banner "Install Python Packages..."
 pipx install ansible
 pipx install cmake
 pipx install neovim-remote
+pipx install jedi-language-server
 pipx install 'python-language-server[all]'
 pipx install --include-deps pyls-black
 pipx install --include-deps pyls-isort
@@ -369,6 +370,7 @@ _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     @gridsome/cli \
     bash-language-server \
+    diagnostic-languageserver \
     dockerfile-language-server-nodejs \
     doctoc \
     eslint \

@@ -13,7 +13,7 @@ The dotfiles that can be installed by one command
 ## Support
 
 - CentOS/RHEL 7
-- Ubuntu
+- Ubuntu 18.04, 20.04
 
 ## Requirement
 
