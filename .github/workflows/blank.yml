@@ -60,6 +60,7 @@ jobs:
     - name: Install dotfiles
       run: |
         env HTTP_PROXY=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+        cat $HOME/.config/git/config.local
 
   centos:
     strategy:
@@ -79,3 +80,30 @@ jobs:
     - name: Install dotfiles
       run: |
         env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+
+  centos_proxy:
+    strategy:
+      fail-fast: true
+      matrix:
+        os_version:
+          - 7
+
+    runs-on: ubuntu-latest
+    container: centos:${{ matrix.os_version }}
+
+    services:
+      squid:
+        image: wernight/squid
+        ports:
+          - 3128:3128
+
+    steps:
+    - name: Install requirements
+      run: |
+        sed -i "\$aproxy=http://squid:3128" /etc/yum.conf
+        yum install -y sudo
+
+    - name: Install dotfiles
+      run: |
+        env HTTP_PROXY=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+        cat $HOME/.config/git/config.local
