@@ -10,6 +10,7 @@ DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
+DOTPATH       := $(HOME)/.dotfiles
 VIMPATH       := $(HOME)/src/vim
 NEOVIMPATH    := $(HOME)/src/neovim
 GITPATH       := $(HOME)/src/git
@@ -17,10 +18,10 @@ GITLFSPATH    := $(HOME)/src/git-lfs
 GITSTATUSPATH := $(HOME)/src/gitstatus
 
 # Proxy settings
-PROXY_TEMPLATE     := config/profile.d/proxy.sh.template
-PROXY_SETTING      := config/profile.d/proxy.sh
-GIT_PROXY_TEMPLATE := config/git/config.local.template
-GIT_PROXY_SETTING  := config/git/config.local
+PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
+PROXY_SETTING      := $(DOTPATH)/config/profile.d/proxy.sh
+GIT_PROXY_TEMPLATE := $(DOTPATH)/config/git/config.local.template
+GIT_PROXY_SETTING  := $(DOTPATH)/config/git/config.local
 
 define repo
 	if [[ -d "$1" ]]; then \
@@ -38,7 +39,9 @@ install: proxy update deploy ## Do proxy, update and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
-	if grep -q proxy /etc/yum.conf; then \
+	if [[ ! -f /etc/yum.conf ]]; then \
+		: \
+	elif grep -q proxy /etc/yum.conf; then \
 		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g' /etc/yum.conf; \
 	else \
 		echo "proxy=$(http_proxy)" | sudo tee -a /etc/yum.conf; \
