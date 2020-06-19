@@ -249,7 +249,7 @@ function install_packages_deb() {
         gcc \
         git \
         git-lfs \
-        golang-1.14-go \
+        golang-go \
         jq \
         make \
         nodejs \
