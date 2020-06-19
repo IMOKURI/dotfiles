@@ -12,18 +12,40 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    container: jrei/systemd-ubuntu:18.04
+  ubuntu:
+    strategy:
+      matrix:
+        os_version:
+          - 18.04
+
+      fail-fast: true
+    runs-on: ubuntu-latest
+    container: jrei/systemd-ubuntu:${{ matrix.os_version }}
 
     steps:
     - name: Install requirements
       run: |
         apt update
         apt install -y curl sudo software-properties-common
+
+    - name: Install dotfiles
+      run: |
+        env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+
+  centos:
+    strategy:
+      matrix:
+        os_version:
+          - 7
+
+    runs-on: ubuntu-latest
+    container: centos:${{ matrix.os_version }}
+
+    steps:
+    - name: Install requirements
+      run: |
+        yum install -y sudo
 
     - name: Install dotfiles
       run: |
