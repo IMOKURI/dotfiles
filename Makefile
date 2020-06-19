@@ -40,7 +40,7 @@ install: proxy update deploy ## Do proxy, update and deploy
 proxy: ## Set proxy
 ifdef http_proxy
 	if [[ ! -f /etc/yum.conf ]]; then \
-		: \
+		:; \
 	elif grep -q proxy /etc/yum.conf; then \
 		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g' /etc/yum.conf; \
 	else \
