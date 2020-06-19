@@ -27,4 +27,4 @@ jobs:
 
     - name: Install dotfiles
       run: |
-        env LANG=en_US.utf8 LC_ALL=en_US.utf8 bash -c "$(curl -fsSL https://git.io/imokuri)"
+        env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
