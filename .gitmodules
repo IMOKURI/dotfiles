@@ -40,27 +40,6 @@
 [submodule "config/nvim/pack/_/opt/vim-quickhl"]
 	path = config/nvim/pack/_/opt/vim-quickhl
 	url = https://github.com/t9md/vim-quickhl.git
-[submodule "config/nvim/pack/_/start/asyncomplete.vim"]
-	path = config/nvim/pack/_/start/asyncomplete.vim
-	url = https://github.com/prabirshrestha/asyncomplete.vim.git
-[submodule "config/nvim/pack/_/start/asyncomplete-buffer.vim"]
-	path = config/nvim/pack/_/start/asyncomplete-buffer.vim
-	url = https://github.com/prabirshrestha/asyncomplete-buffer.vim.git
-[submodule "config/nvim/pack/_/start/asyncomplete-file.vim"]
-	path = config/nvim/pack/_/start/asyncomplete-file.vim
-	url = https://github.com/prabirshrestha/asyncomplete-file.vim.git
-[submodule "config/nvim/pack/_/start/asyncomplete-lsp.vim"]
-	path = config/nvim/pack/_/start/asyncomplete-lsp.vim
-	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
-[submodule "config/nvim/pack/_/start/vim-lsp"]
-	path = config/nvim/pack/_/start/vim-lsp
-	url = https://github.com/prabirshrestha/vim-lsp.git
-[submodule "config/nvim/pack/_/start/vim-lsp-settings"]
-	path = config/nvim/pack/_/start/vim-lsp-settings
-	url = https://github.com/mattn/vim-lsp-settings.git
-[submodule "config/nvim/pack/_/start/asyncomplete-emoji"]
-	path = config/nvim/pack/_/start/asyncomplete-emoji
-	url = https://github.com/prabirshrestha/asyncomplete-emoji.vim.git
 [submodule "config/nvim/pack/_/opt/line-number-interval.nvim"]
 	path = config/nvim/pack/_/opt/line-number-interval.nvim
 	url = https://github.com/IMOKURI/line-number-interval.nvim.git
@@ -91,9 +70,6 @@
 [submodule "config/nvim/pack/_/opt/capture.vim"]
 	path = config/nvim/pack/_/opt/capture.vim
 	url = https://github.com/tyru/capture.vim.git
-[submodule "config/nvim/pack/_/start/asyncomplete-necosyntax.vim"]
-	path = config/nvim/pack/_/start/asyncomplete-necosyntax.vim
-	url = https://github.com/prabirshrestha/asyncomplete-necosyntax.vim.git
 [submodule "config/nvim/pack/_/start/neco-syntax"]
 	path = config/nvim/pack/_/start/neco-syntax
 	url = https://github.com/Shougo/neco-syntax.git
