@@ -28,7 +28,6 @@ DOTPATH="$HOME/.dotfiles"
 VIMPATH="$HOME/src/vim"
 NEOVIMPATH="$HOME/src/neovim"
 GITPATH="$HOME/src/git"
-NEXTWORD_DATA="$HOME/.local/share/nextword-data-small"
 
 ##### Functions ###############################################################
 
@@ -379,22 +378,9 @@ yarn global add --prefix "${HOME}" \
 
 _banner "Install Go Packages..."
 go get -u \
-    github.com/high-moctane/nextword \
     github.com/mrtazz/checkmake \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
-
-##### Install nextword-data ###################################################
-
-_banner "Install Nextword Data..."
-if [[ ! -d "${NEXTWORD_DATA}" ]]; then
-    mkdir -p "$HOME/.local/share"
-    curl -fsSL -o /tmp/small.tar.gz https://github.com/high-moctane/nextword-data/archive/small.tar.gz
-
-    tar xf /tmp/small.tar.gz -C "$HOME/.local/share/"
-else
-    _logger "${INFO}" "Already installed."
-fi
 
 ##### Install ripgrep #########################################################
 
