@@ -109,3 +109,18 @@
 [submodule "config/nvim/pack/_/start/challenger-deep-theme-vim"]
 	path = config/nvim/pack/_/start/challenger-deep-theme-vim
 	url = https://github.com/IMOKURI/challenger-deep-theme-vim.git
+[submodule "config/nvim/pack/_/start/completion-nvim"]
+	path = config/nvim/pack/_/start/completion-nvim
+	url = https://github.com/nvim-lua/completion-nvim.git
+[submodule "config/nvim/pack/_/start/completion-buffers"]
+	path = config/nvim/pack/_/start/completion-buffers
+	url = https://github.com/steelsojka/completion-buffers.git
+[submodule "config/nvim/pack/_/start/nvim-treesitter"]
+	path = config/nvim/pack/_/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "config/nvim/pack/_/start/nvim-lsp"]
+	path = config/nvim/pack/_/start/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp.git
+[submodule "config/nvim/pack/_/start/diagnostic-nvim"]
+	path = config/nvim/pack/_/start/diagnostic-nvim
+	url = https://github.com/nvim-lua/diagnostic-nvim.git
