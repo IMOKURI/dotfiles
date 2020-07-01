@@ -45,7 +45,7 @@ nnoremap <silent> <Leader>] <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <Leader>k <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <c-k>     <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <Leader>K <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gD        <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gW        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd        <cmd>lua vim.lsp.buf.declaration()<CR>
