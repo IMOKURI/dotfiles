@@ -48,6 +48,15 @@ venv() {
     . .venv/bin/activate
 }
 
+az-vm() {
+    RESOURCE_GROUP="${1}"
+    OPERATION="${2}"
+    for vm in $(az vm list --query "[].[name]" -g ${RESOURCE_GROUP} -o tsv); do
+        echo "${OPERATION} ${vm} ..."
+        az vm ${OPERATION} -g ${RESOURCE_GROUP} -n ${vm} --no-wait
+    done
+}
+
 #alias g='git'
 #complete -o default -o nospace -F _git g
 
