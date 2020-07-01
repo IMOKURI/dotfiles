@@ -36,8 +36,42 @@ let g:completion_word_min_length = 1
 " TSInstallInfo
 
 " nvim-lsp
-lua require'nvim_lsp'.pyls.setup{}
-"lua require'nvim_lsp'.jedi_language_server.setup{}
+lua <<EOF
+local on_attach_vim = function()
+    require'completion'.on_attach()
+    require'diagnostic'.on_attach()
+end
+
+local nvim_lsp = require'nvim_lsp'
+nvim_lsp.bashls.setup{on_attach=on_attach_vim}
+nvim_lsp.diagnosticls.setup{on_attach=on_attach_vim}
+nvim_lsp.dockerls.setup{on_attach=on_attach_vim}
+-- nvim_lsp.jedi_language_server.setup{on_attach=on_attach_vim}
+nvim_lsp.jsonls.setup{on_attach=on_attach_vim}
+nvim_lsp.vimls.setup{on_attach=on_attach_vim}
+nvim_lsp.yamlls.setup{on_attach=on_attach_vim}
+
+nvim_lsp.pyls.setup{
+    on_attach = on_attach_vim,
+    settings = {
+        pyls = {
+            plugins = {
+                pycodestyle = {
+                    enabled = true,
+                    maxLineLength = 120
+                },
+                pylint = {
+                    enabled = true,
+                    args = {
+                        '--max-line-length=120',
+                        '--disable=invalid-name'
+                    }
+                }
+            }
+        }
+    }
+}
+EOF
 
 nnoremap <silent> 1gD       <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <Leader>[ <cmd>lua vim.lsp.buf.references()<CR>
