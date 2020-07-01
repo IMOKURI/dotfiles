@@ -139,6 +139,9 @@ nmap # *:%s/<C-r>///g<Left><Left>
 " 選択範囲を検索する
 xnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>")
 
+" 選択反映を置換する
+xnoremap # y:%s///g<Left><Left>
+
 " 検索のハイライト表示を消す
 nnoremap <Esc><Esc> :nohlsearch<CR>
 
