@@ -81,16 +81,22 @@ nvim_lsp.yamlls.setup{on_attach=on_attach_vim}
 nvim_lsp.diagnosticls.setup{
     on_attach = on_attach_vim,
     filetypes = {
+        'json',
         'sh'
     },
     init_options = {
         formatters = {
+            jq = {
+                command = "jq",
+                args = {"--indent", "4", "."}
+            },
             shfmt = {
                 command = "shfmt",
                 args = {"-i", "4", "-sr", "-ci"}
             }
         },
         formatFiletypes = {
+            json = "jq",
             sh = "shfmt"
         }
     }
