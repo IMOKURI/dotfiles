@@ -76,8 +76,6 @@ nvim_lsp.dockerls.setup{on_attach=on_attach_vim}
 
 nvim_lsp.vimls.setup{on_attach=on_attach_vim}
 
-nvim_lsp.yamlls.setup{on_attach=on_attach_vim}
-
 nvim_lsp.diagnosticls.setup{
     on_attach = on_attach_vim,
     filetypes = {
@@ -120,6 +118,20 @@ nvim_lsp.pyls.setup{
                     }
                 }
             }
+        }
+    }
+}
+
+nvim_lsp.yamlls.setup{
+    on_attach = on_attach_vim,
+    settings = {
+        yaml = {
+            format = {
+                enable = true
+            },
+            validate = true,
+            hover = true,
+            completion = true
         }
     }
 }
