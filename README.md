@@ -6,7 +6,7 @@ The dotfiles that can be installed by one command
 
 ## Feature
 
-- Install Neovim, Vim, Git, Python3, Node.js and Go with some packages.
+- Install Neovim, Git, Python3, Node.js and Go with some packages.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
 
