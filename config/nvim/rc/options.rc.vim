@@ -74,6 +74,9 @@ if has('nvim') || has('termguicolors')
     set termguicolors
 endif
 
+" 補完時の冗長な表示を抑制
+set shortmess+=c
+
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -114,6 +117,9 @@ set virtualedit+=block
 
 " clipboard設定
 set clipboard+=unnamedplus
+
+" 補完設定
+set completeopt=menuone,noinsert,noselect
 
 " }}}
 
