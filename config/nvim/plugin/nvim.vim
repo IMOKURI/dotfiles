@@ -47,6 +47,11 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
     },
+    ensure_installed = {
+        'bash',
+        'json',
+        'python'
+    }
 }
 
 -- nvim-lsp

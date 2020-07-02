@@ -28,9 +28,6 @@
 [submodule "config/nvim/pack/_/opt/ale"]
 	path = config/nvim/pack/_/opt/ale
 	url = https://github.com/dense-analysis/ale.git
-[submodule "config/nvim/pack/_/opt/ctrlp.vim"]
-	path = config/nvim/pack/_/opt/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule "config/nvim/pack/_/opt/linediff.vim"]
 	path = config/nvim/pack/_/opt/linediff.vim
 	url = https://github.com/AndrewRadev/linediff.vim.git
@@ -127,3 +124,6 @@
 [submodule "config/nvim/pack/_/start/completion-treesitter"]
 	path = config/nvim/pack/_/start/completion-treesitter
 	url = https://github.com/nvim-treesitter/completion-treesitter.git
+[submodule "config/nvim/pack/_/start/findr.vim"]
+	path = config/nvim/pack/_/start/findr.vim
+	url = https://github.com/conweller/findr.vim.git
