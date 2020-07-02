@@ -124,3 +124,6 @@
 [submodule "config/nvim/pack/_/start/diagnostic-nvim"]
 	path = config/nvim/pack/_/start/diagnostic-nvim
 	url = https://github.com/nvim-lua/diagnostic-nvim.git
+[submodule "config/nvim/pack/_/start/completion-treesitter"]
+	path = config/nvim/pack/_/start/completion-treesitter
+	url = https://github.com/nvim-treesitter/completion-treesitter.git
