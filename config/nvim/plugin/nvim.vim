@@ -15,6 +15,16 @@ let g:completion_chain_complete_list = {
     \     {'mode': '<c-n>'}
     \   ]
     \ },
+    \ 'bash': [
+    \     {'complete_items': ['ts', 'lsp', 'snippet', 'buffers', 'path']},
+    \     {'mode': '<c-p>'},
+    \     {'mode': '<c-n>'}
+    \ ],
+    \ 'json': [
+    \     {'complete_items': ['ts', 'lsp', 'snippet', 'buffers', 'path']},
+    \     {'mode': '<c-p>'},
+    \     {'mode': '<c-n>'}
+    \ ],
     \ 'python': [
     \     {'complete_items': ['ts', 'lsp', 'snippet', 'buffers', 'path']},
     \     {'mode': '<c-p>'},
@@ -31,12 +41,15 @@ inoremap <silent><expr> <c-n> completion#trigger_completion()
 " completion-buffers
 let g:completion_word_min_length = 1
 
-" nvim-treesitter
-" TSInstall python
-" TSInstallInfo
-
-" nvim-lsp
 lua <<EOF
+-- nvim-treesitter
+require'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,
+    },
+}
+
+-- nvim-lsp
 local on_attach_vim = function()
     require'completion'.on_attach()
     require'diagnostic'.on_attach()
