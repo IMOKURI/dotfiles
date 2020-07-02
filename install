@@ -72,6 +72,7 @@ if [[ -f /etc/os-release ]]; then
         *)
             _logger "${ERROR}" "Unknown OS is detected."
             exit 1
+            ;;
     esac
 else
     _logger "${ERROR}" "No such file. /etc/os-release"
@@ -452,16 +453,16 @@ cd "${DOTPATH}"
 make install
 
 if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
-    echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
+    echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
 fi
 
 if "${is_el}"; then
     if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
-        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.bash_profile"
+        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.bash_profile"
     fi
 else
     if ! grep -q '.config/profile.d/local.sh' ${HOME}/.profile; then
-        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.profile"
+        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
     fi
 fi
 

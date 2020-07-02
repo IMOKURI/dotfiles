@@ -21,7 +21,12 @@ let g:completion_chain_complete_list = {
     \     {'mode': '<c-n>'}
     \ ],
     \ 'json': [
-    \     {'complete_items': ['ts', 'lsp', 'snippet', 'buffers', 'path']},
+    \     {'complete_items': ['ts', 'lsp', 'buffers', 'path']},
+    \     {'mode': '<c-p>'},
+    \     {'mode': '<c-n>'}
+    \ ],
+    \ 'lua': [
+    \     {'complete_items': ['ts', 'buffers', 'path']},
     \     {'mode': '<c-p>'},
     \     {'mode': '<c-n>'}
     \ ],
@@ -50,6 +55,7 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = {
         'bash',
         'json',
+        'lua',
         'python'
     }
 }
@@ -61,13 +67,35 @@ local on_attach_vim = function()
 end
 
 local nvim_lsp = require'nvim_lsp'
+
 nvim_lsp.bashls.setup{on_attach=on_attach_vim}
-nvim_lsp.diagnosticls.setup{on_attach=on_attach_vim}
+
 nvim_lsp.dockerls.setup{on_attach=on_attach_vim}
+
 -- nvim_lsp.jedi_language_server.setup{on_attach=on_attach_vim}
-nvim_lsp.jsonls.setup{on_attach=on_attach_vim}
+
 nvim_lsp.vimls.setup{on_attach=on_attach_vim}
+
 nvim_lsp.yamlls.setup{on_attach=on_attach_vim}
+
+nvim_lsp.diagnosticls.setup{
+    on_attach = on_attach_vim,
+    filetypes = {
+        'sh'
+    },
+    init_options = {
+        formatters = {
+            shfmt = {
+                command = "shfmt",
+                args = {"-i", "4", "-sr", "-ci"}
+            }
+        },
+        formatFiletypes = {
+            sh = "shfmt"
+        }
+    }
+
+}
 
 nvim_lsp.pyls.setup{
     on_attach = on_attach_vim,
@@ -104,8 +132,10 @@ nnoremap <silent> gd        <cmd>lua vim.lsp.buf.declaration()<CR>
 xnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>
 
 " diagnostic-nvim
-nnoremap <silent> <Leader>d :<C-u>OpenDiagnostic<CR>
-nnoremap <silent> <Leader>n :<C-u>NextDiagnosticCycle<CR>
-nnoremap <silent> <Leader>p :<C-u>PrevDiagnosticCycle<CR>
+command! -buffer -nargs=0 ShowLineDiagnostics lua require'jumpLoc'.openLineDiagnostics()
+nnoremap <silent> <Leader>d <cmd>ShowLineDiagnostic<CR>
+nnoremap <silent> <Leader>D <cmd>OpenDiagnostic<CR>
+nnoremap <silent> <Leader>n <cmd>NextDiagnosticCycle<CR>
+nnoremap <silent> <Leader>p <cmd>PrevDiagnosticCycle<CR>
 
 let g:diagnostic_enable_virtual_text = 1
