@@ -1,9 +1,6 @@
 [submodule "config/nvim/pack/_/start/lightline.vim"]
 	path = config/nvim/pack/_/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim.git
-[submodule "config/nvim/pack/_/start/lightline-ale"]
-	path = config/nvim/pack/_/start/lightline-ale
-	url = https://github.com/maximbaz/lightline-ale.git
 [submodule "config/nvim/pack/_/start/fugitive.vim"]
 	path = config/nvim/pack/_/start/fugitive.vim
 	url = https://github.com/tpope/vim-fugitive.git
@@ -25,9 +22,6 @@
 [submodule "config/nvim/pack/_/start/yankround.vim"]
 	path = config/nvim/pack/_/start/yankround.vim
 	url = https://github.com/LeafCage/yankround.vim.git
-[submodule "config/nvim/pack/_/opt/ale"]
-	path = config/nvim/pack/_/opt/ale
-	url = https://github.com/dense-analysis/ale.git
 [submodule "config/nvim/pack/_/opt/linediff.vim"]
 	path = config/nvim/pack/_/opt/linediff.vim
 	url = https://github.com/AndrewRadev/linediff.vim.git

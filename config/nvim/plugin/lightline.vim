@@ -1,6 +1,9 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+" '(」・ω・)」うー '
+" '(/・ω・)/にゃー'
+
 " g:lightline {{{
 let g:lightline = {
     \ 'colorscheme': 'challenger_deep',
@@ -9,8 +12,7 @@ let g:lightline = {
     \ 'active': {
     \   'left': [
     \     [ 'mode', 'paste' ],
-    \     [ 'fugitive', 'readonly', 'filepath', 'modified' ],
-    \     [ 'linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok' ]
+    \     [ 'fugitive', 'readonly', 'filepath', 'modified' ]
     \   ],
     \   'right': [
     \     [ 'percent', 'lineinfo' ],
@@ -33,16 +35,6 @@ let g:lightline = {
     \   'left': [[ 'tabs' ]],
     \   'right': [[ 'none' ]]
     \ },
-    \ 'component_expand': {
-    \   'linter_checking': 'lightline#ale#checking',
-    \   'linter_warnings': 'lightline#ale#warnings',
-    \   'linter_errors': 'lightline#ale#errors',
-    \   'linter_ok': 'lightline#ale#ok',
-    \ },
-    \ 'component_type': {
-    \   'linter_warnings': 'warning',
-    \   'linter_errors': 'error',
-    \ },
     \ 'component_function': {
     \   'fugitive': 'LightLineFugitive',
     \   'inactive': 'LightLineInactive',
@@ -51,9 +43,6 @@ let g:lightline = {
     \ }
     \ }
 " }}}
-
-let g:lightline#ale#indicator_checking = '(」・ω・)」うー '
-let g:lightline#ale#indicator_ok = '(/・ω・)/にゃー'
 
 function! LightLineFugitive() abort " {{{
     try
