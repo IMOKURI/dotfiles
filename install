@@ -364,7 +364,6 @@ yarn global add --prefix "${HOME}" \
     diagnostic-languageserver \
     dockerfile-language-server-nodejs \
     doctoc \
-    eslint \
     vim-language-server \
     yaml-language-server
 
