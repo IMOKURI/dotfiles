@@ -349,9 +349,6 @@ pipx install cmake
 pipx install neovim-remote
 pipx install jedi-language-server
 pipx install 'python-language-server[all]'
-pipx install --include-deps pyls-black
-pipx install --include-deps pyls-isort
-pipx install --include-deps pyls-mypy
 
 # pipx upgrade-all
 
