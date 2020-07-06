@@ -44,7 +44,9 @@ docker-clean() {
 }
 
 venv() {
-    python -m venv .venv
+    if [[ ! -d .venv ]]; then
+        python -m venv .venv
+    fi
     . .venv/bin/activate
 }
 
