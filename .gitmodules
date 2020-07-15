@@ -121,3 +121,6 @@
 [submodule "config/nvim/pack/_/start/findr.vim"]
 	path = config/nvim/pack/_/start/findr.vim
 	url = https://github.com/conweller/findr.vim.git
+[submodule "config/nvim/pack/_/start/repl.vim"]
+	path = config/nvim/pack/_/start/repl.vim
+	url = https://github.com/IMOKURI/repl.vim.git
