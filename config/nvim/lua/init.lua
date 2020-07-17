@@ -66,8 +66,6 @@ nvim_lsp.bashls.setup{on_attach=on_attach_vim}
 
 nvim_lsp.dockerls.setup{on_attach=on_attach_vim}
 
--- nvim_lsp.jedi_language_server.setup{on_attach=on_attach_vim}
-
 nvim_lsp.vimls.setup{on_attach=on_attach_vim}
 
 nvim_lsp.diagnosticls.setup{
@@ -92,7 +90,6 @@ nvim_lsp.diagnosticls.setup{
             sh = "shfmt"
         }
     }
-
 }
 
 nvim_lsp.pyls.setup{
@@ -107,6 +104,7 @@ nvim_lsp.pyls.setup{
                 pylint = {
                     enabled = true,
                     args = {
+                        '--init-hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"',
                         '--max-line-length=120',
                         '--disable=invalid-name'
                     }

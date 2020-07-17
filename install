@@ -320,18 +320,9 @@ popd
 
 _banner "Install Pipx..."
 
-# python3 -m ensurepip --upgrade
+sudo /usr/bin/python3 -m pip install -U pip
 
-python3 -m pip install --user -U pipx
-
-_banner "Install Poetry..."
-
-if [[ ! -f "${HOME}/.poetry/bin/poetry" ]]; then
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
-    poetry completions bash >> ${HOME}/.bash_completion
-else
-    poetry self update
-fi
+/usr/bin/python3 -m pip install --user -U pipx
 
 _banner "Install Pyenv..."
 
@@ -343,12 +334,17 @@ fi
 
 _banner "Install Python Packages..."
 
-# Travis can not display unicode emoji.
 pipx install ansible
 pipx install cmake
 pipx install neovim-remote
-pipx install jedi-language-server
 pipx install 'python-language-server[all]'
+
+# /usr/bin/python3 -m pip install -U \
+#     -t "${HOME}/.local/pipx/venvs/python-language-server/lib/python3.6/site-packages/" \
+#     pylint-venv
+/usr/bin/python3 -m pip install -U \
+    -t "${HOME}/.local/pipx/venvs/python-language-server/lib/python3.6/site-packages/" \
+    "git+https://github.com/IMOKURI/pylint-venv.git@different-python-version"
 
 # pipx upgrade-all
 
