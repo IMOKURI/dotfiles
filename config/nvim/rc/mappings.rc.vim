@@ -157,7 +157,10 @@ nnoremap < <<
 " }}}
 
 " -----------------------------------------------------------------------------
-" Paste {{{
+" Yank, Paste {{{
+
+" 行末までコピー
+nnoremap Y y$
 
 " pasteモードにする
 nnoremap <silent> <Leader>v <Cmd>set paste<CR>
