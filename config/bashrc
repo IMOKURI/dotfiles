@@ -32,6 +32,10 @@ cdd() {
     cd ~/.dotfiles/
 }
 
+cds() {
+    cd ~/.local/share/nvim/swap
+}
+
 cdr() {
     cd "$(git rev-parse --show-toplevel)" || return
 }
