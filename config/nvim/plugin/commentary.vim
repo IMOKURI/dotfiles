@@ -1,4 +1,5 @@
 
+nnoremap <silent> <Leader>c :Commentary<CR>
 xnoremap <silent> <Leader>c :Commentary<CR>
 
 augroup MyAutoCmd
