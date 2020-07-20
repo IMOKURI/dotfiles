@@ -66,6 +66,8 @@ nvim_lsp.bashls.setup{on_attach=on_attach_vim}
 
 nvim_lsp.dockerls.setup{on_attach=on_attach_vim}
 
+nvim_lsp.terraformls.setup{on_attach=on_attach_vim}
+
 nvim_lsp.vimls.setup{on_attach=on_attach_vim}
 
 nvim_lsp.diagnosticls.setup{
