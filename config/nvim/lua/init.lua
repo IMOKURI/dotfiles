@@ -108,7 +108,7 @@ nvim_lsp.pyls.setup{
                     args = {
                         '--init-hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"',
                         '--max-line-length=120',
-                        '--disable=invalid-name'
+                        '--disable=invalid-name,missing-docstring'
                     }
                 }
             }
