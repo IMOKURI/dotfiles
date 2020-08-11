@@ -385,7 +385,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION="0.12.26"
+TERRAFORM_VERSION="0.13.0"
 
 _banner "Install Terraform..."
 if [[ ! -f "${HOME}/bin/terraform" ]]; then
