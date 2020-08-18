@@ -46,7 +46,7 @@ let g:lightline = {
 
 function! LightLineFugitive() abort " {{{
     try
-        return exists('*fugitive#head') ? ' ' . fugitive#head() : ''
+        return exists('*FugitiveHead') ? ' ' . FugitiveHead() : ''
     catch
     endtry
     return ''
