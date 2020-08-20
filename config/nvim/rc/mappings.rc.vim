@@ -171,8 +171,8 @@ nnoremap <silent> <Leader>v <Cmd>set paste<CR>
 " Mark, Registry {{{
 
 " マークをリストアップして{保存,復旧}する
-nnoremap <expr> m  vimrc#hint_cmd_output('m', 'marks')
-nnoremap <expr> `  vimrc#hint_cmd_output('`', 'marks') . 'zz'
+nnoremap <expr> m vimrc#hint_cmd_output('m', 'marks')
+nnoremap <expr> ` vimrc#hint_cmd_output('`', 'marks') . 'zz'
 
 " レジストリをリストアップする
 nnoremap <expr> " vimrc#hint_cmd_output('"', 'registers')
