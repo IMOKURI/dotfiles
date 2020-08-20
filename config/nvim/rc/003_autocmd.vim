@@ -1,5 +1,5 @@
-
 augroup MyAutoCmd " {{{
+    autocmd!
 
     autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |

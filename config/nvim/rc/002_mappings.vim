@@ -2,6 +2,14 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " -----------------------------------------------------------------------------
+" Map leader {{{
+if !exists('g:mapleader')
+    nnoremap <Space> <Nop>
+    let g:mapleader = "\<Space>"
+endif
+" }}}
+
+" -----------------------------------------------------------------------------
 " File {{{
 
 " ファイル保存

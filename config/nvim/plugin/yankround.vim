@@ -1,5 +1,5 @@
 
-let g:yankround_dir = $XDG_DATA_HOME . '/yankround'
+let g:yankround_dir = expand(stdpath('data') . '/yankround')
 let g:yankround_use_region_hl = 1
 
 nmap p <Plug>(yankround-p)
