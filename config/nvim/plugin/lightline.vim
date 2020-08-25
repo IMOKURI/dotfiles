@@ -7,8 +7,8 @@ scriptencoding utf-8
 " g:lightline {{{
 let g:lightline = {
     \ 'colorscheme': 'challenger_deep',
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' },
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '|', 'right': '|' },
     \ 'active': {
     \   'left': [
     \     [ 'mode', 'paste' ],
@@ -46,7 +46,7 @@ let g:lightline = {
 
 function! LightLineFugitive() abort " {{{
     try
-        return exists('*FugitiveHead') ? ' ' . FugitiveHead() : ''
+        return exists('*FugitiveHead') ? FugitiveHead() : ''
     catch
     endtry
     return ''
@@ -57,7 +57,7 @@ function! LightLineInactive() abort " {{{
 endfunction " }}}
 
 function! LightLineReadOnly() abort " {{{
-    return &filetype !~? 'help' && &readonly ? '' : ''
+    return &filetype !~? 'help' && &readonly ? 'RO' : ''
 endfunction " }}}
 
 function! LightLineFilePath() abort " {{{
