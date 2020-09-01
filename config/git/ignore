@@ -9,6 +9,7 @@ tags
 # python
 .venv
 .mypy_cache
+.ipynb_checkpoints/
 
 # sugi
 sugi
