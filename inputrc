@@ -9,7 +9,7 @@ $if Bash
   "\C-j": menu-complete
   "\C-k": menu-complete-backward
 
-  "\C-i": shell-kill-word
+  "\C-y": shell-kill-word
 
   # Keyboard Macro
   # start-kbd-macro (C-x ()
