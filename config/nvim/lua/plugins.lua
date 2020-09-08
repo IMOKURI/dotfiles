@@ -1,5 +1,15 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
+local dir = string.format(
+    '%s/site/pack/packer/opt/packer.nvim/',
+    vim.fn.stdpath('data')
+)
+
+if vim.api.nvim_call_function('filereadable', {dir .. 'LICENSE'}) ~= 1 then
+    local url = 'https://github.com/wbthomason/packer.nvim'
+    vim.api.nvim_command(string.format('!git clone %q %q', url, dir))
+end
+
 -- Only required if you have packer in your `opt` pack
 vim.cmd [[packadd packer.nvim]]
 

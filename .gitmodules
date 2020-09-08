@@ -121,6 +121,3 @@
 [submodule "config/nvim/pack/_/start/repl.vim"]
 	path = config/nvim/pack/_/start/repl.vim
 	url = https://github.com/IMOKURI/repl.vim.git
-[submodule "config/nvim/pack/default/opt/packer.nvim"]
-	path = config/nvim/pack/default/opt/packer.nvim
-	url = https://github.com/wbthomason/packer.nvim
