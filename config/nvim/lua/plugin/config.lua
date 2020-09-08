@@ -43,15 +43,23 @@ vim.g.completion_word_min_length = 1
 
 -- nvim-treesitter
 require'nvim-treesitter.configs'.setup {
-    highlight = {
-        enable = true,
-    },
     ensure_installed = {
         'bash',
         'json',
         'lua',
         'python'
-    }
+    },
+    highlight = {
+        enable = true,
+    },
+    refactor = {
+        highlight_definitions = {
+            enable = true
+        },
+        highlight_current_scope = {
+            enable = true
+        },
+    },
 }
 
 -- nvim-lsp
