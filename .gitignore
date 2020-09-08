@@ -1,2 +1,3 @@
 config/git/config.local
 config/profile.d/proxy.sh
+packer_compiled.vim
