@@ -46,9 +46,6 @@
 [submodule "config/nvim/pack/_/start/vim-cursorword"]
 	path = config/nvim/pack/_/start/vim-cursorword
 	url = https://github.com/itchyny/vim-cursorword.git
-[submodule "config/nvim/pack/_/opt/vim-python-pep8-indent"]
-	path = config/nvim/pack/_/opt/vim-python-pep8-indent
-	url = https://github.com/Vimjas/vim-python-pep8-indent.git
 [submodule "config/nvim/pack/_/start/suda.vim"]
 	path = config/nvim/pack/_/start/suda.vim
 	url = https://github.com/lambdalisue/suda.vim.git

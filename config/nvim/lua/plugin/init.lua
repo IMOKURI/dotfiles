@@ -21,6 +21,7 @@ return require('packer').startup(function()
     use {'wbthomason/packer.nvim', opt = true}
 
     use {'microsoft/vscode-python', opt = true, ft = {'python'}}
+    use {'Vimjas/vim-python-pep8-indent', opt = true, ft = {'python'}}
 
 
 end)
