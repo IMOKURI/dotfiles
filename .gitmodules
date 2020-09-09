@@ -40,9 +40,6 @@
 [submodule "config/nvim/pack/_/opt/lexima.vim"]
 	path = config/nvim/pack/_/opt/lexima.vim
 	url = https://github.com/cohama/lexima.vim.git
-[submodule "config/nvim/pack/_/opt/rainbow_csv"]
-	path = config/nvim/pack/_/opt/rainbow_csv
-	url = https://github.com/mechatroner/rainbow_csv.git
 [submodule "config/nvim/pack/_/start/vim-cursorword"]
 	path = config/nvim/pack/_/start/vim-cursorword
 	url = https://github.com/itchyny/vim-cursorword.git
