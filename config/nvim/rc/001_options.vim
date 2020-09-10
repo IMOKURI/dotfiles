@@ -33,8 +33,8 @@ set cursorline
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
-" 80文字目にラインを表示
-set colorcolumn=80
+" 120文字目にラインを表示
+set colorcolumn=120
 
 " 折返しのときにインデントがつく
 set breakindent

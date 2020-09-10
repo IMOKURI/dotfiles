@@ -118,6 +118,13 @@ nvim_lsp.pyls.setup{
                         '--max-line-length=120',
                         '--disable=invalid-name,missing-docstring'
                     }
+                },
+                pyls_isort = {
+                    enabled = true
+                },
+                pyls_black = {
+                    enabled = true,
+                    line_length = 120
                 }
             }
         }
