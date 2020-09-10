@@ -318,6 +318,8 @@ popd
 
 ##### Install python packages #################################################
 
+PYTHON_VERSION=$(/usr/bin/python3 -c "import sys;print('.'.join(map(str, sys.version_info[:2])))")
+
 _banner "Install Pipx..."
 
 sudo /usr/bin/python3 -m pip install -U pip
@@ -342,7 +344,7 @@ pipx install neovim-remote
 # https://github.com/palantir/python-language-server/issues/857
 /usr/bin/python3 -m venv "${HOME}/.local/pipx/venv/python-language-server"
 /usr/bin/python3 -m pip install -U \
-    -t "${HOME}/.local/pipx/venvs/python-language-server/lib/python3.6/site-packages/" \
+    -t "${HOME}/.local/pipx/venvs/python-language-server/lib/python${PYTHON_VERSION}/site-packages/" \
     'python-jsonrpc-server<0.4'
 pipx install --force python-language-server
 
