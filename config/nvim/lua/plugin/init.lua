@@ -20,11 +20,12 @@ return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    use {'nvim-lua/completion-nvim', opt = true}
+
     -- Filetype: python
     use {'microsoft/vscode-python', opt = true, ft = {'python'}}
     use {'Vimjas/vim-python-pep8-indent', opt = true, ft = {'python'}}
 
     -- Filetype: csv
     use {'mechatroner/rainbow_csv', opt = true, ft = {'csv'}}
-
 end)

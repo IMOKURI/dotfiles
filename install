@@ -25,8 +25,6 @@ ERROR="RED"
 
 # Define path
 DOTPATH="$HOME/.dotfiles"
-NEOVIMPATH="$HOME/src/neovim"
-GITPATH="$HOME/src/git"
 
 ##### Functions ###############################################################
 
@@ -378,6 +376,16 @@ go get -u \
     github.com/mrtazz/checkmake \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
+
+##### Install lua-language-server #############################################
+
+_banner "Install Lua Language Server..."
+if [[ ! -f "${LUA_LSPATH}/bin/Linux/lua-language-server" ]]; then
+    pushd "$(pwd)"
+    cd "${DOTPATH}"
+    make lua-ls
+    popd
+fi
 
 ##### Install ripgrep #########################################################
 

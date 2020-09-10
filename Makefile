@@ -16,6 +16,7 @@ NEOVIMPATH    := $(HOME)/src/neovim
 GITPATH       := $(HOME)/src/git
 GITLFSPATH    := $(HOME)/src/git-lfs
 GITSTATUSPATH := $(HOME)/src/gitstatus
+LUA_LSPATH    := $(HOME)/src/lua-language-server
 
 # Proxy settings
 PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
@@ -114,6 +115,17 @@ build-vim: ## Build vim
 	./configure --with-features=huge --enable-python3interp --enable-luainterp --enable-fail-if-missing --with-luajit --prefix=$(HOME)/vim && \
 	make && \
 	make install
+
+lua-ls: update-lua-ls build-lua-ls ## Get Lua Language Server
+
+update-lua-ls: ## Update lua-ls repository
+	$(call repo,$(LUA_LSPATH),sumneko/lua-language-server)
+
+build-lua-ls: ## Build lus-ls
+	cd $(LUA_LSPATH)/3rd/luamake && \
+	ninja -f ninja/linux.ninja && \
+	cd $(LUA_LSPATH) && \
+	./3rd/luamake/luamake rebuild
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / \

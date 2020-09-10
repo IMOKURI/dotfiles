@@ -1,3 +1,5 @@
+local home_dir = os.getenv("HOME")
+
 vim.g.completion_enable_snippet = 'vim-vsnip'
 vim.g.completion_matching_ignore_case = 1
 vim.g.completion_auto_change_source = 1
@@ -21,7 +23,7 @@ vim.g.completion_chain_complete_list = {
         {mode = '<c-n>'}
     },
     lua = {
-        {complete_items = {'ts', 'buffers', 'path'}},
+        {complete_items = {'ts', 'lsp', 'buffers', 'path'}},
         {mode = '<c-p>'},
         {mode = '<c-n>'}
     },
@@ -36,7 +38,7 @@ vim.api.nvim_command('augroup MyAutoCmd')
 vim.api.nvim_command("autocmd BufEnter * lua require'completion'.on_attach()")
 vim.api.nvim_command('augroup END')
 
-vim.api.nvim_command('inoremap <silent><expr> <c-n> completion#trigger_completion()')
+vim.api.nvim_command('inoremap <silent><expr> <c-p> completion#trigger_completion()')
 
 -- completion-buffers
 vim.g.completion_word_min_length = 1
@@ -99,6 +101,15 @@ nvim_lsp.diagnosticls.setup{
             json = "jq",
             sh = "shfmt"
         }
+    }
+}
+
+nvim_lsp.sumneko_lua.setup{
+    on_attach = on_attach_vim,
+    cmd = {
+        home_dir .. "/src/lua-language-server/bin/Linux/lua-language-server",
+        "-E",
+        home_dir .. "/src/lua-language-server/main.lua"
     }
 }
 
