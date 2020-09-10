@@ -337,13 +337,20 @@ _banner "Install Python Packages..."
 pipx install ansible
 pipx install cmake
 pipx install neovim-remote
-pipx install 'python-language-server[all]'
 
-# /usr/bin/python3 -m pip install -U \
-#     -t "${HOME}/.local/pipx/venvs/python-language-server/lib/python3.6/site-packages/" \
-#     pylint-venv
+# python-language-server dependency issue W/A
+# https://github.com/palantir/python-language-server/issues/857
+/usr/bin/python3 -m venv "${HOME}/.local/pipx/venv/python-language-server"
 /usr/bin/python3 -m pip install -U \
     -t "${HOME}/.local/pipx/venvs/python-language-server/lib/python3.6/site-packages/" \
+    'python-jsonrpc-server<0.4'
+pipx install --force python-language-server
+
+# pipx install python-language-server
+pipx inject python-language-server pyls-isort
+pipx inject python-language-server pyls-black
+# pipx inject python-language-server pylint-venv
+pipx inject python-language-server \
     "git+https://github.com/IMOKURI/pylint-venv.git@different-python-version"
 
 # pipx upgrade-all
