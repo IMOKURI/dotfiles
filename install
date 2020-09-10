@@ -347,8 +347,10 @@ pipx install neovim-remote
 pipx install --force python-language-server
 
 # pipx install python-language-server
-pipx inject python-language-server pyls-isort
+pipx inject python-language-server pycodestyle
 pipx inject python-language-server pyls-black
+pipx inject python-language-server pyls-isort
+pipx inject python-language-server pylint
 # pipx inject python-language-server pylint-venv
 pipx inject python-language-server \
     "git+https://github.com/IMOKURI/pylint-venv.git@different-python-version"
