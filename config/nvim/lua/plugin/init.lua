@@ -20,12 +20,85 @@ return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    use {'nvim-lua/completion-nvim', opt = true}
-
     -- Filetype: python
     use {'microsoft/vscode-python', opt = true, ft = {'python'}}
     use {'Vimjas/vim-python-pep8-indent', opt = true, ft = {'python'}}
 
     -- Filetype: csv
     use {'mechatroner/rainbow_csv', opt = true, ft = {'csv'}}
+
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        opt = true,
+        event = {"BufNewFile *", "BufRead *"},
+        config = "require'plugin.rc.nvim-treesitter'.config()",
+    }
+
+    -- Snippet
+    use {
+        'hrsh7th/vim-vsnip',
+        opt = true,
+        event = {"InsertEnter *"},
+        setup = "require'plugin.rc.vim-vsnip'.setup()",
+        config = "require'plugin.rc.vim-vsnip'.config()",
+    }
+    use {
+        'hrsh7th/vim-vsnip-integ',
+        after = {"vim-vsnip"},
+    }
+
+    -- Auto completion
+    use {
+        'nvim-lua/completion-nvim',
+        opt = true,
+        event = {"InsertEnter *"},
+        requires = {
+            "hrsh7th/vim-vsnip",
+            "hrsh7th/vim-vsnip-integ",
+        },
+        setup = "require'plugin.rc.completion-nvim'.setup()",
+        config = "require'plugin.rc.completion-nvim'.config()",
+    }
+
+    use {
+        'steelsojka/completion-buffers',
+        opt = true,
+        event = {"InsertEnter *"},
+        requires = {
+            "nvim-lua/completion-nvim",
+        },
+        setup = "require'plugin.rc.completion-buffers'.setup()",
+        config = "require'plugin.rc.completion-buffers'.config()",
+    }
+
+    use {
+        'nvim-treesitter/completion-treesitter',
+        opt = true,
+        event = {"InsertEnter *"},
+        requires = {
+            "nvim-lua/completion-nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+    }
+
+    -- LSP
+    use {
+        'nvim-lua/diagnostic-nvim',
+        opt = true,
+        event = {"BufNewFile *", "BufRead *"},
+        setup = "require'plugin.rc.diagnostic-nvim'.setup()",
+        config = "require'plugin.rc.diagnostic-nvim'.config()",
+    }
+    use {
+        'neovim/nvim-lspconfig',
+        opt = true,
+        event = {"BufNewFile *", "BufRead *"},
+        requires = {
+            "nvim-lua/completion-nvim",
+            "nvim-lua/diagnostic-nvim",
+        },
+        setup = "require'plugin.rc.nvim-lspconfig'.setup()",
+        config = "require'plugin.rc.nvim-lspconfig'.config()",
+    }
 end)
