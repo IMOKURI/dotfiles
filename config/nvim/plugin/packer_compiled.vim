@@ -10,6 +10,7 @@ local plugins = {
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/completion-buffers"
   },
   ["completion-nvim"] = {
+    after = { "nvim-lspconfig" },
     config = { "require'plugin.rc.completion-nvim'.config()" },
     loaded = false,
     only_sequence = false,
@@ -23,6 +24,7 @@ local plugins = {
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/completion-treesitter"
   },
   ["diagnostic-nvim"] = {
+    after = { "nvim-lspconfig" },
     config = { "require'plugin.rc.diagnostic-nvim'.config()" },
     loaded = false,
     only_sequence = false,
@@ -31,6 +33,10 @@ local plugins = {
   },
   ["nvim-lspconfig"] = {
     config = { "require'plugin.rc.nvim-lspconfig'.config()" },
+    load_after = {
+      ["completion-nvim"] = true,
+      ["diagnostic-nvim"] = true
+    },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -62,7 +68,6 @@ local plugins = {
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-python-pep8-indent"
   },
   ["vim-vsnip"] = {
-    after = { "vim-vsnip-integ" },
     config = { "require'plugin.rc.vim-vsnip'.config()" },
     loaded = false,
     only_sequence = false,
@@ -70,9 +75,6 @@ local plugins = {
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["vim-vsnip-integ"] = {
-    load_after = {
-      ["vim-vsnip"] = true
-    },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -238,7 +240,7 @@ augroup packer_load_aucmds
   au FileType python ++once call s:load(['vim-python-pep8-indent', 'vscode-python'], { "ft": "python" })
   au FileType csv ++once call s:load(['rainbow_csv'], { "ft": "csv" })
   " Event lazy-loads
-  au BufNewFile * ++once call s:load(['nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
-  au InsertEnter * ++once call s:load(['completion-nvim', 'vim-vsnip', 'completion-treesitter', 'completion-buffers'], { "event": "InsertEnter *" })
-  au BufRead * ++once call s:load(['nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
+  au BufNewFile * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
+  au InsertEnter * ++once call s:load(['vim-vsnip', 'vim-vsnip-integ', 'completion-treesitter', 'completion-buffers'], { "event": "InsertEnter *" })
+  au BufRead * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
 augroup END
