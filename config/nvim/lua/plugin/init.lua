@@ -21,7 +21,7 @@ return require('packer').startup(function()
     use {'wbthomason/packer.nvim', opt = true}
 
     -- Filetype: python
-    use {'microsoft/vscode-python', ft = {'python'}}
+    use {'microsoft/vscode-python', branch = 'main', ft = {'python'}}
     use {'Vimjas/vim-python-pep8-indent', ft = {'python'}}
 
     -- Filetype: csv
