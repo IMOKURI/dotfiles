@@ -372,7 +372,7 @@ go get -u \
 ##### Install lua-language-server #############################################
 
 _banner "Install Lua Language Server..."
-if [[ ${is_deb} && ! -f "${LUA_LSPATH}/bin/Linux/lua-language-server" ]]; then
+if ${is_deb} && [[ ! -f "${LUA_LSPATH}/bin/Linux/lua-language-server" ]]; then
     pushd "$(pwd)"
     cd "${DOTPATH}"
     make lua-ls
