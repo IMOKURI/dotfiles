@@ -48,6 +48,23 @@ function M.config()
             home_dir .. "/src/lua-language-server/bin/Linux/lua-language-server",
             "-E",
             home_dir .. "/src/lua-language-server/main.lua"
+        },
+        settings = {
+            Lua = {
+                runtime = {
+                    version = "LuaJIT",
+                    path = vim.split(package.path, ';'),
+                },
+                diagnostics = {
+                    enable = true,
+                    globals = vim.list_extend(
+                        {
+                            "vim",
+                        },
+                        {}
+                    )
+                }
+            }
         }
     }
 
