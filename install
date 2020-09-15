@@ -364,7 +364,7 @@ yarn global add --prefix "${HOME}" \
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
-go get -u \
+GO111MODULE=on go get -u \
     github.com/mrtazz/checkmake \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
