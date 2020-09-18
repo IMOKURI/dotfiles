@@ -13,9 +13,6 @@
 [submodule "config/nvim/pack/_/start/neoterm"]
 	path = config/nvim/pack/_/start/neoterm
 	url = https://github.com/kassio/neoterm.git
-[submodule "config/nvim/pack/_/opt/vim-table-mode"]
-	path = config/nvim/pack/_/opt/vim-table-mode
-	url = https://github.com/dhruvasagar/vim-table-mode.git
 [submodule "config/nvim/pack/_/opt/vim-ansible-vault"]
 	path = config/nvim/pack/_/opt/vim-ansible-vault
 	url = https://github.com/thiagoalmeidasa/vim-ansible-vault.git

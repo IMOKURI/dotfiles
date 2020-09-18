@@ -67,6 +67,12 @@ local plugins = {
     only_setup = false,
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-python-pep8-indent"
   },
+  ["vim-table-mode"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-table-mode"
+  },
   ["vim-vsnip"] = {
     config = { "require'plugin.rc.vim-vsnip'.config()" },
     loaded = false,
@@ -213,6 +219,8 @@ require'plugin.rc.diagnostic-nvim'.setup()
 require'plugin.rc.completion-nvim'.setup()
 -- Setup for: vim-vsnip
 require'plugin.rc.vim-vsnip'.setup()
+-- Setup for: vim-table-mode
+require'plugin.rc.vim-table-mode'.setup()
 -- Setup for: completion-buffers
 require'plugin.rc.completion-buffers'.setup()
 -- Setup for: nvim-lspconfig
@@ -237,10 +245,11 @@ endfunction
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType python ++once call s:load(['vim-python-pep8-indent', 'vscode-python'], { "ft": "python" })
   au FileType csv ++once call s:load(['rainbow_csv'], { "ft": "csv" })
+  au FileType python ++once call s:load(['vim-python-pep8-indent', 'vscode-python'], { "ft": "python" })
+  au FileType markdown ++once call s:load(['vim-table-mode'], { "ft": "markdown" })
   " Event lazy-loads
   au BufNewFile * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
-  au InsertEnter * ++once call s:load(['vim-vsnip', 'vim-vsnip-integ', 'completion-treesitter', 'completion-buffers'], { "event": "InsertEnter *" })
+  au InsertEnter * ++once call s:load(['vim-vsnip', 'completion-treesitter', 'vim-vsnip-integ', 'completion-buffers'], { "event": "InsertEnter *" })
   au BufRead * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
 augroup END

@@ -27,6 +27,13 @@ return require('packer').startup(function()
     -- Filetype: csv
     use {'mechatroner/rainbow_csv', ft = {'csv'}}
 
+    -- Filetype: markdown
+    use {
+        'dhruvasagar/vim-table-mode',
+        ft = {'markdown'},
+        setup = "require'plugin.rc.vim-table-mode'.setup()",
+    }
+
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
