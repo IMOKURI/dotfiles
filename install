@@ -334,7 +334,7 @@ fi
 
 _banner "Install Python Packages..."
 
-pipx install ansible
+pipx install --include-deps ansible
 pipx install cmake
 pipx install neovim-remote
 
