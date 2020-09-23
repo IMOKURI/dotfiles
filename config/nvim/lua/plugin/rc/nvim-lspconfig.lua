@@ -6,19 +6,39 @@ function M.setup()
 end
 
 function M.config()
-    local on_attach_vim = function()
-        require'completion'.on_attach()
-        require'diagnostic'.on_attach()
+    local lsp_status = require("lsp-status")
+    lsp_status.register_progress()
+
+    local nvim_lsp = require("nvim_lsp")
+
+    local on_attach_vim = function(client)
+        local completion = require("completion")
+        local diagnostic = require("diagnostic")
+
+        completion.on_attach(client)
+        diagnostic.on_attach()
+        lsp_status.on_attach(client)
     end
 
-    local nvim_lsp = require'nvim_lsp'
-
-    nvim_lsp.bashls.setup{on_attach=on_attach_vim}
-    nvim_lsp.dockerls.setup{on_attach=on_attach_vim}
-    nvim_lsp.terraformls.setup{on_attach=on_attach_vim}
-    nvim_lsp.vimls.setup{on_attach=on_attach_vim}
+    nvim_lsp.bashls.setup{
+        capabilities = lsp_status.capabilities,
+        on_attach=on_attach_vim,
+    }
+    nvim_lsp.dockerls.setup{
+        capabilities = lsp_status.capabilities,
+        on_attach=on_attach_vim,
+    }
+    nvim_lsp.terraformls.setup{
+        capabilities = lsp_status.capabilities,
+        on_attach=on_attach_vim,
+    }
+    nvim_lsp.vimls.setup{
+        capabilities = lsp_status.capabilities,
+        on_attach=on_attach_vim,
+    }
 
     nvim_lsp.diagnosticls.setup{
+        capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         filetypes = {
             'json',
@@ -43,6 +63,7 @@ function M.config()
     }
 
     nvim_lsp.sumneko_lua.setup{
+        capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         cmd = {
             home_dir .. "/src/lua-language-server/bin/Linux/lua-language-server",
@@ -59,6 +80,7 @@ function M.config()
                     enable = true,
                     globals = vim.list_extend(
                         {
+                            "use",
                             "vim",
                         },
                         {}
@@ -69,6 +91,7 @@ function M.config()
     }
 
     nvim_lsp.pyls.setup{
+        capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         settings = {
             pyls = {
@@ -98,6 +121,7 @@ function M.config()
     }
 
     nvim_lsp.yamlls.setup{
+        capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         settings = {
             yaml = {

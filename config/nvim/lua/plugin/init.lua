@@ -99,12 +99,23 @@ return require('packer').startup(function()
         requires = {
             "nvim-lua/completion-nvim",
             "nvim-lua/diagnostic-nvim",
+            "nvim-lua/lsp-status.nvim",
         },
         after = {
             "completion-nvim",
             "diagnostic-nvim",
+            "lsp-status.nvim",
         },
         setup = "require'plugin.rc.nvim-lspconfig'.setup()",
         config = "require'plugin.rc.nvim-lspconfig'.config()",
+    }
+
+    -- Status line
+    use {
+        'tjdevries/express_line.nvim',
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = "require'plugin.rc.express_line-nvim'.config()",
     }
 end)
