@@ -22,8 +22,6 @@ else
     alias vi="nvim"
 fi
 
-alias cd='cdls'
-
 cdls() {
     \cd "$@" && pwd && ls -l --color=always | less
 }
