@@ -2,4 +2,5 @@
 if !1 | finish | endif
 
 set packpath=
-set runtimepath=
+
+set runtimepath=$VIMRUNTIME

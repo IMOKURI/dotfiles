@@ -34,12 +34,6 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.vim-table-mode'.setup()",
     }
 
-    -- Scroll bar
-    use {
-        'Xuyuanp/scrollbar.nvim',
-        config = "require'plugin.rc.scrollbar-nvim'.config()",
-    }
-
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
