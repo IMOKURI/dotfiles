@@ -1,6 +1,3 @@
-[submodule "config/nvim/pack/_/start/fugitive.vim"]
-	path = config/nvim/pack/_/start/fugitive.vim
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "config/nvim/pack/_/start/vim-gitgutter"]
 	path = config/nvim/pack/_/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
@@ -46,9 +43,6 @@
 [submodule "config/nvim/pack/_/start/ansible-vim"]
 	path = config/nvim/pack/_/start/ansible-vim
 	url = https://github.com/pearofducks/ansible-vim.git
-[submodule "config/nvim/pack/_/opt/capture.vim"]
-	path = config/nvim/pack/_/opt/capture.vim
-	url = https://github.com/tyru/capture.vim.git
 [submodule "config/nvim/pack/_/start/neco-syntax"]
 	path = config/nvim/pack/_/start/neco-syntax
 	url = https://github.com/Shougo/neco-syntax.git

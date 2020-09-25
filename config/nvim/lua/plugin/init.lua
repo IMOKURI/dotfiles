@@ -34,6 +34,9 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.vim-table-mode'.setup()",
     }
 
+    -- Capture
+    use {'tyru/capture.vim', cmd = {'Capture'}}
+
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
