@@ -213,21 +213,23 @@ _packer_load = function(names, cause)
 end
 
 -- Pre-load configuration
+-- Setup for: nvim-lspconfig
+require'plugin.rc.nvim-lspconfig'.setup()
+-- Setup for: vim-table-mode
+require'plugin.rc.vim-table-mode'.setup()
+-- Setup for: vim-vsnip
+require'plugin.rc.vim-vsnip'.setup()
+-- Setup for: completion-buffers
+require'plugin.rc.completion-buffers'.setup()
 -- Setup for: diagnostic-nvim
 require'plugin.rc.diagnostic-nvim'.setup()
 -- Setup for: completion-nvim
 require'plugin.rc.completion-nvim'.setup()
--- Setup for: vim-vsnip
-require'plugin.rc.vim-vsnip'.setup()
--- Setup for: vim-table-mode
-require'plugin.rc.vim-table-mode'.setup()
--- Setup for: completion-buffers
-require'plugin.rc.completion-buffers'.setup()
--- Setup for: nvim-lspconfig
-require'plugin.rc.nvim-lspconfig'.setup()
 -- Post-load configuration
 -- Config for: express_line.nvim
 require'plugin.rc.express_line-nvim'.config()
+-- Config for: telescope.nvim
+require'plugin.rc.telescope-nvim'.config()
 -- Conditional loads
 vim._update_package_paths()
 END
@@ -248,10 +250,10 @@ augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
   au FileType csv ++once call s:load(['rainbow_csv'], { "ft": "csv" })
-  au FileType python ++once call s:load(['vim-python-pep8-indent', 'vscode-python'], { "ft": "python" })
+  au FileType python ++once call s:load(['vscode-python', 'vim-python-pep8-indent'], { "ft": "python" })
   au FileType markdown ++once call s:load(['vim-table-mode'], { "ft": "markdown" })
   " Event lazy-loads
-  au BufNewFile * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
-  au InsertEnter * ++once call s:load(['vim-vsnip', 'completion-treesitter', 'vim-vsnip-integ', 'completion-buffers'], { "event": "InsertEnter *" })
-  au BufRead * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
+  au BufNewFile * ++once call s:load(['nvim-lspconfig', 'completion-nvim', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
+  au InsertEnter * ++once call s:load(['vim-vsnip', 'vim-vsnip-integ', 'completion-buffers', 'completion-treesitter'], { "event": "InsertEnter *" })
+  au BufRead * ++once call s:load(['nvim-lspconfig', 'completion-nvim', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
 augroup END

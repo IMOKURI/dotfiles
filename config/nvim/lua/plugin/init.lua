@@ -112,4 +112,14 @@ return require('packer').startup(function()
         },
         config = "require'plugin.rc.express_line-nvim'.config()",
     }
+
+    -- Fuzzy finder
+    use {
+        'nvim-lua/telescope.nvim',
+        requires = {
+            "nvim-lua/popup.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+        config = "require'plugin.rc.telescope-nvim'.config()",
+    }
 end)
