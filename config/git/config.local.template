@@ -1,6 +1,7 @@
 [user]
   name = Yoshio Sugiyama
   email = yoshio.sugiyama@hpe.com
+  signingkey = 1D92458356874F72
 [http]
   proxy = write_proxy_here
 [https]
