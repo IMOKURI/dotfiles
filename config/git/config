@@ -4,7 +4,7 @@
   signingkey = 31387B7CE9FEBBFE
 
 [gpg]
-  program = gpg2
+  program = gpg
 
 [includeIf "gitdir:~/ghe/"]
   path = ~/.config/git/config.local
@@ -25,6 +25,9 @@
   showUntrackedFiles = all
 
 [commit]
+  gpgsign = true
+
+[tag]
   gpgsign = true
 
 [fetch]
