@@ -1,5 +1,9 @@
 # .config/bashrc
 
+##### Environment variables ###################################################
+
+export GPG_TTY=$(tty)
+
 ##### Set bash options ########################################################
 
 # ディレクトリ名を実行すると、そのディレクトリに移動する
@@ -130,6 +134,8 @@ alias ks='kubectl describe'
 alias a='ansible'
 alias ap='ansible-playbook'
 alias av='ansible-vault'
+
+alias e='explorer.exe .'
 
 ##### Load bashmarks ##########################################################
 

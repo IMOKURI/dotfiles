@@ -1,6 +1,10 @@
 [user]
-  name = IMOKURI
+  name = Yoshio Sugiyama
   email = nenegi.01mo@gmail.com
+  signingkey = 31387B7CE9FEBBFE
+
+[gpg]
+  program = gpg2
 
 [includeIf "gitdir:~/ghe/"]
   path = ~/.config/git/config.local
@@ -19,6 +23,9 @@
 
 [status]
   showUntrackedFiles = all
+
+[commit]
+  gpgsign = true
 
 [fetch]
   prune = true
