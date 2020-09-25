@@ -37,6 +37,13 @@ return require('packer').startup(function()
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
+    -- Line diff
+    use {
+        'AndrewRadev/linediff.vim',
+        cmd = {'Linediff'},
+        setup = "require'plugin.rc.linediff'.setup()",
+    }
+
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',

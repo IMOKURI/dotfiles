@@ -38,6 +38,13 @@ local plugins = {
     only_setup = false,
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/diagnostic-nvim"
   },
+  ["linediff.vim"] = {
+    commands = { "Linediff" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/linediff.vim"
+  },
   ["nvim-lspconfig"] = {
     config = { "require'plugin.rc.nvim-lspconfig'.config()" },
     load_after = {
@@ -226,12 +233,14 @@ require'plugin.rc.diagnostic-nvim'.setup()
 require'plugin.rc.completion-nvim'.setup()
 -- Setup for: vim-vsnip
 require'plugin.rc.vim-vsnip'.setup()
+-- Setup for: nvim-lspconfig
+require'plugin.rc.nvim-lspconfig'.setup()
 -- Setup for: completion-buffers
 require'plugin.rc.completion-buffers'.setup()
 -- Setup for: vim-table-mode
 require'plugin.rc.vim-table-mode'.setup()
--- Setup for: nvim-lspconfig
-require'plugin.rc.nvim-lspconfig'.setup()
+-- Setup for: linediff.vim
+require'plugin.rc.linediff'.setup()
 -- Post-load configuration
 -- Config for: express_line.nvim
 require'plugin.rc.express_line-nvim'.config()
@@ -250,6 +259,7 @@ endfunction
 " Load plugins in order defined by `after`
 
 " Command lazy-loads
+command! -nargs=* -range -bang -complete=file Linediff call s:load(['linediff.vim'], { "cmd": "Linediff", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Capture call s:load(['capture.vim'], { "cmd": "Capture", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
@@ -261,7 +271,7 @@ augroup packer_load_aucmds
   au FileType python ++once call s:load(['vscode-python', 'vim-python-pep8-indent'], { "ft": "python" })
   au FileType markdown ++once call s:load(['vim-table-mode'], { "ft": "markdown" })
   " Event lazy-loads
-  au BufNewFile * ++once call s:load(['nvim-lspconfig', 'completion-nvim', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
-  au InsertEnter * ++once call s:load(['vim-vsnip', 'vim-vsnip-integ', 'completion-treesitter', 'completion-buffers'], { "event": "InsertEnter *" })
-  au BufRead * ++once call s:load(['nvim-lspconfig', 'completion-nvim', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
+  au BufNewFile * ++once call s:load(['nvim-treesitter', 'completion-nvim', 'diagnostic-nvim', 'nvim-lspconfig'], { "event": "BufNewFile *" })
+  au InsertEnter * ++once call s:load(['vim-vsnip-integ', 'vim-vsnip', 'completion-buffers', 'completion-treesitter'], { "event": "InsertEnter *" })
+  au BufRead * ++once call s:load(['nvim-treesitter', 'completion-nvim', 'diagnostic-nvim', 'nvim-lspconfig'], { "event": "BufRead *" })
 augroup END
