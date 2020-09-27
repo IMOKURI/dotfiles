@@ -19,9 +19,6 @@
 [submodule "config/nvim/pack/_/opt/line-number-interval.nvim"]
 	path = config/nvim/pack/_/opt/line-number-interval.nvim
 	url = https://github.com/IMOKURI/line-number-interval.nvim.git
-[submodule "config/nvim/pack/_/start/vim-easy-align"]
-	path = config/nvim/pack/_/start/vim-easy-align
-	url = https://github.com/junegunn/vim-easy-align.git
 [submodule "config/nvim/pack/_/opt/lexima.vim"]
 	path = config/nvim/pack/_/opt/lexima.vim
 	url = https://github.com/cohama/lexima.vim.git

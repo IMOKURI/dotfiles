@@ -82,6 +82,13 @@ local plugins = {
     only_setup = false,
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-commentary"
   },
+  ["vim-easy-align"] = {
+    commands = { "EasyAlign" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-easy-align"
+  },
   ["vim-python-pep8-indent"] = {
     loaded = false,
     only_sequence = false,
@@ -236,20 +243,22 @@ end
 -- Pre-load configuration
 -- Setup for: completion-buffers
 require'plugin.rc.completion-buffers'.setup()
--- Setup for: nvim-lspconfig
-require'plugin.rc.nvim-lspconfig'.setup()
 -- Setup for: completion-nvim
 require'plugin.rc.completion-nvim'.setup()
--- Setup for: linediff.vim
-require'plugin.rc.linediff'.setup()
--- Setup for: vim-table-mode
-require'plugin.rc.vim-table-mode'.setup()
 -- Setup for: vim-vsnip
 require'plugin.rc.vim-vsnip'.setup()
 -- Setup for: vim-commentary
 require'plugin.rc.commentary'.setup()
+-- Setup for: vim-easy-align
+require'plugin.rc.easy-align'.setup()
 -- Setup for: diagnostic-nvim
 require'plugin.rc.diagnostic-nvim'.setup()
+-- Setup for: vim-table-mode
+require'plugin.rc.vim-table-mode'.setup()
+-- Setup for: linediff.vim
+require'plugin.rc.linediff'.setup()
+-- Setup for: nvim-lspconfig
+require'plugin.rc.nvim-lspconfig'.setup()
 -- Post-load configuration
 -- Config for: express_line.nvim
 require'plugin.rc.express_line-nvim'.config()
@@ -269,8 +278,9 @@ endfunction
 
 " Command lazy-loads
 command! -nargs=* -range -bang -complete=file Linediff call s:load(['linediff.vim'], { "cmd": "Linediff", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Capture call s:load(['capture.vim'], { "cmd": "Capture", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Commentary call s:load(['vim-commentary'], { "cmd": "Commentary", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Capture call s:load(['capture.vim'], { "cmd": "Capture", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file EasyAlign call s:load(['vim-easy-align'], { "cmd": "EasyAlign", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
@@ -281,7 +291,7 @@ augroup packer_load_aucmds
   au FileType python ++once call s:load(['vscode-python', 'vim-python-pep8-indent'], { "ft": "python" })
   au FileType markdown ++once call s:load(['vim-table-mode'], { "ft": "markdown" })
   " Event lazy-loads
-  au BufNewFile * ++once call s:load(['nvim-lspconfig', 'completion-nvim', 'nvim-treesitter', 'diagnostic-nvim'], { "event": "BufNewFile *" })
-  au InsertEnter * ++once call s:load(['vim-vsnip-integ', 'vim-vsnip', 'completion-treesitter', 'completion-buffers'], { "event": "InsertEnter *" })
-  au BufRead * ++once call s:load(['nvim-lspconfig', 'completion-nvim', 'nvim-treesitter', 'diagnostic-nvim'], { "event": "BufRead *" })
+  au BufNewFile * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
+  au InsertEnter * ++once call s:load(['completion-buffers', 'vim-vsnip-integ', 'vim-vsnip', 'completion-treesitter'], { "event": "InsertEnter *" })
+  au BufRead * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
 augroup END

@@ -37,6 +37,13 @@ return require('packer').startup(function()
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
+    -- Easy align
+    use {
+        'junegunn/vim-easy-align',
+        cmd = {'EasyAlign'},
+        setup = "require'plugin.rc.easy-align'.setup()",
+    }
+
     -- Commentary
     use {
         'tpope/vim-commentary',
