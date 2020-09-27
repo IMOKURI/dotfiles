@@ -101,6 +101,12 @@ local plugins = {
     only_setup = false,
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-table-mode"
   },
+  ["vim-terraform"] = {
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/vim-terraform"
+  },
   ["vim-vsnip"] = {
     config = { "require'plugin.rc.vim-vsnip'.config()" },
     loaded = false,
@@ -251,6 +257,8 @@ require'plugin.rc.vim-vsnip'.setup()
 require'plugin.rc.commentary'.setup()
 -- Setup for: vim-easy-align
 require'plugin.rc.easy-align'.setup()
+-- Setup for: vim-terraform
+require'plugin.rc.vim-terraform'.setup()
 -- Setup for: diagnostic-nvim
 require'plugin.rc.diagnostic-nvim'.setup()
 -- Setup for: vim-table-mode
@@ -288,8 +296,9 @@ augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
   au FileType csv ++once call s:load(['rainbow_csv'], { "ft": "csv" })
-  au FileType python ++once call s:load(['vscode-python', 'vim-python-pep8-indent'], { "ft": "python" })
   au FileType markdown ++once call s:load(['vim-table-mode'], { "ft": "markdown" })
+  au FileType python ++once call s:load(['vscode-python', 'vim-python-pep8-indent'], { "ft": "python" })
+  au FileType terraform ++once call s:load(['vim-terraform'], { "ft": "terraform" })
   " Event lazy-loads
   au BufNewFile * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
   au InsertEnter * ++once call s:load(['completion-buffers', 'vim-vsnip-integ', 'vim-vsnip', 'completion-treesitter'], { "event": "InsertEnter *" })

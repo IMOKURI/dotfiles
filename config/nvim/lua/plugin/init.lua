@@ -34,6 +34,13 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.vim-table-mode'.setup()",
     }
 
+    -- Filetype: terraform
+    use {
+        'hashivim/vim-terraform',
+        ft = {'terraform'},
+        setup = "require'plugin.rc.vim-terraform'.setup()",
+    }
+
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
