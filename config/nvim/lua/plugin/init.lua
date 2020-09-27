@@ -37,6 +37,13 @@ return require('packer').startup(function()
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
+    -- Commentary
+    use {
+        'tpope/vim-commentary',
+        cmd = {'Commentary'},
+        setup = "require'plugin.rc.commentary'.setup()",
+    }
+
     -- Line diff
     use {
         'AndrewRadev/linediff.vim',
