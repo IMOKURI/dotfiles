@@ -44,6 +44,12 @@ return require('packer').startup(function()
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
+    -- Suda
+    use {
+        'lambdalisue/suda.vim',
+        setup = "require'plugin.rc.suda-vim'.setup()",
+    }
+
     -- Easy align
     use {
         'junegunn/vim-easy-align',

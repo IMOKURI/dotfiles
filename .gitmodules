@@ -25,9 +25,6 @@
 [submodule "config/nvim/pack/_/start/vim-cursorword"]
 	path = config/nvim/pack/_/start/vim-cursorword
 	url = https://github.com/itchyny/vim-cursorword.git
-[submodule "config/nvim/pack/_/start/suda.vim"]
-	path = config/nvim/pack/_/start/suda.vim
-	url = https://github.com/lambdalisue/suda.vim.git
 [submodule "config/nvim/pack/_/start/Jenkinsfile-vim-syntax"]
 	path = config/nvim/pack/_/start/Jenkinsfile-vim-syntax
 	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git

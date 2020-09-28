@@ -75,6 +75,12 @@ local plugins = {
     only_setup = false,
     path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/rainbow_csv"
   },
+  ["suda.vim"] = {
+    loaded = false,
+    only_sequence = true,
+    only_setup = true,
+    path = "/home/sugi/.local/share/nvim/site/pack/packer/opt/suda.vim"
+  },
   ["vim-commentary"] = {
     commands = { "Commentary" },
     loaded = false,
@@ -265,6 +271,9 @@ require'plugin.rc.diagnostic-nvim'.setup()
 require'plugin.rc.vim-table-mode'.setup()
 -- Setup for: linediff.vim
 require'plugin.rc.linediff'.setup()
+-- Setup for: suda.vim
+require'plugin.rc.suda-vim'.setup()
+vim.cmd("packadd suda.vim")
 -- Setup for: nvim-lspconfig
 require'plugin.rc.nvim-lspconfig'.setup()
 -- Post-load configuration
@@ -301,6 +310,6 @@ augroup packer_load_aucmds
   au FileType terraform ++once call s:load(['vim-terraform'], { "ft": "terraform" })
   " Event lazy-loads
   au BufNewFile * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufNewFile *" })
-  au InsertEnter * ++once call s:load(['completion-buffers', 'vim-vsnip-integ', 'vim-vsnip', 'completion-treesitter'], { "event": "InsertEnter *" })
+  au InsertEnter * ++once call s:load(['completion-buffers', 'completion-treesitter', 'vim-vsnip-integ', 'vim-vsnip'], { "event": "InsertEnter *" })
   au BufRead * ++once call s:load(['completion-nvim', 'nvim-lspconfig', 'diagnostic-nvim', 'nvim-treesitter'], { "event": "BufRead *" })
 augroup END
