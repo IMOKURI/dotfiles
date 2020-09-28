@@ -135,17 +135,10 @@ function M.config()
         }
     }
 
-    vim.api.nvim_command('nnoremap <silent> 1gD       <cmd>lua vim.lsp.buf.type_definition()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>[ <cmd>lua vim.lsp.buf.references()<CR>')
+    -- vim.api.nvim_command('nnoremap <silent> <Leader>[ <cmd>lua vim.lsp.buf.references()<CR>')
     vim.api.nvim_command('nnoremap <silent> <Leader>] <cmd>lua vim.lsp.buf.definition()<CR>')
     vim.api.nvim_command('nnoremap <silent> <Leader>d <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>k <cmd>lua vim.lsp.buf.hover()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>s <cmd>lua vim.lsp.buf.document_symbol()<CR>')
     vim.api.nvim_command('nnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>K <cmd>lua vim.lsp.buf.signature_help()<CR>')
-    vim.api.nvim_command('nnoremap <silent> gD        <cmd>lua vim.lsp.buf.implementation()<CR>')
-    vim.api.nvim_command('nnoremap <silent> gW        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    vim.api.nvim_command('nnoremap <silent> gd        <cmd>lua vim.lsp.buf.declaration()<CR>')
     vim.api.nvim_command('xnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>')
 end
 

@@ -37,6 +37,15 @@ function M.config()
             silent = true,
         }
     )
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>[",
+        "<cmd>lua require('telescope.builtin').lsp_references{}<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
 end
 
 return M

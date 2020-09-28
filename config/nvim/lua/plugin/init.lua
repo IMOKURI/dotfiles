@@ -140,6 +140,7 @@ return require('packer').startup(function()
         'tjdevries/express_line.nvim',
         requires = {
             "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons",
         },
         config = "require'plugin.rc.express_line-nvim'.config()",
     }
@@ -150,6 +151,7 @@ return require('packer').startup(function()
         requires = {
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons",
         },
         config = "require'plugin.rc.telescope-nvim'.config()",
     }
