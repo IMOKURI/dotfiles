@@ -44,6 +44,12 @@ return require('packer').startup(function()
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
+    -- Line number interval
+    use {
+        'IMOKURI/line-number-interval.nvim',
+        setup = "require'plugin.rc.line-number-interval-nvim'.setup()",
+    }
+
     -- Suda
     use {
         'lambdalisue/suda.vim',
