@@ -1,2 +1,8 @@
+# Git
 config/git/config.local
+
+# Bash
 config/profile.d/proxy.sh
+
+# Packer.nvim
+packer_compiled.vim
