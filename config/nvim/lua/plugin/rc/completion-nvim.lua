@@ -19,7 +19,7 @@ function M.setup()
             {mode = '<c-n>'}
         },
         json = {
-            {complete_items = {'ts', 'lsp', 'buffers', 'path'}},
+            {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
             {mode = '<c-p>'},
             {mode = '<c-n>'}
         },
@@ -27,13 +27,11 @@ function M.setup()
             {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
             {mode = '<c-p>'},
             {mode = '<c-n>'}
-        },
-        python = {
-            {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
-            {mode = '<c-p>'},
-            {mode = '<c-n>'}
         }
     }
+
+    -- completion-buffers
+    vim.g.completion_word_min_length = 1
 end
 
 function M.config()

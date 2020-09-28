@@ -6,7 +6,6 @@ function M.config()
             'bash',
             'json',
             'lua',
-            'python'
         },
         highlight = {
             enable = true,

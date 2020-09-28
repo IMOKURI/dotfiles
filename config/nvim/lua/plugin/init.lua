@@ -87,36 +87,34 @@ return require('packer').startup(function()
     -- Snippet
     use {
         'hrsh7th/vim-vsnip',
-        event = {"InsertEnter *"},
         setup = "require'plugin.rc.vim-vsnip'.setup()",
         config = "require'plugin.rc.vim-vsnip'.config()",
-    }
-    use {
-        'hrsh7th/vim-vsnip-integ',
-        event = {"InsertEnter *"},
     }
 
     -- Auto completion
     use {
         'nvim-lua/completion-nvim',
         event = {"BufNewFile *", "BufRead *"},
+        requires = {
+            "hrsh7th/vim-vsnip",
+            "hrsh7th/vim-vsnip-integ",
+        },
         setup = "require'plugin.rc.completion-nvim'.setup()",
         config = "require'plugin.rc.completion-nvim'.config()",
     }
 
     use {
         'steelsojka/completion-buffers',
-        event = {"InsertEnter *"},
         requires = {
             "nvim-lua/completion-nvim",
         },
-        setup = "require'plugin.rc.completion-buffers'.setup()",
-        config = "require'plugin.rc.completion-buffers'.config()",
+        after = {
+            "completion-nvim",
+        },
     }
 
     use {
         'nvim-treesitter/completion-treesitter',
-        event = {"InsertEnter *"},
         requires = {
             "nvim-lua/completion-nvim",
             "nvim-treesitter/nvim-treesitter",
