@@ -87,14 +87,12 @@ return require('packer').startup(function()
     -- Snippet
     use {
         'hrsh7th/vim-vsnip',
-        setup = "require'plugin.rc.vim-vsnip'.setup()",
         config = "require'plugin.rc.vim-vsnip'.config()",
     }
 
     -- Auto completion
     use {
         'nvim-lua/completion-nvim',
-        event = {"BufNewFile *", "BufRead *"},
         requires = {
             "hrsh7th/vim-vsnip",
             "hrsh7th/vim-vsnip-integ",
@@ -105,19 +103,17 @@ return require('packer').startup(function()
 
     use {
         'steelsojka/completion-buffers',
-        requires = {
-            "nvim-lua/completion-nvim",
-        },
         after = {
             "completion-nvim",
         },
+        config = "require'plugin.rc.completion-buffers'.config()",
     }
 
     use {
         'nvim-treesitter/completion-treesitter',
-        requires = {
-            "nvim-lua/completion-nvim",
-            "nvim-treesitter/nvim-treesitter",
+        after = {
+            "completion-nvim",
+            "nvim-treesitter",
         },
     }
 

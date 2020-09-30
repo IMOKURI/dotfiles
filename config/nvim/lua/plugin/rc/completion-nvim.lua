@@ -29,9 +29,6 @@ function M.setup()
             {mode = '<c-n>'}
         }
     }
-
-    -- completion-buffers
-    vim.g.completion_word_min_length = 1
 end
 
 function M.config()
