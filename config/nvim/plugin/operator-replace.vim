@@ -1,2 +1,2 @@
 
-map <Leader>s <Plug>(operator-replace)
+map S <Plug>(operator-replace)
