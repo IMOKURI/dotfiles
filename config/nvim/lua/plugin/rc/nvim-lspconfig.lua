@@ -135,12 +135,51 @@ function M.config()
         }
     }
 
-    -- vim.api.nvim_command('nnoremap <silent> <Leader>[ <cmd>lua vim.lsp.buf.references()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>] <cmd>lua vim.lsp.buf.definition()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>d <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>r <cmd>lua vim.lsp.buf.rename()<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>')
-    vim.api.nvim_command('xnoremap <silent> <Leader>z <cmd>lua vim.lsp.buf.formatting()<CR>')
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>]",
+        "<cmd>lua vim.lsp.buf.definition()<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>z",
+        "<cmd>lua vim.lsp.buf.formatting()<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
+    vim.api.nvim_set_keymap(
+        "x",
+        "<Leader>z",
+        "<cmd>lua vim.lsp.buf.formatting()<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>r",
+        "<cmd>lua vim.lsp.buf.rename()<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>d",
+        "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
 end
 
 return M

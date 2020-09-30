@@ -5,9 +5,33 @@ function M.setup()
 end
 
 function M.config()
-    vim.api.nvim_command('nnoremap <silent> <Leader>D <cmd>OpenDiagnostic<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>n <cmd>NextDiagnosticCycle<CR>')
-    vim.api.nvim_command('nnoremap <silent> <Leader>p <cmd>PrevDiagnosticCycle<CR>')
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>D",
+        "<cmd>OpenDiagnostic<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>n",
+        "<cmd>NextDiagnosticCycle<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
+    vim.api.nvim_set_keymap(
+        "n",
+        "<Leader>p",
+        "<cmd>PrevDiagnosticCycle<CR>",
+        {
+            noremap = true,
+            silent = true,
+        }
+    )
 end
 
 return M

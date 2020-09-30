@@ -35,8 +35,6 @@ function M.config()
     vim.api.nvim_command('augroup MyAutoCmd')
     vim.api.nvim_command("autocmd BufEnter * lua require'completion'.on_attach()")
     vim.api.nvim_command('augroup END')
-
-    vim.api.nvim_command('inoremap <silent><expr> <c-p> completion#trigger_completion()')
 end
 
 return M
