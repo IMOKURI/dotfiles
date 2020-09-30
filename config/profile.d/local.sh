@@ -29,3 +29,9 @@ export EDITOR="vi"
 if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts
 fi
+
+##### Load pyenv ##############################################################
+
+export PATH=$HOME/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
