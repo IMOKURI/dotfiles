@@ -59,9 +59,7 @@ function M.config()
                 builtin.modified_flag,
             },
             sections.collapse_builtin{
-                '[',
-                builtin.readonly_list,
-                ']',
+                builtin.readonly_flag,
             },
             ' ',
             lsp_diagnostics,
