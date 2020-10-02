@@ -6,5 +6,5 @@ nmap p <Plug>(yankround-p)
 xmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 
-nmap <Leader>P <Plug>(yankround-prev)
-nmap <Leader>N <Plug>(yankround-next)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
