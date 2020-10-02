@@ -4,9 +4,11 @@ scriptencoding utf-8
 " -----------------------------------------------------------------------------
 " Neovim provider {{{
 if has('nvim')
+    if glob('~/.local/pipx/venvs/neovim-remote/bin/python') != ''
+        let g:python3_host_prog = expand('~/.local/pipx/venvs/neovim-remote/bin/python')
+    end
     let g:loaded_node_provider = 0
     let g:loaded_perl_provider = 0
-    let g:loaded_python3_provider = 0
     let g:loaded_python_provider = 0
     let g:loaded_ruby_provider = 0
 endif

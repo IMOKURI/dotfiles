@@ -344,8 +344,7 @@ pipx inject python-language-server \
     pylint \
     pylint-venv \
     pyls-black \
-    pyls-isort \
-    "git+https://github.com/IMOKURI/pylint-venv.git@different-python-version"
+    pyls-isort
 
 # pipx upgrade-all
 
