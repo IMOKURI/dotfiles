@@ -5,6 +5,7 @@ function M.config()
         ensure_installed = {
             'json',
             'lua',
+            'python',
         },
         highlight = {
             enable = true,
@@ -14,7 +15,7 @@ function M.config()
                 enable = true
             },
             highlight_current_scope = {
-                enable = true
+                enable = false
             },
         },
     }
