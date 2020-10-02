@@ -9,24 +9,19 @@ function M.setup()
         default = {
             default = {
                 {complete_items = {'lsp', 'snippet', 'buffers', 'path'}},
-                {mode = '<c-p>'},
-                {mode = '<c-n>'}
             }
         },
         bash = {
             {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
-            {mode = '<c-p>'},
-            {mode = '<c-n>'}
         },
         json = {
             {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
-            {mode = '<c-p>'},
-            {mode = '<c-n>'}
         },
         lua = {
             {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
-            {mode = '<c-p>'},
-            {mode = '<c-n>'}
+        },
+        python = {
+            {complete_items = {'ts', 'lsp', 'snippet', 'buffers', 'path'}},
         }
     }
 end
