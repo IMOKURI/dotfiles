@@ -77,6 +77,25 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.linediff'.setup()",
     }
 
+    -- Text object
+    use {
+        'kana/vim-textobj-indent',
+        requires = {
+            "kana/vim-textobj-user",
+        },
+        -- setup = "require'plugin.rc.textobj'.setup()",
+        -- config = "require'plugin.rc.textobj'.config()",
+    }
+
+    -- Operator
+    use {
+        'kana/vim-operator-replace',
+        requires = {
+            "kana/vim-operator-user",
+        },
+        config = "require'plugin.rc.operator'.config()",
+    }
+
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
