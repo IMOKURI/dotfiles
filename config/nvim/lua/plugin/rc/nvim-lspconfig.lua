@@ -20,10 +20,13 @@ function M.config()
         lsp_status.on_attach(client)
     end
 
-    nvim_lsp.bashls.setup{
-        capabilities = lsp_status.capabilities,
-        on_attach=on_attach_vim,
-    }
+    -- TODO:
+    -- Error detected while processing CursorHold Autocommands for "<buffer=1>":
+    -- server doesn't support textDocument/documentSymbol
+    -- nvim_lsp.bashls.setup{
+    --     capabilities = lsp_status.capabilities,
+    --     on_attach=on_attach_vim,
+    -- }
     nvim_lsp.dockerls.setup{
         capabilities = lsp_status.capabilities,
         on_attach=on_attach_vim,
