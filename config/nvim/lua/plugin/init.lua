@@ -110,6 +110,17 @@ return require('packer').startup(function()
         config = "require'plugin.rc.nvim-treesitter'.config()",
     }
 
+    use {
+        'romgrk/nvim-treesitter-context',
+        opt = true,
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        after = {
+            "nvim-treesitter",
+        },
+    }
+
     -- Snippet
     use {
         'hrsh7th/vim-vsnip',
