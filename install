@@ -337,6 +337,7 @@ _banner "Install Python Packages..."
 pipx install --include-deps ansible
 pipx install cmake
 pipx install neovim-remote
+pipx install nbdime
 
 pipx install python-language-server
 pipx inject python-language-server \

@@ -51,12 +51,6 @@
   noprefix = true
   renames = true
 
-[difftool]
-  prompt = false
-
-[difftool "nvimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE
-
 [diff "ansible-vault"]
   textconv = ansible-vault view
 
@@ -64,15 +58,35 @@
   binary = true
   textconv = git-xlsx-textconv
 
+[diff "jupyternotebook"]
+  command = git-nbdiffdriver diff
+
+[difftool]
+  prompt = false
+
+[difftool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE
+
+[difftool "nbdime"]
+  cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+
 [merge]
   tool = nvimdiff
   conflictstyle = diff3
 
+[merge "jupyternotebook"]
+  driver = git-nbmergedriver merge %O %A %B %L %P
+  name = jupyter notebook merge driver
+
 [mergetool]
   keepBackup = false
+  prompt = false
 
 [mergetool "nvimdiff"]
   cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "nbdime"]
+  cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 
 [alias]
   co = checkout
