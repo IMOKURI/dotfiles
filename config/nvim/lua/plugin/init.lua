@@ -58,6 +58,15 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.line-number-interval-nvim'.setup()",
     }
 
+    -- Git sign
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = "require'plugin.rc.gitsigns'.config()",
+    }
+
     -- Suda
     use {
         'lambdalisue/suda.vim',
