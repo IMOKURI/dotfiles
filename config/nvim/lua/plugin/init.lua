@@ -61,6 +61,7 @@ return require('packer').startup(function()
     -- Git sign
     use {
         'lewis6991/gitsigns.nvim',
+        branch = 'main',
         requires = {
             "nvim-lua/plenary.nvim",
         },
