@@ -113,6 +113,11 @@ return require('packer').startup(function()
         config = "require'plugin.rc.operator'.config()",
     }
 
+    use {
+        'romgrk/equal.operator',
+        config = "require'plugin.rc.equal-operator'.config()",
+    }
+
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
