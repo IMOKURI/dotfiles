@@ -106,7 +106,7 @@ function M.config()
                     pylint = {
                         enabled = true,
                         args = {
-                            '--init-hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"',
+                            '--init-hook="import sys, pylint_venv; sys.path.append("."); pylint_venv.inithook(force_venv_activation=True)"',
                             '--max-line-length=120',
                             '--disable=invalid-name,missing-docstring'
                         }
