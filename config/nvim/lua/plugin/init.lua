@@ -61,6 +61,7 @@ return require('packer').startup(function()
     -- Git sign
     use {
         'lewis6991/gitsigns.nvim',
+        disable = true,
         branch = 'main',
         requires = {
             "nvim-lua/plenary.nvim",
@@ -101,7 +102,7 @@ return require('packer').startup(function()
         requires = {
             "kana/vim-textobj-user",
         },
-       config = "require'plugin.rc.textobj'.config()",
+        config = "require'plugin.rc.textobj'.config()",
     }
 
     -- Operator
@@ -116,6 +117,12 @@ return require('packer').startup(function()
     use {
         'romgrk/equal.operator',
         config = "require'plugin.rc.equal-operator'.config()",
+    }
+
+    -- Yank
+    use {
+        'svermeulen/vim-yoink',
+        config = "require'plugin.rc.yoink'.config()",
     }
 
     -- Treesitter
