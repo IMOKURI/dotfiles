@@ -95,6 +95,9 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.linediff'.setup()",
     }
 
+    -- Sandwich
+    use {'machakann/vim-sandwich'}
+
     -- Text object
     use {
         'kana/vim-textobj-indent',

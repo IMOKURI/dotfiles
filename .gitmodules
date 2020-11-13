@@ -1,6 +1,3 @@
-[submodule "config/nvim/pack/_/start/vim-sandwich"]
-	path = config/nvim/pack/_/start/vim-sandwich
-	url = https://github.com/machakann/vim-sandwich.git
 [submodule "config/nvim/pack/_/start/neoterm"]
 	path = config/nvim/pack/_/start/neoterm
 	url = https://github.com/kassio/neoterm.git
