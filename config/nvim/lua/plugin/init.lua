@@ -181,6 +181,7 @@ return require('packer').startup(function()
     -- LSP
     use {
         'nvim-lua/diagnostic-nvim',
+        disable = true,
         event = {"BufNewFile *", "BufRead *"},
         setup = "require'plugin.rc.diagnostic-nvim'.setup()",
         config = "require'plugin.rc.diagnostic-nvim'.config()",
@@ -190,12 +191,10 @@ return require('packer').startup(function()
         event = {"BufNewFile *", "BufRead *"},
         requires = {
             "nvim-lua/completion-nvim",
-            "nvim-lua/diagnostic-nvim",
             "nvim-lua/lsp-status.nvim",
         },
         after = {
             "completion-nvim",
-            "diagnostic-nvim",
             "lsp-status.nvim",
         },
         setup = "require'plugin.rc.nvim-lspconfig'.setup()",

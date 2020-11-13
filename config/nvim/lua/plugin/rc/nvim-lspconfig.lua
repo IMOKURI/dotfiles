@@ -13,11 +13,18 @@ function M.config()
 
     local on_attach_vim = function(client)
         local completion = require("completion")
-        local diagnostic = require("diagnostic")
 
         completion.on_attach(client)
-        diagnostic.on_attach()
         lsp_status.on_attach(client)
+
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics, {
+                virtual_text = true,
+                underline = true,
+                signs = true,
+                update_in_insert = true,
+            }
+        )
     end
 
     -- TODO:
@@ -138,11 +145,14 @@ function M.config()
         }
     }
 
-    vim.api.nvim_set_keymap("n", "<Leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>",             { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>",             { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("x", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>",             { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>",                 { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>d", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>", { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>",                   { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>",                   { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("x", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>",                   { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>",                       { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>d", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>D", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",           { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>j", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",             { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>k", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",             { noremap = true, silent = true, })
 end
 
 return M
