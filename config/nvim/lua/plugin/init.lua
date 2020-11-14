@@ -180,13 +180,6 @@ return require('packer').startup(function()
 
     -- LSP
     use {
-        'nvim-lua/diagnostic-nvim',
-        disable = true,
-        event = {"BufNewFile *", "BufRead *"},
-        setup = "require'plugin.rc.diagnostic-nvim'.setup()",
-        config = "require'plugin.rc.diagnostic-nvim'.config()",
-    }
-    use {
         'neovim/nvim-lspconfig',
         event = {"BufNewFile *", "BufRead *"},
         requires = {
