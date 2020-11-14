@@ -23,14 +23,6 @@ return require('packer').startup(function()
     -- Filetype: python
     use {'microsoft/vscode-python', branch = 'main', ft = {'python'}}
     use {'Vimjas/vim-python-pep8-indent', ft = {'python'}}
-    use {
-        'tjdevries/apyrori.nvim',
-        ft = {'python'},
-        requires = {
-            "nvim-lua/plenary.nvim",
-        },
-       config = "require'plugin.rc.apyrori'.config()",
-    }
 
     -- Filetype: csv
     use {'mechatroner/rainbow_csv', ft = {'csv'}}
