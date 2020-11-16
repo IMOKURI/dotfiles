@@ -11,6 +11,9 @@ function M.config()
         highlight = {
             enable = true,
         },
+        indent = {
+            enable = true,
+        },
         refactor = {
             highlight_definitions = {
                 enable = true
@@ -18,6 +21,9 @@ function M.config()
             highlight_current_scope = {
                 enable = false
             },
+        },
+        rainbow = {
+            enable = true,
         },
     }
 end

@@ -9,6 +9,10 @@ function M.config()
     local lsp_status = require("lsp-status")
     lsp_status.register_progress()
 
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = lsp_status.capabilities
+    capabilities.textDocument.completion.completionItem.snippetSupport = false
+
     local lspconfig = require("lspconfig")
 
     local on_attach_vim = function(client)
@@ -28,24 +32,24 @@ function M.config()
     end
 
     lspconfig.bashls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach=on_attach_vim,
     }
     lspconfig.dockerls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach=on_attach_vim,
     }
     lspconfig.terraformls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach=on_attach_vim,
     }
     lspconfig.vimls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach=on_attach_vim,
     }
 
     lspconfig.diagnosticls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach = on_attach_vim,
         filetypes = {
             'json',
@@ -70,7 +74,7 @@ function M.config()
     }
 
     lspconfig.sumneko_lua.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach = on_attach_vim,
         cmd = {
             home_dir .. "/src/lua-language-server/bin/Linux/lua-language-server",
@@ -98,7 +102,7 @@ function M.config()
     }
 
     lspconfig.pyls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach = on_attach_vim,
         settings = {
             pyls = {
@@ -128,7 +132,7 @@ function M.config()
     }
 
     lspconfig.yamlls.setup{
-        capabilities = lsp_status.capabilities,
+        capabilities = capabilities,
         on_attach = on_attach_vim,
         settings = {
             yaml = {
