@@ -13,25 +13,25 @@ endif
 " File {{{
 
 " ファイル保存
-nnoremap <silent> <Leader>w :<C-u>w<CR>
+nnoremap <silent> <Leader>w <cmd>w<CR>
 
 " すべてのバッファのファイルを保存
-nnoremap <silent> <Leader><Leader>w :<C-u>wa<CR>
+nnoremap <silent> <Leader><Leader>w <cmd>wa<CR>
 
 " root権限でファイルを保存する
 cnoremap w!! w !sudo tee > /dev/null %
 
 " windowを閉じる
-nnoremap <silent> qq :<C-u>close<CR>
+nnoremap <silent> qq <cmd>close<CR>
 
 " bufferを保存せず閉じる
-nnoremap <silent> QQ :<C-u>bdelete!<CR>
+nnoremap <silent> QQ <cmd>bdelete!<CR>
 
 " 全てのタブを閉じる
-nnoremap <silent> <Leader>q :<C-u>qa<CR>
+nnoremap <silent> <Leader>q <cmd>qa<CR>
 
 " すべてのタブを保存せず閉じる
-nnoremap <silent> <Leader>Q :<C-u>qa!<CR>
+nnoremap <silent> <Leader>Q <cmd>qa!<CR>
 
 " カーソル下のディレクトリを開く
 nnoremap gd :Explore <C-r><C-f><CR>
@@ -42,7 +42,7 @@ nnoremap gd :Explore <C-r><C-f><CR>
 " Tab {{{
 
 " 新しいタブを開く
-nnoremap <silent> gt :<C-u>tabnew<CR>
+nnoremap <silent> gt <cmd>tabnew<CR>
 
 " タブを移動する
 nnoremap gn gt
@@ -131,7 +131,7 @@ nnoremap <expr> L foldclosed('.') != -1 ? 'zO' : '$'
 nnoremap <silent> zl zR
 
 " 折りたたみを閉じる
-nnoremap <silent> , :<C-u>call vimrc#smart_fold_closer()<CR>
+nnoremap <silent> , <cmd>call vimrc#smart_fold_closer()<CR>
 
 " 現在いるところ以外の折り畳みを閉じる
 nnoremap <silent> z, zMzv

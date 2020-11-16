@@ -14,6 +14,5 @@ function! GoTaskFile()
 endfunction
 
 augroup MyAutoCmd
-    autocmd FileType yaml nnoremap <silent> <leader>gf :call GoTaskFile()<CR>
-    autocmd FileType yaml xnoremap <silent> <leader>gf :call GoTaskFile()<CR>
+    autocmd FileType yaml noremap <silent> <leader>gf <cmd>call GoTaskFile()<CR>
 augroup END
