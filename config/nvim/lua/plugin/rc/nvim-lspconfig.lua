@@ -9,7 +9,7 @@ function M.config()
     local lsp_status = require("lsp-status")
     lsp_status.register_progress()
 
-    local nvim_lsp = require("nvim_lsp")
+    local lspconfig = require("lspconfig")
 
     local on_attach_vim = function(client)
         local completion = require("completion")
@@ -30,24 +30,24 @@ function M.config()
     -- TODO:
     -- Error detected while processing CursorHold Autocommands for "<buffer=1>":
     -- server doesn't support textDocument/documentSymbol
-    -- nvim_lsp.bashls.setup{
+    -- lspconfig.bashls.setup{
     --     capabilities = lsp_status.capabilities,
     --     on_attach=on_attach_vim,
     -- }
-    nvim_lsp.dockerls.setup{
+    lspconfig.dockerls.setup{
         capabilities = lsp_status.capabilities,
         on_attach=on_attach_vim,
     }
-    nvim_lsp.terraformls.setup{
+    lspconfig.terraformls.setup{
         capabilities = lsp_status.capabilities,
         on_attach=on_attach_vim,
     }
-    nvim_lsp.vimls.setup{
+    lspconfig.vimls.setup{
         capabilities = lsp_status.capabilities,
         on_attach=on_attach_vim,
     }
 
-    nvim_lsp.diagnosticls.setup{
+    lspconfig.diagnosticls.setup{
         capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         filetypes = {
@@ -72,7 +72,7 @@ function M.config()
         }
     }
 
-    nvim_lsp.sumneko_lua.setup{
+    lspconfig.sumneko_lua.setup{
         capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         cmd = {
@@ -100,7 +100,7 @@ function M.config()
         }
     }
 
-    nvim_lsp.pyls.setup{
+    lspconfig.pyls.setup{
         capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         settings = {
@@ -130,7 +130,7 @@ function M.config()
         }
     }
 
-    nvim_lsp.yamlls.setup{
+    lspconfig.yamlls.setup{
         capabilities = lsp_status.capabilities,
         on_attach = on_attach_vim,
         settings = {
