@@ -44,6 +44,13 @@ return require('packer').startup(function()
     -- Capture
     use {'tyru/capture.vim', cmd = {'Capture'}}
 
+    -- Signit
+    use {
+        'johannesthyssen/vim-signit',
+        cmd = {'Signit'},
+        setup = "require'plugin.rc.signit'.setup()",
+    }
+
     -- Line number interval
     use {
         'IMOKURI/line-number-interval.nvim',

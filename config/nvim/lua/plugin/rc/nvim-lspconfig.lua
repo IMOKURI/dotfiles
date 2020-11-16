@@ -27,13 +27,10 @@ function M.config()
         )
     end
 
-    -- TODO:
-    -- Error detected while processing CursorHold Autocommands for "<buffer=1>":
-    -- server doesn't support textDocument/documentSymbol
-    -- lspconfig.bashls.setup{
-    --     capabilities = lsp_status.capabilities,
-    --     on_attach=on_attach_vim,
-    -- }
+    lspconfig.bashls.setup{
+        capabilities = lsp_status.capabilities,
+        on_attach=on_attach_vim,
+    }
     lspconfig.dockerls.setup{
         capabilities = lsp_status.capabilities,
         on_attach=on_attach_vim,
