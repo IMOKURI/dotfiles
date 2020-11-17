@@ -117,7 +117,14 @@ function setup_repository_el() {
         return
     fi
 
+    if [[ ${VERSION_ID} == "8" ]]; then
+        _logger "${INFO}" "Install DNF plugins core package."
+        sudo -E dnf install -y glibc-langpack-en
+        sudo -E dnf install -y dnf-plugins-core
+    fi
+
     # TODO: Check if RHEL also need to enable this repo.
+    # codeready-builder-for-rhel-8-x86_64-rpms
     if [[ ${ID} == "centos" && ${VERSION_ID} == "8" ]]; then
         _logger "${INFO}" "Enable PowerTools repository."
         sudo -E dnf config-manager --enable PowerTools
