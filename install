@@ -19,6 +19,7 @@ MAGENTA="\033[38;2;144;108;255m"
 CYAN="\033[38;2;99;242;241m"
 CLEAR_COLOR="\033[0m"
 
+DEBUG="MAGENTA"
 INFO="GREEN"
 WARN="YELLOW"
 ERROR="RED"
@@ -78,6 +79,8 @@ else
 fi
 
 _logger "${INFO}" "${PRETTY_NAME} is detected."
+_logger "${DEBUG}" "ID: ${ID}"
+_logger "${DEBUG}" "VERSION_ID: ${VERSION_ID}"
 
 ##### Set Proxy ###############################################################
 
