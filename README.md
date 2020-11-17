@@ -15,6 +15,8 @@ The dotfiles that can be installed by one command
 - CentOS/RHEL 7
 - Ubuntu 18.04, 20.04
 
+> CentOS/RHEL 8 is under testing.
+
 ## Requirement
 
 - Packages
@@ -29,11 +31,17 @@ export http_proxy=<http://proxy.example.com:port>
 export https_proxy=<http://proxy.example.com:port>
 ```
 
-- Enable optional and extra repository. (for RHEL)
+- Enable optional and extra repositories. (for RHEL)
 
 ```bash
-subscription-manager repos --enable rhel-7-server-optional-rpms
-subscription-manager repos --enable rhel-7-server-extras-rpms
+sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+sudo subscription-manager repos --enable rhel-7-server-extras-rpms
+```
+
+- Enable additional repositories. (for CentOS 8, may also need RHEL 8)
+
+```bash
+sudo dnf config-manager --enable PowerTools
 ```
 
 ## Installation
