@@ -38,12 +38,6 @@ sudo subscription-manager repos --enable rhel-7-server-optional-rpms
 sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 ```
 
-- Enable additional repositories. (for CentOS 8, may also need RHEL 8)
-
-```bash
-sudo dnf config-manager --enable PowerTools
-```
-
 ## Installation
 
 ```bash

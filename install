@@ -79,8 +79,6 @@ else
 fi
 
 _logger "${INFO}" "${PRETTY_NAME} is detected."
-_logger "${DEBUG}" "ID: ${ID}"
-_logger "${DEBUG}" "VERSION_ID: ${VERSION_ID}"
 
 ##### Set Proxy ###############################################################
 
