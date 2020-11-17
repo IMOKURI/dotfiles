@@ -12,10 +12,11 @@ The dotfiles that can be installed by one command
 
 ## Support
 
-- CentOS/RHEL 7
 - Ubuntu 18.04, 20.04
+- CentOS 7, 8
+- RHEL 7
 
-> CentOS/RHEL 8 is under testing.
+> RHEL 8 is under testing.
 
 ## Requirement
 
