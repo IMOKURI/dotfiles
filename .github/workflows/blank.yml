@@ -64,6 +64,7 @@ jobs:
       matrix:
         os_version:
           - 7
+          - 8
 
     runs-on: ubuntu-latest
     container: centos:${{ matrix.os_version }}
@@ -83,6 +84,7 @@ jobs:
       matrix:
         os_version:
           - 7
+          - 8
 
     runs-on: ubuntu-latest
     container: centos:${{ matrix.os_version }}

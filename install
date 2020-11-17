@@ -116,13 +116,19 @@ function setup_repository_el() {
         return
     fi
 
+    # TODO: Check if RHEL also need to enable this repo.
+    if [[ ${ID} == "centos" && ${VERSION_ID} == "8" ]]; then
+        _logger "${INFO}" "Enable PowerTools repository."
+        sudo -E dnf config-manager --enable PowerTools
+    fi
+
     if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
-        _logger "${INFO}" "Install Nodejs repository"
+        _logger "${INFO}" "Install Nodejs repository."
         curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
     fi
 
     if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
-        _logger "${INFO}" "Install Yarn repository"
+        _logger "${INFO}" "Install Yarn repository."
         curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | sudo -E tee /etc/yum.repos.d/yarn.repo
     fi
 }
@@ -136,27 +142,27 @@ function setup_repository_deb() {
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
-        _logger "${INFO}" "Install Git-LFS repository"
+        _logger "${INFO}" "Install Git-LFS repository."
         curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/ansible-ubuntu-ansible-bionic.list && ${VERSION_ID} == "18.04" ]]; then
-        _logger "${INFO}" "Install Ansible repository"
+        _logger "${INFO}" "Install Ansible repository."
         sudo -E add-apt-repository -y ppa:ansible/ansible
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/longsleep-ubuntu-golang-backports-bionic.list && ${VERSION_ID} == "18.04" ]]; then
-        _logger "${INFO}" "Install Golang repository"
+        _logger "${INFO}" "Install Golang repository."
         sudo -E add-apt-repository -y ppa:longsleep/golang-backports
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
-        _logger "${INFO}" "Install Node.js repository"
+        _logger "${INFO}" "Install Node.js repository."
         curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
-        _logger "${INFO}" "Install Yarn repository"
+        _logger "${INFO}" "Install Yarn repository."
         curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     fi
