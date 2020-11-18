@@ -39,6 +39,10 @@ function M.config()
         capabilities = capabilities,
         on_attach=on_attach_vim,
     }
+    lspconfig.jsonls.setup{
+        capabilities = capabilities,
+        on_attach=on_attach_vim,
+    }
     lspconfig.terraformls.setup{
         capabilities = capabilities,
         on_attach=on_attach_vim,
@@ -58,8 +62,8 @@ function M.config()
         init_options = {
             formatters = {
                 jq = {
-                    command = "jq",
-                    args = {"--indent", "4", "."}
+                    command = "hjson",
+                    args = {"-j"}
                 },
                 shfmt = {
                     command = "shfmt",

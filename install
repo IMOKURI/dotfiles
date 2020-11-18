@@ -377,7 +377,9 @@ yarn global add --prefix "${HOME}" \
     diagnostic-languageserver \
     dockerfile-language-server-nodejs \
     doctoc \
+    hjson \
     vim-language-server \
+    vscode-json-languageserver \
     yaml-language-server
 
 ##### Install go packages #####################################################
