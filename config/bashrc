@@ -26,6 +26,10 @@ else
     alias vi="nvim"
 fi
 
+if [[ -x "$(command -v exa)" ]]; then
+    alias ls="exa"
+fi
+
 cdls() {
     \cd "$@" && pwd && ls -l --color=always | less
 }
