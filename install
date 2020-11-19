@@ -123,8 +123,6 @@ function setup_repository_el() {
         sudo -E dnf install -y dnf-plugins-core
     fi
 
-    # TODO: Check if RHEL also need to enable this repo.
-    # codeready-builder-for-rhel-8-x86_64-rpms
     if [[ ${ID} == "centos" && ${VERSION_ID} == "8" ]]; then
         _logger "${INFO}" "Enable PowerTools repository."
         sudo -E dnf config-manager --enable PowerTools
@@ -148,6 +146,9 @@ function setup_repository_deb() {
         _logger "${INFO}" "Skip due to RHEL/CentOS."
         return
     fi
+
+    _logger "${INFO}" "Install apt common package."
+    apt install -y software-properties-common
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger "${INFO}" "Install Git-LFS repository."
@@ -190,7 +191,7 @@ function install_packages_el() {
     fi
 
     sudo -E yum install -y \
-        epel-release
+        https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID:0:1}.noarch.rpm
 
     sudo -E yum install -y \
         autoconf \

@@ -24,7 +24,7 @@ jobs:
     - name: Install requirements
       run: |
         apt update
-        apt install -y curl sudo software-properties-common
+        apt install -y curl sudo
 
     - name: Install dotfiles
       run: |
@@ -51,7 +51,7 @@ jobs:
     - name: Install requirements
       run: |
         env http_proxy=http://squid:3128 apt update
-        env http_proxy=http://squid:3128 apt install -y curl sudo software-properties-common
+        env http_proxy=http://squid:3128 apt install -y curl sudo
 
     - name: Install dotfiles
       run: |
