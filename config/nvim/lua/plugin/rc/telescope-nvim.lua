@@ -12,7 +12,7 @@ function M.config()
 
     require('telescope').setup{
         defaults = {
-            layout_strategy = "vertical",
+            layout_strategy = "flex",
         }
     }
 end

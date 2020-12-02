@@ -36,9 +36,6 @@ nnoremap <silent> <Leader>Q <cmd>qa!<CR>
 " カーソル下のディレクトリを開く
 nnoremap gd :Explore <C-r><C-f><CR>
 
-" ファイルを開き直す
-nnoremap <silent> <Leader>e <cmd>edit<CR>
-
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -155,9 +152,6 @@ xnoremap # y:%s///g<Left><Left>
 
 " 検索のハイライト表示を消す
 nnoremap <Leader><Esc> :nohlsearch<CR>
-
-" コマンドラインモードで入力文字列で検索する
-cnoremap <C-p> <Up>
 
 " }}}
 
