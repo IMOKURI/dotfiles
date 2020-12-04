@@ -129,6 +129,10 @@ function M.config()
                     pyls_black = {
                         enabled = true,
                         line_length = 120
+                    },
+                    pyls_mypy = {
+                        enabled = true,
+                        live_mode = false
                     }
                 }
             }

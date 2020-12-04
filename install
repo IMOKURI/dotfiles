@@ -365,7 +365,8 @@ pipx inject python-language-server \
     pylint \
     pylint-venv \
     pyls-black \
-    pyls-isort
+    pyls-isort \
+    pyls-mypy
 
 # pipx upgrade-all
 
