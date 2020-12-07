@@ -132,7 +132,8 @@ function M.config()
                     },
                     pyls_mypy = {
                         enabled = true,
-                        live_mode = false
+                        live_mode = false,
+                        strict = true
                     }
                 }
             }

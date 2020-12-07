@@ -173,6 +173,9 @@ nnoremap Y y$
 " pasteモードにする
 nnoremap <silent> <Leader>v <Cmd>set paste<CR>
 
+" 1文字削除を削除レジスタにいれる
+nnoremap <silent> x "_x
+
 " }}}
 
 " -----------------------------------------------------------------------------
