@@ -125,7 +125,7 @@ function setup_repository_el() {
 
     if [[ ${ID} == "centos" && ${VERSION_ID} == "8" ]]; then
         _logger "${INFO}" "Enable PowerTools repository."
-        sudo -E dnf config-manager --enable PowerTools
+        sudo -E dnf config-manager --enable powertools
     fi
 
     if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
