@@ -121,7 +121,7 @@ function M.config()
                             -- '--init-hook="import sys, pylint_venv; sys.path.append("."); pylint_venv.inithook(force_venv_activation=True)"',
                             '--init-hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"',
                             '--max-line-length=120',
-                            '--disable=invalid-name,missing-docstring'
+                            '--disable=invalid-name,missing-docstring,broad-except,logging-fstring-interpolation,fixme'
                         }
                     },
                     pyls_isort = {
