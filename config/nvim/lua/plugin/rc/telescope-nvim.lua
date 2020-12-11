@@ -15,6 +15,7 @@ function M.config()
             layout_strategy = "flex",
         }
     }
+    require('telescope').load_extension('fzy_native')
 end
 
 return M

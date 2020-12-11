@@ -205,8 +205,9 @@ return require('packer').startup(function()
 
     -- Fuzzy finder
     use {
-        'nvim-lua/telescope.nvim',
+        'nvim-telescope/telescope.nvim',
         requires = {
+            "nvim-telescope/telescope-fzy-native.nvim",
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons",

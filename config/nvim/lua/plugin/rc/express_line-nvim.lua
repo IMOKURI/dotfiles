@@ -53,7 +53,7 @@ function M.config()
         return {
             extensions.mode,
             ' ',
-            builtin.file,
+            builtin.tail_file,
             sections.collapse_builtin {
                 ' ',
                 builtin.modified_flag,

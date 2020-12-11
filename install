@@ -256,6 +256,7 @@ function install_packages_deb() {
     sudo -E apt install -y \
         ansible \
         figlet \
+        fzy \
         gcc \
         git \
         git-lfs \
