@@ -103,6 +103,9 @@ return require('packer').startup(function()
     -- REPL
     use {'IMOKURI/repl.vim'}
 
+    -- Clever f
+    use {'rhysd/clever-f.vim'}
+
     -- Sandwich
     use {'machakann/vim-sandwich'}
 
