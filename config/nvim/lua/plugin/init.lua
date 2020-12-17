@@ -51,6 +51,9 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.signit'.setup()",
     }
 
+    -- Cursor word
+    use {'itchyny/vim-cursorword'}
+
     -- Line number interval
     use {
         'IMOKURI/line-number-interval.nvim',
