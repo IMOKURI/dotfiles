@@ -56,16 +56,18 @@ function M.config()
             builtin.file_relative,
             sections.collapse_builtin {
                 ' ',
-                builtin.modified_flag,
+                builtin.filetype,
             },
-            sections.collapse_builtin{
+            sections.collapse_builtin {
+                ' ',
+                builtin.modified_flag,
                 builtin.readonly_flag,
             },
             ' ',
+            '[', builtin.line, ', ',  builtin.column, ']',
+            ' ',
             lsp_diagnostics,
             sections.split,
-            '[', builtin.line, ' : ',  builtin.column, ']',
-            builtin.filetype,
         }
     end
 
