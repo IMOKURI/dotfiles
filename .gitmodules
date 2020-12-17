@@ -16,9 +16,6 @@
 [submodule "config/nvim/pack/_/start/ansible-vim"]
 	path = config/nvim/pack/_/start/ansible-vim
 	url = https://github.com/pearofducks/ansible-vim.git
-[submodule "config/nvim/pack/_/start/vim-sonictemplate"]
-	path = config/nvim/pack/_/start/vim-sonictemplate
-	url = https://github.com/mattn/vim-sonictemplate.git
 [submodule "config/nvim/pack/_/start/challenger-deep-theme-vim"]
 	path = config/nvim/pack/_/start/challenger-deep-theme-vim
 	url = https://github.com/IMOKURI/challenger-deep-theme-vim.git

@@ -51,6 +51,12 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.signit'.setup()",
     }
 
+    -- Sonic template
+    use {
+        'mattn/vim-sonictemplate',
+        config = "require'plugin.rc.vim-sonictemplate'.config()",
+    }
+
     -- Cursor word
     use {'itchyny/vim-cursorword'}
 
