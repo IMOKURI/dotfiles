@@ -24,6 +24,7 @@ function M.config()
         },
         rainbow = {
             enable = true,
+            disable = {'bash'}
         },
     }
 end
