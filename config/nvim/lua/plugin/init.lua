@@ -94,6 +94,12 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.linediff'.setup()",
     }
 
+    -- Colorizer
+    use {
+        'norcalli/nvim-colorizer.lua',
+        cmd = {'ColorizerToggle'},
+    }
+
     -- REPL
     use {'IMOKURI/repl.vim'}
 

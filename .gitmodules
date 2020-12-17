@@ -28,9 +28,6 @@
 [submodule "config/nvim/pack/_/start/clever-f.vim"]
 	path = config/nvim/pack/_/start/clever-f.vim
 	url = https://github.com/rhysd/clever-f.vim.git
-[submodule "config/nvim/pack/_/opt/nvim-colorizer.lua"]
-	path = config/nvim/pack/_/opt/nvim-colorizer.lua
-	url = https://github.com/norcalli/nvim-colorizer.lua.git
 [submodule "config/nvim/pack/_/start/challenger-deep-theme-vim"]
 	path = config/nvim/pack/_/start/challenger-deep-theme-vim
 	url = https://github.com/IMOKURI/challenger-deep-theme-vim.git
