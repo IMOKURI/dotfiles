@@ -16,9 +16,6 @@
 [submodule "config/nvim/pack/_/start/ansible-vim"]
 	path = config/nvim/pack/_/start/ansible-vim
 	url = https://github.com/pearofducks/ansible-vim.git
-[submodule "config/nvim/pack/_/start/neco-syntax"]
-	path = config/nvim/pack/_/start/neco-syntax
-	url = https://github.com/Shougo/neco-syntax.git
 [submodule "config/nvim/pack/_/start/vim-sonictemplate"]
 	path = config/nvim/pack/_/start/vim-sonictemplate
 	url = https://github.com/mattn/vim-sonictemplate.git
