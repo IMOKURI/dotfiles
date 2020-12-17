@@ -34,6 +34,3 @@
 [submodule "config/nvim/pack/_/start/challenger-deep-theme-vim"]
 	path = config/nvim/pack/_/start/challenger-deep-theme-vim
 	url = https://github.com/IMOKURI/challenger-deep-theme-vim.git
-[submodule "config/nvim/pack/_/start/repl.vim"]
-	path = config/nvim/pack/_/start/repl.vim
-	url = https://github.com/IMOKURI/repl.vim.git

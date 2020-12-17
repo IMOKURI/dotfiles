@@ -94,6 +94,9 @@ return require('packer').startup(function()
         setup = "require'plugin.rc.linediff'.setup()",
     }
 
+    -- REPL
+    use {'IMOKURI/repl.vim'}
+
     -- Sandwich
     use {'machakann/vim-sandwich'}
 
