@@ -146,6 +146,28 @@ return require('packer').startup(function()
     }
 
     use {
+        'nvim-treesitter/nvim-treesitter-refactor',
+        opt = true,
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        after = {
+            "nvim-treesitter",
+        },
+    }
+
+    use {
+        'p00f/nvim-ts-rainbow',
+        opt = true,
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        after = {
+            "nvim-treesitter",
+        },
+    }
+
+    use {
         'romgrk/nvim-treesitter-context',
         opt = true,
         requires = {
