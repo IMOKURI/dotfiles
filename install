@@ -148,7 +148,7 @@ function setup_repository_deb() {
     fi
 
     _logger "${INFO}" "Install apt common package."
-    apt install -y software-properties-common
+    sudo -E apt install -y software-properties-common
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger "${INFO}" "Install Git-LFS repository."
