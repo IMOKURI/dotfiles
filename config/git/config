@@ -21,6 +21,9 @@
 [grep]
   lineNumber = true
 
+[init]
+  defaultBranch = main
+
 [status]
   showUntrackedFiles = all
 
