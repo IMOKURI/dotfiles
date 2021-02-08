@@ -250,6 +250,7 @@ return require('packer').startup(function()
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
+            "nvim-telescope/telescope-fzf-writer.nvim",
             "nvim-telescope/telescope-fzy-native.nvim",
             "nvim-telescope/telescope-frecency.nvim",
             "nvim-lua/popup.nvim",

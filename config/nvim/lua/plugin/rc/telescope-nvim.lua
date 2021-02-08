@@ -2,8 +2,8 @@ local M = {}
 
 function M.config()
     vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>lua require('telescope.builtin').git_files{}<CR>",            { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>F", "<cmd>lua require('telescope.builtin').find_files{}<CR>",           { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>g", "<cmd>lua require('telescope.builtin').live_grep{}<CR>",            { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>F", "<cmd>lua require('telescope').extensions.fzf_writer.files()<CR>",  { noremap = true, silent = true, })
+    vim.api.nvim_set_keymap("n", "<Leader>g", "<cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>",   { noremap = true, silent = true, })
     vim.api.nvim_set_keymap("n", "<Leader>o", "<cmd>lua require('telescope').extensions.frecency.frecency()<CR>", { noremap = true, silent = true, })
     vim.api.nvim_set_keymap("n", "<Leader>b", "<cmd>lua require('telescope.builtin').buffers{}<CR>",              { noremap = true, silent = true, })
     vim.api.nvim_set_keymap("n", "<Leader>s", "<cmd>lua require('telescope.builtin').lsp_document_symbols{}<CR>", { noremap = true, silent = true, })
@@ -15,6 +15,7 @@ function M.config()
             layout_strategy = "flex",
         }
     }
+    require('telescope').load_extension('fzf_writer')
     require('telescope').load_extension('fzy_native')
     require('telescope').load_extension('frecency')
 end
