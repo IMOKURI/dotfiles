@@ -250,12 +250,13 @@ return require('packer').startup(function()
     use {
         'nvim-telescope/telescope.nvim',
         requires = {
+            "kyazdani42/nvim-web-devicons",
+            "nvim-lua/plenary.nvim",
+            "nvim-lua/popup.nvim",
+            "nvim-telescope/telescope-frecency.nvim",
             "nvim-telescope/telescope-fzf-writer.nvim",
             "nvim-telescope/telescope-fzy-native.nvim",
-            "nvim-telescope/telescope-frecency.nvim",
-            "nvim-lua/popup.nvim",
-            "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons",
+            "nvim-telescope/telescope-project.nvim",
             "tami5/sql.nvim",
         },
         config = "require'plugin.rc.telescope-nvim'.config()",
