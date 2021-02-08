@@ -282,6 +282,8 @@ function install_packages_deb() {
         libtool-bin \
         ninja-build \
         pkg-config \
+        sqlite3 \
+        libsqlite3-dev \
         unzip
 
     # for pyenv

@@ -251,9 +251,11 @@ return require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {
             "nvim-telescope/telescope-fzy-native.nvim",
+            "nvim-telescope/telescope-frecency.nvim",
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons",
+            "tami5/sql.nvim",
         },
         config = "require'plugin.rc.telescope-nvim'.config()",
     }
