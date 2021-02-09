@@ -1,4 +1,5 @@
 local M = {}
+local h = require("helper")
 
 local home_dir = os.getenv("HOME")
 
@@ -11,7 +12,7 @@ function M.config()
 
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     local capabilities = lsp_status.capabilities
-    capabilities.textDocument.completion.completionItem.snippetSupport = false
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local lspconfig = require("lspconfig")
 
@@ -155,14 +156,14 @@ function M.config()
         }
     }
 
-    vim.api.nvim_set_keymap("n", "<Leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>",                   { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>",                   { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("x", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>",                   { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>",                       { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>d", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>D", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>",           { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>j", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",             { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("n", "<Leader>k", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",             { noremap = true, silent = true, })
+    h.map("n", "<Leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    h.map("n", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+    h.map("x", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+    h.map("n", "<Leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
+    h.map("n", "<Leader>d", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    h.map("n", "<Leader>D", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
+    h.map("n", "<Leader>j", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+    h.map("n", "<Leader>k", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
 end
 
 return M
