@@ -10,6 +10,7 @@ function M.config()
     h.map("n", "<Leader>p", "<cmd>lua require('telescope').extensions.project.project{ change_dir = true }<CR>")
     h.map("n", "<Leader>s", "<cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>")
     h.map("n", "<Leader>b", "<cmd>lua require('telescope.builtin').buffers{}<CR>")
+    h.map("n", "<Leader>e", "<cmd>lua require('telescope.builtin').symbols{ sources = {'emoji'} }<CR>")
     h.map("n", "<Leader>[", "<cmd>lua require('telescope.builtin').lsp_references{}<CR>")
     h.map("n", "<Leader>t", "<cmd>lua require('telescope.builtin').treesitter{}<CR>")
 
