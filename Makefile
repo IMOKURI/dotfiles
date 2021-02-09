@@ -26,7 +26,7 @@ GIT_PROXY_SETTING  := $(DOTPATH)/config/git/config.local
 
 define repo
 	if [[ -d "$1" ]]; then \
-		cd $1 && git pull; \
+		cd $1 && git pull && git submodule update --init --recursive; \
 	else \
 		git clone --depth 1 --recursive https://github.com/$2 "$1"; \
 	fi
