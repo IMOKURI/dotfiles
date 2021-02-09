@@ -8,8 +8,8 @@ function M.config()
     h.map("n", "<Leader>g", "<cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>")
     h.map("n", "<Leader>o", "<cmd>lua require('telescope').extensions.frecency.frecency()<CR>")
     h.map("n", "<Leader>p", "<cmd>lua require('telescope').extensions.project.project{ change_dir = true }<CR>")
+    h.map("n", "<Leader>s", "<cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>")
     h.map("n", "<Leader>b", "<cmd>lua require('telescope.builtin').buffers{}<CR>")
-    h.map("n", "<Leader>s", "<cmd>lua require('telescope.builtin').lsp_document_symbols{}<CR>")
     h.map("n", "<Leader>[", "<cmd>lua require('telescope.builtin').lsp_references{}<CR>")
     h.map("n", "<Leader>t", "<cmd>lua require('telescope.builtin').treesitter{}<CR>")
 
@@ -22,6 +22,7 @@ function M.config()
     telescope.load_extension('frecency')
     telescope.load_extension('fzf_writer')
     telescope.load_extension('fzy_native')
+    telescope.load_extension('sonictemplate')
 end
 
 return M
