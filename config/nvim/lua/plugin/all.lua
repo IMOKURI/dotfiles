@@ -31,6 +31,7 @@ return {
 
     -- ansible
     {'pearofducks/ansible-vim'},
+    {'thiagoalmeidasa/vim-ansible-vault', opt = true},
 
     -- Capture
     {'tyru/capture.vim', cmd = {'Capture'}},

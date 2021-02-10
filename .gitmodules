@@ -1,3 +1,0 @@
-[submodule "config/nvim/pack/_/opt/vim-ansible-vault"]
-	path = config/nvim/pack/_/opt/vim-ansible-vault
-	url = https://github.com/thiagoalmeidasa/vim-ansible-vault.git
