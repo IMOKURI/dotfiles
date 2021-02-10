@@ -20,6 +20,9 @@ return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    -- Color scheme
+    use {'IMOKURI/challenger-deep-theme-vim', opt = true}
+
     -- Filetype: python
     use {'microsoft/vscode-python', branch = 'main', ft = {'python'}}
     use {'Vimjas/vim-python-pep8-indent', ft = {'python'}}
