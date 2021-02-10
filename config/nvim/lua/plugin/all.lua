@@ -94,6 +94,17 @@ return {
         cmd = {'ColorizerToggle'},
     },
 
+    -- Terminal
+    {
+        'kassio/neoterm',
+        cmd = {
+            'Topen',
+            'Ttoggle'
+        },
+        setup = "require'plugin.rc.neoterm'.setup()",
+    },
+
+
     -- REPL
     {'IMOKURI/repl.vim'},
 
