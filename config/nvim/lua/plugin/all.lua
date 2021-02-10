@@ -26,6 +26,9 @@ return {
         setup = "require'plugin.rc.vim-terraform'.setup()",
     },
 
+    -- Jenkins
+    {'martinda/Jenkinsfile-vim-syntax'},
+
     -- ansible
     {'pearofducks/ansible-vim'},
 
