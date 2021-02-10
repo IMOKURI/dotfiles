@@ -126,12 +126,6 @@ return {
         config = "require'plugin.rc.equal-operator'.config()",
     },
 
-    -- Yank
-    {
-        'svermeulen/vim-yoink',
-        config = "require'plugin.rc.yoink'.config()",
-    },
-
     -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
