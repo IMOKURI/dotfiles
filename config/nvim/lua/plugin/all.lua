@@ -44,6 +44,9 @@ return {
     -- Cursor word
     {'itchyny/vim-cursorword'},
 
+    -- Quick highlight
+    {'t9md/vim-quickhl', opt = true},
+
     -- Line number interval
     {
         'IMOKURI/line-number-interval.nvim',
