@@ -361,7 +361,7 @@ function _pipx_install_or_upgrade() {
     if [[ ! -d "${HOME}/.local/pipx/venvs/${1}" ]]; then
         pipx install --include-deps ${1}
     else
-        pipx upgrade --include-deps ${1}
+        pipx upgrade --include-injected ${1}
     fi
 }
 
@@ -371,13 +371,15 @@ _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
 _pipx_install_or_upgrade python-language-server
 
-pipx runpip python-language-server install -U \
-    pycodestyle \
-    pylint \
-    pylint-venv \
-    pyls-black \
-    pyls-isort \
-    pyls-mypy
+if [[ ! -d "${HOME}/.local/pipx/venvs/python-language-server" ]]; then
+    pipx inject python-language-server \
+        pycodestyle \
+        pylint \
+        pylint-venv \
+        pyls-black \
+        pyls-isort \
+        pyls-mypy
+fi
 
 ##### Install nodejs packages #################################################
 
