@@ -112,6 +112,9 @@ return {
     -- Sandwich
     {'machakann/vim-sandwich'},
 
+    -- Lexima
+    {'cohama/lexima.vim', opt = true},
+
     -- Text object
     {
         'kana/vim-textobj-indent',
