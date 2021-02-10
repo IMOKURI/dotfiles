@@ -35,13 +35,6 @@ return {
     -- Capture
     {'tyru/capture.vim', cmd = {'Capture'}},
 
-    -- Signit
-    {
-        'johannesthyssen/vim-signit',
-        cmd = {'Signit'},
-        setup = "require'plugin.rc.signit'.setup()",
-    },
-
     -- Sonic template
     {
         'mattn/vim-sonictemplate',
@@ -109,7 +102,6 @@ return {
         },
         setup = "require'plugin.rc.neoterm'.setup()",
     },
-
 
     -- REPL
     {'IMOKURI/repl.vim'},
