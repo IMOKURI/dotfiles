@@ -26,6 +26,9 @@ return {
         setup = "require'plugin.rc.vim-terraform'.setup()",
     },
 
+    -- ansible
+    {'pearofducks/ansible-vim'},
+
     -- Capture
     {'tyru/capture.vim', cmd = {'Capture'}},
 
