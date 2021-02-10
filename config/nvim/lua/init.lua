@@ -2,4 +2,4 @@
 require('rc.netrw')
 
 -- Setup plugins
-require('plugin.init')
+require('plugin')
