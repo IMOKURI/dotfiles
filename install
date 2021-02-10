@@ -357,21 +357,27 @@ fi
 
 _banner "Install Python Packages..."
 
-pipx install --include-deps ansible
-pipx install cmake
-pipx install neovim-remote
-pipx install nbdime
+function _pipx_install_or_upgrade() {
+    if [[ ! -d "${HOME}/.local/pipx/venvs/${1}" ]]; then
+        pipx install --include-deps ${1}
+    else
+        pipx upgrade --include-deps ${1}
+    fi
+}
 
-pipx install python-language-server
-pipx inject python-language-server \
+_pipx_install_or_upgrade ansible
+_pipx_install_or_upgrade cmake
+_pipx_install_or_upgrade neovim-remote
+_pipx_install_or_upgrade nbdime
+_pipx_install_or_upgrade python-language-server
+
+pipx runpip python-language-server install -U \
     pycodestyle \
     pylint \
     pylint-venv \
     pyls-black \
     pyls-isort \
     pyls-mypy
-
-# pipx upgrade-all
 
 ##### Install nodejs packages #################################################
 
