@@ -19,7 +19,7 @@ nnoremap <silent> <Leader>w <cmd>w<CR>
 nnoremap <silent> <Leader><Leader>w <cmd>wa<CR>
 
 " root権限でファイルを保存する
-cnoremap w!! w !sudo tee > /dev/null %
+" cnoremap w!! w !sudo tee > /dev/null %
 
 " windowを閉じる
 nnoremap <silent> qq <cmd>close<CR>
@@ -42,11 +42,11 @@ nnoremap gd :Explore <C-r><C-f><CR>
 " Tab {{{
 
 " 新しいタブを開く
-nnoremap <silent> gt <cmd>tabnew<CR>
+" nnoremap <silent> gt <cmd>tabnew<CR>
 
 " タブを移動する
-nnoremap gn gt
-nnoremap gp gT
+" nnoremap gn gt
+" nnoremap gp gT
 
 " }}}
 
@@ -76,14 +76,6 @@ nnoremap H ^
 xnoremap H ^
 xnoremap L $
 
-" 同一階層のインデントに移動する
-nnoremap <expr><silent> sj vimrc#same_indent('+')
-nnoremap <expr><silent> sk vimrc#same_indent('-')
-onoremap <expr><silent> sj vimrc#same_indent('+')
-onoremap <expr><silent> sk vimrc#same_indent('-')
-xnoremap <expr><silent> sj vimrc#same_indent('+')
-xnoremap <expr><silent> sk vimrc#same_indent('-')
-
 " コマンドラインモード内を移動する
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -110,16 +102,6 @@ nnoremap <silent> <C-k> :call vimrc#move_win('k')<CR>
 nnoremap <silent> <C-l> :call vimrc#move_win('l')<CR>
 nnoremap <silent> <C-h> :call vimrc#move_win('h')<CR>
 
-" ウィンドウを分割する
-nnoremap <Leader>- <C-w>s
-nnoremap <Leader><bar> <C-w>v
-
-" ウィンドウの大きさを変更する
-nnoremap <Leader><Up> <C-w>+
-nnoremap <Leader><Down> <C-w>-
-nnoremap <Leader><Right> <C-w>>
-nnoremap <Leader><Left> <C-w><
-
 " }}}
 
 " -----------------------------------------------------------------------------
@@ -144,7 +126,7 @@ nnoremap <silent> z, zMzv
 " カーソル下の単語をハイライトして置換する
 nmap # *:%s/<C-r>///g<Left><Left>
 
-" 選択範囲を検索する
+" 選択した文字列を検索する
 xnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>")
 
 " 選択反映を置換する
