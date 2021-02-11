@@ -119,15 +119,6 @@ return {
     -- Lexima
     {'cohama/lexima.vim', opt = true},
 
-    -- Text object
-    {
-        'kana/vim-textobj-indent',
-        requires = {
-            "kana/vim-textobj-user",
-        },
-        config = "require'plugin.rc.textobj'.config()",
-    },
-
     -- Operator
     {
         'kana/vim-operator-replace',
