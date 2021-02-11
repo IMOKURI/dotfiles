@@ -264,7 +264,6 @@ function install_packages_deb() {
         python3-distutils \
         python3-pip \
         python3-venv \
-        unzip \
         yarn
 
     # for neovim
@@ -468,7 +467,7 @@ if [[ ! -f "${HOME}/src/${TERRAFORM}" ]]; then
     curl -fsSL -o ${HOME}/src/${TERRAFORM} \
         https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${TERRAFORM}
 
-    unzip ${HOME}/src/${TERRAFORM} -d ${HOME}/bin/
+    unzip -o ${HOME}/src/${TERRAFORM} -d ${HOME}/bin/
 
 else
     _logger "${INFO}" "Already installed."
@@ -482,7 +481,7 @@ if [[ ! -f "${HOME}/src/${TERRAFORM_LS}" ]]; then
     curl -fsSL -o ${HOME}/src/${TERRAFORM_LS} \
         https://releases.hashicorp.com/terraform-ls/${TERRAFORM_LS_VERSION}/${TERRAFORM_LS}
 
-    unzip ${HOME}/src/${TERRAFORM_LS} -d /tmp/
+    unzip -o ${HOME}/src/${TERRAFORM_LS} -d /tmp/
     mv /tmp/terraform-ls ${HOME}/bin/
 
 else
