@@ -17,6 +17,7 @@ GITPATH       := $(HOME)/src/git
 GITLFSPATH    := $(HOME)/src/git-lfs
 GITSTATUSPATH := $(HOME)/src/gitstatus
 LUA_LSPATH    := $(HOME)/src/lua-language-server
+BASHMARKS     := $(HOME)/src/bashmarks
 
 # Proxy settings
 PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
@@ -125,6 +126,16 @@ build-lua-ls: ## Build lus-ls
 	ninja -f ninja/linux.ninja && \
 	cd $(LUA_LSPATH) && \
 	./3rd/luamake/luamake rebuild
+
+bashmarks: update-bashmarks build-bashmarks ## Get Bashmarks
+
+update-bashmarks: ## Update bashmarks repository
+	$(call repo,$(BASHMARKS),huyng/bashmarks)
+
+build-bashmarks: ## Build bashmarks
+	cd $(BASHMARKS) && \
+	make install && \
+	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / \

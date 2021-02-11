@@ -402,7 +402,7 @@ GO111MODULE=on go get -u \
 ##### Install lua-language-server #############################################
 
 _banner "Install Lua Language Server..."
-if ${is_deb} && [[ ! -f "${LUA_LSPATH}/bin/Linux/lua-language-server" ]]; then
+if ${is_deb}; then
     pushd "$(pwd)"
     cd "${DOTPATH}"
     make lua-ls
@@ -412,14 +412,16 @@ fi
 ##### Install ripgrep #########################################################
 
 RIPGREP_VERSION="12.1.1"
+RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
 
 _banner "Install RipGrep..."
-if [[ ! -f "${HOME}/bin/rg" ]]; then
-    curl -fsSL -o /tmp/rg.tar.gz https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl.tar.gz
+if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
+    curl -fsSL -o /tmp/rg.tar.gz \
+        https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz
 
-    tar xf /tmp/rg.tar.gz -C "$HOME/src/"
+    tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
 
-    ln -s $HOME/src/ripgrep-*/rg "$HOME/bin/rg"
+    ln -sfnv ${HOME}/src/${RIPGREP}/rg "${HOME}/bin/rg"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -427,14 +429,16 @@ fi
 ##### Install bat #############################################################
 
 BAT_VERSION="v0.17.1"
+BAT="bat-${BAT_VERSION}-x86_64-unknown-linux-gnu"
 
 _banner "Install Bat..."
-if [[ ! -f "${HOME}/bin/bat" ]]; then
-    curl -fsSL -o /tmp/bat.tar.gz https://github.com/sharkdp/bat/releases/download/${BAT_VERSION}/bat-${BAT_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+if [[ ! -f "${HOME}/src/${BAT}" ]]; then
+    curl -fsSL -o /tmp/bat.tar.gz \
+        https://github.com/sharkdp/bat/releases/download/${BAT_VERSION}/${BAT}.tar.gz
 
-    tar xf /tmp/bat.tar.gz -C "$HOME/src/"
+    tar xf /tmp/bat.tar.gz -C "${HOME}/src/"
 
-    ln -s $HOME/src/bat-*/bat "$HOME/bin/bat"
+    ln -sfnv ${HOME}/src/${BAT}/bat "${HOME}/bin/bat"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -442,12 +446,14 @@ fi
 ##### Install fzf #############################################################
 
 FZF_VERSION="0.25.1"
+FZF="fzf-${FZF_VERSION}-linux_amd64.tgz"
 
-_banner "Install Bat..."
-if [[ ! -f "${HOME}/bin/fzf" ]]; then
-    curl -fsSL -o /tmp/fzf.tar.gz https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tgz
+_banner "Install Fzf..."
+if [[ ! -f "${HOME}/src/${FZF}" ]]; then
+    curl -fsSL -o ${HOME}/src/${FZF} \
+        https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${FZF}
 
-    tar xf /tmp/fzf.tar.gz -C "$HOME/bin/"
+    tar xf ${HOME}/src/${FZF} -C "${HOME}/bin/"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -455,24 +461,28 @@ fi
 ##### Install terraform #######################################################
 
 TERRAFORM_VERSION="0.14.6"
+TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
-if [[ ! -f "${HOME}/bin/terraform" ]]; then
-    curl -fsSL -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+if [[ ! -f "${HOME}/src/${TERRAFORM}" ]]; then
+    curl -fsSL -o ${HOME}/src/${TERRAFORM} \
+        https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${TERRAFORM}
 
-    unzip /tmp/terraform.zip -d ${HOME}/bin/
+    unzip ${HOME}/src/${TERRAFORM} -d ${HOME}/bin/
 
 else
     _logger "${INFO}" "Already installed."
 fi
 
 TERRAFORM_LS_VERSION="0.13.0"
+TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform LS..."
-if [[ ! -f "${HOME}/bin/terraform-ls" ]]; then
-    curl -fsSL -o /tmp/terraform-ls.zip https://releases.hashicorp.com/terraform-ls/${TERRAFORM_LS_VERSION}/terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip
+if [[ ! -f "${HOME}/src/${TERRAFORM_LS}" ]]; then
+    curl -fsSL -o ${HOME}/src/${TERRAFORM_LS} \
+        https://releases.hashicorp.com/terraform-ls/${TERRAFORM_LS_VERSION}/${TERRAFORM_LS}
 
-    unzip /tmp/terraform-ls.zip -d /tmp/
+    unzip ${HOME}/src/${TERRAFORM_LS} -d /tmp/
     mv /tmp/terraform-ls ${HOME}/bin/
 
 else
@@ -482,16 +492,10 @@ fi
 ##### Install bashmarks #######################################################
 
 _banner "Install Bashmarks..."
-if [[ ! -d "${HOME}/src/bashmarks" ]]; then
-    git clone https://github.com/huyng/bashmarks.git "${HOME}/src/bashmarks"
-    pushd "$(pwd)"
-    cd "${HOME}/src/bashmarks"
-    make install
-    sed -i 's/^alias l=/#&/' ${HOME}/.bashrc
-    popd
-else
-    _logger "${INFO}" "Already installed."
-fi
+pushd "$(pwd)"
+cd "${DOTPATH}"
+make bashmarks
+popd
 
 ##### Build neovim ############################################################
 
