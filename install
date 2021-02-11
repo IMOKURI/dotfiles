@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-: << COMMENT
-Work in Progress...
-COMMENT
-
 set -e
 
 ##### Variables ###############################################################
@@ -430,7 +426,7 @@ fi
 
 ##### Install bat #############################################################
 
-BAT_VERSION="v0.15.4"
+BAT_VERSION="v0.17.1"
 
 _banner "Install Bat..."
 if [[ ! -f "${HOME}/bin/bat" ]]; then
@@ -445,11 +441,11 @@ fi
 
 ##### Install fzf #############################################################
 
-FZF_VERSION="0.22.0"
+FZF_VERSION="0.25.1"
 
 _banner "Install Bat..."
 if [[ ! -f "${HOME}/bin/fzf" ]]; then
-    curl -fsSL -o /tmp/fzf.tar.gz https://github.com/junegunn/fzf-bin/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tgz
+    curl -fsSL -o /tmp/fzf.tar.gz https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tgz
 
     tar xf /tmp/fzf.tar.gz -C "$HOME/bin/"
 else
@@ -458,7 +454,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION="0.13.0"
+TERRAFORM_VERSION="0.14.6"
 
 _banner "Install Terraform..."
 if [[ ! -f "${HOME}/bin/terraform" ]]; then
@@ -470,7 +466,7 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
-TERRAFORM_LS_VERSION="0.7.0"
+TERRAFORM_LS_VERSION="0.13.0"
 
 _banner "Install Terraform LS..."
 if [[ ! -f "${HOME}/bin/terraform-ls" ]]; then

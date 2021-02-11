@@ -59,10 +59,9 @@ update: update-dot update-plugin ## Update dotfiles
 update-dot: ## update dotfiles repository
 	git fetch
 	git pull
-	git submodule update --init --recursive
 
 update-plugin: ## update neovim plugins
-	git submodule foreach git pull origin master
+	nvim +PackerSync +qall
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
