@@ -137,11 +137,6 @@ return {
         config = "require'plugin.rc.operator'.config()",
     },
 
-    {
-        'romgrk/equal.operator',
-        config = "require'plugin.rc.equal-operator'.config()",
-    },
-
     -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
