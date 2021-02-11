@@ -446,7 +446,7 @@ fi
 ##### Install fzf #############################################################
 
 FZF_VERSION="0.25.1"
-FZF="fzf-${FZF_VERSION}-linux_amd64.tgz"
+FZF="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
 
 _banner "Install Fzf..."
 if [[ ! -f "${HOME}/src/${FZF}" ]]; then
