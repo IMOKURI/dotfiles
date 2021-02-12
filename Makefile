@@ -62,7 +62,8 @@ update-dot: ## update dotfiles repository
 	git pull
 
 update-plugin: ## update neovim plugins
-	nvim +PackerSync +qall
+	:
+	# nvim +PackerSync +qall
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
