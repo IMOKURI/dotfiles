@@ -6,7 +6,6 @@ return {
     {'IMOKURI/challenger-deep-theme-vim', opt = true},
 
     -- Filetype: python
-    {'microsoft/vscode-python', branch = 'main', ft = {'python'}},
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},
 
     -- Filetype: csv
