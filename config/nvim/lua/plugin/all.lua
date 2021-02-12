@@ -170,6 +170,7 @@ return {
     -- Snippet
     {
         'hrsh7th/vim-vsnip',
+        setup = "require'plugin.rc.vim-vsnip'.setup()",
         config = "require'plugin.rc.vim-vsnip'.config()",
     },
     {'hrsh7th/vim-vsnip-integ'},

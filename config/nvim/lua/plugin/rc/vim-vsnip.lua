@@ -1,7 +1,9 @@
 local M = {}
 
 function M.setup()
-    -- vim.g.vsnip_snippet_dir = '$MYVIMRCDIR/snippet'
+    vim.g.vsnip_snippet_dirs = {
+        '$MYVIMRCDIR/snippet'
+    }
 end
 
 function M.config()
