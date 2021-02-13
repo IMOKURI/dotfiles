@@ -32,6 +32,14 @@ return {
     {'pearofducks/ansible-vim'},
     {'thiagoalmeidasa/vim-ansible-vault', opt = true},
 
+    -- Paste image
+    -- Require xclip
+    -- {
+    --     'ekickx/clipboard-image.nvim',
+    --     ft = {'markdown'},
+    --     config = "require'plugin.rc.clipboard-image'.config()",
+    -- },
+
     -- Capture
     {'tyru/capture.vim', cmd = {'Capture'}},
 
