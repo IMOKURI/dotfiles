@@ -25,11 +25,14 @@ return {
         setup = "require'plugin.rc.vim-terraform'.setup()",
     },
 
-    -- Jenkins
-    {'martinda/Jenkinsfile-vim-syntax'},
+    -- Filetype: Jenkinsfile
+    {'martinda/Jenkinsfile-vim-syntax', ft = {'Jenkinsfile'}},
 
-    -- ansible
-    {'pearofducks/ansible-vim'},
+    -- Filetype: ansible
+    {
+        'pearofducks/ansible-vim',
+        ft = {'yaml', 'yaml.ansible', 'ansible_host', 'jinja2'},
+    },
     {'thiagoalmeidasa/vim-ansible-vault', opt = true},
 
     -- Paste image
