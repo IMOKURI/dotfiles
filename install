@@ -41,6 +41,10 @@ function _logger() {
     printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
 
+function _latest_release() {
+    curl -s https://api.github.com/repos/${1}/releases/latest | jq '.tag_name'
+}
+
 ##### Detect OS Distribution ##################################################
 
 _banner "Detect OS Distribution"
@@ -459,7 +463,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION="0.14.6"
+TERRAFORM_VERSION=$(_latest_release "hashicorp/terraform")
 TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
