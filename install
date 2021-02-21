@@ -463,7 +463,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION=$(_latest_release "hashicorp/terraform")
+TERRAFORM_VERSION=$(_latest_release hashicorp/terraform)
 TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
