@@ -42,7 +42,7 @@ function _logger() {
 }
 
 function _latest_release() {
-    curl -s "https://api.github.com/repos/$1/releases/latest" | jq '.tag_name'
+    curl -s -A "IMOKURI" "https://api.github.com/repos/${1}/releases/latest" | jq '.tag_name'
 }
 
 ##### Detect OS Distribution ##################################################
