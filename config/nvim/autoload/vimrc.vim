@@ -4,17 +4,6 @@ function! vimrc#auto_mkdir(dir, force) abort " {{{
     endif
 endfunction " }}}
 
-function! vimrc#hint_cmd_output(prefix, cmd) abort " {{{
-    redir => str
-        execute a:cmd
-    redir END
-    let more_old = &more
-    set nomore
-    echo str
-    let &more = more_old
-    return a:prefix . nr2char(getchar())
-endfunction " }}}
-
 function! vimrc#smart_fold_closer() abort " {{{
     if foldlevel('.') == 0
         norm! zM

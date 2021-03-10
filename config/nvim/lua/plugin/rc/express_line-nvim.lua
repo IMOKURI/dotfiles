@@ -63,11 +63,8 @@ function M.config()
                 builtin.modified_flag,
                 builtin.readonly_flag,
             },
-            ' ',
-            '[', builtin.line, ', ',  builtin.column, ']',
-            ' ',
-            lsp_diagnostics,
             sections.split,
+            lsp_diagnostics,
         }
     end
 

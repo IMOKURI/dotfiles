@@ -120,8 +120,11 @@ return {
     -- REPL
     {'IMOKURI/repl.vim'},
 
-    -- Clever f
-    {'rhysd/clever-f.vim'},
+    -- Hop
+    {
+        'phaazon/hop.nvim',
+        config = "require'plugin.rc.hop'.config()",
+    },
 
     -- Sandwich
     {'machakann/vim-sandwich'},
