@@ -188,29 +188,8 @@ return {
 
     -- Auto completion
     {
-        'nvim-lua/completion-nvim',
-        requires = {
-            "hrsh7th/vim-vsnip",
-            "hrsh7th/vim-vsnip-integ",
-        },
-        setup = "require'plugin.rc.completion-nvim'.setup()",
-        config = "require'plugin.rc.completion-nvim'.config()",
-    },
-
-    {
-        'steelsojka/completion-buffers',
-        after = {
-            "completion-nvim",
-        },
-        config = "require'plugin.rc.completion-buffers'.config()",
-    },
-
-    {
-        'nvim-treesitter/completion-treesitter',
-        after = {
-            "completion-nvim",
-            "nvim-treesitter",
-        },
+        'hrsh7th/nvim-compe',
+        config = "require'plugin.rc.nvim-compe'.config()",
     },
 
     -- LSP
@@ -219,11 +198,9 @@ return {
         'neovim/nvim-lspconfig',
         event = {"BufNewFile *", "BufRead *"},
         requires = {
-            "nvim-lua/completion-nvim",
             "nvim-lua/lsp-status.nvim",
         },
         after = {
-            "completion-nvim",
             "lsp-status.nvim",
         },
         setup = "require'plugin.rc.nvim-lspconfig'.setup()",

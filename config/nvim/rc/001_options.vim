@@ -149,7 +149,7 @@ endif
 set clipboard+=unnamedplus
 
 " 補完設定
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect
 
 " }}}
 

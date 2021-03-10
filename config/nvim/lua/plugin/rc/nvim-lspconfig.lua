@@ -17,9 +17,6 @@ function M.config()
     local lspconfig = require("lspconfig")
 
     local on_attach_vim = function(client)
-        local completion = require("completion")
-
-        completion.on_attach(client)
         lsp_status.on_attach(client)
 
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
