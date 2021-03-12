@@ -171,11 +171,6 @@ function setup_repository_deb() {
         curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
     fi
-
-    if [[ ! -f /etc/apt/sources.list.d/ubuntu-toolchain-r-ubuntu-test-bionic.list && ${VERSION_ID} == "18.04" ]]; then
-        _logger "${INFO}" "Install Ubuntu Toolchain repository."
-        sudo -E add-apt-repository -y ppa:ubuntu-toolchain-r/test
-    fi
 }
 
 setup_repository_el
@@ -305,12 +300,6 @@ function install_packages_deb() {
         libxmlsec1-dev \
         libffi-dev \
         liblzma-dev
-
-    # for Ubuntu 18.04
-    if [[ ${VERSION_ID} == "18.04" ]]; then
-        sudo -E apt install -y \
-            g++-9
-    fi
 }
 
 install_packages_el
@@ -412,7 +401,7 @@ GO111MODULE=on go get -u \
 ##### Install lua-language-server #############################################
 
 _banner "Install Lua Language Server..."
-if ${is_deb}; then
+if [[ ${is_deb} && ${VERSION_ID} != "18.04" ]]; then
     pushd "$(pwd)"
     cd "${DOTPATH}"
     make lua-ls
