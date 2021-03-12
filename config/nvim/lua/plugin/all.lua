@@ -52,6 +52,9 @@ return {
         config = "require'plugin.rc.vim-sonictemplate'.config()",
     },
 
+    -- Register
+    {'tversteeg/registers.nvim'},
+
     -- Cursor word
     {'itchyny/vim-cursorword'},
 
