@@ -129,8 +129,11 @@ return {
     -- Sandwich
     {'machakann/vim-sandwich'},
 
-    -- Lexima
-    {'cohama/lexima.vim', opt = true},
+    -- Auto Pairs
+    {
+        'windwp/nvim-autopairs',
+        config = "require'plugin.rc.nvim-autopairs'.config()",
+    },
 
     -- Operator
     {
