@@ -386,6 +386,7 @@ yarn global add --prefix "${HOME}" \
     dockerfile-language-server-nodejs \
     doctoc \
     hjson \
+    pyright \
     vim-language-server \
     vscode-json-languageserver \
     yaml-language-server

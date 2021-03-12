@@ -103,6 +103,24 @@ function M.config()
         }
     }
 
+    lspconfig.pyright.setup{
+        capabilities = capabilities,
+        on_attach = on_attach_vim,
+        settings = {
+            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+            pyright = {},
+            python = {
+                analysis = {
+                    autoImportCompletions = true,
+                    autoSearchPaths = true,
+                    diagnosticMode = 'workspace',
+                    typeCheckingMode = 'basic',
+                    useLibraryCodeForTypes = true
+                }
+            }
+        }
+    }
+
     lspconfig.pyls.setup{
         capabilities = capabilities,
         on_attach = on_attach_vim,
@@ -110,11 +128,11 @@ function M.config()
             pyls = {
                 plugins = {
                     pycodestyle = {
-                        enabled = true,
+                        enabled = false,
                         maxLineLength = 120
                     },
                     pylint = {
-                        enabled = true,
+                        enabled = false,
                         args = {
                             -- '--init-hook="import sys, pylint_venv; sys.path.append("."); pylint_venv.inithook(force_venv_activation=True)"',
                             '--init-hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"',
@@ -130,7 +148,7 @@ function M.config()
                         line_length = 120
                     },
                     pyls_mypy = {
-                        enabled = true,
+                        enabled = false,
                         live_mode = false,
                     }
                 }
