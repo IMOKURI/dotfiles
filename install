@@ -366,7 +366,7 @@ _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
 _pipx_install_or_upgrade python-language-server
 
-if [[ ! -d "${HOME}/.local/pipx/venvs/python-language-server" ]]; then
+if [[ -d "${HOME}/.local/pipx/venvs/python-language-server" ]]; then
     pipx inject python-language-server \
         pycodestyle \
         pylint \
@@ -390,6 +390,8 @@ yarn global add --prefix "${HOME}" \
     vim-language-server \
     vscode-json-languageserver \
     yaml-language-server
+
+yarn global upgrade
 
 ##### Install go packages #####################################################
 
