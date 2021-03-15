@@ -166,7 +166,10 @@ function M.config()
                 },
                 validate = true,
                 hover = true,
-                completion = true
+                completion = true,
+                schemas = {
+                    kubernetes = "/*"
+                }
             }
         }
     }
