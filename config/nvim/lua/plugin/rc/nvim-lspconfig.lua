@@ -110,6 +110,7 @@ function M.config()
             -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
             pyright = {},
             python = {
+                pythonPath = vim.fn.exepath("python"),
                 analysis = {
                     autoImportCompletions = true,
                     autoSearchPaths = true,
