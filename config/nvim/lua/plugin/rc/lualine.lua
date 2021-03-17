@@ -1,7 +1,7 @@
 local M = {}
 
 function M.config()
-    require('lualine').status({
+    require('lualine').setup({
         options = {
             theme = 'palenight'
         },
