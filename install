@@ -462,7 +462,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION="0.14.10"
+TERRAFORM_VERSION="0.15.0"
 TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
