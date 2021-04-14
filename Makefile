@@ -124,7 +124,7 @@ update-lua-ls: ## Update lua-ls repository
 
 build-lua-ls: ## Build lus-ls
 	cd $(LUA_LSPATH)/3rd/luamake && \
-	ninja -f ninja/linux.ninja && \
+	bash compile/install.sh && \
 	cd $(LUA_LSPATH) && \
 	./3rd/luamake/luamake rebuild
 
