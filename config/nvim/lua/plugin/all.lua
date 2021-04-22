@@ -132,12 +132,6 @@ return {
     -- Sandwich
     {'machakann/vim-sandwich'},
 
-    -- Auto Pairs
-    {
-        'windwp/nvim-autopairs',
-        config = "require'plugin.rc.nvim-autopairs'.config()",
-    },
-
     -- Operator
     {
         'kana/vim-operator-replace',
@@ -179,6 +173,18 @@ return {
     {
         'romgrk/nvim-treesitter-context',
         opt = true,
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        after = {
+            "nvim-treesitter",
+        },
+    },
+
+    -- Auto Pairs
+    {
+        'windwp/nvim-autopairs',
+        config = "require'plugin.rc.nvim-autopairs'.config()",
         requires = {
             "nvim-treesitter/nvim-treesitter",
         },
