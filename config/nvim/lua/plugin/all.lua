@@ -185,12 +185,6 @@ return {
     {
         'windwp/nvim-autopairs',
         config = "require'plugin.rc.nvim-autopairs'.config()",
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        after = {
-            "nvim-treesitter",
-        },
     },
 
     -- Snippet
