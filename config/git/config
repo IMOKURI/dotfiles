@@ -9,6 +9,9 @@
 [includeIf "gitdir:~/ghe/"]
   path = ~/.config/git/config.local
 
+[includeIf "gitdir:~/ghe/"]
+  path = ~/.config/git/config.proxy
+
 [core]
   editor = nvim
   fscache = true

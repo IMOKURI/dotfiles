@@ -1,5 +1,5 @@
 # Git
-config/git/config.local
+config/git/config.proxy
 
 # Bash
 config/profile.d/proxy.sh

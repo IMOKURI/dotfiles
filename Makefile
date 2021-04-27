@@ -22,8 +22,8 @@ BASHMARKS     := $(HOME)/src/bashmarks
 # Proxy settings
 PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
 PROXY_SETTING      := $(DOTPATH)/config/profile.d/proxy.sh
-GIT_PROXY_TEMPLATE := $(DOTPATH)/config/git/config.local.template
-GIT_PROXY_SETTING  := $(DOTPATH)/config/git/config.local
+GIT_PROXY_TEMPLATE := $(DOTPATH)/config/git/config.proxy.template
+GIT_PROXY_SETTING  := $(DOTPATH)/config/git/config.proxy
 
 define repo
 	if [[ -d "$1" ]]; then \
