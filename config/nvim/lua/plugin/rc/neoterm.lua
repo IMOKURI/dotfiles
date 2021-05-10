@@ -9,8 +9,8 @@ function M.setup()
     h.map("n", "<C-t>", "<cmd>Ttoggle<CR>")
     h.map("t", "<C-t>", "<C-\\><C-n><cmd>Ttoggle<CR>")
 
-    h.map("n", "<C-u>", "<cmd>Topen<CR><C-w>bi")
-    h.map("t", "<C-u>", "<C-\\><C-n><C-w>p")
+    h.map("n", "<C-g>", "<cmd>Topen<CR><C-w>bi")
+    h.map("t", "<C-g>", "<C-\\><C-n><C-w>p")
 end
 
 return M
