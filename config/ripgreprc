@@ -1,3 +1,0 @@
-# Ignore neovim pack directory
---glob
-!config/nvim/pack/**
