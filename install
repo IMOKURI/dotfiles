@@ -476,7 +476,7 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
-TERRAFORM_LS_VERSION="0.16.1"
+TERRAFORM_LS_VERSION="0.16.2"
 TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform LS..."
