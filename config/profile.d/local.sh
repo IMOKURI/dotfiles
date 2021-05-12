@@ -22,8 +22,6 @@ export GOPATH=$HOME/go
 
 export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
-export RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
-
 export EDITOR="vi"
 
 if [ -f ~/.hosts ]; then
