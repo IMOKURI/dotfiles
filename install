@@ -413,7 +413,7 @@ fi
 
 ##### Install ripgrep #########################################################
 
-RIPGREP_VERSION="12.1.1"
+RIPGREP_VERSION=$(curl -sfL https://api.github.com/repos/BurntSushi/ripgrep/releases | jq .[0].name | sed -e s/\"//g)
 RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
 
 _banner "Install RipGrep..."
@@ -430,7 +430,7 @@ fi
 
 ##### Install bat #############################################################
 
-BAT_VERSION="v0.18.1"
+BAT_VERSION=$(curl -sfL https://api.github.com/repos/sharkdp/bat/releases | jq .[0].name | sed -e s/\"//g)
 BAT="bat-${BAT_VERSION}-x86_64-unknown-linux-gnu"
 
 _banner "Install Bat..."
@@ -450,7 +450,7 @@ fi
 FZF_VERSION=$(curl -sfL https://api.github.com/repos/junegunn/fzf/releases | jq .[0].name | sed -e s/\"//g)
 FZF="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
 
-_banner "Install Fzf... ${FZF_VERSION}"
+_banner "Install Fzf..."
 if [[ ! -f "${HOME}/src/${FZF}" ]]; then
     curl -fsSL -o ${HOME}/src/${FZF} \
         https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${FZF}
@@ -462,7 +462,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION="0.15.4"
+TERRAFORM_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform/releases | jq .[0].name | sed -e s/\"//g)
 TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
@@ -476,7 +476,7 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
-TERRAFORM_LS_VERSION="0.17.0"
+TERRAFORM_LS_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform-ls/releases | jq .[0].name | sed -e s/\"//g)
 TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform LS..."
