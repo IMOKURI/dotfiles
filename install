@@ -462,7 +462,7 @@ fi
 
 ##### Install terraform #######################################################
 
-TERRAFORM_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform/releases | jq .[0].name | sed -e s/\"//g)
+TERRAFORM_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform/releases | jq .[0].name | sed -e s/\"//g -e s/v//)
 TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
@@ -476,7 +476,7 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
-TERRAFORM_LS_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform-ls/releases | jq .[0].name | sed -e s/\"//g)
+TERRAFORM_LS_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform-ls/releases | jq .[0].name | sed -e s/\"//g -e s/v//)
 TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform LS..."
