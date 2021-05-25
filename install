@@ -447,10 +447,10 @@ fi
 
 ##### Install fzf #############################################################
 
-FZF_VERSION="0.27.1"
+FZF_VERSION=$(curl -sfL https://api.github.com/repos/junegunn/fzf/releases | jq .[0].name)
 FZF="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
 
-_banner "Install Fzf..."
+_banner "Install Fzf... ${FZF_VERSION}"
 if [[ ! -f "${HOME}/src/${FZF}" ]]; then
     curl -fsSL -o ${HOME}/src/${FZF} \
         https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${FZF}
