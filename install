@@ -126,7 +126,7 @@ function setup_repository_el() {
 
     if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
         _logger "${INFO}" "Install Nodejs repository."
-        curl -fsSL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+        curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo -E bash -
     fi
 
     if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
@@ -163,7 +163,7 @@ function setup_repository_deb() {
 
     if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
         _logger "${INFO}" "Install Node.js repository."
-        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+        curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
