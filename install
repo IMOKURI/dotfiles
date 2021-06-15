@@ -387,6 +387,7 @@ yarn global add --prefix "${HOME}" \
     doctoc \
     hjson \
     pyright \
+    tldr \
     vim-language-server \
     vscode-json-languageserver \
     yaml-language-server
