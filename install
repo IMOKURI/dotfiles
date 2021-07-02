@@ -368,7 +368,7 @@ _pipx_install_or_upgrade python-lsp-server
 
 if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
     pipx inject python-lsp-server \
-        mypy-ls \
+        # mypy-ls \
         # pycodestyle \
         # pylint \
         # pylint-venv \

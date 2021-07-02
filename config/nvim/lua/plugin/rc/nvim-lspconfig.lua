@@ -134,9 +134,9 @@ function M.config()
                     pyls_black = {
                         line_length = 120
                     },
-                    ["mypy-ls"] = {
-                        live_mode = false,
-                    }
+                    -- ["mypy-ls"] = {
+                    --     live_mode = false,
+                    -- }
                 }
             }
         }
