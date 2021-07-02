@@ -371,9 +371,9 @@ if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
         pycodestyle \
         pylint \
         pylint-venv \
-        pyls-black \
+        python-lsp-black \
         pyls-isort \
-        pyls-mypy
+        mypy-ls
 fi
 
 ##### Install nodejs packages #################################################
