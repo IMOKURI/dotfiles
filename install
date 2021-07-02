@@ -364,16 +364,16 @@ _pipx_install_or_upgrade ansible
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
-_pipx_install_or_upgrade python-language-server
+_pipx_install_or_upgrade python-lsp-server
 
-if [[ -d "${HOME}/.local/pipx/venvs/python-language-server" ]]; then
-    pipx inject python-language-server \
-        pycodestyle \
-        pylint \
-        pylint-venv \
-        pyls-black \
+if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
+    pipx inject python-lsp-server \
+        mypy-ls \
+        # pycodestyle \
+        # pylint \
+        # pylint-venv \
         pyls-isort \
-        pyls-mypy
+        python-lsp-black
 fi
 
 ##### Install nodejs packages #################################################

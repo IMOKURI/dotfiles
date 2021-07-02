@@ -122,34 +122,19 @@ function M.config()
         }
     }
 
-    lspconfig.pyls.setup{
+    lspconfig.pylsp.setup{
         capabilities = capabilities,
         on_attach = on_attach_vim,
         settings = {
-            pyls = {
+            pylsp = {
                 plugins = {
                     pycodestyle = {
                         enabled = false,
-                        maxLineLength = 120
-                    },
-                    pylint = {
-                        enabled = false,
-                        args = {
-                            -- '--init-hook="import sys, pylint_venv; sys.path.append("."); pylint_venv.inithook(force_venv_activation=True)"',
-                            '--init-hook="import pylint_venv; pylint_venv.inithook(force_venv_activation=True)"',
-                            '--max-line-length=120',
-                            '--disable=invalid-name,missing-docstring,broad-except,logging-fstring-interpolation,fixme'
-                        }
-                    },
-                    pyls_isort = {
-                        enabled = true
                     },
                     pyls_black = {
-                        enabled = true,
                         line_length = 120
                     },
-                    pyls_mypy = {
-                        enabled = false,
+                    ["mypy-ls"] = {
                         live_mode = false,
                     }
                 }
