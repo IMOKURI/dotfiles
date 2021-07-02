@@ -364,10 +364,10 @@ _pipx_install_or_upgrade ansible
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
-_pipx_install_or_upgrade python-lsp-server
+_pipx_install_or_upgrade python-language-server
 
-if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
-    pipx inject python-lsp-server \
+if [[ -d "${HOME}/.local/pipx/venvs/python-language-server" ]]; then
+    pipx inject python-language-server \
         pycodestyle \
         pylint \
         pylint-venv \
