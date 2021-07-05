@@ -6,3 +6,4 @@ config/profile.d/proxy.sh
 
 # Packer.nvim
 packer_compiled.vim
+packer_compiled.lua
