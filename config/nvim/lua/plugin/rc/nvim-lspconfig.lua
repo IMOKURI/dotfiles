@@ -131,10 +131,10 @@ function M.config()
                     pycodestyle = {
                         enabled = false,
                     },
-                    pyls_black = {
-                        line_length = 120
+                    pylsp_black = {
+                        line_length = 120,
                     },
-                    -- ["mypy-ls"] = {
+                    -- pylsp_mypy = {
                     --     live_mode = false,
                     -- }
                 }
