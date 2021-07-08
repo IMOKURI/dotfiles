@@ -181,17 +181,17 @@ return {
         },
     },
 
-    {
-        'code-biscuits/nvim-biscuits',
-        opt = true,
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        after = {
-            "nvim-treesitter",
-        },
-        config = "require'plugin.rc.nvim-biscuits'.config()",
-    },
+    -- {
+    --     'code-biscuits/nvim-biscuits',
+    --     opt = true,
+    --     requires = {
+    --         "nvim-treesitter/nvim-treesitter",
+    --     },
+    --     after = {
+    --         "nvim-treesitter",
+    --     },
+    --     config = "require'plugin.rc.nvim-biscuits'.config()",
+    -- },
 
     -- Auto Pairs
     {
