@@ -141,6 +141,14 @@ return {
         config = "require'plugin.rc.operator'.config()",
     },
 
+    -- Text Objects
+    {
+        'kana/vim-textobj-line',
+        requires = {
+            "kana/vim-textobj-user",
+        },
+    },
+
     -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
