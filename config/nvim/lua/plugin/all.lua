@@ -77,6 +77,20 @@ return {
         config = "require'plugin.rc.gitsigns'.config()",
     },
 
+    -- Indent Guide
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        opt = true,
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        after = {
+            "nvim-treesitter",
+        },
+        config = "require'plugin.rc.indent-blankline'.config()",
+    },
+
+
     -- Suda
     {
         'lambdalisue/suda.vim',
