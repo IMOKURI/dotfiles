@@ -189,6 +189,17 @@ return {
         },
     },
 
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        opt = true,
+        requires = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        after = {
+            "nvim-treesitter",
+        },
+    },
+
     -- {
     --     'code-biscuits/nvim-biscuits',
     --     opt = true,

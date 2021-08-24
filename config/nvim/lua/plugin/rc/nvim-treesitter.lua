@@ -26,6 +26,21 @@ function M.config()
             enable = true,
             disable = {'bash'}
         },
+        textobjects = {
+            select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                    ["ab"] = "@block.outer",
+                    ["ib"] = "@block.inner",
+                    ["ac"] = "@call.outer",
+                    ["ic"] = "@call.inner",
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+                }
+            }
+
+        },
     }
 end
 
