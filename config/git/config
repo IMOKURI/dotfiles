@@ -9,7 +9,7 @@
 [includeIf "gitdir:~/ghe/"]
   path = ~/.config/git/config.local
 
-[includeIf "gitdir:~/ghe/"]
+[include]
   path = ~/.config/git/config.proxy
 
 [core]
