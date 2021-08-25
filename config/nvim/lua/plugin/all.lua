@@ -167,6 +167,7 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         event = {"BufNewFile *", "BufRead *"},
+        run = ":TSUpdate",
         config = "require'plugin.rc.nvim-treesitter'.config()",
     },
 
