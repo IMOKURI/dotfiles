@@ -37,6 +37,8 @@ function M.config()
                     ["ic"] = "@call.inner",
                     ["af"] = "@function.outer",
                     ["if"] = "@function.inner",
+                    ["ap"] = "@parameter.outer",
+                    ["ip"] = "@parameter.inner",
                 }
             }
 

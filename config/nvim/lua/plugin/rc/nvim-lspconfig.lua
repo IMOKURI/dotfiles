@@ -168,6 +168,23 @@ function M.config()
     h.map("n", "<Leader>D", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
     h.map("n", "<Leader>j", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
     h.map("n", "<Leader>k", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+
+    vim.fn.sign_define(
+        "LspDiagnosticsSignError",
+        { texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" }
+    )
+    vim.fn.sign_define(
+        "LspDiagnosticsSignWarning",
+        { texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" }
+    )
+    vim.fn.sign_define(
+        "LspDiagnosticsSignHint",
+        { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" }
+    )
+    vim.fn.sign_define(
+        "LspDiagnosticsSignInformation",
+        { texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" }
+    )
 end
 
 return M
