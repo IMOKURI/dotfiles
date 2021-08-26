@@ -12,7 +12,7 @@ function M.config()
 
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     local capabilities = lsp_status.capabilities
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
     local lspconfig = require("lspconfig")
 

@@ -227,24 +227,40 @@ return {
     --     config = "require'plugin.rc.nvim-biscuits'.config()",
     -- },
 
-    -- Auto Pairs
-    {
-        'windwp/nvim-autopairs',
-        config = "require'plugin.rc.nvim-autopairs'.config()",
-    },
-
     -- Snippet
     {
         'hrsh7th/vim-vsnip',
         setup = "require'plugin.rc.vim-vsnip'.setup()",
         config = "require'plugin.rc.vim-vsnip'.config()",
     },
-    {'hrsh7th/vim-vsnip-integ'},
+    -- {'hrsh7th/vim-vsnip-integ'},
 
     -- Auto completion
     {
-        'hrsh7th/nvim-compe',
-        config = "require'plugin.rc.nvim-compe'.config()",
+        'hrsh7th/nvim-cmp',
+        requires = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-emoji",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-vsnip",
+            "hrsh7th/vim-vsnip",
+            "onsails/lspkind-nvim",
+        },
+        config = "require'plugin.rc.nvim-cmp'.config()",
+    },
+
+    -- Auto Pairs
+    {
+        'windwp/nvim-autopairs',
+        requires = {
+            "hrsh7th/nvim-cmp",
+        },
+        after = {
+            "nvim-cmp",
+        },
+        config = "require'plugin.rc.nvim-autopairs'.config()",
     },
 
     -- LSP
@@ -254,9 +270,11 @@ return {
         event = {"BufNewFile *", "BufRead *"},
         requires = {
             "nvim-lua/lsp-status.nvim",
+            "hrsh7th/nvim-cmp",
         },
         after = {
             "lsp-status.nvim",
+            "nvim-cmp",
         },
         setup = "require'plugin.rc.nvim-lspconfig'.setup()",
         config = "require'plugin.rc.nvim-lspconfig'.config()",
