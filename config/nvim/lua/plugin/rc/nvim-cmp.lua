@@ -45,15 +45,26 @@ function M.config()
             ['<CR>'] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Insert,
                 select = true,
-            })
+            }),
+            ['<C-k>'] = function(fallback)
+                if vim.fn.pumvisible() == 1 then
+                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, true, true))
+                elseif vim.fn['vsnip#available']() == 1 then
+                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
+                else
+                    fallback()
+                end
+            end,
         },
 
         sources = {
             { name = 'buffer' },
             { name = 'emoji' },
+            { name = 'look' },
             { name = 'nvim_lsp' },
             { name = 'nvim_lua' },
             { name = 'path' },
+            { name = 'spell' },
             { name = 'vsnip' },
         },
     }

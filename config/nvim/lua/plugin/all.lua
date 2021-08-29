@@ -233,12 +233,12 @@ return {
         setup = "require'plugin.rc.vim-vsnip'.setup()",
         config = "require'plugin.rc.vim-vsnip'.config()",
     },
-    -- {'hrsh7th/vim-vsnip-integ'},
 
     -- Auto completion
     {
         'hrsh7th/nvim-cmp',
         requires = {
+            "f3fora/cmp-spell",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-emoji",
             "hrsh7th/cmp-nvim-lsp",
@@ -246,7 +246,11 @@ return {
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-vsnip",
             "hrsh7th/vim-vsnip",
+            "octaltree/cmp-look",
             "onsails/lspkind-nvim",
+        },
+        after = {
+            "vim-vsnip",
         },
         config = "require'plugin.rc.nvim-cmp'.config()",
     },
