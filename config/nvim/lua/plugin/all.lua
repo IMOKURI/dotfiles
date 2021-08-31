@@ -66,6 +66,10 @@ return {
         'IMOKURI/line-number-interval.nvim',
         setup = "require'plugin.rc.line-number-interval-nvim'.setup()",
     },
+    {
+        'nacro90/numb.nvim',
+        config = "require'plugin.rc.numb'.config()",
+    },
 
     -- Git sign
     {
@@ -89,7 +93,6 @@ return {
         },
         config = "require'plugin.rc.indent-blankline'.config()",
     },
-
 
     -- Suda
     {
