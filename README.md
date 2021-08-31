@@ -1,6 +1,6 @@
 # dotfiles
 
-[![E2E Test](https://github.com/IMOKURI/dotfiles/actions/workflows/blank.yml/badge.svg)](https://github.com/IMOKURI/dotfiles/actions/workflows/blank.yml)
+[![E2E Test](https://github.com/IMOKURI/dotfiles/actions/workflows/e2e_test.yml/badge.svg)](https://github.com/IMOKURI/dotfiles/actions/workflows/e2e_test.yml)
 
 The dotfiles that can be installed by one command
 
