@@ -3,9 +3,9 @@ local cmp = require('cmp')
 
 function M.config()
     cmp.setup {
-        completion = {
-            completeopt = 'menu,menuone,noinsert',
-        },
+        -- completion = {
+        --     completeopt = 'menu,menuone,noinsert',
+        -- },
 
         documentation = {
             border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
