@@ -148,7 +148,8 @@ function M.config()
         settings = {
             yaml = {
                 format = {
-                    enable = true
+                    enable = true,
+                    printWidth = 120,
                 },
                 validate = true,
                 hover = true,
