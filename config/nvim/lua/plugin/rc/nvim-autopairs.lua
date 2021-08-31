@@ -4,7 +4,9 @@ function M.config()
     local npairs = require'nvim-autopairs'
     local Rule   = require'nvim-autopairs.rule'
 
-    npairs.setup({})
+    npairs.setup({
+        ignored_next_char = "[%w%.]"
+    })
 
     -- Jinja2
     npairs.add_rules({
