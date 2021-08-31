@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: E2E Test
 
 on:
   push:
@@ -16,7 +16,6 @@ jobs:
       fail-fast: true
       matrix:
         os_version:
-          # - 18.04
           - 20.04
 
     runs-on: ubuntu-latest
@@ -37,7 +36,6 @@ jobs:
       fail-fast: true
       matrix:
         os_version:
-          # - 18.04
           - 20.04
 
     runs-on: ubuntu-latest
@@ -65,7 +63,6 @@ jobs:
       fail-fast: true
       matrix:
         os_version:
-          - 7
           - 8
 
     runs-on: ubuntu-latest
@@ -85,7 +82,6 @@ jobs:
       fail-fast: true
       matrix:
         os_version:
-          - 7
           - 8
 
     runs-on: ubuntu-latest

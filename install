@@ -113,13 +113,11 @@ function setup_repository_el() {
         return
     fi
 
-    if [[ ${VERSION_ID} == "8" ]]; then
-        _logger "${INFO}" "Install DNF plugins core package."
-        sudo -E dnf install -y glibc-langpack-en
-        sudo -E dnf install -y dnf-plugins-core
-    fi
+    _logger "${INFO}" "Install DNF plugins core package."
+    sudo -E dnf install -y glibc-langpack-en
+    sudo -E dnf install -y dnf-plugins-core
 
-    if [[ ${ID} == "centos" && ${VERSION_ID} == "8" ]]; then
+    if [[ ${ID} == "centos" ]]; then
         _logger "${INFO}" "Enable PowerTools repository."
         sudo -E dnf config-manager --enable powertools
     fi
@@ -149,16 +147,6 @@ function setup_repository_deb() {
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger "${INFO}" "Install Git-LFS repository."
         curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
-    fi
-
-    if [[ ! -f /etc/apt/sources.list.d/ansible-ubuntu-ansible-bionic.list && ${VERSION_ID} == "18.04" ]]; then
-        _logger "${INFO}" "Install Ansible repository."
-        sudo -E add-apt-repository -y ppa:ansible/ansible
-    fi
-
-    if [[ ! -f /etc/apt/sources.list.d/longsleep-ubuntu-golang-backports-bionic.list && ${VERSION_ID} == "18.04" ]]; then
-        _logger "${INFO}" "Install Golang repository."
-        sudo -E add-apt-repository -y ppa:longsleep/golang-backports
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
@@ -231,12 +219,6 @@ function install_packages_el() {
         words \
         yarn \
         zlib-devel
-
-    if [[ ${VERSION_ID} == "7" ]]; then
-        sudo -E yum install -y \
-            python \
-            python-devel
-    fi
 }
 
 function install_packages_deb() {
@@ -401,7 +383,7 @@ GO111MODULE=on go get -u \
 ##### Install lua-language-server #############################################
 
 _banner "Install Lua Language Server..."
-if ${is_deb} && [[ ${VERSION_ID} != "18.04" ]]; then
+if ${is_deb}; then
     pushd "$(pwd)"
     cd "${DOTPATH}"
     make lua-ls

@@ -1,6 +1,6 @@
 # dotfiles
 
-[![CI](https://github.com/IMOKURI/dotfiles/workflows/CI/badge.svg)](https://github.com/IMOKURI/dotfiles/actions?query=workflow%3ACI)
+[![E2E Test](https://github.com/IMOKURI/dotfiles/workflows/CI/badge.svg)](https://github.com/IMOKURI/dotfiles/actions?query=workflow%3ACI)
 
 The dotfiles that can be installed by one command
 
@@ -12,9 +12,9 @@ The dotfiles that can be installed by one command
 
 ## Targets
 
-- Ubuntu 18.04, 20.04
-- CentOS 7, 8
-- RHEL 7, 8
+- Ubuntu 20.04
+- CentOS 8
+- RHEL 8
 
 ## Requirements
 
@@ -27,13 +27,6 @@ The dotfiles that can be installed by one command
 ```bash
 export http_proxy=<http://proxy.example.com:port>
 export https_proxy=<http://proxy.example.com:port>
-```
-
-- Enable optional and extra repositories. (for RHEL7)
-
-```bash
-sudo subscription-manager repos --enable rhel-7-server-optional-rpms
-sudo subscription-manager repos --enable rhel-7-server-extras-rpms
 ```
 
 - Enable code ready builder repository. (for RHEL8)
