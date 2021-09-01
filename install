@@ -371,7 +371,7 @@ yarn global add --prefix "${HOME}" \
     pyright \
     tldr \
     vim-language-server \
-    vscode-json-languageserver \
+    vscode-langservers-extracted \
     yaml-language-server
 
 yarn global upgrade
