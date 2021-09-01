@@ -60,6 +60,10 @@ if [[ -f /etc/os-release ]]; then
             # CentOS Linux
             is_el=true
             ;;
+        Rocky*)
+            # Rocky Linux
+            is_el=true
+            ;;
         Ubuntu*)
             # Ubuntu
             is_deb=true
