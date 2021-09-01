@@ -296,6 +296,9 @@ return {
         config = "require'plugin.rc.lualine'.config()",
     },
 
+    -- Session
+    {'rmagatti/auto-session'},
+
     -- Fuzzy finder
     {
         'nvim-telescope/telescope.nvim',
@@ -307,7 +310,6 @@ return {
             "nvim-telescope/telescope-frecency.nvim",
             "nvim-telescope/telescope-fzf-writer.nvim",
             "nvim-telescope/telescope-fzy-native.nvim",
-            "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "tamago324/telescope-sonictemplate.nvim",
             "tami5/sql.nvim",
