@@ -54,22 +54,16 @@ function M.config()
         capabilities = capabilities,
         on_attach = on_attach_vim,
         filetypes = {
-            'json',
             'sh'
         },
         init_options = {
             formatters = {
-                jq = {
-                    command = "hjson",
-                    args = {"-j"}
-                },
                 shfmt = {
                     command = "shfmt",
                     args = {"-i", "4", "-sr", "-ci"}
                 }
             },
             formatFiletypes = {
-                json = "jq",
                 sh = "shfmt"
             }
         }

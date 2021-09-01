@@ -367,7 +367,6 @@ yarn global add --prefix "${HOME}" \
     diagnostic-languageserver \
     dockerfile-language-server-nodejs \
     doctoc \
-    hjson \
     pyright \
     tldr \
     vim-language-server \
