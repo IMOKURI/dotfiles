@@ -110,7 +110,7 @@ set_yum_proxy
 ##### Setup repositories ######################################################
 
 function setup_repository_el() {
-    _banner "Setup repositories for RHEL/CentOS..."
+    _banner "Setup repositories for Enterprise Linux..."
 
     if "${is_deb}"; then
         _logger "${INFO}" "Skip due to Debian/Ubuntu."
@@ -121,7 +121,7 @@ function setup_repository_el() {
     sudo -E dnf install -y glibc-langpack-en
     sudo -E dnf install -y dnf-plugins-core
 
-    if [[ ${ID} == "centos" ]]; then
+    if [[ ${ID} == "centos" || ${ID} == "rocky" ]]; then
         _logger "${INFO}" "Enable PowerTools repository."
         sudo -E dnf config-manager --enable powertools
     fi
@@ -141,7 +141,7 @@ function setup_repository_deb() {
     _banner "Setup repositories for Debian/Ubuntu..."
 
     if "${is_el}"; then
-        _logger "${INFO}" "Skip due to RHEL/CentOS."
+        _logger "${INFO}" "Skip due to Enterprise Linux."
         return
     fi
 
@@ -171,7 +171,7 @@ setup_repository_deb
 ##### Install packages ########################################################
 
 function install_packages_el() {
-    _banner "Install Packages for RHEL/CentOS..."
+    _banner "Install Packages for Enterprise Linux..."
 
     if "${is_deb}"; then
         _logger "${INFO}" "Skip due to Debian/Ubuntu."
@@ -229,7 +229,7 @@ function install_packages_deb() {
     _banner "Install Packages for Debian/Ubuntu..."
 
     if "${is_el}"; then
-        _logger "${INFO}" "Skip due to Redhat/CentOS."
+        _logger "${INFO}" "Skip due to Enterprise Linux."
         return
     fi
 
