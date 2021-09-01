@@ -297,7 +297,10 @@ return {
     },
 
     -- Session
-    {'rmagatti/auto-session'},
+    {
+        'rmagatti/auto-session',
+        setup = "require'plugin.rc.auto-session'.setup()",
+    },
 
     -- Fuzzy finder
     {
