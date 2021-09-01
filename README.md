@@ -13,7 +13,7 @@ The dotfiles that can be installed by one command
 ## Targets
 
 - Ubuntu 20.04
-- CentOS 8
+- CentOS, Rocky 8
 - RHEL 8
 
 ## Requirements
