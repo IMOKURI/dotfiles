@@ -65,6 +65,7 @@ function M.config()
             { name = 'nvim_lua' },
             { name = 'path' },
             { name = 'spell' },
+            { name = 'treesitter' },
             { name = 'vsnip' },
         },
     }

@@ -251,6 +251,7 @@ return {
             "hrsh7th/vim-vsnip",
             "octaltree/cmp-look",
             "onsails/lspkind-nvim",
+            "ray-x/cmp-treesitter",
         },
         after = {
             "vim-vsnip",
