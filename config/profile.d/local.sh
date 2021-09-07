@@ -24,6 +24,8 @@ export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
 export EDITOR="vi"
 
+export MANPAGER='nvim +Man!'
+
 if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts
 fi
