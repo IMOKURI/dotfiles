@@ -74,6 +74,7 @@ return {
     -- Git sign
     {
         'lewis6991/gitsigns.nvim',
+        event = 'BufRead',
         branch = 'main',
         requires = {
             "nvim-lua/plenary.nvim",
@@ -84,10 +85,7 @@ return {
     -- Indent Guide
     {
         'lukas-reineke/indent-blankline.nvim',
-        opt = true,
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
+        event = "BufReadPre",
         after = {
             "nvim-treesitter",
         },
@@ -169,7 +167,7 @@ return {
     -- Treesitter
     {
         'nvim-treesitter/nvim-treesitter',
-        event = {"BufNewFile *", "BufRead *"},
+        event = "BufRead",
         run = ":TSUpdate",
         config = "require'plugin.rc.nvim-treesitter'.config()",
     },
@@ -177,9 +175,6 @@ return {
     {
         'nvim-treesitter/nvim-treesitter-refactor',
         opt = true,
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
         after = {
             "nvim-treesitter",
         },
@@ -188,9 +183,6 @@ return {
     {
         'p00f/nvim-ts-rainbow',
         opt = true,
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
         after = {
             "nvim-treesitter",
         },
@@ -199,9 +191,6 @@ return {
     {
         'romgrk/nvim-treesitter-context',
         opt = true,
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
         after = {
             "nvim-treesitter",
         },
@@ -210,9 +199,6 @@ return {
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
         opt = true,
-        requires = {
-            "nvim-treesitter/nvim-treesitter",
-        },
         after = {
             "nvim-treesitter",
         },
@@ -221,9 +207,6 @@ return {
     -- {
     --     'code-biscuits/nvim-biscuits',
     --     opt = true,
-    --     requires = {
-    --         "nvim-treesitter/nvim-treesitter",
-    --     },
     --     after = {
     --         "nvim-treesitter",
     --     },
@@ -233,6 +216,7 @@ return {
     -- Snippet
     {
         'hrsh7th/vim-vsnip',
+        event = "InsertEnter",
         setup = "require'plugin.rc.vim-vsnip'.setup()",
         config = "require'plugin.rc.vim-vsnip'.config()",
     },
@@ -240,31 +224,22 @@ return {
     -- Auto completion
     {
         'hrsh7th/nvim-cmp',
-        requires = {
-            "f3fora/cmp-spell",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-emoji",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
-            "octaltree/cmp-look",
-            "onsails/lspkind-nvim",
-            "ray-x/cmp-treesitter",
-        },
-        after = {
-            "vim-vsnip",
-        },
+        event = "BufReadPre", -- "InsertEnter",
         config = "require'plugin.rc.nvim-cmp'.config()",
     },
+    {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
+    {"hrsh7th/cmp-emoji", after = "nvim-cmp"},
+    {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
+    {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"},
+    {"hrsh7th/cmp-path", after = "nvim-cmp"},
+    {"hrsh7th/cmp-vsnip", after = {"nvim-cmp", "vim-vsnip"}},
+    {"onsails/lspkind-nvim", after = "nvim-cmp"},
+    {"ray-x/cmp-treesitter", after = "nvim-cmp"},
 
     -- Auto Pairs
     {
         'windwp/nvim-autopairs',
-        requires = {
-            "hrsh7th/nvim-cmp",
-        },
+        event = "InsertEnter",
         after = {
             "nvim-cmp",
         },
@@ -275,16 +250,11 @@ return {
     {'nvim-lua/lsp-status.nvim'},
     {
         'neovim/nvim-lspconfig',
-        event = {"BufNewFile *", "BufRead *"},
-        requires = {
-            "nvim-lua/lsp-status.nvim",
-            "hrsh7th/nvim-cmp",
-        },
+        -- event = "BufReadPre",
         after = {
             "lsp-status.nvim",
-            "nvim-cmp",
+            "cmp-nvim-lsp",
         },
-        setup = "require'plugin.rc.nvim-lspconfig'.setup()",
         config = "require'plugin.rc.nvim-lspconfig'.config()",
     },
 

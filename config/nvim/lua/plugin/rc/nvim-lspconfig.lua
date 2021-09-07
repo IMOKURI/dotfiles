@@ -3,9 +3,6 @@ local h = require("helper")
 
 local home_dir = os.getenv("HOME")
 
-function M.setup()
-end
-
 function M.config()
     local lsp_status = require("lsp-status")
     lsp_status.register_progress()
