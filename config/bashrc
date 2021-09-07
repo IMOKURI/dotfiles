@@ -49,6 +49,11 @@ docker-clean() {
     # docker system prune --volumes -f
 }
 
+tmp-clean() {
+    find /tmp -mtime +60 -type f -delete
+    find /tmp -empty -type d -delete
+}
+
 venv() {
     if [[ ! -d .venv ]]; then
         python3 -m venv .venv
