@@ -4,6 +4,8 @@
 
 export GPG_TTY=$(tty)
 
+export HISTCONTROL=ignoreboth:erasedups
+
 ##### Set bash options ########################################################
 
 # ディレクトリ名を実行すると、そのディレクトリに移動する
