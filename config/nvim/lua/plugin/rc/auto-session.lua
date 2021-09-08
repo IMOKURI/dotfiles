@@ -1,7 +1,12 @@
 local M = {}
 
-function M.setup()
-    vim.g.auto_session_log_level = 'error'
+function M.config()
+    local opts = {
+        log_level = 'error',
+        auto_session_enabled = false,
+    }
+
+    require('auto-session').setup(opts)
 end
 
 return M

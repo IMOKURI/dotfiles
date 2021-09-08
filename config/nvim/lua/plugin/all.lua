@@ -33,7 +33,11 @@ return {
         'pearofducks/ansible-vim',
         ft = {'yaml', 'yaml.ansible', 'ansible_host', 'jinja2'},
     },
-    {'thiagoalmeidasa/vim-ansible-vault', opt = true},
+    {
+        'thiagoalmeidasa/vim-ansible-vault',
+        ft = {'yaml', 'yaml.ansible', 'ansible_host', 'jinja2'},
+        cmd = {'AnsibleVaultEncrypt', 'AnsibleVaultDecrypt'}
+    },
 
     -- Paste image
     -- Require xclip
@@ -56,7 +60,10 @@ return {
     {'tversteeg/registers.nvim'},
 
     -- Cursor word
-    {'itchyny/vim-cursorword'},
+    {
+        'itchyny/vim-cursorword',
+        event = "CursorHold"
+    },
 
     -- Quick highlight
     {'t9md/vim-quickhl', opt = true},
@@ -116,7 +123,6 @@ return {
     {
         'AndrewRadev/linediff.vim',
         cmd = {'Linediff'},
-        setup = "require'plugin.rc.linediff'.setup()",
     },
 
     -- Colorizer
@@ -141,11 +147,15 @@ return {
     -- Hop
     {
         'phaazon/hop.nvim',
+        event = {'BufRead', 'BufNewFile'},
         config = "require'plugin.rc.hop'.config()",
     },
 
     -- Sandwich
-    {'machakann/vim-sandwich'},
+    {
+        'machakann/vim-sandwich',
+        event = {'BufRead', 'BufNewFile'},
+    },
 
     -- Operator
     {
@@ -172,37 +182,10 @@ return {
         config = "require'plugin.rc.nvim-treesitter'.config()",
     },
 
-    {
-        'nvim-treesitter/nvim-treesitter-refactor',
-        opt = true,
-        after = {
-            "nvim-treesitter",
-        },
-    },
-
-    {
-        'p00f/nvim-ts-rainbow',
-        opt = true,
-        after = {
-            "nvim-treesitter",
-        },
-    },
-
-    {
-        'romgrk/nvim-treesitter-context',
-        opt = true,
-        after = {
-            "nvim-treesitter",
-        },
-    },
-
-    {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        opt = true,
-        after = {
-            "nvim-treesitter",
-        },
-    },
+    {'nvim-treesitter/nvim-treesitter-refactor', after = "nvim-treesitter"},
+    {'nvim-treesitter/nvim-treesitter-textobjects', after = "nvim-treesitter"},
+    {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"},
+    {'romgrk/nvim-treesitter-context', after = "nvim-treesitter"},
 
     -- {
     --     'code-biscuits/nvim-biscuits',
@@ -224,7 +207,10 @@ return {
     -- Auto completion
     {
         'hrsh7th/nvim-cmp',
-        event = "BufReadPre", -- "InsertEnter",
+        event = {
+            "BufReadPre",
+            "InsertEnter"
+        },
         config = "require'plugin.rc.nvim-cmp'.config()",
     },
     {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
@@ -270,12 +256,14 @@ return {
     -- Session
     {
         'rmagatti/auto-session',
-        setup = "require'plugin.rc.auto-session'.setup()",
+        cmd = {'SaveSession', 'RestoreSession', 'DeleteSession'},
+        config = "require'plugin.rc.auto-session'.config()",
     },
 
     -- Fuzzy finder
     {
         'nvim-telescope/telescope.nvim',
+        event = 'BufWinEnter',
         requires = {
             "kyazdani42/nvim-web-devicons",
             "mattn/vim-sonictemplate",

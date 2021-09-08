@@ -14,6 +14,15 @@ function M.config()
         highlight = {
             enable = true,
         },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "<Leader>i",
+                node_incremental = "<Leader>n",
+                scope_incremental = "<Leader>N",
+                node_decremental = "<Leader>p",
+            }
+        },
         indent = {
             enable = false,
         },
