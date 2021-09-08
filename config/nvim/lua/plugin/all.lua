@@ -75,6 +75,7 @@ return {
     },
     {
         'nacro90/numb.nvim',
+        event = "CmdlineEnter",
         config = "require'plugin.rc.numb'.config()",
     },
 
@@ -225,7 +226,7 @@ return {
     -- Auto Pairs
     {
         'windwp/nvim-autopairs',
-        event = "InsertEnter",
+        -- event = "InsertEnter",
         after = {
             "nvim-cmp",
         },
@@ -266,16 +267,39 @@ return {
         event = 'BufWinEnter',
         requires = {
             "kyazdani42/nvim-web-devicons",
-            "mattn/vim-sonictemplate",
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
-            "nvim-telescope/telescope-frecency.nvim",
-            "nvim-telescope/telescope-fzf-writer.nvim",
-            "nvim-telescope/telescope-fzy-native.nvim",
             "nvim-telescope/telescope-symbols.nvim",
-            "tamago324/telescope-sonictemplate.nvim",
-            "tami5/sql.nvim",
         },
         config = "require'plugin.rc.telescope-nvim'.config()",
+    },
+    {
+        'nvim-telescope/telescope-frecency.nvim',
+        requires = {
+            "tami5/sql.nvim",
+        },
+        after = {
+            "telescope.nvim",
+            -- "sql.nvim",
+        },
+        config = "require'plugin.rc.telescope-nvim'.frecency()",
+    },
+    -- {
+    --     'nvim-telescope/telescope-fzf-writer.nvim',
+    --     after = "telescope.nvim",
+    --     config = "require'plugin.rc.telescope-nvim'.fzf_writer()",
+    -- },
+    {
+        'nvim-telescope/telescope-fzy-native.nvim',
+        after = "telescope.nvim",
+        config = "require'plugin.rc.telescope-nvim'.fzy_native()",
+    },
+    {
+        'tamago324/telescope-sonictemplate.nvim',
+        after = {
+            "telescope.nvim",
+            "vim-sonictemplate",
+        },
+        config = "require'plugin.rc.telescope-nvim'.sonictemplate()",
     },
 }
