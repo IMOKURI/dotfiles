@@ -132,7 +132,9 @@ set hidden
 set virtualedit+=block
 
 " clipboard設定
-if executable('win32yank.exe')
+" if executable('win32yank.exe')
+let uname = substitute(system('uname -r'), '\n', '', '')
+if uname =~ 'microsoft'
     let g:clipboard = {
         \   'name': 'win32yank',
         \   'copy': {
