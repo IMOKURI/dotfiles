@@ -66,7 +66,11 @@ return {
     },
 
     -- Quick highlight
-    {'t9md/vim-quickhl', opt = true},
+    {
+        't9md/vim-quickhl',
+        keys = "<Leader>m",
+        config = "require'plugin.rc.vim-quickhl'.config()",
+    },
 
     -- Line number interval
     {
