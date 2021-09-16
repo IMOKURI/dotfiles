@@ -1,9 +1,10 @@
 local M = {}
+local h = require('helper')
 
 function M.setup()
     vim.g.table_mode_always_active = 1
 
-    vim.api.nvim_set_keymap("n", "<Leader><Leader>a", "<cmd>TableModeRealign<CR>", { noremap = true, silent = true, })
+    h.map("n", "<Leader><Leader>a", "<cmd>TableModeRealign<CR>")
 end
 
 return M

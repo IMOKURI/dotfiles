@@ -1,8 +1,9 @@
 local M = {}
+local h = require('helper')
 
 function M.setup()
-    vim.api.nvim_set_keymap("n", "<Leader>c", ":Commentary<CR>", { noremap = true, silent = true, })
-    vim.api.nvim_set_keymap("x", "<Leader>c", ":Commentary<CR>", { noremap = true, silent = true, })
+    h.map("n", "<Leader>c", ":Commentary<CR>")
+    h.map("x", "<Leader>c", ":Commentary<CR>")
 end
 
 return M
