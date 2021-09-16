@@ -21,17 +21,3 @@ function! vimrc#smart_fold_closer() abort " {{{
     endif
     norm! zM
 endfunction " }}}
-
-function! vimrc#move_win(key) abort " {{{
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-
-    if (t:curwin == winnr())
-        if (match(a:key,'[jk]'))
-            wincmd v
-        else
-            wincmd s
-        endif
-        exec "wincmd ".a:key
-    endif
-endfunction " }}}

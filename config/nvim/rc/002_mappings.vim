@@ -96,12 +96,6 @@ inoremap <C-l> <right>
 " 直前のバッファに移動する
 nnoremap <Leader><Tab> <C-^>
 
-" ウィンドウを移動する
-nnoremap <silent> <C-j> :call vimrc#move_win('j')<CR>
-nnoremap <silent> <C-k> :call vimrc#move_win('k')<CR>
-nnoremap <silent> <C-l> :call vimrc#move_win('l')<CR>
-nnoremap <silent> <C-h> :call vimrc#move_win('h')<CR>
-
 " }}}
 
 " -----------------------------------------------------------------------------
