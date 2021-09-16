@@ -106,9 +106,6 @@ nnoremap <expr> l foldclosed('.') != -1 ? 'zo' : 'l'
 nnoremap <expr> L foldclosed('.') != -1 ? 'zO' : '$'
 nnoremap <silent> zl zR
 
-" 折りたたみを閉じる
-nnoremap <silent> , <cmd>call vimrc#smart_fold_closer()<CR>
-
 " 現在いるところ以外の折り畳みを閉じる
 nnoremap <silent> z, zMzv
 
