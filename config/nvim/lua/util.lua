@@ -1,5 +1,18 @@
 local M = {}
 
+function M.auto_mkdir(dir, force)
+    if vim.fn.isdirectory(dir) == 0 then
+        if force == 1 then
+            vim.fn.mkdir(dir, 'p')
+        else
+            local is_create = vim.fn.input(string.format('"%s" does not exist. Create? [y/N]', dir))
+            if string.match(is_create, "^[Yy]") ~= nil then
+                vim.fn.mkdir(dir, 'p')
+            end
+        end
+    end
+end
+
 function M.close_fold()
     if vim.fn.foldlevel(".") == 0 then
         vim.cmd("norm! zM")

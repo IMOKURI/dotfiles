@@ -18,6 +18,6 @@ augroup MyAutoCmd " {{{
         autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
     endif
 
-    autocmd BufWritePre * call vimrc#auto_mkdir(expand('<afile>:p:h:s?suda://??'), v:cmdbang)
+    autocmd BufWritePre * lua require("util").auto_mkdir(vim.fn.expand('<afile>:p:h:s?suda://??'), vim.api.nvim_eval('v:cmdbang'))
 
 augroup END " }}}
