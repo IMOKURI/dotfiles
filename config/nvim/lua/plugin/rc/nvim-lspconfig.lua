@@ -156,10 +156,10 @@ function M.config()
     h.map("n", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>")
     h.map("x", "<Leader>z", "<cmd>lua vim.lsp.buf.formatting()<CR>")
     h.map("n", "<Leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
-    h.map("n", "<Leader>d", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-    h.map("n", "<Leader>D", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
-    h.map("n", "<Leader>j", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-    h.map("n", "<Leader>k", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+    h.map("n", "<Leader>d", "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>")
+    h.map("n", "<Leader>D", "<cmd>lua vim.diagnostic.setloclist()<CR>")
+    h.map("n", "<Leader>j", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+    h.map("n", "<Leader>k", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 
     vim.fn.sign_define(
         "LspDiagnosticsSignError",
