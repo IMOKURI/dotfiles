@@ -31,7 +31,8 @@ return {
     -- Filetype: ansible
     {
         'pearofducks/ansible-vim',
-        ft = {'yaml', 'yaml.ansible', 'ansible_host', 'jinja2'},
+        ft = {'yaml', 'yaml.ansible', 'ansible_hosts', 'jinja2'},
+        setup = "require'plugin.rc.ansible-vim'.setup()",
     },
     {
         'thiagoalmeidasa/vim-ansible-vault',
