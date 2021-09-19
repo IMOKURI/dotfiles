@@ -2,66 +2,6 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " -----------------------------------------------------------------------------
-" Map leader {{{
-if !exists('g:mapleader')
-    nnoremap <Space> <Nop>
-    let g:mapleader = "\<Space>"
-endif
-" }}}
-
-" -----------------------------------------------------------------------------
-" File {{{
-
-" ファイル保存
-nnoremap <silent> <Leader>w <cmd>w<CR>
-
-" すべてのバッファのファイルを保存
-nnoremap <silent> <Leader><Leader>w <cmd>wa<CR>
-
-" root権限でファイルを保存する
-" cnoremap w!! w !sudo tee > /dev/null %
-
-" windowを閉じる
-nnoremap <silent> qq <cmd>close<CR>
-
-" bufferを保存せず閉じる
-nnoremap <silent> QQ <cmd>bdelete!<CR>
-
-" 全てのタブを閉じる
-nnoremap <silent> <Leader>q <cmd>qa<CR>
-
-" すべてのタブを保存せず閉じる
-nnoremap <silent> <Leader>Q <cmd>qa!<CR>
-
-" カーソル下のディレクトリを開く
-nnoremap gd :Explore <C-r><C-f><CR>
-
-" }}}
-
-" -----------------------------------------------------------------------------
-" Tab {{{
-
-" 新しいタブを開く
-nnoremap <silent> gt :<C-u>tabnew<CR>
-
-" タブを移動する
-nnoremap gn gt
-nnoremap gp gT
-
-" }}}
-
-" -----------------------------------------------------------------------------
-" Terminal {{{
-
-" ターミナルを開く
-nnoremap <silent> te :terminal<CR>i
-
-" ESCでターミナルモードからノーマルモードにする
-tnoremap <silent> <ESC> <C-\><C-n>
-
-" }}}
-
-" -----------------------------------------------------------------------------
 " Move {{{
 
 " 表示行単位で移動する
@@ -91,14 +31,6 @@ inoremap <C-l> <right>
 " }}}
 
 " -----------------------------------------------------------------------------
-" Buffer, Window {{{
-
-" 直前のバッファに移動する
-nnoremap <Leader><Tab> <C-^>
-
-" }}}
-
-" -----------------------------------------------------------------------------
 " Fold {{{
 
 " 折りたたみを開く
@@ -122,40 +54,5 @@ xnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>")
 
 " 選択反映を置換する
 xnoremap # y:%s///g<Left><Left>
-
-" 検索のハイライト表示を消す
-nnoremap <Leader><Esc> :nohlsearch<CR>
-
-" }}}
-
-" -----------------------------------------------------------------------------
-" Indent {{{
-
-" インデントをコマンド1回にする
-nnoremap > >>
-nnoremap < <<
-
-" }}}
-
-" -----------------------------------------------------------------------------
-" Yank, Paste {{{
-
-" pasteモードにする
-nnoremap <silent> <Leader>v <Cmd>set paste<CR>
-
-" 1文字削除を削除レジスタにいれる
-nnoremap <silent> x "_x
-
-" }}}
-
-" -----------------------------------------------------------------------------
-" Disable {{{
-
-" Exモード使わない
-nmap Q <Nop>
-
-" 削除してinsertモード使わない(vim-sandwichのため)
-nmap s <Nop>
-xmap s <Nop>
 
 " }}}
