@@ -1,8 +1,9 @@
 local M = {}
+local h = require('helper')
 
 function M.setup()
-    vim.api.nvim_set_keymap("n", "<Leader>a", ":EasyAlign<CR>", { silent = true, })
-    vim.api.nvim_set_keymap("x", "<Leader>a", ":EasyAlign<CR>", { silent = true, })
+    h.map("n", "<Leader>a", ":EasyAlign<CR>", {noremap = false})
+    h.map("x", "<Leader>a", ":EasyAlign<CR>", {noremap = false})
 end
 
 return M

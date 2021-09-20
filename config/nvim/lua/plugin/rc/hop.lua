@@ -1,8 +1,9 @@
 local M = {}
+local h = require('helper')
 
 function M.config()
-    vim.api.nvim_set_keymap('n', '<Leader>h', '<cmd>lua require("hop").hint_words()<cr>', {})
-    vim.api.nvim_set_keymap('n', '<Leader>/', '<cmd>lua require("hop").hint_patterns()<cr>', {})
+    h.map('n', '<Leader>h', '<cmd>lua require("hop").hint_words()<cr>')
+    h.map('n', '<Leader>/', '<cmd>lua require("hop").hint_patterns()<cr>')
 end
 
 return M

@@ -62,6 +62,27 @@ h.map("t", "<ESC>", "<C-\\><C-n>")
 -- -----------------------------------------------------------------------------
 -- Move {{{
 
+h.map("n", "j", "v:count ? 'j' : 'gj'", {expr = true})
+h.map("x", "j", "v:count ? 'j' : 'gj'", {expr = true})
+h.map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
+h.map("x", "k", "v:count ? 'k' : 'gk'", {expr = true})
+
+h.map("n", "H", "^")
+h.map("x", "H", "^")
+-- Fold との複合マッピング
+-- h.map("n", "L", "$")
+h.map("x", "L", "$")
+
+h.map("c", "<C-a>", "<Home>")
+h.map("c", "<C-e>", "<End>")
+h.map("c", "<C-h>", "<Left>")
+h.map("c", "<C-l>", "<Right>")
+
+h.map("i", "<C-a>", "<Home>")
+h.map("i", "<C-e>", "<End>")
+h.map("i", "<C-h>", "<Left>")
+h.map("i", "<C-l>", "<Right>")
+
 -- }}}
 
 -- -----------------------------------------------------------------------------
@@ -79,6 +100,12 @@ h.map("n", "<Leader><Tab>", "<C-^>")
 -- -----------------------------------------------------------------------------
 -- Fold {{{
 
+h.map("n", "l", "foldclosed('.') != -1 ? 'zo' : 'l'", {expr = true})
+h.map("n", "L", "foldclosed('.') != -1 ? 'zO' : '$'", {expr = true})
+
+h.map("n", "zl", "zR")
+h.map("n", "z,", "zMzv")
+
 h.map("n", ",", "<cmd>lua require('util').close_fold()<CR>")
 
 -- }}}
@@ -87,6 +114,10 @@ h.map("n", ",", "<cmd>lua require('util').close_fold()<CR>")
 -- Search, Replace {{{
 
 h.map("n", "<Leader><ESC>", "<cmd>nohlsearch<CR>")
+
+h.map("n", "#", "*:%s/<C-r>///g<Left><Left>", {noremap = false})
+h.map("x", "//", [[ y/\V<C-R>=escape(@",'/\')<CR><CR>") ]])
+h.map("x", "#", "y:%s///g<Left><Left>")
 
 -- }}}
 

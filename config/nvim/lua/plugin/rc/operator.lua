@@ -1,7 +1,8 @@
 local M = {}
+local h = require('helper')
 
 function M.config()
-    vim.api.nvim_set_keymap("", "S", "<Plug>(operator-replace)", { silent = true, })
+    h.map("", "S", "<Plug>(operator-replace)", {noremap = false})
 end
 
 return M
