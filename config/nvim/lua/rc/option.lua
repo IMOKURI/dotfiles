@@ -99,4 +99,16 @@ o.dictionary = "/usr/share/dict/words"
 
 -- }}}
 
+-- -----------------------------------------------------------------------------
+-- NetRW {{{
+
+g.netrw_liststyle = 1
+g.netrw_banner = 0
+g.netrw_sizestyle = 'H'
+g.netrw_timefmt = '%Y/%m/%d(%a) %H:%M:%S'
+g.netrw_home = os.getenv("HOME")
+g.netrw_bufsettings = 'noma nomod nu rnu nowrap ro nobl'
+
+-- }}}
+
 -- vim:foldmethod=marker

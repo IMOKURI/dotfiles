@@ -3,7 +3,10 @@ return {
     {'wbthomason/packer.nvim', opt = true},
 
     -- Color scheme
-    {'IMOKURI/challenger-deep-theme-vim', opt = true},
+    {
+        'IMOKURI/challenger-deep-theme-vim',
+        config = [[vim.cmd("colorscheme challenger_deep")]],
+    },
 
     -- Filetype: python
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},
