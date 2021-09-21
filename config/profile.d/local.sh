@@ -17,6 +17,8 @@ export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.poetry/bin:$PATH
 # Neovim/Vim
 export PATH=$HOME/neovim/bin:$HOME/vim/bin:$PATH
+# Rust
+export PATH=$PATH:/usr/lib/cargo/bin
 
 export GOPATH=$HOME/go
 
