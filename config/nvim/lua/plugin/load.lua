@@ -4,6 +4,7 @@ local function init()
     if packer == nil then
         packer = require('packer')
         packer.init({
+            compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
             disable_commands = true,
             display = {
                 open_fn = require('packer.util').float,
