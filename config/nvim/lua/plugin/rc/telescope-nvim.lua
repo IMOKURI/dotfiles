@@ -1,10 +1,10 @@
 local M = {}
 local h = require('helper')
 local telescope = require('telescope')
+local actions = require('telescope.actions')
 
 function M.config()
-    h.map("n", "<Leader>f", "<cmd>lua require('telescope.builtin').git_files{}<CR>")
-    h.map("n", "<Leader>F", "<cmd>lua require('telescope.builtin').find_files{}<CR>")
+    h.map("n", "<Leader>f", "<cmd>lua require('plugin.rc.telescope-nvim').project_files{}<CR>")
     h.map("n", "<Leader>g", "<cmd>lua require('telescope.builtin').live_grep{}<CR>")
     h.map("n", "<Leader>b", "<cmd>lua require('telescope.builtin').buffers{}<CR>")
     h.map("n", "<Leader>e", "<cmd>lua require('telescope.builtin').symbols{ sources = {'emoji', 'gitmoji'} }<CR>")
@@ -14,8 +14,21 @@ function M.config()
     telescope.setup{
         defaults = {
             layout_strategy = "flex",
+            mappings = {
+                i = {
+                    ["<Esc>"] = actions.close
+                }
+            }
         }
     }
+end
+
+function M.project_files()
+    local opts = {}
+    local ok = pcall(require('telescope.builtin').git_files, opts)
+    if not ok then
+        require('telescope.builtin').find_files(opts)
+    end
 end
 
 function M.frecency()

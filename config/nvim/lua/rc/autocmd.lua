@@ -64,5 +64,5 @@ au({ 'BufNewFile', 'BufRead' }, {
 
 -- 1. Where action is a ex-cmd
 au.group('PackerGroup', {
-    { 'BufWritePost', 'plugin.all', 'source <afile> | PackerCompile' },
+    { 'BufWritePost', 'plugin.all.lua', 'source <afile> | PackerCompile' },
 })
