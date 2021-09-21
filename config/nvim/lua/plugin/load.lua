@@ -7,6 +7,9 @@ local function init()
             disable_commands = true,
             display = {
                 open_fn = require('packer.util').float,
+                keybindings = {
+                    quit = '<Esc>',
+                },
             }
         })
     end
