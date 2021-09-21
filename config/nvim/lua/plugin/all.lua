@@ -153,6 +153,13 @@ return {
     -- REPL
     {'IMOKURI/repl.vim'},
 
+    -- Search
+    {
+        'kevinhwang91/nvim-hlslens',
+        event = {'BufRead', 'BufNewFile'},
+        config = "require'plugin.rc.nvim-hlslens'.config()",
+    },
+
     -- Hop
     {
         'phaazon/hop.nvim',

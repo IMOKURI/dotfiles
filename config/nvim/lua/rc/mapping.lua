@@ -24,38 +24,38 @@ vim.g.mapleader = " "
 -- File {{{
 
 -- バッファを保存する
-h.map("n", "<Leader>w", "<cmd>write<CR>")
+h.map("n", "<Leader>w", "<Cmd>write<CR>")
 -- すべてのバッファを保存する
-h.map("n", "<Leader><Leader>w", "<cmd>wall<CR>")
+h.map("n", "<Leader><Leader>w", "<Cmd>wall<CR>")
 
 -- ウィンドウを閉じる
-h.map("n", "qq", "<cmd>close<CR>")
+h.map("n", "qq", "<Cmd>close<CR>")
 -- バッファを保存せず閉じる
-h.map("n", "QQ", "<cmd>bdelete!<CR>")
+h.map("n", "QQ", "<Cmd>bdelete!<CR>")
 
 -- Vim を終了する
-h.map("n", "<Leader>q", "<cmd>qall<CR>")
+h.map("n", "<Leader>q", "<Cmd>qall<CR>")
 -- 変更を保存せずに Vim を終了する
-h.map("n", "<Leader>Q", "<cmd>qall!<CR>")
+h.map("n", "<Leader>Q", "<Cmd>qall!<CR>")
 
 -- }}}
 
 -- -----------------------------------------------------------------------------
 -- Tab {{{
 
-h.map("n", "gt", "<cmd>tabnew<CR>")
+h.map("n", "gt", "<Cmd>tabnew<CR>")
 
-h.map("n", "gn", "<cmd>tabnext<CR>")
-h.map("n", "gp", "<cmd>tabprevious<CR>")
+h.map("n", "gn", "<Cmd>tabnext<CR>")
+h.map("n", "gp", "<Cmd>tabprevious<CR>")
 
 -- }}}
 
 -- -----------------------------------------------------------------------------
 -- Terminal {{{
 
-h.map("n", "te", "<cmd>terminal<CR>i")
+h.map("n", "te", "<Cmd>terminal<CR>i")
 
-h.map("t", "<ESC>", "<C-\\><C-n>")
+h.map("t", "<Esc>", "<C-\\><C-n>")
 
 -- }}}
 
@@ -88,10 +88,10 @@ h.map("i", "<C-l>", "<Right>")
 -- -----------------------------------------------------------------------------
 -- Buffer, Window {{{
 
-h.map("n", "<C-j>", "<cmd>lua require('util').move_win('j')<CR>")
-h.map("n", "<C-k>", "<cmd>lua require('util').move_win('k')<CR>")
-h.map("n", "<C-l>", "<cmd>lua require('util').move_win('l')<CR>")
-h.map("n", "<C-h>", "<cmd>lua require('util').move_win('h')<CR>")
+h.map("n", "<C-j>", "<Cmd>lua require('util').move_win('j')<CR>")
+h.map("n", "<C-k>", "<Cmd>lua require('util').move_win('k')<CR>")
+h.map("n", "<C-l>", "<Cmd>lua require('util').move_win('l')<CR>")
+h.map("n", "<C-h>", "<Cmd>lua require('util').move_win('h')<CR>")
 
 h.map("n", "<Leader><Tab>", "<C-^>")
 
@@ -106,14 +106,14 @@ h.map("n", "L", "foldclosed('.') != -1 ? 'zO' : '$'", {expr = true})
 h.map("n", "zl", "zR")
 h.map("n", "z,", "zMzv")
 
-h.map("n", ",", "<cmd>lua require('util').close_fold()<CR>")
+h.map("n", ",", "<Cmd>lua require('util').close_fold()<CR>")
 
 -- }}}
 
 -- -----------------------------------------------------------------------------
 -- Search, Replace {{{
 
-h.map("n", "<Leader><ESC>", "<cmd>nohlsearch<CR>")
+h.map("n", "<Leader><Esc>", ":nohlsearch<CR>")
 
 h.map("n", "#", "*:%s/<C-r>///g<Left><Left>", {noremap = false})
 h.map("x", "//", [[ y/\V<C-R>=escape(@",'/\')<CR><CR>") ]])
