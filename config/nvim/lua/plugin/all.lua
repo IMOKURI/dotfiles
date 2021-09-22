@@ -101,7 +101,6 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         event = 'BufRead',
-        branch = 'main',
         requires = {
             "nvim-lua/plenary.nvim",
         },
@@ -237,6 +236,7 @@ return {
             "BufReadPre",
             "InsertEnter"
         },
+        -- branch = 'custom-menu',
         config = "require'plugin.rc.nvim-cmp'.config()",
     },
     {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
