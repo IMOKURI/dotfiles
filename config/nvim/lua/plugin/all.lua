@@ -11,7 +11,11 @@ return {
     -- Color scheme
     {
         'IMOKURI/challenger-deep-theme-vim',
-        config = [[vim.cmd("colorscheme challenger_deep")]],
+        -- config = [[vim.cmd("colorscheme challenger_deep")]],
+    },
+    {
+        'Yagua/nebulous.nvim',
+        config = "require'plugin.rc.nebulous-nvim'.config()",
     },
 
     -- Filetype: python
