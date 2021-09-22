@@ -236,7 +236,7 @@ return {
             "BufReadPre",
             "InsertEnter"
         },
-        -- branch = 'custom-menu',
+        branch = 'custom-menu',
         config = "require'plugin.rc.nvim-cmp'.config()",
     },
     {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
