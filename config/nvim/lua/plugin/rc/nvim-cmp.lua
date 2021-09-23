@@ -47,10 +47,12 @@ function M.config()
                 select = true,
             }),
             ['<C-k>'] = function(fallback)
-                if vim.fn['vsnip#available']() == 1 then
+                if cmp.visible() then
+                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, true, true))
+                elseif vim.fn['vsnip#available']() == 1 then
                     vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
                 else
-                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, true, true))
+                    fallback()
                 end
             end,
         },
