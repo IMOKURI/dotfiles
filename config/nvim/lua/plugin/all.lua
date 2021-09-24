@@ -73,11 +73,8 @@ return {
     -- Register
     {'tversteeg/registers.nvim'},
 
-    -- Cursor word
-    {
-        'itchyny/vim-cursorword',
-        event = "CursorHold"
-    },
+    -- Cursor line/word
+    {'yamatsum/nvim-cursorline'},
 
     -- Quick highlight
     {
