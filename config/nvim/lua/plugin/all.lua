@@ -269,7 +269,8 @@ return {
 
     -- Status line
     {
-        'hoob3rt/lualine.nvim',
+        -- 'hoob3rt/lualine.nvim',
+        'shadmansaleh/lualine.nvim',
         requires = {
             "kyazdani42/nvim-web-devicons",
         },

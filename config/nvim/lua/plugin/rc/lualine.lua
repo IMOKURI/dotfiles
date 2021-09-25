@@ -3,19 +3,20 @@ local M = {}
 function M.config()
     require('lualine').setup({
         options = {
-            -- theme = 'palenight',
-            theme = 'auto',
+            theme = 'palenight',
         },
         sections = {
-            lualine_a = { {'mode', upper = true} },
+            lualine_a = { {'mode', fmt = string.upper} },
             lualine_b = { 'filetype' },
             lualine_c = { {'filename', file_status = true} },
             lualine_x = { {'diagnostics',
                 sources = {'nvim_lsp'},
-                color_error = "#ff5458",
-                color_warn = "#ffb378",
-                color_info = "#91ddff",
-                color_hint = "#B2B2B2"
+                diagnostics_color = {
+                    error = {fg = "#ff5458"},
+                    warn = {fg = "#ffb378"},
+                    info = {fg = "#91ddff"},
+                    hint = {fg = "#B2B2B2"}
+                },
             } },
             lualine_y = { 'branch' },
             lualine_z = {  }
