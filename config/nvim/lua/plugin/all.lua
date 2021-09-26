@@ -7,6 +7,10 @@ return {
         'lewis6991/impatient.nvim',
         config = "require('impatient')",
     },
+    {
+        'nathom/filetype.nvim',
+        setup = "vim.g.did_load_filetypes = 1",
+    },
 
     -- Color scheme
     {
@@ -67,7 +71,7 @@ return {
     -- Sonic template
     {
         'mattn/vim-sonictemplate',
-        config = "require'plugin.rc.vim-sonictemplate'.config()",
+        config = "vim.g.sonictemplate_vim_template_dir = {'$MYVIMRCDIR/template'}",
     },
 
     -- Register
@@ -86,12 +90,7 @@ return {
     -- Line number interval
     {
         'IMOKURI/line-number-interval.nvim',
-        setup = "require'plugin.rc.line-number-interval-nvim'.setup()",
-    },
-    {
-        'nacro90/numb.nvim',
-        event = "CmdlineEnter",
-        config = "require'plugin.rc.numb'.config()",
+        setup = "vim.g.line_number_interval_enable_at_startup = 1",
     },
 
     -- Git sign
@@ -117,7 +116,7 @@ return {
     -- Suda
     {
         'lambdalisue/suda.vim',
-        setup = "require'plugin.rc.suda-vim'.setup()",
+        setup = "vim.g.suda_smart_edit = 1",
     },
 
     -- Easy align
