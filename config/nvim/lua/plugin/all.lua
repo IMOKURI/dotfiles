@@ -208,15 +208,6 @@ return {
     {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"},
     {'romgrk/nvim-treesitter-context', after = "nvim-treesitter"},
 
-    -- {
-    --     'code-biscuits/nvim-biscuits',
-    --     opt = true,
-    --     after = {
-    --         "nvim-treesitter",
-    --     },
-    --     config = "require'plugin.rc.nvim-biscuits'.config()",
-    -- },
-
     -- Snippet
     {
         'hrsh7th/vim-vsnip',
