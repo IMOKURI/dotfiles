@@ -7,10 +7,6 @@ return {
         'lewis6991/impatient.nvim',
         config = "require('impatient')",
     },
-    {
-        'nathom/filetype.nvim',
-        setup = "vim.g.did_load_filetypes = 1",
-    },
 
     -- Color scheme
     {
