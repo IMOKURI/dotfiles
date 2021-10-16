@@ -190,6 +190,12 @@ return {
             "kana/vim-textobj-user",
         },
     },
+    {
+        'vimtaku/vim-textobj-keyvalue',
+        requires = {
+            "kana/vim-textobj-user",
+        },
+    },
 
     -- Treesitter
     {
