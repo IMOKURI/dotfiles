@@ -349,6 +349,7 @@ function _pipx_install_or_upgrade() {
 }
 
 _pipx_install_or_upgrade ansible
+_pipx_install_or_upgrade "ansible-lint[community,yamllint]"
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
@@ -365,6 +366,7 @@ fi
 _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     @gridsome/cli \
+    ansible-language-server \
     bash-language-server \
     diagnostic-languageserver \
     dockerfile-language-server-nodejs \

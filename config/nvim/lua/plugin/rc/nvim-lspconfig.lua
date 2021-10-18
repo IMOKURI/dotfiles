@@ -26,6 +26,10 @@ function M.config()
         )
     end
 
+    lspconfig.ansiblels.setup{
+        capabilities = capabilities,
+        on_attach=on_attach_vim,
+    }
     lspconfig.bashls.setup{
         capabilities = capabilities,
         on_attach=on_attach_vim,
