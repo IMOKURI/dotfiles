@@ -67,7 +67,7 @@ return {
     -- Sonic template
     {
         'mattn/vim-sonictemplate',
-        config = "vim.g.sonictemplate_vim_template_dir = {'$MYVIMRCDIR/template'}",
+        setup = "vim.g.sonictemplate_vim_template_dir = {string.format('%s/template', vim.fn.stdpath('config'))}",
     },
 
     -- Register
