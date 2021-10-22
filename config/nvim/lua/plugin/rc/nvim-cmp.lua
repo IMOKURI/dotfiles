@@ -59,6 +59,7 @@ function M.config()
 
         sources = {
             { name = 'buffer' },
+            { name = 'cmdline' },
             { name = 'emoji' },
             { name = 'look' },
             { name = 'nvim_lsp' },
