@@ -344,7 +344,7 @@ function _pipx_install_or_upgrade() {
     if [[ ! -d "${HOME}/.local/pipx/venvs/${1%[*}" ]]; then
         pipx install --include-deps ${1}
     else
-        pipx upgrade --include-injected ${1}
+        pipx upgrade --include-injected ${1%[*}
     fi
 }
 
