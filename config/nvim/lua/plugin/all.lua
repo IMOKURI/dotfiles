@@ -221,6 +221,9 @@ return {
     -- Auto completion
     {
         'hrsh7th/nvim-cmp',
+        requires = {
+            "lukas-reineke/cmp-under-comparator",
+        },
         event = {
             "BufReadPre",
             "InsertEnter"
