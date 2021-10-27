@@ -226,6 +226,7 @@ return {
         },
         event = {
             "BufReadPre",
+            "CmdlineEnter",
             "InsertEnter"
         },
         config = "require'plugin.rc.nvim-cmp'.config()",
