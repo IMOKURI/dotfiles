@@ -122,11 +122,10 @@ return {
         setup = "require'plugin.rc.easy-align'.setup()",
     },
 
-    -- Commentary
+    -- Comment
     {
-        'tpope/vim-commentary',
-        cmd = {'Commentary'},
-        setup = "require'plugin.rc.commentary'.setup()",
+        'numToStr/Comment.nvim',
+        config = "require'plugin.rc.comment-nvim'.config()",
     },
 
     -- Line diff
