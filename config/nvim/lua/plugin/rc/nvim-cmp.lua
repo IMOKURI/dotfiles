@@ -120,9 +120,11 @@ end
 function M.cmdline_config()
     -- Use buffer source for `/`.
     cmp.setup.cmdline('/', {
-        sources = {
+        sources = cmp.config.sources({
+            { name = 'nvim_lsp_document_symbol' }
+        }, {
             { name = 'buffer' }
-        }
+        })
     })
 
     -- Use cmdline & path source for ':'.

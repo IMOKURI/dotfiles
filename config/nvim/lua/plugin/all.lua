@@ -234,6 +234,7 @@ return {
     {"hrsh7th/cmp-cmdline", after = "nvim-cmp", config="require'plugin.rc.nvim-cmp'.cmdline_config()"},
     {"hrsh7th/cmp-emoji", after = "nvim-cmp"},
     {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
+    {"hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp"},
     {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"},
     {"hrsh7th/cmp-path", after = "nvim-cmp"},
     {"hrsh7th/cmp-vsnip", after = {"nvim-cmp", "vim-vsnip"}},
