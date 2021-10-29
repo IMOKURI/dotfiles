@@ -366,16 +366,16 @@ fi
 _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     @gridsome/cli \
-    ansible-language-server \
-    bash-language-server \
-    diagnostic-languageserver \
-    dockerfile-language-server-nodejs \
     doctoc \
-    pyright \
-    tldr \
-    vim-language-server \
-    vscode-langservers-extracted \
-    yaml-language-server
+    tldr
+    # ansible-language-server \
+    # bash-language-server \
+    # diagnostic-languageserver \
+    # dockerfile-language-server-nodejs \
+    # pyright \
+    # vim-language-server \
+    # vscode-langservers-extracted \
+    # yaml-language-server
 
 yarn global upgrade
 
@@ -389,13 +389,13 @@ GO111MODULE=on go get -u \
 
 ##### Install lua-language-server #############################################
 
-_banner "Install Lua Language Server..."
-if ${is_deb}; then
-    pushd "$(pwd)"
-    cd "${DOTPATH}"
-    make lua-ls
-    popd
-fi
+# _banner "Install Lua Language Server..."
+# if ${is_deb}; then
+#     pushd "$(pwd)"
+#     cd "${DOTPATH}"
+#     make lua-ls
+#     popd
+# fi
 
 ##### Install ripgrep #########################################################
 
@@ -464,20 +464,20 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
-TERRAFORM_LS_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform-ls/releases | jq .[0].name | sed -e s/\"//g -e s/v//)
-TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
-
-_banner "Install Terraform LS..."
-if [[ ! -f "${HOME}/src/${TERRAFORM_LS}" ]]; then
-    curl -fsSL -o ${HOME}/src/${TERRAFORM_LS} \
-        https://releases.hashicorp.com/terraform-ls/${TERRAFORM_LS_VERSION}/${TERRAFORM_LS}
-
-    unzip -o ${HOME}/src/${TERRAFORM_LS} -d /tmp/
-    mv /tmp/terraform-ls ${HOME}/bin/
-
-else
-    _logger "${INFO}" "Already installed."
-fi
+# TERRAFORM_LS_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform-ls/releases | jq .[0].name | sed -e s/\"//g -e s/v//)
+# TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
+#
+# _banner "Install Terraform LS..."
+# if [[ ! -f "${HOME}/src/${TERRAFORM_LS}" ]]; then
+#     curl -fsSL -o ${HOME}/src/${TERRAFORM_LS} \
+#         https://releases.hashicorp.com/terraform-ls/${TERRAFORM_LS_VERSION}/${TERRAFORM_LS}
+#
+#     unzip -o ${HOME}/src/${TERRAFORM_LS} -d /tmp/
+#     mv /tmp/terraform-ls ${HOME}/bin/
+#
+# else
+#     _logger "${INFO}" "Already installed."
+# fi
 
 ##### Install bashmarks #######################################################
 

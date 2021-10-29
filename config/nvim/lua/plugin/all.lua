@@ -256,6 +256,10 @@ return {
     },
 
     -- LSP
+    {
+        'williamboman/nvim-lsp-installer',
+        config = "require'plugin.rc.nvim-lsp-installer'.config()",
+    },
     {'nvim-lua/lsp-status.nvim'},
     {
         'neovim/nvim-lspconfig',
