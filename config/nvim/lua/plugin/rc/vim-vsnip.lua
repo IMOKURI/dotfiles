@@ -3,7 +3,7 @@ local h = require('helper')
 
 function M.setup()
     vim.g.vsnip_snippet_dirs = {
-        '$MYVIMRCDIR/snippet'
+        string.format("%s/snippet", vim.fn.stdpath("config"))
     }
 end
 

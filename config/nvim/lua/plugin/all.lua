@@ -209,14 +209,6 @@ return {
     {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"},
     {'romgrk/nvim-treesitter-context', after = "nvim-treesitter"},
 
-    -- Snippet
-    {
-        'hrsh7th/vim-vsnip',
-        event = "InsertEnter",
-        setup = "require'plugin.rc.vim-vsnip'.setup()",
-        config = "require'plugin.rc.vim-vsnip'.config()",
-    },
-
     -- Auto completion
     {
         'hrsh7th/nvim-cmp',
@@ -237,10 +229,21 @@ return {
     {"hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp"},
     {"hrsh7th/cmp-nvim-lua", after = "nvim-cmp"},
     {"hrsh7th/cmp-path", after = "nvim-cmp"},
-    {"hrsh7th/cmp-vsnip", after = {"nvim-cmp", "vim-vsnip"}},
     {"lukas-reineke/cmp-rg", after = "nvim-cmp"},
     {"onsails/lspkind-nvim", after = "nvim-cmp"},
     {"ray-x/cmp-treesitter", after = "nvim-cmp"},
+
+    -- Snippet
+    {
+        'hrsh7th/vim-vsnip',
+        -- event = "InsertEnter",
+        after = {
+            "nvim-cmp",
+        },
+        setup = "require'plugin.rc.vim-vsnip'.setup()",
+        config = "require'plugin.rc.vim-vsnip'.config()",
+    },
+    {"hrsh7th/cmp-vsnip", after = {"vim-vsnip"}},
 
     -- Auto Pairs
     {

@@ -21,11 +21,6 @@ function M.config()
                 return vim.tbl_contains({'{%%}'}, pair)
             end),
     })
-
-    require("nvim-autopairs.completion.cmp").setup({
-        map_cr = true, --  map <CR> on insert mode
-        map_complete = true, -- it will auto insert `(` after select function or method item
-    })
 end
 
 return M
