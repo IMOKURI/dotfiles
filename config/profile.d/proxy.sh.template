@@ -1,11 +1,13 @@
 function proxy_on {
   export http_proxy=write_proxy_here
   export https_proxy=write_proxy_here
+  export no_proxy=127.0.0.1,localhost
 }
 
 function proxy_off {
   unset http_proxy
   unset https_proxy
+  unset no_proxy
 }
 
 export proxy_on=proxy_on
@@ -13,3 +15,4 @@ export proxy_off=proxy_off
 
 export http_proxy=write_proxy_here
 export https_proxy=write_proxy_here
+export no_proxy=127.0.0.1,localhost
