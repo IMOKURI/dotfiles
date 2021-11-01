@@ -348,7 +348,7 @@ function _pipx_install_or_upgrade() {
     fi
 }
 
-_pipx_install_or_upgrade ansible
+# _pipx_install_or_upgrade ansible
 _pipx_install_or_upgrade "ansible-lint[community,yamllint]"
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
