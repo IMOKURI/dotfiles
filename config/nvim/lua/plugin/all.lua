@@ -17,6 +17,10 @@ return {
         'Yagua/nebulous.nvim',
         config = "require'plugin.rc.nebulous-nvim'.config()",
     },
+    {
+        'rmehri01/onenord.nvim',
+        -- config = [[vim.cmd("colorscheme onenord")]],
+    },
 
     -- Filetype: python
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},

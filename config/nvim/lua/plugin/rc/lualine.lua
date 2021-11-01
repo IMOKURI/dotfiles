@@ -3,7 +3,8 @@ local M = {}
 function M.config()
     require('lualine').setup({
         options = {
-            theme = 'palenight',
+            -- theme = 'palenight',
+            theme = 'onenord',
         },
         sections = {
             lualine_a = { {'mode', fmt = string.upper} },
