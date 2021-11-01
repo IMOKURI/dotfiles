@@ -3,6 +3,21 @@ local h = require("helper")
 
 local home_dir = os.getenv("HOME")
 
+local system_name
+if vim.fn.has("mac") == 1 then
+    system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+    system_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+    system_name = "Windows"
+else
+    print("Unsupported system for sumneko")
+end
+
+local sumneko_root_path = vim.fn.stdpath('data') .. '/lsp_servers/sumneko_lua/extension/server/bin/' .. system_name
+local sumneko_binary = sumneko_root_path .. "/lua-language-server"
+
+
 function M.config()
     local lsp_status = require("lsp-status")
     lsp_status.register_progress()
@@ -74,9 +89,9 @@ function M.config()
         capabilities = capabilities,
         on_attach = on_attach_vim,
         cmd = {
-            home_dir .. "/src/lua-language-server/bin/Linux/lua-language-server",
+            sumneko_binary,
             "-E",
-            home_dir .. "/src/lua-language-server/main.lua"
+            sumneko_root_path .. "/main.lua"
         },
         settings = {
             Lua = {
