@@ -5,4 +5,4 @@ require('rc.autocmd')
 
 -- Setup plugins
 require('plugin')
-require('packer_compiled')
+pcall(require('packer_compiled'))

@@ -9,18 +9,18 @@ return {
     },
 
     -- Color scheme
-    {
-        'IMOKURI/challenger-deep-theme-vim',
-        -- config = [[vim.cmd("colorscheme challenger_deep")]],
-    },
+    -- {
+    --     'IMOKURI/challenger-deep-theme-vim',
+    --     -- config = [[vim.cmd("colorscheme challenger_deep")]],
+    -- },
     {
         'Yagua/nebulous.nvim',
         config = "require'plugin.rc.nebulous-nvim'.config()",
     },
-    {
-        'rmehri01/onenord.nvim',
-        -- config = [[vim.cmd("colorscheme onenord")]],
-    },
+    -- {
+    --     'rmehri01/onenord.nvim',
+    --     -- config = [[vim.cmd("colorscheme onenord")]],
+    -- },
 
     -- Filetype: python
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},
