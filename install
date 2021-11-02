@@ -353,13 +353,13 @@ _pipx_install_or_upgrade "ansible-lint[community,yamllint]"
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
-_pipx_install_or_upgrade python-lsp-server
+# _pipx_install_or_upgrade python-lsp-server
 
-if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
-    pipx inject python-lsp-server \
-        pyls-isort \
-        python-lsp-black
-fi
+# if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
+#     pipx inject python-lsp-server \
+#         pyls-isort \
+#         python-lsp-black
+# fi
 
 ##### Install nodejs packages #################################################
 
