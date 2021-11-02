@@ -264,15 +264,13 @@ return {
     {
         'neovim/nvim-lspconfig',
         -- event = "BufReadPre",
-        after = {
-            "lsp-status.nvim",
-            "cmp-nvim-lsp",
-        },
         config = "require'plugin.rc.nvim-lspconfig'.config()",
     },
     {
         'williamboman/nvim-lsp-installer',
         after = {
+            "cmp-nvim-lsp",
+            "lsp-status.nvim",
             "nvim-lspconfig",
         },
         config = "require'plugin.rc.nvim-lsp-installer'.config()",

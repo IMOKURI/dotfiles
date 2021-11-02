@@ -6,7 +6,7 @@ local servers = {
     "diagnosticls",
     "dockerls",
     "jsonls",
-    -- "pylsp",
+    "pylsp",
     "pyright",
     "sumneko_lua",
     "terraformls",
@@ -89,6 +89,24 @@ function M.config()
                             },
                             {}
                         )
+                    }
+                }
+            }
+        end
+
+        if server.name == "pylsp" then
+            opts.settings = {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            enabled = false,
+                        },
+                        pylsp_black = {
+                            line_length = 120,
+                        },
+                        -- pylsp_mypy = {
+                        --     live_mode = false,
+                        -- }
                     }
                 }
             }
