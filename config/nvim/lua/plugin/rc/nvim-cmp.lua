@@ -20,6 +20,7 @@ function M.config()
                     nvim_lua = "[Lua]",
                     path = "[Path]",
                     rg = "[Rg]",
+                    treesitter = "[TS]",
                     vsnip = "[Snip]",
                 })[entry.source.name]
                 return vim_item
@@ -57,17 +58,17 @@ function M.config()
         },
 
         sources = cmp.config.sources({
-            { name = 'buffer' },
-            { name = 'cmdline' },
-            { name = 'emoji' },
-            { name = 'look' },
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lua' },
-            { name = 'path' },
-            { name = 'rg' },
-            { name = 'spell' },
-            { name = 'treesitter' },
             { name = 'vsnip' },
+            { name = 'nvim_lsp' },
+            { name = 'treesitter' },
+            { name = 'path' },
+            { name = 'emoji' },
+            { name = 'cmdline' },
+            { name = 'nvim_lua' },
+            { name = 'rg' },
+            { name = 'buffer' },
+            { name = 'spell' },
+            { name = 'look' },
         }),
 
         sorting = {
