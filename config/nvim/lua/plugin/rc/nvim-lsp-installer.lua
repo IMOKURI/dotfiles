@@ -139,9 +139,9 @@ function M.config()
                     validate = true,
                     hover = true,
                     completion = true,
-                    schemas = {
-                        kubernetes = "/*"
-                    }
+                    -- schemas = {
+                    --     kubernetes = "/*"
+                    -- }
                 }
             }
         end
