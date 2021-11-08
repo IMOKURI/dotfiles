@@ -22,6 +22,9 @@ return {
     --     -- config = [[vim.cmd("colorscheme onenord")]],
     -- },
 
+    -- Filetype
+    {'nathom/filetype.nvim'},
+
     -- Filetype: python
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},
 
