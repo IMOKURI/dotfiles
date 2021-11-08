@@ -34,20 +34,6 @@ au({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' },
     end
 )
 
-au({ 'BufNewFile', 'BufRead' }, {
-    '*.csv',
-    function()
-        vim.bo.filetype = 'csv'
-    end,
-})
-
-au({ 'BufNewFile', 'BufRead' }, {
-    'Dockerfile.*',
-    function()
-        vim.bo.filetype = 'dockerfile'
-    end,
-})
-
 
 -- # Autocmd group: au.group(group: string, cmds: fn(au) | {event: string, pattern: string, action: string | fn})
 
