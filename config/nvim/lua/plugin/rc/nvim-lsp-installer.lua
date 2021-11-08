@@ -140,7 +140,15 @@ function M.config()
                     hover = true,
                     completion = true,
                     -- schemas = {
-                    --     kubernetes = "/*"
+                    --     kubernetes = "/*",
+                    --     require('schemastore').json.schemas{
+                    --         select = {
+                    --             "Ansible Role",
+                    --             "Ansible Playbook",
+                    --             "Ansible Inventory",
+                    --             "Ansible Collection Galaxy",
+                    --         }
+                    --     }
                     -- }
                 }
             }
