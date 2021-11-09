@@ -22,8 +22,6 @@ function M.config()
     local capabilities = lsp_status.capabilities
     capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-    local lspconfig = require("lspconfig")
-
     local on_attach_vim = function(client)
         lsp_status.on_attach(client)
 
