@@ -41,10 +41,7 @@ function M.config()
                 i = cmp.mapping.abort(),
                 c = cmp.mapping.close(),
             }),
-            ['<CR>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Insert,
-                select = true,
-            }),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
             ['<C-k>'] = function(fallback)
                 if cmp.visible() then
