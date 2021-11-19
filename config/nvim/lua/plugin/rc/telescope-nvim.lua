@@ -2,6 +2,7 @@ local M = {}
 local h = require('helper')
 local telescope = require('telescope')
 local actions = require('telescope.actions')
+local action_layout = require('telescope.actions.layout')
 
 function M.config()
     h.map("n", "<Leader>f", "<cmd>lua require('plugin.rc.telescope-nvim').project_files{}<CR>")
@@ -16,7 +17,8 @@ function M.config()
             layout_strategy = "flex",
             mappings = {
                 i = {
-                    ["<Esc>"] = actions.close
+                    ["<Esc>"] = actions.close,
+                    ["<C-i>"] = action_layout.toggle_preview,
                 }
             }
         }
