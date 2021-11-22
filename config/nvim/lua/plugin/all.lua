@@ -170,11 +170,10 @@ return {
         config = "require'plugin.rc.nvim-hlslens'.config()",
     },
 
-    -- Hop
+    -- Clever-f
     {
-        'phaazon/hop.nvim',
+        'rhysd/clever-f.vim',
         event = {'BufRead', 'BufNewFile'},
-        config = "require'plugin.rc.hop'.config()",
     },
 
     -- Sandwich
