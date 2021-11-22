@@ -17,6 +17,7 @@ function M.config()
                     buffer = "[Buffer]",
                     emoji = "[Emoji]",
                     nvim_lsp = "[LSP]",
+                    nvim_lsp_signature_help = "[LSP]",
                     nvim_lua = "[Lua]",
                     path = "[Path]",
                     rg = "[Rg]",
@@ -57,6 +58,7 @@ function M.config()
         sources = cmp.config.sources({
             { name = 'vsnip' },
             { name = 'nvim_lsp' },
+            { name = 'nvim_lsp_signature_help' },
             { name = 'treesitter' },
             { name = 'path' },
             { name = 'emoji' },
