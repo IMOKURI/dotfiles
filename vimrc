@@ -34,12 +34,12 @@ nnoremap <Space> <Nop>
 let g:mapleader = "\<Space>"
 
 " File mappings
-nnoremap <silent> <Leader>w <Cmd>write<CR>
-nnoremap <silent> <Leader><Leader>w <Cmd>wall<CR>
-nnoremap <silent> qq <Cmd>close<CR>
-nnoremap <silent> QQ <Cmd>bdelete!<CR>
-nnoremap <silent> <Leader>q <Cmd>qall<CR>
-nnoremap <silent> <Leader>Q <Cmd>qall!<CR>
+nnoremap <silent> <Leader>w :<C-u>write<CR>
+nnoremap <silent> <Leader><Leader>w :<C-u>wall<CR>
+nnoremap <silent> qq :<C-u>close<CR>
+nnoremap <silent> QQ :<C-u>bdelete!<CR>
+nnoremap <silent> <Leader>q :<C-u>qall<CR>
+nnoremap <silent> <Leader>Q :<C-u>qall!<CR>
 
 " Move mappings
 nnoremap <expr> j v:count ? 'j' : 'gj'
