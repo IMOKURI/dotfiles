@@ -1,6 +1,10 @@
 local M = {}
 local cmp = require('cmp')
 
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 function M.config()
     cmp.setup {
         documentation = {
@@ -45,10 +49,10 @@ function M.config()
             ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
             ['<C-k>'] = function(fallback)
-                if cmp.visible() then
-                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<CR>', true, true, true))
-                elseif vim.fn['vsnip#available']() == 1 then
-                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true), '')
+                if vim.fn['vsnip#available']() == 1 then
+                    feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                elseif cmp.visible() then
+                    feedkey("<CR>", "")
                 else
                     fallback()
                 end
