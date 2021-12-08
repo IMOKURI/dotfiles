@@ -399,9 +399,9 @@ GO111MODULE=on go get -u \
 
 ##### Install ripgrep #########################################################
 
-# RIPGREP_VERSION=$(curl -sfL https://api.github.com/repos/BurntSushi/ripgrep/releases | jq .[0].name | sed -e s/\"//g)
+RIPGREP_VERSION=$(curl -sfL https://api.github.com/repos/BurntSushi/ripgrep/releases | jq .[0].name | sed -e s/\"//g)
 # https://github.com/nvim-telescope/telescope-fzf-writer.nvim/issues/9
-RIPGREP_VERSION="12.1.1"
+# RIPGREP_VERSION="12.1.1"
 RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
 
 _banner "Install RipGrep..."
