@@ -9,7 +9,7 @@ function M.config()
         sections = {
             lualine_a = { {'mode', fmt = string.upper} },
             lualine_b = { 'filetype' },
-            lualine_c = { {'filename', file_status = true} },
+            lualine_c = { {'filename', file_status = true, path = 1} },
             lualine_x = { {'diagnostics',
                 sources = {'nvim'},
                 diagnostics_color = {
