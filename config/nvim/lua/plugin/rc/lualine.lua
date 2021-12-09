@@ -11,7 +11,7 @@ function M.config()
             lualine_b = { 'filetype' },
             lualine_c = { {'filename', file_status = true} },
             lualine_x = { {'diagnostics',
-                sources = {'nvim_lsp'},
+                sources = {'nvim'},
                 diagnostics_color = {
                     error = {fg = "#ff5458"},
                     warn = {fg = "#ffb378"},
