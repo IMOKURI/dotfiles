@@ -7,10 +7,8 @@ set runtimepath=$VIMRUNTIME
 
 " View options
 set number
-set list
 set cursorline
 set showmatch
-set colorcolumn=120
 set scrolloff=3
 set laststatus=2
 
@@ -40,6 +38,7 @@ nnoremap <silent> qq :<C-u>close<CR>
 nnoremap <silent> QQ :<C-u>bdelete!<CR>
 nnoremap <silent> <Leader>q :<C-u>qall<CR>
 nnoremap <silent> <Leader>Q :<C-u>qall!<CR>
+nnoremap <silent> <Leader>f :<C-u>Explore<CR>
 
 " Move mappings
 nnoremap <expr> j v:count ? 'j' : 'gj'
