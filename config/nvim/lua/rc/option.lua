@@ -71,6 +71,7 @@ o.pumheight = 10
 o.diffopt:append({"algorithm:patience", "indent-heuristic"})
 o.termguicolors = true
 o.shortmess:append("c")
+o.equalalways = false
 
 -- }}}
 
