@@ -7,6 +7,8 @@ function M.config()
             'dockerfile',
             'json',
             'lua',
+            'make',
+            'markdown',
             'python',
             'vim',
             'yaml',
