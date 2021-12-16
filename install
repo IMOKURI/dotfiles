@@ -384,7 +384,7 @@ yarn global upgrade
 _banner "Install Go Packages..."
 go install \
     github.com/tokuhirom/git-xlsx-textconv \
-    mvdan.cc/sh/v3/cmd/shfmt@latest
+    mvdan.cc/sh/cmd/shfmt
     # github.com/mrtazz/checkmake \
 
 ##### Install lua-language-server #############################################
