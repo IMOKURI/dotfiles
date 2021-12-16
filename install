@@ -382,7 +382,7 @@ yarn global upgrade
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
-GO111MODULE=on go install -u \
+GO111MODULE=on go get -u \
     github.com/mrtazz/checkmake \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
