@@ -382,10 +382,10 @@ yarn global upgrade
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
-go install \
+GO111MODULE=on go install \
+    github.com/mrtazz/checkmake \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
-    # github.com/mrtazz/checkmake \
 
 ##### Install lua-language-server #############################################
 
