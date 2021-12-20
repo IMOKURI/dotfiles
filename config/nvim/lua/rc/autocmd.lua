@@ -18,6 +18,7 @@ end
 -- end
 
 au.BufReadPost = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+au.BufWinEnter = [[ if empty(&buftype) && line('.') > winheight(0) / 2 | execute 'normal! zz' | endif ]]
 
 
 -- # Autocmd with multiple event: au(events: table, cmd: string | fn | {pattern: string, action: string | fn})
