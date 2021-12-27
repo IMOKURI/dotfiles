@@ -96,7 +96,7 @@ return {
     -- Line number interval
     {
         'IMOKURI/line-number-interval.nvim',
-        setup = "vim.g.line_number_interval_enable_at_startup = 1",
+        setup = "require'plugin.rc.line-number-interval'.setup()",
     },
 
     -- Git sign
