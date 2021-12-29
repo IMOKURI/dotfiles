@@ -96,7 +96,6 @@ return {
     -- Line number interval
     {
         'IMOKURI/line-number-interval.nvim',
-        branch = "multiple-colors",
         after = {
             "nebulous.nvim",
         },
