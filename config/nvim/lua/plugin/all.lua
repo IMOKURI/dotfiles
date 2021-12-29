@@ -96,6 +96,10 @@ return {
     -- Line number interval
     {
         'IMOKURI/line-number-interval.nvim',
+        branch = "multiple-colors",
+        after = {
+            "nebulous.nvim",
+        },
         setup = "require'plugin.rc.line-number-interval'.setup()",
     },
 
