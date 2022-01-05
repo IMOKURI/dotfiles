@@ -23,10 +23,10 @@ return {
     -- },
 
     -- Filetype
-    {
-        'nathom/filetype.nvim',
-        config = "require'plugin.rc.filetype-nvim'.config()",
-    },
+    -- {
+    --     'nathom/filetype.nvim',
+    --     config = "require'plugin.rc.filetype-nvim'.config()",
+    -- },
 
     -- Filetype: python
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},
