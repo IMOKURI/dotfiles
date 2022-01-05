@@ -27,17 +27,17 @@ function M.config()
 
     -- h.map("n", "N", "<Cmd>call searchx#prev_dir()<CR>")
     -- h.map("n", "n", "<Cmd>call searchx#next_dir()<CR>")
-    h.map("x", "N", "<Cmd>call searchx#prev_dir()<CR>")
-    h.map("x", "n", "<Cmd>call searchx#next_dir()<CR>")
+    -- h.map("x", "N", "<Cmd>call searchx#prev_dir()<CR>")
+    -- h.map("x", "n", "<Cmd>call searchx#next_dir()<CR>")
 
-    h.map("n", "<C-k>", "<Cmd>call searchx#prev()<CR>")
-    h.map("n", "<C-j>", "<Cmd>call searchx#next()<CR>")
-    h.map("x", "<C-k>", "<Cmd>call searchx#prev()<CR>")
-    h.map("x", "<C-j>", "<Cmd>call searchx#next()<CR>")
-    h.map("c", "<C-k>", "<Cmd>call searchx#prev()<CR>")
-    h.map("c", "<C-j>", "<Cmd>call searchx#next()<CR>")
+    -- h.map("n", "<C-k>", "<Cmd>call searchx#prev()<CR>")
+    -- h.map("n", "<C-j>", "<Cmd>call searchx#next()<CR>")
+    -- h.map("x", "<C-k>", "<Cmd>call searchx#prev()<CR>")
+    -- h.map("x", "<C-j>", "<Cmd>call searchx#next()<CR>")
+    -- h.map("c", "<C-k>", "<Cmd>call searchx#prev()<CR>")
+    -- h.map("c", "<C-j>", "<Cmd>call searchx#next()<CR>")
 
-    h.map("n", "<C-l>", "<Cmd>call searchx#clear()<CR>")
+    -- h.map("n", "<C-l>", "<Cmd>call searchx#clear()<CR>")
 end
 
 return M

@@ -146,6 +146,8 @@ alias e='explorer.exe .'
 
 alias nd='nbdiff -s'
 
+alias rg='rg --smart-case'
+
 ##### Load bashmarks ##########################################################
 
 if [ -f ~/.local/bin/bashmarks.sh ]; then

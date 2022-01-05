@@ -87,10 +87,10 @@ h.map("n", "gf", "gF")
 -- -----------------------------------------------------------------------------
 -- Buffer, Window {{{
 
-h.map("n", "<C-Down>", "<Cmd>lua require('util').move_win('j')<CR>")
-h.map("n", "<C-Up>", "<Cmd>lua require('util').move_win('k')<CR>")
-h.map("n", "<C-Right>", "<Cmd>lua require('util').move_win('l')<CR>")
-h.map("n", "<C-Left>", "<Cmd>lua require('util').move_win('h')<CR>")
+h.map("n", "<C-j>", "<Cmd>lua require('util').move_win('j')<CR>")
+h.map("n", "<C-k>", "<Cmd>lua require('util').move_win('k')<CR>")
+h.map("n", "<C-l>", "<Cmd>lua require('util').move_win('l')<CR>")
+h.map("n", "<C-h>", "<Cmd>lua require('util').move_win('h')<CR>")
 
 h.map("n", "<Leader><Tab>", "<C-^>")
 
