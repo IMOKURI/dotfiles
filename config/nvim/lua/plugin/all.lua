@@ -172,6 +172,11 @@ return {
         event = {'BufRead', 'BufNewFile'},
         config = "require'plugin.rc.nvim-hlslens'.config()",
     },
+    {
+        'hrsh7th/vim-searchx',
+        setup = "require'plugin.rc.vim-searchx'.setup()",
+        config = "require'plugin.rc.vim-searchx'.config()",
+    },
 
     -- Clever-f
     {
