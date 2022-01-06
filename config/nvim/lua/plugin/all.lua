@@ -212,6 +212,12 @@ return {
             "kana/vim-textobj-user",
         },
     },
+    {
+        'Julian/vim-textobj-variable-segment',
+        requires = {
+            "kana/vim-textobj-user",
+        },
+    },
 
     -- Treesitter
     {

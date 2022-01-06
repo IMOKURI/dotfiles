@@ -55,7 +55,6 @@ function M.config()
                     ["ip"] = "@parameter.inner",
                 }
             }
-
         },
     }
 end
