@@ -1,5 +1,4 @@
 local M = {}
-local h = require('helper')
 
 function M.setup()
     vim.g.neoterm_autoscroll = 1
@@ -7,11 +6,11 @@ function M.setup()
     vim.g.neoterm_repl_python = 'python'
     vim.g.neoterm_automap_keys = ""
 
-    h.map("n", "<C-t>", "<cmd>Ttoggle<CR>")
-    h.map("t", "<C-t>", "<C-\\><C-n><cmd>Ttoggle<CR>")
+    vim.keymap.set("n", "<C-t>", "<cmd>Ttoggle<CR>")
+    vim.keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>Ttoggle<CR>")
 
-    h.map("n", "<C-g>", "<cmd>Topen<CR><C-w>bi")
-    h.map("t", "<C-g>", "<C-\\><C-n><C-w>p")
+    vim.keymap.set("n", "<C-g>", "<cmd>Topen<CR><C-w>bi")
+    vim.keymap.set("t", "<C-g>", "<C-\\><C-n><C-w>p")
 end
 
 return M
