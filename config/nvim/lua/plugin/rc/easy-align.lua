@@ -1,9 +1,7 @@
 local M = {}
-local h = require('helper')
 
 function M.setup()
-    h.map("n", "<Leader>a", ":EasyAlign<CR>", {noremap = false})
-    h.map("x", "<Leader>a", ":EasyAlign<CR>", {noremap = false})
+    vim.keymap.set({"n", "x"}, "<Leader>a", ":EasyAlign<CR>", {remap = true})
 end
 
 return M
