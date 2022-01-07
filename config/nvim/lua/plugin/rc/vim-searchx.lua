@@ -19,25 +19,17 @@ function M.setup()
 end
 
 function M.config()
-    h.map("n", "?", "<Cmd>call searchx#start({ 'dir': 0 })<CR>")
-    h.map("n", "/", "<Cmd>call searchx#start({ 'dir': 1 })<CR>")
-    h.map("x", "?", "<Cmd>call searchx#start({ 'dir': 0 })<CR>")
-    h.map("x", "/", "<Cmd>call searchx#start({ 'dir': 1 })<CR>")
-    h.map("c", ";", "<Cmd>call searchx#select()<CR>")
+    vim.keymap.set({"n", "x"}, "?", "<Cmd>call searchx#start({ 'dir': 0 })<CR>")
+    vim.keymap.set({"n", "x"}, "/", "<Cmd>call searchx#start({ 'dir': 1 })<CR>")
 
-    -- h.map("n", "N", "<Cmd>call searchx#prev_dir()<CR>")
-    -- h.map("n", "n", "<Cmd>call searchx#next_dir()<CR>")
-    -- h.map("x", "N", "<Cmd>call searchx#prev_dir()<CR>")
-    -- h.map("x", "n", "<Cmd>call searchx#next_dir()<CR>")
+    -- vim.keymap.set({"n", "x"}, "N", "<Cmd>call searchx#prev_dir()<CR>")
+    -- vim.keymap.set({"n", "x"}, "n", "<Cmd>call searchx#next_dir()<CR>")
 
-    -- h.map("n", "<C-k>", "<Cmd>call searchx#prev()<CR>")
-    -- h.map("n", "<C-j>", "<Cmd>call searchx#next()<CR>")
-    -- h.map("x", "<C-k>", "<Cmd>call searchx#prev()<CR>")
-    -- h.map("x", "<C-j>", "<Cmd>call searchx#next()<CR>")
-    -- h.map("c", "<C-k>", "<Cmd>call searchx#prev()<CR>")
-    -- h.map("c", "<C-j>", "<Cmd>call searchx#next()<CR>")
+    -- vim.keymap.set({"n", "x", "c"}, "<C-k>", "<Cmd>call searchx#prev()<CR>")
+    -- vim.keymap.set({"n", "x", "c"}, "<C-j>", "<Cmd>call searchx#next()<CR>")
 
-    -- h.map("n", "<C-l>", "<Cmd>call searchx#clear()<CR>")
+    -- vim.keymap.set("c", ";", "<Cmd>call searchx#select()<CR>")
+    -- vim.keymap.set("n", "<C-l>", "<Cmd>call searchx#clear()<CR>")
 end
 
 return M
