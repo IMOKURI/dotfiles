@@ -1,5 +1,4 @@
 local M = {}
-local h = require('helper')
 
 function M.setup()
     vim.cmd([[
