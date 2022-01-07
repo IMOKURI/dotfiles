@@ -14,8 +14,8 @@ function _G.run_packer(method)
     require('plugin.load')[method]()
 end
 
-vim.cmd[[command! PackerInstall lua run_packer('install')]]
-vim.cmd[[command! PackerUpdate  lua run_packer('update')]]
-vim.cmd[[command! PackerSync    lua run_packer('sync')]]
-vim.cmd[[command! PackerClean   lua run_packer('clean')]]
-vim.cmd[[command! PackerCompile lua run_packer('compile')]]
+vim.api.nvim_add_user_command("PackerInstall", "lua run_packer('install')", { bang = true })
+vim.api.nvim_add_user_command("PackerUpdate",  "lua run_packer('update')",  { bang = true })
+vim.api.nvim_add_user_command("PackerSync",    "lua run_packer('sync')",    { bang = true })
+vim.api.nvim_add_user_command("PackerClean",   "lua run_packer('clean')",   { bang = true })
+vim.api.nvim_add_user_command("PackerCompile", "lua run_packer('compile')", { bang = true })

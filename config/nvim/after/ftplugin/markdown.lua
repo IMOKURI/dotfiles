@@ -1,4 +1,4 @@
 vim.wo.foldmethod = "marker"
 vim.wo.foldmarker = "<details>,</details>"
 
-vim.cmd[[command! DocToc !doctoc %:p]]
+vim.api.nvim_add_user_command("DocToc", "!doctoc %:p", { bang = true })
