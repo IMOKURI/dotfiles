@@ -188,6 +188,7 @@ return {
     {
         'machakann/vim-sandwich',
         event = {'BufRead', 'BufNewFile'},
+        setup = "vim.keymap.set({'n', 'x'}, 's', '<Nop>')",
     },
 
     -- Operator
