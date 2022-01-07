@@ -1,5 +1,4 @@
 local M = {}
-local h = require('helper')
 
 function M.config()
     require'clipboard-image'.setup {
@@ -10,8 +9,8 @@ function M.config()
         suffix = function () return ')' end
     }
 
-    h.map("n", "<Leader><Leader>v", "<cmd>PasteImg<CR>")
-    h.map("n", "<Leader><Leader>V", "<cmd>DeleteImg<CR>")
+    vim.keymap.set("n", "<Leader><Leader>v", "<Cmd>PasteImg<CR>")
+    vim.keymap.set("n", "<Leader><Leader>V", "<Cmd>DeleteImg<CR>")
 end
 
 return M

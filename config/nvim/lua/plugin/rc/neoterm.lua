@@ -6,10 +6,10 @@ function M.setup()
     vim.g.neoterm_repl_python = 'python'
     vim.g.neoterm_automap_keys = ""
 
-    vim.keymap.set("n", "<C-t>", "<cmd>Ttoggle<CR>")
-    vim.keymap.set("t", "<C-t>", "<C-\\><C-n><cmd>Ttoggle<CR>")
+    vim.keymap.set("n", "<C-t>", "<Cmd>Ttoggle<CR>")
+    vim.keymap.set("t", "<C-t>", "<C-\\><C-n><Cmd>Ttoggle<CR>")
 
-    vim.keymap.set("n", "<C-g>", "<cmd>Topen<CR><C-w>bi")
+    vim.keymap.set("n", "<C-g>", "<Cmd>Topen<CR><C-w>bi")
     vim.keymap.set("t", "<C-g>", "<C-\\><C-n><C-w>p")
 end
 

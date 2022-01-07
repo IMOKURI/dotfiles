@@ -1,13 +1,12 @@
 local M = {}
-local h = require('helper')
 
 function M.config()
-    h.map("n", "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>")
-    h.map("n", "N", "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>")
-    h.map("n", "*", "*<Cmd>lua require('hlslens').start()<CR>")
-    h.map("n", "#", "#<Cmd>lua require('hlslens').start()<CR>")
-    h.map("n", "g*", "g*<Cmd>lua require('hlslens').start()<CR>")
-    h.map("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set("n", "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set("n", "N", "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set("n", "*", "*<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set("n", "#", "#<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set("n", "g*", "g*<Cmd>lua require('hlslens').start()<CR>")
+    vim.keymap.set("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>")
 
     require('hlslens').setup({
         calm_down = true,
