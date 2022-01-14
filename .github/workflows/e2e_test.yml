@@ -15,11 +15,14 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
+        os_name:
+          - ubuntu
+          - jrei/systemd-ubuntu
         os_version:
           - 20.04
 
     runs-on: ubuntu-latest
-    container: jrei/systemd-ubuntu:${{ matrix.os_version }}
+    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
 
     steps:
     - name: Install requirements
@@ -35,11 +38,14 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
+        os_name:
+          - ubuntu
+          - jrei/systemd-ubuntu
         os_version:
           - 20.04
 
     runs-on: ubuntu-latest
-    container: jrei/systemd-ubuntu:${{ matrix.os_version }}
+    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
 
     services:
       squid:
