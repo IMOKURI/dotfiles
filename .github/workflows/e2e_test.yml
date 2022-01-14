@@ -58,15 +58,18 @@ jobs:
         env http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
         cat /root/.config/git/config.proxy
 
-  centos:
+  el:
     strategy:
       fail-fast: true
       matrix:
+        os_name:
+          - centos
+          - rockylinux/rockylinux
         os_version:
           - 8
 
     runs-on: ubuntu-latest
-    container: centos:${{ matrix.os_version }}
+    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
 
     steps:
     - name: Install requirements
@@ -77,15 +80,18 @@ jobs:
       run: |
         env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
 
-  centos_proxy:
+  el_proxy:
     strategy:
       fail-fast: true
       matrix:
+        os_name:
+          - centos
+          - rockylinux/rockylinux
         os_version:
           - 8
 
     runs-on: ubuntu-latest
-    container: centos:${{ matrix.os_version }}
+    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
 
     services:
       squid:
