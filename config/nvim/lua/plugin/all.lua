@@ -9,24 +9,10 @@ return {
     },
 
     -- Color scheme
-    -- {
-    --     'IMOKURI/challenger-deep-theme-vim',
-    --     -- config = [[vim.cmd("colorscheme challenger_deep")]],
-    -- },
     {
         'Yagua/nebulous.nvim',
         config = "require'plugin.rc.nebulous-nvim'.config()",
     },
-    -- {
-    --     'rmehri01/onenord.nvim',
-    --     -- config = [[vim.cmd("colorscheme onenord")]],
-    -- },
-
-    -- Filetype
-    -- {
-    --     'nathom/filetype.nvim',
-    --     config = "require'plugin.rc.filetype-nvim'.config()",
-    -- },
 
     -- Filetype: python
     {'Vimjas/vim-python-pep8-indent', ft = {'python'}},
@@ -62,14 +48,6 @@ return {
         ft = {'yaml', 'yaml.ansible', 'ansible_host', 'jinja2'},
         cmd = {'AnsibleVaultEncrypt', 'AnsibleVaultDecrypt'}
     },
-
-    -- Paste image
-    -- Require xclip
-    -- {
-    --     'ekickx/clipboard-image.nvim',
-    --     ft = {'markdown'},
-    --     config = "require'plugin.rc.clipboard-image'.config()",
-    -- },
 
     -- Capture
     {'tyru/capture.vim', cmd = {'Capture'}},
@@ -207,18 +185,6 @@ return {
             "kana/vim-textobj-user",
         },
     },
-    {
-        'vimtaku/vim-textobj-keyvalue',
-        requires = {
-            "kana/vim-textobj-user",
-        },
-    },
-    {
-        'Julian/vim-textobj-variable-segment',
-        requires = {
-            "kana/vim-textobj-user",
-        },
-    },
 
     -- Treesitter
     {
@@ -229,7 +195,6 @@ return {
     },
 
     {'nvim-treesitter/nvim-treesitter-refactor', after = "nvim-treesitter"},
-    {'nvim-treesitter/nvim-treesitter-textobjects', after = "nvim-treesitter"},
     {'p00f/nvim-ts-rainbow', after = "nvim-treesitter"},
     {'romgrk/nvim-treesitter-context', after = "nvim-treesitter"},
 
@@ -339,11 +304,6 @@ return {
         },
         config = "require'plugin.rc.telescope-nvim'.frecency()",
     },
-    -- {
-    --     'nvim-telescope/telescope-fzf-writer.nvim',
-    --     after = "telescope.nvim",
-    --     config = "require'plugin.rc.telescope-nvim'.fzf_writer()",
-    -- },
     {
         'nvim-telescope/telescope-fzy-native.nvim',
         after = "telescope.nvim",

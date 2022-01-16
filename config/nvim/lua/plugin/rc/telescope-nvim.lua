@@ -38,13 +38,6 @@ function M.frecency()
     telescope.load_extension('frecency')
 end
 
--- function M.fzf_writer()
---     vim.keymap.set("n", "<Leader>F", "<Cmd>lua require('telescope').extensions.fzf_writer.files()<CR>")
---     vim.keymap.set("n", "<Leader>g", "<Cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>")
-
---     telescope.load_extension('fzf_writer')
--- end
-
 function M.fzy_native()
     telescope.load_extension('fzy_native')
 end
