@@ -66,6 +66,7 @@ function M.config()
             { name = "emoji" },
             { name = "cmdline" },
             { name = "nvim_lua" },
+        }, {
             { name = "rg" },
             { name = "buffer" },
             { name = "spell" },
