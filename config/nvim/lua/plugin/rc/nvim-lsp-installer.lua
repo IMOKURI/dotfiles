@@ -56,17 +56,24 @@ function M.config()
 
         if server.name == "diagnosticls" then
             opts.filetypes = {
-                'sh'
+                'sh',
+                'lua'
             }
             opts.init_options = {
                 formatters = {
                     shfmt = {
                         command = "shfmt",
                         args = {"-i", "4", "-sr", "-ci"}
+                    },
+                    stylua = {
+                        command = "stylua",
+                        args = { "--stdin-filepath", "%filename", "--", "-" },
+                        rootPatterns = { ".git" },
                     }
                 },
                 formatFiletypes = {
-                    sh = "shfmt"
+                    sh = "shfmt",
+                    lua = "stylua"
                 }
             }
         end
