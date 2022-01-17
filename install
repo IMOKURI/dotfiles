@@ -348,18 +348,16 @@ function _pipx_install_or_upgrade() {
     fi
 }
 
-# _pipx_install_or_upgrade ansible
-_pipx_install_or_upgrade "ansible-lint[community,yamllint]"
+_pipx_install_or_upgrade ansible
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
-# _pipx_install_or_upgrade python-lsp-server
 
-# if [[ -d "${HOME}/.local/pipx/venvs/python-lsp-server" ]]; then
-#     pipx inject python-lsp-server \
-#         pyls-isort \
-#         python-lsp-black
-# fi
+if [[ -d "${HOME}/.local/pipx/venvs/ansible" ]]; then
+    pipx inject ansible \
+        "ansible-lint[community,yamllint]"
+    ln -sfnv "${HOME}/.local/bin/ansible-lint" "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint"
+fi
 
 ##### Install nodejs packages #################################################
 
@@ -368,14 +366,6 @@ yarn global add --prefix "${HOME}" \
     @gridsome/cli \
     doctoc \
     tldr
-    # ansible-language-server \
-    # bash-language-server \
-    # diagnostic-languageserver \
-    # dockerfile-language-server-nodejs \
-    # pyright \
-    # vim-language-server \
-    # vscode-langservers-extracted \
-    # yaml-language-server
 
 yarn global upgrade
 
