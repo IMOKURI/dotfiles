@@ -222,6 +222,7 @@ return {
     { "lukas-reineke/cmp-rg", after = "nvim-cmp" },
     { "onsails/lspkind-nvim", after = "nvim-cmp" },
     { "ray-x/cmp-treesitter", after = "nvim-cmp" },
+    { "octaltree/cmp-look", after = "nvim-cmp" },
 
     -- Snippet
     {

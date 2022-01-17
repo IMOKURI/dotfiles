@@ -18,6 +18,7 @@ function M.config()
                 vim_item.menu = ({
                     buffer = "[Buffer]",
                     emoji = "[Emoji]",
+                    look = "[Look]",
                     nvim_lsp = "[LSP]",
                     nvim_lsp_signature_help = "[LSP]",
                     nvim_lua = "[Lua]",
@@ -69,7 +70,6 @@ function M.config()
         }, {
             { name = "rg" },
             { name = "buffer" },
-            { name = "spell" },
             { name = "look" },
         }),
 
