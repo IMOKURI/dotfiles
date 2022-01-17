@@ -2,7 +2,7 @@ local M = {}
 local colors = require("nebulous.functions").get_colors("midnight")
 
 function M.config()
-    require('nebulous').setup({
+    require("nebulous").setup({
         variant = "midnight",
         custom_colors = {
             CursorLineNr = { fg = colors.Red },
@@ -13,9 +13,8 @@ function M.config()
             HighlightedLineNr4 = { fg = colors.Blue },
             HighlightedLineNr5 = { fg = colors.Magenta },
             DimLineNr = { fg = colors.DarkGrey },
-        }
+        },
     })
 end
 
 return M
-

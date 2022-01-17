@@ -20,22 +20,20 @@ function M.config()
 
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     local capabilities = lsp_status.capabilities
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
     local on_attach_vim = function(client)
         lsp_status.on_attach(client)
 
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, {
-                virtual_text = true,
-                underline = true,
-                signs = true,
-                update_in_insert = true,
-            }
-        )
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = true,
+            underline = true,
+            signs = true,
+            update_in_insert = true,
+        })
     end
 
-    local lsp_installer = require('nvim-lsp-installer')
+    local lsp_installer = require("nvim-lsp-installer")
 
     for _, name in pairs(servers) do
         local ok, server = lsp_installer.get_server(name)
@@ -56,25 +54,25 @@ function M.config()
 
         if server.name == "diagnosticls" then
             opts.filetypes = {
-                'sh',
-                'lua'
+                "sh",
+                "lua",
             }
             opts.init_options = {
                 formatters = {
                     shfmt = {
                         command = "shfmt",
-                        args = {"-i", "4", "-sr", "-ci"}
+                        args = { "-i", "4", "-sr", "-ci" },
                     },
                     stylua = {
                         command = "stylua",
                         args = { "--stdin-filepath", "%filename", "--", "-" },
                         rootPatterns = { ".git" },
-                    }
+                    },
                 },
                 formatFiletypes = {
                     sh = "shfmt",
-                    lua = "stylua"
-                }
+                    lua = "stylua",
+                },
             }
         end
 
@@ -83,19 +81,16 @@ function M.config()
                 Lua = {
                     runtime = {
                         version = "LuaJIT",
-                        path = vim.split(package.path, ';'),
+                        path = vim.split(package.path, ";"),
                     },
                     diagnostics = {
                         enable = true,
-                        globals = vim.list_extend(
-                            {
-                                "use",
-                                "vim",
-                            },
-                            {}
-                        )
-                    }
-                }
+                        globals = vim.list_extend({
+                            "use",
+                            "vim",
+                        }, {}),
+                    },
+                },
             }
         end
 
@@ -112,8 +107,8 @@ function M.config()
                         -- pylsp_mypy = {
                         --     live_mode = false,
                         -- }
-                    }
-                }
+                    },
+                },
             }
         end
 
@@ -126,11 +121,11 @@ function M.config()
                     analysis = {
                         autoImportCompletions = true,
                         autoSearchPaths = true,
-                        diagnosticMode = 'workspace',
-                        typeCheckingMode = 'basic',
-                        useLibraryCodeForTypes = true
-                    }
-                }
+                        diagnosticMode = "workspace",
+                        typeCheckingMode = "basic",
+                        useLibraryCodeForTypes = true,
+                    },
+                },
             }
         end
 
@@ -155,7 +150,7 @@ function M.config()
                     --         }
                     --     }
                     -- }
-                }
+                },
             }
         end
 
@@ -163,7 +158,6 @@ function M.config()
         -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
         server:setup(opts)
     end)
-
 end
 
 return M

@@ -18,8 +18,8 @@ function M.setup()
 end
 
 function M.config()
-    vim.keymap.set({"n", "x"}, "?", "<Cmd>call searchx#start({ 'dir': 0 })<CR>")
-    vim.keymap.set({"n", "x"}, "/", "<Cmd>call searchx#start({ 'dir': 1 })<CR>")
+    vim.keymap.set({ "n", "x" }, "?", "<Cmd>call searchx#start({ 'dir': 0 })<CR>")
+    vim.keymap.set({ "n", "x" }, "/", "<Cmd>call searchx#start({ 'dir': 1 })<CR>")
 
     -- vim.keymap.set({"n", "x"}, "N", "<Cmd>call searchx#prev_dir()<CR>")
     -- vim.keymap.set({"n", "x"}, "n", "<Cmd>call searchx#next_dir()<CR>")

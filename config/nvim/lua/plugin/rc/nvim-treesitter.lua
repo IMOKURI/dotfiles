@@ -1,17 +1,17 @@
 local M = {}
 
 function M.config()
-    require'nvim-treesitter.configs'.setup {
+    require("nvim-treesitter.configs").setup({
         ensure_installed = {
-            'bash',
-            'dockerfile',
-            'json',
-            'lua',
-            'make',
-            'markdown',
-            'python',
-            'vim',
-            'yaml',
+            "bash",
+            "dockerfile",
+            "json",
+            "lua",
+            "make",
+            "markdown",
+            "python",
+            "vim",
+            "yaml",
         },
         highlight = {
             enable = true,
@@ -21,17 +21,17 @@ function M.config()
         },
         refactor = {
             highlight_definitions = {
-                enable = true
+                enable = true,
             },
             highlight_current_scope = {
-                enable = false
+                enable = false,
             },
         },
         rainbow = {
             enable = true,
-            disable = {'bash'}
+            disable = { "bash" },
         },
-    }
+    })
 end
 
 return M

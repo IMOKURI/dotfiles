@@ -8,7 +8,7 @@ function M.config()
     vim.keymap.set("n", "g*", "g*<Cmd>lua require('hlslens').start()<CR>")
     vim.keymap.set("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>")
 
-    require('hlslens').setup({
+    require("hlslens").setup({
         calm_down = true,
 
         override_lens = function(render, plist, nearest, idx, r_idx)
@@ -16,30 +16,29 @@ function M.config()
             local indicator, text, chunks
             local abs_r_idx = math.abs(r_idx)
             if abs_r_idx > 1 then
-                indicator = ('%d%s'):format(abs_r_idx, sfw ~= (r_idx > 1) and '▲' or '▼')
+                indicator = ("%d%s"):format(abs_r_idx, sfw ~= (r_idx > 1) and "▲" or "▼")
             elseif abs_r_idx == 1 then
-                indicator = sfw ~= (r_idx == 1) and '▲' or '▼'
+                indicator = sfw ~= (r_idx == 1) and "▲" or "▼"
             else
-                indicator = ''
+                indicator = ""
             end
 
             local lnum, col = unpack(plist[idx])
             if nearest then
                 local cnt = #plist
-                if indicator ~= '' then
-                    text = ('[%s %d/%d]'):format(indicator, idx, cnt)
+                if indicator ~= "" then
+                    text = ("[%s %d/%d]"):format(indicator, idx, cnt)
                 else
-                    text = ('[%d/%d]'):format(idx, cnt)
+                    text = ("[%d/%d]"):format(idx, cnt)
                 end
-                chunks = {{' ', 'Ignore'}, {text, 'HlSearchLensNear'}}
+                chunks = { { " ", "Ignore" }, { text, "HlSearchLensNear" } }
             else
-                text = ('[%s %d]'):format(indicator, idx)
-                chunks = {{' ', 'Ignore'}, {text, 'HlSearchLens'}}
+                text = ("[%s %d]"):format(indicator, idx)
+                chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
             end
             render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
-        end
+        end,
     })
-
 end
 
 return M

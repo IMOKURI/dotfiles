@@ -2,8 +2,8 @@ local M = {}
 
 function M.setup()
     vim.g.neoterm_autoscroll = 1
-    vim.g.neoterm_default_mod = 'botright'
-    vim.g.neoterm_repl_python = 'python'
+    vim.g.neoterm_default_mod = "botright"
+    vim.g.neoterm_repl_python = "python"
     vim.g.neoterm_automap_keys = ""
 
     vim.keymap.set("n", "<C-t>", "<Cmd>Ttoggle<CR>")

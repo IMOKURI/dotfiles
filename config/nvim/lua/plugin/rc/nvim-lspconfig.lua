@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
     vim.keymap.set("n", "<Leader>]", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-    vim.keymap.set({"n", "x"}, "<Leader>z", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
+    vim.keymap.set({ "n", "x" }, "<Leader>z", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
     vim.keymap.set("n", "<Leader>r", "<Cmd>lua vim.lsp.buf.rename()<CR>")
     vim.keymap.set("n", "<Leader>d", "<Cmd>lua vim.diagnostic.open_float(0, {scope='line'})<CR>")
     vim.keymap.set("n", "<Leader>D", "<Cmd>lua vim.diagnostic.setloclist()<CR>")

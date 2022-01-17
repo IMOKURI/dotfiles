@@ -5,24 +5,24 @@ local o = vim.opt
 -- Disable builtin {{{
 
 g.did_install_default_menus = 1
-g.did_install_syntax_menu   = 1
-g.loaded_2html_plugin       = 1
-g.loaded_getscript          = 1
-g.loaded_getscriptPlugin    = 1
-g.loaded_gzip               = 1
-g.loaded_logiPat            = 1
-g.loaded_man                = 1
-g.loaded_matchit            = 1
-g.loaded_matchparen         = 1
-g.loaded_rrhelper           = 1
-g.loaded_tar                = 1
-g.loaded_tarPlugin          = 1
-g.loaded_tutor_mode_plugin  = 1
-g.loaded_vimball            = 1
-g.loaded_vimballPlugin      = 1
-g.loaded_zip                = 1
-g.loaded_zipPlugin          = 1
-g.skip_loading_mswin        = 1
+g.did_install_syntax_menu = 1
+g.loaded_2html_plugin = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_gzip = 1
+g.loaded_logiPat = 1
+g.loaded_man = 1
+g.loaded_matchit = 1
+g.loaded_matchparen = 1
+g.loaded_rrhelper = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_tutor_mode_plugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.skip_loading_mswin = 1
 
 -- g.loaded_netrw = 1
 -- g.loaded_netrwPlugin = 1
@@ -33,14 +33,14 @@ g.skip_loading_mswin        = 1
 -- -----------------------------------------------------------------------------
 -- Filetype {{{
 
-g.do_filetype_lua           = 1
-g.did_load_filetypes        = 0
+g.do_filetype_lua = 1
+g.did_load_filetypes = 0
 
 vim.filetype.add({
     filename = {
         ["Dockerfile.*"] = "dockerfile",
-        ["install"] = "bash"
-    }
+        ["install"] = "bash",
+    },
 })
 
 -- }}}
@@ -65,10 +65,10 @@ o.number = true
 o.relativenumber = true
 o.list = true
 o.listchars = {
-    tab = '< >',
-    trail = '-',
-    extends = '»',
-    precedes = '«',
+    tab = "< >",
+    trail = "-",
+    extends = "»",
+    precedes = "«",
 }
 o.showmatch = true
 o.colorcolumn = "120"
@@ -83,7 +83,7 @@ o.updatetime = 250
 o.lazyredraw = true
 o.pumblend = 20
 o.pumheight = 10
-o.diffopt:append({"algorithm:patience", "indent-heuristic"})
+o.diffopt:append({ "algorithm:patience", "indent-heuristic" })
 o.termguicolors = true
 o.shortmess:append("c")
 o.equalalways = false
@@ -102,21 +102,21 @@ o.softtabstop = 4
 o.shiftwidth = 4
 o.shiftround = true
 o.smartindent = true
-o.virtualedit:append({"block"})
-o.clipboard:append({"unnamedplus"})
-o.completeopt = {"menu", "menuone", "noselect"}
+o.virtualedit:append({ "block" })
+o.clipboard:append({ "unnamedplus" })
+o.completeopt = { "menu", "menuone", "noselect" }
 
 local uname = vim.fn.substitute(vim.fn.system("uname -r"), "\n", "", "")
 if string.match(uname, "microsoft") then
     g.clipboard = {
         name = "win32yank",
         copy = {
-            ['+'] = "win32yank.exe -i --crlf",
-            ['*'] = "win32yank.exe -i --crlf",
+            ["+"] = "win32yank.exe -i --crlf",
+            ["*"] = "win32yank.exe -i --crlf",
         },
         paste = {
-            ['+'] = "win32yank.exe -o --lf",
-            ['*'] = "win32yank.exe -o --lf",
+            ["+"] = "win32yank.exe -o --lf",
+            ["*"] = "win32yank.exe -o --lf",
         },
         cache_enabled = 0,
     }
@@ -139,7 +139,7 @@ o.keywordprg = ":help"
 -- -----------------------------------------------------------------------------
 -- Completion {{{
 
-o.wildmode = {"longest", "full"}
+o.wildmode = { "longest", "full" }
 o.dictionary = "/usr/share/dict/words"
 
 -- }}}
@@ -149,10 +149,10 @@ o.dictionary = "/usr/share/dict/words"
 
 g.netrw_liststyle = 1
 g.netrw_banner = 0
-g.netrw_sizestyle = 'H'
-g.netrw_timefmt = '%Y/%m/%d(%a) %H:%M:%S'
+g.netrw_sizestyle = "H"
+g.netrw_timefmt = "%Y/%m/%d(%a) %H:%M:%S"
 g.netrw_home = os.getenv("HOME")
-g.netrw_bufsettings = 'noma nomod nu rnu nowrap ro nobl'
+g.netrw_bufsettings = "noma nomod nu rnu nowrap ro nobl"
 
 -- }}}
 

@@ -1,9 +1,9 @@
 local M = {}
 
 function M.config()
-    require('gitsigns').setup({
+    require("gitsigns").setup({
         word_diff = true,
-        keymaps = {}
+        keymaps = {},
     })
 end
 

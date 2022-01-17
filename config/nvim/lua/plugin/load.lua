@@ -2,24 +2,26 @@ local packer
 
 local function init()
     if packer == nil then
-        packer = require('packer')
+        packer = require("packer")
         packer.init({
-            compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
+            compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
             disable_commands = true,
             display = {
-                open_fn = require('packer.util').float,
+                open_fn = require("packer.util").float,
                 keybindings = {
-                    quit = '<Esc>',
+                    quit = "<Esc>",
                 },
-            }
+            },
         })
     end
 
     packer.reset()
 
-    for _, name in pairs {
-        'all',
-    } do packer.use(require('plugin.'..name)) end
+    for _, name in pairs({
+        "all",
+    }) do
+        packer.use(require("plugin." .. name))
+    end
 end
 
 return setmetatable({}, {

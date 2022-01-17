@@ -48,18 +48,18 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- -----------------------------------------------------------------------------
 -- Move {{{
 
-vim.keymap.set({"n", "x"}, "j", "v:count ? 'j' : 'gj'", {expr = true})
-vim.keymap.set({"n", "x"}, "k", "v:count ? 'k' : 'gk'", {expr = true})
+vim.keymap.set({ "n", "x" }, "j", "v:count ? 'j' : 'gj'", { expr = true })
+vim.keymap.set({ "n", "x" }, "k", "v:count ? 'k' : 'gk'", { expr = true })
 
-vim.keymap.set({"n", "x"}, "H", "^")
+vim.keymap.set({ "n", "x" }, "H", "^")
 -- Fold との複合マッピング
 -- vim.keymap.set("n", "L", "$")
 vim.keymap.set("x", "L", "$")
 
-vim.keymap.set({"c", "i"}, "<C-a>", "<Home>")
-vim.keymap.set({"c", "i"}, "<C-e>", "<End>")
-vim.keymap.set({"c", "i"}, "<C-h>", "<Left>")
-vim.keymap.set({"c", "i"}, "<C-l>", "<Right>")
+vim.keymap.set({ "c", "i" }, "<C-a>", "<Home>")
+vim.keymap.set({ "c", "i" }, "<C-e>", "<End>")
+vim.keymap.set({ "c", "i" }, "<C-h>", "<Left>")
+vim.keymap.set({ "c", "i" }, "<C-l>", "<Right>")
 
 vim.keymap.set("n", "gf", "gF")
 
@@ -80,8 +80,8 @@ vim.keymap.set("n", "<Leader><Tab>", "<C-^>")
 -- -----------------------------------------------------------------------------
 -- Fold {{{
 
-vim.keymap.set("n", "l", "foldclosed('.') != -1 ? 'zo' : 'l'", {expr = true})
-vim.keymap.set("n", "L", "foldclosed('.') != -1 ? 'zO' : '$'", {expr = true})
+vim.keymap.set("n", "l", "foldclosed('.') != -1 ? 'zo' : 'l'", { expr = true })
+vim.keymap.set("n", "L", "foldclosed('.') != -1 ? 'zO' : '$'", { expr = true })
 
 vim.keymap.set("n", "zl", "zR")
 vim.keymap.set("n", "z,", "zMzv")
