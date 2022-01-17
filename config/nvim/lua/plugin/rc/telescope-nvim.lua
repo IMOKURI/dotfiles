@@ -1,6 +1,7 @@
 local M = {}
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local action_layout = require("telescope.actions.layout")
 
 function M.config()
     vim.keymap.set("n", "<Leader>f", "<Cmd>lua require('plugin.rc.telescope-nvim').project_files{}<CR>")
@@ -20,6 +21,7 @@ function M.config()
             mappings = {
                 i = {
                     ["<Esc>"] = actions.close,
+                    ["<C-i>"] = action_layout.toggle_preview,
                 },
             },
         },
