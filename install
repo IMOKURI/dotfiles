@@ -356,7 +356,7 @@ _pipx_install_or_upgrade nbdime
 if [[ -d "${HOME}/.local/pipx/venvs/ansible" ]]; then
     pipx inject ansible \
         "ansible-lint[community,yamllint]"
-    ln -sfnv "${HOME}/.local/bin/ansible-lint" "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint"
+    ln -sfnv "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint" "${HOME}/.local/bin/ansible-lint"
 fi
 
 ##### Install nodejs packages #################################################
