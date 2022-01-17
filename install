@@ -387,15 +387,24 @@ GO111MODULE=on go get -u \
     github.com/tokuhirom/git-xlsx-textconv \
     mvdan.cc/sh/cmd/shfmt
 
-##### Install lua-language-server #############################################
+##### Install stylua #############################################
 
-# _banner "Install Lua Language Server..."
-# if ${is_deb}; then
-#     pushd "$(pwd)"
-#     cd "${DOTPATH}"
-#     make lua-ls
-#     popd
-# fi
+STYLUA_VERSION=$(curl -sfL https://api.github.com/repos/JohnnyMorganz/StyLua/releases | jq .[0].name | sed -e s/\"//g)
+STYLUA="stylua-${STYLUA_VERSION#v}-linux"
+
+_banner "Install Stylua..."
+if [[ ! -d "${HOME}/src/${STYLUA}" ]]; then
+    curl -fsSL -o /tmp/stylua.zip \
+        https://github.com/JohnnyMorganz/StyLua/releases/download/${STYLUA_VERSION}/${STYLUA}.zip
+
+    mkdir -p "${HOME}/src/${STYLUA}"
+    unzip /tmp/stylua.zip -d "${HOME}/src/${STYLUA}/"
+    chmod +x "${HOME}/src/${STYLUA}/stylua"
+
+    ln -sfnv ${HOME}/src/${STYLUA}/stylua "${HOME}/bin/stylua"
+else
+    _logger "${INFO}" "Already installed."
+fi
 
 ##### Install ripgrep #########################################################
 
