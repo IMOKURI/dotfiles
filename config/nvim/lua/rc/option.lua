@@ -31,21 +31,6 @@ g.skip_loading_mswin = 1
 -- }}}
 
 -- -----------------------------------------------------------------------------
--- Filetype {{{
-
-g.do_filetype_lua = 1
-g.did_load_filetypes = 0
-
-vim.filetype.add({
-    filename = {
-        ["Dockerfile.*"] = "dockerfile",
-        ["install"] = "bash",
-    },
-})
-
--- }}}
-
--- -----------------------------------------------------------------------------
 -- Neovim provider {{{
 
 if vim.fn.glob("~/.local/pipx/venvs/neovim-remote/bin/python") ~= "" then
