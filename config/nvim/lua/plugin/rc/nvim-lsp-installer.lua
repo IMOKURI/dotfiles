@@ -1,7 +1,7 @@
 local M = {}
 
 local servers = {
-    "ansiblels",
+    -- "ansiblels",
     "bashls",
     "diagnosticls",
     "dockerls",
