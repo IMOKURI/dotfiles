@@ -146,7 +146,7 @@ function setup_repository_deb() {
     fi
 
     _logger "${INFO}" "Install apt common package."
-    sudo -E apt install -y software-properties-common
+    sudo -E apt-get install -y software-properties-common
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger "${INFO}" "Install Git-LFS repository."
@@ -233,9 +233,9 @@ function install_packages_deb() {
         return
     fi
 
-    sudo -E apt update
-    sudo -E apt upgrade -y
-    sudo -E apt install -y \
+    sudo -E apt-get update
+    sudo -E apt-get upgrade -y
+    sudo -E apt-get install -y \
         ansible \
         fd-find \
         figlet \
@@ -255,7 +255,7 @@ function install_packages_deb() {
         wamerican
 
     # for neovim
-    sudo -E apt install -y \
+    sudo -E apt-get install -y \
         autoconf \
         automake \
         cmake \
@@ -270,7 +270,7 @@ function install_packages_deb() {
         unzip
 
     # for pyenv
-    sudo -E apt install -y --no-install-recommends \
+    sudo -E apt-get install -y --no-install-recommends \
         make \
         build-essential \
         libssl-dev \
