@@ -22,6 +22,9 @@ shopt -s expand_aliases
 
 ##### User specific alias #####################################################
 
+# Neovim/Vim
+export PATH=$HOME/neovim/bin:$HOME/vim/bin:$PATH
+
 if [[ -n "${NVIM_LISTEN_ADDRESS}" && -x "$(command -v nvr)" ]]; then
     alias vi="nvr -s"
 elif [[ -x "$(command -v nvim)" ]]; then
