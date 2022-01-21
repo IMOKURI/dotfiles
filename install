@@ -463,21 +463,6 @@ else
     _logger "${INFO}" "Already installed."
 fi
 
-# TERRAFORM_LS_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform-ls/releases | jq .[0].name | sed -e s/\"//g -e s/v//)
-# TERRAFORM_LS="terraform-ls_${TERRAFORM_LS_VERSION}_linux_amd64.zip"
-#
-# _banner "Install Terraform LS..."
-# if [[ ! -f "${HOME}/src/${TERRAFORM_LS}" ]]; then
-#     curl -fsSL -o ${HOME}/src/${TERRAFORM_LS} \
-#         https://releases.hashicorp.com/terraform-ls/${TERRAFORM_LS_VERSION}/${TERRAFORM_LS}
-#
-#     unzip -o ${HOME}/src/${TERRAFORM_LS} -d /tmp/
-#     mv /tmp/terraform-ls ${HOME}/bin/
-#
-# else
-#     _logger "${INFO}" "Already installed."
-# fi
-
 ##### Install bashmarks #######################################################
 
 _banner "Install Bashmarks..."
@@ -485,6 +470,12 @@ pushd "$(pwd)"
 cd "${DOTPATH}"
 make bashmarks
 popd
+
+##### Install starship ########################################################
+
+_banner "Install Starship..."
+
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 ##### Build neovim ############################################################
 
