@@ -475,7 +475,7 @@ popd
 
 _banner "Install Starship..."
 
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes
 
 ##### Build neovim ############################################################
 
