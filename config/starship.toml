@@ -4,5 +4,8 @@ truncation_symbol = ".../"
 [kubernetes]
 disabled = false
 
+[kubernetes.context_aliases]
+".*/(?P<cluster>[\\w-]+).*/.*" = "$cluster"
+
 [gcloud]
 disabled = true
