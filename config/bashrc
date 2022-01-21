@@ -24,22 +24,19 @@ shopt -s expand_aliases
 
 if [[ -n "${NVIM_LISTEN_ADDRESS}" && -x "$(command -v nvr)" ]]; then
     alias vi="nvr -s"
-else
+elif [[ -x "$(command -v nvim)" ]]; then
     alias vi="nvim"
 fi
-
-cdls() {
-    \cd "$@" && pwd && ls -l --color=always | less
-}
 
 cdd() {
     cd ~/.dotfiles/
 }
-
 cds() {
     cd ~/.local/share/nvim/swap
 }
-
+cdp() {
+    cd ~/.local/share/nvim/site/pack/packer
+}
 cdr() {
     cd "$(git rev-parse --show-toplevel)" || return
 }

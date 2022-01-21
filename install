@@ -458,7 +458,6 @@ if [[ ! -f "${HOME}/src/${TERRAFORM}" ]]; then
         https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${TERRAFORM}
 
     unzip -o ${HOME}/src/${TERRAFORM} -d ${HOME}/bin/
-
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -475,7 +474,7 @@ popd
 
 _banner "Install Starship..."
 
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes --bin-dir "${HOME}/bin"
 
 ##### Build neovim ############################################################
 
