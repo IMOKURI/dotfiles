@@ -139,10 +139,7 @@
     "prefix": "def",
     "body": [
       "def ${1:funcname}(${2:parameter_list}):",
-      "\t\"\"\"",
-      "\t${3:docstring}",
-      "\t\"\"\"",
-      "\t${4:pass}"
+      "\t${3:pass}"
     ],
     "description": "Code snippet for a function definition"
   },
@@ -150,10 +147,7 @@
     "prefix": "def(class method)",
     "body": [
       "def ${1:funcname}(self, ${2:parameter_list}):",
-      "\t\"\"\"",
-      "\t${3:docstring}",
-      "\t\"\"\"",
-      "\t${4:pass}"
+      "\t${3:pass}"
     ],
     "description": "Code snippet for a class method"
   },
@@ -162,10 +156,7 @@
     "body": [
       "@staticmethod",
       "def ${1:funcname}(${2:parameter_list}):",
-      "\t\"\"\"",
-      "\t${3:docstring}",
-      "\t\"\"\"",
-      "\t${4:pass}"
+      "\t${3:pass}"
     ],
     "description": "Code snippet for a static class method"
   },
@@ -173,9 +164,6 @@
     "prefix": "def(abstract class method)",
     "body": [
       "def ${1:funcname}(self, ${2:parameter_list}):",
-      "\t\"\"\"",
-      "\t${3:docstring}",
-      "\t\"\"\"",
       "\traise NotImplementedError"
     ],
     "description": "Code snippet for an abstract class method"
@@ -184,10 +172,7 @@
     "prefix": "class",
     "body": [
       "class ${1:classname}(${2:object}):",
-      "\t\"\"\"",
-      "\t${3:docstring}",
-      "\t\"\"\"",
-      "\t${4:pass}"
+      "\t${3:pass}"
     ],
     "description": "Code snippet for a class definition"
   },
