@@ -66,7 +66,7 @@
   textconv = git-xlsx-textconv
 
 [diff "jupyternotebook"]
-  command = git-nbdiffdriver diff -s
+  command = git-nbdiffdriver diff -s -m
 
 [difftool]
   prompt = false
