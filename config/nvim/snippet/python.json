@@ -172,7 +172,8 @@
     "prefix": "class",
     "body": [
       "class ${1:classname}(${2:object}):",
-      "\t${3:pass}"
+      "\tdef __init__(self, ${3:parameter_list}):",
+      "\t\t${4:pass}"
     ],
     "description": "Code snippet for a class definition"
   },
