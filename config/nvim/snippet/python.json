@@ -1,4 +1,9 @@
 {
+  "shebang": {
+    "prefix": "shebang",
+    "body": "#!/usr/bin/env python",
+    "description": "Code snippet for shebang"
+  },
   "if": {
     "prefix": "if",
     "body": [
@@ -259,5 +264,21 @@
     "prefix": "mark/markdown",
     "body": "# %% [markdown]",
     "description": "Code snippet to add a new markdown cell"
+  },
+  "logger": {
+    "prefix": "logger",
+    "body": "log = logging.getLogger(__name__)",
+    "description": "Code snippet to logger"
+  },
+  "logger(basic config)": {
+    "prefix": "logger(basic config)",
+    "body": [
+      "logging.basicConfig(",
+      "\t# filename=__file__.replace('.py', '.log'),",
+      "\tlevel=logging.getLevelName(\"INFO\"),",
+      "\tformat=\"%(asctime)s [%(levelname)s] [%(module)s] %(message)s\",",
+      ")"
+    ],
+    "description": "Code snippet to logger"
   }
 }
