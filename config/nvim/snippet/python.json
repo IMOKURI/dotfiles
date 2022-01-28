@@ -187,7 +187,7 @@
     "body": [
       "class ${1:classname}(${2:object}):",
       "\tdef __init__(self, ${3:parameter_list}):",
-      "\t\t${4:pass}"
+      "\t\t${4:super().__init__()}"
     ],
     "description": "Code snippet for a class definition"
   },
@@ -280,5 +280,20 @@
       ")"
     ],
     "description": "Code snippet to logger"
+  },
+  "pandas": {
+    "prefix": "pandas",
+    "body": "import pandas as pd",
+    "description": "Code snippet to import pandas"
+  },
+  "numpy": {
+    "prefix": "numpy",
+    "body": "import numpy as np",
+    "description": "Code snippet to import numpy"
+  },
+  "typing": {
+    "prefix": "typing",
+    "body": "from typing import ${1:Dict, List}",
+    "description": "Code snippet to import typing"
   }
 }
