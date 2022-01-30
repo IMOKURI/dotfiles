@@ -101,9 +101,20 @@ function M.config()
                         pycodestyle = {
                             enabled = false,
                         },
+                        autopep8 = {
+                            enabled = false,
+                        },
+                        yapf = {
+                            enabled = true,
+                        },
                         pylsp_black = {
+                            enabled = false,
                             line_length = 120,
                         },
+                        pyls_isort = {
+                            enabled = true,
+                        },
+
                         -- pylsp_mypy = {
                         --     live_mode = false,
                         -- }
