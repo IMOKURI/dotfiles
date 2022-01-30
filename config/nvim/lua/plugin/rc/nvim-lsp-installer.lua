@@ -99,6 +99,8 @@ function M.config()
 
         if server.name == "pylsp" then
             opts.settings = {
+                -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
+                -- Require setup command: PylspInstall pyls-isort
                 pylsp = {
                     plugins = {
                         pycodestyle = {
@@ -120,7 +122,6 @@ function M.config()
                         pyls_isort = {
                             enabled = true,
                         },
-
                         -- pylsp_mypy = {
                         --     live_mode = false,
                         -- }
