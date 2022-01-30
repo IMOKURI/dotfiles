@@ -26,10 +26,13 @@ function M.config()
         lsp_status.on_attach(client)
 
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = true,
+            virtual_text = {
+                source = true,
+            },
             underline = true,
             signs = true,
             update_in_insert = true,
+            severity_sort = true,
         })
     end
 
@@ -99,6 +102,9 @@ function M.config()
                 pylsp = {
                     plugins = {
                         pycodestyle = {
+                            enabled = false,
+                        },
+                        pyflakes = {
                             enabled = false,
                         },
                         autopep8 = {
