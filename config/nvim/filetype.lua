@@ -6,6 +6,6 @@ g.did_load_filetypes = 0
 vim.filetype.add({
     filename = {
         ["Dockerfile.*"] = "dockerfile",
-        ["install"] = "bash",
+        ["install"] = "sh",
     },
 })
