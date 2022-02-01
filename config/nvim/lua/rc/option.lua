@@ -59,6 +59,7 @@ o.colorcolumn = "120"
 o.breakindent = true
 o.showbreak = "↳"
 o.breakindentopt = "sbr"
+o.foldenable = false
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.scrolloff = 5
