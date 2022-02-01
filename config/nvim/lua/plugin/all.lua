@@ -58,6 +58,16 @@ return {
         setup = "vim.g.sonictemplate_vim_template_dir = {string.format('%s/template', vim.fn.stdpath('config'))}",
     },
 
+    -- Anotation
+    {
+        "danymat/neogen",
+        cmd = { "Neogen" },
+        after = {
+            "nvim-treesitter",
+        },
+        config = "require'plugin.rc.neogen'.config()",
+    },
+
     -- Register
     { "tversteeg/registers.nvim" },
 
