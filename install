@@ -56,10 +56,6 @@ if [[ -f /etc/os-release ]]; then
             # Red Hat Enterprise Linux Server
             is_el=true
             ;;
-        CentOS*)
-            # CentOS Linux
-            is_el=true
-            ;;
         Rocky*)
             # Rocky Linux
             is_el=true
@@ -121,7 +117,7 @@ function setup_repository_el() {
     sudo -E dnf install -y glibc-langpack-en
     sudo -E dnf install -y dnf-plugins-core
 
-    if [[ ${ID} == "centos" || ${ID} == "rocky" ]]; then
+    if [[ ${ID} == "rocky" ]]; then
         _logger "${INFO}" "Enable PowerTools repository."
         sudo -E dnf config-manager --enable powertools
     fi

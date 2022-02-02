@@ -69,7 +69,6 @@ jobs:
       fail-fast: true
       matrix:
         os_name:
-          - centos
           - rockylinux/rockylinux
         os_version:
           - 8
@@ -91,7 +90,6 @@ jobs:
       fail-fast: true
       matrix:
         os_name:
-          - centos
           - rockylinux/rockylinux
         os_version:
           - 8
