@@ -61,7 +61,8 @@ update-dot: ## update dotfiles repository
 	git pull
 
 update-plugin: ## update neovim plugins
-	nvim -c "autocmd User PackerComplete quitall" -c "PackerSync"
+	:
+	# nvim -c "autocmd User PackerComplete quitall" -c "PackerSync"
 	# nvim --headless -c "LspInstall --sync pylsp pyright diagnosticls" -c q
 	# nvim --headless -c "PylspInstall pyls-isort python-lsp-black" -c q /tmp/x.py
 
