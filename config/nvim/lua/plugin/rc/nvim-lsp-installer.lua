@@ -7,7 +7,7 @@ local servers = {
     "dockerls",
     "jsonls",
     "pylsp",
-    "pyright",
+    -- "pyright",
     "sumneko_lua",
     "terraformls",
     "vimls",
@@ -100,11 +100,12 @@ function M.config()
         if server.name == "pylsp" then
             opts.settings = {
                 -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
-                -- Require setup command: PylspInstall pyls-isort python-lsp-black
+                -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            enabled = false,
+                            enabled = true,
+                            maxLineLength = 120,
                         },
                         pyflakes = {
                             enabled = false,
@@ -122,30 +123,33 @@ function M.config()
                         pyls_isort = {
                             enabled = true,
                         },
-                        -- pylsp_mypy = {
-                        --     live_mode = false,
-                        -- }
+                        pylsp_mypy = {
+                            enabled = true,
+                            live_mode = false,
+                            dmypy = true,
+                            strict = false,
+                        }
                     },
                 },
             }
         end
 
-        if server.name == "pyright" then
-            opts.settings = {
-                -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-                pyright = {},
-                python = {
-                    pythonPath = vim.fn.exepath("python"),
-                    analysis = {
-                        autoImportCompletions = true,
-                        autoSearchPaths = true,
-                        diagnosticMode = "workspace",
-                        typeCheckingMode = "basic",
-                        useLibraryCodeForTypes = true,
-                    },
-                },
-            }
-        end
+        -- if server.name == "pyright" then
+        --     opts.settings = {
+        --         -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+        --         pyright = {},
+        --         python = {
+        --             pythonPath = vim.fn.exepath("python"),
+        --             analysis = {
+        --                 autoImportCompletions = true,
+        --                 autoSearchPaths = true,
+        --                 diagnosticMode = "workspace",
+        --                 typeCheckingMode = "basic",
+        --                 useLibraryCodeForTypes = true,
+        --             },
+        --         },
+        --     }
+        -- end
 
         if server.name == "yamlls" then
             opts.settings = {
