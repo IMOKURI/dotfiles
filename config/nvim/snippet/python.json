@@ -275,6 +275,7 @@
     "body": [
       "logging.basicConfig(",
       "\t# filename=__file__.replace('.py', '.log'),",
+      "\tstream=sys.stdout,",
       "\tlevel=logging.getLevelName(\"INFO\"),",
       "\tformat=\"%(asctime)s [%(levelname)s] [%(module)s] %(message)s\",",
       ")"
