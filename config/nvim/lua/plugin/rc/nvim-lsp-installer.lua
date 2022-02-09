@@ -7,7 +7,7 @@ local servers = {
     "dockerls",
     "jsonls",
     "pylsp",
-    -- "pyright",
+    "pyright",
     "sumneko_lua",
     "terraformls",
     "vimls",
@@ -106,6 +106,9 @@ function M.config()
                         pycodestyle = {
                             enabled = true,
                             maxLineLength = 120,
+                            ignore = {
+                                "E203",  -- whitespace before ':'
+                            },
                         },
                         pyflakes = {
                             enabled = false,
@@ -128,28 +131,28 @@ function M.config()
                             live_mode = false,
                             dmypy = true,
                             strict = false,
-                        }
+                        },
                     },
                 },
             }
         end
 
-        -- if server.name == "pyright" then
-        --     opts.settings = {
-        --         -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-        --         pyright = {},
-        --         python = {
-        --             pythonPath = vim.fn.exepath("python"),
-        --             analysis = {
-        --                 autoImportCompletions = true,
-        --                 autoSearchPaths = true,
-        --                 diagnosticMode = "workspace",
-        --                 typeCheckingMode = "basic",
-        --                 useLibraryCodeForTypes = true,
-        --             },
-        --         },
-        --     }
-        -- end
+        if server.name == "pyright" then
+            opts.settings = {
+                -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+                pyright = {},
+                python = {
+                    pythonPath = vim.fn.exepath("python"),
+                    analysis = {
+                        autoImportCompletions = true,
+                        autoSearchPaths = true,
+                        diagnosticMode = "workspace",
+                        typeCheckingMode = "basic",
+                        useLibraryCodeForTypes = true,
+                    },
+                },
+            }
+        end
 
         if server.name == "yamlls" then
             opts.settings = {
