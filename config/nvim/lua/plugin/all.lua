@@ -316,9 +316,9 @@ return {
         config = "require'plugin.rc.telescope-nvim'.frecency()",
     },
     {
-        "nvim-telescope/telescope-fzy-native.nvim",
+        "natecraddock/telescope-zf-native.nvim",
         after = "telescope.nvim",
-        config = "require'plugin.rc.telescope-nvim'.fzy_native()",
+        config = "require'plugin.rc.telescope-nvim'.zf_native()",
     },
     {
         "tamago324/telescope-sonictemplate.nvim",

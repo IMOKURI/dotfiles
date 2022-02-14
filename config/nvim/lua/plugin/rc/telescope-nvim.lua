@@ -42,8 +42,8 @@ function M.frecency()
     telescope.load_extension("frecency")
 end
 
-function M.fzy_native()
-    telescope.load_extension("fzy_native")
+function M.zf_native()
+    telescope.load_extension("zf-native")
 end
 
 function M.sonictemplate()
