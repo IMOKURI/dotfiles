@@ -361,7 +361,8 @@ _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     @gridsome/cli \
     doctoc \
-    tldr
+    tldr \
+    tree-sitter-cli
 
 yarn global upgrade
 
