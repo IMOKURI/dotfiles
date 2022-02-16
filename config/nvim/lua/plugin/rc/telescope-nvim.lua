@@ -6,14 +6,12 @@ local action_layout = require("telescope.actions.layout")
 function M.config()
     vim.keymap.set("n", "<Leader>f", "<Cmd>lua require('plugin.rc.telescope-nvim').project_files{}<CR>")
     vim.keymap.set("n", "<Leader>g", "<Cmd>lua require('telescope.builtin').live_grep{}<CR>")
-    vim.keymap.set("n", "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers{}<CR>")
     vim.keymap.set(
         "n",
         "<Leader>e",
         "<Cmd>lua require('telescope.builtin').symbols{ sources = {'emoji', 'gitmoji'} }<CR>"
     )
     vim.keymap.set("n", "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references{}<CR>")
-    vim.keymap.set("n", "<Leader>t", "<Cmd>lua require('telescope.builtin').treesitter{}<CR>")
 
     telescope.setup({
         defaults = {
@@ -34,12 +32,6 @@ function M.project_files()
     if not ok then
         require("telescope.builtin").find_files(opts)
     end
-end
-
-function M.frecency()
-    vim.keymap.set("n", "<Leader>o", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>")
-
-    telescope.load_extension("frecency")
 end
 
 function M.zf_native()

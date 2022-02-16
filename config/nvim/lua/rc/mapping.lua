@@ -9,19 +9,13 @@ vim.g.mapleader = " "
 -- -----------------------------------------------------------------------------
 -- File {{{
 
--- 変更があったときのみ、バッファを保存する
 vim.keymap.set("n", "<Leader>w", "<Cmd>update<CR>")
--- すべてのバッファを保存する
 vim.keymap.set("n", "<Leader><Leader>w", "<Cmd>wall<CR>")
 
--- ウィンドウを閉じる
 vim.keymap.set("n", "qq", "<Cmd>close<CR>")
--- バッファを保存せず閉じる
 vim.keymap.set("n", "QQ", "<Cmd>bdelete!<CR>")
 
--- Vim を終了する
 vim.keymap.set("n", "<Leader>q", "<Cmd>qall<CR>")
--- 変更を保存せずに Vim を終了する
 vim.keymap.set("n", "<Leader>Q", "<Cmd>qall!<CR>")
 
 -- }}}

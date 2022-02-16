@@ -160,11 +160,6 @@ return {
         event = { "BufRead", "BufNewFile" },
         config = "require'plugin.rc.nvim-hlslens'.config()",
     },
-    {
-        "hrsh7th/vim-searchx",
-        setup = "require'plugin.rc.vim-searchx'.setup()",
-        config = "require'plugin.rc.vim-searchx'.config()",
-    },
 
     -- Clever-f
     {
@@ -185,7 +180,7 @@ return {
         requires = {
             "kana/vim-operator-user",
         },
-        config = "require'plugin.rc.operator'.config()",
+        config = "vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(operator-replace)')",
     },
 
     -- Text Objects
@@ -285,13 +280,6 @@ return {
         config = "require'plugin.rc.lualine'.config()",
     },
 
-    -- Session
-    {
-        "rmagatti/auto-session",
-        cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
-        config = "require'plugin.rc.auto-session'.config()",
-    },
-
     -- Fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
@@ -303,17 +291,6 @@ return {
             "nvim-telescope/telescope-symbols.nvim",
         },
         config = "require'plugin.rc.telescope-nvim'.config()",
-    },
-    {
-        "nvim-telescope/telescope-frecency.nvim",
-        requires = {
-            "tami5/sql.nvim",
-        },
-        after = {
-            "telescope.nvim",
-            -- "sql.nvim",
-        },
-        config = "require'plugin.rc.telescope-nvim'.frecency()",
     },
     {
         "natecraddock/telescope-zf-native.nvim",
