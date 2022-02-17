@@ -104,7 +104,7 @@ function M.config()
                 pylsp = {
                     plugins = {
                         pycodestyle = {
-                            enabled = true,
+                            enabled = false,
                             maxLineLength = 120,
                             ignore = {
                                 "E203",  -- whitespace before ':'
@@ -128,7 +128,7 @@ function M.config()
                             enabled = true,
                         },
                         pylsp_mypy = {
-                            enabled = true,
+                            enabled = false,
                             live_mode = false,
                             dmypy = true,
                             strict = false,
