@@ -1,0 +1,10 @@
+{
+  "command": {
+    "prefix": "command",
+    "body": [
+      "${1:command}: ## ${2:help message}",
+      "\t${3::}"
+    ],
+    "description": "basic command"
+  }
+}
