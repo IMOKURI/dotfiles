@@ -141,6 +141,12 @@ return {
         cmd = { "ColorizerToggle" },
     },
 
+    -- UI
+    {
+        "stevearc/dressing.nvim",
+        config = "require'plugin.rc.dressing'.config()",
+    },
+
     -- Terminal
     {
         "kassio/neoterm",
