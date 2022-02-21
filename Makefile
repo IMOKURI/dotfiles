@@ -40,12 +40,12 @@ install: proxy update deploy ## Do proxy, update and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
-	if [[ ! -f /etc/yum.conf ]]; then \
+	if [[ ! -f /etc/dnf/dnf.conf ]]; then \
 		:; \
-	elif grep -q proxy /etc/yum.conf; then \
-		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g' /etc/yum.conf; \
+	elif grep -q proxy /etc/dnf/dnf.conf; then \
+		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g' /etc/dnf/dnf.conf; \
 	else \
-		echo "proxy=$(http_proxy)" | sudo tee -a /etc/yum.conf; \
+		echo "proxy=$(http_proxy)" | sudo tee -a /etc/dnf/dnf.conf; \
 	fi
 
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)

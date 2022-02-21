@@ -78,7 +78,7 @@ _logger "${INFO}" "${PRETTY_NAME} is detected."
 
 ##### Set Proxy ###############################################################
 
-function set_yum_proxy() {
+function set_dnf_proxy() {
     _banner "Check if set proxy..."
 
     if [[ ! "${http_proxy}" ]]; then
@@ -92,16 +92,16 @@ function set_yum_proxy() {
         return
     fi
 
-    if grep -q proxy /etc/yum.conf; then
+    if grep -q proxy /etc/dnf/dnf.conf; then
         _logger "${INFO}" "Already set proxy setting."
         return
     fi
 
-    echo "proxy=${http_proxy}" | sudo tee -a /etc/yum.conf
-    _logger "${INFO}" "Configured yum proxy setting."
+    echo "proxy=${http_proxy}" | sudo tee -a /etc/dnf/dnf.conf
+    _logger "${INFO}" "Configured dnf proxy setting."
 }
 
-set_yum_proxy
+set_dnf_proxy
 
 ##### Setup repositories ######################################################
 
@@ -174,10 +174,10 @@ function install_packages_el() {
         return
     fi
 
-    sudo -E yum install -y \
+    sudo -E dnf install -y \
         https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID:0:1}.noarch.rpm
 
-    sudo -E yum install -y \
+    sudo -E dnf install -y \
         autoconf \
         automake \
         bzip2 \
