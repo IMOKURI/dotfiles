@@ -84,6 +84,8 @@ else
     source "/usr/share/bash-completion/completions/git"
 fi
 
+alias sudo='sudo '
+
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
