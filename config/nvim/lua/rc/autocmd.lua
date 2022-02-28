@@ -1,37 +1,47 @@
-local au = require("au")
 local u = require("util")
+local group_name = "MyACGroup"
 
--- # Simple autocmd with one event: au.<event> = string | fn | { pattern: string, action: string | fn }
+-- @param {boolean} clear - optional, defaults to true
+-- @param {string} name - autogroup name
+vim.api.nvim_create_augroup({ name = group_name, clear = true })
 
--- 1. If you want aucmd to fire on every buffer, you can use the style below
-au.TextYankPost = function()
-    vim.highlight.on_yank()
-end
-
-au.BufWritePre = function()
-    u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
-end
-
--- au.InsertLeave = function()
---     vim.go.paste = false
--- end
-
-au.BufReadPost = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
-au.BufWinEnter = [[ if empty(&buftype) && line('.') > winheight(0) / 2 | execute 'normal! zz' | endif ]]
-
--- # Autocmd with multiple event: au(events: table, cmd: string | fn | {pattern: string, action: string | fn})
-
--- For this you can just call the required module just like a function
-au({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, function()
-    vim.wo.relativenumber = true
-end)
-au({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, function()
-    vim.wo.relativenumber = false
-end)
-
--- # Autocmd group: au.group(group: string, cmds: fn(au) | {event: string, pattern: string, action: string | fn})
-
--- 1. Where action is a ex-cmd
-au.group("PackerGroup", {
-    { "BufWritePost", "plugin.all.lua", "source <afile> | PackerCompile" },
+-- @param {string} name - augroup name
+-- @param {string | table} event - event or events to match against
+-- @param {string | table} pattern - pattern or patterns to match against
+-- @param {string | function} callback - function or string to execute on autocmd
+-- @param {string} command - optional, vimscript command Eg. command = "let g:value_set = v:true"
+-- @param {boolean} once - optional, defaults to false
+vim.api.nvim_create_autocmd({
+    event = "TextYankPost",
+    group = group_name,
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+vim.api.nvim_create_autocmd({
+    event = "BufReadPost",
+    group = group_name,
+    pattern = "*",
+    command = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif ]],
+})
+vim.api.nvim_create_autocmd({
+    event = "BufWinEnter",
+    group = group_name,
+    pattern = "*",
+    command = [[ if empty(&buftype) && line('.') > winheight(0) / 2 | execute 'normal! zz' | endif ]],
+})
+vim.api.nvim_create_autocmd({
+    event = "BufWritePre",
+    group = group_name,
+    pattern = "*",
+    callback = function()
+        u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
+    end,
+})
+vim.api.nvim_create_autocmd({
+    event = "BufWritePost",
+    group = group_name,
+    pattern = "plugin.all.lua",
+    command = "source <afile> | PackerCompile",
 })
