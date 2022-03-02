@@ -344,16 +344,16 @@ function _pipx_install_or_upgrade() {
     fi
 }
 
-_pipx_install_or_upgrade ansible
+# _pipx_install_or_upgrade ansible
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
 
-if [[ -d "${HOME}/.local/pipx/venvs/ansible" ]]; then
-    pipx inject ansible \
-        "ansible-lint[community,yamllint]"
-    ln -sfnv "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint" "${HOME}/.local/bin/ansible-lint"
-fi
+# if [[ -d "${HOME}/.local/pipx/venvs/ansible" ]]; then
+#     pipx inject ansible \
+#         "ansible-lint[community,yamllint]"
+#     ln -sfnv "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint" "${HOME}/.local/bin/ansible-lint"
+# fi
 
 ##### Install nodejs packages #################################################
 
