@@ -71,8 +71,11 @@ return {
     -- Register
     { "tversteeg/registers.nvim" },
 
-    -- Cursor line/word
-    { "yamatsum/nvim-cursorline" },
+    -- Cursor line
+    {
+        "mvllow/modes.nvim",
+        config = "require'plugin.rc.modes-nvim'.config()",
+    },
 
     -- Quick highlight
     {

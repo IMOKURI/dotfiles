@@ -56,6 +56,7 @@ o.listchars = {
 }
 o.showmatch = true
 o.colorcolumn = "120"
+o.cursorline = true
 o.breakindent = true
 o.showbreak = "↳"
 o.breakindentopt = "sbr"
