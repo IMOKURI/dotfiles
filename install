@@ -322,7 +322,7 @@ PYTHON_VERSION=$(/usr/bin/python3 -c "import sys;print('.'.join(map(str, sys.ver
 
 _banner "Install Pipx..."
 
-sudo /usr/bin/python3 -m pip install -U pip
+sudo /usr/bin/python3 -m pip install -U pip setuptools
 
 /usr/bin/python3 -m pip install --user -U pipx
 
