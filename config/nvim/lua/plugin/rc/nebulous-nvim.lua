@@ -13,8 +13,12 @@ function M.config()
             HighlightedLineNr4 = { fg = colors.Blue },
             HighlightedLineNr5 = { fg = colors.Magenta },
             DimLineNr = { fg = colors.DarkGrey },
+            ActiveWindow = { bg = colors.Black },
+            InactiveWindow = { bg = colors.background },
         },
     })
+
+    vim.opt.winhighlight = "Normal:ActiveWindow,NormalNC:InactiveWindow"
 end
 
 return M
