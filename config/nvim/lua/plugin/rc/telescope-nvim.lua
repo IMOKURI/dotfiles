@@ -19,7 +19,7 @@ function M.config()
             mappings = {
                 i = {
                     ["<Esc>"] = actions.close,
-                    ["<C-i>"] = action_layout.toggle_preview,
+                    ["<Tab>"] = action_layout.toggle_preview,
                 },
             },
         },
