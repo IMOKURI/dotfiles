@@ -1,5 +1,8 @@
 local M = {}
 local cmp = require("cmp")
+local compare = require("cmp.config.compare")
+local mapping = require("cmp.config.mapping")
+local types = require("cmp.types")
 
 local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
@@ -7,9 +10,9 @@ end
 
 function M.config()
     cmp.setup({
-        documentation = {
-            border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-            winhighlight = "FloatBorder:FloatBorder",
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
         },
 
         formatting = {
@@ -46,14 +49,16 @@ function M.config()
         },
 
         mapping = {
-            ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-            ["<C-e>"] = cmp.mapping({
-                i = cmp.mapping.abort(),
-                c = cmp.mapping.close(),
+            ["<C-b>"] = mapping(mapping.scroll_docs(-4), { "i", "c" }),
+            ["<C-f>"] = mapping(mapping.scroll_docs(4), { "i", "c" }),
+            ["<C-p>"] = mapping(mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }), { "i", "c" }),
+            ["<C-n>"] = mapping(mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }), { "i", "c" }),
+            ["<C-Space>"] = mapping(mapping.complete(), { "i", "c" }),
+            ["<C-e>"] = mapping({
+                i = mapping.abort(),
+                c = mapping.close(),
             }),
-            ["<CR>"] = cmp.mapping.confirm({ select = false }),
+            ["<CR>"] = mapping.confirm({ select = false }),
 
             ["<C-k>"] = function(fallback)
                 if vim.fn["vsnip#available"]() == 1 then
@@ -83,14 +88,16 @@ function M.config()
 
         sorting = {
             comparators = {
-                cmp.config.compare.offset,
-                cmp.config.compare.exact,
-                cmp.config.compare.score,
+                compare.offset,
+                compare.exact,
+                compare.score,
                 require("cmp-under-comparator").under,
-                cmp.config.compare.kind,
-                cmp.config.compare.sort_text,
-                cmp.config.compare.length,
-                cmp.config.compare.order,
+                compare.recently_used,
+                compare.locality,
+                compare.kind,
+                compare.sort_text,
+                compare.length,
+                compare.order,
             },
         },
     })
