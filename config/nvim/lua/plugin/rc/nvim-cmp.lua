@@ -60,6 +60,25 @@ function M.config()
             }),
             ["<CR>"] = mapping.confirm({ select = false }),
 
+            ["<Tab>"] = mapping({
+                c = function()
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        cmp.complete()
+                    end
+                end,
+            }),
+            ["<S-Tab>"] = mapping({
+                c = function()
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        cmp.complete()
+                    end
+                end,
+            }),
+
             ["<C-k>"] = function(fallback)
                 if vim.fn["vsnip#available"]() == 1 then
                     feedkey("<Plug>(vsnip-expand-or-jump)", "")
