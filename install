@@ -364,7 +364,8 @@ yarn global add --prefix "${HOME}" \
     @gridsome/cli \
     doctoc \
     tldr \
-    tree-sitter-cli
+    tree-sitter-cli \
+    prettier
 
 yarn global upgrade
 

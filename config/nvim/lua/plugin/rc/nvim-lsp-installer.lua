@@ -11,7 +11,7 @@ local servers = {
     "sumneko_lua",
     "terraformls",
     "vimls",
-    "yamlls",
+    -- "yamlls",
 }
 
 function M.config()
@@ -59,6 +59,7 @@ function M.config()
             opts.filetypes = {
                 "sh",
                 "lua",
+                "yaml",
             }
             opts.init_options = {
                 formatters = {
@@ -71,10 +72,20 @@ function M.config()
                         args = { "--stdin-filepath", "%filename", "--", "-" },
                         rootPatterns = { ".git" },
                     },
+                    prettier = {
+                        command = "prettier",
+                        args = {
+                            "--stdin",
+                            "--stdin-filepath",
+                            "%filepath",
+                        },
+                        rootPatterns = { ".prettierrc.json", ".git" },
+                    },
                 },
                 formatFiletypes = {
                     sh = "shfmt",
                     lua = "stylua",
+                    yaml = "prettier",
                 },
             }
         end
@@ -107,8 +118,8 @@ function M.config()
                             enabled = false,
                             maxLineLength = 120,
                             ignore = {
-                                "E203",  -- whitespace before ':'
-                                "W503",  -- line break before binary operator
+                                "E203", -- whitespace before ':'
+                                "W503", -- line break before binary operator
                             },
                         },
                         pyflakes = {
@@ -155,30 +166,30 @@ function M.config()
             }
         end
 
-        if server.name == "yamlls" then
-            opts.settings = {
-                yaml = {
-                    format = {
-                        enable = true,
-                        printWidth = 120,
-                    },
-                    validate = true,
-                    hover = true,
-                    completion = true,
-                    -- schemas = {
-                    --     kubernetes = "/*",
-                    --     require('schemastore').json.schemas{
-                    --         select = {
-                    --             "Ansible Role",
-                    --             "Ansible Playbook",
-                    --             "Ansible Inventory",
-                    --             "Ansible Collection Galaxy",
-                    --         }
-                    --     }
-                    -- }
-                },
-            }
-        end
+        -- if server.name == "yamlls" then
+        --     opts.settings = {
+        --         yaml = {
+        --             format = {
+        --                 enable = true,
+        --                 printWidth = 120,
+        --             },
+        --             validate = true,
+        --             hover = true,
+        --             completion = true,
+        --             -- schemas = {
+        --             --     kubernetes = "/*",
+        --             --     require('schemastore').json.schemas{
+        --             --         select = {
+        --             --             "Ansible Role",
+        --             --             "Ansible Playbook",
+        --             --             "Ansible Inventory",
+        --             --             "Ansible Collection Galaxy",
+        --             --         }
+        --             --     }
+        --             -- }
+        --         },
+        --     }
+        -- end
 
         -- This setup() function is exactly the same as lspconfig's setup function.
         -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
