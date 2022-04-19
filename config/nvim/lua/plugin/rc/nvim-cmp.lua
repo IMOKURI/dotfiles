@@ -16,30 +16,33 @@ function M.config()
         },
 
         formatting = {
-            format = function(entry, vim_item)
-                vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+            format = require("lspkind").cmp_format({
+                mode = "symbol_text",
+                maxwidth = 50,
 
-                local alias = {
-                    buffer = "[buffer]",
-                    emoji = "[emoji]",
-                    look = "[look]",
-                    nvim_lsp = "[lsp]",
-                    nvim_lsp_signature_help = "[lsp]",
-                    nvim_lua = "[lua]",
-                    path = "[path]",
-                    rg = "[rg]",
-                    treesitter = "[ts]",
-                    vsnip = "[snip]",
-                }
+                before = function(entry, vim_item)
+                    local alias = {
+                        buffer = "[Buffer]",
+                        emoji = "[Emoji]",
+                        look = "[Look]",
+                        nvim_lsp = "[LSP]",
+                        nvim_lsp_signature_help = "[LSP]",
+                        nvim_lua = "[Lua]",
+                        path = "[Path]",
+                        rg = "[Rg]",
+                        treesitter = "[TS]",
+                        vsnip = "[Snip]",
+                    }
 
-                if entry.source.name == "nvim_lsp" then
-                    vim_item.menu = entry.source.source.client.name
-                else
-                    vim_item.menu = alias[entry.source.name] or entry.source.name
-                end
+                    if entry.source.name == "nvim_lsp" then
+                        vim_item.menu = entry.source.source.client.name
+                    else
+                        vim_item.menu = alias[entry.source.name] or entry.source.name
+                    end
 
-                return vim_item
-            end,
+                    return vim_item
+                end,
+            }),
         },
 
         snippet = {
