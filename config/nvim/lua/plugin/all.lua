@@ -217,6 +217,7 @@ return {
         "hrsh7th/nvim-cmp",
         requires = {
             "lukas-reineke/cmp-under-comparator",
+            "onsails/lspkind.nvim",
         },
         event = {
             "BufReadPre",
@@ -234,7 +235,6 @@ return {
     { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
     { "hrsh7th/cmp-path", after = "nvim-cmp" },
     { "lukas-reineke/cmp-rg", after = "nvim-cmp" },
-    { "onsails/lspkind.nvim", after = "nvim-cmp" },
     { "ray-x/cmp-treesitter", after = "nvim-cmp" },
     { "octaltree/cmp-look", after = "nvim-cmp" },
 
