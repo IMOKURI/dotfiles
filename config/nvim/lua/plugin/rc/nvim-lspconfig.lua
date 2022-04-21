@@ -1,6 +1,7 @@
 local M = {}
 
 function M.config()
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
     vim.keymap.set("n", "<Leader>]", "<Cmd>lua vim.lsp.buf.definition()<CR>")
     vim.keymap.set("n", "<Leader>z", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
     vim.keymap.set("x", "<Leader>z", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>")
