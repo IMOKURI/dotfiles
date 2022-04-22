@@ -111,7 +111,7 @@ function M.config()
         if server.name == "pylsp" then
             opts.settings = {
                 -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
-                -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy wheel
+                -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
                 pylsp = {
                     plugins = {
                         pycodestyle = {
