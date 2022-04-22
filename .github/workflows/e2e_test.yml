@@ -19,7 +19,7 @@ jobs:
           - ubuntu
         os_version:
           - 20.04
-          # - 22.04
+          - 22.04
 
     runs-on: ubuntu-latest
     container: ${{ matrix.os_name }}:${{ matrix.os_version }}
@@ -42,7 +42,7 @@ jobs:
           - ubuntu
         os_version:
           - 20.04
-          # - 22.04
+          - 22.04
 
     runs-on: ubuntu-latest
     container: ${{ matrix.os_name }}:${{ matrix.os_version }}
