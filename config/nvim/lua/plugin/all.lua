@@ -263,6 +263,12 @@ return {
     -- LSP
     { "nvim-lua/lsp-status.nvim" },
     {
+        "Mofiqul/trld.nvim",
+        config = function()
+            require("trld").setup({position = "top"})
+        end,
+    },
+    {
         "neovim/nvim-lspconfig",
         -- event = "BufReadPre",
         -- requires = {
