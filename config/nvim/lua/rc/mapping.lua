@@ -18,6 +18,8 @@ vim.keymap.set("n", "QQ", "<Cmd>bdelete!<CR>")
 vim.keymap.set("n", "<Leader>q", "<Cmd>qall<CR>")
 vim.keymap.set("n", "<Leader>Q", "<Cmd>qall!<CR>")
 
+vim.keymap.set("n", "<Leader>o", "<Cmd>normal '0\"<CR>")
+
 -- }}}
 
 -- -----------------------------------------------------------------------------
