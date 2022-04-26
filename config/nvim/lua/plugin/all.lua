@@ -265,7 +265,7 @@ return {
     {
         "Mofiqul/trld.nvim",
         config = function()
-            require("trld").setup({position = "top"})
+            require("trld").setup({ position = "top" })
         end,
     },
     {
