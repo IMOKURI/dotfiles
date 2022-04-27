@@ -199,6 +199,13 @@ return {
             "kana/vim-textobj-user",
         },
     },
+    {
+        "rbtnn/vim-textobj-vimfunctionname",
+        requires = {
+            "kana/vim-textobj-user",
+        },
+        setup = "vim.g.vim_textobj_vimfunctionname_mapping = 'f'",
+    },
 
     -- Treesitter
     {
