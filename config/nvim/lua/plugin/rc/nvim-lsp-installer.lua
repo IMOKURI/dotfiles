@@ -25,6 +25,11 @@ function M.config()
     local on_attach_vim = function(client)
         lsp_status.on_attach(client)
 
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+            vim.lsp.handlers.signature_help,
+            { border = "single" }
+        )
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             virtual_text = {
                 source = true,
@@ -111,7 +116,7 @@ function M.config()
         if server.name == "pylsp" then
             opts.settings = {
                 -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
-                -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy wheel
+                -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
                 pylsp = {
                     plugins = {
                         pycodestyle = {

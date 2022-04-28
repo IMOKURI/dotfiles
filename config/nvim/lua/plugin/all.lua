@@ -199,6 +199,13 @@ return {
             "kana/vim-textobj-user",
         },
     },
+    {
+        "rbtnn/vim-textobj-vimfunctionname",
+        requires = {
+            "kana/vim-textobj-user",
+        },
+        setup = "vim.g.vim_textobj_vimfunctionname_mapping = 'f'",
+    },
 
     -- Treesitter
     {
@@ -262,6 +269,12 @@ return {
 
     -- LSP
     { "nvim-lua/lsp-status.nvim" },
+    {
+        "Mofiqul/trld.nvim",
+        config = function()
+            require("trld").setup({ position = "top" })
+        end,
+    },
     {
         "neovim/nvim-lspconfig",
         -- event = "BufReadPre",
