@@ -61,10 +61,6 @@
 [diff "ansible-vault"]
   textconv = ansible-vault view
 
-[diff "xlsx"]
-  binary = true
-  textconv = git-xlsx-textconv
-
 [diff "jupyternotebook"]
   command = git-nbdiffdriver diff -s -m
 

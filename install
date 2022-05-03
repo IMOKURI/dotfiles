@@ -378,11 +378,9 @@ yarn global upgrade
 _banner "Install Go Packages..."
 if [[ ${VERSION_ID} == "22.04" ]]; then
     GO111MODULE=on go install \
-        github.com/tokuhirom/git-xlsx-textconv@latest \
         mvdan.cc/sh/v3/cmd/shfmt@latest
 else
     GO111MODULE=on go get -u \
-        github.com/tokuhirom/git-xlsx-textconv \
         mvdan.cc/sh/cmd/shfmt
 fi
 
