@@ -60,6 +60,7 @@ update-dot: ## update dotfiles repository
 	git pull
 
 update-plugin: ## update neovim plugins
+	nvim --headless -c "quitall"
 	nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
 
 deploy: ## Create symlink
