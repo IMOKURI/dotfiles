@@ -405,7 +405,7 @@ GO_VERSION=$(go version | {
     read _ _ v _
     echo ${v#go}
 })
-_logger "Go version: ${GO_VERSION}"
+_logger "${INFO}" "Go version: ${GO_VERSION}"
 op=$(vercomp "${GO_VERSION}" "1.17")
 if [[ ${op} == "=" || ${op} == ">" ]]; then
     go install \
