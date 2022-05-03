@@ -12,7 +12,7 @@ The dotfiles that can be installed by one command
 
 ## Targets
 
-- Ubuntu 20.04
+- Ubuntu 20.04, 22.04
 - Rocky 8
 - RHEL 8
 
