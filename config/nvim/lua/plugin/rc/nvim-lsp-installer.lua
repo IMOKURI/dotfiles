@@ -1,7 +1,6 @@
 local M = {}
 
 local servers = {
-    -- "ansiblels",
     "bashls",
     "diagnosticls",
     "dockerls",
@@ -11,7 +10,14 @@ local servers = {
     "sumneko_lua",
     "terraformls",
     "vimls",
-    -- "yamlls",
+}
+
+local servers_default_setup = {
+    "bashls",
+    "dockerls",
+    "jsonls",
+    "terraformls",
+    "vimls",
 }
 
 function M.config()
@@ -43,163 +49,138 @@ function M.config()
 
     local lsp_installer = require("nvim-lsp-installer")
 
-    for _, name in pairs(servers) do
-        local ok, server = lsp_installer.get_server(name)
-        -- Check that the server is supported in nvim-lsp-installer
-        if ok then
-            if not server:is_installed() then
-                print("Installing " .. name)
-                server:install()
-            end
-        end
+    lsp_installer.setup({
+        ensure_installed = servers,
+        automatic_installation = true,
+    })
+
+    local lsp_config = require("lspconfig")
+
+    for _, name in pairs(servers_default_setup) do
+        lsp_config[name].setup({
+            capabilities = capabilities,
+            on_attach = on_attach_vim,
+        })
     end
 
-    lsp_installer.on_server_ready(function(server)
-        local opts = {}
-
-        opts.capabilities = capabilities
-        opts.on_attach = on_attach_vim
-
-        if server.name == "diagnosticls" then
-            opts.filetypes = {
-                "sh",
-                "lua",
-                "yaml",
-            }
-            opts.init_options = {
-                formatters = {
-                    shfmt = {
-                        command = "shfmt",
-                        args = { "-i", "4", "-sr", "-ci" },
+    lsp_config["diagnosticls"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach_vim,
+        filetypes = {
+            "sh",
+            "lua",
+            "yaml",
+        },
+        init_options = {
+            formatters = {
+                shfmt = {
+                    command = "shfmt",
+                    args = { "-i", "4", "-sr", "-ci" },
+                },
+                stylua = {
+                    command = "stylua",
+                    args = { "--stdin-filepath", "%filename", "--", "-" },
+                    rootPatterns = { ".git" },
+                },
+                prettier = {
+                    command = "prettier",
+                    args = {
+                        "--stdin",
+                        "--stdin-filepath",
+                        "%filepath",
                     },
-                    stylua = {
-                        command = "stylua",
-                        args = { "--stdin-filepath", "%filename", "--", "-" },
-                        rootPatterns = { ".git" },
-                    },
-                    prettier = {
-                        command = "prettier",
-                        args = {
-                            "--stdin",
-                            "--stdin-filepath",
-                            "%filepath",
+                    rootPatterns = { ".prettierrc.json", ".git" },
+                },
+            },
+            formatFiletypes = {
+                sh = "shfmt",
+                lua = "stylua",
+                yaml = "prettier",
+            },
+        },
+    })
+
+    lsp_config["pylsp"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach_vim,
+        settings = {
+            -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
+            -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
+            pylsp = {
+                plugins = {
+                    pycodestyle = {
+                        enabled = false,
+                        maxLineLength = 120,
+                        ignore = {
+                            "E203", -- whitespace before ':'
+                            "W503", -- line break before binary operator
                         },
-                        rootPatterns = { ".prettierrc.json", ".git" },
+                    },
+                    pyflakes = {
+                        enabled = false,
+                    },
+                    autopep8 = {
+                        enabled = false,
+                    },
+                    yapf = {
+                        enabled = false,
+                    },
+                    pylsp_black = {
+                        enabled = true,
+                        line_length = 120,
+                    },
+                    pyls_isort = {
+                        enabled = true,
+                    },
+                    pylsp_mypy = {
+                        enabled = false,
+                        live_mode = false,
+                        dmypy = true,
+                        strict = false,
                     },
                 },
-                formatFiletypes = {
-                    sh = "shfmt",
-                    lua = "stylua",
-                    yaml = "prettier",
+            },
+        },
+    })
+
+    lsp_config["pyright"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach_vim,
+        settings = {
+            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+            pyright = {},
+            python = {
+                pythonPath = vim.fn.exepath("python"),
+                analysis = {
+                    autoImportCompletions = true,
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                    typeCheckingMode = "basic",
+                    useLibraryCodeForTypes = true,
                 },
-            }
-        end
+            },
+        },
+    })
 
-        if server.name == "sumneko_lua" then
-            opts.settings = {
-                Lua = {
-                    runtime = {
-                        version = "LuaJIT",
-                        path = vim.split(package.path, ";"),
-                    },
-                    diagnostics = {
-                        enable = true,
-                        globals = vim.list_extend({
-                            "use",
-                            "vim",
-                        }, {}),
-                    },
+    lsp_config["sumneko_lua"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach_vim,
+        settings = {
+            Lua = {
+                runtime = {
+                    version = "LuaJIT",
+                    path = vim.split(package.path, ";"),
                 },
-            }
-        end
-
-        if server.name == "pylsp" then
-            opts.settings = {
-                -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
-                -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
-                pylsp = {
-                    plugins = {
-                        pycodestyle = {
-                            enabled = false,
-                            maxLineLength = 120,
-                            ignore = {
-                                "E203", -- whitespace before ':'
-                                "W503", -- line break before binary operator
-                            },
-                        },
-                        pyflakes = {
-                            enabled = false,
-                        },
-                        autopep8 = {
-                            enabled = false,
-                        },
-                        yapf = {
-                            enabled = false,
-                        },
-                        pylsp_black = {
-                            enabled = true,
-                            line_length = 120,
-                        },
-                        pyls_isort = {
-                            enabled = true,
-                        },
-                        pylsp_mypy = {
-                            enabled = false,
-                            live_mode = false,
-                            dmypy = true,
-                            strict = false,
-                        },
-                    },
+                diagnostics = {
+                    enable = true,
+                    globals = vim.list_extend({
+                        "use",
+                        "vim",
+                    }, {}),
                 },
-            }
-        end
-
-        if server.name == "pyright" then
-            opts.settings = {
-                -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-                pyright = {},
-                python = {
-                    pythonPath = vim.fn.exepath("python"),
-                    analysis = {
-                        autoImportCompletions = true,
-                        autoSearchPaths = true,
-                        diagnosticMode = "workspace",
-                        typeCheckingMode = "basic",
-                        useLibraryCodeForTypes = true,
-                    },
-                },
-            }
-        end
-
-        -- if server.name == "yamlls" then
-        --     opts.settings = {
-        --         yaml = {
-        --             format = {
-        --                 enable = true,
-        --                 printWidth = 120,
-        --             },
-        --             validate = true,
-        --             hover = true,
-        --             completion = true,
-        --             -- schemas = {
-        --             --     kubernetes = "/*",
-        --             --     require('schemastore').json.schemas{
-        --             --         select = {
-        --             --             "Ansible Role",
-        --             --             "Ansible Playbook",
-        --             --             "Ansible Inventory",
-        --             --             "Ansible Collection Galaxy",
-        --             --         }
-        --             --     }
-        --             -- }
-        --         },
-        --     }
-        -- end
-
-        -- This setup() function is exactly the same as lspconfig's setup function.
-        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md
-        server:setup(opts)
-    end)
+            },
+        },
+    })
 end
 
 return M
