@@ -365,11 +365,10 @@ _pipx_install_or_upgrade wandb
 
 _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
-    @gridsome/cli \
     doctoc \
     tldr \
-    tree-sitter-cli \
     prettier
+    # @gridsome/cli
 
 yarn global upgrade
 
