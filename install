@@ -6,6 +6,9 @@ set -e
 
 export PATH=$HOME/neovim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 
+# For Ubuntu
+export DEBIAN_FRONTEND=noninteractive
+
 # Defind Colors
 RED="\033[38;2;255;84;88m"
 GREEN="\033[38;2;98;209;150m"
@@ -229,7 +232,6 @@ function install_packages_deb() {
         return
     fi
 
-    export DEBIAN_FRONTEND=noninteractive
     sudo -E apt-get update
     sudo -E apt-get install -y tzdata
     sudo -E apt-get upgrade -y
