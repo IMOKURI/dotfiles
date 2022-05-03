@@ -213,7 +213,6 @@ function install_packages_el() {
         python3-devel \
         python3-pip \
         readline-devel \
-        ShellCheck \
         sqlite \
         sqlite-devel \
         tk-devel \
@@ -252,7 +251,6 @@ function install_packages_deb() {
         python3-distutils \
         python3-pip \
         python3-venv \
-        shellcheck \
         yarn \
         wamerican
 
