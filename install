@@ -229,6 +229,7 @@ function install_packages_deb() {
         return
     fi
 
+    export DEBIAN_FRONTEND=noninteractive
     sudo -E apt-get update
     sudo -E apt-get upgrade -y
     sudo -E apt-get install -y \
