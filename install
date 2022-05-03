@@ -376,10 +376,10 @@ yarn global upgrade
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
-GO111MODULE=on go get -u \
-    github.com/mrtazz/checkmake \
-    github.com/tokuhirom/git-xlsx-textconv \
-    mvdan.cc/sh/cmd/shfmt
+GO111MODULE=on go install \
+    github.com/mrtazz/checkmake@latest \
+    github.com/tokuhirom/git-xlsx-textconv@latest \
+    mvdan.cc/sh/cmd/shfmt@latest
 
 ##### Install stylua #############################################
 
