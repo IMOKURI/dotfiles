@@ -213,6 +213,7 @@ function install_packages_el() {
         python3-devel \
         python3-pip \
         readline-devel \
+        ShellCheck \
         sqlite \
         sqlite-devel \
         tk-devel \
@@ -251,6 +252,7 @@ function install_packages_deb() {
         python3-distutils \
         python3-pip \
         python3-venv \
+        shellcheck \
         yarn \
         wamerican
 
@@ -376,9 +378,15 @@ yarn global upgrade
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
-GO111MODULE=on go install \
-    github.com/tokuhirom/git-xlsx-textconv@latest \
-    mvdan.cc/sh/v3/cmd/shfmt@latest
+if [[ ${VERSION_ID} == "22.04" ]]; then
+    GO111MODULE=on go install \
+        github.com/tokuhirom/git-xlsx-textconv@latest \
+        mvdan.cc/sh/v3/cmd/shfmt@latest
+else
+    GO111MODULE=on go get -u \
+        github.com/tokuhirom/git-xlsx-textconv \
+        mvdan.cc/sh/cmd/shfmt
+fi
 
 ##### Install stylua #############################################
 
