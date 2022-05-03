@@ -45,12 +45,9 @@ function _logger() {
 }
 
 # https://stackoverflow.com/a/4025065/4819106
-# Returns:
-#   0: =
-#   1: >
-#   2: <
 function vercomp() {
     if [[ $1 == $2 ]]; then
+        echo "="
         return 0
     fi
     local IFS=.
@@ -65,12 +62,15 @@ function vercomp() {
             ver2[i]=0
         fi
         if ((10#${ver1[i]} > 10#${ver2[i]})); then
-            return 1
+            echo ">"
+            return 0
         fi
         if ((10#${ver1[i]} < 10#${ver2[i]})); then
-            return 2
+            echo "<"
+            return 0
         fi
     done
+    echo "="
     return 0
 }
 
@@ -405,9 +405,9 @@ GO_VERSION=$(go version | {
     read _ _ v _
     echo ${v#go}
 })
-vercomp "${GO_VERSION}" "1.17"
-op=$?
-if [[ ${op} == 0 || ${op} == 1 ]]; then
+_logger "Go version: ${GO_VERSION}"
+op=$(vercomp "${GO_VERSION}" "1.17")
+if [[ ${op} == "=" || ${op} == ">" ]]; then
     go install \
         mvdan.cc/sh/v3/cmd/shfmt@latest
 else
