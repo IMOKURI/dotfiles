@@ -334,7 +334,7 @@ else
     _logger "${INFO}" "Update dotfiles repository"
     pushd "$(pwd)"
     cd "${DOTPATH}"
-    make update-dot
+    make update
     popd
 fi
 

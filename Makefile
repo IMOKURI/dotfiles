@@ -61,7 +61,7 @@ update-dot: ## update dotfiles repository
 
 update-plugin: ## update neovim plugins
 	nvim --headless -c "quitall"
-	nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
+	# nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
