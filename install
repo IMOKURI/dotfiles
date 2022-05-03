@@ -44,6 +44,36 @@ function _logger() {
     printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
 
+# https://stackoverflow.com/a/4025065/4819106
+# Returns:
+#   0: =
+#   1: >
+#   2: <
+function vercomp() {
+    if [[ $1 == $2 ]]; then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i = ${#ver1[@]}; i < ${#ver2[@]}; i++)); do
+        ver1[i]=0
+    done
+    for ((i = 0; i < ${#ver1[@]}; i++)); do
+        if [[ -z ${ver2[i]} ]]; then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]})); then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]})); then
+            return 2
+        fi
+    done
+    return 0
+}
+
 ##### Detect OS Distribution ##################################################
 
 _banner "Detect OS Distribution"
@@ -310,19 +340,15 @@ fi
 
 ##### Build git ###############################################################
 
-_banner "Install Git..."
+_banner "Build & Install Git for EL..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
 if "${is_el}"; then
     make git
-else
-    make update-gitstatus
 fi
 popd
 
 ##### Install python packages #################################################
-
-PYTHON_VERSION=$(/usr/bin/python3 -c "import sys;print('.'.join(map(str, sys.version_info[:2])))")
 
 _banner "Install Pipx..."
 
@@ -368,15 +394,21 @@ yarn global add --prefix "${HOME}" \
     doctoc \
     tldr \
     prettier
-    # @gridsome/cli
+# @gridsome/cli
 
 yarn global upgrade
 
 ##### Install go packages #####################################################
 
 _banner "Install Go Packages..."
-if [[ ${VERSION_ID} == "22.04" ]]; then
-    GO111MODULE=on go install \
+GO_VERSION=$(go version | {
+    read _ _ v _
+    echo ${v#go}
+})
+vercomp "${GO_VERSION}" "1.17"
+op=$?
+if [[ ${op} == 0 || ${op} == 1 ]]; then
+    go install \
         mvdan.cc/sh/v3/cmd/shfmt@latest
 else
     GO111MODULE=on go get -u \

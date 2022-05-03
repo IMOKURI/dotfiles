@@ -15,7 +15,6 @@ VIMPATH       := $(HOME)/src/vim
 NEOVIMPATH    := $(HOME)/src/neovim
 GITPATH       := $(HOME)/src/git
 GITLFSPATH    := $(HOME)/src/git-lfs
-GITSTATUSPATH := $(HOME)/src/gitstatus
 BASHMARKS     := $(HOME)/src/bashmarks
 
 # Proxy settings
@@ -68,7 +67,7 @@ deploy: ## Create symlink
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
-git: update-git build-git update-gitlfs build-gitlfs update-gitstatus ## Get latest git
+git: update-git build-git update-gitlfs build-gitlfs ## Get latest git
 
 update-git: ## Update git repository
 	$(call repo,$(GITPATH),git/git)
@@ -86,9 +85,6 @@ build-gitlfs: ## Build git-lfs
 	cd $(GITLFSPATH) && \
 	make && \
 	ln -sfnv $(GITLFSPATH)/bin/git-lfs $(HOME)/bin/git-lfs
-
-update-gitstatus: ## Update gitstatus repository
-	$(call repo,$(GITSTATUSPATH),romkatv/gitstatus)
 
 neovim: update-neovim build-neovim ## Get edge neovim
 
