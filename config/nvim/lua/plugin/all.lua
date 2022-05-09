@@ -268,7 +268,6 @@ return {
     },
 
     -- LSP
-    { "nvim-lua/lsp-status.nvim" },
     {
         "Mofiqul/trld.nvim",
         config = function()
@@ -287,7 +286,6 @@ return {
         "williamboman/nvim-lsp-installer",
         after = {
             "cmp-nvim-lsp",
-            "lsp-status.nvim",
             "nvim-lspconfig",
         },
         config = "require'plugin.rc.nvim-lsp-installer'.config()",

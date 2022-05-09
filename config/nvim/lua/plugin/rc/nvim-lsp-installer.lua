@@ -21,16 +21,10 @@ local servers_default_setup = {
 }
 
 function M.config()
-    local lsp_status = require("lsp-status")
-    lsp_status.register_progress()
-
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-    local capabilities = lsp_status.capabilities
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-    local on_attach_vim = function(client)
-        lsp_status.on_attach(client)
-
+    local on_attach_vim = function()
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
             vim.lsp.handlers.signature_help,
