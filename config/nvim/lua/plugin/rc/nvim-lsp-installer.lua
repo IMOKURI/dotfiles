@@ -138,6 +138,9 @@ function M.config()
                         dmypy = true,
                         strict = false,
                     },
+                    memestra = {
+                        enabled = true,
+                    },
                 },
             },
         },
