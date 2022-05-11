@@ -395,6 +395,11 @@ if [[ -d "${HOME}/.local/pipx/venvs/nbdime" ]]; then
         isort \
         jupyterlab_code_formatter \
         jupyterlab-git
+    # bash_kernel
+    # ${HOME}/.local/pipx/venvs/nbdime/bin/python -m bash_kernel.install
+
+    # INFO: bash_kernel is expecting `$` as the prompt character.
+    # https://github.com/takluyver/bash_kernel/issues/80#issuecomment-637041076
 fi
 
 ##### Install nodejs packages #################################################
