@@ -1,0 +1,10 @@
+{
+  "codeCellConfig": {
+    "autoClosingBrackets": true,
+    "lineNumbers": true
+  },
+  "markdownCellConfig": {
+    "autoClosingBrackets": true
+  },
+  "kernelShutdown": true
+}

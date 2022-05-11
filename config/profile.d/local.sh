@@ -30,6 +30,8 @@ if [ -f ~/.hosts ]; then
   export HOSTALIASES=~/.hosts
 fi
 
+export JUPYTERLAB_SETTINGS_DIR="$HOME/.config/jupyterlab"
+
 ##### Load pyenv ##############################################################
 
 export PATH=$HOME/.pyenv/bin:$PATH
