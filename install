@@ -387,6 +387,16 @@ _pipx_install_or_upgrade wandb
 #     ln -sfnv "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint" "${HOME}/.local/bin/ansible-lint"
 # fi
 
+if [[ -d "${HOME}/.local/pipx/venvs/nbdime" ]]; then
+    pipx inject nbdime \
+        jupyterlab \
+        ipywidgets \
+        black \
+        isort \
+        jupyterlab_code_formatter \
+        jupyterlab-git
+fi
+
 ##### Install nodejs packages #################################################
 
 _banner "Install NodeJS Packages..."
