@@ -74,7 +74,9 @@ return {
     -- Cursor line
     {
         "mvllow/modes.nvim",
-        config = "require'plugin.rc.modes-nvim'.config()",
+        config = function()
+            require("modes").setup()
+        end,
     },
 
     -- Quick highlight
@@ -147,7 +149,9 @@ return {
     -- UI
     {
         "stevearc/dressing.nvim",
-        config = "require'plugin.rc.dressing'.config()",
+        config = function()
+            require("dressing").setup()
+        end,
     },
 
     -- Terminal
