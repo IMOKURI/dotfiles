@@ -153,6 +153,7 @@ alias av='ansible-vault'
 alias e='explorer.exe .'
 
 alias nd='nbdiff -s'
+alias j='jupyter lab --no-browser --ip="0.0.0.0"'
 
 alias rg='rg --smart-case'
 
