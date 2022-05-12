@@ -8,7 +8,9 @@ vim.filetype.add({
         ["jupyterlab-settings"] = "json",
     },
     filename = {
-        ["Dockerfile.*"] = "dockerfile",
         ["install"] = "sh",
+    },
+    pattern = {
+        [".*Dockerfile.*"] = "dockerfile",
     },
 })
