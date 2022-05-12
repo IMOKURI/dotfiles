@@ -22,7 +22,7 @@ export GOPATH=$HOME/go
 
 export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
-export EDITOR="vi"
+export EDITOR="nvim"
 
 # export MANPAGER='nvim +Man!'
 
