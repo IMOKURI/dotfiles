@@ -15,12 +15,20 @@ end
 
 function M.close_fold()
     if vim.fn.foldlevel(".") == 0 then
-        vim.cmd("norm! zM")
+        vim.api.nvim_cmd({
+            cmd = "normal",
+            args = { "zM" },
+            bang = true,
+        }, {})
         return
     end
 
     local foldc_lnum = vim.fn.foldclosed(".")
-    vim.cmd("norm! zc")
+    vim.api.nvim_cmd({
+        cmd = "normal",
+        args = { "zc" },
+        bang = true,
+    }, {})
     if foldc_lnum == -1 then
         return
     end
@@ -28,7 +36,11 @@ function M.close_fold()
     if vim.fn.foldclosed(".") ~= foldc_lnum then
         return
     end
-    vim.cmd("norm! zM")
+    vim.api.nvim_cmd({
+        cmd = "normal",
+        args = { "zM" },
+        bang = true,
+    }, {})
 end
 
 function M.move_win(key)
