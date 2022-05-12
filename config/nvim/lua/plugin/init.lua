@@ -3,11 +3,17 @@ local dir = string.format("%s/site/pack/packer/opt/packer.nvim", vim.fn.stdpath(
 if vim.fn.isdirectory(dir) == 0 then
     local url = "https://github.com/wbthomason/packer.nvim"
     vim.api.nvim_command(string.format("!git clone %q %q", url, dir))
-    vim.cmd([[packadd packer.nvim]])
+    vim.api.nvim_cmd({
+        cmd = "packadd",
+        args = { "packer.nvim" },
+    }, {})
 end
 
 function _G.run_packer(method)
-    vim.cmd([[packadd packer.nvim]])
+    vim.api.nvim_cmd({
+        cmd = "packadd",
+        args = { "packer.nvim" },
+    }, {})
     require("plugin.load")[method]()
 end
 
