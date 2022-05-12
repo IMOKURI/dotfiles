@@ -1,10 +1,75 @@
 {
   "codeCellConfig": {
     "autoClosingBrackets": true,
-    "lineNumbers": true
+    "cursorBlinkRate": 530,
+    "fontFamily": null,
+    "fontSize": null,
+    "lineHeight": null,
+    "lineNumbers": true,
+    "lineWrap": "off",
+    "matchBrackets": true,
+    "readOnly": false,
+    "insertSpaces": true,
+    "tabSize": 4,
+    "wordWrapColumn": 120,
+    "rulers": [],
+    "codeFolding": false,
+    "lineWiseCopyCut": true,
+    "showTrailingSpace": false
   },
+  "defaultCell": "code",
+  "kernelShutdown": true,
   "markdownCellConfig": {
-    "autoClosingBrackets": true
+    "autoClosingBrackets": true,
+    "cursorBlinkRate": 530,
+    "fontFamily": null,
+    "fontSize": null,
+    "lineHeight": null,
+    "lineNumbers": false,
+    "lineWrap": "on",
+    "matchBrackets": false,
+    "readOnly": false,
+    "insertSpaces": true,
+    "tabSize": 4,
+    "wordWrapColumn": 120,
+    "rulers": [],
+    "codeFolding": false,
+    "lineWiseCopyCut": true,
+    "showTrailingSpace": false
   },
-  "kernelShutdown": true
+  "rawCellConfig": {
+    "autoClosingBrackets": false,
+    "cursorBlinkRate": 530,
+    "fontFamily": null,
+    "fontSize": null,
+    "lineHeight": null,
+    "lineNumbers": false,
+    "lineWrap": "on",
+    "matchBrackets": false,
+    "readOnly": false,
+    "insertSpaces": true,
+    "tabSize": 4,
+    "wordWrapColumn": 80,
+    "rulers": [],
+    "codeFolding": false,
+    "lineWiseCopyCut": true,
+    "showTrailingSpace": false
+  },
+  "scrollPastEnd": true,
+  "recordTiming": false,
+  "numberCellsToRenderDirectly": 99999,
+  "remainingTimeBeforeRescheduling": 50,
+  "renderCellOnIdle": true,
+  "observedTopMargin": "1000px",
+  "observedBottomMargin": "1000px",
+  "maxNumberOutputs": 50,
+  "showEditorForReadOnlyMarkdown": true,
+  "kernelStatus": {
+    "showOnStatusBar": false,
+    "showProgress": true
+  },
+  "experimentalDisableDocumentWideUndoRedo": false,
+  "renderingLayout": "default",
+  "sideBySideLeftMarginOverride": "10px",
+  "sideBySideRightMarginOverride": "10px"
 }

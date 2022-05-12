@@ -4,6 +4,9 @@ g.do_filetype_lua = 1
 g.did_load_filetypes = 0
 
 vim.filetype.add({
+    extension = {
+        ["jupyterlab-settings"] = "json",
+    },
     filename = {
         ["Dockerfile.*"] = "dockerfile",
         ["install"] = "sh",
