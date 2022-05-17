@@ -24,7 +24,7 @@ function M.config()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-    local on_attach_vim = function()
+    local on_attach_vim = function(client, bufnr)
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
         vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
             vim.lsp.handlers.signature_help,
@@ -39,6 +39,20 @@ function M.config()
             update_in_insert = true,
             severity_sort = true,
         })
+
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "<Leader>C", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "<Leader>z", "<Cmd>lua vim.lsp.buf.format({ async = true })<CR>", { buffer = bufnr })
+        vim.keymap.set("x", "<Leader>z", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "<Leader>r", "<Cmd>lua vim.lsp.buf.rename()<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "<Leader>j", "<Cmd>lua vim.diagnostic.goto_next()<CR>", { buffer = bufnr })
+        vim.keymap.set("n", "<Leader>k", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", { buffer = bufnr })
+
+        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+        end
     end
 
     local lsp_installer = require("nvim-lsp-installer")

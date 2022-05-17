@@ -279,15 +279,10 @@ return {
         end,
     },
     {
-        "neovim/nvim-lspconfig",
-        -- event = "BufReadPre",
-        -- requires = {
-        --     "b0o/schemastore.nvim",
-        -- },
-        config = "require'plugin.rc.nvim-lspconfig'.config()",
-    },
-    {
         "williamboman/nvim-lsp-installer",
+        requires = {
+            "neovim/nvim-lspconfig",
+        },
         after = {
             "cmp-nvim-lsp",
             "nvim-lspconfig",
