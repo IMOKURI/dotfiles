@@ -1,19 +1,23 @@
-# feat      feature
-# fix       bug fix
-# deps      dependencies
-# breaking  breaking changes
-# docs      documentation
-# style     formatting, missing semi colons, etc
-# refactor  refactoring
-# test      when adding missing tests
-# chore     maintain
+# feat      Add new feature.
+# fix       Fix bug.
+# deps      Update dependencies.
+# style     Formatting, missing semi colons, etc.
+# refactor  Refactoring.
+# docs      Documentation.
+# test      Adding missing tests.
+# chore     Maintain.
 
 
 # [optional body]
 
 # [optional footer]
 
-# ==========
+# BREAKING CHANGE: xxx
+
+# Referencing issues
+# Closes #xxx, #xxx
+
+# ================================================================================
 # Conventional Commits
 # - https://www.conventionalcommits.org/ja/v1.0.0/
 # AngularJS Git Commit Message Conventions
