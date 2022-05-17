@@ -45,15 +45,27 @@ end
 
 function M.move_win(key)
     local curwin = vim.fn.winnr() or 0
-    vim.api.nvim_command("wincmd " .. key)
+    vim.api.nvim_cmd({
+        cmd = "wincmd",
+        args = { key },
+    }, {})
 
     if curwin == (vim.fn.winnr() or 0) then
         if string.match("jk", key) ~= nil then
-            vim.api.nvim_command("wincmd s")
+            vim.api.nvim_cmd({
+                cmd = "wincmd",
+                args = { "s" },
+            }, {})
         else
-            vim.api.nvim_command("wincmd v")
+            vim.api.nvim_cmd({
+                cmd = "wincmd",
+                args = { "v" },
+            }, {})
         end
-        vim.api.nvim_command("wincmd " .. key)
+        vim.api.nvim_cmd({
+            cmd = "wincmd",
+            args = { key },
+        }, {})
     end
 end
 
