@@ -6,7 +6,10 @@ function M.go_task_file()
     if vim.fn.len(found_task_file) == 0 then
         print(string.format('"%s" not found...', task_file))
     else
-        vim.api.nvim_command(string.format("edit %s", vim.fn.fnameescape(vim.fn.remove(found_task_file, 0))))
+        vim.api.nvim_cmd({
+            cmd = "edit",
+            args = { vim.fn.fnameescape(vim.fn.remove(found_task_file, 0)) },
+        }, {})
     end
 end
 
