@@ -7,4 +7,8 @@ function M.echo(msg)
     }, {})
 end
 
+function M.notify()
+    vim.notify("This is an error message.", vim.log.levels.ERROR)
+end
+
 return M

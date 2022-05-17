@@ -41,8 +41,9 @@ function M.config()
         },
     })
 
-    telescope.load_extension("ui-select")
+    telescope.load_extension("notify")
     telescope.load_extension("smart_history")
+    telescope.load_extension("ui-select")
 end
 
 function M.project_files()

@@ -154,6 +154,17 @@ return {
         end,
     },
 
+    -- Notification
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            vim.notify = require("notify")
+            vim.notify.setup({
+                stages = "fade",
+            })
+        end,
+    },
+
     -- Terminal
     {
         "kassio/neoterm",
@@ -310,6 +321,7 @@ return {
             "nvim-telescope/telescope-smart-history.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
+            "rcarriga/nvim-notify",
             "tami5/sqlite.lua",
         },
         config = "require'plugin.rc.telescope-nvim'.config()",
