@@ -15,8 +15,8 @@ function M.config()
             DimLineNr = { fg = colors.DarkGrey },
             ActiveWindow = { bg = colors.Black },
             InactiveWindow = { bg = colors.background },
-            WinBarContent = { fg = colors.Blue, bg = colors.background },
-            WinBarSeparator = { fg = colors.Aqua, bg = colors.background },
+            WinBarContent = { fg = colors.LightGray },
+            WinBarSeparator = { fg = colors.DarkBlue },
         },
     })
 
