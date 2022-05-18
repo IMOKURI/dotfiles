@@ -285,6 +285,7 @@ function install_packages_deb() {
         wamerican
 
     # for neovim
+    # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
     sudo -E apt-get install -y \
         autoconf \
         automake \
@@ -300,6 +301,7 @@ function install_packages_deb() {
         unzip
 
     # for pyenv
+    # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
     sudo -E apt-get install -y --no-install-recommends \
         make \
         build-essential \
