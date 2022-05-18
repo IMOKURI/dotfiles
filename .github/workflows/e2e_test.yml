@@ -27,8 +27,9 @@ jobs:
     steps:
     - name: Install requirements
       run: |
-        apt update
-        apt install -y curl sudo
+        apt-get update
+        apt-get upgrade -y
+        apt-get install -y curl sudo
 
     - name: Install dotfiles
       run: |
@@ -56,8 +57,9 @@ jobs:
     steps:
     - name: Install requirements
       run: |
-        env http_proxy=http://squid:3128 apt update
-        env http_proxy=http://squid:3128 apt install -y curl sudo
+        env http_proxy=http://squid:3128 apt-get update
+        env http_proxy=http://squid:3128 apt-get upgrade -y
+        env http_proxy=http://squid:3128 apt-get install -y curl sudo
 
     - name: Install dotfiles
       run: |
@@ -79,7 +81,7 @@ jobs:
     steps:
     - name: Install requirements
       run: |
-        yum install -y sudo
+        dnf install -y sudo
 
     - name: Install dotfiles
       run: |
@@ -107,7 +109,7 @@ jobs:
     - name: Install requirements
       run: |
         sed -i "\$aproxy=http://squid:3128" /etc/yum.conf
-        yum install -y sudo
+        dnf install -y sudo
 
     - name: Install dotfiles
       run: |
