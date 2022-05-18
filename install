@@ -175,7 +175,7 @@ function setup_repository_deb() {
     fi
 
     _logger "${INFO}" "Install apt common package."
-    sudo -E apt-get install -y --no-install-recommends software-properties-common
+    sudo -E apt-get install -y software-properties-common
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger "${INFO}" "Install Git-LFS repository."
@@ -266,13 +266,13 @@ function install_packages_deb() {
     sudo -E apt-get update
 
     # Prevent interruptions due to time zone selection.
-    sudo -E apt-get install -y --no-install-recommends tzdata
+    sudo -E apt-get install -y tzdata
 
     _logger "${INFO}" "Upgrade packages."
     sudo -E apt-get upgrade -y
 
     _logger "${INFO}" "Install basic packages."
-    sudo -E apt-get install -y --no-install-recommends \
+    sudo -E apt-get install -y \
         ansible \
         fd-find \
         figlet \
@@ -294,7 +294,7 @@ function install_packages_deb() {
     # for neovim
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
     _logger "${INFO}" "Install neovim dependencies."
-    sudo -E apt-get install -y --no-install-recommends \
+    sudo -E apt-get install -y \
         autoconf \
         automake \
         cmake \
@@ -311,7 +311,7 @@ function install_packages_deb() {
     # for pyenv
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
     _logger "${INFO}" "Install pyenv dependencies."
-    sudo -E apt-get install -y --no-install-recommends \
+    sudo -E apt-get install -y \
         make \
         build-essential \
         libssl-dev \

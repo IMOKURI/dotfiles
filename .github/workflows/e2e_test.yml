@@ -29,7 +29,7 @@ jobs:
       run: |
         apt-get update
         apt-get upgrade -y
-        apt-get install -y --no-install-recommends curl sudo
+        apt-get install -y curl sudo
 
     - name: Install dotfiles
       run: |
@@ -59,7 +59,7 @@ jobs:
       run: |
         env http_proxy=http://squid:3128 apt-get update
         env http_proxy=http://squid:3128 apt-get upgrade -y
-        env http_proxy=http://squid:3128 apt-get install -y --no-install-recommends curl sudo
+        env http_proxy=http://squid:3128 apt-get install -y curl sudo
 
     - name: Install dotfiles
       run: |

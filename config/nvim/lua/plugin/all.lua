@@ -2,9 +2,6 @@ return {
     -- Packer can manage itself as an optional plugin
     { "wbthomason/packer.nvim", opt = true },
 
-    -- Testing
-    { "hkupty/runes.nvim", opt = true },
-
     -- Improve performance
     {
         "lewis6991/impatient.nvim",

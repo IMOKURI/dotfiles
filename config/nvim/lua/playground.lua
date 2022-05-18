@@ -9,30 +9,9 @@ end
 
 function M.notify()
     vim.notify("This is an error message.", vim.log.levels.ERROR)
-end
-
-function M.test()
-    vim.api.nvim_cmd({
-        cmd = "packadd",
-        args = { "runes.nvim" },
-    }, {})
-
-    local runes = require("runes")
-
-    runes.run_spec(runes.spec({
-        description = "Enjoy playground.",
-
-        spec_setup = function()
-            return { one = 1 }
-        end,
-
-        runes.test({
-            "Test case 01",
-            test = function()
-                assert.eq["One should be equals to one."](one, 1)
-            end,
-        }),
-    }))
+    vim.notify("This is a warning message.", vim.log.levels.WARN)
+    vim.notify("This is an infomation message.", vim.log.levels.INFO)
+    vim.notify("This is a debug message.", vim.log.levels.DEBUG)
 end
 
 return M
