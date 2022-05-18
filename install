@@ -262,9 +262,16 @@ function install_packages_deb() {
         return
     fi
 
+    _logger "${INFO}" "Update package info."
     sudo -E apt-get update
+
+    # Prevent interruptions due to time zone selection.
     sudo -E apt-get install -y tzdata
+
+    _logger "${INFO}" "Upgrade packages."
     sudo -E apt-get upgrade -y
+
+    _logger "${INFO}" "Install basic packages."
     sudo -E apt-get install -y \
         ansible \
         fd-find \
@@ -286,6 +293,7 @@ function install_packages_deb() {
 
     # for neovim
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
+    _logger "${INFO}" "Install neovim dependencies."
     sudo -E apt-get install -y \
         autoconf \
         automake \
@@ -302,6 +310,7 @@ function install_packages_deb() {
 
     # for pyenv
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+    _logger "${INFO}" "Install pyenv dependencies."
     sudo -E apt-get install -y --no-install-recommends \
         make \
         build-essential \
