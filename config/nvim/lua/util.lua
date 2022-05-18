@@ -1,5 +1,21 @@
 local M = {}
 
+function M.winbar()
+    if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
+        return ""
+    end
+
+    return "%#WinBarSeparator#"
+        .. "◀ "
+        .. "%*"
+        .. "%#WinBarContent#"
+        .. "%f"
+        .. "%*"
+        .. "%#WinBarSeparator#"
+        .. " ▶"
+        .. "%*"
+end
+
 function M.auto_mkdir(dir, force)
     if vim.fn.isdirectory(dir) == 0 then
         if force == 1 then

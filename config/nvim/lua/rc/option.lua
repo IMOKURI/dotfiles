@@ -73,6 +73,7 @@ o.diffopt:append({ "algorithm:patience", "indent-heuristic" })
 o.termguicolors = true
 o.shortmess:append("c")
 o.equalalways = false
+o.winbar = "%{%v:lua.require'util'.winbar()%}"
 
 -- }}}
 
