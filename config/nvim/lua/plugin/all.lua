@@ -10,8 +10,9 @@ return {
 
     -- Color scheme
     {
-        "Yagua/nebulous.nvim",
-        config = "require'plugin.rc.nebulous-nvim'.config()",
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = "require'plugin.rc.catppuccin'.config()",
     },
 
     -- Filetype: python
@@ -90,7 +91,7 @@ return {
     {
         "IMOKURI/line-number-interval.nvim",
         after = {
-            "nebulous.nvim",
+            "catppuccin",
         },
         setup = "require'plugin.rc.line-number-interval'.setup()",
     },

@@ -6,13 +6,13 @@ function M.winbar()
     end
 
     return "%#WinBarSeparator#"
-        .. "◀ "
+        .. ""
         .. "%*"
         .. "%#WinBarContent#"
-        .. "%f"
+        .. " %f %m%r"
         .. "%*"
         .. "%#WinBarSeparator#"
-        .. " ▶"
+        .. ""
         .. "%*"
 end
 
