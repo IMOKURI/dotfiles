@@ -1,10 +1,6 @@
 local M = {}
 
 function M.winbar()
-    if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
-        return ""
-    end
-
     return "%#WinBarSeparator#"
         .. ""
         .. "%*"
