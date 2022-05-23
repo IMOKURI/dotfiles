@@ -291,6 +291,10 @@ return {
         end,
     },
     {
+        "j-hui/fidget.nvim",
+        config = "require'plugin.rc.fidget-nvim'.config()",
+    },
+    {
         "williamboman/nvim-lsp-installer",
         requires = {
             "neovim/nvim-lspconfig",
