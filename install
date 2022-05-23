@@ -35,7 +35,7 @@ else
 fi
 
 function _banner() {
-    sep=$(for ((i = 1; i < ${COL}; i++)); do echo -n =; done)
+    sep=$(for ((i = 1; i < COL; i++)); do echo -n =; done)
     printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
@@ -46,12 +46,12 @@ function _logger() {
 
 # https://stackoverflow.com/a/4025065/4819106
 function vercomp() {
-    if [[ $1 == $2 ]]; then
+    if [[ "$1" == "$2" ]]; then
         echo "="
         return 0
     fi
     local IFS=.
-    local i ver1=($1) ver2=($2)
+    local i ver1=("$1") ver2=("$2")
     # fill empty fields in ver1 with zeros
     for ((i = ${#ver1[@]}; i < ${#ver2[@]}; i++)); do
         ver1[i]=0
@@ -379,9 +379,9 @@ _banner "Install Python Packages..."
 
 function _pipx_install_or_upgrade() {
     if [[ ! -d "${HOME}/.local/pipx/venvs/${1%[*}" ]]; then
-        pipx install --include-deps ${1}
+        pipx install --include-deps "${1}"
     else
-        pipx upgrade --include-injected ${1%[*}
+        pipx upgrade --include-injected "${1%[*}"
     fi
 }
 
@@ -428,8 +428,8 @@ yarn global upgrade
 
 _banner "Install Go Packages..."
 GO_VERSION=$(go version | {
-    read _ _ v _
-    echo ${v#go}
+    read -r _ _ v _
+    echo "${v#go}"
 })
 _logger "${INFO}" "Go version: ${GO_VERSION}"
 op=$(vercomp "${GO_VERSION}" "1.17")
@@ -451,13 +451,13 @@ if [[ ! -d "${HOME}/src/${STYLUA}" ]]; then
     # curl -fsSL -o /tmp/stylua.zip \
     #     https://github.com/JohnnyMorganz/StyLua/releases/download/${STYLUA_VERSION}/${STYLUA}.zip
     curl -fsSL -o /tmp/stylua.zip \
-        https://github.com/JohnnyMorganz/StyLua/releases/download/${STYLUA_VERSION}/stylua-linux.zip
+        "https://github.com/JohnnyMorganz/StyLua/releases/download/${STYLUA_VERSION}/stylua-linux.zip"
 
     mkdir -p "${HOME}/src/${STYLUA}"
     unzip /tmp/stylua.zip -d "${HOME}/src/${STYLUA}/"
     chmod +x "${HOME}/src/${STYLUA}/stylua"
 
-    ln -sfnv ${HOME}/src/${STYLUA}/stylua "${HOME}/bin/stylua"
+    ln -sfnv "${HOME}/src/${STYLUA}/stylua" "${HOME}/bin/stylua"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -472,11 +472,11 @@ RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
 _banner "Install RipGrep..."
 if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
     curl -fsSL -o /tmp/rg.tar.gz \
-        https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz
+        "https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz"
 
     tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
 
-    ln -sfnv ${HOME}/src/${RIPGREP}/rg "${HOME}/bin/rg"
+    ln -sfnv "${HOME}/src/${RIPGREP}/rg" "${HOME}/bin/rg"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -489,11 +489,11 @@ BAT="bat-${BAT_VERSION}-x86_64-unknown-linux-gnu"
 _banner "Install Bat..."
 if [[ ! -f "${HOME}/src/${BAT}" ]]; then
     curl -fsSL -o /tmp/bat.tar.gz \
-        https://github.com/sharkdp/bat/releases/download/${BAT_VERSION}/${BAT}.tar.gz
+        "https://github.com/sharkdp/bat/releases/download/${BAT_VERSION}/${BAT}.tar.gz"
 
     tar xf /tmp/bat.tar.gz -C "${HOME}/src/"
 
-    ln -sfnv ${HOME}/src/${BAT}/bat "${HOME}/bin/bat"
+    ln -sfnv "${HOME}/src/${BAT}/bat" "${HOME}/bin/bat"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -505,10 +505,10 @@ FZF="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
 
 _banner "Install Fzf..."
 if [[ ! -f "${HOME}/src/${FZF}" ]]; then
-    curl -fsSL -o ${HOME}/src/${FZF} \
-        https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${FZF}
+    curl -fsSL -o "${HOME}/src/${FZF}" \
+        "https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${FZF}"
 
-    tar xf ${HOME}/src/${FZF} -C "${HOME}/bin/"
+    tar xf "${HOME}/src/${FZF}" -C "${HOME}/bin/"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -520,10 +520,10 @@ TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
 _banner "Install Terraform..."
 if [[ ! -f "${HOME}/src/${TERRAFORM}" ]]; then
-    curl -fsSL -o ${HOME}/src/${TERRAFORM} \
-        https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${TERRAFORM}
+    curl -fsSL -o "${HOME}/src/${TERRAFORM}" \
+        "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${TERRAFORM}"
 
-    unzip -o ${HOME}/src/${TERRAFORM} -d ${HOME}/bin/
+    unzip -o "${HOME}/src/${TERRAFORM}" -d "${HOME}/bin/"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -549,7 +549,7 @@ _banner "Build Neovim..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
 for i in {1..3}; do
-    make neovim && break || sleep 10
+    { make neovim && break; } || sleep 10
 done
 popd
 
@@ -562,16 +562,16 @@ cd "${DOTPATH}"
 
 make install
 
-if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
+if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then
     echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
 fi
 
 if "${is_el}"; then
-    if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
+    if ! grep -q '.config/profile.d/local.sh' "${HOME}/.bash_profile"; then
         echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.bash_profile"
     fi
 else
-    if ! grep -q '.config/profile.d/local.sh' ${HOME}/.profile; then
+    if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then
         echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
     fi
 fi
