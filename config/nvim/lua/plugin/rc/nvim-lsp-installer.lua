@@ -177,6 +177,7 @@ function M.config()
         capabilities = capabilities,
         on_attach = on_attach_vim,
         settings = {
+            -- https://github.com/sumneko/lua-language-server/wiki/Setting
             Lua = {
                 runtime = {
                     version = "LuaJIT",
@@ -188,6 +189,9 @@ function M.config()
                         "use",
                         "vim",
                     }, {}),
+                },
+                completion = {
+                    callSnippet = "Replace",
                 },
             },
         },
