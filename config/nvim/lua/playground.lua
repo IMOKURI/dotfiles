@@ -65,22 +65,17 @@ end
 
 function M.plenary_job()
     local Job = require("plenary.job")
-    -- print(vim.inspect(job))
 
     local results = {}
     local job = Job:new({
-        command = "cat",
+        command = "rg",
+        args = { "--vimgrep", "-w", "IMOKURI", "." },
         on_stdout = function(_, data)
             table.insert(results, data)
         end,
     })
 
-    job:start()
-    job:send("Hello, \n")
-    job:send("world!\n")
-    job:shutdown()
-
-    vim.notify(job:result(), vim.log.levels.INFO)
+    P(job:sync())
 end
 
 return M

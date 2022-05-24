@@ -17,6 +17,14 @@ return {
 
     -- Filetype: python
     { "Vimjas/vim-python-pep8-indent", ft = { "python" } },
+    {
+        "IMOKURI/apyrori.nvim",
+        ft = { "python" },
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = "require'plugin.rc.apyrori'.config()",
+    },
 
     -- Filetype: csv
     { "mechatroner/rainbow_csv", ft = { "csv" } },
@@ -351,4 +359,7 @@ return {
         },
         config = "require'plugin.rc.telescope-nvim'.sonictemplate()",
     },
+
+    -- Local Development
+    -- "~/github/xxx.nvim",
 }
