@@ -2,6 +2,7 @@ local M = {}
 
 function M.reset()
     package.loaded["playground"] = nil
+    vim.notify("Playground is reset.", vim.log.levels.INFO)
 end
 
 function M.echo(msg)
@@ -60,6 +61,26 @@ function M.metatable()
 
     Class.set_seed(42)
     vim.notify("Updated class value, seed: " .. Class.get_seed())
+end
+
+function M.plenary_job()
+    local Job = require("plenary.job")
+    -- print(vim.inspect(job))
+
+    local results = {}
+    local job = Job:new({
+        command = "cat",
+        on_stdout = function(_, data)
+            table.insert(results, data)
+        end,
+    })
+
+    job:start()
+    job:send("Hello, \n")
+    job:send("world!\n")
+    job:shutdown()
+
+    vim.notify(job:result(), vim.log.levels.INFO)
 end
 
 return M
