@@ -134,6 +134,13 @@ return {
         "numToStr/Comment.nvim",
         config = "require'plugin.rc.comment-nvim'.config()",
     },
+    {
+        "folke/todo-comments.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = "require'plugin.rc.todo-comments-nvim'.config()",
+    },
 
     -- Line diff
     {
