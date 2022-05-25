@@ -17,14 +17,6 @@ return {
 
     -- Filetype: python
     { "Vimjas/vim-python-pep8-indent", ft = { "python" } },
-    {
-        "IMOKURI/apyrori.nvim",
-        ft = { "python" },
-        requires = {
-            "nvim-lua/plenary.nvim",
-        },
-        config = "require'plugin.rc.apyrori'.config()",
-    },
 
     -- Filetype: csv
     { "mechatroner/rainbow_csv", ft = { "csv" } },
@@ -335,6 +327,7 @@ return {
         "nvim-telescope/telescope.nvim",
         event = "BufWinEnter",
         requires = {
+            "IMOKURI/apyrori.nvim",
             "kyazdani42/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
@@ -362,4 +355,5 @@ return {
 
     -- Local Development
     -- "~/github/xxx.nvim",
+    -- "~/github/apyrori.nvim",
 }
