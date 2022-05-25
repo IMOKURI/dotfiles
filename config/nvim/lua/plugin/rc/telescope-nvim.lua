@@ -11,7 +11,7 @@ function M.config()
     vim.keymap.set(
         "n",
         "<Leader>e",
-        "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji'} })<CR>"
+        "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>"
     )
     vim.keymap.set("n", "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
     vim.keymap.set("n", "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>")
