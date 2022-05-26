@@ -8,7 +8,6 @@ function M.config()
     vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
     vim.keymap.set("n", "<Leader>f", "<Cmd>lua require('plugin.rc.telescope-nvim').project_files()<CR>")
     vim.keymap.set("n", "<Leader>g", "<Cmd>lua require('telescope.builtin').live_grep()<CR>")
-    vim.keymap.set("n", "<Leader>i", "<Cmd>Telescope apyrori<CR>")
     vim.keymap.set(
         "n",
         "<Leader>e",
@@ -42,7 +41,6 @@ function M.config()
         },
     })
 
-    telescope.load_extension("apyrori")
     telescope.load_extension("notify")
     telescope.load_extension("smart_history")
     telescope.load_extension("ui-select")
@@ -64,6 +62,21 @@ function M.sonictemplate()
     vim.keymap.set("n", "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>")
 
     telescope.load_extension("sonictemplate")
+end
+
+function M.apyrori()
+    vim.keymap.set("n", "<Leader>i", "<Cmd>Telescope apyrori<CR>")
+
+    telescope.load_extension("apyrori")
+
+    require("apyrori").setup({
+        choose_most_likely = false,
+
+        default_imports = {
+            "import numpy as np",
+            "import pandas as pd",
+        },
+    })
 end
 
 return M

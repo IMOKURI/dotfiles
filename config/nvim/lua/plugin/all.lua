@@ -327,7 +327,6 @@ return {
         "nvim-telescope/telescope.nvim",
         event = "BufWinEnter",
         requires = {
-            "IMOKURI/apyrori.nvim",
             "kyazdani42/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
@@ -351,6 +350,16 @@ return {
             "vim-sonictemplate",
         },
         config = "require'plugin.rc.telescope-nvim'.sonictemplate()",
+    },
+    {
+        "IMOKURI/apyrori.nvim",
+        ft = { "python" },
+        requires = {
+            "telescope.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+        after = "telescope.nvim",
+        config = "require'plugin.rc.telescope-nvim'.apyrori()",
     },
 
     -- Local Development
