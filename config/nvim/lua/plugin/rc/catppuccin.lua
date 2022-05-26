@@ -7,21 +7,21 @@ function M.config()
 
     catppuccin.remap({
         HighlightedCursorLineNr = { fg = colors.red },
-        HighlightedLineNr = { fg = colors.white },
+        HighlightedLineNr = { fg = colors.text },
         HighlightedLineNr1 = { fg = colors.maroon },
         HighlightedLineNr2 = { fg = colors.peach },
         HighlightedLineNr3 = { fg = colors.yellow },
         HighlightedLineNr4 = { fg = colors.green },
-        HighlightedLineNr5 = { fg = colors.blue },
-        DimLineNr = { fg = colors.black4 },
+        HighlightedLineNr5 = { fg = colors.teal },
+        DimLineNr = { fg = colors.surface1 },
 
-        ActiveWindow = { bg = colors.black2 },
-        InactiveWindow = { bg = colors.black0 },
+        ActiveWindow = { bg = colors.base },
+        InactiveWindow = { bg = colors.mantle },
 
-        WinBarContent = { fg = colors.black2, bg = colors.sky },
-        WinBarSeparator = { fg = colors.sky },
+        WinBarContent = { fg = colors.base, bg = colors.sapphire },
+        WinBarSeparator = { fg = colors.sapphire },
 
-        ColorColumn = { bg = colors.black1 }
+        ColorColumn = { bg = colors.mantle }
     })
 
     vim.opt.winhighlight = "Normal:ActiveWindow,NormalNC:InactiveWindow,CursorLineNr:HighlightedCursorLineNr"
