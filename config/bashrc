@@ -33,17 +33,29 @@ elif [[ -x "$(command -v nvim)" ]]; then
     alias vi="nvim"
 fi
 
+function nvim-minimal-env() {
+    cd "$(mktemp -d)" || exit
+    export HOME=$PWD
+    export XDG_CONFIG_HOME=$HOME/.config
+    export XDG_DATA_HOME=$HOME/.local/share
+    export XDG_CACHE_HOME=$HOME/.cache
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    mkdir -p ~/.config/nvim
+    pwd
+}
+
 cdd() {
-    cd ~/.dotfiles/
+    cd ~/.dotfiles/ || exit
 }
 cds() {
-    cd ~/.local/share/nvim/swap
+    cd ~/.local/share/nvim/swap || exit
 }
 cdp() {
-    cd ~/.local/share/nvim/site/pack/packer
+    cd ~/.local/share/nvim/site/pack/packer || exit
 }
 cdr() {
-    cd "$(git rev-parse --show-toplevel)" || return
+    cd "$(git rev-parse --show-toplevel)" || exit
 }
 
 docker-clean() {
