@@ -186,6 +186,8 @@ function M.config()
                 diagnostics = {
                     enable = true,
                     globals = vim.list_extend({
+                        "describe",
+                        "it",
                         "use",
                         "vim",
                     }, {}),
