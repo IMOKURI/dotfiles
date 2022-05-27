@@ -186,6 +186,7 @@ function M.config()
                 diagnostics = {
                     enable = true,
                     globals = vim.list_extend({
+                        "before_each",
                         "describe",
                         "it",
                         "use",
