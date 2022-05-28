@@ -2,6 +2,9 @@ return {
     -- Packer can manage itself as an optional plugin
     { "wbthomason/packer.nvim", opt = true },
 
+    -- Neovim client-server
+    -- { "samjwill/nvim-unception" },
+
     -- Improve performance
     {
         "lewis6991/impatient.nvim",
