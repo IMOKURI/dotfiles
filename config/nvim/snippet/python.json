@@ -208,7 +208,10 @@
   },
   "pdb": {
     "prefix": "pdb",
-    "body": "import pdb; pdb.set_trace()",
+    "body": [
+      "# TODO: Use PDB Debug Code.",
+      "import pdb; pdb.set_trace()"
+    ],
     "description": "Code snippet for pdb debug"
   },
   "logger": {
