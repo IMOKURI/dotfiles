@@ -69,6 +69,11 @@ vim.keymap.set("n", "<C-k>", "<Cmd>lua require('util').move_win('k')<CR>")
 vim.keymap.set("n", "<C-l>", "<Cmd>lua require('util').move_win('l')<CR>")
 vim.keymap.set("n", "<C-h>", "<Cmd>lua require('util').move_win('h')<CR>")
 
+vim.keymap.set("t", "<C-j>", "<Cmd>lua require('util').move_win('j')<CR>")
+vim.keymap.set("t", "<C-k>", "<Cmd>lua require('util').move_win('k')<CR>")
+vim.keymap.set("t", "<C-l>", "<Cmd>lua require('util').move_win('l')<CR>")
+vim.keymap.set("t", "<C-h>", "<Cmd>lua require('util').move_win('h')<CR>")
+
 vim.keymap.set("n", "<Leader><Tab>", "<C-^>")
 
 -- }}}

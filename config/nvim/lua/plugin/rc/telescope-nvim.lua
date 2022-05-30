@@ -4,6 +4,7 @@ local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
 function M.config()
+    vim.keymap.set("n", "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers()<CR>")
     vim.keymap.set("n", "<Leader>d", "<Cmd>lua require('telescope.builtin').diagnostics({ bufnr = 0 })<CR>")
     vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
     vim.keymap.set("n", "<Leader>f", "<Cmd>lua require('plugin.rc.telescope-nvim').project_files()<CR>")
