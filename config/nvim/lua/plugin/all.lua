@@ -226,6 +226,12 @@ return {
         },
     },
     {
+        "lucapette/vim-textobj-underscore",
+        requires = {
+            "kana/vim-textobj-user",
+        },
+    },
+    {
         "rbtnn/vim-textobj-vimfunctionname",
         requires = {
             "kana/vim-textobj-user",
