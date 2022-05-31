@@ -189,6 +189,12 @@ return {
     -- REPL
     { "IMOKURI/repl.vim" },
 
+    -- Paste
+    {
+        "hrsh7th/nvim-pasta",
+        config = "require'plugin.rc.nvim-pasta'.config()",
+    },
+
     -- Search
     {
         "kevinhwang91/nvim-hlslens",
