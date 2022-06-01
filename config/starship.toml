@@ -1,4 +1,5 @@
 [directory]
+truncation_length = 5
 truncation_symbol = ".../"
 
 [kubernetes]
