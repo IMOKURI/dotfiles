@@ -155,6 +155,7 @@ alias ks='kubectl describe'
 alias dp='docker ps -a'
 alias dl='docker logs'
 alias di='docker images'
+alias dv='docker volume ls'
 
 alias a='ansible'
 alias ap='ansible-playbook'
