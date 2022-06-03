@@ -156,6 +156,7 @@ alias dp='docker ps -a'
 alias dl='docker logs'
 alias di='docker images'
 alias dv='docker volume ls'
+alias dn='docker network ls'
 
 alias a='ansible'
 alias ap='ansible-playbook'
