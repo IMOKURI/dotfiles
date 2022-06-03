@@ -46,7 +46,7 @@ cdd() {
     cd ~/.dotfiles/ || exit
 }
 cds() {
-    cd ~/.local/share/nvim/swap || exit
+    cd ~/.local/state/nvim/swap || exit
 }
 cdp() {
     cd ~/.local/share/nvim/site/pack/packer || exit
