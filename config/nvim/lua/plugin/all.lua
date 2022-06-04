@@ -307,6 +307,10 @@ return {
 
     -- LSP
     {
+        "smjonas/inc-rename.nvim",
+        config = "require'plugin.rc.inc-rename'.config()",
+    },
+    {
         "Mofiqul/trld.nvim",
         config = function()
             require("trld").setup({ position = "top" })
