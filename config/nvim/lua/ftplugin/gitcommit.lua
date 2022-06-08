@@ -11,7 +11,11 @@ function M.select_type()
             emsg_silent = true,
         },
     }, {})
-    vim.api.nvim_set_current_line(string.format("%s: ", type))
+    vim.api.nvim_buf_set_lines(0, 0, 1, true, { string.format("%s: ", type) })
+    vim.api.nvim_cmd({
+        cmd = "normal",
+        args = { "gg" },
+    }, {})
     vim.api.nvim_cmd({
         cmd = "startinsert",
         bang = true,
