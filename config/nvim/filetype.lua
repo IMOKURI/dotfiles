@@ -9,6 +9,7 @@ vim.filetype.add({
     },
     filename = {
         ["install"] = "sh",
+        ["swci-init"] = "sh",
     },
     pattern = {
         [".*Dockerfile.*"] = "dockerfile",
