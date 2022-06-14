@@ -28,3 +28,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "plugin.all.lua",
     command = "source <afile> | PackerCompile",
 })
+vim.api.nvim_create_autocmd("FileType", {
+    group = group_name,
+    pattern = "gitcommit",
+    command = "normal! 5G",
+})
