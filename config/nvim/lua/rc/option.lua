@@ -74,6 +74,7 @@ o.termguicolors = true
 o.shortmess:append("c")
 o.equalalways = false
 o.winbar = "%{%v:lua.require'util'.winbar()%}"
+o.cmdheight = 0
 
 -- }}}
 
