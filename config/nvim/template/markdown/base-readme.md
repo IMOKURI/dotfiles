@@ -1,24 +1,18 @@
+<div align="center">
+
 # {{_input_:title}}
 
-:construction: Work in progress. :construction:
+</div>
 
+## Features
 {{_cursor_}}
 
-## :heavy_check_mark: Current Status
+## Requirements
 
-- :heavy_check_mark: Done
-- :heavy_plus_sign: In Progress
-- :heavy_minus_sign: ToDo
 
-## :art: Design
+## Installation
 
-## :bookmark: Software Version
 
-## :pushpin: Prerequisite
+## Configurations
 
-## :rocket: Install
-
-## :bug: Known Issue
-
-## :hammer: Development
 
