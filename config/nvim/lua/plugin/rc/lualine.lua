@@ -11,7 +11,7 @@ function M.config()
             lualine_b = { "filetype" },
             lualine_c = { { "diagnostics", sources = { "nvim_lsp" } } },
             lualine_x = {},
-            lualine_y = { "branch" },
+            lualine_y = {},
             lualine_z = {},
         },
     })
