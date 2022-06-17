@@ -189,12 +189,6 @@ return {
     -- REPL
     { "IMOKURI/repl.vim" },
 
-    -- Paste
-    {
-        "hrsh7th/nvim-pasta",
-        config = "require'plugin.rc.nvim-pasta'.config()",
-    },
-
     -- Search
     {
         "kevinhwang91/nvim-hlslens",
@@ -339,6 +333,12 @@ return {
             "kyazdani42/nvim-web-devicons",
         },
         config = "require'plugin.rc.lualine'.config()",
+    },
+
+    -- Explorer
+    {
+        "lewis6991/brodir.nvim",
+        config = "require'plugin.rc.brodir-nvim'.config()",
     },
 
     -- Fuzzy finder
