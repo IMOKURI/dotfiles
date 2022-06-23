@@ -57,61 +57,11 @@ jobs:
     steps:
     - name: Install requirements
       run: |
-        env http_proxy=http://squid:3128 apt-get update
-        env http_proxy=http://squid:3128 apt-get upgrade -y
-        env http_proxy=http://squid:3128 apt-get install -y curl sudo
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get upgrade -y
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl sudo
 
     - name: Install dotfiles
       run: |
-        env http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
-        cat /root/.config/git/config.proxy
-
-  el:
-    strategy:
-      fail-fast: true
-      matrix:
-        os_name:
-          - rockylinux/rockylinux
-        os_version:
-          - 8
-
-    runs-on: ubuntu-latest
-    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
-
-    steps:
-    - name: Install requirements
-      run: |
-        dnf install -y sudo
-
-    - name: Install dotfiles
-      run: |
-        env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
-
-  el_proxy:
-    strategy:
-      fail-fast: true
-      matrix:
-        os_name:
-          - rockylinux/rockylinux
-        os_version:
-          - 8
-
-    runs-on: ubuntu-latest
-    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
-
-    services:
-      squid:
-        image: wernight/squid
-        ports:
-          - 3128:3128
-
-    steps:
-    - name: Install requirements
-      run: |
-        sed -i "\$aproxy=http://squid:3128" /etc/yum.conf
-        dnf install -y sudo
-
-    - name: Install dotfiles
-      run: |
-        env http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
         cat /root/.config/git/config.proxy

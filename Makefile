@@ -10,12 +10,10 @@ DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
-DOTPATH       := $(HOME)/.dotfiles
-VIMPATH       := $(HOME)/src/vim
-NEOVIMPATH    := $(HOME)/src/neovim
-GITPATH       := $(HOME)/src/git
-GITLFSPATH    := $(HOME)/src/git-lfs
-BASHMARKS     := $(HOME)/src/bashmarks
+DOTPATH    := $(HOME)/.dotfiles
+VIMPATH    := $(HOME)/src/vim
+NEOVIMPATH := $(HOME)/src/neovim
+BASHMARKS  := $(HOME)/src/bashmarks
 
 # Proxy settings
 PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
@@ -39,14 +37,6 @@ install: proxy update deploy ## Do proxy, update and deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
-	if [[ ! -f /etc/dnf/dnf.conf ]]; then \
-		:; \
-	elif grep -q proxy /etc/dnf/dnf.conf; then \
-		sudo sed -i 's|proxy=.*|proxy=$(http_proxy)|g' /etc/dnf/dnf.conf; \
-	else \
-		echo "proxy=$(http_proxy)" | sudo tee -a /etc/dnf/dnf.conf; \
-	fi
-
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
 
@@ -67,25 +57,6 @@ deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
-
-git: update-git build-git update-gitlfs build-gitlfs ## Get latest git
-
-update-git: ## Update git repository
-	$(call repo,$(GITPATH),git/git)
-
-build-git: ## Build git
-	cd $(GITPATH) && \
-	make clean && \
-	make all && \
-	make install
-
-update-gitlfs: ## Update git-lfs repository
-	$(call repo,$(GITLFSPATH),git-lfs/git-lfs)
-
-build-gitlfs: ## Build git-lfs
-	cd $(GITLFSPATH) && \
-	make && \
-	ln -sfnv $(GITLFSPATH)/bin/git-lfs $(HOME)/bin/git-lfs
 
 neovim: update-neovim build-neovim ## Get edge neovim
 

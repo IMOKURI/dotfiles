@@ -6,15 +6,14 @@ The dotfiles that can be installed by one command
 
 ## Features
 
-- Install Neovim, Git, Python3, Node.js and Go with some packages.
+- Build latest neovim.
+- Install Python, Node.js and Go with some packages.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
 
 ## Targets
 
 - Ubuntu 20.04, 22.04
-- Rocky 8
-- RHEL 8
 
 ## Requirements
 
@@ -27,12 +26,6 @@ The dotfiles that can be installed by one command
 ```bash
 export http_proxy=<http://proxy.example.com:port>
 export https_proxy=<http://proxy.example.com:port>
-```
-
-- Enable code ready builder repository. (for RHEL8)
-
-```bash
-sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
 ```
 
 ## Installation

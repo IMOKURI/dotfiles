@@ -77,25 +77,9 @@ _banner "Detect OS Distribution"
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
 
-    is_el=false
-    is_deb=false
-
     case "${NAME}" in
-        Red*)
-            # Red Hat Enterprise Linux Server
-            is_el=true
-            ;;
-        Rocky*)
-            # Rocky Linux
-            is_el=true
-            ;;
-        AlmaLinux*)
-            # Alma Linux
-            is_el=true
-            ;;
         Ubuntu*)
             # Ubuntu
-            is_deb=true
             ;;
         *)
             _logger "${ERROR}" "Unknown OS is detected."
@@ -109,70 +93,10 @@ fi
 
 _logger "${INFO}" "${PRETTY_NAME} is detected."
 
-##### Set Proxy ###############################################################
-
-function set_dnf_proxy() {
-    _banner "Check if set proxy..."
-
-    if [[ ! "${http_proxy}" ]]; then
-        _logger "${INFO}" "No proxy configured."
-        return
-    else
-        _logger "${INFO}" "Proxy environment variable: ${http_proxy}"
-    fi
-
-    if "${is_deb}"; then
-        return
-    fi
-
-    if grep -q proxy /etc/dnf/dnf.conf; then
-        _logger "${INFO}" "Already set proxy setting."
-        return
-    fi
-
-    echo "proxy=${http_proxy}" | sudo tee -a /etc/dnf/dnf.conf
-    _logger "${INFO}" "Configured dnf proxy setting."
-}
-
-set_dnf_proxy
-
 ##### Setup repositories ######################################################
 
-function setup_repository_el() {
-    _banner "Setup repositories for Enterprise Linux..."
-
-    if "${is_deb}"; then
-        _logger "${INFO}" "Skip due to Debian/Ubuntu."
-        return
-    fi
-
-    _logger "${INFO}" "Install DNF plugins core package."
-    sudo -E dnf install -y glibc-langpack-en
-    sudo -E dnf install -y dnf-plugins-core
-
-    if [[ ${ID} == "rocky" ]]; then
-        _logger "${INFO}" "Enable PowerTools repository."
-        sudo -E dnf config-manager --enable powertools
-    fi
-
-    if [[ ! -f /etc/yum.repos.d/nodesource-el.repo ]]; then
-        _logger "${INFO}" "Install Nodejs repository."
-        curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo -E bash -
-    fi
-
-    if [[ ! -f /etc/yum.repos.d/yarn.repo ]]; then
-        _logger "${INFO}" "Install Yarn repository."
-        curl -fsSL https://dl.yarnpkg.com/rpm/yarn.repo | sudo -E tee /etc/yum.repos.d/yarn.repo
-    fi
-}
-
 function setup_repository_deb() {
-    _banner "Setup repositories for Debian/Ubuntu..."
-
-    if "${is_el}"; then
-        _logger "${INFO}" "Skip due to Enterprise Linux."
-        return
-    fi
+    _banner "Setup repositories for Ubuntu..."
 
     _logger "${INFO}" "Install apt common package."
     sudo -E apt-get install -y software-properties-common
@@ -194,73 +118,12 @@ function setup_repository_deb() {
     fi
 }
 
-setup_repository_el
 setup_repository_deb
 
 ##### Install packages ########################################################
 
-function install_packages_el() {
-    _banner "Install Packages for Enterprise Linux..."
-
-    if "${is_deb}"; then
-        _logger "${INFO}" "Skip due to Debian/Ubuntu."
-        return
-    fi
-
-    sudo -E dnf install -y \
-        https://dl.fedoraproject.org/pub/epel/epel-release-latest-${VERSION_ID:0:1}.noarch.rpm
-
-    sudo -E dnf install -y \
-        autoconf \
-        automake \
-        bzip2 \
-        bzip2-devel \
-        ctags \
-        expat-devel \
-        gcc \
-        gcc-c++ \
-        gettext \
-        git \
-        golang \
-        jq \
-        libcurl-devel \
-        libffi-devel \
-        libtool \
-        lua \
-        lua-devel \
-        lua-term \
-        luajit \
-        luajit-devel \
-        make \
-        ncurses-devel \
-        ninja-build \
-        nodejs \
-        openssl-devel \
-        patch \
-        perl-Digest-SHA \
-        pkgconfig \
-        python3 \
-        python3-devel \
-        python3-pip \
-        readline-devel \
-        sqlite \
-        sqlite-devel \
-        tk-devel \
-        unzip \
-        wget \
-        which \
-        words \
-        yarn \
-        zlib-devel
-}
-
 function install_packages_deb() {
-    _banner "Install Packages for Debian/Ubuntu..."
-
-    if "${is_el}"; then
-        _logger "${INFO}" "Skip due to Enterprise Linux."
-        return
-    fi
+    _banner "Install Packages for Ubuntu..."
 
     _logger "${INFO}" "Update package info."
     sudo -E apt-get update
@@ -331,7 +194,6 @@ function install_packages_deb() {
         liblzma-dev
 }
 
-install_packages_el
 install_packages_deb
 
 ##### Clone Dotfiles ##########################################################
@@ -348,16 +210,6 @@ else
     make update
     popd
 fi
-
-##### Build git ###############################################################
-
-_banner "Build & Install Git for EL..."
-pushd "$(pwd)"
-cd "${DOTPATH}"
-if "${is_el}"; then
-    make git
-fi
-popd
 
 ##### Install python packages #################################################
 
@@ -566,16 +418,10 @@ if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
     echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
 fi
 
-if "${is_el}"; then
-    if ! grep -q '.config/profile.d/local.sh' ${HOME}/.bash_profile; then
-        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.bash_profile"
-    fi
-else
-    if ! grep -q '.config/profile.d/local.sh' ${HOME}/.profile; then
-        echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
-    fi
+if ! grep -q '.config/profile.d/local.sh' ${HOME}/.profile; then
+    echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
 fi
 
 popd
 
-_banner "Finished!"
+_banner "Well done!"
