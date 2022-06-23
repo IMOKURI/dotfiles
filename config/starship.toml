@@ -1,3 +1,6 @@
+[hostname]
+style = "bold green"
+
 [directory]
 truncation_length = 5
 truncation_symbol = ".../"
