@@ -93,6 +93,10 @@ if [[ -f /etc/os-release ]]; then
             # Rocky Linux
             is_el=true
             ;;
+        AlmaLinux*)
+            # Alma Linux
+            is_el=true
+            ;;
         Ubuntu*)
             # Ubuntu
             is_deb=true
