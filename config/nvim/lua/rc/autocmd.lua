@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = group_name,
-    pattern = "plugin.all.lua",
+    pattern = "all.lua",
     command = "source <afile> | PackerCompile",
 })
 vim.api.nvim_create_autocmd("FileType", {
