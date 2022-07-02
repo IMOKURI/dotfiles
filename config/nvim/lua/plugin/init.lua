@@ -15,7 +15,6 @@ function _G.run_packer(method)
         args = { "packer.nvim" },
     }, {})
     require("plugin.load")[method]()
-    vim.notify(string.format("Packer %s done!", method), vim.log.levels.INFO)
 end
 
 vim.api.nvim_create_user_command("PackerInstall", "lua run_packer('install')", { bang = true })

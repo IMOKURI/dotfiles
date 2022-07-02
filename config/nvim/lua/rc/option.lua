@@ -55,6 +55,7 @@ o.listchars = {
     precedes = "«",
 }
 o.showmatch = true
+o.spell = true
 o.colorcolumn = "120"
 o.cursorline = true
 o.breakindent = true

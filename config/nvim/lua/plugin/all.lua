@@ -247,6 +247,11 @@ return {
     { "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" },
     { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
     { "romgrk/nvim-treesitter-context", after = "nvim-treesitter" },
+    {
+        "lewis6991/spellsitter.nvim",
+        after = "nvim-treesitter",
+        config = "require'plugin.rc.spellsitter-nvim'.config()",
+    },
 
     -- Auto completion
     {

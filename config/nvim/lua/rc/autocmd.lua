@@ -23,11 +23,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
     end,
 })
-vim.api.nvim_create_autocmd("BufWritePost", {
-    group = group_name,
-    pattern = "all.lua",
-    command = "source <afile> | PackerCompile",
-})
 vim.api.nvim_create_autocmd("FileType", {
     group = group_name,
     pattern = "gitcommit",
