@@ -12,6 +12,7 @@ return {
     {
         "catppuccin/nvim",
         as = "catppuccin",
+        run = ":CatppuccinCompile",
         config = "require'plugin.rc.catppuccin'.config()",
     },
 

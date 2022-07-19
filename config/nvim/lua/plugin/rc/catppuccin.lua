@@ -1,6 +1,6 @@
 local M = {}
 local catppuccin = require("catppuccin")
-local colors = require("catppuccin.palettes.init").get_palette()
+local colors = require("catppuccin.palettes").get_palette()
 
 function M.config()
     catppuccin.setup({
