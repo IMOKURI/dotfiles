@@ -3,8 +3,17 @@ local catppuccin = require("catppuccin")
 local colors = require("catppuccin.palettes").get_palette()
 
 function M.config()
+    vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+
     catppuccin.setup({
+        compile = {
+            enabled = true,
+        },
+        dim_inactive = {
+            enabled = true,
+        },
         custom_highlights = {
+            CursorLineNr = { fg = colors.red },
             HighlightedCursorLineNr = { fg = colors.red },
             HighlightedLineNr = { fg = colors.text },
             HighlightedLineNr1 = { fg = colors.maroon },
@@ -14,17 +23,12 @@ function M.config()
             HighlightedLineNr5 = { fg = colors.teal },
             DimLineNr = { fg = colors.surface1 },
 
-            ActiveWindow = { bg = colors.base },
-            InactiveWindow = { bg = colors.mantle },
-
             WinBarContent = { fg = colors.base, bg = colors.sapphire },
             WinBarSeparator = { fg = colors.sapphire },
 
             ColorColumn = { bg = colors.mantle },
         },
     })
-
-    vim.opt.winhighlight = "Normal:ActiveWindow,NormalNC:InactiveWindow,CursorLineNr:HighlightedCursorLineNr"
 
     vim.api.nvim_cmd({
         cmd = "colorscheme",
