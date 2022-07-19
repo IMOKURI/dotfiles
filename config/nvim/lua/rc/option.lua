@@ -94,6 +94,7 @@ o.smartindent = true
 o.virtualedit:append({ "block" })
 o.clipboard:append({ "unnamedplus" })
 o.completeopt = { "menu", "menuone", "noselect" }
+o.mouse = ""
 
 local uname = vim.fn.substitute(vim.fn.system("uname -r"), "\n", "", "")
 if string.match(uname, "microsoft") then
