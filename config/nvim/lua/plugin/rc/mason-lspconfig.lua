@@ -12,14 +12,6 @@ local servers = {
     "vimls",
 }
 
-local servers_default_setup = {
-    "bashls",
-    "dockerls",
-    "jsonls",
-    "terraformls",
-    "vimls",
-}
-
 function M.config()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
@@ -64,141 +56,151 @@ function M.config()
 
     local lsp_config = require("lspconfig")
 
-    for _, name in pairs(servers_default_setup) do
-        lsp_config[name].setup({
-            capabilities = capabilities,
-            on_attach = on_attach_vim,
-        })
-    end
+    mason_lspconfig.setup_handlers({
+        function(server_name)
+            lsp_config[server_name].setup({
+                capabilities = capabilities,
+                on_attach = on_attach_vim,
+            })
+        end,
 
-    lsp_config["diagnosticls"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach_vim,
-        filetypes = {
-            "sh",
-            "lua",
-            "yaml",
-        },
-        init_options = {
-            formatters = {
-                shfmt = {
-                    command = "shfmt",
-                    args = { "-i", "4", "-sr", "-ci" },
+        ["diagnosticls"] = function()
+            lsp_config["diagnosticls"].setup({
+                capabilities = capabilities,
+                on_attach = on_attach_vim,
+                filetypes = {
+                    "sh",
+                    "lua",
+                    "yaml",
                 },
-                stylua = {
-                    command = "stylua",
-                    args = { "--stdin-filepath", "%filename", "--", "-" },
-                    rootPatterns = { ".git" },
-                },
-                prettier = {
-                    command = "prettier",
-                    args = {
-                        "--stdin",
-                        "--stdin-filepath",
-                        "%filepath",
-                    },
-                    rootPatterns = { ".prettierrc.json", ".git" },
-                },
-            },
-            formatFiletypes = {
-                sh = "shfmt",
-                lua = "stylua",
-                yaml = "prettier",
-            },
-        },
-    })
-
-    lsp_config["pylsp"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach_vim,
-        settings = {
-            -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
-            -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
-            pylsp = {
-                plugins = {
-                    pycodestyle = {
-                        enabled = false,
-                        maxLineLength = 120,
-                        ignore = {
-                            "E203", -- whitespace before ':'
-                            "W503", -- line break before binary operator
+                init_options = {
+                    formatters = {
+                        shfmt = {
+                            command = "shfmt",
+                            args = { "-i", "4", "-sr", "-ci" },
+                        },
+                        stylua = {
+                            command = "stylua",
+                            args = { "--stdin-filepath", "%filename", "--", "-" },
+                            rootPatterns = { ".git" },
+                        },
+                        prettier = {
+                            command = "prettier",
+                            args = {
+                                "--stdin",
+                                "--stdin-filepath",
+                                "%filepath",
+                            },
+                            rootPatterns = { ".prettierrc.json", ".git" },
                         },
                     },
-                    pyflakes = {
-                        enabled = false,
-                    },
-                    autopep8 = {
-                        enabled = false,
-                    },
-                    yapf = {
-                        enabled = false,
-                    },
-                    pylsp_black = {
-                        enabled = true,
-                        line_length = 120,
-                    },
-                    pyls_isort = {
-                        enabled = true,
-                    },
-                    pylsp_mypy = {
-                        enabled = false,
-                        live_mode = false,
-                        dmypy = true,
-                        strict = false,
-                    },
-                    memestra = {
-                        enabled = true,
+                    formatFiletypes = {
+                        sh = "shfmt",
+                        lua = "stylua",
+                        yaml = "prettier",
                     },
                 },
-            },
-        },
-    })
+            })
+        end,
 
-    lsp_config["pyright"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach_vim,
-        settings = {
-            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-            pyright = {},
-            python = {
-                pythonPath = vim.fn.exepath("python"),
-                analysis = {
-                    autoImportCompletions = true,
-                    autoSearchPaths = true,
-                    diagnosticMode = "workspace",
-                    typeCheckingMode = "basic",
-                    useLibraryCodeForTypes = true,
+        ["pylsp"] = function()
+            lsp_config["pylsp"].setup({
+                capabilities = capabilities,
+                on_attach = on_attach_vim,
+                settings = {
+                    -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
+                    -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                enabled = false,
+                                maxLineLength = 120,
+                                ignore = {
+                                    "E203", -- whitespace before ':'
+                                    "W503", -- line break before binary operator
+                                },
+                            },
+                            pyflakes = {
+                                enabled = false,
+                            },
+                            autopep8 = {
+                                enabled = false,
+                            },
+                            yapf = {
+                                enabled = false,
+                            },
+                            pylsp_black = {
+                                enabled = true,
+                                line_length = 120,
+                            },
+                            pyls_isort = {
+                                enabled = true,
+                            },
+                            pylsp_mypy = {
+                                enabled = false,
+                                live_mode = false,
+                                dmypy = true,
+                                strict = false,
+                            },
+                            memestra = {
+                                enabled = true,
+                            },
+                        },
+                    },
                 },
-            },
-        },
-    })
+            })
+        end,
 
-    lsp_config["sumneko_lua"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach_vim,
-        settings = {
-            -- https://github.com/sumneko/lua-language-server/wiki/Setting
-            Lua = {
-                runtime = {
-                    version = "LuaJIT",
-                    path = vim.split(package.path, ";"),
+        ["pyright"] = function()
+            lsp_config["pyright"].setup({
+                capabilities = capabilities,
+                on_attach = on_attach_vim,
+                settings = {
+                    -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+                    pyright = {},
+                    python = {
+                        pythonPath = vim.fn.exepath("python"),
+                        analysis = {
+                            autoImportCompletions = true,
+                            autoSearchPaths = true,
+                            diagnosticMode = "workspace",
+                            typeCheckingMode = "basic",
+                            useLibraryCodeForTypes = true,
+                        },
+                    },
                 },
-                diagnostics = {
-                    enable = true,
-                    globals = vim.list_extend({
-                        "after_each",
-                        "before_each",
-                        "describe",
-                        "it",
-                        "use",
-                        "vim",
-                    }, {}),
+            })
+        end,
+
+        ["sumneko_lua"] = function()
+            lsp_config["sumneko_lua"].setup({
+                capabilities = capabilities,
+                on_attach = on_attach_vim,
+                settings = {
+                    -- https://github.com/sumneko/lua-language-server/wiki/Setting
+                    Lua = {
+                        runtime = {
+                            version = "LuaJIT",
+                            path = vim.split(package.path, ";"),
+                        },
+                        diagnostics = {
+                            enable = true,
+                            globals = vim.list_extend({
+                                "after_each",
+                                "before_each",
+                                "describe",
+                                "it",
+                                "use",
+                                "vim",
+                            }, {}),
+                        },
+                        completion = {
+                            callSnippet = "Replace",
+                        },
+                    },
                 },
-                completion = {
-                    callSnippet = "Replace",
-                },
-            },
-        },
+            })
+        end,
     })
 end
 
