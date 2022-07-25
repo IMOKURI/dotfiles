@@ -276,6 +276,7 @@ _banner "Install RipGrep..."
 if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
     curl -fsSL -o /tmp/rg.tar.gz \
         https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz
+    mkdir -p "${HOME}/src"
     tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
     ln -sfnv ${HOME}/src/${RIPGREP}/rg "${HOME}/bin/rg"
 else
