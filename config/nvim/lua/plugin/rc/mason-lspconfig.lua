@@ -10,9 +10,6 @@ local servers = {
     "sumneko_lua",
     "terraformls",
     "vimls",
-    "prettier",
-    "shfmt",
-    "stylua",
 }
 
 local servers_default_setup = {
