@@ -40,36 +40,6 @@ function _logger() {
     printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
 
-# https://stackoverflow.com/a/4025065/4819106
-function vercomp() {
-    if [[ $1 == $2 ]]; then
-        echo "="
-        return 0
-    fi
-    local IFS=.
-    local i ver1=($1) ver2=($2)
-    # fill empty fields in ver1 with zeros
-    for ((i = ${#ver1[@]}; i < ${#ver2[@]}; i++)); do
-        ver1[i]=0
-    done
-    for ((i = 0; i < ${#ver1[@]}; i++)); do
-        if [[ -z ${ver2[i]} ]]; then
-            # fill empty fields in ver2 with zeros
-            ver2[i]=0
-        fi
-        if ((10#${ver1[i]} > 10#${ver2[i]})); then
-            echo ">"
-            return 0
-        fi
-        if ((10#${ver1[i]} < 10#${ver2[i]})); then
-            echo "<"
-            return 0
-        fi
-    done
-    echo "="
-    return 0
-}
-
 ##### Detect OS Distribution ##################################################
 
 _banner "Detect OS Distribution"
@@ -99,7 +69,7 @@ function setup_repository_deb() {
     _banner "Setup repositories for Ubuntu..."
 
     _logger "${INFO}" "Install apt common package."
-    sudo -E apt-get install -y software-properties-common
+    sudo -E apt-get install -y gnupg software-properties-common
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger "${INFO}" "Install Git-LFS repository."
@@ -115,6 +85,16 @@ function setup_repository_deb() {
         _logger "${INFO}" "Install Yarn repository."
         curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    fi
+
+    if [[ ! -f /etc/apt/sources.list.d/hashicorp.list ]]; then
+        _logger "${INFO}" "Install HashCorp repository."
+        wget -O- https://apt.releases.hashicorp.com/gpg | \
+            gpg --dearmor | \
+            sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+            https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+            sudo tee /etc/apt/sources.list.d/hashicorp.list
     fi
 }
 
@@ -137,8 +117,10 @@ function install_packages_deb() {
     _logger "${INFO}" "Install basic packages."
     sudo -E apt-get install -y \
         ansible \
+        bat \
         fd-find \
         figlet \
+        fzf \
         fzy \
         gcc \
         git \
@@ -151,6 +133,8 @@ function install_packages_deb() {
         python3-distutils \
         python3-pip \
         python3-venv \
+        ripgrep \
+        terraform \
         yarn \
         wamerican
 
@@ -195,6 +179,16 @@ function install_packages_deb() {
 }
 
 install_packages_deb
+
+##### Install Rust ##########################################################
+
+_banner "Install Rust..."
+
+if command -v rustup &> /dev/null; then
+    rustup update
+else
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+fi
 
 ##### Clone Dotfiles ##########################################################
 
@@ -270,115 +264,11 @@ fi
 _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     doctoc \
-    tldr \
-    prettier
+    tldr
+# prettier
 # @gridsome/cli
 
 yarn global upgrade
-
-##### Install go packages #####################################################
-
-_banner "Install Go Packages..."
-GO_VERSION=$(go version | {
-    read _ _ v _
-    echo ${v#go}
-})
-_logger "${INFO}" "Go version: ${GO_VERSION}"
-op=$(vercomp "${GO_VERSION}" "1.17")
-if [[ ${op} == "=" || ${op} == ">" ]]; then
-    go install \
-        mvdan.cc/sh/v3/cmd/shfmt@latest
-else
-    GO111MODULE=on go get -u \
-        mvdan.cc/sh/cmd/shfmt
-fi
-
-##### Install stylua #############################################
-
-STYLUA_VERSION=$(curl -sfL https://api.github.com/repos/JohnnyMorganz/StyLua/releases | jq .[0].name | sed -e s/\"//g)
-STYLUA="stylua-${STYLUA_VERSION#v}-linux"
-
-_banner "Install Stylua..."
-if [[ ! -d "${HOME}/src/${STYLUA}" ]]; then
-    # curl -fsSL -o /tmp/stylua.zip \
-    #     https://github.com/JohnnyMorganz/StyLua/releases/download/${STYLUA_VERSION}/${STYLUA}.zip
-    curl -fsSL -o /tmp/stylua.zip \
-        https://github.com/JohnnyMorganz/StyLua/releases/download/${STYLUA_VERSION}/stylua-linux.zip
-
-    mkdir -p "${HOME}/src/${STYLUA}"
-    unzip /tmp/stylua.zip -d "${HOME}/src/${STYLUA}/"
-    chmod +x "${HOME}/src/${STYLUA}/stylua"
-
-    ln -sfnv ${HOME}/src/${STYLUA}/stylua "${HOME}/bin/stylua"
-else
-    _logger "${INFO}" "Already installed."
-fi
-
-##### Install ripgrep #########################################################
-
-RIPGREP_VERSION=$(curl -sfL https://api.github.com/repos/BurntSushi/ripgrep/releases | jq .[0].name | sed -e s/\"//g)
-# https://github.com/nvim-telescope/telescope-fzf-writer.nvim/issues/9
-# RIPGREP_VERSION="12.1.1"
-RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
-
-_banner "Install RipGrep..."
-if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
-    curl -fsSL -o /tmp/rg.tar.gz \
-        https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz
-
-    tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
-
-    ln -sfnv ${HOME}/src/${RIPGREP}/rg "${HOME}/bin/rg"
-else
-    _logger "${INFO}" "Already installed."
-fi
-
-##### Install bat #############################################################
-
-BAT_VERSION=$(curl -sfL https://api.github.com/repos/sharkdp/bat/releases | jq .[0].name | sed -e s/\"//g)
-BAT="bat-${BAT_VERSION}-x86_64-unknown-linux-gnu"
-
-_banner "Install Bat..."
-if [[ ! -f "${HOME}/src/${BAT}" ]]; then
-    curl -fsSL -o /tmp/bat.tar.gz \
-        https://github.com/sharkdp/bat/releases/download/${BAT_VERSION}/${BAT}.tar.gz
-
-    tar xf /tmp/bat.tar.gz -C "${HOME}/src/"
-
-    ln -sfnv ${HOME}/src/${BAT}/bat "${HOME}/bin/bat"
-else
-    _logger "${INFO}" "Already installed."
-fi
-
-##### Install fzf #############################################################
-
-FZF_VERSION=$(curl -sfL https://api.github.com/repos/junegunn/fzf/releases | jq .[0].name | sed -e s/\"//g)
-FZF="fzf-${FZF_VERSION}-linux_amd64.tar.gz"
-
-_banner "Install Fzf..."
-if [[ ! -f "${HOME}/src/${FZF}" ]]; then
-    curl -fsSL -o ${HOME}/src/${FZF} \
-        https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/${FZF}
-
-    tar xf ${HOME}/src/${FZF} -C "${HOME}/bin/"
-else
-    _logger "${INFO}" "Already installed."
-fi
-
-##### Install terraform #######################################################
-
-TERRAFORM_VERSION=$(curl -sfL https://api.github.com/repos/hashicorp/terraform/releases | jq .[0].name | sed -e s/\"//g -e s/v//)
-TERRAFORM="terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
-
-_banner "Install Terraform..."
-if [[ ! -f "${HOME}/src/${TERRAFORM}" ]]; then
-    curl -fsSL -o ${HOME}/src/${TERRAFORM} \
-        https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/${TERRAFORM}
-
-    unzip -o ${HOME}/src/${TERRAFORM} -d ${HOME}/bin/
-else
-    _logger "${INFO}" "Already installed."
-fi
 
 ##### Install bashmarks #######################################################
 
