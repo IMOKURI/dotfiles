@@ -5,14 +5,16 @@ function M.winbar()
     if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
         fname = "[No Name]"
     else
-        fname = vim.fn.pathshorten(vim.fn.expand('%f'), 1)
+        fname = vim.fn.expand("%f")
     end
 
     return "%#WinBarSeparator#"
         .. ""
         .. "%*"
         .. "%#WinBarContent#"
-        .. " " .. fname .. " %m%r"
+        .. " "
+        .. fname
+        .. " %m%r"
         .. "%*"
         .. "%#WinBarSeparator#"
         .. ""
