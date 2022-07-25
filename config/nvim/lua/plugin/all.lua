@@ -318,15 +318,17 @@ return {
         config = "require'plugin.rc.fidget-nvim'.config()",
     },
     {
-        "williamboman/nvim-lsp-installer",
+        "williamboman/mason-lspconfig.nvim",
         requires = {
             "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
         },
         after = {
             "cmp-nvim-lsp",
             "nvim-lspconfig",
+            "mason.nvim",
         },
-        config = "require'plugin.rc.nvim-lsp-installer'.config()",
+        config = "require'plugin.rc.mason-lspconfig'.config()",
     },
 
     -- Status line
