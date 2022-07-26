@@ -9,11 +9,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank()
     end,
 })
-vim.api.nvim_create_autocmd("BufReadPost", {
+vim.api.nvim_create_autocmd("BufEnter", {
     group = group_name,
     command = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif ]],
 })
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("BufEnter", {
     group = group_name,
     command = [[ if empty(&buftype) && line('.') > winheight(0) / 2 | execute 'normal! zz' | endif ]],
 })
@@ -23,8 +23,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
     end,
 })
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("BufEnter", {
     group = group_name,
-    pattern = "gitcommit",
+    pattern = "COMMIT_EDITMSG",
     command = "normal! 5G",
 })
