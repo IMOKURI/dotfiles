@@ -1,15 +1,19 @@
 local M = {}
 
 local servers = {
-    "bashls",
-    "diagnosticls",
-    "dockerls",
-    "jsonls",
-    "pylsp",
+    "bash-language-server",
+    "black",
+    "diagnostic-languageserver",
+    "dockerfile-language-server",
+    "json-lsp",
+    "lua-language-server",
+    "prettier",
     "pyright",
-    "sumneko_lua",
-    "terraformls",
-    "vimls",
+    "python-lsp-server",
+    "shfmt",
+    "stylua",
+    "terraform-ls",
+    "vim-language-server",
 }
 
 function M.config()
@@ -45,14 +49,15 @@ function M.config()
         end
     end
 
-    local mason = require("mason")
-    mason.setup()
+    require("mason").setup()
+
+    require("mason-tool-installer").setup({
+        ensure_installed = servers,
+        auto_update = true,
+    })
 
     local mason_lspconfig = require("mason-lspconfig")
-    mason_lspconfig.setup({
-        ensure_installed = servers,
-        automatic_installation = true,
-    })
+    mason_lspconfig.setup({})
 
     local lsp_config = require("lspconfig")
 
