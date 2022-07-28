@@ -32,7 +32,7 @@ function _banner() {
 
 function _logger() {
     COLOR="${1}"
-    printf "${!COLOR}%s${CLEAR_COLOR}\n" "${2}"
+    printf "${COLOR}%s${CLEAR_COLOR}\n" "${2}"
 }
 
 ##### Detect OS Distribution ##################################################
