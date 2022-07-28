@@ -10,18 +10,13 @@ export PATH=$HOME/neovim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HO
 export DEBIAN_FRONTEND=noninteractive
 
 # Defind Colors
-RED="\033[38;2;255;84;88m"
-GREEN="\033[38;2;98;209;150m"
-YELLOW="\033[38;2;255;179;120m"
-BLUE="\033[38;2;101;178;255m"
-MAGENTA="\033[38;2;144;108;255m"
-CYAN="\033[38;2;99;242;241m"
+BANNER="\033[38;2;101;178;255m"  # BLUE
+DEBUG="\033[38;2;144;108;255m"  # MAGENTA
+INFO="\033[38;2;98;209;150m"  # GREEN
+WARN="\033[38;2;255;179;120m"  # YELLOW
+ERROR="\033[38;2;255;84;88m"  # RED
+OTHER="\033[38;2;99;242;241m"  # CYAN
 CLEAR_COLOR="\033[0m"
-
-DEBUG="MAGENTA"
-INFO="GREEN"
-WARN="YELLOW"
-ERROR="RED"
 
 # Define path
 DOTPATH="$HOME/.dotfiles"
@@ -31,8 +26,8 @@ DOTPATH="$HOME/.dotfiles"
 COL=120
 
 function _banner() {
-    sep=$(for ((i = 1; i < ${COL}; i++)); do echo -n =; done)
-    printf "\n${BLUE}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
+    sep=$(for ((i = 1; i < COL; i++)); do echo -n =; done)
+    printf "\n${BANNER}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
 function _logger() {
@@ -224,9 +219,9 @@ _banner "Install Python Packages..."
 
 function _pipx_install_or_upgrade() {
     if [[ ! -d "${HOME}/.local/pipx/venvs/${1%[*}" ]]; then
-        pipx install --include-deps ${1}
+        pipx install --include-deps "${1}"
     else
-        pipx upgrade --include-injected ${1%[*}
+        pipx upgrade --include-injected "${1%[*}"
     fi
 }
 
@@ -275,10 +270,10 @@ RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
 _banner "Install RipGrep..."
 if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
     curl -fsSL -o /tmp/rg.tar.gz \
-        https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz
+        "https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz"
     mkdir -p "${HOME}/src"
     tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
-    ln -sfnv ${HOME}/src/${RIPGREP}/rg "${HOME}/bin/rg"
+    ln -sfnv "${HOME}/src/${RIPGREP}/rg" "${HOME}/bin/rg"
 else
     _logger "${INFO}" "Already installed."
 fi
@@ -317,11 +312,11 @@ cd "${DOTPATH}"
 
 make install
 
-if ! grep -q '.config/bashrc' ${HOME}/.bashrc; then
+if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then
     echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
 fi
 
-if ! grep -q '.config/profile.d/local.sh' ${HOME}/.profile; then
+if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then
     echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
 fi
 
