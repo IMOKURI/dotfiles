@@ -13,6 +13,7 @@ function M.config()
             enabled = true,
         },
         custom_highlights = {
+            ColorColumn = { bg = colors.mantle },
             CursorLineNr = { fg = colors.red },
             HighlightedCursorLineNr = { fg = colors.red },
             HighlightedLineNr = { fg = colors.text },
@@ -22,11 +23,6 @@ function M.config()
             HighlightedLineNr4 = { fg = colors.green },
             HighlightedLineNr5 = { fg = colors.teal },
             DimLineNr = { fg = colors.surface1 },
-
-            WinBarContent = { fg = colors.base, bg = colors.sapphire },
-            WinBarSeparator = { fg = colors.sapphire },
-
-            ColorColumn = { bg = colors.mantle },
         },
     })
 

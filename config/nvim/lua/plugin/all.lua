@@ -60,27 +60,6 @@ return {
         setup = "vim.g.sonictemplate_vim_template_dir = {string.format('%s/template', vim.fn.stdpath('config'))}",
     },
 
-    -- Anotation
-    {
-        "danymat/neogen",
-        cmd = { "Neogen" },
-        after = {
-            "nvim-treesitter",
-        },
-        config = "require'plugin.rc.neogen'.config()",
-    },
-
-    -- Register
-    { "tversteeg/registers.nvim" },
-
-    -- Cursor line
-    {
-        "mvllow/modes.nvim",
-        config = function()
-            require("modes").setup()
-        end,
-    },
-
     -- Quick highlight
     {
         "t9md/vim-quickhl",
@@ -134,13 +113,6 @@ return {
     {
         "numToStr/Comment.nvim",
         config = "require'plugin.rc.comment-nvim'.config()",
-    },
-    {
-        "folke/todo-comments.nvim",
-        requires = {
-            "nvim-lua/plenary.nvim",
-        },
-        config = "require'plugin.rc.todo-comments-nvim'.config()",
     },
 
     -- Line diff
@@ -310,12 +282,14 @@ return {
     {
         "Mofiqul/trld.nvim",
         config = function()
-            require("trld").setup({ position = "top" })
+            require("trld").setup({ position = "bottom" })
         end,
     },
     {
         "j-hui/fidget.nvim",
-        config = "require'plugin.rc.fidget-nvim'.config()",
+        config = function()
+            require("fidget").setup({})
+        end,
     },
     {
         "williamboman/mason-lspconfig.nvim",
