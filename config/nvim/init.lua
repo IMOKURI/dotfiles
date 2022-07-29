@@ -8,4 +8,4 @@ require("rc.autocmd")
 
 -- Setup plugins
 require("plugin")
-pcall(require("packer_compiled"))
+pcall(require, "packer_compiled")
