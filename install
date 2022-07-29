@@ -31,8 +31,8 @@ function _banner() {
 }
 
 function _logger() {
-    COLOR="${1}"
-    printf "${COLOR}%s${CLEAR_COLOR}\n" "${2}"
+    LOG_LEVEL="${1}"
+    printf "${!LOG_LEVEL}%s${CLEAR_COLOR}\n" "${1}: ${2}"
 }
 
 ##### Detect OS Distribution ##################################################
@@ -47,49 +47,49 @@ if [[ -f /etc/os-release ]]; then
             # Ubuntu
             ;;
         *)
-            _logger "${ERROR}" "Unknown OS is detected."
+            _logger ERROR "Unknown OS is detected."
             exit 1
             ;;
     esac
 else
-    _logger "${ERROR}" "No such file. /etc/os-release"
+    _logger ERROR "No such file. /etc/os-release"
     exit 1
 fi
 
-_logger "${INFO}" "${PRETTY_NAME} is detected."
+_logger INFO "${PRETTY_NAME} is detected."
 
 ##### Setup repositories ######################################################
 
 function setup_repository_deb() {
     _banner "Setup repositories for Ubuntu..."
 
-    _logger "${INFO}" "Install apt common package."
+    _logger INFO "Install apt common package."
     sudo -E apt-get install -y gnupg software-properties-common
 
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
-        _logger "${INFO}" "Install Git-LFS repository."
+        _logger INFO "Install Git-LFS repository."
         curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
-        _logger "${INFO}" "Install Node.js repository."
+        _logger INFO "Install Node.js repository."
         curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
-        _logger "${INFO}" "Install Yarn repository."
+        _logger INFO "Install Yarn repository."
         curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo dd of=/etc/apt/sources.list.d/yarn.list
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/hashicorp.list ]]; then
-        _logger "${INFO}" "Install HashCorp repository."
+        _logger INFO "Install HashCorp repository."
         curl -sL https://apt.releases.hashicorp.com/gpg |
             gpg --dearmor |
-            sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+            sudo dd of=/usr/share/keyrings/hashicorp-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
             https://apt.releases.hashicorp.com $(lsb_release -cs) main" |
-            sudo tee /etc/apt/sources.list.d/hashicorp.list
+            sudo dd of=/etc/apt/sources.list.d/hashicorp.list
     fi
 }
 
@@ -100,16 +100,16 @@ setup_repository_deb
 function install_packages_deb() {
     _banner "Install Packages for Ubuntu..."
 
-    _logger "${INFO}" "Update package info."
+    _logger INFO "Update package info."
     sudo -E apt-get update
 
     # Prevent interruptions due to time zone selection.
     sudo -E apt-get install -y tzdata
 
-    _logger "${INFO}" "Upgrade packages."
+    _logger INFO "Upgrade packages."
     sudo -E apt-get upgrade -y
 
-    _logger "${INFO}" "Install basic packages."
+    _logger INFO "Install basic packages."
     sudo -E apt-get install -y \
         ansible \
         bat \
@@ -134,7 +134,7 @@ function install_packages_deb() {
 
     # for neovim
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
-    _logger "${INFO}" "Install neovim dependencies."
+    _logger INFO "Install neovim dependencies."
     sudo -E apt-get install -y \
         autoconf \
         automake \
@@ -151,7 +151,7 @@ function install_packages_deb() {
 
     # for pyenv
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-    _logger "${INFO}" "Install pyenv dependencies."
+    _logger INFO "Install pyenv dependencies."
     sudo -E apt-get install -y \
         make \
         build-essential \
@@ -189,10 +189,10 @@ fi
 _banner "Clone Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
-    _logger "${INFO}" "Clone dotfiles repository"
+    _logger INFO "Clone dotfiles repository"
     git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
 else
-    _logger "${INFO}" "Update dotfiles repository"
+    _logger INFO "Update dotfiles repository"
     pushd "$(pwd)"
     cd "${DOTPATH}"
     make update
@@ -275,7 +275,7 @@ if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
     tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
     ln -sfnv "${HOME}/src/${RIPGREP}/rg" "${HOME}/bin/rg"
 else
-    _logger "${INFO}" "Already installed."
+    _logger INFO "Already installed."
 fi
 
 ##### Install bashmarks #######################################################
