@@ -322,13 +322,11 @@ return {
         requires = {
             "neovim/nvim-lspconfig",
             "williamboman/mason.nvim",
-            "WhoIsSethDaniel/mason-tool-installer.nvim",
         },
         after = {
             "cmp-nvim-lsp",
             "nvim-lspconfig",
             "mason.nvim",
-            "mason-tool-installer.nvim",
         },
         config = "require'plugin.rc.mason-lspconfig'.config()",
     },
