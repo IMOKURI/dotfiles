@@ -10,8 +10,8 @@ local servers = {
     "prettier",
     "pyright",
     "python-lsp-server",
-    "shfmt",
-    "stylua",
+    -- "shfmt",
+    -- "stylua",
     "terraform-ls",
     "vim-language-server",
 }
@@ -53,7 +53,7 @@ function M.config()
 
     require("mason-tool-installer").setup({
         ensure_installed = servers,
-        auto_update = true,
+        -- auto_update = true,
     })
 
     local mason_lspconfig = require("mason-lspconfig")
