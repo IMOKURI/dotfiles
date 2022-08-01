@@ -23,6 +23,8 @@ function M.config()
             HighlightedLineNr4 = { fg = colors.green },
             HighlightedLineNr5 = { fg = colors.teal },
             DimLineNr = { fg = colors.surface1 },
+            WinBar = { fg = colors.yellow },
+            WinBarNC = { fg = colors.subtext0 },
         },
     })
 

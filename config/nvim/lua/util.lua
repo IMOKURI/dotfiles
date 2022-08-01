@@ -8,17 +8,7 @@ function M.winbar()
         fname = vim.fn.expand("%f")
     end
 
-    return "%#WinBarSeparator#"
-        .. ""
-        .. "%*"
-        .. "%#WinBarContent#"
-        .. " "
-        .. fname
-        .. " %m%r"
-        .. "%*"
-        .. "%#WinBarSeparator#"
-        .. ""
-        .. "%*"
+    return "%=" .. fname .. " %m%r"
 end
 
 function M.auto_mkdir(dir, force)

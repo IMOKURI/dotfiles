@@ -11,11 +11,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 vim.api.nvim_create_autocmd("BufRead", {
     group = group_name,
-    command = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal! g'\"" | endif ]],
+    command = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | execute "normal! g'\"" | endif ]],
 })
 vim.api.nvim_create_autocmd("BufEnter", {
     group = group_name,
     command = [[ if empty(&buftype) && line('.') > winheight(0) / 2 | execute 'normal! zz' | endif ]],
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+    group = group_name,
+    pattern = "COMMIT_EDITMSG",
+    command = "normal! 5G",
 })
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = group_name,
@@ -23,8 +28,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
     end,
 })
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("BufWritePost", {
     group = group_name,
-    pattern = "COMMIT_EDITMSG",
-    command = "normal! 5G",
+    pattern = "catppuccin.lua",
+    callback = function()
+        vim.api.nvim_cmd({
+            cmd = "CatppuccinClean",
+        }, {})
+    end,
 })
