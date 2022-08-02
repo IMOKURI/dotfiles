@@ -1,6 +1,16 @@
+local icon_ok, icons = pcall(require, "nvim-web-devicons")
+
 local M = {}
 
 function M.winbar()
+    local filename = vim.fn.expand("%:t")
+    local extension = vim.fn.expand("%:e")
+    local icon
+
+    if icon_ok then
+        icon = icons.get_icon(filename, extension)
+    end
+
     local fname
     if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
         fname = "[No Name]"
@@ -8,7 +18,10 @@ function M.winbar()
         fname = vim.fn.expand("%f")
     end
 
-    return "%=" .. fname .. " %m%r"
+    if icon then
+        return "%=" .. icon .. " " .. fname .. " %m%r%="
+    end
+    return "%=" .. fname .. " %m%r%="
 end
 
 function M.auto_mkdir(dir, force)
