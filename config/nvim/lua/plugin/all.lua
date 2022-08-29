@@ -210,7 +210,9 @@ return {
     {
         "lewis6991/spellsitter.nvim",
         after = "nvim-treesitter",
-        config = "require'plugin.rc.spellsitter-nvim'.config()",
+        config = function()
+            require("spellsitter").setup()
+        end,
     },
 
     -- Auto completion
@@ -264,12 +266,14 @@ return {
     -- LSP
     {
         "smjonas/inc-rename.nvim",
-        config = "require'plugin.rc.inc-rename'.config()",
+        config = function()
+            require("inc_rename").setup()
+        end,
     },
     {
         "Mofiqul/trld.nvim",
         config = function()
-            require("trld").setup({ position = "bottom" })
+            require("trld").setup({})
         end,
     },
     {
