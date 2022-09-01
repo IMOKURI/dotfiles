@@ -12,6 +12,9 @@ function M.config()
         dim_inactive = {
             enabled = true,
         },
+        integrations = {
+            fidget = true,
+        },
         custom_highlights = {
             ColorColumn = { bg = colors.mantle },
             CursorLineNr = { fg = colors.red },
