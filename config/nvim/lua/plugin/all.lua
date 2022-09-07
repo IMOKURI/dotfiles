@@ -131,7 +131,15 @@ return {
     {
         "stevearc/dressing.nvim",
         config = function()
-            require("dressing").setup()
+            require("dressing").setup({
+                input = {
+                    override = function(conf)
+                        conf.col = -1
+                        conf.row = 0
+                        return conf
+                    end,
+                },
+            })
         end,
     },
 
@@ -207,13 +215,6 @@ return {
     -- { "nvim-treesitter/nvim-treesitter-context", after = "nvim-treesitter" },
     { "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" },
     { "p00f/nvim-ts-rainbow", after = "nvim-treesitter" },
-    {
-        "lewis6991/spellsitter.nvim",
-        after = "nvim-treesitter",
-        config = function()
-            require("spellsitter").setup()
-        end,
-    },
 
     -- Auto completion
     {
@@ -267,7 +268,9 @@ return {
     {
         "smjonas/inc-rename.nvim",
         config = function()
-            require("inc_rename").setup()
+            require("inc_rename").setup({
+                input_buffer_type = "dressing",
+            })
         end,
     },
     {
