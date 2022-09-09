@@ -37,3 +37,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         }, {})
     end,
 })
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = group_name,
+    callback = function()
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+    end,
+})
