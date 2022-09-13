@@ -336,6 +336,13 @@ return {
         config = "require'plugin.rc.telescope-nvim'.zf_native()",
     },
     {
+        "smartpde/telescope-recent-files",
+        after = {
+            "telescope.nvim",
+        },
+        config = "require'plugin.rc.telescope-nvim'.recent_files()",
+    },
+    {
         "tamago324/telescope-sonictemplate.nvim",
         after = {
             "telescope.nvim",

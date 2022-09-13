@@ -39,6 +39,12 @@ function M.config()
             ["ui-select"] = {
                 require("telescope.themes").get_dropdown({}),
             },
+            recent_files = {
+                ignore_patterns = {
+                    "/tmp/",
+                    ".git/",
+                },
+            },
         },
     })
 
@@ -57,6 +63,12 @@ end
 
 function M.zf_native()
     telescope.load_extension("zf-native")
+end
+
+function M.recent_files()
+    vim.keymap.set("n", "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>")
+
+    telescope.load_extension("recent_files")
 end
 
 function M.sonictemplate()
