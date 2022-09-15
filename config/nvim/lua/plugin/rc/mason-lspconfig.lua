@@ -71,6 +71,7 @@ function M.config()
                     "sh",
                     "lua",
                     "yaml",
+                    "yaml.ansible",
                 },
                 init_options = {
                     formatters = {
@@ -97,6 +98,7 @@ function M.config()
                         sh = "shfmt",
                         lua = "stylua",
                         yaml = "prettier",
+                        ["yaml.ansible"] = "prettier",
                     },
                 },
             })
