@@ -152,6 +152,14 @@ alias kga='kubectl get all'
 alias kl='kubectl logs'
 alias ks='kubectl describe'
 
+kn() {
+    if [[ ${#} -eq 0 ]]; then
+        kubectl config view | grep namespace:
+    else
+        kubectl config set-context $(kubectl config current-context) --namespace=${1}
+    fi
+}
+
 alias dp='docker ps -a'
 alias dl='docker logs'
 alias di='docker images'
