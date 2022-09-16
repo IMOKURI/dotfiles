@@ -9,3 +9,5 @@ require("rc.autocmd")
 -- Setup plugins
 require("plugin")
 pcall(require, "packer_compiled")
+
+require("playground")

@@ -78,4 +78,10 @@ function M.plenary_job()
     P(job:sync())
 end
 
+local function echo_hello()
+    vim.notify("Hello")
+end
+
+vim.api.nvim_create_user_command("Playground", echo_hello, { desc = "echo Hello" })
+
 return M
