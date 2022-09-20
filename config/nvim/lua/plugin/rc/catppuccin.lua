@@ -10,7 +10,7 @@ function M.config()
             enabled = true,
         },
         dim_inactive = {
-            enabled = true,
+            enabled = false,
         },
         integrations = {
             fidget = true,
@@ -25,7 +25,7 @@ function M.config()
             HighlightedLineNr3 = { fg = colors.yellow },
             HighlightedLineNr4 = { fg = colors.green },
             HighlightedLineNr5 = { fg = colors.teal },
-            DimLineNr = { fg = colors.surface1 },
+            DimLineNr = { fg = colors.surface2 },
             WinBar = { fg = colors.yellow },
             WinBarNC = { fg = colors.subtext0 },
         },

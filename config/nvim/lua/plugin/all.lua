@@ -15,6 +15,12 @@ return {
         run = ":CatppuccinClean",
         config = "require'plugin.rc.catppuccin'.config()",
     },
+    {
+        "levouh/tint.nvim",
+        config = function()
+            require("tint").setup()
+        end,
+    },
 
     -- Filetype: python
     { "Vimjas/vim-python-pep8-indent", ft = { "python" } },
