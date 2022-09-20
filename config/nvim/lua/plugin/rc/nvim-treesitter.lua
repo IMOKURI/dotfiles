@@ -8,7 +8,6 @@ function M.config()
             "json",
             "lua",
             "make",
-            "markdown",
             "python",
             "vim",
             "yaml",

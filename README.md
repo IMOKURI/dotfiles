@@ -1,6 +1,6 @@
 <div align="center">
 
-#  dotfiles
+# :computer: dotfiles
 
 [![E2E Test](https://github.com/IMOKURI/dotfiles/actions/workflows/e2e_test.yml/badge.svg)](https://github.com/IMOKURI/dotfiles/actions/workflows/e2e_test.yml)
 
