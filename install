@@ -265,6 +265,7 @@ yarn global add --prefix "${HOME}" \
 yarn global upgrade
 
 ##### Install ripgrep #########################################################
+
 RIPGREP_VERSION=$(curl -sfL https://api.github.com/repos/BurntSushi/ripgrep/releases | jq .[0].name | sed -e s/\"//g)
 RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
 _banner "Install RipGrep..."

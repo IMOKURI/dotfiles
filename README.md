@@ -1,17 +1,21 @@
-# dotfiles
+<div align="center">
+
+#  dotfiles
 
 [![E2E Test](https://github.com/IMOKURI/dotfiles/actions/workflows/e2e_test.yml/badge.svg)](https://github.com/IMOKURI/dotfiles/actions/workflows/e2e_test.yml)
+
+</div>
 
 The dotfiles that can be installed by one command
 
 ## Features
 
 - Build latest neovim.
-- Install Python, Node.js and Go with some packages.
+- Install Python, Node.js, Rust and Go with some packages.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
 
-## Targets
+## Platforms
 
 - Ubuntu 20.04, 22.04
 
