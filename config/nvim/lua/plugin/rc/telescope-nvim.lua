@@ -8,7 +8,7 @@ function M.config()
     vim.keymap.set("n", "<Leader>d", "<Cmd>lua require('telescope.builtin').diagnostics({ bufnr = 0 })<CR>")
     vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
     vim.keymap.set("n", "<Leader>f", "<Cmd>lua require('plugin.rc.telescope-nvim').project_files()<CR>")
-    vim.keymap.set("n", "<Leader>g", "<Cmd>lua require('telescope.builtin').live_grep()<CR>")
+    vim.keymap.set("n", "<Leader>g", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
     vim.keymap.set(
         "n",
         "<Leader>E",
@@ -36,8 +36,13 @@ function M.config()
             },
         },
         extensions = {
-            ["ui-select"] = {
-                require("telescope.themes").get_dropdown({}),
+            live_grep_args = {
+                default_mappings = {},
+                mappings = {
+                    i = {
+                        ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+                    }
+                }
             },
             recent_files = {
                 ignore_patterns = {
@@ -45,9 +50,13 @@ function M.config()
                     ".git/",
                 },
             },
+            ["ui-select"] = {
+                require("telescope.themes").get_dropdown({}),
+            },
         },
     })
 
+    telescope.load_extension("live_grep_args")
     telescope.load_extension("notify")
     telescope.load_extension("smart_history")
     telescope.load_extension("ui-select")

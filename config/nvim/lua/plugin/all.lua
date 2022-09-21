@@ -328,6 +328,7 @@ return {
             "kyazdani42/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
+            "nvim-telescope/telescope-live-grep-args.nvim",
             "nvim-telescope/telescope-smart-history.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
