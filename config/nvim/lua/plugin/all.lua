@@ -314,12 +314,6 @@ return {
         config = "require'plugin.rc.lualine'.config()",
     },
 
-    -- Explorer
-    {
-        "lewis6991/brodir.nvim",
-        config = "require'plugin.rc.brodir-nvim'.config()",
-    },
-
     -- Fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
@@ -328,6 +322,7 @@ return {
             "kyazdani42/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
+            "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
             "nvim-telescope/telescope-smart-history.nvim",
             "nvim-telescope/telescope-symbols.nvim",

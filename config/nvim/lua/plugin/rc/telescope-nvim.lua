@@ -4,18 +4,15 @@ local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 
 function M.config()
+    vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
+    vim.keymap.set("n", "<Leader>E", "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>")
+    vim.keymap.set("n", "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>")
+    vim.keymap.set("n", "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
     vim.keymap.set("n", "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers()<CR>")
     vim.keymap.set("n", "<Leader>d", "<Cmd>lua require('telescope.builtin').diagnostics({ bufnr = 0 })<CR>")
-    vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
+    vim.keymap.set("n", "<Leader>e", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>")
     vim.keymap.set("n", "<Leader>f", "<Cmd>lua require('plugin.rc.telescope-nvim').project_files()<CR>")
     vim.keymap.set("n", "<Leader>g", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-    vim.keymap.set(
-        "n",
-        "<Leader>E",
-        "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>"
-    )
-    vim.keymap.set("n", "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
-    vim.keymap.set("n", "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>")
 
     telescope.setup({
         defaults = {
@@ -56,6 +53,7 @@ function M.config()
         },
     })
 
+    telescope.load_extension("file_browser")
     telescope.load_extension("live_grep_args")
     telescope.load_extension("notify")
     telescope.load_extension("smart_history")
