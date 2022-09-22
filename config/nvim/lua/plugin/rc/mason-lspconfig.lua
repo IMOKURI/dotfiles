@@ -1,6 +1,7 @@
 local M = {}
 
 local servers = {
+    "ansible-language-server",
     "bash-language-server",
     "diagnostic-languageserver",
     "dockerfile-language-server",
