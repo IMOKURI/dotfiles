@@ -17,9 +17,7 @@ return {
     },
     {
         "levouh/tint.nvim",
-        config = function()
-            require("tint").setup()
-        end,
+        config = function() require("tint").setup() end,
     },
 
     -- Filetype: python
@@ -276,15 +274,11 @@ return {
     },
     {
         "Mofiqul/trld.nvim",
-        config = function()
-            require("trld").setup({})
-        end,
+        config = function() require("trld").setup({}) end,
     },
     {
         "j-hui/fidget.nvim",
-        config = function()
-            require("fidget").setup({})
-        end,
+        config = function() require("fidget").setup({}) end,
     },
     {
         "williamboman/mason-lspconfig.nvim",

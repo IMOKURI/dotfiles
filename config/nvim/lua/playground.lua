@@ -24,23 +24,15 @@ function M.metatable()
     Class.seed = 440 -- クラス変数
 
     -- クラスメソッド
-    function Class.get_seed()
-        return Class.seed
-    end
+    function Class.get_seed() return Class.seed end
 
-    function Class.set_seed(new_seed)
-        Class.seed = new_seed
-    end
+    function Class.set_seed(new_seed) Class.seed = new_seed end
 
     -- メソッド
     -- コロンでメソッドを呼び出すと、オブジェクトの値が第一引数 self に渡される
-    function Class:get_a()
-        return self.a
-    end
+    function Class:get_a() return self.a end
 
-    function Class:set_a(x)
-        self.a = x
-    end
+    function Class:set_a(x) self.a = x end
 
     function Class.new(a)
         local obj = { a = a } -- インスタンス変数
@@ -70,17 +62,13 @@ function M.plenary_job()
     local job = Job:new({
         command = "rg",
         args = { "--vimgrep", "-w", "IMOKURI", "." },
-        on_stdout = function(_, data)
-            table.insert(results, data)
-        end,
+        on_stdout = function(_, data) table.insert(results, data) end,
     })
 
     P(job:sync())
 end
 
-local function echo_hello()
-    vim.notify("Hello")
-end
+local function echo_hello() vim.notify("Hello") end
 
 vim.api.nvim_create_user_command("Playground", echo_hello, { desc = "echo Hello" })
 
