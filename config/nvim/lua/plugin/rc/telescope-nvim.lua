@@ -37,7 +37,7 @@ function M.config()
                 default_mappings = {},
                 mappings = {
                     i = {
-                        ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+                        ["<C-o>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                     }
                 }
             },
