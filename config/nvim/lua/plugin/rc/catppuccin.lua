@@ -16,7 +16,8 @@ function M.config()
             fidget = true,
         },
         custom_highlights = {
-            ColorColumn = { bg = colors.mantle },
+            CursorColumn = { bg = colors.base },
+            CursorLine = { bg = colors.base },
             CursorLineNr = { fg = colors.red },
             HighlightedCursorLineNr = { fg = colors.red },
             HighlightedLineNr = { fg = colors.text },
