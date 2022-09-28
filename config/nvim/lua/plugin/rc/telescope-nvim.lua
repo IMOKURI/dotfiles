@@ -5,7 +5,11 @@ local action_layout = require("telescope.actions.layout")
 
 function M.config()
     vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
-    vim.keymap.set("n", "<Leader>E", "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>")
+    vim.keymap.set(
+        "n",
+        "<Leader>E",
+        "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>"
+    )
     vim.keymap.set("n", "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>")
     vim.keymap.set("n", "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
     vim.keymap.set("n", "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers()<CR>")
@@ -38,8 +42,8 @@ function M.config()
                 mappings = {
                     i = {
                         ["<C-o>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-                    }
-                }
+                    },
+                },
             },
             recent_files = {
                 ignore_patterns = {
@@ -61,16 +65,13 @@ function M.config()
 end
 
 function M.project_files()
-    local opts = {}
-    local ok = pcall(require("telescope.builtin").git_files, opts)
+    local ok = pcall(require("telescope.builtin").git_files, { show_untracked = true })
     if not ok then
-        require("telescope.builtin").find_files(opts)
+        require("telescope.builtin").find_files()
     end
 end
 
-function M.zf_native()
-    telescope.load_extension("zf-native")
-end
+function M.zf_native() telescope.load_extension("zf-native") end
 
 function M.recent_files()
     vim.keymap.set("n", "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>")
