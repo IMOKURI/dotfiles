@@ -6,14 +6,13 @@ function M.config()
     vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 
     catppuccin.setup({
-        compile = {
-            enabled = true,
-        },
-        dim_inactive = {
-            enabled = false,
-        },
         integrations = {
             fidget = true,
+            indent_blankline = {
+                enabled = true,
+                colored_indent_levels = false,
+            },
+            ts_rainbow = true,
         },
         custom_highlights = {
             CursorLineNr = { fg = colors.red },

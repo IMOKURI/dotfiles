@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "catppuccin.lua",
     callback = function()
         vim.api.nvim_cmd({
-            cmd = "CatppuccinClean",
+            cmd = "CatppuccinCompile",
         }, {})
     end,
 })
