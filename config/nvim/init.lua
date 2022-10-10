@@ -1,3 +1,5 @@
+pcall(require, "impatient")
+
 -- Setup global functions
 require("global")
 

@@ -5,7 +5,6 @@ return {
     -- Improve performance
     {
         "lewis6991/impatient.nvim",
-        config = "require('impatient')",
     },
 
     -- Color scheme
