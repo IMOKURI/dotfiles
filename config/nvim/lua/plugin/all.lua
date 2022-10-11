@@ -110,6 +110,7 @@ return {
     -- Comment
     {
         "numToStr/Comment.nvim",
+        keys = "<Leader>c",
         config = "require'plugin.rc.comment-nvim'.config()",
     },
 
@@ -310,7 +311,6 @@ return {
             "kyazdani42/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
-            "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
             "nvim-telescope/telescope-smart-history.nvim",
             "nvim-telescope/telescope-symbols.nvim",
@@ -327,13 +327,19 @@ return {
     },
     {
         "smartpde/telescope-recent-files",
-        after = {
-            "telescope.nvim",
-        },
+        keys = "<Leader>o",
+        after = "telescope.nvim",
         config = "require'plugin.rc.telescope-nvim'.recent_files()",
     },
     {
+        "nvim-telescope/telescope-file-browser.nvim",
+        keys = "<Leader>e",
+        after = "telescope.nvim",
+        config = "require'plugin.rc.telescope-nvim'.file_browser()",
+    },
+    {
         "tamago324/telescope-sonictemplate.nvim",
+        keys = "<Leader>s",
         after = {
             "telescope.nvim",
             "vim-sonictemplate",
@@ -343,6 +349,7 @@ return {
     {
         "IMOKURI/apyrori.nvim",
         ft = { "python" },
+        keys = "<Leader>i",
         requires = {
             "telescope.nvim",
             "nvim-lua/plenary.nvim",
