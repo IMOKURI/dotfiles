@@ -3,9 +3,7 @@ return {
     { "wbthomason/packer.nvim", opt = true },
 
     -- Improve performance
-    {
-        "lewis6991/impatient.nvim",
-    },
+    { "lewis6991/impatient.nvim" },
 
     -- Color scheme
     {
@@ -156,11 +154,11 @@ return {
     -- Terminal
     {
         "kassio/neoterm",
-        cmd = {
-            "Topen",
-            "Ttoggle",
+        keys = {
+            "<C-t>",
+            "<C-g>",
         },
-        setup = "require'plugin.rc.neoterm'.setup()",
+        config = "require'plugin.rc.neoterm'.config()",
     },
 
     -- REPL
