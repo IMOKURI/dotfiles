@@ -164,7 +164,13 @@ return {
     },
 
     -- REPL
-    { "IMOKURI/repl.vim" },
+    {
+        "IMOKURI/repl.vim",
+        cmd = {
+            "Topen",
+            "Ttoggle",
+        },
+    },
 
     -- Search
     {
