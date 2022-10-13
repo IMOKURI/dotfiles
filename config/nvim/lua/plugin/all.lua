@@ -310,7 +310,16 @@ return {
     -- Fuzzy finder
     {
         "nvim-telescope/telescope.nvim",
-        event = "BufWinEnter",
+        keys = {
+            "<Leader>D",
+            "<Leader>E",
+            "<Leader>[",
+            "<Leader>]",
+            "<Leader>b",
+            "<Leader>d",
+            "<Leader>f",
+            "<Leader>g",
+        },
         requires = {
             "kyazdani42/nvim-web-devicons",
             "nvim-lua/plenary.nvim",
