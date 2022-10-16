@@ -14,8 +14,7 @@ local servers = {
 }
 
 function M.config()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     local on_attach_vim = function(_, bufnr)
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
