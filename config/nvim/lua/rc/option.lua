@@ -73,6 +73,8 @@ o.shortmess:append("c")
 o.equalalways = false
 o.winbar = "%{%v:lua.require'util'.winbar()%}"
 o.cmdheight = 0
+o.cursorline = true
+o.cursorlineopt = "number"
 
 -- }}}
 

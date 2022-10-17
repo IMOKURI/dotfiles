@@ -63,15 +63,6 @@ return {
         config = "require'plugin.rc.vim-quickhl'.config()",
     },
 
-    -- Line number interval
-    {
-        "IMOKURI/line-number-interval.nvim",
-        after = {
-            "catppuccin",
-        },
-        setup = "require'plugin.rc.line-number-interval'.setup()",
-    },
-
     -- Git sign
     {
         "lewis6991/gitsigns.nvim",
