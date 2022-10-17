@@ -1,16 +1,16 @@
 local M = {}
 
 local servers = {
-    "ansible-language-server",
-    "bash-language-server",
-    "diagnostic-languageserver",
-    "dockerfile-language-server",
-    "json-lsp",
-    "lua-language-server",
+    "ansiblels",
+    "bashls",
+    "diagnosticls",
+    "dockerls",
+    "jsonls",
+    "sumneko_lua",
     "pyright",
-    "python-lsp-server",
-    "terraform-ls",
-    "vim-language-server",
+    "pylsp",
+    "terraformls",
+    "vimls",
 }
 
 function M.config()
