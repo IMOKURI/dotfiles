@@ -185,9 +185,9 @@
   "class": {
     "prefix": "class",
     "body": [
-      "class ${1:classname}(${2:object}):",
-      "\tdef __init__(self, ${3:parameter_list}):",
-      "\t\t${4:super().__init__()}"
+      "class ${1:classname}:",
+      "\tdef __init__(self${2:, parameter_list}):",
+      "\t\t${3:super().__init__()}"
     ],
     "description": "Code snippet for a class definition"
   },
