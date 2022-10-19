@@ -63,8 +63,10 @@ function M.config()
 end
 
 function M.project_files()
-    local ok = pcall(require("telescope.builtin").git_files, { show_untracked = true })
-    if not ok then
+    local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+    if in_git_repo then
+        require("telescope.builtin").git_files({ show_untracked = true })
+    else
         require("telescope.builtin").find_files()
     end
 end
