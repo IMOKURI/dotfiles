@@ -64,7 +64,6 @@ o.foldexpr = "nvim_treesitter#foldexpr()"
 o.scrolloff = 5
 o.showmode = false
 o.updatetime = 250
-o.lazyredraw = true
 o.pumblend = 20
 o.pumheight = 10
 o.diffopt:append({ "algorithm:patience", "indent-heuristic" })

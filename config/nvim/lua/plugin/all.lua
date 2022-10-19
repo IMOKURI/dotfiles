@@ -117,29 +117,13 @@ return {
 
     -- UI
     {
-        "stevearc/dressing.nvim",
-        config = function()
-            require("dressing").setup({
-                input = {
-                    override = function(conf)
-                        conf.col = -1
-                        conf.row = 0
-                        return conf
-                    end,
-                },
-            })
-        end,
-    },
-
-    -- Notification
-    {
-        "rcarriga/nvim-notify",
-        config = function()
-            vim.notify = require("notify")
-            vim.notify.setup({
-                stages = "fade",
-            })
-        end,
+        "folke/noice.nvim",
+        event = "VimEnter",
+        config = function() require("noice").setup() end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
     },
 
     -- Terminal
@@ -260,31 +244,21 @@ return {
 
     -- LSP
     {
-        "smjonas/inc-rename.nvim",
-        config = function()
-            require("inc_rename").setup({
-                input_buffer_type = "dressing",
-            })
-        end,
-    },
-    {
-        "Mofiqul/trld.nvim",
-        config = function() require("trld").setup({}) end,
-    },
-    {
-        "j-hui/fidget.nvim",
-        config = function() require("fidget").setup({}) end,
-    },
-    {
         "williamboman/mason-lspconfig.nvim",
         requires = {
+            "Mofiqul/trld.nvim",
+            "j-hui/fidget.nvim",
             "neovim/nvim-lspconfig",
+            "smjonas/inc-rename.nvim",
             "williamboman/mason.nvim",
         },
         after = {
             "cmp-nvim-lsp",
-            "nvim-lspconfig",
+            "fidget.nvim",
+            "inc-rename.nvim",
             "mason.nvim",
+            "nvim-lspconfig",
+            "trld.nvim",
         },
         config = "require'plugin.rc.mason-lspconfig'.config()",
     },

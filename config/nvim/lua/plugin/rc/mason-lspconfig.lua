@@ -19,7 +19,7 @@ function M.config()
     local on_attach_vim = function(_, bufnr)
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
         vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+            vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             virtual_text = {
                 source = true,
@@ -45,6 +45,9 @@ function M.config()
         end
     end
 
+    require("fidget").setup()
+    require("inc_rename").setup()
+    require("trld").setup()
     require("mason").setup()
 
     local mason_lspconfig = require("mason-lspconfig")
