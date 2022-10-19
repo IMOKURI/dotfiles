@@ -12,6 +12,21 @@ function M.config()
                 enabled = true,
                 colored_indent_levels = false,
             },
+            native_lsp = {
+                enabled = true,
+                virtual_text = {
+                    errors = {},
+                    hints = {},
+                    warnings = {},
+                    information = {},
+                },
+                underlines = {
+                    errors = { "underline" },
+                    hints = { "underline" },
+                    warnings = { "underline" },
+                    information = { "underline" },
+                },
+            },
             ts_rainbow = true,
         },
         custom_highlights = {
