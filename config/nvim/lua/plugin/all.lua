@@ -119,7 +119,7 @@ return {
     {
         "folke/noice.nvim",
         event = "VimEnter",
-        config = function() require("noice").setup() end,
+        config = "require'plugin.rc.noice-nvim'.config()",
         requires = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
