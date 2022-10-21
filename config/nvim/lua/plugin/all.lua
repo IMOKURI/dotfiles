@@ -247,14 +247,12 @@ return {
         "williamboman/mason-lspconfig.nvim",
         requires = {
             "Mofiqul/trld.nvim",
-            "j-hui/fidget.nvim",
             "neovim/nvim-lspconfig",
             "smjonas/inc-rename.nvim",
             "williamboman/mason.nvim",
         },
         after = {
             "cmp-nvim-lsp",
-            "fidget.nvim",
             "inc-rename.nvim",
             "mason.nvim",
             "nvim-lspconfig",

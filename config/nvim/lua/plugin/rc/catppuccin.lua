@@ -7,7 +7,6 @@ function M.config()
 
     catppuccin.setup({
         integrations = {
-            fidget = true,
             indent_blankline = {
                 enabled = true,
                 colored_indent_levels = false,

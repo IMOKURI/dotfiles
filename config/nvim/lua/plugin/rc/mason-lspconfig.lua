@@ -45,7 +45,6 @@ function M.config()
         end
     end
 
-    require("fidget").setup()
     require("inc_rename").setup()
     require("trld").setup()
     require("mason").setup()
