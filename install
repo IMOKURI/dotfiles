@@ -10,12 +10,12 @@ export PATH=$HOME/neovim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HO
 export DEBIAN_FRONTEND=noninteractive
 
 # Defind Colors
-BANNER="\033[38;2;101;178;255m"  # BLUE
+BANNER="\033[38;2;101;178;255m" # BLUE
 DEBUG="\033[38;2;144;108;255m"  # MAGENTA
-INFO="\033[38;2;98;209;150m"  # GREEN
-WARN="\033[38;2;255;179;120m"  # YELLOW
-ERROR="\033[38;2;255;84;88m"  # RED
-OTHER="\033[38;2;99;242;241m"  # CYAN
+INFO="\033[38;2;98;209;150m"    # GREEN
+WARN="\033[38;2;255;179;120m"   # YELLOW
+ERROR="\033[38;2;255;84;88m"    # RED
+OTHER="\033[38;2;99;242;241m"   # CYAN
 CLEAR_COLOR="\033[0m"
 
 # Define path
@@ -300,7 +300,11 @@ _banner "Build Neovim..."
 pushd "$(pwd)"
 cd "${DOTPATH}"
 for i in {1..3}; do
-    make neovim && break || sleep 10
+    if make neovim; then
+        break
+    else
+        sleep 10
+    fi
 done
 popd
 
