@@ -145,13 +145,6 @@ return {
         },
     },
 
-    -- Search
-    {
-        "kevinhwang91/nvim-hlslens",
-        event = { "BufRead", "BufNewFile" },
-        config = "require'plugin.rc.nvim-hlslens'.config()",
-    },
-
     -- Clever-f
     {
         "rhysd/clever-f.vim",

@@ -14,14 +14,7 @@ function M.config()
                 filter = { event = "msg_showmode" },
             },
             {
-                -- 検索件数を非表示にする
-                filter = {
-                    event = "msg_show",
-                    kind = "search_count",
-                },
-                opts = { skip = true },
-            },
-            {
+                view = "mini",
                 filter = {
                     event = "msg_show",
                     kind = "",
@@ -32,7 +25,6 @@ function M.config()
                         { find = "yanked" }, -- コピー
                     },
                 },
-                opts = { skip = true },
             },
         },
     })
