@@ -2,6 +2,8 @@
 
 set -e
 
+if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
+
 ##### Variables ###############################################################
 
 export PATH=$HOME/neovim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
@@ -318,11 +320,11 @@ cd "${DOTPATH}"
 make install
 
 if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then
-    echo -e "\nif [ -f ~/.config/bashrc ]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
+    echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"
 fi
 
 if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then
-    echo -e "\nif [ -f ~/.config/profile.d/local.sh ]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
+    echo -e "\nif [[ -f ~/.config/profile.d/local.sh ]]; then\n  . ~/.config/profile.d/local.sh\nfi" >> "${HOME}/.profile"
 fi
 
 popd
