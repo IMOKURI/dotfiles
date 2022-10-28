@@ -27,6 +27,18 @@ function M.config()
                 },
             },
         },
+        lsp = {
+            hover = {
+                opts = {
+                    border = "single",
+                },
+            },
+            signature = {
+                opts = {
+                    border = "single",
+                },
+            },
+        },
     })
 end
 

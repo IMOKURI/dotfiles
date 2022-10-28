@@ -304,6 +304,12 @@ return {
         config = "require'plugin.rc.telescope-nvim'.file_browser()",
     },
     {
+        "neanias/telescope-lines.nvim",
+        keys = "<Leader>l",
+        after = "telescope.nvim",
+        config = "require'plugin.rc.telescope-nvim'.lines()",
+    },
+    {
         "tamago324/telescope-sonictemplate.nvim",
         keys = "<Leader>s",
         after = {

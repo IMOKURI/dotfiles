@@ -50,6 +50,9 @@ function M.config()
                     ".git/",
                 },
             },
+            lines = {
+                trim_lines = false,
+            },
             ["ui-select"] = {
                 require("telescope.themes").get_dropdown({}),
             },
@@ -83,6 +86,12 @@ function M.file_browser()
     vim.keymap.set("n", "<Leader>e", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>")
 
     telescope.load_extension("file_browser")
+end
+
+function M.lines()
+    vim.keymap.set("n", "<Leader>l", "<Cmd>lua require('telescope').extensions.lines.lines()<CR>")
+
+    telescope.load_extension("lines")
 end
 
 function M.sonictemplate()
