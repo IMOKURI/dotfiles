@@ -47,9 +47,6 @@ return {
         cmd = { "AnsibleVaultEncrypt", "AnsibleVaultDecrypt" },
     },
 
-    -- Capture
-    { "tyru/capture.vim", cmd = { "Capture" } },
-
     -- Sonic template
     {
         "mattn/vim-sonictemplate",
