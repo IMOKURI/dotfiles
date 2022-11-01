@@ -122,6 +122,14 @@ return {
             "rcarriga/nvim-notify",
         },
     },
+    {
+        "nvim-zh/colorful-winsep.nvim",
+        event = "VimEnter",
+        after = {
+            "catppuccin",
+        },
+        config = "require'plugin.rc.colorful-winsep'.config()",
+    },
 
     -- Terminal
     {
