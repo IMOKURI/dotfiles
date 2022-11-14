@@ -11,6 +11,7 @@ DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
 DOTPATH    := $(HOME)/.dotfiles
+VIMPATH    := $(HOME)/src/vim
 NEOVIMPATH := $(HOME)/src/neovim
 BASHMARKS  := $(HOME)/src/bashmarks
 
@@ -68,6 +69,18 @@ build-neovim: ## Build neovim
 	make distclean && \
 	make clean && \
 	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
+	make install
+
+vim: update-vim build-vim ## Get edge vim
+
+update-vim: ## Update vim repository
+	$(call repo,$(VIMPATH),vim/vim)
+
+build-vim: ## Build vim
+	cd $(VIMPATH) && \
+	(make clean || :) && \
+	./configure --with-features=huge --enable-python3interp --enable-luainterp --enable-fail-if-missing --with-luajit --prefix=$(HOME)/vim && \
+	make && \
 	make install
 
 bashmarks: update-bashmarks build-bashmarks ## Get Bashmarks
