@@ -1,3 +1,4 @@
+local u = require("util")
 local group_name = "MyACGroup"
 
 vim.api.nvim_create_augroup(group_name, {})
@@ -20,6 +21,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     group = group_name,
     pattern = "COMMIT_EDITMSG",
     command = "normal! 5G",
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = group_name,
+    callback = function()
+        u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
+    end,
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = group_name,

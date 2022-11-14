@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 -- -----------------------------------------------------------------------------
 -- File {{{
 
-vim.keymap.set("n", "<Leader>w", "<Cmd>update ++p<CR>")
+vim.keymap.set("n", "<Leader>w", "<Cmd>update<CR>")
 vim.keymap.set("n", "<Leader><Leader>w", "<Cmd>wall<CR>")
 
 vim.keymap.set("n", "qq", "<Cmd>close<CR>")
