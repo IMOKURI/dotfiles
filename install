@@ -2,11 +2,9 @@
 
 set -e
 
-if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
-
 ##### Variables ###############################################################
 
-export PATH=$HOME/neovim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # For Ubuntu
 export DEBIAN_FRONTEND=noninteractive
