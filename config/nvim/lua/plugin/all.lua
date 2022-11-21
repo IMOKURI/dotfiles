@@ -37,9 +37,6 @@ return {
         setup = "require'plugin.rc.vim-terraform'.setup()",
     },
 
-    -- Filetype: Jenkinsfile
-    { "martinda/Jenkinsfile-vim-syntax", ft = { "Jenkinsfile" } },
-
     -- Filetype: ansible
     {
         "thiagoalmeidasa/vim-ansible-vault",

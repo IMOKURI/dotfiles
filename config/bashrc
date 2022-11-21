@@ -137,11 +137,6 @@ function gbds() {
 }
 alias gbds=gbds
 
-alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validate'
-#alias jfl='curl -X POST --insecure -F "jenkinsfile=<Jenkinsfile" https://jenkins.docker.hpecorp.net/pipeline-model-converter/validateJenkinsfile'
-
-alias jcli='java -jar ~/bin/jenkins-cli.jar -noCertificateCheck -s https://jenkins.docker.hpecorp.net/'
-
 alias k='kubectl'
 alias ka='kubectl apply'
 alias kc='kubectl create'
