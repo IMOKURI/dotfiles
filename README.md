@@ -17,7 +17,7 @@ The dotfiles that can be installed by one command
 
 ## Platforms
 
-- Ubuntu 22.04
+- Ubuntu 20.04, 22.04
 
 ## Requirements
 

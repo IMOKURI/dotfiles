@@ -131,9 +131,9 @@ function install_packages_deb() {
         python3-pip \
         python3-venv \
         ripgrep \
-        terraform \
         yarn \
         wamerican
+        # terraform \
 
     # for neovim
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites
