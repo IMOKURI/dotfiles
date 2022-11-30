@@ -80,8 +80,12 @@ function setup_repository_deb() {
 
     if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
         _logger INFO "Install Yarn repository."
-        curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo dd of=/etc/apt/sources.list.d/yarn.list
+        curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg |
+            gpg --dearmor |
+            sudo dd of=/usr/share/keyrings/yarn-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] \
+            https://dl.yarnpkg.com/debian/ stable main" |
+            sudo dd of=/etc/apt/sources.list.d/yarn.list
     fi
 
     if [[ ! -f /etc/apt/sources.list.d/hashicorp.list ]]; then
