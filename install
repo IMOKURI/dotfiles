@@ -6,7 +6,7 @@ if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
 
 ##### Variables ###############################################################
 
-export PATH=$HOME/neovim/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # For Ubuntu
 export DEBIAN_FRONTEND=noninteractive
@@ -70,11 +70,6 @@ function setup_repository_deb() {
 
     sudo mkdir -p /etc/apt/keyrings
 
-    if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
-        _logger INFO "Install Git-LFS repository."
-        curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
-    fi
-
     if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
         _logger INFO "Install Node.js repository."
         curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -85,7 +80,7 @@ function setup_repository_deb() {
         curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg |
             gpg --dearmor |
             sudo dd of=/etc/apt/keyrings/yarn-archive-keyring.gpg
-        echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] \
+        echo "deb [signed-by=/etc/apt/keyrings/yarn-archive-keyring.gpg] \
             https://dl.yarnpkg.com/debian/ stable main" |
             sudo dd of=/etc/apt/sources.list.d/yarn.list
     fi
@@ -95,7 +90,7 @@ function setup_repository_deb() {
         curl -sL https://apt.releases.hashicorp.com/gpg |
             gpg --dearmor |
             sudo dd of=/etc/apt/keyrings/hashicorp-archive-keyring.gpg
-        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+        echo "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.gpg] \
             https://apt.releases.hashicorp.com $(lsb_release -cs) main" |
             sudo dd of=/etc/apt/sources.list.d/hashicorp.list
     fi
@@ -127,7 +122,6 @@ function install_packages_deb() {
         fzy \
         gcc \
         git \
-        git-lfs \
         golang-go \
         jq \
         make \
@@ -136,6 +130,7 @@ function install_packages_deb() {
         python3-distutils \
         python3-pip \
         python3-venv \
+        ripgrep \
         terraform \
         yarn \
         wamerican
@@ -181,16 +176,6 @@ function install_packages_deb() {
 }
 
 install_packages_deb
-
-##### Install Rust ##########################################################
-
-_banner "Install Rust..."
-
-if command -v rustup &> /dev/null; then
-    rustup update
-else
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
-fi
 
 ##### Clone Dotfiles ##########################################################
 
@@ -267,25 +252,9 @@ _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     doctoc \
     tldr
-# prettier
 # @gridsome/cli
 
 yarn global upgrade
-
-##### Install ripgrep #########################################################
-
-RIPGREP_VERSION=$(curl -sfL https://api.github.com/repos/BurntSushi/ripgrep/releases | jq .[0].name | sed -e s/\"//g)
-RIPGREP="ripgrep-${RIPGREP_VERSION}-x86_64-unknown-linux-musl"
-_banner "Install RipGrep..."
-if [[ ! -d "${HOME}/src/${RIPGREP}" ]]; then
-    curl -fsSL -o /tmp/rg.tar.gz \
-        "https://github.com/BurntSushi/ripgrep/releases/download/${RIPGREP_VERSION}/${RIPGREP}.tar.gz"
-    mkdir -p "${HOME}/src"
-    tar xf /tmp/rg.tar.gz -C "${HOME}/src/"
-    ln -sfnv "${HOME}/src/${RIPGREP}/rg" "${HOME}/bin/rg"
-else
-    _logger INFO "Already installed."
-fi
 
 ##### Install bashmarks #######################################################
 
