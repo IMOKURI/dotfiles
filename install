@@ -68,6 +68,8 @@ function setup_repository_deb() {
     _logger INFO "Install apt common package."
     sudo -E apt-get install -y gnupg software-properties-common
 
+    sudo mkdir -p /etc/apt/keyrings
+
     if [[ ! -f /etc/apt/sources.list.d/github_git-lfs.list ]]; then
         _logger INFO "Install Git-LFS repository."
         curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
@@ -82,7 +84,7 @@ function setup_repository_deb() {
         _logger INFO "Install Yarn repository."
         curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg |
             gpg --dearmor |
-            sudo dd of=/usr/share/keyrings/yarn-archive-keyring.gpg
+            sudo dd of=/etc/apt/keyrings/yarn-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] \
             https://dl.yarnpkg.com/debian/ stable main" |
             sudo dd of=/etc/apt/sources.list.d/yarn.list
@@ -92,7 +94,7 @@ function setup_repository_deb() {
         _logger INFO "Install HashCorp repository."
         curl -sL https://apt.releases.hashicorp.com/gpg |
             gpg --dearmor |
-            sudo dd of=/usr/share/keyrings/hashicorp-archive-keyring.gpg
+            sudo dd of=/etc/apt/keyrings/hashicorp-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
             https://apt.releases.hashicorp.com $(lsb_release -cs) main" |
             sudo dd of=/etc/apt/sources.list.d/hashicorp.list
