@@ -9,7 +9,6 @@ local servers = {
     "sumneko_lua",
     "pyright",
     "pylsp",
-    "terraformls",
     "vimls",
 }
 
