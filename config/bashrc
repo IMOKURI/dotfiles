@@ -6,6 +6,12 @@ export GPG_TTY=$(tty)
 
 export HISTCONTROL=ignoreboth:erasedups
 
+if echo "${PATH}" | grep -q neovim; then
+    :
+else
+    export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH
+fi
+
 ##### Set bash options ########################################################
 
 # ディレクトリ名を実行すると、そのディレクトリに移動する
@@ -23,7 +29,6 @@ shopt -s expand_aliases
 ##### User specific alias #####################################################
 
 # Neovim/Vim
-export PATH=$HOME/neovim/bin:$HOME/vim/bin:$PATH
 
 if [[ -n "${NVIM}" && -x "$(command -v nvr)" ]]; then
     alias vi="nvr -s"
@@ -76,24 +81,6 @@ venv() {
         . .venv/bin/activate
     fi
 }
-
-az-vm() {
-    RESOURCE_GROUP="${1}"
-    OPERATION="${2}"
-    for vm in $(az vm list --query "[].[name]" -g ${RESOURCE_GROUP} -o tsv); do
-        echo "${OPERATION} ${vm} ..."
-        az vm ${OPERATION} -g ${RESOURCE_GROUP} -n ${vm} --no-wait
-    done
-}
-
-#alias g='git'
-#complete -o default -o nospace -F _git g
-
-if [[ -f /etc/redhat-release ]]; then
-    source "$HOME/src/git/contrib/completion/git-completion.bash"
-else
-    source "/usr/share/bash-completion/completions/git"
-fi
 
 alias sudo='sudo '
 
