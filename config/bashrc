@@ -159,6 +159,9 @@ alias j='jupyter lab --no-browser --ip="0.0.0.0"'
 
 alias rg='rg --smart-case'
 
+alias bat="batcat"
+alias b="bat"
+
 ##### Load bashmarks ##########################################################
 
 if [ -f ~/.local/bin/bashmarks.sh ]; then
