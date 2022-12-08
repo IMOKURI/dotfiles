@@ -142,6 +142,9 @@ kn() {
     fi
 }
 
+alias m='microk8s'
+alias ms='microk8s status'
+
 alias dp='docker ps -a'
 alias dl='docker logs'
 alias di='docker images'
