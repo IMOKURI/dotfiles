@@ -97,7 +97,7 @@
   graph = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ >> .gitignore ;}; gi"
   it = !git init && git commit -m "init" --allow-empty
-  please = push --force-with-lease
+  please = push --force-with-lease --force-if-includes
 
 [lfs]
   locksverify = false
