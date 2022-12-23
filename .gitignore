@@ -4,6 +4,5 @@ config/git/config.proxy
 # Bash
 config/profile.d/proxy.sh
 
-# Packer.nvim
-packer_compiled.vim
-packer_compiled.lua
+# Neovim
+lazy-lock.json

@@ -1,1 +1,0 @@
-vim.wo.foldmethod = "marker"

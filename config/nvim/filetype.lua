@@ -1,14 +1,13 @@
 vim.filetype.add({
-    extension = {
-        ["jupyterlab-settings"] = "json",
-    },
+    -- extension = {
+    --     ["jupyterlab-settings"] = "json",
+    -- },
     filename = {
         ["install"] = "sh",
-        ["swci-init"] = "sh",
     },
-    pattern = {
-        [".*Dockerfile.*"] = "dockerfile",
-        [".*git/config.*"] = "gitconfig",
-        [".*.make"] = "make",
-    },
+    -- pattern = {
+    --     [".*Dockerfile.*"] = "dockerfile",
+    --     [".*git/config.*"] = "gitconfig",
+    --     [".*.make"] = "make",
+    -- },
 })

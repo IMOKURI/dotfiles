@@ -31,11 +31,21 @@ g.skip_loading_mswin = 1
 -- }}}
 
 -- -----------------------------------------------------------------------------
+-- NetRW {{{
+
+g.netrw_liststyle = 1
+g.netrw_banner = 0
+g.netrw_sizestyle = "H"
+g.netrw_timefmt = "%Y/%m/%d(%a) %H:%M:%S"
+g.netrw_home = os.getenv("HOME")
+g.netrw_bufsettings = "noma nomod nu rnu nowrap ro nobl"
+
+-- }}}
+
+-- -----------------------------------------------------------------------------
 -- Neovim provider {{{
 
-if vim.fn.glob("~/.local/pipx/venvs/neovim-remote/bin/python") ~= "" then
-    g.python3_host_prog = vim.fn.expand("~/.local/pipx/venvs/neovim-remote/bin/python")
-end
+g.loaded_python3_provider = 0
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
@@ -59,8 +69,8 @@ o.breakindent = true
 o.showbreak = "↳"
 o.breakindentopt = "sbr"
 o.foldenable = false
-o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldmethod = "indent" -- "expr"
+-- o.foldexpr = "nvim_treesitter#foldexpr()"
 o.scrolloff = 5
 o.showmode = false
 o.updatetime = 250
@@ -70,7 +80,7 @@ o.diffopt:append({ "algorithm:patience", "indent-heuristic" })
 o.termguicolors = true
 o.shortmess:append("c")
 o.equalalways = false
-o.winbar = "%{%v:lua.require'util'.winbar()%}"
+o.winbar = "%{%v:lua.require'imokuri.util'.winbar()%}"
 o.cmdheight = 0
 o.cursorline = true
 o.cursorlineopt = "number"
@@ -90,25 +100,25 @@ o.shiftwidth = 4
 o.shiftround = true
 o.smartindent = true
 o.virtualedit:append({ "block" })
-o.clipboard:append({ "unnamedplus" })
+-- o.clipboard:append({ "unnamedplus" })
 o.completeopt = { "menu", "menuone", "noselect" }
 o.mouse = ""
 
-local uname = vim.fn.substitute(vim.fn.system("uname -r"), "\n", "", "")
-if string.match(uname, "microsoft") then
-    g.clipboard = {
-        name = "win32yank",
-        copy = {
-            ["+"] = "win32yank.exe -i --crlf",
-            ["*"] = "win32yank.exe -i --crlf",
-        },
-        paste = {
-            ["+"] = "win32yank.exe -o --lf",
-            ["*"] = "win32yank.exe -o --lf",
-        },
-        cache_enabled = 0,
-    }
-end
+-- local uname = vim.fn.substitute(vim.fn.system("uname -r"), "\n", "", "")
+-- if string.match(uname, "microsoft") then
+--     g.clipboard = {
+--         name = "win32yank",
+--         copy = {
+--             ["+"] = "win32yank.exe -i --crlf",
+--             ["*"] = "win32yank.exe -i --crlf",
+--         },
+--         paste = {
+--             ["+"] = "win32yank.exe -o --lf",
+--             ["*"] = "win32yank.exe -o --lf",
+--         },
+--         cache_enabled = 0,
+--     }
+-- end
 
 -- }}}
 
@@ -128,19 +138,7 @@ o.keywordprg = ":help"
 -- Completion {{{
 
 o.wildmode = { "longest", "full" }
-o.dictionary = "/usr/share/dict/words"
-
--- }}}
-
--- -----------------------------------------------------------------------------
--- NetRW {{{
-
-g.netrw_liststyle = 1
-g.netrw_banner = 0
-g.netrw_sizestyle = "H"
-g.netrw_timefmt = "%Y/%m/%d(%a) %H:%M:%S"
-g.netrw_home = os.getenv("HOME")
-g.netrw_bufsettings = "noma nomod nu rnu nowrap ro nobl"
+-- o.dictionary = "/usr/share/dict/words"
 
 -- }}}
 

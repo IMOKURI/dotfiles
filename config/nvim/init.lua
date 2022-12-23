@@ -1,16 +1,5 @@
- -- _|_|_|  _|      _|    _|_|    _|    _|  _|    _|  _|_|_|    _|_|_|
- --   _|    _|_|  _|_|  _|    _|  _|  _|    _|    _|  _|    _|    _|
- --   _|    _|  _|  _|  _|    _|  _|_|      _|    _|  _|_|_|      _|
- --   _|    _|      _|  _|    _|  _|  _|    _|    _|  _|    _|    _|
- -- _|_|_|  _|      _|    _|_|    _|    _|    _|_|    _|    _|  _|_|_|
+require("imokuri.rc.option")
+require("imokuri.rc.mapping")
+require("imokuri.rc.autocmd")
 
-pcall(require, "impatient")
-
--- Setup runtime configurations
-require("rc.option")
-require("rc.mapping")
-require("rc.autocmd")
-
--- Setup plugins
-require("plugin")
-pcall(require, "packer_compiled")
+require("imokuri.lazy")
