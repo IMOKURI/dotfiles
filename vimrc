@@ -7,10 +7,10 @@ set runtimepath=$VIMRUNTIME
 
 " View options
 set number
+set relativenumber
 set cursorline
 set showmatch
 set scrolloff=3
-set laststatus=2
 
 " Edit options
 set expandtab
