@@ -52,7 +52,7 @@ update-plugin: ## update neovim plugins
 	nvim --headless "+Lazy! sync" +qa
 
 deploy: ## Create symlink
-	@mkdir -p $(HOME)/{.config,ghe,github}
+	@mkdir -p $(HOME)/{.config,ghe,github,work}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 

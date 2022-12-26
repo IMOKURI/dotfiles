@@ -2,6 +2,13 @@
 
 ##### Environment variables ###################################################
 
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+
+export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
+
 export GPG_TTY=$(tty)
 
 export HISTCONTROL=ignoreboth:erasedups
@@ -42,8 +49,9 @@ function minimal-env() {
     cd "$(mktemp -d)" || exit
     export HOME=$PWD
     export XDG_CONFIG_HOME=$HOME/.config
-    export XDG_DATA_HOME=$HOME/.local/share
     export XDG_CACHE_HOME=$HOME/.cache
+    export XDG_DATA_HOME=$HOME/.local/share
+    export XDG_STATE_HOME=$HOME/.local/state
     pwd
 }
 
