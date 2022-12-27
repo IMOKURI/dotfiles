@@ -114,7 +114,6 @@ function install_packages_deb() {
 
     _logger INFO "Install basic packages."
     sudo -E apt-get install -y \
-        ansible \
         bat \
         fd-find \
         figlet \
@@ -218,18 +217,12 @@ function _pipx_install_or_upgrade() {
     fi
 }
 
-# _pipx_install_or_upgrade ansible
+_pipx_install_or_upgrade ansible-lint
 _pipx_install_or_upgrade cmake
 _pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade nbdime
 _pipx_install_or_upgrade kaggle
 _pipx_install_or_upgrade wandb
-
-# if [[ -d "${HOME}/.local/pipx/venvs/ansible" ]]; then
-#     pipx inject ansible \
-#         "ansible-lint[community,yamllint]"
-#     ln -sfnv "${HOME}/.local/pipx/venvs/ansible/bin/ansible-lint" "${HOME}/.local/bin/ansible-lint"
-# fi
 
 if [[ -d "${HOME}/.local/pipx/venvs/nbdime" ]]; then
     pipx inject nbdime \

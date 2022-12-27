@@ -11,10 +11,11 @@ return {
         event = "VimEnter",
         config = function()
             local servers = {
+                "ansiblels",
                 "diagnosticls",
-                "sumneko_lua",
-                "pyright",
                 "pylsp",
+                "pyright",
+                "sumneko_lua",
             }
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
