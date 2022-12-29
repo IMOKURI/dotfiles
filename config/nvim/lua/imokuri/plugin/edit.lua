@@ -19,11 +19,11 @@ return {
     -- Operator
     {
         "kana/vim-operator-replace",
-        keys = {
-            { "S", "<Plug>(operator-replace)", mode = { "n", "x", "o" } },
-        },
         dependencies = {
             "kana/vim-operator-user",
+        },
+        keys = {
+            { "S", "<Plug>(operator-replace)", mode = { "n", "x", "o" } },
         },
     },
 
@@ -33,13 +33,13 @@ return {
         dependencies = {
             "kana/vim-textobj-user",
         },
+        event = { "BufRead", "BufNewFile" },
     },
 
     -- Clever-f
     {
         "rhysd/clever-f.vim",
         keys = "f",
-        event = { "BufRead", "BufNewFile" },
     },
 
     -- Suda
