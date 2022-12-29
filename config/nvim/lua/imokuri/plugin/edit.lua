@@ -6,7 +6,7 @@ return {
             { "<Leader>c", "gcc", remap = true },
             { "<Leader>c", "gc", mode = "x", remap = true },
         },
-        config = function() require("Comment").setup() end,
+        config = true,
     },
 
     -- Sandwich
@@ -19,10 +19,12 @@ return {
     -- Operator
     {
         "kana/vim-operator-replace",
+        keys = {
+            { "S", "<Plug>(operator-replace)", mode = { "n", "x", "o" } },
+        },
         dependencies = {
             "kana/vim-operator-user",
         },
-        config = function() vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(operator-replace)") end,
     },
 
     -- Text Objects
@@ -36,6 +38,7 @@ return {
     -- Clever-f
     {
         "rhysd/clever-f.vim",
+        keys = "f",
         event = { "BufRead", "BufNewFile" },
     },
 

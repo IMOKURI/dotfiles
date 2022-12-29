@@ -20,20 +20,25 @@ return {
             "tami5/sqlite.lua",
         },
         keys = {
-            "<Leader>D",
-            "<Leader>E",
-            "<Leader>[",
-            "<Leader>]",
-            "<Leader>b",
-            "<Leader>d",
-            "<Leader>e",
-            "<Leader>f",
-            "<Leader>g",
-            "<Leader>i",
-            "<Leader>o",
-            "<Leader>s",
+            { "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>" },
+            {
+                "<Leader>E",
+                "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>",
+            },
+            { "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>" },
+            { "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>" },
+            { "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
+            { "<Leader>d", "<Cmd>lua require('telescope.builtin').diagnostics({ bufnr = 0 })<CR>" },
+            { "<Leader>e", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>" },
+            { "<Leader>f", "<Cmd>lua TelescopeProjectFiles()<CR>" },
+            { "<Leader>g", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>" },
+            { "<Leader>i", "<Cmd>Telescope apyrori<CR>" },
+            { "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>" },
+            { "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>" },
         },
-        init = function() vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) } end,
+        init = function()
+            vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
+        end,
         config = function()
             local telescope = require("telescope")
             local actions = require("telescope.actions")
@@ -52,27 +57,6 @@ return {
                     require("telescope.builtin").find_files(opts)
                 end
             end
-
-            vim.keymap.set("n", "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>")
-            vim.keymap.set(
-                "n",
-                "<Leader>E",
-                "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>"
-            )
-            vim.keymap.set("n", "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>")
-            vim.keymap.set("n", "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
-            vim.keymap.set("n", "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers()<CR>")
-            vim.keymap.set("n", "<Leader>d", "<Cmd>lua require('telescope.builtin').diagnostics({ bufnr = 0 })<CR>")
-            vim.keymap.set("n", "<Leader>e", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>")
-            vim.keymap.set("n", "<Leader>f", "<Cmd>lua TelescopeProjectFiles()<CR>")
-            vim.keymap.set(
-                "n",
-                "<Leader>g",
-                "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
-            )
-            vim.keymap.set("n", "<Leader>i", "<Cmd>Telescope apyrori<CR>")
-            vim.keymap.set("n", "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>")
-            vim.keymap.set("n", "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>")
 
             telescope.setup({
                 defaults = {
