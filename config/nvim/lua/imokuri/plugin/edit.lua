@@ -2,13 +2,11 @@ return {
     -- Comment
     {
         "numToStr/Comment.nvim",
-        keys = "<Leader>c",
-        config = function()
-            require("Comment").setup()
-
-            vim.keymap.set("n", "<Leader>c", "gcc", { remap = true })
-            vim.keymap.set("x", "<Leader>c", "gc", { remap = true })
-        end,
+        keys = {
+            { "<Leader>c", "gcc", remap = true },
+            { "<Leader>c", "gc", mode = "x", remap = true },
+        },
+        config = function() require("Comment").setup() end,
     },
 
     -- Sandwich
