@@ -5,17 +5,17 @@ vim.api.nvim_create_augroup(group_name, {})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = group_name,
+    callback = function() vim.highlight.on_yank() end,
+})
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = group_name,
     callback = function()
-        vim.highlight.on_yank()
+        local mark = vim.api.nvim_buf_get_mark(0, '"')
+        local lcount = vim.api.nvim_buf_line_count(0)
+        if mark[1] > 0 and mark[1] <= lcount then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+        end
     end,
-})
-vim.api.nvim_create_autocmd("BufRead", {
-    group = group_name,
-    command = [[ if line("'\"") > 0 && line ("'\"") <= line("$") | execute "normal! g'\"" | endif ]],
-})
-vim.api.nvim_create_autocmd("BufEnter", {
-    group = group_name,
-    command = [[ if empty(&buftype) && line('.') > winheight(0) / 2 | execute 'normal! zz' | endif ]],
 })
 vim.api.nvim_create_autocmd("BufEnter", {
     group = group_name,
@@ -24,9 +24,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = group_name,
-    callback = function()
-        u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang"))
-    end,
+    callback = function() u.auto_mkdir(vim.fn.expand("<afile>:p:h:s?suda://??"), vim.api.nvim_eval("v:cmdbang")) end,
 })
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = group_name,
