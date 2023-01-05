@@ -3,7 +3,6 @@ return {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
             "nvim-treesitter/nvim-treesitter-refactor",
-            "p00f/nvim-ts-rainbow",
         },
         event = "BufRead",
         build = ":TSUpdate",
@@ -31,10 +30,6 @@ return {
                     highlight_current_scope = {
                         enable = false,
                     },
-                },
-                rainbow = {
-                    enable = true,
-                    disable = { "bash" },
                 },
             })
 
