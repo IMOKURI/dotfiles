@@ -61,9 +61,6 @@ cdd() {
 cds() {
     cd ~/.local/state/nvim/swap || exit
 }
-cdp() {
-    cd ~/.local/share/nvim/site/pack/packer || exit
-}
 cdr() {
     cd "$(git rev-parse --show-toplevel)" || exit
 }
