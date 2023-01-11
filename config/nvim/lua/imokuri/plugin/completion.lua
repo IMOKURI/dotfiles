@@ -70,9 +70,7 @@ return {
                 },
 
                 snippet = {
-                    expand = function(args)
-                        vim.fn["vsnip#anonymous"](args.body)
-                    end,
+                    expand = function(args) vim.fn["vsnip#anonymous"](args.body) end,
                 },
 
                 mapping = {
@@ -190,7 +188,9 @@ return {
             local Rule = require("nvim-autopairs.rule")
 
             npairs.setup({
-                ignored_next_char = "[%w%.]",
+                fast_wrap = {
+                    map = "<C-i>",
+                },
             })
 
             -- Jinja2
@@ -211,28 +211,16 @@ return {
                     return vim.tbl_contains({ "()", "[]", "{}" }, pair)
                 end),
                 Rule("( ", " )")
-                    :with_pair(function()
-                        return false
-                    end)
-                    :with_move(function(opts)
-                        return opts.prev_char:match(".%)") ~= nil
-                    end)
+                    :with_pair(function() return false end)
+                    :with_move(function(opts) return opts.prev_char:match(".%)") ~= nil end)
                     :use_key(")"),
                 Rule("{ ", " }")
-                    :with_pair(function()
-                        return false
-                    end)
-                    :with_move(function(opts)
-                        return opts.prev_char:match(".%}") ~= nil
-                    end)
+                    :with_pair(function() return false end)
+                    :with_move(function(opts) return opts.prev_char:match(".%}") ~= nil end)
                     :use_key("}"),
                 Rule("[ ", " ]")
-                    :with_pair(function()
-                        return false
-                    end)
-                    :with_move(function(opts)
-                        return opts.prev_char:match(".%]") ~= nil
-                    end)
+                    :with_pair(function() return false end)
+                    :with_move(function(opts) return opts.prev_char:match(".%]") ~= nil end)
                     :use_key("]"),
             })
         end,
