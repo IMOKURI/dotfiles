@@ -19,4 +19,13 @@ return {
             vim.keymap.set("t", "<C-g>", "<C-\\><C-n><C-w>p")
         end,
     },
+
+    {
+        "chomosuke/term-edit.nvim",
+        ft = "neoterm",
+        version = "1.*",
+        opts = {
+            prompt_end = "❯ ",
+        },
+    },
 }
