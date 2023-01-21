@@ -187,11 +187,7 @@ return {
             local npairs = require("nvim-autopairs")
             local Rule = require("nvim-autopairs.rule")
 
-            npairs.setup({
-                fast_wrap = {
-                    map = "<C-i>",
-                },
-            })
+            npairs.setup()
 
             -- Jinja2
             npairs.add_rules({
