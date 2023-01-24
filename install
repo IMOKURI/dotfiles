@@ -73,21 +73,19 @@ function setup_repository_deb() {
         curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     fi
 
+    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg |
+        sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/keyrings/yarn-archive-keyring.gpg --import
     if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
         _logger INFO "Install Yarn repository."
-        curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg |
-            gpg --dearmor |
-            sudo dd of=/etc/apt/keyrings/yarn-archive-keyring.gpg
         echo "deb [signed-by=/etc/apt/keyrings/yarn-archive-keyring.gpg] \
             https://dl.yarnpkg.com/debian/ stable main" |
             sudo dd of=/etc/apt/sources.list.d/yarn.list
     fi
 
+    curl -sL https://apt.releases.hashicorp.com/gpg |
+        sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/keyrings/hashicorp-archive-keyring.gpg --import
     if [[ ! -f /etc/apt/sources.list.d/hashicorp.list ]]; then
         _logger INFO "Install HashCorp repository."
-        curl -sL https://apt.releases.hashicorp.com/gpg |
-            gpg --dearmor |
-            sudo dd of=/etc/apt/keyrings/hashicorp-archive-keyring.gpg
         echo "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.gpg] \
             https://apt.releases.hashicorp.com $(lsb_release -cs) main" |
             sudo dd of=/etc/apt/sources.list.d/hashicorp.list
