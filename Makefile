@@ -49,6 +49,7 @@ update-dot: ## update dotfiles repository
 	git pull
 
 update-plugin: ## update neovim plugins
+	nvim --headless +qa
 	nvim --headless "+Lazy! sync" +qa
 
 deploy: ## Create symlink

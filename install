@@ -2,8 +2,6 @@
 
 set -e
 
-if [[ "${TRACE-0}" == "1" ]]; then set -o xtrace; fi
-
 ##### Variables ###############################################################
 
 export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
@@ -39,7 +37,7 @@ function _logger() {
 
 ##### Detect OS Distribution ##################################################
 
-_banner "Detect OS Distribution"
+_banner "Detect OS Distribution..."
 
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
