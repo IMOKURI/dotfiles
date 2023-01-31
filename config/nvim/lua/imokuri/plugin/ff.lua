@@ -3,7 +3,6 @@ return {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "IMOKURI/apyrori.nvim",
-            "kyazdani42/nvim-web-devicons",
             "mattn/vim-sonictemplate",
             "natecraddock/telescope-zf-native.nvim",
             "nvim-lua/plenary.nvim",
@@ -14,6 +13,7 @@ return {
             "nvim-telescope/telescope-smart-history.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
+            "nvim-tree/nvim-web-devicons",
             "rcarriga/nvim-notify",
             "smartpde/telescope-recent-files",
             "tamago324/telescope-sonictemplate.nvim",
