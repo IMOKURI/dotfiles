@@ -9,7 +9,9 @@ return {
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = {
+                    "astro",
                     "bash",
+                    "css",
                     "dockerfile",
                     "json",
                     "lua",

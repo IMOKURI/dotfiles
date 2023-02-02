@@ -12,6 +12,8 @@ return {
         config = function()
             local servers = {
                 "ansiblels",
+                "astro",
+                "bashls",
                 "diagnosticls",
                 "pylsp",
                 "pyright",
