@@ -82,6 +82,7 @@ return {
                             "sh",
                             "lua",
                             "yaml",
+                            "javascript",
                             "json",
                         },
                         init_options = {
@@ -109,6 +110,7 @@ return {
                                 sh = "shfmt",
                                 lua = "stylua",
                                 yaml = "prettier",
+                                javascript = "prettier",
                                 json = "prettier",
                             },
                         },
