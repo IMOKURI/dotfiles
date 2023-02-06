@@ -84,6 +84,7 @@ return {
                             "yaml",
                             "javascript",
                             "json",
+                            "typescript",
                         },
                         init_options = {
                             formatters = {
@@ -112,6 +113,7 @@ return {
                                 yaml = "prettier",
                                 javascript = "prettier",
                                 json = "prettier",
+                                typescript = "prettier",
                             },
                         },
                     })
