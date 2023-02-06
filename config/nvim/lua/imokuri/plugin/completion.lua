@@ -2,6 +2,9 @@ return {
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
+            "dcampos/cmp-snippy",
+            "dcampos/nvim-snippy",
+            "honza/vim-snippets",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-emoji",
@@ -10,8 +13,6 @@ return {
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-path",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
             "lukas-reineke/cmp-rg",
             "lukas-reineke/cmp-under-comparator",
             "onsails/lspkind.nvim",
@@ -20,16 +21,12 @@ return {
             "CmdlineEnter",
             "InsertEnter",
         },
-        init = function()
-            vim.g.vsnip_snippet_dirs = {
-                string.format("%s/snippet", vim.fn.stdpath("config")),
-            }
-        end,
         config = function()
             local cmp = require("cmp")
             local compare = require("cmp.config.compare")
             local mapping = require("cmp.config.mapping")
             local types = require("cmp.types")
+            local snippy = require("snippy")
 
             local feedkey = function(key, mode)
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
@@ -55,7 +52,7 @@ return {
                                 nvim_lua = "[Lua]",
                                 path = "[Path]",
                                 rg = "[Rg]",
-                                vsnip = "[Snip]",
+                                snippy = "[Snippet]",
                             }
 
                             if entry.source.name == "nvim_lsp" then
@@ -70,7 +67,7 @@ return {
                 },
 
                 snippet = {
-                    expand = function(args) vim.fn["vsnip#anonymous"](args.body) end,
+                    expand = function(args) snippy.expand_snippet(args.body) end,
                 },
 
                 mapping = {
@@ -111,8 +108,8 @@ return {
                     }),
 
                     ["<C-k>"] = function(fallback)
-                        if vim.fn["vsnip#available"]() == 1 then
-                            feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                        if snippy.can_expand_or_advance() then
+                            snippy.expand_or_advance()
                         elseif cmp.visible() then
                             feedkey("<CR>", "")
                         else
@@ -120,8 +117,8 @@ return {
                         end
                     end,
                     ["<C-j>"] = function(fallback)
-                        if vim.fn["vsnip#available"]() == 1 then
-                            feedkey("<Plug>(vsnip-jump-prev)", "")
+                        if snippy.can_jump(-1) then
+                            snippy.previous()
                         else
                             fallback()
                         end
@@ -129,7 +126,7 @@ return {
                 },
 
                 sources = cmp.config.sources({
-                    { name = "vsnip" },
+                    { name = "snippy" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "path" },
@@ -137,8 +134,8 @@ return {
                     { name = "cmdline" },
                     { name = "nvim_lua" },
                 }, {
-                    { name = "rg" },
                     { name = "buffer" },
+                    { name = "rg" },
                 }),
 
                 sorting = {
