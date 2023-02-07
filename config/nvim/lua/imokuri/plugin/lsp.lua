@@ -79,12 +79,13 @@ return {
                         capabilities = capabilities,
                         on_attach = on_attach_vim,
                         filetypes = {
-                            "sh",
-                            "lua",
-                            "yaml",
+                            "css",
                             "javascript",
                             "json",
+                            "lua",
+                            "sh",
                             "typescript",
+                            "yaml",
                         },
                         init_options = {
                             formatters = {
@@ -108,12 +109,13 @@ return {
                                 },
                             },
                             formatFiletypes = {
-                                sh = "shfmt",
-                                lua = "stylua",
-                                yaml = "prettier",
+                                css = "prettier",
                                 javascript = "prettier",
                                 json = "prettier",
+                                lua = "stylua",
+                                sh = "shfmt",
                                 typescript = "prettier",
+                                yaml = "prettier",
                             },
                         },
                     })
