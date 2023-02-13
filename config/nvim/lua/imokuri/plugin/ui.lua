@@ -6,7 +6,6 @@ return {
         build = function() require("catppuccin").compile() end,
         config = function()
             local catppuccin = require("catppuccin")
-            local colors = require("catppuccin.palettes").get_palette()
 
             vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 
@@ -33,10 +32,12 @@ return {
                     },
                     ts_rainbow = true,
                 },
-                custom_highlights = {
-                    WinBar = { fg = colors.yellow },
-                    WinBarNC = { fg = colors.subtext0 },
-                },
+                custom_highlights = function(colors)
+                    return {
+                        WinBar = { fg = colors.yellow },
+                        WinBarNC = { fg = colors.subtext0 },
+                    }
+                end,
             })
 
             vim.api.nvim_cmd({
