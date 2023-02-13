@@ -195,14 +195,13 @@ return {
                         capabilities = capabilities,
                         on_attach = on_attach_vim,
                         settings = {
-                            -- https://github.com/sumneko/lua-language-server/wiki/Setting
+                            -- https://github.com/LuaLS/lua-language-server/wiki/Settings
                             Lua = {
                                 runtime = {
                                     version = "LuaJIT",
                                     path = vim.split(package.path, ";"),
                                 },
                                 diagnostics = {
-                                    enable = true,
                                     globals = vim.list_extend({
                                         "vim",
                                     }, {}),
