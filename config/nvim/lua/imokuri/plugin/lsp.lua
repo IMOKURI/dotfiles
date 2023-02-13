@@ -17,7 +17,7 @@ return {
                 "diagnosticls",
                 "pylsp",
                 "pyright",
-                "sumneko_lua",
+                "lua_ls",
             }
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -190,8 +190,8 @@ return {
                     })
                 end,
 
-                ["sumneko_lua"] = function()
-                    lsp_config["sumneko_lua"].setup({
+                ["lua_ls"] = function()
+                    lsp_config["lua_ls"].setup({
                         capabilities = capabilities,
                         on_attach = on_attach_vim,
                         settings = {
