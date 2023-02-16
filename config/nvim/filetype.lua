@@ -1,7 +1,7 @@
 vim.filetype.add({
-    -- extension = {
-    --     ["jupyterlab-settings"] = "json",
-    -- },
+    extension = {
+        ["mdx"] = "markdown",
+    },
     filename = {
         ["install"] = "sh",
     },
