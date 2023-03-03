@@ -52,8 +52,8 @@ vim.keymap.set("x", "L", "$")
 
 vim.keymap.set({ "c", "i" }, "<C-a>", "<Home>")
 vim.keymap.set({ "c", "i" }, "<C-e>", "<End>")
-vim.keymap.set({ "c", "i" }, "<C-h>", "<Left>")
-vim.keymap.set({ "c", "i" }, "<C-l>", "<Right>")
+vim.keymap.set({ "c", "i" }, "<C-h>", "<C-G>U<Left>")
+vim.keymap.set({ "c", "i" }, "<C-l>", "<C-G>U<Right>")
 
 vim.keymap.set("n", "gf", "gF")
 
