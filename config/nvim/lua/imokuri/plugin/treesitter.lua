@@ -17,6 +17,7 @@ return {
                     "lua",
                     "make",
                     "python",
+                    "regex",
                     "yaml",
                 },
                 highlight = {
