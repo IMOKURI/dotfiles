@@ -132,11 +132,6 @@ return {
                                 plugins = {
                                     pycodestyle = {
                                         enabled = false,
-                                        maxLineLength = 120,
-                                        ignore = {
-                                            "E203", -- whitespace before ':'
-                                            "W503", -- line break before binary operator
-                                        },
                                     },
                                     pyflakes = {
                                         enabled = false,
@@ -163,6 +158,10 @@ return {
                                     memestra = {
                                         enabled = true,
                                     },
+                                    ruff = {
+                                        enabled = true,
+                                        lineLength = 120,
+                                    }
                                 },
                             },
                         },
