@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 require("imokuri.rc.option")
 require("imokuri.rc.mapping")
 require("imokuri.rc.autocmd")
