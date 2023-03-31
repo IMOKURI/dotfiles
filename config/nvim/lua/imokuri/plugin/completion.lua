@@ -16,6 +16,8 @@ return {
             "lukas-reineke/cmp-rg",
             "lukas-reineke/cmp-under-comparator",
             "onsails/lspkind.nvim",
+            "zbirenbaum/copilot.lua",
+            "zbirenbaum/copilot-cmp",
         },
         event = {
             "CmdlineEnter",
@@ -32,12 +34,17 @@ return {
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
             end
 
+            require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+            require("copilot_cmp").setup()
+
             cmp.setup({
                 window = {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
-
                 formatting = {
                     format = require("lspkind").cmp_format({
                         mode = "symbol_text",
@@ -45,6 +52,7 @@ return {
 
                         before = function(entry, vim_item)
                             local alias = {
+                                copilot = "[Copilot]",
                                 buffer = "[Buffer]",
                                 emoji = "[Emoji]",
                                 nvim_lsp = "[LSP]",
@@ -65,11 +73,9 @@ return {
                         end,
                     }),
                 },
-
                 snippet = {
                     expand = function(args) snippy.expand_snippet(args.body) end,
                 },
-
                 mapping = {
                     ["<C-b>"] = mapping(mapping.scroll_docs(-4), { "i", "c" }),
                     ["<C-f>"] = mapping(mapping.scroll_docs(4), { "i", "c" }),
@@ -124,8 +130,8 @@ return {
                         end
                     end,
                 },
-
                 sources = cmp.config.sources({
+                    { name = "copilot" },
                     { name = "snippy" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
@@ -137,9 +143,9 @@ return {
                     { name = "buffer" },
                     { name = "rg" },
                 }),
-
                 sorting = {
                     comparators = {
+                        require("copilot_cmp.comparators").prioritize,
                         compare.offset,
                         compare.exact,
                         compare.score,
