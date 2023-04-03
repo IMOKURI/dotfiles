@@ -34,6 +34,14 @@ return {
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
             end
 
+            if os.getenv("http_proxy") ~= nil then
+                local proxy_url = os.getenv("http_proxy") --[[@as string]]
+                proxy_url = string.gsub(proxy_url, "^[^:]+://", "")
+                proxy_url = string.gsub(proxy_url, "/$", "")
+                vim.g.copilot_proxy = proxy_url
+                vim.g.copilot_proxy_strict_ssl = false
+            end
+
             require("copilot").setup({
                 suggestion = { enabled = false },
                 panel = { enabled = false },
@@ -49,7 +57,6 @@ return {
                     format = require("lspkind").cmp_format({
                         mode = "symbol_text",
                         maxwidth = 50,
-
                         before = function(entry, vim_item)
                             local alias = {
                                 copilot = "[Copilot]",
@@ -93,7 +100,6 @@ return {
                         c = mapping.close(),
                     }),
                     ["<CR>"] = mapping.confirm({ select = false }),
-
                     ["<Tab>"] = mapping({
                         c = function()
                             if cmp.visible() then
@@ -112,7 +118,6 @@ return {
                             end
                         end,
                     }),
-
                     ["<C-k>"] = function(fallback)
                         if snippy.can_expand_or_advance() then
                             snippy.expand_or_advance()
