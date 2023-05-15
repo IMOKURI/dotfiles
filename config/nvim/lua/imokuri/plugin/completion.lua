@@ -172,7 +172,7 @@ return {
             "CmdlineEnter",
             "InsertEnter",
         },
-        config = function()
+        init = function()
             if os.getenv("http_proxy") ~= nil then
                 local proxy_url = os.getenv("http_proxy") --[[@as string]]
                 proxy_url = string.gsub(proxy_url, "^[^:]+://", "")
@@ -180,6 +180,11 @@ return {
 
                 vim.g.copilot_proxy = proxy_url
             end
+
+            vim.g.copilot_no_tab_map = true
+        end,
+        config = function()
+            vim.keymap.set("i", "<C-\\>", 'copilot#Accept("<CR>")', { expr = true, replace_keycodes = false })
         end,
     },
 
