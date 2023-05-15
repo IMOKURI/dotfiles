@@ -16,8 +16,6 @@ return {
             "lukas-reineke/cmp-rg",
             "lukas-reineke/cmp-under-comparator",
             "onsails/lspkind.nvim",
-            "zbirenbaum/copilot.lua",
-            "zbirenbaum/copilot-cmp",
         },
         event = {
             "CmdlineEnter",
@@ -34,20 +32,6 @@ return {
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
             end
 
-            if os.getenv("http_proxy") ~= nil then
-                local proxy_url = os.getenv("http_proxy") --[[@as string]]
-                proxy_url = string.gsub(proxy_url, "^[^:]+://", "")
-                proxy_url = string.gsub(proxy_url, "/$", "")
-                vim.g.copilot_proxy = proxy_url
-                vim.g.copilot_proxy_strict_ssl = false
-            end
-
-            require("copilot").setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-            })
-            require("copilot_cmp").setup()
-
             cmp.setup({
                 window = {
                     completion = cmp.config.window.bordered(),
@@ -59,7 +43,6 @@ return {
                         maxwidth = 50,
                         before = function(entry, vim_item)
                             local alias = {
-                                copilot = "[Copilot]",
                                 buffer = "[Buffer]",
                                 emoji = "[Emoji]",
                                 nvim_lsp = "[LSP]",
@@ -84,7 +67,7 @@ return {
                     expand = function(args) snippy.expand_snippet(args.body) end,
                 },
                 mapping = {
-                    ["<C-b>"] = mapping(mapping.scroll_docs(-4), { "i", "c" }),
+                    ["<C-b>"] = mapping(mapping.scroll_docs( -4), { "i", "c" }),
                     ["<C-f>"] = mapping(mapping.scroll_docs(4), { "i", "c" }),
                     ["<C-p>"] = mapping(
                         mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
@@ -128,7 +111,7 @@ return {
                         end
                     end,
                     ["<C-j>"] = function(fallback)
-                        if snippy.can_jump(-1) then
+                        if snippy.can_jump( -1) then
                             snippy.previous()
                         else
                             fallback()
@@ -136,7 +119,6 @@ return {
                     end,
                 },
                 sources = cmp.config.sources({
-                    { name = "copilot" },
                     { name = "snippy" },
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
@@ -150,7 +132,6 @@ return {
                 }),
                 sorting = {
                     comparators = {
-                        require("copilot_cmp.comparators").prioritize,
                         compare.offset,
                         compare.exact,
                         compare.score,
@@ -186,6 +167,23 @@ return {
     },
 
     {
+        "github/copilot.vim",
+        event = {
+            "CmdlineEnter",
+            "InsertEnter",
+        },
+        config = function()
+            if os.getenv("http_proxy") ~= nil then
+                local proxy_url = os.getenv("http_proxy") --[[@as string]]
+                proxy_url = string.gsub(proxy_url, "^[^:]+://", "")
+                proxy_url = string.gsub(proxy_url, "/$", "")
+
+                vim.g.copilot_proxy = proxy_url
+            end
+        end,
+    },
+
+    {
         "windwp/nvim-autopairs",
         event = {
             "CmdlineEnter",
@@ -215,17 +213,17 @@ return {
                     return vim.tbl_contains({ "()", "[]", "{}" }, pair)
                 end),
                 Rule("( ", " )")
-                    :with_pair(function() return false end)
-                    :with_move(function(opts) return opts.prev_char:match(".%)") ~= nil end)
-                    :use_key(")"),
+                :with_pair(function() return false end)
+                :with_move(function(opts) return opts.prev_char:match(".%)") ~= nil end)
+                :use_key(")"),
                 Rule("{ ", " }")
-                    :with_pair(function() return false end)
-                    :with_move(function(opts) return opts.prev_char:match(".%}") ~= nil end)
-                    :use_key("}"),
+                :with_pair(function() return false end)
+                :with_move(function(opts) return opts.prev_char:match(".%}") ~= nil end)
+                :use_key("}"),
                 Rule("[ ", " ]")
-                    :with_pair(function() return false end)
-                    :with_move(function(opts) return opts.prev_char:match(".%]") ~= nil end)
-                    :use_key("]"),
+                :with_pair(function() return false end)
+                :with_move(function(opts) return opts.prev_char:match(".%]") ~= nil end)
+                :use_key("]"),
             })
         end,
     },
