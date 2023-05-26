@@ -22,17 +22,27 @@ return {
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            local on_attach_vim = function(_, bufnr)
-                vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                    virtual_text = {
-                        source = true,
-                    },
-                    underline = true,
-                    signs = true,
-                    update_in_insert = true,
-                    severity_sort = true,
+            function OnAttach(on_attach)
+                vim.api.nvim_create_autocmd("LspAttach", {
+                    callback = function(args)
+                        local bufnr = args.buf
+                        local client = vim.lsp.get_client_by_id(args.data.client_id)
+                        on_attach(client, bufnr)
+                    end,
                 })
+            end
+
+            OnAttach(function(_, bufnr)
+                vim.lsp.handlers["textDocument/publishDiagnostics"] =
+                    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                        virtual_text = {
+                            source = true,
+                        },
+                        underline = true,
+                        signs = true,
+                        update_in_insert = true,
+                        severity_sort = true,
+                    })
 
                 vim.keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
                 vim.keymap.set("n", "<Leader>C", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
@@ -52,7 +62,7 @@ return {
                     local hl = "DiagnosticSign" .. type
                     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
                 end
-            end
+            end)
 
             require("inc_rename").setup()
             require("trld").setup()
@@ -68,16 +78,11 @@ return {
 
             mason_lspconfig.setup_handlers({
                 function(server_name)
-                    lsp_config[server_name].setup({
-                        capabilities = capabilities,
-                        on_attach = on_attach_vim,
-                    })
+                    lsp_config[server_name].setup({ capabilities = capabilities })
                 end,
-
                 ["diagnosticls"] = function()
                     lsp_config["diagnosticls"].setup({
                         capabilities = capabilities,
-                        on_attach = on_attach_vim,
                         filetypes = {
                             "css",
                             "javascript",
@@ -120,11 +125,9 @@ return {
                         },
                     })
                 end,
-
                 ["pylsp"] = function()
                     lsp_config["pylsp"].setup({
                         capabilities = capabilities,
-                        on_attach = on_attach_vim,
                         settings = {
                             -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
                             -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
@@ -167,11 +170,9 @@ return {
                         },
                     })
                 end,
-
                 ["pyright"] = function()
                     lsp_config["pyright"].setup({
                         capabilities = capabilities,
-                        on_attach = on_attach_vim,
                         settings = {
                             -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
                             pyright = {},
@@ -188,11 +189,9 @@ return {
                         },
                     })
                 end,
-
                 ["lua_ls"] = function()
                     lsp_config["lua_ls"].setup({
                         capabilities = capabilities,
-                        on_attach = on_attach_vim,
                         settings = {
                             -- https://github.com/LuaLS/lua-language-server/wiki/Settings
                             Lua = {
