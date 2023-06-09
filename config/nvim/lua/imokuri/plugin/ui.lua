@@ -114,7 +114,7 @@ return {
         "m4xshen/smartcolumn.nvim",
         event = "BufRead",
         config = function() require("smartcolumn").setup({
-            colorcolumn = 120,
+            colorcolumn = "120",
         }) end,
     },
 }
