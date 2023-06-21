@@ -32,7 +32,7 @@ return {
                 })
             end
 
-            OnAttach(function(_, bufnr)
+            OnAttach(function(client, bufnr)
                 vim.lsp.handlers["textDocument/publishDiagnostics"] =
                     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
                         virtual_text = {
@@ -61,6 +61,15 @@ return {
                 for type, icon in pairs(signs) do
                     local hl = "DiagnosticSign" .. type
                     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+                end
+
+                if client.supports_method "textDocument/inlayHint" then
+                    vim.lsp.buf.inlay_hint(bufnr, true)
+                else
+                    vim.notify(
+                        ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
+                        vim.log.levels.DEBUG
+                    )
                 end
             end)
 
