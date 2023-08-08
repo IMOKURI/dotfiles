@@ -4,6 +4,9 @@ return {
         "catppuccin/nvim",
         name = "catppuccin",
         build = function() require("catppuccin").compile() end,
+        dependencies = {
+            "IMOKURI/line-number-interval.nvim",
+        },
         config = function()
             local catppuccin = require("catppuccin")
 
@@ -34,6 +37,9 @@ return {
                 },
                 custom_highlights = function(colors)
                     return {
+                        CursorLineNr = { fg = colors.yellow },
+                        HighlightedLineNr = { fg = colors.lavender },
+                        DimLineNr = { fg = colors.surface1 },
                         WinBar = { fg = colors.yellow },
                         WinBarNC = { fg = colors.subtext0 },
                     }
@@ -43,6 +49,13 @@ return {
             vim.api.nvim_cmd({
                 cmd = "colorscheme",
                 args = { "catppuccin" },
+            }, {})
+
+            vim.g.line_number_interval_enable_at_startup = 1
+            -- vim.g["line_number_interval#use_custom"] = 1
+
+            vim.api.nvim_cmd({
+                cmd = "LineNumberIntervalEnable",
             }, {})
         end,
     },
@@ -113,8 +126,10 @@ return {
     {
         "m4xshen/smartcolumn.nvim",
         event = "BufRead",
-        config = function() require("smartcolumn").setup({
-            colorcolumn = "120",
-        }) end,
+        config = function()
+            require("smartcolumn").setup({
+                colorcolumn = "120",
+            })
+        end,
     },
 }

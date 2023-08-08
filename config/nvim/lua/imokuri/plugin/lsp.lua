@@ -63,7 +63,7 @@ return {
                     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
                 end
 
-                if client.supports_method "textDocument/inlayHint" then
+                if client.supports_method("textDocument/inlayHint") then
                     vim.lsp.inlay_hint(bufnr, true)
                 else
                     vim.notify(
@@ -86,9 +86,7 @@ return {
             local lsp_config = require("lspconfig")
 
             mason_lspconfig.setup_handlers({
-                function(server_name)
-                    lsp_config[server_name].setup({ capabilities = capabilities })
-                end,
+                function(server_name) lsp_config[server_name].setup({ capabilities = capabilities }) end,
                 ["diagnosticls"] = function()
                     lsp_config["diagnosticls"].setup({
                         capabilities = capabilities,
@@ -173,7 +171,7 @@ return {
                                     ruff = {
                                         enabled = true,
                                         lineLength = 120,
-                                    }
+                                    },
                                 },
                             },
                         },
