@@ -37,8 +37,10 @@ return {
                 },
                 custom_highlights = function(colors)
                     return {
-                        CursorLineNr = { fg = colors.yellow },
+                        CursorLineNr = { fg = colors.red },
                         HighlightedLineNr = { fg = colors.lavender },
+                        HighlightedLineNr1 = { fg = colors.peach },
+                        HighlightedLineNr2 = { fg = colors.yellow },
                         DimLineNr = { fg = colors.surface1 },
                         WinBar = { fg = colors.yellow },
                         WinBarNC = { fg = colors.subtext0 },
@@ -52,7 +54,8 @@ return {
             }, {})
 
             vim.g.line_number_interval_enable_at_startup = 1
-            -- vim.g["line_number_interval#use_custom"] = 1
+            vim.g["line_number_interval#use_custom"] = 1
+            vim.g["line_number_interval#custom_interval"] = { 1, 2, 10, 20, 30, 40, 50, 60, 70, 80, 90 }
 
             vim.api.nvim_cmd({
                 cmd = "LineNumberIntervalEnable",
