@@ -4,7 +4,7 @@ return {
         "numToStr/Comment.nvim",
         keys = {
             { "<Leader>c", "gcc", remap = true },
-            { "<Leader>c", "gc", mode = "x", remap = true },
+            { "<Leader>c", "gc",  mode = "x",  remap = true },
         },
         config = true,
     },
@@ -52,5 +52,16 @@ return {
     {
         "AndrewRadev/linediff.vim",
         cmd = "Linediff",
+    },
+
+    -- Python: f-string
+    {
+        "roobert/f-string-toggle.nvim",
+        ft = "python",
+        config = function()
+            require("f-string-toggle").setup({
+                key_binding = "<leader>F",
+            })
+        end,
     },
 }
