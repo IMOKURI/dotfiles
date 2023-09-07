@@ -77,7 +77,7 @@ return {
                         mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
                         { "i", "c" }
                     ),
-                    ["<C-Space>"] = mapping(mapping.complete(), { "i", "c" }),
+                    ["<C-t>"] = mapping(mapping.complete(), { "i", "c" }),
                     ["<C-e>"] = mapping({
                         i = mapping.abort(),
                         c = mapping.close(),
@@ -184,7 +184,7 @@ return {
             vim.g.copilot_no_tab_map = true
         end,
         config = function()
-            vim.keymap.set("i", "<C-\\>", 'copilot#Accept("<CR>")', { expr = true, replace_keycodes = false })
+            vim.keymap.set("i", "<C-Space>", 'copilot#Accept("<CR>")', { expr = true, replace_keycodes = false })
         end,
     },
 
