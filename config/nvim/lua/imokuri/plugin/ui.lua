@@ -38,6 +38,7 @@ return {
                 custom_highlights = function(colors)
                     return {
                         CursorLineNr = { fg = colors.red },
+                        Folded = { bg = colors.base },
                         HighlightedLineNr = { fg = colors.lavender },
                         HighlightedLineNr1 = { fg = colors.peach },
                         HighlightedLineNr2 = { fg = colors.yellow },
@@ -140,7 +141,7 @@ return {
     {
         "t9md/vim-quickhl",
         keys = {
-            { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" } },
+            { "<Leader>m", "<Plug>(quickhl-manual-this)",  mode = { "n", "x" } },
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
         },
     },
