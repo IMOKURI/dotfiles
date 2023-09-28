@@ -118,10 +118,17 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         event = "BufReadPre",
         config = function()
-            require("indent_blankline").setup({
-                char = "|",
-                buftype_exclude = { "terminal" },
-                show_first_indent_level = false,
+            local hooks = require("ibl.hooks")
+
+            hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+
+            require("ibl").setup({
+                indent = {
+                    char = "|",
+                },
+                exclude = {
+                    buftypes = { "terminal" },
+                },
             })
         end,
     },
