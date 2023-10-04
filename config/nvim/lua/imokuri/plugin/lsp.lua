@@ -3,6 +3,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "Mofiqul/trld.nvim",
+            "Wansmer/symbol-usage.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "neovim/nvim-lspconfig",
             "smjonas/inc-rename.nvim",
@@ -76,6 +77,9 @@ return {
             require("inc_rename").setup()
             require("trld").setup()
             require("mason").setup()
+            require("symbol-usage").setup({
+                vt_position = "end_of_line",
+            })
 
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup({
