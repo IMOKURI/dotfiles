@@ -247,7 +247,6 @@ _banner "Install NodeJS Packages..."
 yarn global add --prefix "${HOME}" \
     doctoc \
     tldr
-# @gridsome/cli
 
 yarn global upgrade
 
