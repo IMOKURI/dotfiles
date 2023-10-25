@@ -46,7 +46,7 @@ return {
                     })
 
                 vim.keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
-                vim.keymap.set("n", "<Leader>C", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
+                vim.keymap.set("n", "<Leader>x", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
                 vim.keymap.set(
                     "n",
                     "<Leader>z",
