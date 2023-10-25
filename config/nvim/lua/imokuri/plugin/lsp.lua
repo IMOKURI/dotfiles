@@ -16,6 +16,7 @@ return {
                 "astro",
                 "bashls",
                 "diagnosticls",
+                "pyright",
                 "ruff_lsp",
                 "lua_ls",
             }
@@ -131,6 +132,25 @@ return {
                                 sh = "shfmt",
                                 typescript = "prettier",
                                 yaml = "prettier",
+                            },
+                        },
+                    })
+                end,
+                ["pyright"] = function()
+                    lsp_config["pyright"].setup({
+                        capabilities = capabilities,
+                        settings = {
+                            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+                            pyright = {},
+                            python = {
+                                pythonPath = vim.fn.exepath("python"),
+                                analysis = {
+                                    autoImportCompletions = true,
+                                    autoSearchPaths = true,
+                                    diagnosticMode = "workspace",
+                                    typeCheckingMode = "basic",
+                                    useLibraryCodeForTypes = true,
+                                },
                             },
                         },
                     })
