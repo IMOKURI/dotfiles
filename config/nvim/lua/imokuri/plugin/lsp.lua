@@ -16,8 +16,7 @@ return {
                 "astro",
                 "bashls",
                 "diagnosticls",
-                "pylsp",
-                "pyright",
+                "ruff_lsp",
                 "lua_ls",
             }
 
@@ -136,66 +135,12 @@ return {
                         },
                     })
                 end,
-                ["pylsp"] = function()
-                    lsp_config["pylsp"].setup({
+                ["ruff_lsp"] = function()
+                    lsp_config["ruff_lsp"].setup({
                         capabilities = capabilities,
-                        settings = {
-                            -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md
-                            -- Require setup command: PylspInstall pyls-isort python-lsp-black pylsp-mypy
-                            pylsp = {
-                                plugins = {
-                                    pycodestyle = {
-                                        enabled = false,
-                                    },
-                                    pyflakes = {
-                                        enabled = false,
-                                    },
-                                    autopep8 = {
-                                        enabled = false,
-                                    },
-                                    yapf = {
-                                        enabled = false,
-                                    },
-                                    pylsp_black = {
-                                        enabled = true,
-                                        line_length = 120,
-                                    },
-                                    pyls_isort = {
-                                        enabled = true,
-                                    },
-                                    pylsp_mypy = {
-                                        enabled = false,
-                                        live_mode = false,
-                                        dmypy = true,
-                                        strict = false,
-                                    },
-                                    memestra = {
-                                        enabled = true,
-                                    },
-                                    ruff = {
-                                        enabled = true,
-                                        lineLength = 120,
-                                    },
-                                },
-                            },
-                        },
-                    })
-                end,
-                ["pyright"] = function()
-                    lsp_config["pyright"].setup({
-                        capabilities = capabilities,
-                        settings = {
-                            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-                            pyright = {},
-                            python = {
-                                pythonPath = vim.fn.exepath("python"),
-                                analysis = {
-                                    autoImportCompletions = true,
-                                    autoSearchPaths = true,
-                                    diagnosticMode = "workspace",
-                                    typeCheckingMode = "basic",
-                                    useLibraryCodeForTypes = true,
-                                },
+                        init_options = {
+                            settings = {
+                                args = {},
                             },
                         },
                     })
