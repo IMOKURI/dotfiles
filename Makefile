@@ -13,6 +13,7 @@ DOTFILES_XDG_CONFIG := $(shell ls config)
 DOTPATH    := $(HOME)/.dotfiles
 NEOVIMPATH := $(HOME)/src/neovim
 BASHMARKS  := $(HOME)/src/bashmarks
+CAT_BAT    := $(HOME)/src/cat-bat
 
 # Proxy settings
 PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
@@ -79,6 +80,17 @@ build-bashmarks: ## Build bashmarks
 	cd $(BASHMARKS) && \
 	make install && \
 	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
+
+bat-theme: update-bat-theme build-bat-theme ## Get bat theme
+
+update-bat-theme: ## Update bat theme repository
+	$(call repo,$(CAT_BAT),catppuccin/bat)
+
+build-bat-theme: ## Build bat theme
+	cd $(CAT_BAT) && \
+	mkdir -p "$(shell bat --config-dir)/themes" && \
+	cp -f *.tmTheme "$(shell bat --config-dir)/themes" && \
+	bat cache --build
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / \

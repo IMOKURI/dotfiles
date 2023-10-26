@@ -258,6 +258,14 @@ cd "${DOTPATH}"
 make bashmarks
 popd
 
+##### Install bat theme #######################################################
+
+_banner "Install Bat theme..."
+pushd "$(pwd)"
+cd "${DOTPATH}"
+make bat-theme
+popd
+
 ##### Install starship ########################################################
 
 _banner "Install Starship..."
