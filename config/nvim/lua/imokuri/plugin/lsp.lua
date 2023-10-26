@@ -89,6 +89,14 @@ return {
 
             local lsp_config = require("lspconfig")
 
+            local prettier_options = {
+                "--print-width",
+                "120",
+                "--stdin",
+                "--stdin-filepath",
+                "%filepath",
+            }
+
             mason_lspconfig.setup_handlers({
                 function(server_name) lsp_config[server_name].setup({ capabilities = capabilities }) end,
                 ["diagnosticls"] = function()
@@ -116,18 +124,19 @@ return {
                                 },
                                 prettier = {
                                     command = "prettier",
-                                    args = {
-                                        "--stdin",
-                                        "--stdin-filepath",
-                                        "%filepath",
-                                    },
+                                    args = prettier_options,
+                                    rootPatterns = { ".git" },
+                                },
+                                prettier4 = {
+                                    command = "prettier",
+                                    args = vim.tbl_extend("force", prettier_options, { "--tab-width", "4" }),
                                     rootPatterns = { ".git" },
                                 },
                             },
                             formatFiletypes = {
                                 css = "prettier",
                                 javascript = "prettier",
-                                json = "prettier",
+                                json = "prettier4",
                                 lua = "stylua",
                                 sh = "shfmt",
                                 typescript = "prettier",
