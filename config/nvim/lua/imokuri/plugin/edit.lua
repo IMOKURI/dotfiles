@@ -4,7 +4,7 @@ return {
         "numToStr/Comment.nvim",
         keys = {
             { "<Leader>c", "gcc", remap = true },
-            { "<Leader>c", "gc",  mode = "x",  remap = true },
+            { "<Leader>c", "gc", mode = "x", remap = true },
         },
         config = true,
     },
@@ -52,5 +52,11 @@ return {
     {
         "AndrewRadev/linediff.vim",
         cmd = "Linediff",
+    },
+
+    -- Auto Indent
+    {
+        "vidocqh/auto-indent.nvim",
+        event = { "InsertEnter" },
     },
 }
