@@ -77,7 +77,7 @@ return {
                     globalstatus = true,
                 },
                 sections = {
-                    lualine_a = { { "mode", fmt = string.upper } },
+                    lualine_a = { "mode" },
                     lualine_b = {},
                     lualine_c = { { "diagnostics", sources = { "nvim_lsp" } } },
                     lualine_x = { "location" },
@@ -148,7 +148,7 @@ return {
     {
         "t9md/vim-quickhl",
         keys = {
-            { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" } },
+            { "<Leader>m", "<Plug>(quickhl-manual-this)",  mode = { "n", "x" } },
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
         },
     },
