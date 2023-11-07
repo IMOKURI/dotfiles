@@ -23,56 +23,47 @@ return {
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            function OnAttach(on_attach)
-                vim.api.nvim_create_autocmd("LspAttach", {
-                    callback = function(args)
-                        local bufnr = args.buf
-                        local client = vim.lsp.get_client_by_id(args.data.client_id)
-                        on_attach(client, bufnr)
-                    end,
-                })
-            end
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local bufnr = args.buf
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-            OnAttach(function(client, bufnr)
-                vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                        virtual_text = {
-                            source = true,
-                        },
-                        underline = true,
-                        signs = true,
-                        update_in_insert = true,
-                        severity_sort = true,
-                    })
+                    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+                        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                            virtual_text = {
+                                source = true,
+                            },
+                            underline = true,
+                            signs = true,
+                            update_in_insert = true,
+                            severity_sort = true,
+                        })
 
-                vim.keymap.set("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", { buffer = bufnr })
-                vim.keymap.set("n", "<Leader>x", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { buffer = bufnr })
-                vim.keymap.set(
-                    "n",
-                    "<Leader>z",
-                    "<Cmd>lua vim.lsp.buf.format({ async = true })<CR>",
-                    { buffer = bufnr }
-                )
-                vim.keymap.set("x", "<Leader>z", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", { buffer = bufnr })
-                vim.keymap.set("n", "<Leader>j", "<Cmd>lua vim.diagnostic.goto_next()<CR>", { buffer = bufnr })
-                vim.keymap.set("n", "<Leader>k", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", { buffer = bufnr })
-                vim.keymap.set("n", "<Leader>r", ":IncRename ", { buffer = bufnr }) -- depends on inc-rename.nvim
+                    local opts = { buffer = bufnr }
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action, opts)
+                    vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end, opts)
+                    vim.keymap.set("n", "<Leader>r", ":IncRename ", opts) -- depends on inc-rename.nvim
 
-                local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-                for type, icon in pairs(signs) do
-                    local hl = "DiagnosticSign" .. type
-                    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-                end
+                    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+                    for type, icon in pairs(signs) do
+                        local hl = "DiagnosticSign" .. type
+                        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+                    end
 
-                if client.supports_method("textDocument/inlayHint") then
-                    vim.lsp.inlay_hint(bufnr, true)
-                else
-                    vim.notify(
-                        ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
-                        vim.log.levels.DEBUG
-                    )
-                end
-            end)
+                    if client.supports_method("textDocument/inlayHint") then
+                        vim.lsp.inlay_hint(bufnr, true)
+                    else
+                        vim.notify(
+                            ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
+                            vim.log.levels.DEBUG
+                        )
+                    end
+                end,
+            })
+
+            vim.keymap.set("n", "<Leader>j", vim.diagnostic.goto_next)
+            vim.keymap.set("n", "<Leader>k", vim.diagnostic.goto_prev)
 
             require("inc_rename").setup()
             require("trld").setup()
