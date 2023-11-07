@@ -156,6 +156,7 @@ return {
                                 analysis = {
                                     autoImportCompletions = true,
                                     autoSearchPaths = true,
+                                    extraPaths = { "." },
                                     diagnosticMode = "workspace",
                                     typeCheckingMode = "basic",
                                     useLibraryCodeForTypes = true,
