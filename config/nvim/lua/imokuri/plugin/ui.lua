@@ -75,6 +75,8 @@ return {
                 options = {
                     theme = "catppuccin",
                     globalstatus = true,
+                    component_separators = { left = '', right = '' },
+                    section_separators = { left = '', right = '' },
                 },
                 sections = {
                     lualine_a = { "mode" },
@@ -82,7 +84,7 @@ return {
                     lualine_c = { { "diagnostics", sources = { "nvim_lsp" } } },
                     lualine_x = { "location" },
                     lualine_y = { "filetype" },
-                    lualine_z = { "branch" },
+                    lualine_z = { { "branch", icon = " " } },
                 },
             })
         end,

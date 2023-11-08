@@ -5,6 +5,9 @@ style = "bold green"
 truncation_length = 5
 truncation_symbol = ".../"
 
+[git_branch]
+symbol = "  "
+
 [git_status]
 conflicted = " "
 deleted = " "
