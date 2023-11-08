@@ -44,6 +44,7 @@ return {
                     vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end, opts)
                     vim.keymap.set("n", "<Leader>r", ":IncRename ", opts) -- depends on inc-rename.nvim
+                    vim.keymap.set("n", "<Leader>I", "<Cmd>PyrightOrganizeImports<CR>")
 
                     local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
                     for type, icon in pairs(signs) do

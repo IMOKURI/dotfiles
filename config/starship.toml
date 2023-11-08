@@ -1,5 +1,11 @@
 [hostname]
+ssh_symbol = " "
 style = "bold green"
+
+[character]
+success_symbol = '[](bold green) '
+error_symbol = '[](bold red) '
+# format = "$symbol"
 
 [memory_usage]
 disabled = false
@@ -26,7 +32,7 @@ stashed = " "
 ahead = " "
 behind = " "
 diverged = "  "
-up_to_date = " "
+# up_to_date = " "
 
 [sudo]
 disabled = false
