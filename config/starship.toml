@@ -5,6 +5,19 @@ style = "bold green"
 truncation_length = 5
 truncation_symbol = ".../"
 
+[git_status]
+conflicted = " "
+deleted = " "
+renamed = " "
+modified = " "
+untracked = " "
+staged = " "
+stashed = " "
+ahead = " "
+behind = " "
+diverged = "  "
+up_to_date = " "
+
 [kubernetes]
 disabled = false
 
