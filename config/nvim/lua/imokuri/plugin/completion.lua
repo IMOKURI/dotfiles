@@ -67,7 +67,7 @@ return {
                     expand = function(args) snippy.expand_snippet(args.body) end,
                 },
                 mapping = {
-                    ["<C-b>"] = mapping(mapping.scroll_docs( -4), { "i", "c" }),
+                    ["<C-b>"] = mapping(mapping.scroll_docs(-4), { "i", "c" }),
                     ["<C-f>"] = mapping(mapping.scroll_docs(4), { "i", "c" }),
                     ["<C-p>"] = mapping(
                         mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
@@ -111,7 +111,7 @@ return {
                         end
                     end,
                     ["<C-j>"] = function(fallback)
-                        if snippy.can_jump( -1) then
+                        if snippy.can_jump(-1) then
                             snippy.previous()
                         else
                             fallback()
@@ -218,17 +218,17 @@ return {
                     return vim.tbl_contains({ "()", "[]", "{}" }, pair)
                 end),
                 Rule("( ", " )")
-                :with_pair(function() return false end)
-                :with_move(function(opts) return opts.prev_char:match(".%)") ~= nil end)
-                :use_key(")"),
+                    :with_pair(function() return false end)
+                    :with_move(function(opts) return opts.prev_char:match(".%)") ~= nil end)
+                    :use_key(")"),
                 Rule("{ ", " }")
-                :with_pair(function() return false end)
-                :with_move(function(opts) return opts.prev_char:match(".%}") ~= nil end)
-                :use_key("}"),
+                    :with_pair(function() return false end)
+                    :with_move(function(opts) return opts.prev_char:match(".%}") ~= nil end)
+                    :use_key("}"),
                 Rule("[ ", " ]")
-                :with_pair(function() return false end)
-                :with_move(function(opts) return opts.prev_char:match(".%]") ~= nil end)
-                :use_key("]"),
+                    :with_pair(function() return false end)
+                    :with_move(function(opts) return opts.prev_char:match(".%]") ~= nil end)
+                    :use_key("]"),
             })
         end,
     },
