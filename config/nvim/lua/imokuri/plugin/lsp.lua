@@ -53,7 +53,7 @@ return {
                     end
 
                     if client.supports_method("textDocument/inlayHint") then
-                        vim.lsp.inlay_hint(bufnr, true)
+                        vim.lsp.inlay_hint.enable(bufnr)
                     else
                         vim.notify(
                             ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
