@@ -43,6 +43,7 @@ symbol = " "
 
 [kubernetes]
 disabled = false
+symbol = "󱃾 "
 
 [kubernetes.context_aliases]
 ".*/(?P<cluster>[\\w-]+).*/.*" = "$cluster"
