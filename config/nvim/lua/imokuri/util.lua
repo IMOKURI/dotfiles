@@ -21,7 +21,7 @@ function M.winbar()
     if icon then
         return "%=" .. icon .. " " .. fname .. " %m%r%="
     end
-    return "%=" .. fname .. " %m%r%="
+    return "%=" .. " " .. fname .. " %m%r%="
 end
 
 function M.auto_mkdir(dir, force)
