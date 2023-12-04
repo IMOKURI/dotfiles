@@ -71,7 +71,7 @@ function setup_repository_deb() {
     _logger INFO "Setup Node.js repository."
     # https://github.com/nodesource/distributions
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key |
-        sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+        sudo gpg --dearmor --yes -o /etc/apt/keyrings/nodesource.gpg
     if [[ ! -f /etc/apt/sources.list.d/nodesource.list ]]; then
         NODE_MAJOR=20
         echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] \
@@ -81,7 +81,7 @@ function setup_repository_deb() {
 
     _logger INFO "Setup Yarn repository."
     curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg |
-        sudo gpg --dearmor -o /etc/apt/keyrings/yarn-archive-keyring.gpg
+        sudo gpg --dearmor --yes -o /etc/apt/keyrings/yarn-archive-keyring.gpg
     if [[ ! -f /etc/apt/sources.list.d/yarn.list ]]; then
         echo "deb [signed-by=/etc/apt/keyrings/yarn-archive-keyring.gpg] \
             https://dl.yarnpkg.com/debian/ stable main" |
@@ -90,7 +90,7 @@ function setup_repository_deb() {
 
     _logger INFO "Setup HashCorp repository."
     curl -sL https://apt.releases.hashicorp.com/gpg |
-        sudo gpg --dearmor -o /etc/apt/keyrings/hashicorp-archive-keyring.gpg
+        sudo gpg --dearmor --yes -o /etc/apt/keyrings/hashicorp-archive-keyring.gpg
     if [[ ! -f /etc/apt/sources.list.d/hashicorp.list ]]; then
         echo "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.gpg] \
             https://apt.releases.hashicorp.com $(lsb_release -cs) main" |
