@@ -4,7 +4,7 @@ set -e
 
 ##### Variables ###############################################################
 
-export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/go/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # For Ubuntu
 export DEBIAN_FRONTEND=noninteractive
@@ -87,15 +87,6 @@ function setup_repository_deb() {
             https://dl.yarnpkg.com/debian/ stable main" |
             sudo dd of=/etc/apt/sources.list.d/yarn.list
     fi
-
-    _logger INFO "Setup HashCorp repository."
-    curl -sL https://apt.releases.hashicorp.com/gpg |
-        sudo gpg --dearmor --yes -o /etc/apt/keyrings/hashicorp-archive-keyring.gpg
-    if [[ ! -f /etc/apt/sources.list.d/hashicorp.list ]]; then
-        echo "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.gpg] \
-            https://apt.releases.hashicorp.com $(lsb_release -cs) main" |
-            sudo dd of=/etc/apt/sources.list.d/hashicorp.list
-    fi
 }
 
 setup_repository_deb
@@ -123,7 +114,6 @@ function install_packages_deb() {
         fzy \
         gcc \
         git \
-        golang-go \
         jq \
         make \
         nodejs \
@@ -134,7 +124,6 @@ function install_packages_deb() {
         ripgrep \
         yarn \
         wamerican
-        # terraform \
 
     # for neovim
     # https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites

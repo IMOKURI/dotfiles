@@ -10,8 +10,6 @@ fi
 
 export LANG="en_US.UTF-8"
 
-export GOPATH=$HOME/go
-
 export LESS="-i -M -R -W -z-3 -x4 -F -X"
 
 export EDITOR="nvim"

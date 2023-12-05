@@ -18,7 +18,7 @@ export BAT_THEME="Catppuccin-mocha"
 if echo "${PATH}" | grep -q neovim; then
     :
 else
-    export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:$HOME/go/bin:$PATH
+    export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:$PATH
 fi
 
 ##### Set bash options ########################################################

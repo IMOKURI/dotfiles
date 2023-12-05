@@ -11,7 +11,7 @@ The dotfiles that can be installed by one command
 ## Features
 
 - Build latest neovim.
-- Install Python, Node.js, Rust and Go with some packages.
+- Install Python, Node.js, etc.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
 
