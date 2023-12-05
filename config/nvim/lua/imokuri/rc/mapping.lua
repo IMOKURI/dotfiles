@@ -85,7 +85,7 @@ vim.keymap.set("n", "L", "foldclosed('.') != -1 ? 'zO' : '$'", { expr = true })
 vim.keymap.set("n", "zl", "zR")
 vim.keymap.set("n", "z,", "zMzv")
 
-vim.keymap.set("n", ",", "<Cmd>lua require('imokuri.util').close_fold()<CR>")
+vim.keymap.set("n", ",", require("imokuri.util").close_fold)
 
 -- }}}
 

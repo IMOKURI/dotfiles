@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<CR><CR>", "<Cmd>lua require('ftplugin.gitcommit').select_type()<CR>")
+vim.keymap.set("n", "<CR><CR>", require("ftplugin.gitcommit").select_type)
