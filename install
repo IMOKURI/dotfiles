@@ -64,6 +64,7 @@ function setup_repository_deb() {
     _banner "Setup repositories for Ubuntu..."
 
     _logger INFO "Install apt common package."
+    sudo -E apt-get update
     sudo -E apt-get install -y gnupg software-properties-common ca-certificates
 
     sudo mkdir -p /etc/apt/keyrings
