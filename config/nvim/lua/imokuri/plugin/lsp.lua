@@ -107,7 +107,7 @@ return {
                             formatters = {
                                 shfmt = {
                                     command = "shfmt",
-                                    args = { "-i", "4", "-sr", "-ci" },
+                                    args = { "-i", "2", "-sr", "-ci" },
                                 },
                                 stylua = {
                                     command = "stylua",
