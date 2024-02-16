@@ -1,17 +1,10 @@
 [hostname]
-ssh_symbol = " "
 style = "bold green"
 
 [character]
 success_symbol = '[](bold green) '
 error_symbol = '[](bold red) '
 # format = "$symbol"
-
-[memory_usage]
-disabled = false
-threshold = -1
-symbol = " "
-format = 'via $symbol [${ram}]($style) '
 
 [directory]
 truncation_length = 5
@@ -36,14 +29,10 @@ diverged = "  "
 
 [sudo]
 disabled = false
-symbol = " "
-
-[python]
-symbol = " "
 
 [kubernetes]
 disabled = false
-symbol = "󱃾 "
+symbol = "☸  "
 
 [kubernetes.context_aliases]
 ".*/(?P<cluster>[\\w-]+).*/.*" = "$cluster"
