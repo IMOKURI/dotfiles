@@ -1,4 +1,4 @@
 [user]
   name = SUGIYAMA Yoshio
   email = yoshio.sugiyama@hpe.com
-  signingkey = 1D92458356874F72
+  signingkey = ~/.ssh/id_rsa.pub

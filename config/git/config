@@ -1,10 +1,10 @@
 [user]
   name = SUGIYAMA Yoshio
   email = nenegi.01mo@gmail.com
-  signingkey = 31387B7CE9FEBBFE
+  signingkey = ~/.ssh/id_rsa.pub
 
 [gpg]
-  program = gpg
+  format = ssh
 
 [includeIf "gitdir:~/ghe/"]
   path = ~/.config/git/config.local
