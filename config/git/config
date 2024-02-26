@@ -47,6 +47,9 @@
 [pull]
   rebase = true
 
+[rebase]
+  autostash = true
+
 [transfer]
   fsckobjects = true
 
