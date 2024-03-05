@@ -89,7 +89,7 @@ update-bat-theme: ## Update bat theme repository
 build-bat-theme: ## Build bat theme
 	cd $(CAT_BAT) && \
 	mkdir -p "$(shell batcat --config-dir)/themes" && \
-	cp -f *.tmTheme "$(shell batcat --config-dir)/themes" && \
+	cp -f themes/*.tmTheme "$(shell batcat --config-dir)/themes" && \
 	batcat cache --build
 
 help: ## Show this help
