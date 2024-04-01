@@ -4,7 +4,7 @@ return {
         "numToStr/Comment.nvim",
         keys = {
             { "<Leader>c", "gcc", remap = true },
-            { "<Leader>c", "gc",  mode = "x",  remap = true },
+            { "<Leader>c", "gc", mode = "x", remap = true },
         },
         config = true,
     },
@@ -58,15 +58,5 @@ return {
     {
         "vidocqh/auto-indent.nvim",
         event = { "InsertEnter" },
-    },
-
-    -- Dynamic Macro
-    {
-        "tani/dmacro.nvim",
-        config = function()
-            require("dmacro").setup({
-                dmacro_key = "<C-.>",
-            })
-        end,
     },
 }
