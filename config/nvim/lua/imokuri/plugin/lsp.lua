@@ -9,7 +9,7 @@ return {
             "smjonas/inc-rename.nvim",
             "williamboman/mason.nvim",
         },
-        event = "VimEnter",
+        event = "VeryLazy",
         config = function()
             local servers = {
                 "ansiblels",

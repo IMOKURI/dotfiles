@@ -4,7 +4,7 @@ return {
         "numToStr/Comment.nvim",
         keys = {
             { "<Leader>c", "gcc", remap = true },
-            { "<Leader>c", "gc", mode = "x", remap = true },
+            { "<Leader>c", "gc",  mode = "x",  remap = true },
         },
         config = true,
     },
@@ -12,7 +12,7 @@ return {
     -- Sandwich
     {
         "machakann/vim-sandwich",
-        event = { "BufRead", "BufNewFile" },
+        event = "VeryLazy",
         init = function() vim.keymap.set({ "n", "x" }, "s", "<Nop>") end,
     },
 
@@ -33,7 +33,7 @@ return {
         dependencies = {
             "kana/vim-textobj-user",
         },
-        event = { "BufRead", "BufNewFile" },
+        event = "VeryLazy",
     },
 
     -- Clever-f
@@ -57,6 +57,6 @@ return {
     -- Auto Indent
     {
         "vidocqh/auto-indent.nvim",
-        event = { "InsertEnter" },
+        event = "InsertEnter",
     },
 }

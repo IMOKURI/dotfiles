@@ -97,7 +97,7 @@ return {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
-        event = "VimEnter",
+        event = "VeryLazy",
         config = function()
             require("noice").setup({
                 presets = {
