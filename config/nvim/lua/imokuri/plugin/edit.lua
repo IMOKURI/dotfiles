@@ -1,4 +1,14 @@
 return {
+    -- Comment
+    {
+        "numToStr/Comment.nvim",
+        keys = {
+            { "<Leader>c", "gcc", remap = true },
+            { "<Leader>c", "gc",  mode = "x",  remap = true },
+        },
+        config = true,
+    },
+
     -- Sandwich
     {
         "machakann/vim-sandwich",

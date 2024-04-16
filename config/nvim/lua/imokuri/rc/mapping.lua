@@ -21,6 +21,16 @@ vim.keymap.set("n", "<Leader>Q", "<Cmd>qall!<CR>")
 -- }}}
 
 -- -----------------------------------------------------------------------------
+-- Tab {{{
+
+vim.keymap.set("n", "gt", "<Cmd>tabnew<CR>")
+
+vim.keymap.set("n", "gn", "<Cmd>tabnext<CR>")
+vim.keymap.set("n", "gp", "<Cmd>tabprevious<CR>")
+
+-- }}}
+
+-- -----------------------------------------------------------------------------
 -- Terminal {{{
 
 vim.keymap.set("n", "te", "<Cmd>terminal<CR>i")
@@ -91,14 +101,6 @@ vim.keymap.set("n", "<Leader><Esc>", ":nohlsearch<CR>")
 
 vim.keymap.set("n", "<", "<<")
 vim.keymap.set("n", ">", ">>")
-
--- }}}
-
--- -----------------------------------------------------------------------------
--- Comment {{{
-
-vim.keymap.set("n", "<Leader>c", "gcc")
-vim.keymap.set("x", "<Leader>c", "gc")
 
 -- }}}
 
