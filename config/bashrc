@@ -13,7 +13,7 @@ export GPG_TTY=$(tty)
 
 export HISTCONTROL=ignoreboth:erasedups
 
-export BAT_THEME="Catppuccin-mocha"
+export BAT_THEME="Catppuccin Mocha"
 
 if echo "${PATH}" | grep -q neovim; then
     :
