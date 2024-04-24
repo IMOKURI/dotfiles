@@ -81,11 +81,11 @@ tmp-clean() {
 
 venv() {
     if [[ ! -d .venv ]]; then
-        python3 -m venv .venv
-        . .venv/bin/activate
-        pip install -U pip setuptools
+        uv venv
+        source .venv/bin/activate
+        uv pip install -U pip setuptools
     else
-        . .venv/bin/activate
+        source .venv/bin/activate
     fi
 }
 
