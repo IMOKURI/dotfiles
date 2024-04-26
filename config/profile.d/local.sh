@@ -19,9 +19,3 @@ if [ -f ~/.hosts ]; then
 fi
 
 export JUPYTERLAB_SETTINGS_DIR="$HOME/.config/jupyterlab"
-
-##### Load pyenv ##############################################################
-
-export PATH=$HOME/.pyenv/bin:$PATH
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"

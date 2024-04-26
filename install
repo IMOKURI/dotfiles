@@ -142,28 +142,6 @@ function install_packages_deb() {
         sqlite3 \
         libsqlite3-dev \
         unzip
-
-    # for pyenv
-    # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-    _logger INFO "Install pyenv dependencies."
-    sudo -E apt-get install -y \
-        make \
-        build-essential \
-        libssl-dev \
-        zlib1g-dev \
-        libbz2-dev \
-        libreadline-dev \
-        libsqlite3-dev \
-        wget \
-        curl \
-        llvm \
-        libncurses5-dev \
-        xz-utils \
-        tk-dev \
-        libxml2-dev \
-        libxmlsec1-dev \
-        libffi-dev \
-        liblzma-dev
 }
 
 install_packages_deb
@@ -184,14 +162,6 @@ else
 fi
 
 ##### Install python packages #################################################
-
-_banner "Install Pyenv..."
-
-if [[ ! -f "${HOME}/.pyenv/bin/pyenv" ]]; then
-    curl https://pyenv.run | bash
-else
-    pyenv update
-fi
 
 _banner "Install Python Packages..."
 
