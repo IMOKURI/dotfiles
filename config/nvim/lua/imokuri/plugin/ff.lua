@@ -75,6 +75,11 @@ return {
                         path = string.format("%s/telescope_history.sqlite3", vim.fn.stdpath("data")),
                         limit = 100,
                     },
+                    path_display = {
+                        filename_first = {
+                            reverse_directories = true
+                        }
+                    }
                 },
                 extensions = {
                     live_grep_args = {
