@@ -3,7 +3,7 @@
 export
 NOW = $(shell date '+%Y%m%d-%H%M%S')
 
-
+{{_cursor_}}
 
 .PHONY: help
 help: ## Show this help
