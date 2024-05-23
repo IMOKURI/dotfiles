@@ -1,6 +1,6 @@
 
 IMAGE_NAME = {{_input_:container_name}}
-IMAGE_TAB = v0.0.1
+IMAGE_TAG = v0.0.1
 
 build-{{_input_:container_name}}: ## Build {{_input_:container_name}}.
 	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) -f Dockerfile .
