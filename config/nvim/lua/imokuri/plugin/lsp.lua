@@ -53,7 +53,7 @@ return {
                     end
 
                     if client.supports_method("textDocument/inlayHint") then
-                        vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
+                        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
                     else
                         vim.notify(
                             ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
@@ -111,7 +111,7 @@ return {
                                 },
                                 stylua = {
                                     command = "stylua",
-                                    args = { "--stdin-filepath", "%filename", "--", "-" },
+                                    args = { "--search-parent-directories", "--stdin-filepath", "%filepath", "--", "-" },
                                     rootPatterns = { ".git" },
                                 },
                                 prettier = {
@@ -187,6 +187,9 @@ return {
                                 },
                                 hint = {
                                     enable = true,
+                                },
+                                format = {
+                                    enable = false,
                                 },
                             },
                         },
