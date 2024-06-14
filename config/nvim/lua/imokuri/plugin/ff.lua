@@ -2,6 +2,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
+            "CopilotC-Nvim/CopilotChat.nvim",
             "IMOKURI/apyrori.nvim",
             "mattn/vim-sonictemplate",
             "natecraddock/telescope-zf-native.nvim",
@@ -35,6 +36,14 @@ return {
             { "<Leader>i", "<Cmd>Telescope apyrori<CR>" },
             { "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>" },
             { "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>" },
+            {
+                "<Leader>C",
+                function()
+                    local actions = require("CopilotChat.actions")
+                    require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+                end,
+                desc = "CopilotChat - Prompt actions",
+            },
         },
         init = function()
             vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
@@ -77,9 +86,9 @@ return {
                     },
                     path_display = {
                         filename_first = {
-                            reverse_directories = true
-                        }
-                    }
+                            reverse_directories = true,
+                        },
+                    },
                 },
                 extensions = {
                     live_grep_args = {

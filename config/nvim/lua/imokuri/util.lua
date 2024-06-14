@@ -1,5 +1,13 @@
 local M = {}
 
+function M.get_proxy()
+    if os.getenv("http_proxy") ~= nil then
+        return os.getenv("http_proxy")
+    else
+        return nil
+    end
+end
+
 function M.winbar()
     local fname
     if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
