@@ -117,9 +117,9 @@ return {
                     section_separators = { left = "", right = "" },
                 },
                 sections = {
-                    lualine_a = { "mode" },
+                    lualine_a = { { "branch", icon = " " } },
                     lualine_b = {},
-                    lualine_c = { "%=", { "branch", icon = " " } },
+                    lualine_c = {},
                     lualine_x = {},
                     lualine_y = { { "diagnostics", sources = { "nvim_lsp" } } },
                     lualine_z = { "location", "filetype" },
