@@ -6,6 +6,8 @@ return {
         build = function() require("catppuccin").compile() end,
         dependencies = {
             "IMOKURI/line-number-interval.nvim",
+            "nvim-lualine/lualine.nvim",
+            "nvim-tree/nvim-web-devicons",
         },
         config = function()
             local catppuccin = require("catppuccin")
@@ -61,44 +63,78 @@ return {
             vim.api.nvim_cmd({
                 cmd = "LineNumberIntervalEnable",
             }, {})
+
+            vim.opt.fillchars = {
+                stl = "─",
+                stlnc = "─",
+            }
+
+            local C = require("catppuccin.palettes").get_palette(vim.g.catppuccin_flavour)
+            local O = require("catppuccin").options
+            local transparent_bg = O.transparent_background and "NONE" or C.base
+
+            require("lualine").setup({
+                options = {
+                    theme = {
+                        normal = {
+                            a = { bg = transparent_bg, fg = C.blue, gui = "bold" },
+                            b = { bg = transparent_bg, fg = C.text },
+                            c = { bg = transparent_bg, fg = C.blue },
+                        },
+                        insert = {
+                            a = { bg = transparent_bg, fg = C.green, gui = "bold" },
+                            b = { bg = transparent_bg, fg = C.text },
+                            c = { bg = transparent_bg, fg = C.green },
+                        },
+                        terminal = {
+                            a = { bg = transparent_bg, fg = C.green, gui = "bold" },
+                            b = { bg = transparent_bg, fg = C.text },
+                            c = { bg = transparent_bg, fg = C.green },
+                        },
+                        command = {
+                            a = { bg = transparent_bg, fg = C.peach, gui = "bold" },
+                            b = { bg = transparent_bg, fg = C.text },
+                            c = { bg = transparent_bg, fg = C.peach },
+                        },
+                        visual = {
+                            a = { bg = transparent_bg, fg = C.mauve, gui = "bold" },
+                            b = { bg = transparent_bg, fg = C.text },
+                            c = { bg = transparent_bg, fg = C.mauve },
+                        },
+                        replace = {
+                            a = { bg = transparent_bg, fg = C.red, gui = "bold" },
+                            b = { bg = transparent_bg, fg = C.text },
+                            c = { bg = transparent_bg, fg = C.red },
+                        },
+                        inactive = {
+                            a = { bg = transparent_bg, fg = C.blue },
+                            b = { bg = transparent_bg, fg = C.surface1, gui = "bold" },
+                            c = { bg = transparent_bg, fg = C.overlay0 },
+                        },
+                    },
+                    globalstatus = true,
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = {},
+                    lualine_c = { "%=", { "branch", icon = " " } },
+                    lualine_x = {},
+                    lualine_y = { { "diagnostics", sources = { "nvim_lsp" } } },
+                    lualine_z = { "location", "filetype" },
+                },
+            })
         end,
     },
 
     {
         "rachartier/tiny-devicons-auto-colors.nvim",
         dependencies = {
-            "nvim-tree/nvim-web-devicons"
-        },
-        event = "VeryLazy",
-        config = function()
-            require('tiny-devicons-auto-colors').setup()
-        end
-    },
-
-    -- Status line
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        config = function()
-            require("lualine").setup({
-                options = {
-                    theme = "catppuccin",
-                    globalstatus = true,
-                    component_separators = { left = "", right = "" },
-                    section_separators = { left = "", right = "" },
-                },
-                sections = {
-                    lualine_a = { "mode" },
-                    lualine_b = {},
-                    lualine_c = { { "diagnostics", sources = { "nvim_lsp" } } },
-                    lualine_x = { "location" },
-                    lualine_y = { "filetype" },
-                    lualine_z = { { "branch", icon = " " } },
-                },
-            })
-        end,
+        event = "VeryLazy",
+        config = function() require("tiny-devicons-auto-colors").setup() end,
     },
 
     -- UI
@@ -161,7 +197,7 @@ return {
     {
         "t9md/vim-quickhl",
         keys = {
-            { "<Leader>m", "<Plug>(quickhl-manual-this)",  mode = { "n", "x" } },
+            { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" } },
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
         },
     },
