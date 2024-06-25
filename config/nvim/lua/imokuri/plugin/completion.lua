@@ -201,6 +201,9 @@ return {
             require("CopilotChat").setup({
                 proxy = u.get_proxy(),
                 prompts = {
+                    Generate = {
+                        prompt = "/COPILOT_GENERATE 選択したコードのコメントに従って、新しいコードを生成してください。",
+                    },
                     Explain = {
                         prompt = "/COPILOT_EXPLAIN 上記のコードを日本語で説明してください。",
                     },
