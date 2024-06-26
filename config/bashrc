@@ -94,6 +94,7 @@ alias sudo='sudo '
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
+alias gbd='git branch --merged | grep -vE "^\*| master$| main$| develop$" | xargs git branch -d'
 alias gc='git commit --signoff'
 alias gca='git commend'
 alias gcm='git commit -m'
@@ -112,24 +113,7 @@ alias gpf='git please'
 alias gpu='git push'
 alias gs='git status'
 alias gsf='git submodule foreach'
-alias gsr='git submodule foreach git checkout .'
-alias gsm='git submodule foreach git pull origin master'
 alias gsu='git submodule update --recursive'
-
-# Delete merged branch
-alias gbd='git branch --merged | grep -vE "^\*| master$| develop$" | xargs git branch -d'
-
-# Delere squash merged branch
-function gbds() {
-    git checkout -q master
-    git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do
-        mergeBase=$(git merge-base master "$branch")
-        if [[ $(git cherry master "$(git commit-tree "$(git rev-parse "$branch"^{tree})" -p "$mergeBase" -m _)") == "-"* ]]; then
-            git branch -D "$branch"
-        fi
-    done
-}
-alias gbds=gbds
 
 alias k='kubectl'
 alias ka='kubectl apply'
