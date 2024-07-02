@@ -16,8 +16,7 @@ return {
                 "astro",
                 "bashls",
                 "diagnosticls",
-                "pyright",
-                "ruff_lsp",
+                "ruff",
                 "lua_ls",
             }
 
@@ -44,7 +43,6 @@ return {
                     vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end, opts)
                     vim.keymap.set("n", "<Leader>r", ":IncRename ", opts) -- depends on inc-rename.nvim
-                    vim.keymap.set("n", "<Leader>I", "<Cmd>PyrightOrganizeImports<CR>")
 
                     local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
                     for type, icon in pairs(signs) do
@@ -137,32 +135,12 @@ return {
                         },
                     })
                 end,
-                ["pyright"] = function()
-                    lsp_config["pyright"].setup({
-                        capabilities = capabilities,
-                        settings = {
-                            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-                            pyright = {},
-                            python = {
-                                pythonPath = vim.fn.exepath("python"),
-                                analysis = {
-                                    autoImportCompletions = true,
-                                    autoSearchPaths = true,
-                                    extraPaths = { "." },
-                                    diagnosticMode = "workspace",
-                                    typeCheckingMode = "basic",
-                                    useLibraryCodeForTypes = true,
-                                },
-                            },
-                        },
-                    })
-                end,
-                ["ruff_lsp"] = function()
-                    lsp_config["ruff_lsp"].setup({
+                ["ruff"] = function()
+                    lsp_config["ruff"].setup({
                         capabilities = capabilities,
                         init_options = {
                             settings = {
-                                args = {},
+                                lineLength = 120,
                             },
                         },
                     })
