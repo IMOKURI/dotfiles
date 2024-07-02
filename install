@@ -135,6 +135,7 @@ function install_packages_deb() {
         cmake \
         g++ \
         gettext \
+        libreadline-dev \
         libtool \
         libtool-bin \
         ninja-build \
