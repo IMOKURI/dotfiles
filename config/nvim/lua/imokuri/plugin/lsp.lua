@@ -16,6 +16,7 @@ return {
                 "astro",
                 "bashls",
                 "diagnosticls",
+                "pyright",
                 "ruff",
                 "lua_ls",
             }
@@ -141,6 +142,24 @@ return {
                         init_options = {
                             settings = {
                                 lineLength = 120,
+                            },
+                        },
+                    })
+                end,
+                ["pyright"] = function()
+                    lsp_config["pyright"].setup({
+                        capabilities = capabilities,
+                        settings = {
+                            -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
+                            pyright = {
+                                -- Using Ruff's import organizer
+                                disableOrganizeImports = true,
+                            },
+                            python = {
+                                analysis = {
+                                    -- Ignore all files for analysis to exclusively use Ruff for linting
+                                    ignore = { "*" },
+                                },
                             },
                         },
                     })
