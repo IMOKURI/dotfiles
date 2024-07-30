@@ -15,6 +15,7 @@ return {
             vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 
             catppuccin.setup({
+                transparent_background = true,
                 integrations = {
                     indent_blankline = {
                         enabled = true,
