@@ -147,6 +147,9 @@ return {
         },
         event = "VeryLazy",
         config = function()
+            require("notify").setup({
+                background_colour = "#000000",
+            })
             require("noice").setup({
                 presets = {
                     long_message_to_split = true,
