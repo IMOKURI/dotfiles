@@ -46,8 +46,6 @@ return {
                         HighlightedLineNr1 = { fg = colors.peach },
                         HighlightedLineNr2 = { fg = colors.yellow },
                         DimLineNr = { fg = colors.surface1 },
-                        WinBar = { fg = colors.yellow },
-                        WinBarNC = { fg = colors.subtext0 },
                     }
                 end,
             })
@@ -123,7 +121,23 @@ return {
                     lualine_c = {},
                     lualine_x = {},
                     lualine_y = { { "diagnostics", sources = { "nvim_lsp" } } },
-                    lualine_z = { "location", "filetype" },
+                    lualine_z = { "location" },
+                },
+                winbar = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = { "%=", { "filetype", icon_only = true }, { "filename", path = 1 }, "%=" },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+                inactive_winbar = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = { "%=", { "filetype", icon_only = true }, "filename", "%=" },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
                 },
             })
         end,

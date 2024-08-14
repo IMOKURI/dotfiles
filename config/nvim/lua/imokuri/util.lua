@@ -8,17 +8,6 @@ function M.get_proxy()
     end
 end
 
-function M.winbar()
-    local fname
-    if vim.api.nvim_eval_statusline("%f", {})["str"] == "[No Name]" then
-        fname = "[No Name]"
-    else
-        fname = vim.fn.expand("%f")
-    end
-
-    return "%=" .. " " .. fname .. " %m%r%="
-end
-
 function M.auto_mkdir(dir, force)
     if vim.fn.isdirectory(dir) == 0 then
         if force == 1 then
