@@ -144,6 +144,10 @@ return {
                         compare.order,
                     },
                 },
+                performance = {
+                    debounce = 1, -- default is 60ms
+                    throttle = 1, -- default is 30ms
+                },
             })
 
             -- Use buffer source for `/`.
