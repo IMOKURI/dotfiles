@@ -183,6 +183,12 @@ _pipx_install_or_upgrade python-import
 _pipx_install_or_upgrade uv
 _pipx_install_or_upgrade wandb
 
+if [[ -d "${HOME}/.local/pipx/venvs/ansible-lint" ]]; then
+    pipx inject ansible-lint \
+        kubernetes \
+        cryptography
+fi
+
 if [[ -d "${HOME}/.local/pipx/venvs/nbdime" ]]; then
     pipx inject nbdime \
         jupyterlab \
