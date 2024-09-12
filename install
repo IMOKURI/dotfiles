@@ -185,8 +185,9 @@ _pipx_install_or_upgrade wandb
 
 if [[ -d "${HOME}/.local/pipx/venvs/ansible-lint" ]]; then
     pipx inject ansible-lint \
+        cryptography \
         kubernetes \
-        cryptography
+        passlib
 fi
 
 if [[ -d "${HOME}/.local/pipx/venvs/nbdime" ]]; then
