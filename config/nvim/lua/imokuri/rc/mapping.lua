@@ -94,6 +94,14 @@ vim.keymap.set("n", ",", require("imokuri.util").close_fold)
 
 vim.keymap.set("n", "<Leader><Esc>", ":nohlsearch<CR>")
 
+vim.keymap.set("i", "<C-u>", function()
+    local line = vim.fn.getline(".")
+    local col = vim.fn.getpos(".")[3]
+    local substring = line:sub(1, col - 1)
+    local result = vim.fn.matchstr(substring, [[\v<(\k(<)@!)*$]])
+    return "<C-w>" .. result:upper()
+end, { expr = true })
+
 -- }}}
 
 -- -----------------------------------------------------------------------------
