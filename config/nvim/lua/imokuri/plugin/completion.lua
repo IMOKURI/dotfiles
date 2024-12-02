@@ -192,59 +192,6 @@ return {
             vim.keymap.set("i", "<C-\\>", 'copilot#Accept("<CR>")', { expr = true, replace_keycodes = false })
         end,
     },
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "canary",
-        dependencies = {
-            "github/copilot.vim",
-            "nvim-lua/plenary.nvim",
-        },
-        event = "VeryLazy",
-        config = function()
-            local u = require("imokuri.util")
-            require("CopilotChat").setup({
-                proxy = u.get_proxy(),
-                prompts = {
-                    Generate = {
-                        prompt = "/COPILOT_GENERATE 選択したコードのコメントに従って、新しいコードを生成してください。",
-                    },
-                    Explain = {
-                        prompt = "/COPILOT_EXPLAIN 上記のコードを日本語で説明してください。",
-                    },
-                    Review = {
-                        prompt = "/COPILOT_REVIEW このコードをレビューしてください。",
-                    },
-                    Fix = {
-                        prompt = "/COPILOT_GENERATE このコードには問題があります。バグを修正したコードを表示してください。",
-                    },
-                    Optimize = {
-                        prompt = "/COPILOT_GENERATE 選択したコードを最適化し、パフォーマンスと可読性を向上させてください。",
-                    },
-                    Docs = {
-                        prompt = "/COPILOT_GENERATE 選択したコードのドキュメントコメントを書いてください。",
-                    },
-                    Tests = {
-                        prompt = "/COPILOT_GENERATE 選択したコードの詳細なユニットテストを書いてください。",
-                    },
-                    FixDiagnostic = {
-                        prompt = "コードの診断結果に従って問題を修正してください。",
-                        selection = require("CopilotChat.select").diagnostics,
-                    },
-                    Commit = {
-                        prompt = "commitize の規則に従って、変更に対するコミットメッセージを記述してください。 タイトルは最大50文字で、メッセージは72文字で折り返されるようにしてください。 メッセージ全体を gitcommit 言語のコード ブロックでラップしてください。メッセージは日本語でお願いします。",
-                        selection = require("CopilotChat.select").gitdiff,
-                    },
-                    CommitStaged = {
-                        prompt = "commitize の規則に従って、変更に対するコミットメッセージを記述してください。 タイトルは最大50文字で、メッセージは72文字で折り返されるようにしてください。 メッセージ全体を gitcommit 言語のコード ブロックでラップしてください。メッセージは日本語でお願いします。",
-                        selection = function(source) return require("CopilotChat.select").gitdiff(source, true) end,
-                    },
-                },
-                window = {
-                    layout = "horizontal",
-                },
-            })
-        end,
-    },
 
     {
         "windwp/nvim-autopairs",
