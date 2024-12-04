@@ -12,5 +12,3 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("imokuri.plugin", { rocks = { enabled = false } })
-
-vim.keymap.set("n", "<Leader>l", "<Cmd>Lazy sync<CR>")

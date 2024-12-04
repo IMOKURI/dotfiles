@@ -219,4 +219,15 @@ return {
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
         },
     },
+
+    -- A collection of small QoL plugins for Neovim.
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            dashboard = { enabled = true },
+            statuscolumn = { enabled = true },
+        },
+    },
 }
