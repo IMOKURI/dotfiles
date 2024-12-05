@@ -176,9 +176,9 @@ function _pipx_install_or_upgrade() {
 
 _pipx_install_or_upgrade ansible-lint
 _pipx_install_or_upgrade cmake
+_pipx_install_or_upgrade "huggingface_hub[cli]"
 _pipx_install_or_upgrade kaggle
 _pipx_install_or_upgrade nbdime
-_pipx_install_or_upgrade neovim-remote
 _pipx_install_or_upgrade python-import
 _pipx_install_or_upgrade uv
 _pipx_install_or_upgrade wandb
