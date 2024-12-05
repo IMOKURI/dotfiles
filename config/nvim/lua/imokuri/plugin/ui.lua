@@ -157,13 +157,9 @@ return {
         "folke/noice.nvim",
         dependencies = {
             "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
         },
         event = "VeryLazy",
         config = function()
-            require("notify").setup({
-                background_colour = "#000000",
-            })
             require("noice").setup({
                 presets = {
                     long_message_to_split = true,
@@ -178,6 +174,25 @@ return {
                 },
             })
         end,
+    },
+
+    -- A collection of small QoL plugins for Neovim.
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        keys = {
+            { "<C-t>", "<Cmd>lua Snacks.terminal.toggle()<CR>", mode = { "n", "i", "t" } },
+        },
+        opts = {
+            bigfile = { enabled = true },
+            dashboard = { enabled = true },
+            notifier = { enabled = true },
+            quickfile = { enabled = true },
+            statuscolumn = { enabled = true },
+            terminal = { enabled = true },
+            words = { enabled = true },
+        },
     },
 
     -- Indent Guide
@@ -217,21 +232,6 @@ return {
         keys = {
             { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" } },
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
-        },
-    },
-
-    -- A collection of small QoL plugins for Neovim.
-    {
-        "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
-        opts = {
-            bigfile = { enabled = true },
-            dashboard = { enabled = true },
-            notifier = { enabled = true },
-            quickfile = { enabled = true },
-            statuscolumn = { enabled = true },
-            words = { enabled = true },
         },
     },
 }
