@@ -189,9 +189,6 @@ return {
             dashboard = { enabled = true },
             notifier = { enabled = true, level = vim.log.levels.INFO },
             quickfile = { enabled = true },
-            statuscolumn = { enabled = true },
-            terminal = { enabled = true },
-            words = { enabled = true },
         },
     },
 
