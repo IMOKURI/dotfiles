@@ -123,7 +123,12 @@ return {
                 },
             })
 
-            require("overseer").setup({})
+            require("overseer").setup({
+                task_list = {
+                    max_height = { 30, 0.2 },
+                    min_height = 20,
+                },
+            })
         end,
     },
 }
