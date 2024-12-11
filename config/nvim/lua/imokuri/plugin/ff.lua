@@ -36,7 +36,13 @@ return {
             { "<Leader>i", "<Cmd>Telescope apyrori<CR>" },
             { "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>" },
             { "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>" },
-            { "<Leader>t", "<Cmd>OverseerRun<CR>" },
+            {
+                "<Leader>t",
+                function()
+                    vim.cmd("OverseerRun")
+                    vim.cmd("OverseerOpen!")
+                end,
+            },
             { "<C-t>", "<Cmd>OverseerToggle<CR>" },
         },
         init = function()
