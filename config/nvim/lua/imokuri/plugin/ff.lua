@@ -16,6 +16,7 @@ return {
             "nvim-tree/nvim-web-devicons",
             "rcarriga/nvim-notify",
             "smartpde/telescope-recent-files",
+            "stevearc/overseer.nvim",
             "tamago324/telescope-sonictemplate.nvim",
             "tami5/sqlite.lua",
         },
@@ -35,6 +36,8 @@ return {
             { "<Leader>i", "<Cmd>Telescope apyrori<CR>" },
             { "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>" },
             { "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>" },
+            { "<Leader>t", "<Cmd>OverseerRun<CR>" },
+            { "<C-t>", "<Cmd>OverseerToggle<CR>" },
         },
         init = function()
             vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
@@ -119,6 +122,8 @@ return {
                     "import pandas as pd",
                 },
             })
+
+            require("overseer").setup({})
         end,
     },
 }
