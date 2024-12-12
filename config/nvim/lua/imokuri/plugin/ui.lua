@@ -188,29 +188,11 @@ return {
         opts = {
             bigfile = { enabled = true },
             dashboard = { enabled = true },
+            indent = { enabled = true },
             notifier = { enabled = true, level = vim.log.levels.INFO },
             quickfile = { enabled = true },
+            scroll = { enabled = true },
         },
-    },
-
-    -- Indent Guide
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        config = function()
-            local hooks = require("ibl.hooks")
-
-            hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-
-            require("ibl").setup({
-                indent = {
-                    char = "|",
-                },
-                exclude = {
-                    buftypes = { "terminal" },
-                },
-            })
-        end,
     },
 
     -- Smart color column
