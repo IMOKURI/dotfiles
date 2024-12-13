@@ -191,7 +191,7 @@ return {
             indent = { enabled = true },
             notifier = { enabled = true, level = vim.log.levels.INFO },
             quickfile = { enabled = true },
-            scroll = { enabled = true },
+            -- scroll = { enabled = true },
         },
     },
 
