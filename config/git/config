@@ -95,8 +95,10 @@
 [mergetool "nbdime"]
   cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 
+[rerere]
+  enabled = true
+
 [alias]
-  co = checkout
   commend = commit --amend --no-edit
   graph = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ >> .gitignore ;}; gi"
