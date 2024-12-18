@@ -187,7 +187,40 @@ return {
         },
         opts = {
             bigfile = { enabled = true },
-            dashboard = { enabled = true },
+            dashboard = {
+                enabled = true,
+                preset = {
+                    keys = {
+                        {
+                            icon = " ",
+                            key = "o",
+                            desc = "Recent Files",
+                            action = ":lua Snacks.dashboard.pick('oldfiles')",
+                        },
+                        {
+                            icon = " ",
+                            key = "f",
+                            desc = "Find File",
+                            action = ":lua Snacks.dashboard.pick('files')",
+                        },
+                        {
+                            icon = " ",
+                            key = "g",
+                            desc = "Find Text",
+                            action = ":lua Snacks.dashboard.pick('live_grep')",
+                        },
+                        { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+                        {
+                            icon = " ",
+                            key = "u",
+                            desc = "Update Plugins",
+                            action = "<Cmd>Lazy sync<CR>",
+                            enabled = package.loaded.lazy ~= nil,
+                        },
+                        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+                    },
+                },
+            },
             indent = { enabled = true },
             notifier = { enabled = true, level = vim.log.levels.INFO },
             quickfile = { enabled = true },
