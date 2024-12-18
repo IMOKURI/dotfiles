@@ -1,3 +1,7 @@
+local header = [[
+Hello, Neovim!
+]]
+
 return {
     -- Color scheme
     {
@@ -213,7 +217,7 @@ return {
                         { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
                         {
                             icon = " ",
-                            key = "u",
+                            key = "U",
                             desc = "Update Plugins",
                             action = "<Cmd>Lazy sync<CR>",
                             enabled = package.loaded.lazy ~= nil,
