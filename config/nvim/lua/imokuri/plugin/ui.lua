@@ -1,5 +1,5 @@
 local header = [[
-Hello, Neovim!
+( ･ ´｀(●) .oO( Neovim, Zzz... )
 ]]
 
 return {
