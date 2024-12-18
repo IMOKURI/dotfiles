@@ -1,12 +1,3 @@
-local header = {
-    { "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ \n", hl = "DashboardHeaderGradient1", },
-    { "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ \n", hl = "DashboardHeaderGradient2", },
-    { "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ \n", hl = "DashboardHeaderGradient3", },
-    { "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ \n", hl = "DashboardHeaderGradient4", },
-    { "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ \n", hl = "DashboardHeaderGradient5", },
-    { "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ \n", hl = "DashboardHeaderGradient6", },
-}
-
 return {
     -- Color scheme
     {
@@ -55,12 +46,6 @@ return {
                         HighlightedLineNr1 = { fg = colors.peach },
                         HighlightedLineNr2 = { fg = colors.yellow },
                         DimLineNr = { fg = colors.surface1 },
-                        DashboardHeaderGradient1 = { fg = colors.red },
-                        DashboardHeaderGradient2 = { fg = colors.peach },
-                        DashboardHeaderGradient3 = { fg = colors.yellow },
-                        DashboardHeaderGradient4 = { fg = colors.green },
-                        DashboardHeaderGradient5 = { fg = colors.sky },
-                        DashboardHeaderGradient6 = { fg = colors.blue },
                     }
                 end,
             })
