@@ -129,12 +129,22 @@ return {
                 },
             })
 
-            require("overseer").setup({
-                templates = { "builtin", "imokuri.docker" },
+            local overseer = require("overseer")
+            overseer.setup({
                 task_list = {
                     max_height = { 30, 0.2 },
                     min_height = 20,
                 },
+            })
+            overseer.register_template({
+                 name = "docker ps",
+                 builder = function()
+                     return {
+                         name = "docker ps --latest",
+                         cmd = { "docker" },
+                         args = { "ps", "--latest" },
+                     }
+                 end
             })
         end,
     },

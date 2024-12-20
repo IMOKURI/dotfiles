@@ -18,6 +18,9 @@ down-{{_input_:container_name}}: ## Stop {{_input_:container_name}}.
 	docker stop {{_input_:container_name}} || :
 	docker rm {{_input_:container_name}} || :
 
+ps-{{_input_:container_name}}: ## Status {{_input_:container_name}}.
+	docker ps -a -f name={{_input_:container_name}} || :
+
 log-{{_input_:container_name}}: ## Log {{_input_:container_name}}.
 	docker logs -f {{_input_:container_name}} || :
 
