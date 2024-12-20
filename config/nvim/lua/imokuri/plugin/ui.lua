@@ -225,6 +225,10 @@ return {
                         { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                     },
                 },
+                sections = {
+                    { section = "header" },
+                    { section = "keys", gap = 1, padding = 1 },
+                },
             },
             indent = { enabled = true },
             notifier = { enabled = true, level = vim.log.levels.INFO },
