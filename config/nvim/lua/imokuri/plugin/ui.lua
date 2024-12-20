@@ -188,6 +188,7 @@ return {
         keys = {
             { "<C-g>", "<Cmd>lua Snacks.terminal.toggle()<CR>", mode = { "n", "i", "t" } },
             -- { "<C-g>", "<Cmd>lua Snacks.terminal.toggle(vim.env.SHELL)<CR>", mode = { "n", "i", "t" } },
+            { "<Leader>h", "<Cmd>lua Snacks.notifier.show_history()<CR>", mode = { "n" } },
         },
         opts = {
             bigfile = { enabled = true },
@@ -233,7 +234,6 @@ return {
             indent = { enabled = true },
             notifier = { enabled = true, level = vim.log.levels.INFO },
             quickfile = { enabled = true },
-            -- scroll = { enabled = true },
         },
     },
 
