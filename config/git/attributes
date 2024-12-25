@@ -1,4 +1,1 @@
 *.py diff=python
-
-*.ipynb diff=jupyternotebook
-*.ipynb merge=jupyternotebook

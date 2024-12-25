@@ -4,7 +4,7 @@ set -e
 
 ##### Variables ###############################################################
 
-export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:/usr/local/bin:${PATH}
 
 # For Ubuntu
 export DEBIAN_FRONTEND=noninteractive
@@ -153,10 +153,10 @@ popd
 
 ##### Instruct next steps #####################################################
 
-_banner "Please run the following command to apply the changes."
-_logger INFO "  source ~/.bashrc"
+_banner "Please run following commands to install development tools."
+_logger INFO "  ~/.local/bin/mise activate bash --shims"
+_logger INFO "  ~/.local/bin/mise install"
 
-_banner "Please run the following command to apply additional settings."
-_logger INFO "  make bat-theme"
+_banner "Please restart your shell session."
 
 _banner "Well done!"

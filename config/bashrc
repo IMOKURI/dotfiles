@@ -15,11 +15,7 @@ export HISTCONTROL=ignoreboth:erasedups
 
 export BAT_THEME="Catppuccin Mocha"
 
-if echo "${PATH}" | grep -q neovim; then
-    :
-else
-    export PATH=$HOME/neovim/bin:$HOME/.local/bin:$HOME/bin:$PATH
-fi
+export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:${PATH}
 
 ##### Set bash options ########################################################
 
@@ -159,11 +155,10 @@ if [ -f ~/.local/bin/bashmarks.sh ]; then
     . ~/.local/bin/bashmarks.sh
 fi
 
-
 ##### Activate Starship #######################################################
 
 eval "$(starship init bash)"
 
 ##### Activate Mise ###########################################################
 
-eval "$(mise activate bash)"
+eval "$(mise activate bash --shims)"
