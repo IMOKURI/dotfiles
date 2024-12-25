@@ -96,7 +96,8 @@ install_packages_deb
 ##### Install starship ########################################################
 
 _banner "Install Starship..."
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes --bin-dir "${HOME}/bin"
+mkdir -p "${HOME}/.local/bin"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes --bin-dir "${HOME}/.local/bin"
 
 ##### Clone Dotfiles ##########################################################
 
