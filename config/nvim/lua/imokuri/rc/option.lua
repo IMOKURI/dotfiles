@@ -2,6 +2,13 @@ local g = vim.g
 local o = vim.opt
 
 -- -----------------------------------------------------------------------------
+-- Environment Variables {{{
+
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
+-- }}}
+
+-- -----------------------------------------------------------------------------
 -- Disable builtin {{{
 
 g.did_install_default_menus = 1
@@ -99,25 +106,8 @@ o.shiftwidth = 4
 o.shiftround = true
 o.smartindent = true
 o.virtualedit:append({ "block" })
--- o.clipboard:append({ "unnamedplus" })
 o.completeopt = { "menu", "menuone", "noselect" }
 o.mouse = ""
-
--- local uname = vim.fn.substitute(vim.fn.system("uname -r"), "\n", "", "")
--- if string.match(uname, "microsoft") then
---     g.clipboard = {
---         name = "win32yank",
---         copy = {
---             ["+"] = "win32yank.exe -i --crlf",
---             ["*"] = "win32yank.exe -i --crlf",
---         },
---         paste = {
---             ["+"] = "win32yank.exe -o --lf",
---             ["*"] = "win32yank.exe -o --lf",
---         },
---         cache_enabled = 0,
---     }
--- end
 
 -- }}}
 
@@ -137,7 +127,6 @@ o.keywordprg = ":help"
 -- Completion {{{
 
 o.wildmode = { "longest", "full" }
--- o.dictionary = "/usr/share/dict/words"
 
 -- }}}
 
