@@ -1,5 +1,9 @@
 return {
     {
+        "ejrichards/mise.nvim",
+        otps = {},
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "Mofiqul/trld.nvim",
