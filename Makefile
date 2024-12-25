@@ -48,6 +48,8 @@ mise: ## Get Mise
 		mise upgrade; \
 	else \
 		curl https://mise.run | sh; \
+		~/.local/bin/mise activate bash; \
+		~/.local/bin/mise install; \
 	fi
 
 deploy: ## Create symlink

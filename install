@@ -61,7 +61,7 @@ _logger INFO "${PRETTY_NAME} is detected."
 ##### Setup repositories ######################################################
 
 function setup_repository_deb() {
-    _banner "Setup repositories for Ubuntu..."
+    _banner "Setup repositories..."
 
     _logger INFO "Install apt common package."
     sudo -E apt-get update
@@ -69,12 +69,16 @@ function setup_repository_deb() {
     sudo install -dm 755 /etc/apt/keyrings
 }
 
-setup_repository_deb
+if ! dpkg --list | grep -q -w gnupg; then
+    setup_repository_deb
+else
+    _banner "Skip repositories set up."
+fi
 
 ##### Install packages ########################################################
 
 function install_packages_deb() {
-    _banner "Install Packages for Ubuntu..."
+    _banner "Install packages..."
 
     _logger INFO "Update package info."
     sudo -E apt-get update
@@ -91,7 +95,11 @@ function install_packages_deb() {
         git
 }
 
-install_packages_deb
+if ! dpkg --list | grep -q -w build-essential; then
+    install_packages_deb
+else
+    _banner "Skip package installation."
+fi
 
 ##### Install starship ########################################################
 
@@ -147,10 +155,6 @@ popd
 
 _banner "Please run the following command to apply the changes."
 _logger INFO "  source ~/.bashrc"
-_logger INFO "  source ~/.profile"
-
-_banner "Please run the following command to install the tools."
-_logger INFO "  mise install"
 
 _banner "Please run the following command to apply additional settings."
 _logger INFO "  make bat-theme"

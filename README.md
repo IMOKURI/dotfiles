@@ -6,12 +6,11 @@
 
 </div>
 
-The dotfiles that can be installed by one command
+Dotfiles that can be installed by one command
 
 ## Features
 
-- Build latest neovim.
-- Install Python, Node.js, etc.
+- Install Neovim, Python, Node.js and Development tools.
 - Clone dotfiles repository.
 - Create symbolic link to dotfiles.
 
