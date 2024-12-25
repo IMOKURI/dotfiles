@@ -144,9 +144,6 @@ alias av='ansible-vault'
 
 alias e='explorer.exe .'
 
-alias nd='nbdiff -s'
-alias j='jupyter lab --no-browser --ip="0.0.0.0"'
-
 alias rg='rg --smart-case'
 
 alias bat="batcat"
@@ -162,6 +159,11 @@ if [ -f ~/.local/bin/bashmarks.sh ]; then
     . ~/.local/bin/bashmarks.sh
 fi
 
+
 ##### Activate Starship #######################################################
 
 eval "$(starship init bash)"
+
+##### Activate Mise ###########################################################
+
+eval "$(mise activate bash)"

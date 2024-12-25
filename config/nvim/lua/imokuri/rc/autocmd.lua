@@ -1,5 +1,5 @@
 local u = require("imokuri.util")
-local group_name = "MyACGroup"
+local group_name = "UserRuntimeConfig"
 
 vim.api.nvim_create_augroup(group_name, {})
 

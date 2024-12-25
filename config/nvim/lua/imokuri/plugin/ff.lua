@@ -6,11 +6,9 @@ return {
             "mattn/vim-sonictemplate",
             "natecraddock/telescope-zf-native.nvim",
             "nvim-lua/plenary.nvim",
-            "nvim-lua/plenary.nvim",
             "nvim-lua/popup.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
-            "nvim-telescope/telescope-smart-history.nvim",
             "nvim-telescope/telescope-symbols.nvim",
             "nvim-telescope/telescope-ui-select.nvim",
             "nvim-tree/nvim-web-devicons",
@@ -18,7 +16,6 @@ return {
             "smartpde/telescope-recent-files",
             "stevearc/overseer.nvim",
             "tamago324/telescope-sonictemplate.nvim",
-            "tami5/sqlite.lua",
         },
         keys = {
             { "<Leader>D", "<Cmd>lua require('telescope.builtin').diagnostics({})<CR>" },
@@ -80,10 +77,6 @@ return {
                             ["<Tab>"] = action_layout.toggle_preview,
                         },
                     },
-                    history = {
-                        path = string.format("%s/telescope_history.sqlite3", vim.fn.stdpath("data")),
-                        limit = 100,
-                    },
                     path_display = {
                         filename_first = {
                             reverse_directories = true,
@@ -115,7 +108,6 @@ return {
             telescope.load_extension("live_grep_args")
             telescope.load_extension("notify")
             telescope.load_extension("recent_files")
-            telescope.load_extension("smart_history")
             telescope.load_extension("sonictemplate")
             telescope.load_extension("ui-select")
             telescope.load_extension("zf-native")

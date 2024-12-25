@@ -1,0 +1,32 @@
+[settings.pipx]
+uvx = true
+
+[tools]
+bat = "latest"
+fd = "latest"
+fzf = "latest"
+helm = "latest"
+kubectl = "latest"
+lua-language-server = "latest"
+neovim = "latest"
+ripgrep = "latest"
+shfmt = "latest"
+stylua = "latest"
+uv = "latest"
+jq = "latest"
+yq = "latest"
+
+"npm:doctoc" = "latest"
+"npm:prettier" = "latest"
+"npm:yarn" = "latest"
+
+"pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
+"pipx:huggingface_hub[cli]" = "latest"
+"pipx:kaggle" = "latest"
+"pipx:pyright" = "latest"
+"pipx:ruff" = "latest"
+"pipx:wandb" = "latest"
+
+# runtimes (needs to be last)
+python = "3.12"
+node = "lts"

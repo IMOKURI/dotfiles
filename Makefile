@@ -11,7 +11,6 @@ DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
 DOTPATH    := $(HOME)/.dotfiles
-NEOVIMPATH := $(HOME)/src/neovim
 BASHMARKS  := $(HOME)/src/bashmarks
 CAT_BAT    := $(HOME)/src/cat-bat
 
@@ -33,7 +32,7 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
-install: proxy update deploy ## Do proxy, update and deploy
+install: proxy deploy ## Do proxy, deploy
 
 proxy: ## Set proxy
 ifdef http_proxy
@@ -43,16 +42,13 @@ ifdef http_proxy
 	source $(PROXY_SETTING)
 endif
 
-update: update-dot update-plugin ## Update dotfiles
-
-update-dot: ## update dotfiles repository
-	git fetch
-	git pull
-
-update-plugin: ## update neovim plugins
-	:
-	# nvim --headless +qa
-	# nvim --headless "+Lazy! sync" +qa
+mise: ## Get Mise
+	if [[ -f $(HOME)/.local/bin/mise ]]; then \
+		mise self-update; \
+		mise upgrade; \
+	else \
+		curl https://mise.run | sh; \
+	fi
 
 deploy: ## Create symlink
 	@mkdir -p $(HOME)/{.config,ghe,github,work}
@@ -60,19 +56,6 @@ deploy: ## Create symlink
 	@mkdir -p $(HOME)/github/{,IMOKURI}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
-
-neovim: update-neovim build-neovim ## Get edge neovim
-
-update-neovim: ## Update neovim repository
-	$(call repo,$(NEOVIMPATH),neovim/neovim)
-
-build-neovim: ## Build neovim
-	cd $(NEOVIMPATH) && \
-	rm -fr .deps build/ && \
-	make distclean && \
-	make clean && \
-	make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$(HOME)/neovim" && \
-	make install
 
 bashmarks: update-bashmarks build-bashmarks ## Get Bashmarks
 
