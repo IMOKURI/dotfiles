@@ -4,7 +4,7 @@ return {
         "numToStr/Comment.nvim",
         keys = {
             { "<Leader>c", "gcc", remap = true },
-            { "<Leader>c", "gc",  mode = "x",  remap = true },
+            { "<Leader>c", "gc", mode = "x", remap = true },
         },
         config = true,
     },
@@ -55,7 +55,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "-", "<Cmd>Oil<CR>",  mode = "n" },
+            { "-", "<Cmd>Oil<CR>", mode = "n" },
         },
         opts = {},
     },

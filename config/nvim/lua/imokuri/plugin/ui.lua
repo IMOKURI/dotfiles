@@ -153,7 +153,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         event = "VeryLazy",
-        config = function() require("tiny-devicons-auto-colors").setup() end,
+        opts = {},
     },
 
     -- UI
@@ -166,8 +166,9 @@ return {
         config = function()
             require("noice").setup({
                 presets = {
-                    long_message_to_split = true,
+                    command_palette = true,
                     inc_rename = true,
+                    long_message_to_split = true,
                     lsp_doc_border = true,
                 },
                 routes = {
@@ -255,5 +256,11 @@ return {
             { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" } },
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
         },
+    },
+
+    {
+        "nacro90/numb.nvim",
+        event = "VeryLazy",
+        opts = {},
     },
 }
