@@ -86,9 +86,6 @@ function install_packages_deb() {
     # Prevent interruptions due to time zone selection.
     sudo -E apt-get install -y tzdata
 
-    _logger INFO "Upgrade packages."
-    sudo -E apt-get upgrade -y
-
     _logger INFO "Install basic packages."
     sudo -E apt-get install -y \
         build-essential \
@@ -153,9 +150,10 @@ popd
 
 ##### Instruct next steps #####################################################
 
+_banner "Please restart your shell session."
+
 _banner "Please run following commands to install development tools."
-_logger INFO "  ~/.local/bin/mise activate bash --shims"
-_logger INFO "  ~/.local/bin/mise install"
+_logger INFO "  mise install"
 
 _banner "Please restart your shell session."
 
