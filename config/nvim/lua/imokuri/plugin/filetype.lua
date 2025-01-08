@@ -6,15 +6,11 @@ return {
         "roobert/f-string-toggle.nvim",
         ft = "python",
         event = "VeryLazy",
-        config = function()
-            require("f-string-toggle").setup({
-                key_binding = "<leader>F",
-            })
-        end,
+        opts = { key_binding = "<leader>F" },
     },
 
     -- Filetype: csv
-    { "mechatroner/rainbow_csv",       ft = { "csv" } },
+    { "mechatroner/rainbow_csv", ft = { "csv" } },
 
     -- Filetype: markdown
     {
