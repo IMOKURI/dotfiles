@@ -19,8 +19,7 @@ return {
         event = "VeryLazy",
         init = function()
             vim.g.table_mode_always_active = 1
-
-            vim.keymap.set("n", "<Leader><Leader>a", "<Cmd>TableModeRealign<CR>")
+            vim.keymap.set("n", "<Leader>A", "<Cmd>TableModeRealign<CR>")
         end,
     },
 }
