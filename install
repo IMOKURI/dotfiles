@@ -35,6 +35,17 @@ function _logger() {
     printf "${!LOG_LEVEL}%s${CLEAR_COLOR}\n" "${1}: ${2}"
 }
 
+##### Check DONT_SUDO Environment Variable ####################################
+
+_banner "Check DONT_SUDO Environment Variable..."
+
+if [[ -n "${DONT_SUDO}" ]]; then
+    _logger INFO "DONT_SUDO is set. Skip sudo command."
+    USE_SUDO="false"
+else
+    USE_SUDO="true"
+fi
+
 ##### Detect OS Distribution ##################################################
 
 _banner "Detect OS Distribution..."
@@ -69,7 +80,7 @@ function setup_repository_deb() {
     sudo install -dm 755 /etc/apt/keyrings
 }
 
-if ! dpkg --list | grep -q -w gnupg; then
+if "${USE_SUDO}" && ! dpkg --list | grep -q -w gnupg; then
     setup_repository_deb
 else
     _banner "Skip repositories set up."
@@ -92,7 +103,7 @@ function install_packages_deb() {
         git
 }
 
-if ! dpkg --list | grep -q -w build-essential; then
+if "${USE_SUDO}" && ! dpkg --list | grep -q -w build-essential; then
     install_packages_deb
 else
     _banner "Skip package installation."
