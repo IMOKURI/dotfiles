@@ -28,7 +28,6 @@ jobs:
     - name: Install requirements
       run: |
         apt-get update
-        apt-get upgrade -y
         apt-get install -y curl sudo
 
     - name: Install dotfiles
@@ -58,7 +57,6 @@ jobs:
     - name: Install requirements
       run: |
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get upgrade -y
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl sudo
 
     - name: Install dotfiles
@@ -80,6 +78,11 @@ jobs:
     container: ${{ matrix.os_name }}:${{ matrix.os_version }}
 
     steps:
+    - name: Install requirements
+      run: |
+        apt-get update
+        apt-get install -y curl
+
     - name: Install dotfiles
       run: |
         env LANG=en_US.utf8 HOME=/root DONT_SUDO=true bash -c "$(curl -fsSL https://git.io/imokuri)"
