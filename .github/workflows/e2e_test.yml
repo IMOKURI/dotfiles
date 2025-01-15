@@ -81,7 +81,7 @@ jobs:
     - name: Install requirements
       run: |
         apt-get update
-        apt-get install -y curl git
+        apt-get install -y curl git make
 
     - name: Install dotfiles
       run: |
