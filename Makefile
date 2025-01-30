@@ -44,7 +44,7 @@ endif
 
 mise: ## Get Mise
 	if [[ -f $(HOME)/.local/bin/mise ]]; then \
-		mise self-update; \
+		mise self-update -y; \
 		mise upgrade; \
 	else \
 		curl https://mise.run | sh; \
