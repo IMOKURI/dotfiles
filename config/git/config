@@ -22,6 +22,9 @@
 [color]
   ui = auto
 
+[column]
+  ui = auto
+
 [grep]
   lineNumber = true
 
@@ -37,19 +40,25 @@
 
 [tag]
   gpgsign = true
+  sort = version:refname
 
 [fetch]
   prune = true
+  pruneTags = true
+  all = true
 
 [push]
   default = current
+  autoSetupRemote = true
   followTags = true
 
 [pull]
   rebase = true
 
 [rebase]
-  autostash = true
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
 
 [transfer]
   fsckobjects = true
@@ -59,6 +68,9 @@
 
 [diff]
   tool = nvimdiff
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
   noprefix = true
   renames = true
 
@@ -84,6 +96,7 @@
 
 [rerere]
   enabled = true
+  autoupdate = true
 
 [alias]
   commend = commit --amend --no-edit
