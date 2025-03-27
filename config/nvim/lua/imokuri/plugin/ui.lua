@@ -187,8 +187,6 @@ return {
         priority = 1000,
         lazy = false,
         keys = {
-            { "<C-g>", "<Cmd>lua Snacks.terminal.toggle()<CR>", mode = { "n", "i", "t" } },
-            -- { "<C-g>", "<Cmd>lua Snacks.terminal.toggle(vim.env.SHELL)<CR>", mode = { "n", "i", "t" } },
             { "<Leader>h", "<Cmd>lua Snacks.notifier.show_history()<CR>", mode = { "n" } },
         },
         opts = {

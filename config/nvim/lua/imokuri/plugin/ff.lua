@@ -14,7 +14,6 @@ return {
             "nvim-tree/nvim-web-devicons",
             "rcarriga/nvim-notify",
             "smartpde/telescope-recent-files",
-            "stevearc/overseer.nvim",
             "tamago324/telescope-sonictemplate.nvim",
         },
         keys = {
@@ -31,14 +30,6 @@ return {
             { "<Leader>i", "<Cmd>Telescope apyrori<CR>" },
             { "<Leader>o", "<Cmd>lua require('telescope').extensions.recent_files.pick()<CR>" },
             { "<Leader>s", "<Cmd>lua require('telescope').extensions.sonictemplate.templates{}<CR>" },
-            {
-                "<Leader>t",
-                function()
-                    vim.cmd("OverseerRun")
-                    vim.cmd("OverseerOpen!")
-                end,
-            },
-            { "<C-t>", "<Cmd>OverseerToggle<CR>" },
         },
         init = function()
             vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
@@ -117,24 +108,6 @@ return {
                     "import numpy as np",
                     "import pandas as pd",
                 },
-            })
-
-            local overseer = require("overseer")
-            overseer.setup({
-                task_list = {
-                    max_height = { 30, 0.2 },
-                    min_height = 20,
-                },
-            })
-            overseer.register_template({
-                 name = "docker ps",
-                 builder = function()
-                     return {
-                         name = "docker ps --latest",
-                         cmd = { "docker" },
-                         args = { "ps", "--latest" },
-                     }
-                 end
             })
         end,
     },
