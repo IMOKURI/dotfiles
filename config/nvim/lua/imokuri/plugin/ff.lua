@@ -23,8 +23,6 @@ return {
                 "<Leader>E",
                 "<Cmd>lua require('telescope.builtin').symbols({ sources = {'emoji', 'gitmoji', 'nerd', 'math'} })<CR>",
             },
-            { "<Leader>[", "<Cmd>lua require('telescope.builtin').lsp_references()<CR>" },
-            { "<Leader>]", "<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>" },
             { "<Leader>b", "<Cmd>lua require('telescope.builtin').buffers()<CR>" },
             { "<Leader>d", "<Cmd>lua require('telescope.builtin').diagnostics({ bufnr = 0 })<CR>" },
             { "<Leader>e", "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>" },

@@ -10,27 +10,26 @@ return {
         },
         event = "VeryLazy",
         config = function()
+            vim.diagnostic.config({
+                virtual_text = { current_line = true, source = true },
+                underline = true,
+                signs = true,
+                update_in_insert = true,
+                severity_sort = true,
+            })
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-                callback = function(args)
-                    local bufnr = args.buf
-                    local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-                    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                            virtual_text = {
-                                source = true,
-                            },
-                            underline = true,
-                            signs = true,
-                            update_in_insert = true,
-                            severity_sort = true,
-                        })
-
+                callback = function(event)
+                    local bufnr = event.buf
+                    local client = vim.lsp.get_client_by_id(event.data.client_id)
                     local opts = { buffer = bufnr }
+
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "<Leader>j", vim.diagnostic.goto_next)
-                    vim.keymap.set("n", "<Leader>k", vim.diagnostic.goto_prev)
+                    vim.keymap.set("n", "<Leader>[", require("telescope.builtin").lsp_references)
+                    vim.keymap.set("n", "<Leader>]", require("telescope.builtin").lsp_definitions)
+                    vim.keymap.set("n", "<Leader>j", function () vim.diagnostic.jump({ count = 1 }) end)
+                    vim.keymap.set("n", "<Leader>k", function () vim.diagnostic.jump({ count = -1 }) end)
                     vim.keymap.set("n", "<Leader>r", ":IncRename ", opts)
                     vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end, opts)
@@ -41,7 +40,7 @@ return {
                         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
                     end
 
-                    if client.supports_method("textDocument/inlayHint") then
+                    if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
                         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
                     else
                         vim.notify(
