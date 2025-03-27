@@ -22,8 +22,7 @@ uv = "latest"
 yarn = "latest"
 yq = "latest"
 
-neovim = "latest"
-# "asdf:neovim" = "ref:nightly"
+"asdf:richin13/asdf-neovim" = "latest"
 
 "npm:doctoc" = "latest"
 "npm:prettier" = "latest"
