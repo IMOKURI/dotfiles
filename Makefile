@@ -51,9 +51,9 @@ mise: ## Get Mise
 	fi
 
 deploy: ## Create symlink
-	@mkdir -p $(HOME)/{.config,ghe,github,work}
+	@mkdir -p $(HOME)/{.config,ghe,github,work,docker,namespace}
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
-	@mkdir -p $(HOME)/github/{,IMOKURI}
+	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI}
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
