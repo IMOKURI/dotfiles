@@ -28,8 +28,8 @@ return {
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                     vim.keymap.set("n", "<Leader>[", require("telescope.builtin").lsp_references)
                     vim.keymap.set("n", "<Leader>]", require("telescope.builtin").lsp_definitions)
-                    vim.keymap.set("n", "<Leader>j", function () vim.diagnostic.jump({ count = 1 }) end)
-                    vim.keymap.set("n", "<Leader>k", function () vim.diagnostic.jump({ count = -1 }) end)
+                    vim.keymap.set("n", "<Leader>j", function() vim.diagnostic.jump({ count = 1 }) end)
+                    vim.keymap.set("n", "<Leader>k", function() vim.diagnostic.jump({ count = -1 }) end)
                     vim.keymap.set("n", "<Leader>r", ":IncRename ", opts)
                     vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end, opts)
@@ -64,6 +64,10 @@ return {
 
             local lsp_config = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            lsp_config.astro.setup({})
+            lsp_config.bashls.setup({})
+            lsp_config.dockerls.setup({})
 
             lsp_config.ruff.setup({
                 capabilities = capabilities,
