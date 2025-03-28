@@ -10,7 +10,7 @@ build-{{_input_:container_name}}: ## Build {{_input_:container_name}}.
 push-{{_input_:container_name}}: ## Push {{_input_:container_name}}.
 	docker push $(IMAGE_NAME):$(IMAGE_TAG)
 
-sh-{{_input_:container_name}}: ## Start shell in {{_input_:container_name}}.
+run-{{_input_:container_name}}: ## Run shell in {{_input_:container_name}}.
 	docker run -it --rm \
 		--shm-size=16g \
 		-v $(shell pwd):/work \
