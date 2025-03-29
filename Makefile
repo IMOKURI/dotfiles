@@ -74,9 +74,9 @@ update-bat-theme: ## Update bat theme repository
 
 build-bat-theme: ## Build bat theme
 	cd $(CAT_BAT) && \
-	mkdir -p "$(shell batcat --config-dir)/themes" && \
-	cp -f themes/*.tmTheme "$(shell batcat --config-dir)/themes" && \
-	batcat cache --build
+	mkdir -p "$(shell bat --config-dir)/themes" && \
+	cp -f themes/*.tmTheme "$(shell bat --config-dir)/themes" && \
+	bat cache --build
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / \

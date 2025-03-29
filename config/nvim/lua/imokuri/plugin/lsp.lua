@@ -26,8 +26,8 @@ return {
                     local opts = { buffer = bufnr }
 
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "<Leader>[", require("telescope.builtin").lsp_references)
-                    vim.keymap.set("n", "<Leader>]", require("telescope.builtin").lsp_definitions)
+                    vim.keymap.set("n", "<Leader>[", function() Snacks.picker.lsp_references() end)
+                    vim.keymap.set("n", "<Leader>]", function() Snacks.picker.lsp_definitions() end)
                     vim.keymap.set("n", "<Leader>j", function() vim.diagnostic.jump({ count = 1 }) end)
                     vim.keymap.set("n", "<Leader>k", function() vim.diagnostic.jump({ count = -1 }) end)
                     vim.keymap.set("n", "<Leader>r", ":IncRename ", opts)
@@ -106,6 +106,7 @@ return {
                         },
                         diagnostics = {
                             globals = vim.list_extend({
+                                "Snacks",
                                 "vim",
                             }, {}),
                         },

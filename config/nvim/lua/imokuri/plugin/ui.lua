@@ -1,7 +1,3 @@
-local header = [[
-( ･ ´｀(●) .oO( Neovim, Zzz... )
-]]
-
 return {
     -- Color scheme
     {
@@ -21,10 +17,7 @@ return {
             catppuccin.setup({
                 transparent_background = true,
                 integrations = {
-                    indent_blankline = {
-                        enabled = true,
-                        colored_indent_levels = false,
-                    },
+                    cmp = true,
                     native_lsp = {
                         enabled = true,
                         virtual_text = {
@@ -40,7 +33,8 @@ return {
                             information = { "underline" },
                         },
                     },
-                    ts_rainbow = true,
+                    telescope = { enabled = true },
+                    treesitter = true,
                 },
                 custom_highlights = function(colors)
                     return {
@@ -179,61 +173,6 @@ return {
                 },
             })
         end,
-    },
-
-    -- A collection of small QoL plugins for Neovim.
-    {
-        "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
-        keys = {
-            { "<Leader>h", "<Cmd>lua Snacks.notifier.show_history()<CR>", mode = { "n" } },
-        },
-        opts = {
-            bigfile = { enabled = true },
-            dashboard = {
-                enabled = true,
-                preset = {
-                    header = header,
-                    keys = {
-                        {
-                            icon = " ",
-                            key = "o",
-                            desc = "Recent Files",
-                            action = ":lua Snacks.dashboard.pick('oldfiles')",
-                        },
-                        {
-                            icon = " ",
-                            key = "f",
-                            desc = "Find File",
-                            action = ":lua Snacks.dashboard.pick('files')",
-                        },
-                        {
-                            icon = " ",
-                            key = "g",
-                            desc = "Find Text",
-                            action = ":lua Snacks.dashboard.pick('live_grep')",
-                        },
-                        { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-                        {
-                            icon = " ",
-                            key = "U",
-                            desc = "Update Plugins",
-                            action = "<Cmd>Lazy sync<CR>",
-                            enabled = package.loaded.lazy ~= nil,
-                        },
-                        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-                    },
-                },
-                sections = {
-                    { section = "header" },
-                    { section = "keys", gap = 1, padding = 1 },
-                },
-            },
-            indent = { enabled = true },
-            notifier = { enabled = true, level = vim.log.levels.INFO },
-            quickfile = { enabled = true },
-        },
     },
 
     -- Smart color column

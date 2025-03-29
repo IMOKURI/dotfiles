@@ -142,7 +142,6 @@ alias e='explorer.exe .'
 
 alias rg='rg --smart-case'
 
-alias bat="batcat"
 alias b="bat"
 
 alias fd="fdfind"
