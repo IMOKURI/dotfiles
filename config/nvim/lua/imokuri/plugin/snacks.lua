@@ -65,6 +65,16 @@ return {
             indent = {},
             notifier = { level = vim.log.levels.INFO },
             picker = {
+                formatters = {
+                    file = {
+                        filename_first = true,
+                    },
+                },
+                sources = {
+                    explorer = {
+                        auto_close = true,
+                    },
+                },
                 win = {
                     input = {
                         keys = {
