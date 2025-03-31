@@ -10,9 +10,9 @@ Dotfiles that can be installed by one command
 
 ## Features
 
-- Install Neovim, Python, Node.js and Development tools.
 - Clone dotfiles repository.
-- Create symbolic link to dotfiles.
+- Create symbolic links to dotfile.
+- Install Neovim and development tools via Mise.
 
 ## Platforms
 
