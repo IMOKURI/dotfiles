@@ -47,18 +47,6 @@ return {
         init = function() vim.g.suda_smart_edit = 1 end,
     },
 
-    -- Oil
-    {
-        "stevearc/oil.nvim",
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        keys = {
-            { "-", "<Cmd>Oil<CR>", mode = "n" },
-        },
-        opts = {},
-    },
-
     -- LineDiff
     {
         "AndrewRadev/linediff.vim",
