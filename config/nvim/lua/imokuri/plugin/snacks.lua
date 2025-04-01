@@ -6,6 +6,10 @@ return {
     -- A collection of small QoL plugins for Neovim.
     {
         "folke/snacks.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "mattn/vim-sonictemplate",
+        },
         priority = 1000,
         lazy = false,
         keys = {
@@ -20,7 +24,12 @@ return {
             { "<Leader>h", function() Snacks.picker.notifications() end, desc = "Notification History" },
             { "<Leader>o", function() Snacks.picker.recent() end, desc = "Recent" },
             { "<Leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
+            { "<Leader>s", function() require("imokuri.snacks_picker").sonictemplate() end, desc = "Sonictemplate" },
+
         },
+        init = function()
+            vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
+        end,
         opts = {
             bigfile = {},
             dashboard = {
