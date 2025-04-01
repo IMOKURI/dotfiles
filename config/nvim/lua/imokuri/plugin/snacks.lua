@@ -25,7 +25,6 @@ return {
             { "<Leader>o", function() Snacks.picker.recent() end, desc = "Recent" },
             { "<Leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
             { "<Leader>s", function() require("imokuri.snacks_picker").sonictemplate() end, desc = "Sonictemplate" },
-
         },
         init = function()
             vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
@@ -74,6 +73,27 @@ return {
             indent = {},
             notifier = { level = vim.log.levels.INFO },
             picker = {
+                layout = {
+                    preset = function() return vim.o.columns >= 200 and "default" or "wide_vertical" end,
+                },
+                layouts = {
+                    wide_vertical = {
+                        layout = {
+                            backdrop = false,
+                            width = 0.8,
+                            min_width = 80,
+                            height = 0.8,
+                            min_height = 30,
+                            box = "vertical",
+                            border = "rounded",
+                            title = "{title} {live} {flags}",
+                            title_pos = "center",
+                            { win = "input", height = 1, border = "bottom" },
+                            { win = "list", border = "none" },
+                            { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+                        },
+                    },
+                },
                 formatters = {
                     file = {
                         filename_first = true,
