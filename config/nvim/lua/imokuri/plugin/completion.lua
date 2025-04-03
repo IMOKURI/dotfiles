@@ -7,7 +7,6 @@ return {
             "honza/vim-snippets",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-cmdline",
-            "hrsh7th/cmp-emoji",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lsp-document-symbol",
             "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -44,7 +43,6 @@ return {
                         before = function(entry, vim_item)
                             local alias = {
                                 buffer = "[Buffer]",
-                                emoji = "[Emoji]",
                                 nvim_lsp = "[LSP]",
                                 nvim_lsp_signature_help = "[LSP]",
                                 nvim_lua = "[Lua]",
@@ -123,10 +121,9 @@ return {
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
                     { name = "path" },
-                    { name = "emoji" },
-                    { name = "cmdline" },
                     { name = "nvim_lua" },
                 }, {
+                    { name = "cmdline" },
                     { name = "buffer" },
                     { name = "rg" },
                 }),

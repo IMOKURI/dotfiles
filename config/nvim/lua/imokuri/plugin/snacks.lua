@@ -28,7 +28,7 @@ return {
             { "<Leader>s", function() require("snacks_picker").sonictemplate() end, desc = "Sonictemplate" },
         },
         init = function()
-            vim.g.sonictemplate_vim_template_dir = { string.format("%s/template", vim.fn.stdpath("config")) }
+            vim.g.sonictemplate_vim_template_dir = { string.format("%s/templates", vim.fn.stdpath("config")) }
         end,
         opts = {
             bigfile = {},
