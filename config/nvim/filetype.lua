@@ -5,9 +5,9 @@ vim.filetype.add({
     filename = {
         ["install"] = "sh",
     },
-    -- pattern = {
-    --     [".*Dockerfile.*"] = "dockerfile",
-    --     [".*git/config.*"] = "gitconfig",
-    --     [".*.make"] = "make",
-    -- },
+    pattern = {
+        [".*Dockerfile.*"] = "dockerfile",
+        [".*git/config.*"] = "gitconfig",
+        [".*.make"] = "make",
+    },
 })
