@@ -191,6 +191,20 @@ return {
     },
 
     {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        event = "VeryLazy",
+        keys = {
+            { "<C-a>", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
+            { "<C-c>", "<Cmd>CodeCompanionChat Toggle<CR>", mode = "n" },
+        },
+        config = true,
+    },
+
+    {
         "windwp/nvim-autopairs",
         event = {
             "CmdlineEnter",
