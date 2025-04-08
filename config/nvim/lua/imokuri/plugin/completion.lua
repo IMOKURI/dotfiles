@@ -199,9 +199,14 @@ return {
         event = "VeryLazy",
         keys = {
             { "<C-a>", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
+            { "<C-a>", "<Cmd>CodeCompanionChat Add<CR>", mode = "x" },
             { "<C-c>", "<Cmd>CodeCompanionChat Toggle<CR>", mode = "n" },
         },
-        config = true,
+        opts = {
+            opts = {
+                language = "Japanese",
+            },
+        },
     },
 
     {
