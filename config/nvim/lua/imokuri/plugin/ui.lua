@@ -117,7 +117,7 @@ return {
                     lualine_a = { { "branch", icon = " " } },
                     lualine_b = {},
                     lualine_c = {},
-                    lualine_x = {},
+                    lualine_x = { require("mcphub.extensions.lualine") },
                     lualine_y = { { "diagnostics", sources = { "nvim_lsp" } } },
                     lualine_z = { "location" },
                 },
