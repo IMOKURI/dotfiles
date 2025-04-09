@@ -14,9 +14,11 @@ return {
         priority = 1000,
         lazy = false,
         keys = {
+            { "<Leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
             { "<Leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
             { "<Leader>D", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
             { "<Leader>E", function() Snacks.picker.icons() end, desc = "Emoji" },
+            { "<Leader>L", function() Snacks.lazygit.log() end, desc = "Lazygit Log" },
             { "<Leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
             { "<Leader>d", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
             { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
@@ -25,7 +27,6 @@ return {
             { "<Leader>h", function() Snacks.picker.notifications() end, desc = "Notification History" },
             { "<Leader>l", function() Snacks.lazygit() end, desc = "Lazygit" },
             { "<Leader>o", function() Snacks.picker.recent() end, desc = "Recent" },
-            { "<Leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
             { "<Leader>s", function() require("snacks_picker").sonictemplate() end, desc = "Sonictemplate" },
         },
         init = function()
