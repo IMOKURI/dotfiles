@@ -23,6 +23,7 @@ return {
             { "<Leader>f", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
             { "<Leader>g", function() Snacks.picker.grep() end, desc = "Grep" },
             { "<Leader>h", function() Snacks.picker.notifications() end, desc = "Notification History" },
+            { "<Leader>l", function() Snacks.lazygit() end, desc = "Lazygit" },
             { "<Leader>o", function() Snacks.picker.recent() end, desc = "Recent" },
             { "<Leader>/", function() Snacks.picker.search_history() end, desc = "Search History" },
             { "<Leader>s", function() require("snacks_picker").sonictemplate() end, desc = "Sonictemplate" },
@@ -72,6 +73,7 @@ return {
             },
             explorer = {},
             indent = {},
+            lazygit = {},
             notifier = { level = vim.log.levels.INFO },
             picker = {
                 layout = {
