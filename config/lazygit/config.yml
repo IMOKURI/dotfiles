@@ -1,2 +1,7 @@
 gui:
   nerdFontsVersion: "3"
+customCommands:
+  - key: "C"
+    context: "files"
+    command: "git commit --signoff"
+    subprocess: true
