@@ -3,8 +3,8 @@ return {
     {
         "folke/ts-comments.nvim",
         keys = {
-            { "<Leader>c", "gcc", remap = true },
-            { "<Leader>c", "gc", mode = "x", remap = true },
+            { "<Leader>c", "gcc", remap = true, desc = "Comment line" },
+            { "<Leader>c", "gc", mode = "x", remap = true, desc = "Comment selection" },
         },
     },
 

@@ -186,8 +186,8 @@ return {
     {
         "t9md/vim-quickhl",
         keys = {
-            { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" } },
-            { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" } },
+            { "<Leader>m", "<Plug>(quickhl-manual-this)", mode = { "n", "x" }, desc = "Quick Highlight" },
+            { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" }, desc = "Reset Quick Highlight" },
         },
     },
 

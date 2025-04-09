@@ -198,13 +198,40 @@ return {
         },
         event = "VeryLazy",
         keys = {
-            { "<C-a>", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
-            { "<C-a>", "<Cmd>CodeCompanionChat Add<CR>", mode = "x" },
-            { "<C-c>", "<Cmd>CodeCompanionChat Toggle<CR>", mode = "n" },
+            { "<Leader>a", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
+            { "<Leader>a", "<Cmd>CodeCompanionChat Add<CR>", mode = "x" },
+            { "<Leader>h", "<Cmd>CodeCompanionChat Toggle<CR>", mode = "n" },
         },
         opts = {
             opts = {
                 language = "Japanese",
+            },
+            strategies = {
+                chat = {
+                    tools = {
+                        ["mcp"] = {
+                            callback = function() return require("mcphub.extensions.codecompanion") end,
+                            description = "Call tools and resources from the MCP Servers",
+                        },
+                    },
+                },
+            },
+        },
+    },
+
+    {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        event = "VeryLazy",
+        opts = {
+            extensions = {
+                codecompanion = {
+                    show_result_in_chat = true,
+                    make_vars = true,
+                    make_slash_commands = true,
+                },
             },
         },
     },

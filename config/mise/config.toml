@@ -28,6 +28,7 @@ yq = "latest"
 "npm:bash-language-server" = "latest"
 "npm:dockerfile-language-server-nodejs" = "latest"
 "npm:doctoc" = "latest"
+"npm:mcp-hub" = "latest"
 "npm:prettier" = "latest"
 "npm:@astrojs/language-server" = "latest"
 
