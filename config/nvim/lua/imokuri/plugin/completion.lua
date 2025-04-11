@@ -226,6 +226,7 @@ return {
         },
         event = "VeryLazy",
         opts = {
+            auto_approve = true,
             extensions = {
                 codecompanion = {
                     show_result_in_chat = true,
