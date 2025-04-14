@@ -62,24 +62,19 @@ return {
             null_ls.register(null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", vim.bo.softtabstop } }))
             null_ls.register(null_ls.builtins.formatting.stylua)
 
-            local lsp_config = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            lsp_config.astro.setup({})
-            lsp_config.bashls.setup({})
-            lsp_config.dockerls.setup({})
+            vim.lsp.config("*", { capabilities = capabilities })
 
-            lsp_config.ruff.setup({
-                capabilities = capabilities,
+            vim.lsp.config.ruff = {
                 init_options = {
                     settings = {
                         lineLength = 120,
                     },
                 },
-            })
+            }
 
-            lsp_config.pyright.setup({
-                capabilities = capabilities,
+            vim.lsp.config.pyright = {
                 settings = {
                     -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
                     pyright = {
@@ -93,10 +88,9 @@ return {
                         },
                     },
                 },
-            })
+            }
 
-            lsp_config.lua_ls.setup({
-                capabilities = capabilities,
+            vim.lsp.config.lua_ls = {
                 settings = {
                     -- https://github.com/LuaLS/lua-language-server/wiki/Settings
                     Lua = {
@@ -121,7 +115,9 @@ return {
                         },
                     },
                 },
-            })
+            }
+
+            vim.lsp.enable({ "astro", "bashls", "dockerls", "ruff", "pyright", "lua_ls" })
         end,
     },
 }
