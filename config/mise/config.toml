@@ -35,6 +35,5 @@ yq = "latest"
 "pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
 "pipx:huggingface_hub[cli]" = "latest"
 "pipx:kaggle" = "latest"
-"pipx:pyright" = "latest"
 "pipx:ruff" = "latest"
 "pipx:wandb" = "latest"

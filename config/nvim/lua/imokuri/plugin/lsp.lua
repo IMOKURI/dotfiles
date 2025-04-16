@@ -74,22 +74,6 @@ return {
                 },
             }
 
-            vim.lsp.config.pyright = {
-                settings = {
-                    -- https://github.com/microsoft/pyright/blob/master/docs/settings.md
-                    pyright = {
-                        -- Using Ruff's import organizer
-                        disableOrganizeImports = true,
-                    },
-                    python = {
-                        analysis = {
-                            -- Ignore all files for analysis to exclusively use Ruff for linting
-                            ignore = { "*" },
-                        },
-                    },
-                },
-            }
-
             vim.lsp.config.lua_ls = {
                 settings = {
                     -- https://github.com/LuaLS/lua-language-server/wiki/Settings
@@ -117,7 +101,7 @@ return {
                 },
             }
 
-            vim.lsp.enable({ "astro", "bashls", "dockerls", "ruff", "pyright", "lua_ls" })
+            vim.lsp.enable({ "astro", "bashls", "dockerls", "ruff", "lua_ls" })
         end,
     },
 }
