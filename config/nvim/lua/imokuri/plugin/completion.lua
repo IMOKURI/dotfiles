@@ -224,7 +224,6 @@ return {
                         width = 0.8,
                     },
                     intro_message = "( ･ ´｀(●) .oO( Press ? for options, Zzz... )",
-                    start_in_insert_mode = true,
                 },
             },
         },
