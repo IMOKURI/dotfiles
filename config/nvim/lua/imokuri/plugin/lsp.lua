@@ -1,9 +1,21 @@
 return {
     {
+        "Mofiqul/trld.nvim",
+        event = "VeryLazy",
+        opts = {
+            position = "bottom",
+        },
+    },
+    {
+        "Wansmer/symbol-usage.nvim",
+        event = "VeryLazy",
+        opts = {
+            vt_position = "end_of_line"
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "Mofiqul/trld.nvim",
-            "Wansmer/symbol-usage.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "nvimtools/none-ls.nvim",
             "smjonas/inc-rename.nvim",
@@ -11,9 +23,6 @@ return {
         event = "VeryLazy",
         config = function()
             vim.diagnostic.config({
-                virtual_text = { current_line = true, source = true },
-                underline = true,
-                signs = true,
                 update_in_insert = true,
                 severity_sort = true,
             })
@@ -52,8 +61,6 @@ return {
             })
 
             require("inc_rename").setup()
-            require("symbol-usage").setup({ vt_position = "end_of_line" })
-            require("trld").setup()
 
             local null_ls = require("null-ls")
             null_ls.setup()

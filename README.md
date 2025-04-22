@@ -21,6 +21,7 @@ Dotfiles that can be installed by one command
 ## Requirements
 
 - Packages
+
   - curl
   - sudo
 
