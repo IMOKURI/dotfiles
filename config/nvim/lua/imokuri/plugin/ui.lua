@@ -39,7 +39,7 @@ return {
                 custom_highlights = function(colors)
                     return {
                         CursorLineNr = { fg = colors.red },
-                        Folded = { bg = colors.base },
+                        Folded = { bg = colors.none },
                         HighlightedLineNr = { fg = colors.lavender },
                         HighlightedLineNr1 = { fg = colors.peach },
                         HighlightedLineNr2 = { fg = colors.yellow },
