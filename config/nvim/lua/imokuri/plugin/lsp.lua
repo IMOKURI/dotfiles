@@ -10,15 +10,30 @@ return {
         "Wansmer/symbol-usage.nvim",
         event = "VeryLazy",
         opts = {
-            vt_position = "end_of_line"
+            vt_position = "end_of_line",
         },
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        event = "VeryLazy",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup()
+
+            null_ls.register(null_ls.builtins.formatting.prettier)
+            null_ls.register(null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", vim.bo.softtabstop } }))
+            null_ls.register(null_ls.builtins.formatting.stylua)
+        end,
+    },
+    {
+        "smjonas/inc-rename.nvim",
+        event = "VeryLazy",
+        opts = {},
     },
     {
         "neovim/nvim-lspconfig",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            "nvimtools/none-ls.nvim",
-            "smjonas/inc-rename.nvim",
         },
         event = "VeryLazy",
         config = function()
@@ -30,18 +45,16 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(event)
-                    local bufnr = event.buf
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
-                    local opts = { buffer = bufnr }
 
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover)
                     vim.keymap.set("n", "<Leader>[", function() Snacks.picker.lsp_references() end)
                     vim.keymap.set("n", "<Leader>]", function() Snacks.picker.lsp_definitions() end)
                     vim.keymap.set("n", "<Leader>j", function() vim.diagnostic.jump({ count = 1 }) end)
                     vim.keymap.set("n", "<Leader>k", function() vim.diagnostic.jump({ count = -1 }) end)
-                    vim.keymap.set("n", "<Leader>r", ":IncRename ", opts)
-                    vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action, opts)
-                    vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end, opts)
+                    vim.keymap.set("n", "<Leader>r", ":IncRename ")
+                    vim.keymap.set("n", "<Leader>x", vim.lsp.buf.code_action)
+                    vim.keymap.set("n", "<Leader>z", function() vim.lsp.buf.format({ async = true }) end)
 
                     local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
                     for type, icon in pairs(signs) do
@@ -50,7 +63,12 @@ return {
                     end
 
                     if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-                        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                        vim.lsp.inlay_hint.enable(true)
+                        vim.keymap.set(
+                            "n",
+                            "<Leader>I",
+                            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
+                        )
                     else
                         vim.notify(
                             ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
@@ -60,17 +78,7 @@ return {
                 end,
             })
 
-            require("inc_rename").setup()
-
-            local null_ls = require("null-ls")
-            null_ls.setup()
-
-            null_ls.register(null_ls.builtins.formatting.prettier)
-            null_ls.register(null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", vim.bo.softtabstop } }))
-            null_ls.register(null_ls.builtins.formatting.stylua)
-
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
             vim.lsp.config("*", { capabilities = capabilities })
 
             vim.lsp.config.ruff = {
