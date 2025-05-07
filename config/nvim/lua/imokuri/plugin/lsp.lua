@@ -81,6 +81,16 @@ return {
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             vim.lsp.config("*", { capabilities = capabilities })
 
+            vim.lsp.config.astro = {
+                init_options = {
+                    typescript = {
+                        tsdk = vim.fn.expand(
+                            "~/.local/share/mise/installs/npm-astrojs-language-server/2.15.4/node_modules/typescript/lib"
+                        ),
+                    },
+                },
+            }
+
             vim.lsp.config.ruff = {
                 init_options = {
                     settings = {
