@@ -6,9 +6,6 @@ set -e
 
 export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:/usr/local/bin:${PATH}
 
-# For Ubuntu
-export DEBIAN_FRONTEND=noninteractive
-
 # Defind Colors
 BANNER="\033[38;2;101;178;255m" # BLUE
 DEBUG="\033[38;2;144;108;255m"  # MAGENTA
@@ -34,80 +31,6 @@ function _logger() {
     LOG_LEVEL="${1}"
     printf "${!LOG_LEVEL}%s${CLEAR_COLOR}\n" "${1}: ${2}"
 }
-
-##### Check DONT_SUDO Environment Variable ####################################
-
-_banner "Check DONT_SUDO Environment Variable..."
-
-if [[ -n "${DONT_SUDO}" ]]; then
-    _logger INFO "DONT_SUDO is set. Skip sudo command."
-    USE_SUDO="false"
-else
-    USE_SUDO="true"
-fi
-
-##### Detect OS Distribution ##################################################
-
-_banner "Detect OS Distribution..."
-
-if [[ -f /etc/os-release ]]; then
-    . /etc/os-release
-
-    case "${NAME}" in
-    Ubuntu*)
-        # Ubuntu
-        ;;
-    *)
-        _logger ERROR "Unknown OS is detected."
-        exit 1
-        ;;
-    esac
-else
-    _logger ERROR "No such file. /etc/os-release"
-    exit 1
-fi
-
-_logger INFO "${PRETTY_NAME} is detected."
-
-##### Setup repositories ######################################################
-
-function setup_repository_deb() {
-    _banner "Setup repositories..."
-
-    _logger INFO "Install apt common package."
-    sudo -E apt-get update
-    sudo -E apt-get install -y gnupg software-properties-common ca-certificates
-    sudo install -dm 755 /etc/apt/keyrings
-}
-
-if "${USE_SUDO}" && ! dpkg --list | grep -q -w gnupg; then
-    setup_repository_deb
-else
-    _banner "Skip repositories set up."
-fi
-
-##### Install packages ########################################################
-
-function install_packages_deb() {
-    _banner "Install packages..."
-
-    _logger INFO "Update package info."
-    sudo -E apt-get update
-
-    # Prevent interruptions due to time zone selection.
-    sudo -E apt-get install -y tzdata
-
-    _logger INFO "Install basic packages."
-    sudo -E apt-get install -y \
-        build-essential \
-        git
-}
-
-if "${USE_SUDO}" && ! dpkg --list | grep -q -w build-essential; then
-    install_packages_deb
-else
-    _banner "Skip package installation."
-fi
 
 ##### Install starship ########################################################
 
