@@ -12,7 +12,7 @@ DEBUG="\033[38;2;144;108;255m"  # MAGENTA
 INFO="\033[38;2;98;209;150m"    # GREEN
 WARN="\033[38;2;255;179;120m"   # YELLOW
 ERROR="\033[38;2;255;84;88m"    # RED
-OTHER="\033[38;2;99;242;241m"   # CYAN
+CODE="\033[38;2;99;242;241m"   # CYAN
 CLEAR_COLOR="\033[0m"
 
 # Define path
@@ -88,7 +88,8 @@ _banner "Please follow the instructions below to finish the installation."
 
 _logger INFO "Restart your shell session."
 _logger INFO "Run following commands to install development tools."
-_logger OTHER "  mise install"
+_logger CODE "  mise install"
+_logger CODE "  make bat-theme"
 _logger INFO "Restart your shell session."
 
 _banner "Well done!"
