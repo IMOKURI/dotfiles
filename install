@@ -84,11 +84,11 @@ popd
 
 ##### Instruct next steps #####################################################
 
-_banner "Please restart your shell session."
+_banner "Please follow the instructions below to finish the installation."
 
-_banner "Please run following commands to install development tools."
-_logger INFO "  mise install"
-
-_banner "Please restart your shell session."
+_logger INFO "Restart your shell session."
+_logger INFO "Run following commands to install development tools."
+_logger OTHER "  mise install"
+_logger INFO "Restart your shell session."
 
 _banner "Well done!"
