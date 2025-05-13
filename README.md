@@ -23,12 +23,9 @@ Dotfiles that can be installed by one command
 - Packages
 
   - curl
-  - gnupg (optional)
-  - software-properties-common (optional)
-  - ca-certificates (optional)
-  - git (optional)
-  - build-essential (optional)
-  - tzdata (optional)
+  - git
+  - make
+  - gnupg
 
 - Set environment variables if use proxy.
 

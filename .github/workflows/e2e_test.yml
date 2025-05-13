@@ -28,7 +28,7 @@ jobs:
     - name: Install requirements
       run: |
         apt-get update
-        apt-get install -y curl sudo
+        apt-get install -y curl git make
 
     - name: Install dotfiles
       run: |
@@ -57,32 +57,9 @@ jobs:
     - name: Install requirements
       run: |
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl sudo
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl git make
 
     - name: Install dotfiles
       run: |
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
         cat /root/.config/git/config.proxy
-
-  ubuntu_dont_sudo:
-    strategy:
-      fail-fast: true
-      matrix:
-        os_name:
-          - ubuntu
-        os_version:
-          - 22.04
-          - 24.04
-
-    runs-on: ubuntu-latest
-    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
-
-    steps:
-    - name: Install requirements
-      run: |
-        apt-get update
-        apt-get install -y curl git make
-
-    - name: Install dotfiles
-      run: |
-        env LANG=en_US.utf8 HOME=/root DONT_SUDO=true bash -c "$(curl -fsSL https://git.io/imokuri)"
