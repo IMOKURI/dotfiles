@@ -126,7 +126,7 @@ return {
                 },
             }
 
-            vim.lsp.enable({ "astro", "bashls", "dockerls", "ruff", "lua_ls" })
+            vim.lsp.enable({ "astro", "bashls", "dockerls", "lua_ls", "ruff", "ty" })
         end,
     },
 }
