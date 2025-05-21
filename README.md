@@ -23,6 +23,7 @@ Dotfiles that can be installed by one command
 - Packages
 
   - curl
+  - gcc
   - git
   - make
   - gnupg
