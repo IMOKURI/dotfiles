@@ -42,3 +42,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.wo.relativenumber = false
     end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = u.treesitter_filetypes,
+    callback = function() vim.treesitter.start() end,
+})

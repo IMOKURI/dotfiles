@@ -3,11 +3,12 @@ vim.filetype.add({
         ["mdx"] = "markdown",
     },
     filename = {
-        ["install"] = "sh",
+        ["install"] = "bash",
     },
     pattern = {
         [".*Dockerfile.*"] = "dockerfile",
         [".*git/config.*"] = "gitconfig",
+        [".*git/ignore.*"] = "gitignore",
         [".*.make"] = "make",
     },
 })

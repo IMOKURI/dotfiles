@@ -30,6 +30,7 @@ yq = "latest"
 "npm:doctoc" = "latest"
 "npm:mcp-hub" = "latest"
 "npm:prettier" = "latest"
+"npm:tree-sitter-cli" = "latest"
 "npm:@astrojs/language-server" = "latest"
 
 "pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }

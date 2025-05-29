@@ -1,5 +1,28 @@
 local M = {}
 
+M.treesitter_filetypes = {
+    "astro",
+    "bash",
+    "css",
+    "diff",
+    "dockerfile",
+    "git_config",
+    "git_rebase",
+    "gitattributes",
+    "gitcommit",
+    "gitignore",
+    "javascript",
+    "json",
+    "lua",
+    "make",
+    "markdown",
+    "python",
+    "regex",
+    "typescript",
+    "xml",
+    "yaml",
+}
+
 function M.get_proxy()
     if os.getenv("http_proxy") ~= nil then
         return os.getenv("http_proxy")

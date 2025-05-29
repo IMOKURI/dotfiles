@@ -22,11 +22,9 @@ Dotfiles that can be installed by one command
 
 - Packages
 
-  - curl
-  - gcc
-  - git
-  - make
-  - gnupg
+```bash
+sudo apt install -y curl gcc git gnupg make tar
+```
 
 - Set environment variables if use proxy.
 
