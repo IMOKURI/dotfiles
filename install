@@ -12,7 +12,7 @@ DEBUG="\033[38;2;144;108;255m"  # MAGENTA
 INFO="\033[38;2;98;209;150m"    # GREEN
 WARN="\033[38;2;255;179;120m"   # YELLOW
 ERROR="\033[38;2;255;84;88m"    # RED
-CODE="\033[38;2;99;242;241m"   # CYAN
+CODE="\033[38;2;99;242;241m"    # CYAN
 CLEAR_COLOR="\033[0m"
 
 # Define path
@@ -31,12 +31,6 @@ function _logger() {
     LOG_LEVEL="${1}"
     printf "${!LOG_LEVEL}%s${CLEAR_COLOR}\n" "${1}: ${2}"
 }
-
-##### Install starship ########################################################
-
-_banner "Install Starship..."
-mkdir -p "${HOME}/.local/bin"
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes --bin-dir "${HOME}/.local/bin"
 
 ##### Clone Dotfiles ##########################################################
 
@@ -65,6 +59,12 @@ if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then
 fi
 
 popd
+
+##### Install starship ########################################################
+
+_banner "Install Starship..."
+mkdir -p "${HOME}/.local/bin"
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes --bin-dir "${HOME}/.local/bin"
 
 ##### Install Mise ############################################################
 

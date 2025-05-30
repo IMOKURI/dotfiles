@@ -38,9 +38,3 @@ export https_proxy=<http://proxy.example.com:port>
 ```bash
 bash -c "$(curl -fsSL https://git.io/imokuri)"
 ```
-
-## Update
-
-```bash
-bash ~/.dotfiles/install
-```

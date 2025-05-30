@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-
 name: E2E Test
 
 on:
@@ -28,7 +27,7 @@ jobs:
     - name: Install requirements
       run: |
         apt-get update
-        apt-get install -y curl git make
+        apt-get install -y curl gcc git gnupg make tar
 
     - name: Install dotfiles
       run: |
@@ -57,9 +56,8 @@ jobs:
     - name: Install requirements
       run: |
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl git make
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl gcc git gnupg make tar
 
     - name: Install dotfiles
       run: |
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
-        cat /root/.config/git/config.proxy
