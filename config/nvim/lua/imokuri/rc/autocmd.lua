@@ -44,5 +44,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = u.treesitter_filetypes,
-    callback = function() vim.treesitter.start() end,
+    callback = function()
+        vim.treesitter.start()
+        vim.wo.foldmethod = "expr"
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end,
 })
