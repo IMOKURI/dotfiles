@@ -191,63 +191,6 @@ return {
     },
 
     {
-        "olimorris/codecompanion.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        event = "VeryLazy",
-        keys = {
-            { "<Leader>a", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
-            { "<Leader>a", "<Cmd>CodeCompanionChat Add<CR>", mode = "x" },
-            { "<Leader>h", "<Cmd>CodeCompanionChat Toggle<CR>", mode = "n" },
-        },
-        opts = {
-            opts = {
-                language = "Japanese",
-            },
-            strategies = {
-                chat = {
-                    tools = {
-                        ["mcp"] = {
-                            callback = function() return require("mcphub.extensions.codecompanion") end,
-                            description = "Call tools and resources from the MCP Servers",
-                        },
-                    },
-                },
-            },
-            display = {
-                chat = {
-                    window = {
-                        layout = "float",
-                        height = 0.8,
-                        width = 0.8,
-                    },
-                    intro_message = "( ･ ´｀(●) .oO( Press ? for options, Zzz... )",
-                },
-            },
-        },
-    },
-
-    {
-        "ravitemer/mcphub.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        event = "VeryLazy",
-        opts = {
-            auto_approve = true,
-            extensions = {
-                codecompanion = {
-                    show_result_in_chat = true,
-                    make_vars = true,
-                    make_slash_commands = true,
-                },
-            },
-        },
-    },
-
-    {
         "windwp/nvim-autopairs",
         event = {
             "CmdlineEnter",

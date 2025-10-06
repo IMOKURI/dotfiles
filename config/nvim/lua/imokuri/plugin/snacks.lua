@@ -19,13 +19,11 @@ return {
             { "<Leader>D", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
             { "<Leader>E", function() Snacks.picker.icons() end, desc = "Emoji" },
             { "<Leader>H", function() Snacks.picker.notifications() end, desc = "Notification History" },
-            { "<Leader>L", function() Snacks.lazygit.log() end, desc = "Lazygit Log" },
             { "<Leader>b", function() Snacks.picker.buffers() end, desc = "Buffers" },
             { "<Leader>d", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
             { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
             { "<Leader>f", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
             { "<Leader>g", function() Snacks.picker.grep() end, desc = "Grep" },
-            { "<Leader>l", function() Snacks.lazygit() end, desc = "Lazygit" },
             { "<Leader>o", function() Snacks.picker.recent() end, desc = "Recent" },
             { "<Leader>p", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
             { "<Leader>s", function() require("snacks_picker").sonictemplate() end, desc = "Sonictemplate" },
@@ -75,7 +73,6 @@ return {
             },
             explorer = {},
             indent = {},
-            lazygit = {},
             notifier = { level = vim.log.levels.INFO },
             picker = {
                 layout = {
