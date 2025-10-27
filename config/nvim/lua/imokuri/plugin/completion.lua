@@ -191,6 +191,41 @@ return {
     },
 
     {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "ravitemer/codecompanion-history.nvim",
+        },
+        event = "VeryLazy",
+        keys = {
+            { "<Leader>a", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
+            { "<Leader>a", "<Cmd>CodeCompanionChat Add<CR>", mode = "x" },
+            { "<Leader>h", "<Cmd>CodeCompanionHistory<CR>", mode = "n" },
+        },
+        opts = {
+            opts = {
+                language = "Japanese",
+            },
+            display = {
+                chat = {
+                    window = {
+                        layout = "float",
+                        height = 0.8,
+                        width = 0.8,
+                    },
+                    intro_message = "( ･ ´｀(●) .oO( Press ? for options, Zzz... )",
+                },
+            },
+            extensions = {
+                history = {
+                    enabled = true,
+                },
+            },
+        },
+    },
+
+    {
         "windwp/nvim-autopairs",
         event = {
             "CmdlineEnter",
