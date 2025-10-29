@@ -1,10 +1,8 @@
 return {
     {
-        "Mofiqul/trld.nvim",
+        "rachartier/tiny-inline-diagnostic.nvim",
         event = "VeryLazy",
-        opts = {
-            position = "bottom",
-        },
+        opts = {},
     },
     {
         "Wansmer/symbol-usage.nvim",
