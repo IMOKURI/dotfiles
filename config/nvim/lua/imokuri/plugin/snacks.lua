@@ -41,19 +41,19 @@ return {
                             icon = " ",
                             key = "o",
                             desc = "Recent Files",
-                            action = ":lua Snacks.dashboard.pick('oldfiles')",
+                            action = ":lua Snacks.dashboard.pick('recent')",
                         },
                         {
                             icon = " ",
                             key = "f",
                             desc = "Find File",
-                            action = ":lua Snacks.dashboard.pick('files')",
+                            action = ":lua Snacks.dashboard.pick('smart')",
                         },
                         {
                             icon = " ",
                             key = "g",
                             desc = "Find Text",
-                            action = ":lua Snacks.dashboard.pick('live_grep')",
+                            action = ":lua Snacks.dashboard.pick('grep')",
                         },
                         { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
                         {
