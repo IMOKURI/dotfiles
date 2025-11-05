@@ -209,12 +209,7 @@ return {
             },
             display = {
                 chat = {
-                    window = {
-                        layout = "float",
-                        height = 0.8,
-                        width = 0.8,
-                    },
-                    intro_message = "( ･ ´｀(●) .oO( Press ? for options, Zzz... )",
+                    intro_message = "( ･ ´｀(●) .oO( Zzz... )",
                 },
             },
             extensions = {
