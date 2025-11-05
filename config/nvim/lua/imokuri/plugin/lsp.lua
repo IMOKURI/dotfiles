@@ -97,6 +97,16 @@ return {
                 },
             }
 
+            vim.lsp.config.ty = {
+                settings = {
+                    ty = {
+                        experimental = {
+                            rename = true,
+                        },
+                    },
+                },
+            }
+
             vim.lsp.config.lua_ls = {
                 settings = {
                     -- https://github.com/LuaLS/lua-language-server/wiki/Settings
