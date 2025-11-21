@@ -1,13 +1,16 @@
 [user]
-  name = SUGIYAMA Yoshio
+  name = Yoshio Sugiyama
   email = nenegi.01mo@gmail.com
-  signingkey = ~/.ssh/id_rsa.pub
+  signingkey = ~/.ssh/id_ed25519_github.pub
 
 [gpg]
   format = ssh
 
 [includeIf "gitdir:~/ghe/"]
-  path = ~/.config/git/config.local
+  path = ~/.config/git/config.ghe
+
+[includeIf "gitdir:~/github_hpeprod/"]
+  path = ~/.config/git/config.github_hpeprod
 
 [include]
   path = ~/.config/git/config.proxy

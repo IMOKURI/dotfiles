@@ -83,6 +83,7 @@ venv() {
 
 alias sudo='sudo '
 
+alias clone='bash ~/.dotfiles/bin/git_clone.sh'
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'

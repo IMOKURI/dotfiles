@@ -4,7 +4,7 @@
 SHELL := /bin/bash
 
 # List up dotfiles
-DOTFILES_EXCLUDES   := README.md LICENSE Makefile config install $(wildcard .??*)
+DOTFILES_EXCLUDES   := README.md LICENSE Makefile bin config install $(wildcard .??*)
 DOTFILES_TARGET     := $(shell ls)
 DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
@@ -43,9 +43,10 @@ ifdef http_proxy
 endif
 
 deploy: ## Create symlink
-	@mkdir -p $(HOME)/{.config,ghe,github,work,docker,namespace}
+	@mkdir -p $(HOME)/{.config,ghe,github,github_hpeprod,work,docker,namespace}
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
 	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI}
+	@mkdir -p $(HOME)/github_hpeprod/yoshio-sugiyama_hpeprod
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
