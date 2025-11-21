@@ -4,6 +4,7 @@ import hydra
 import numpy as np
 import torch
 from hydra.core.hydra_config import HydraConfig
+from omegaconf import DictConfig
 
 import src.utils as utils
 
@@ -11,7 +12,7 @@ log = logging.getLogger(__name__)
 
 
 @hydra.main(config_path="config", config_name="main", version_base=None)
-def main(c):
+def main(c: DictConfig):
     log.info("Let's go!")
     log.info(f"Params: {c.params}")
 
