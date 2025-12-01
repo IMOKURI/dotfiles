@@ -199,8 +199,7 @@ return {
         },
         event = "VeryLazy",
         keys = {
-            { "<Leader>a", "<Cmd>CodeCompanionActions<CR>", mode = "n" },
-            { "<Leader>a", "<Cmd>CodeCompanionChat Add<CR>", mode = "x" },
+            { "<Leader>a", "<Cmd>CodeCompanionActions<CR>", mode = { "n", "x" } },
             { "<Leader>h", "<Cmd>CodeCompanionHistory<CR>", mode = "n" },
         },
         opts = {
