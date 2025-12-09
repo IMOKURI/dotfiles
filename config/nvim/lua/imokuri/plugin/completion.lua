@@ -203,6 +203,7 @@ return {
             { "<Leader>h", "<Cmd>CodeCompanionHistory<CR>", mode = "n" },
         },
         opts = {
+            ignore_warnings = true,
             opts = {
                 language = "Japanese",
             },
