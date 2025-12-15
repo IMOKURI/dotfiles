@@ -1,5 +1,5 @@
 local header = [[
-( ･ ´｀(●) .oO( Neovim, Zzz... )
+( ･ ´｀(●) .oO( Neovim, IMOKURI, Zzz... )
 ]]
 
 return {
