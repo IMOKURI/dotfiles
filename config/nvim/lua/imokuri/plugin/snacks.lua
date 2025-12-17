@@ -105,6 +105,10 @@ return {
                     explorer = {
                         auto_close = true,
                     },
+                    files = {
+                        cmd = "fd",
+                        args = { "--type", "f", "--hidden", "--exclude", ".git" },
+                    },
                 },
                 win = {
                     input = {
