@@ -109,6 +109,11 @@ return {
                         cmd = "fd",
                         args = { "--type", "f", "--hidden", "--exclude", ".git" },
                     },
+                    grep = {
+                        cmd = "rg",
+                        hidden = true,
+                        exclude = { ".git" },
+                    },
                 },
                 win = {
                     input = {
