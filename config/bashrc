@@ -141,7 +141,7 @@ alias av='ansible-vault'
 
 alias e='explorer.exe .'
 
-alias rg='rg --smart-case'
+alias rg="rg --smart-case --hidden --glob '!.git'"
 
 alias b="bat"
 
