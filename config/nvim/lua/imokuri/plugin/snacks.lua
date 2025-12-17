@@ -104,6 +104,8 @@ return {
                 sources = {
                     explorer = {
                         auto_close = true,
+                        hidden = true,
+                        exclude = { ".git" },
                     },
                     files = {
                         cmd = "fd",
