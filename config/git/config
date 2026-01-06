@@ -12,6 +12,9 @@
 [includeIf "gitdir:~/github_hpeprod/"]
   path = ~/.config/git/config.github_hpeprod
 
+[includeIf "gitdir:~/github_sompo/"]
+  path = ~/.config/git/config.github_sompo
+
 [include]
   path = ~/.config/git/config.proxy
 

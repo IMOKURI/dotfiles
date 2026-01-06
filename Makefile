@@ -43,10 +43,11 @@ ifdef http_proxy
 endif
 
 deploy: ## Create symlink
-	@mkdir -p $(HOME)/{.config,ghe,github,github_hpeprod,work,docker,namespace}
+	@mkdir -p $(HOME)/{.config,ghe,github,github_hpeprod,github_sompo,work,docker,namespace}
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
 	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI}
 	@mkdir -p $(HOME)/github_hpeprod/yoshio-sugiyama_hpeprod
+	@mkdir -p $(HOME)/github_sompo/hpe-sugiyama-yoshio-26
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 

@@ -7,7 +7,7 @@ fi
 
 REPO_NAME=$1
 
-SSH_HOSTS=("github" "github_hpeprod" "ghe")
+SSH_HOSTS=("github" "github_hpeprod" "github_sompo" "ghe")
 
 echo "Select SSH host for cloning:"
 select HOST in "${SSH_HOSTS[@]}"; do
