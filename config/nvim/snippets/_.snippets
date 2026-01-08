@@ -2,19 +2,22 @@ snippet todo "todo"
 	#{buffer}
 
 	TODO を解決するコードを書いて。
+	@{insert_edit_into_file}
 	${0}
 
 snippet refactor "refactor"
 	#{buffer}
 
 	コードをリファクタリングして、可読性と保守性を向上させて。
+	@{insert_edit_into_file}
 	${0}
 
 snippet error "error"
 	#{buffer}
 
 	以下のエラーを修正して、コードが正しく動作するようにして。
-	
+	@{insert_edit_into_file}
+
 	"""
 	${0}
 	"""
