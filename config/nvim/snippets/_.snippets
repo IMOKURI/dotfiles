@@ -21,3 +21,13 @@ snippet error "error"
 	"""
 	${0}
 	"""
+
+snippet lsp "lsp"
+	#{buffer}
+
+	以下のエラーを修正して、コードが正しく動作するようにして。
+	@{insert_edit_into_file}
+
+	#{lsp}
+
+	${0}
