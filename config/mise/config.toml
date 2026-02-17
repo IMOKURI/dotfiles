@@ -23,6 +23,7 @@ shfmt = "latest"
 stylua = "latest"
 terraform = "latest"
 uv = "latest"
+wrangler = "latest"
 yarn = "latest"
 yq = "latest"
 
