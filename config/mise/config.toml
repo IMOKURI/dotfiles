@@ -37,10 +37,12 @@ yq = "latest"
 "npm:tree-sitter-cli" = "latest"
 "npm:@astrojs/language-server" = "latest"
 "npm:@github/copilot" = "latest"
+"npm:@upstash/context7-mcp" = "latest"
 
 "pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
 "pipx:huggingface_hub[cli]" = "latest"
 "pipx:kaggle" = "latest"
+"pipx:markitdown" = "latest"
 "pipx:ruff" = "latest"
 "pipx:ty" = "latest"
 "pipx:wandb" = "latest"
