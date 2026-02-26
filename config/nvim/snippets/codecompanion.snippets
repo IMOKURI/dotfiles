@@ -1,0 +1,33 @@
+snippet copilot-todo "todo"
+	#{buffer}
+
+	TODO を解決するコードを書いて。
+	@{insert_edit_into_file}
+	${0}
+
+snippet copilot-refactor "refactor"
+	#{buffer}
+
+	コードをリファクタリングして、可読性と保守性を向上させて。
+	@{insert_edit_into_file}
+	${0}
+
+snippet copilot-error "error"
+	#{buffer}
+
+	以下のエラーを修正して、コードが正しく動作するようにして。
+	@{insert_edit_into_file}
+
+	"""
+	${0}
+	"""
+
+snippet copilot-lsp "lsp"
+	#{buffer}
+
+	以下のエラーを修正して、コードが正しく動作するようにして。
+	@{insert_edit_into_file}
+
+	#{lsp}
+
+	${0}
