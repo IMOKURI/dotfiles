@@ -12,9 +12,8 @@ return {
         config = function()
             local catppuccin = require("catppuccin")
 
-            vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-
             catppuccin.setup({
+                flavour = "macchiato", -- latte, frappe, macchiato, mocha
                 transparent_background = true,
                 integrations = {
                     cmp = true,
@@ -33,7 +32,9 @@ return {
                             information = { "underline" },
                         },
                     },
-                    telescope = { enabled = true },
+                    snacks = {
+                        enabled = true,
+                    },
                     treesitter = true,
                 },
                 custom_highlights = function(colors)
@@ -50,7 +51,7 @@ return {
 
             vim.api.nvim_cmd({
                 cmd = "colorscheme",
-                args = { "catppuccin" },
+                args = { "catppuccin-nvim" },
             }, {})
 
             vim.g.line_number_interval_enable_at_startup = 1
