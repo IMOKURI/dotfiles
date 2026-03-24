@@ -3,7 +3,6 @@
 
 # (neo)vim
 .nvimlog
-tags
 
 # python
 .venv
@@ -12,6 +11,3 @@ tags
 .ipynb_checkpoints/
 __pycache__
 *.egg-info
-
-# sugi
-sugi
