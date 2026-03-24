@@ -1,4 +1,0 @@
-[user]
-  name = Yoshio Sugiyama
-  email = yoshio.sugiyama@lab.sompo.io
-  signingkey = ~/.ssh/id_ed25519_sompo.pub
