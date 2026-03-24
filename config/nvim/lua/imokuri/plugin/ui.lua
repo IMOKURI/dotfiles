@@ -191,10 +191,4 @@ return {
             { "<Leader>M", "<Plug>(quickhl-manual-reset)", mode = { "n", "x" }, desc = "Reset Quick Highlight" },
         },
     },
-
-    {
-        "nacro90/numb.nvim",
-        event = "VeryLazy",
-        opts = {},
-    },
 }
