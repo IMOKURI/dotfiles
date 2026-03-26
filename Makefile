@@ -54,6 +54,7 @@ mise: ## Get Mise
 	if [[ -f $(HOME)/.local/bin/mise ]]; then \
 		mise self-update -y; \
 		mise upgrade; \
+		mise prune -y; \
 	else \
 		curl https://mise.run | sh; \
 	fi
