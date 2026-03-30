@@ -43,7 +43,7 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(event)
-                    local client = vim.lsp.get_client_by_id(event.data.client_id)
+                    local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
 
                     vim.keymap.set("n", "K", vim.lsp.buf.hover)
                     vim.keymap.set("n", "<Leader>[", function() Snacks.picker.lsp_references() end)
@@ -60,17 +60,12 @@ return {
                         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
                     end
 
-                    if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+                    if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
                         vim.lsp.inlay_hint.enable(true)
                         vim.keymap.set(
                             "n",
                             "<Leader>I",
                             function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
-                        )
-                    else
-                        vim.notify(
-                            ("%s(%d) does not support textDocument/inlayHint"):format(client.name, client.id),
-                            vim.log.levels.DEBUG
                         )
                     end
                 end,
