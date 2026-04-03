@@ -3,10 +3,11 @@ return {
         "ruicsh/termite.nvim",
         keys = {
             { "<C-t>", "<Cmd>Termite toggle<CR>", mode = { "n", "t" } },
-            { "<C-g>", "<Cmd>Termite create<CR>", mode = { "n", "t" } },
-            { "<C-q>", "<Cmd>Termite close<CR>", mode = { "t" } },
+            { "<C-g>", "<Cmd>Termite terminals<CR>", mode = { "n" } },
+            { "<C-g>", "<Cmd>Termite editor<CR>", mode = { "t" } },
+            { "<C-n>", "<Cmd>Termite create<CR>", mode = { "n" } },
             { "<C-n>", "<Cmd>Termite next<CR>", mode = { "t" } },
-            { "<C-p>", "<Cmd>Termite editor<CR>", mode = { "t" } },
+            { "<C-q>", "<Cmd>Termite close<CR>", mode = { "t" } },
         },
         opts = {
             position = "bottom",
