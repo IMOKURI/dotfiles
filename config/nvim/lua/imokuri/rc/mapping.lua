@@ -11,6 +11,7 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "<Leader>w", "<Cmd>update<CR>")
 vim.keymap.set("n", "<Leader><Leader>w", "<Cmd>wall<CR>")
+vim.keymap.set("n", "<Leader><Leader>W", "<Cmd>wall ++p<CR>")
 
 vim.keymap.set("n", "qq", "<Cmd>close<CR>")
 vim.keymap.set("n", "QQ", "<Cmd>bdelete!<CR>")

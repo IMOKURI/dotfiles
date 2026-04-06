@@ -31,19 +31,6 @@ function M.get_proxy()
     end
 end
 
-function M.auto_mkdir(dir, force)
-    if vim.fn.isdirectory(dir) == 0 then
-        if force == 1 then
-            vim.fn.mkdir(dir, "p")
-        else
-            local is_create = vim.fn.input(string.format('"%s" does not exist. Create? [y/N]', dir))
-            if string.match(is_create, "^[Yy]") ~= nil then
-                vim.fn.mkdir(dir, "p")
-            end
-        end
-    end
-end
-
 function M.foldtext()
     local pos = vim.v.foldstart
     local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]
