@@ -1,8 +1,9 @@
+[settings]
+color_theme = "catppuccin"
+install_before = "7d"
+
 [settings.npm]
 package_manager = "bun"
-
-[settings.pipx]
-uvx = true
 
 [tools]
 bat = "latest"
