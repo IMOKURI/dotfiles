@@ -9,7 +9,6 @@ return {
         dependencies = {
             "IMOKURI/snacks-picker-sonictemplate.nvim",
             "mattn/vim-sonictemplate",
-            "nvim-lua/plenary.nvim",
         },
         priority = 1000,
         lazy = false,
