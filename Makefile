@@ -32,7 +32,7 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
-install: proxy deploy ## Do proxy, deploy
+install: proxy deploy mise bashmarks ## Do proxy, deploy, mise, bashmarks
 
 proxy: ## Set proxy
 ifdef http_proxy
@@ -43,7 +43,8 @@ ifdef http_proxy
 endif
 
 deploy: ## Create symlink
-	@mkdir -p $(HOME)/{.config,ghe,github,github_hpeprod,work,docker,namespace}
+	@mkdir -p ${HOME}/.local/bin
+	@mkdir -p $(HOME)/{bin,.config,ghe,github,github_hpeprod,work,docker,namespace}
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
 	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI,others}
 	@mkdir -p $(HOME)/github_hpeprod/yoshio-sugiyama_hpeprod

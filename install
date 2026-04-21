@@ -65,28 +65,6 @@ fi
 
 popd
 
-##### Install starship ########################################################
-
-_banner "Install Starship..."
-mkdir -p "${HOME}/.local/bin"
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" dollar_zero --yes --bin-dir "${HOME}/.local/bin"
-
-##### Install Mise ############################################################
-
-_banner "Install Mise..."
-pushd "$(pwd)"
-cd "${DOTPATH}"
-make mise
-popd
-
-##### Install bashmarks #######################################################
-
-_banner "Install Bashmarks..."
-pushd "$(pwd)"
-cd "${DOTPATH}"
-make bashmarks
-popd
-
 ##### Instruct next steps #####################################################
 
 _banner "Please follow the instructions below to finish the installation."
