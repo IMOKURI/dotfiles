@@ -87,8 +87,9 @@ mise: ## Get Mise
 		mise install; \
 	fi
 
-bashmarks: update-bashmarks build-bashmarks ## Get Bashmarks
+bashmarks: ## Get Bashmarks
 	$(call banner,Setup Bashmarks...)
+	@$(MAKE) update-bashmarks build-bashmarks
 
 update-bashmarks: ## Update Bashmarks repository
 	$(call repo,$(BASHMARKS),huyng/bashmarks)
@@ -98,8 +99,9 @@ build-bashmarks: ## Build Bashmarks
 	make install && \
 	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
-bat-theme: update-bat-theme build-bat-theme ## Get Bat theme
+bat-theme: ## Get Bat theme
 	$(call banner,Setup Bat theme...)
+	@$(MAKE) update-bat-theme build-bat-theme
 
 update-bat-theme: ## Update Bat theme repository
 	$(call repo,$(CAT_BAT),catppuccin/bat)
