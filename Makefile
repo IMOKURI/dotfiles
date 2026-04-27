@@ -32,7 +32,7 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
-install: proxy deploy mise bashmarks ## Do proxy, deploy, mise, bashmarks
+install: proxy deploy shell-setup mise bashmarks bat-theme ## Do installation process
 
 proxy: ## Set proxy
 ifdef http_proxy
@@ -51,6 +51,18 @@ deploy: ## Create symlink
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
+shell-setup: ## Add shell and SSH bootstrap settings
+	@if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then \
+		echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"; \
+	fi
+	@if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then \
+		echo -e "\nif [[ -f ~/.config/profile.d/local.sh ]]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.profile"; \
+	fi
+	@mkdir -p -m 700 ~/.ssh
+	@if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then \
+		echo -e "\nInclude ~/.config/ssh/*.conf" >>"${HOME}/.ssh/config"; \
+	fi
+
 mise: ## Get Mise
 	if [[ -f $(HOME)/.local/bin/mise ]]; then \
 		mise self-update -y; \
@@ -58,6 +70,8 @@ mise: ## Get Mise
 		mise prune -y; \
 	else \
 		curl https://mise.run | sh; \
+		eval "$(shell ~/.local/bin/mise activate bash --shims)"; \
+		mise install; \
 	fi
 
 bashmarks: update-bashmarks build-bashmarks ## Get Bashmarks

@@ -50,29 +50,10 @@ cd "${DOTPATH}"
 
 make install
 
-if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then
-    echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
-fi
-
-if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then
-    echo -e "\nif [[ -f ~/.config/profile.d/local.sh ]]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.profile"
-fi
-
-mkdir -p -m 700 ~/.ssh
-if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then
-    echo -e "\nInclude ~/.config/ssh/*.conf" >>"${HOME}/.ssh/config"
-fi
-
 popd
 
 ##### Instruct next steps #####################################################
 
-_banner "Please follow the instructions below to finish the installation."
-
-_logger INFO "Restart your shell session."
-_logger INFO "Run following commands to install development tools."
-_logger CODE "  mise install"
-_logger CODE "  make bat-theme"
-_logger INFO "Restart your shell session."
+_logger INFO "Installation completed. Restart your shell session."
 
 _banner "Well done!"
