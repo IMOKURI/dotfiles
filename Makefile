@@ -10,9 +10,9 @@ DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
-DOTPATH    := $(HOME)/.dotfiles
-BASHMARKS  := $(HOME)/src/bashmarks
-CAT_BAT    := $(HOME)/src/cat-bat
+DOTPATH   := $(HOME)/.dotfiles
+BASHMARKS := $(HOME)/src/bashmarks
+CAT_BAT   := $(HOME)/src/cat-bat
 
 # Proxy settings
 PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
@@ -70,7 +70,6 @@ mise: ## Get Mise
 		mise prune -y; \
 	else \
 		curl https://mise.run | sh; \
-		eval "$(shell ~/.local/bin/mise activate bash --shims)"; \
 		mise install; \
 	fi
 

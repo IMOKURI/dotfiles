@@ -8,11 +8,6 @@ export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:/usr/
 
 # Defind Colors
 BANNER="\033[38;2;101;178;255m" # BLUE
-DEBUG="\033[38;2;144;108;255m"  # MAGENTA
-INFO="\033[38;2;98;209;150m"    # GREEN
-WARN="\033[38;2;255;179;120m"   # YELLOW
-ERROR="\033[38;2;255;84;88m"    # RED
-CODE="\033[38;2;99;242;241m"    # CYAN
 CLEAR_COLOR="\033[0m"
 
 # Define path
@@ -27,33 +22,23 @@ function _banner() {
     printf "\n${BANNER}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
-function _logger() {
-    LOG_LEVEL="${1}"
-    printf "${!LOG_LEVEL}%s${CLEAR_COLOR}\n" "${1}: ${2}"
-}
+##### Download Dotfiles ######################################################
 
-##### Clone Dotfiles ##########################################################
-
-_banner "Clone Dotfiles..."
+_banner "Download Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
-    _logger INFO "Clone dotfiles repository"
     git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
 fi
 
-##### Install dotfiles ########################################################
+##### Setup dotfiles #########################################################
 
-_banner "Deploy dotfiles..."
+_banner "Setup dotfiles..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-
 make install
-
 popd
 
 ##### Instruct next steps #####################################################
 
-_logger INFO "Installation completed. Restart your shell session."
-
-_banner "Well done!"
+_banner "Well done! Please restart your shell session to apply the changes."
