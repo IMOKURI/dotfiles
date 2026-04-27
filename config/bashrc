@@ -91,7 +91,6 @@ alias gbd='git branch --merged | grep -vE "^\*| master$| main$| develop$" | xarg
 alias gc='git commit --signoff'
 alias gca='git commend'
 alias gcm='git commit -m'
-alias gcco='git copilot'
 alias gco='git checkout'
 alias gcob='git checkout $(basename $(git symbolic-ref refs/remotes/origin/HEAD))'
 alias gd='git diff'
