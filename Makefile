@@ -53,9 +53,6 @@ shell-setup: ## Add shell and SSH bootstrap settings
 	@if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then \
 		echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"; \
 	fi
-	@if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then \
-		echo -e "\nif [[ -f ~/.config/profile.d/local.sh ]]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.profile"; \
-	fi
 	@mkdir -p -m 700 ~/.ssh
 	@if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then \
 		echo -e "\nInclude ~/.config/ssh/*.conf" >>"${HOME}/.ssh/config"; \

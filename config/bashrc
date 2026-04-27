@@ -2,20 +2,20 @@
 
 ##### Environment variables ###################################################
 
+export LANG="en_US.UTF-8"
+export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:${PATH}
+export EDITOR="nvim"
+
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
-
 export GPG_TTY=$(tty)
-
 export HISTCONTROL=ignoreboth:erasedups
 
 export BAT_THEME="Catppuccin Mocha"
-
-export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:${PATH}
 
 ##### Set bash options ########################################################
 
@@ -155,10 +155,10 @@ if [ -f ~/.local/bin/bashmarks.sh ]; then
     . ~/.local/bin/bashmarks.sh
 fi
 
-##### Activate Starship #######################################################
-
-eval "$(starship init bash)"
-
 ##### Activate Mise ###########################################################
 
 eval "$(mise activate bash --shims)"
+
+##### Activate Starship #######################################################
+
+eval "$(starship init bash)"
