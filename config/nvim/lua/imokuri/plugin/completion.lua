@@ -174,15 +174,6 @@ return {
             "InsertEnter",
         },
         init = function()
-            if os.getenv("http_proxy") ~= nil then
-                local u = require("imokuri.util")
-                local proxy_url = u.get_proxy() --[[@as string]]
-                proxy_url = string.gsub(proxy_url, "^[^:]+://", "")
-                proxy_url = string.gsub(proxy_url, "/$", "")
-
-                vim.g.copilot_proxy = proxy_url
-            end
-
             vim.g.copilot_no_tab_map = true
         end,
         config = function()

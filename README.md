@@ -16,21 +16,12 @@ Dotfiles that can be installed by one command
 
 ## Platforms
 
-- Ubuntu 22.04, 24.04
+- Ubuntu 24.04
 
 ## Requirements
 
-- Packages
-
 ```bash
 sudo apt install -y curl gcc git gnupg make tar
-```
-
-- Set environment variables if use proxy.
-
-```bash
-export http_proxy=<http://proxy.example.com:port>
-export https_proxy=<http://proxy.example.com:port>
 ```
 
 ## Installation

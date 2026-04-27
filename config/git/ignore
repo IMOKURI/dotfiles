@@ -3,6 +3,7 @@
 
 # (neo)vim
 .nvimlog
+lazy-lock.json
 
 # python
 .venv

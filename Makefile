@@ -19,12 +19,6 @@ DOTPATH   := $(HOME)/.dotfiles
 BASHMARKS := $(HOME)/src/bashmarks
 CAT_BAT   := $(HOME)/src/cat-bat
 
-# Proxy settings
-PROXY_TEMPLATE     := $(DOTPATH)/config/profile.d/proxy.sh.template
-PROXY_SETTING      := $(DOTPATH)/config/profile.d/proxy.sh
-GIT_PROXY_TEMPLATE := $(DOTPATH)/config/git/config.proxy.template
-GIT_PROXY_SETTING  := $(DOTPATH)/config/git/config.proxy
-
 define banner
 	@sep="$$(for ((i = 1; i < $(COL); i++)); do printf '='; done)"; \
 	printf "\n$(BANNER)%s %s$(CLEAR_COLOR)\n\n" "$(1)" "$${sep:$${#1}}"
@@ -42,16 +36,7 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
-install: proxy deploy shell-setup mise bashmarks bat-theme ## Do installation process
-
-proxy: ## Set proxy
-	$(call banner,Set proxy...)
-ifdef http_proxy
-	sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
-	sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
-
-	source $(PROXY_SETTING)
-endif
+install: deploy shell-setup mise bashmarks bat-theme ## Do installation process
 
 deploy: ## Create symlink
 	$(call banner,Create symlinks...)

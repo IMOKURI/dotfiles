@@ -1,11 +1,5 @@
 # .config/profile.d/local.sh
 
-##### Get proxy setting #######################################################
-
-if [ -f ~/.config/profile.d/proxy.sh ]; then
-  . ~/.config/profile.d/proxy.sh
-fi
-
 ##### User specific environment ###############################################
 
 export LANG="en_US.UTF-8"
