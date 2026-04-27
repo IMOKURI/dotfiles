@@ -3,6 +3,11 @@
 
 SHELL := /bin/bash
 
+# Define banner style
+COL := 120
+BANNER := \033[38;2;101;178;255m
+CLEAR_COLOR := \033[0m
+
 # List up dotfiles
 DOTFILES_EXCLUDES   := README.md LICENSE Makefile bin config install $(wildcard .??*)
 DOTFILES_TARGET     := $(shell ls)
@@ -20,6 +25,11 @@ PROXY_SETTING      := $(DOTPATH)/config/profile.d/proxy.sh
 GIT_PROXY_TEMPLATE := $(DOTPATH)/config/git/config.proxy.template
 GIT_PROXY_SETTING  := $(DOTPATH)/config/git/config.proxy
 
+define banner
+	@sep="$$(for ((i = 1; i < $(COL); i++)); do printf '='; done)"; \
+	printf "\n$(BANNER)%s %s$(CLEAR_COLOR)\n\n" "$(1)" "$${sep:$${#1}}"
+endef
+
 define repo
 	if [[ -d "$1" ]]; then \
 		cd $1 && git pull && git submodule update --init --recursive; \
@@ -35,6 +45,7 @@ list: ## Show file/directory list for deployment
 install: proxy deploy shell-setup mise bashmarks bat-theme ## Do installation process
 
 proxy: ## Set proxy
+	$(call banner,Set proxy...)
 ifdef http_proxy
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(PROXY_TEMPLATE) > $(PROXY_SETTING)
 	sed -e 's|write_proxy_here|$(http_proxy)|g' $(GIT_PROXY_TEMPLATE) > $(GIT_PROXY_SETTING)
@@ -43,6 +54,7 @@ ifdef http_proxy
 endif
 
 deploy: ## Create symlink
+	$(call banner,Create symlinks...)
 	@mkdir -p ${HOME}/.local/bin
 	@mkdir -p $(HOME)/{bin,.config,ghe,github,github_hpeprod,work,docker,namespace}
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
@@ -52,6 +64,7 @@ deploy: ## Create symlink
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
 shell-setup: ## Add shell and SSH bootstrap settings
+	$(call banner,Setup shell and SSH bootstrap settings...)
 	@if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then \
 		echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"; \
 	fi
@@ -64,6 +77,7 @@ shell-setup: ## Add shell and SSH bootstrap settings
 	fi
 
 mise: ## Get Mise
+	$(call banner,Setup Mise...)
 	if [[ -f $(HOME)/.local/bin/mise ]]; then \
 		mise self-update -y; \
 		mise upgrade; \
@@ -74,21 +88,23 @@ mise: ## Get Mise
 	fi
 
 bashmarks: update-bashmarks build-bashmarks ## Get Bashmarks
+	$(call banner,Setup Bashmarks...)
 
-update-bashmarks: ## Update bashmarks repository
+update-bashmarks: ## Update Bashmarks repository
 	$(call repo,$(BASHMARKS),huyng/bashmarks)
 
-build-bashmarks: ## Build bashmarks
+build-bashmarks: ## Build Bashmarks
 	cd $(BASHMARKS) && \
 	make install && \
 	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
-bat-theme: update-bat-theme build-bat-theme ## Get bat theme
+bat-theme: update-bat-theme build-bat-theme ## Get Bat theme
+	$(call banner,Setup Bat theme...)
 
-update-bat-theme: ## Update bat theme repository
+update-bat-theme: ## Update Bat theme repository
 	$(call repo,$(CAT_BAT),catppuccin/bat)
 
-build-bat-theme: ## Build bat theme
+build-bat-theme: ## Build Bat theme
 	cd $(CAT_BAT) && \
 	mkdir -p "$(shell bat --config-dir)/themes" && \
 	cp -f themes/*.tmTheme "$(shell bat --config-dir)/themes" && \
