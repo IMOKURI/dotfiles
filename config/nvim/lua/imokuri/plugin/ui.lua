@@ -40,6 +40,7 @@ return {
                 custom_highlights = function(colors)
                     return {
                         CursorLineNr = { fg = colors.red },
+                        CopilotSuggestion = { fg = colors.blue },
                         Folded = { bg = colors.none },
                         HighlightedLineNr = { fg = colors.lavender },
                         HighlightedLineNr1 = { fg = colors.peach },
