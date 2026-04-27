@@ -9,7 +9,7 @@ BANNER := \033[38;2;101;178;255m
 CLEAR_COLOR := \033[0m
 
 # List up dotfiles
-DOTFILES_EXCLUDES   := README.md LICENSE Makefile bin config install $(wildcard .??*)
+DOTFILES_EXCLUDES   := README.md LICENSE Makefile config install $(wildcard .??*)
 DOTFILES_TARGET     := $(shell ls)
 DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
@@ -36,9 +36,9 @@ list: ## Show file/directory list for deployment
 	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
-install: deploy shell-setup mise bashmarks bat-theme ## Do installation process
+install: link shell-setup mise bashmarks bat-theme ## Do installation process
 
-deploy: ## Create symlink
+link: ## Create symlink
 	$(call banner,Create symlinks...)
 	@mkdir -p ${HOME}/.local/bin
 	@mkdir -p $(HOME)/{bin,.config,ghe,github,github_hpeprod,work,docker,namespace}
@@ -58,7 +58,7 @@ shell-setup: ## Add shell and SSH bootstrap settings
 		echo -e "\nInclude ~/.config/ssh/*.conf" >>"${HOME}/.ssh/config"; \
 	fi
 
-mise: ## Get Mise
+mise: ## Setup Mise
 	$(call banner,Setup Mise...)
 	if [[ -f $(HOME)/.local/bin/mise ]]; then \
 		mise self-update -y; \
@@ -69,7 +69,7 @@ mise: ## Get Mise
 		mise install; \
 	fi
 
-bashmarks: ## Get Bashmarks
+bashmarks: ## Setup Bashmarks
 	$(call banner,Setup Bashmarks...)
 	@$(MAKE) update-bashmarks build-bashmarks
 
@@ -81,7 +81,7 @@ build-bashmarks: ## Build Bashmarks
 	make install && \
 	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
-bat-theme: ## Get Bat theme
+bat-theme: ## Setup Bat theme
 	$(call banner,Setup Bat theme...)
 	@$(MAKE) update-bat-theme build-bat-theme
 

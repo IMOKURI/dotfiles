@@ -83,7 +83,6 @@ venv() {
 
 alias sudo='sudo '
 
-alias clone='bash ~/.dotfiles/bin/git_clone.sh'
 alias ga='git add'
 alias gaa='git add -A'
 alias gb='git branch'
@@ -107,6 +106,32 @@ alias gpu='git push'
 alias gs='git status'
 alias gsf='git submodule foreach'
 alias gsu='git submodule update --recursive'
+
+gclone() {
+    if [ $# -lt 1 ]; then
+        echo "Usage: gclone <repository-name>"
+        return 1
+    fi
+
+    REPO_NAME=$1
+    REPO_NAME=${REPO_NAME%.git}  # Remove .git suffix if present
+    REPO_NAME=${REPO_NAME#*:}  # Remove ssh host prefix if present
+
+    SSH_HOSTS=("github" "github_hpeprod" "ghe")
+
+    echo "Select SSH host for cloning:"
+    select HOST in "${SSH_HOSTS[@]}"; do
+        if [ -n "$HOST" ]; then
+            echo "You selected: $HOST"
+            break
+        else
+            echo "Invalid selection. Try again."
+        fi
+    done
+
+    echo "Cloning repository: $REPO_NAME from $HOST ..."
+    git clone "git@$HOST:$REPO_NAME.git"
+}
 
 alias k='kubectl'
 alias ka='kubectl apply'
