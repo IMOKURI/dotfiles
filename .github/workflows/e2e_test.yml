@@ -29,7 +29,7 @@ jobs:
         apt-get update
         apt-get install -y curl gcc git gnupg make tar
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Install dotfiles from branch
       run: |
@@ -61,7 +61,7 @@ jobs:
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl gcc git gnupg make tar
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Install dotfiles from branch
       run: |
