@@ -8,11 +8,6 @@ export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:/usr/
 
 # Defind Colors
 BANNER="\033[38;2;101;178;255m" # BLUE
-DEBUG="\033[38;2;144;108;255m"  # MAGENTA
-INFO="\033[38;2;98;209;150m"    # GREEN
-WARN="\033[38;2;255;179;120m"   # YELLOW
-ERROR="\033[38;2;255;84;88m"    # RED
-CODE="\033[38;2;99;242;241m"    # CYAN
 CLEAR_COLOR="\033[0m"
 
 # Define path
@@ -27,52 +22,23 @@ function _banner() {
     printf "\n${BANNER}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
-function _logger() {
-    LOG_LEVEL="${1}"
-    printf "${!LOG_LEVEL}%s${CLEAR_COLOR}\n" "${1}: ${2}"
-}
+##### Download Dotfiles ######################################################
 
-##### Clone Dotfiles ##########################################################
-
-_banner "Clone Dotfiles..."
+_banner "Download Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
-    _logger INFO "Clone dotfiles repository"
     git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
 fi
 
-##### Install dotfiles ########################################################
+##### Setup dotfiles #########################################################
 
-_banner "Deploy dotfiles..."
+_banner "Setup dotfiles..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-
 make install
-
-if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then
-    echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"
-fi
-
-if ! grep -q '.config/profile.d/local.sh' "${HOME}/.profile"; then
-    echo -e "\nif [[ -f ~/.config/profile.d/local.sh ]]; then\n  . ~/.config/profile.d/local.sh\nfi" >>"${HOME}/.profile"
-fi
-
-mkdir -p -m 700 ~/.ssh
-if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then
-    echo -e "\nInclude ~/.config/ssh/*.conf" >>"${HOME}/.ssh/config"
-fi
-
 popd
 
 ##### Instruct next steps #####################################################
 
-_banner "Please follow the instructions below to finish the installation."
-
-_logger INFO "Restart your shell session."
-_logger INFO "Run following commands to install development tools."
-_logger CODE "  mise install"
-_logger CODE "  make bat-theme"
-_logger INFO "Restart your shell session."
-
-_banner "Well done!"
+_banner "Well done! Please restart your shell session to apply the changes."

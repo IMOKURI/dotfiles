@@ -17,7 +17,6 @@ jobs:
         os_name:
           - ubuntu
         os_version:
-          - 22.04
           - 24.04
 
     runs-on: ubuntu-latest
@@ -35,35 +34,3 @@ jobs:
       run: |
         cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
         env LANG=en_US.utf8 HOME=/root bash /root/.dotfiles/install
-
-  ubuntu_proxy:
-    strategy:
-      fail-fast: true
-      matrix:
-        os_name:
-          - ubuntu
-        os_version:
-          - 22.04
-          - 24.04
-
-    runs-on: ubuntu-latest
-    container: ${{ matrix.os_name }}:${{ matrix.os_version }}
-
-    services:
-      squid:
-        image: wernight/squid
-        ports:
-          - 3128:3128
-
-    steps:
-    - name: Install requirements
-      run: |
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl gcc git gnupg make tar
-
-    - uses: actions/checkout@v6
-
-    - name: Install dotfiles from branch
-      run: |
-        cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash /root/.dotfiles/install

@@ -23,14 +23,6 @@ M.treesitter_filetypes = {
     "yaml",
 }
 
-function M.get_proxy()
-    if os.getenv("http_proxy") ~= nil then
-        return os.getenv("http_proxy")
-    else
-        return nil
-    end
-end
-
 function M.foldtext()
     local pos = vim.v.foldstart
     local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]

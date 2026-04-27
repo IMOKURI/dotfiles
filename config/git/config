@@ -12,9 +12,6 @@
 [includeIf "gitdir:~/github_hpeprod/"]
   path = ~/.config/git/config.github_hpeprod
 
-[include]
-  path = ~/.config/git/config.proxy
-
 [core]
   editor = nvim
   pager = "LESSCHARSET=utf-8 less"
