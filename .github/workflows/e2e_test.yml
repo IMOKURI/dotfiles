@@ -29,9 +29,10 @@ jobs:
         apt-get update
         apt-get install -y curl gcc git gnupg make tar
 
-    - name: Install dotfiles
+    - name: Install dotfiles from branch
       run: |
-        env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+        cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
+        env LANG=en_US.utf8 HOME=/root bash /root/.dotfiles/install
 
   ubuntu_proxy:
     strategy:
@@ -58,6 +59,7 @@ jobs:
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl gcc git gnupg make tar
 
-    - name: Install dotfiles
+    - name: Install dotfiles from branch
       run: |
-        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+        cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash /root/.dotfiles/install
