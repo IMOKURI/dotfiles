@@ -29,7 +29,16 @@ jobs:
         apt-get update
         apt-get install -y curl gcc git gnupg make tar
 
+    - uses: actions/checkout@v4
+      if: github.event_name == 'pull_request'
+
+    - name: Install dotfiles
+      if: github.event_name != 'pull_request'
+      run: |
+        env LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+
     - name: Install dotfiles from branch
+      if: github.event_name == 'pull_request'
       run: |
         cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
         env LANG=en_US.utf8 HOME=/root bash /root/.dotfiles/install
@@ -59,7 +68,16 @@ jobs:
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get update
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 apt-get install -y curl gcc git gnupg make tar
 
+    - uses: actions/checkout@v4
+      if: github.event_name == 'pull_request'
+
+    - name: Install dotfiles
+      if: github.event_name != 'pull_request'
+      run: |
+        env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash -c "$(curl -fsSL https://git.io/imokuri)"
+
     - name: Install dotfiles from branch
+      if: github.event_name == 'pull_request'
       run: |
         cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
         env https_proxy=http://squid:3128 http_proxy=http://squid:3128 LANG=en_US.utf8 HOME=/root bash /root/.dotfiles/install
