@@ -9,9 +9,6 @@ BANNER := \033[38;2;101;178;255m
 CLEAR_COLOR := \033[0m
 
 # List up dotfiles
-DOTFILES_EXCLUDES   := README.md LICENSE Makefile config install $(wildcard .??*)
-DOTFILES_TARGET     := $(shell ls)
-DOTFILES_FILES      := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 DOTFILES_XDG_CONFIG := $(shell ls config)
 
 # Define path
@@ -33,7 +30,6 @@ define repo
 endef
 
 list: ## Show file/directory list for deployment
-	@$(foreach val, $(DOTFILES_FILES), ls -dF $(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
 
 install: link shell-setup mise bashmarks bat-theme ## Do installation process
@@ -45,7 +41,6 @@ link: ## Create symlink
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
 	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI,others}
 	@mkdir -p $(HOME)/github_hpeprod/yoshio-sugiyama_hpeprod
-	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/.$(val);)
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
 shell-setup: ## Add shell and SSH bootstrap settings
