@@ -21,7 +21,6 @@ return {
                 maximize = false,
                 close = false,
             },
-            wo = { winblend = 20 },
         },
     },
 }
