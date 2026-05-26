@@ -24,6 +24,12 @@ Dotfiles that can be installed by one command
 sudo apt install -y curl gcc git gnupg make tar
 ```
 
+Create a GitHub token without any scope from [here](https://github.com/settings/tokens).
+
+```bash
+export MISE_GITHUB_TOKEN="your_github_token"
+```
+
 ## Installation
 
 ```bash
