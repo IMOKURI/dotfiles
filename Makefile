@@ -36,7 +36,7 @@ install: link shell-setup mise bashmarks bat-theme ## Do installation process
 
 link: ## Create symlink
 	$(call banner,Create symlinks...)
-	@mkdir -p ${HOME}/.local/bin
+	@mkdir -p $(HOME)/.local/bin
 	@mkdir -p $(HOME)/{bin,.config,ghe,github,github_hpeprod,work,docker,namespace}
 	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
 	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI,others}
@@ -45,12 +45,15 @@ link: ## Create symlink
 
 shell-setup: ## Add shell and SSH bootstrap settings
 	$(call banner,Setup shell and SSH bootstrap settings...)
-	@if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then \
-		echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"${HOME}/.bashrc"; \
+	@if ! grep -q '.config/bashrc' "$(HOME)/.bashrc"; then \
+		echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"$(HOME)/.bashrc"; \
+	fi
+	@if ! grep -q 'export MISE_GITHUB_TOKEN=' "$(HOME)/.bashrc"; then \
+		echo 'export MISE_GITHUB_TOKEN="$(MISE_GITHUB_TOKEN)"' >> "$(HOME)/.bashrc"; \
 	fi
 	@mkdir -p -m 700 ~/.ssh
-	@if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then \
-		echo -e "\nInclude ~/.config/ssh/*.conf" >>"${HOME}/.ssh/config"; \
+	@if ! grep -q 'Include ~/.config/ssh/' "$(HOME)/.ssh/config"; then \
+		echo -e "\nInclude ~/.config/ssh/*.conf" >>"$(HOME)/.ssh/config"; \
 	fi
 
 mise: ## Setup Mise
