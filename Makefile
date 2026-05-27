@@ -22,7 +22,7 @@ define banner
 endef
 
 define repo
-	if [[ -d "$1" ]]; then \
+	@if [[ -d "$1" ]]; then \
 		cd $1 && git pull && git submodule update --init --recursive; \
 	else \
 		git clone --depth 1 --recursive https://github.com/$2 "$1"; \
@@ -43,8 +43,8 @@ link: ## Create symlink
 	@mkdir -p $(HOME)/github_hpeprod/yoshio-sugiyama_hpeprod
 	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
 
-shell-setup: ## Add shell and SSH bootstrap settings
-	$(call banner,Setup shell and SSH bootstrap settings...)
+shell-setup: ## Setup shell and SSH settings
+	$(call banner,Setup shell and SSH settings...)
 	@if ! grep -q '.config/bashrc' "$(HOME)/.bashrc"; then \
 		echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >>"$(HOME)/.bashrc"; \
 	fi
@@ -52,13 +52,14 @@ shell-setup: ## Add shell and SSH bootstrap settings
 		echo 'export MISE_GITHUB_TOKEN="$(MISE_GITHUB_TOKEN)"' >> "$(HOME)/.bashrc"; \
 	fi
 	@mkdir -p -m 700 ~/.ssh
+	@touch ~/.ssh/config
 	@if ! grep -q 'Include ~/.config/ssh/' "$(HOME)/.ssh/config"; then \
 		echo -e "\nInclude ~/.config/ssh/*.conf" >>"$(HOME)/.ssh/config"; \
 	fi
 
 mise: ## Setup Mise
 	$(call banner,Setup Mise...)
-	if [[ -f $(HOME)/.local/bin/mise ]]; then \
+	@if [[ -f $(HOME)/.local/bin/mise ]]; then \
 		mise self-update -y; \
 		mise upgrade; \
 		mise prune -y; \
@@ -75,7 +76,7 @@ update-bashmarks: ## Update Bashmarks repository
 	$(call repo,$(BASHMARKS),huyng/bashmarks)
 
 build-bashmarks: ## Build Bashmarks
-	cd $(BASHMARKS) && \
+	@cd $(BASHMARKS) && \
 	make install && \
 	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
@@ -87,7 +88,7 @@ update-bat-theme: ## Update Bat theme repository
 	$(call repo,$(CAT_BAT),catppuccin/bat)
 
 build-bat-theme: ## Build Bat theme
-	cd $(CAT_BAT) && \
+	@cd $(CAT_BAT) && \
 	mkdir -p "$(shell bat --config-dir)/themes" && \
 	cp -f themes/*.tmTheme "$(shell bat --config-dir)/themes" && \
 	bat cache --build
