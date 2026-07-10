@@ -37,7 +37,7 @@ fi
 _banner "Install mise..."
 curl https://mise.run | sh
 
-_banner "Install mise..."
+_banner "Bootstrap..."
 mise bootstrap --yes
 
 ##### Instruct next steps #####################################################

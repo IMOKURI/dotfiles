@@ -4,6 +4,12 @@ redactions = ["MISE_GITHUB_TOKEN"]
 color_theme = "catppuccin"
 install_before = "7d"
 
+[bootstrap.packages]
+"apt:build-essential" = "latest"
+"apt:git" = "latest"
+"apt:gnupg" = "latest"
+"apt:tar" = "latest"
+
 [settings.dotfiles]
 root = "~/.dotfiles"
 default_mode = "symlink"

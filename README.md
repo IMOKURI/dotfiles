@@ -21,7 +21,7 @@ Dotfiles that can be installed by one command
 ## Requirements
 
 ```bash
-sudo apt install -y curl gcc git gnupg make tar
+sudo apt install -y curl
 ```
 
 Create a GitHub token without any scope from [here](https://github.com/settings/tokens).

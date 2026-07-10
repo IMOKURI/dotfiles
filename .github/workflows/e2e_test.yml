@@ -24,7 +24,7 @@ jobs:
     - name: Install requirements
       run: |
         apt-get update
-        apt-get install -y curl gcc git gnupg make tar
+        apt-get install -y curl
 
     - uses: actions/checkout@v6
 
