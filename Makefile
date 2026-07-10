@@ -1,18 +1,11 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: mise
-mise: ## Bootstrap
-	@if [[ -f $(HOME)/.local/bin/mise ]]; then \
-		mise self-update --yes; \
-		mise upgrade; \
-		mise prune --yes; \
-	else \
-		mkdir -p $(HOME)/.config; \
-		ln -sfnv $(abspath config/mise) $(HOME)/.config/mise; \
-		curl https://mise.run | sh; \
-		mise bootstrap --yes; \
-	fi
+.PHONY: update
+update: ## Bootstrap
+	mise self-update --yes
+	mise upgrade
+	mise prune --yes
 
 .PHONY: help
 help: ## Show this help

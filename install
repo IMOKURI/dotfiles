@@ -28,16 +28,17 @@ _banner "Download Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
     git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
+    mkdir -p $(HOME)/.config
+    ln -sfnv "${DOTPATH}/.config/mise" "${HOME}/.config/mise"
 fi
 
 ##### Bootstrap ##############################################################
 
-_banner "Bootstrap..."
+_banner "Install mise..."
+curl https://mise.run | sh
 
-pushd "$(pwd)"
-cd "${DOTPATH}"
-make mise
-popd
+_banner "Install mise..."
+mise bootstrap --yes
 
 ##### Instruct next steps #####################################################
 
