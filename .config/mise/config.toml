@@ -1,0 +1,122 @@
+redactions = ["MISE_GITHUB_TOKEN"]
+
+[settings]
+color_theme = "catppuccin"
+install_before = "7d"
+
+[bootstrap.packages]
+"apt:build-essential" = "latest"
+"apt:git" = "latest"
+"apt:gnupg" = "latest"
+"apt:tar" = "latest"
+
+[settings.dotfiles]
+root = "~/.dotfiles"
+default_mode = "symlink"
+
+[bootstrap.hooks.pre-dotfiles]
+run = """
+mkdir -p -m 700 ~/.ssh
+mkdir -p ~/{bin,ghe,github,github_hpeprod,work,docker,namespace}
+mkdir -p ~/ghe/{hpe,yoshio-sugiyama}
+mkdir -p ~/github/{HPE-TA,IMOKURI,others}
+mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
+"""
+
+[dotfiles]
+"~/.vimrc" = {}
+"~/.config/*" = {}
+
+[bootstrap.repos]
+"~/src/bashmarks" = { url = "https://github.com/huyng/bashmarks.git" }
+"~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
+
+[tasks.bootstrap]
+depends = ["bashrc", "mise-token", "ssh", "bashmarks", "bat-themes"]
+run = """
+echo "Bootstrap tasks completed."
+"""
+
+[tasks.bashrc]
+run = """
+#!/usr/bin/env bash
+if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"; fi
+"""
+
+[tasks.mise-token]
+run = """
+#!/usr/bin/env bash
+if ! grep -q 'export MISE_GITHUB_TOKEN=' "${HOME}/.bashrc"; then echo 'export MISE_GITHUB_TOKEN="{{env.MISE_GITHUB_TOKEN}}"' >> "${HOME}/.bashrc"; fi
+"""
+
+[tasks.ssh]
+run = """
+#!/usr/bin/env bash
+touch ~/.ssh/config
+if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then echo -e "\nInclude ~/.config/ssh/*.conf" >> "${HOME}/.ssh/config"; fi
+"""
+
+[tasks.bashmarks]
+run = """
+cd ~/src/bashmarks && make install
+sed -i 's/^alias l=/# &/' ${HOME}/.bashrc
+"""
+
+[tasks.bat-themes]
+run = """
+mkdir -p "$(bat --config-dir)/themes"
+cp -f ~/src/cat-bat/themes/*.tmTheme "$(bat --config-dir)/themes"
+bat cache --build
+"""
+
+[settings.npm]
+package_manager = "bun"
+
+[tools]
+bat = "latest"
+bun = "latest"
+fd = "latest"
+fzf = "latest"
+git-lfs = "latest"
+github-cli = "latest"
+helm = "latest"
+helmfile = "latest"
+jq = "latest"
+kubectl = "latest"
+lazygit = "latest"
+lua-language-server = "latest"
+neovim = "latest"
+node = "lts"
+packer = "latest"
+pnpm = "latest"
+python = "3.14"
+ripgrep = "latest"
+shfmt = "latest"
+starship = "latest"
+stern = "latest"
+stylua = "latest"
+terraform = "latest"
+uv = "latest"
+wrangler = "latest"
+yarn = "latest"
+yq = "latest"
+
+# "asdf:richin13/asdf-neovim" = "latest"
+
+"npm:bash-language-server" = "latest"
+"npm:dockerfile-language-server-nodejs" = "latest"
+"npm:doctoc" = "latest"
+"npm:mcp-hub" = "latest"
+"npm:prettier" = "latest"
+"npm:tree-sitter-cli" = "latest"
+"npm:@astrojs/language-server" = "latest"
+"npm:@github/copilot" = "latest"
+"npm:@upstash/context7-mcp" = "latest"
+
+"pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
+"pipx:huggingface-hub" = "latest"
+"pipx:kaggle" = "latest"
+"pipx:markitdown" = "latest"
+"pipx:ruff" = "latest"
+"pipx:ty" = "latest"
+"pipx:wandb" = "latest"
