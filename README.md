@@ -12,7 +12,7 @@ Dotfiles that can be installed by one command
 
 - Clone dotfiles repository.
 - Create symbolic links to dotfile.
-- Install Neovim and development tools via Mise.
+- Install Neovim and development tools.
 
 ## Platforms
 

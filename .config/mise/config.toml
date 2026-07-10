@@ -59,7 +59,7 @@ sed -i 's/^alias l=/# &/' ${HOME}/.bashrc
 [tasks.bat-themes]
 run = """
 mkdir -p "$(bat --config-dir)/themes"
-cp -f themes/*.tmTheme "$(bat --config-dir)/themes"
+cp -f ~/src/cat-bat/themes/*.tmTheme "$(bat --config-dir)/themes"
 bat cache --build
 """
 
