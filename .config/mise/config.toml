@@ -8,7 +8,6 @@ default_mode = "symlink"
 
 [bootstrap.hooks.pre-dotfiles]
 run = """
-mkdir -p ~/.local/bin
 mkdir -p ~/{bin,ghe,github,github_hpeprod,work,docker,namespace}
 mkdir -p ~/ghe/{hpe,yoshio-sugiyama}
 mkdir -p ~/github/{HPE-TA,IMOKURI,others}
@@ -18,6 +17,10 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 [dotfiles]
 "~/.vimrc" = {}
 "~/.config/*" = {}
+
+[bootstrap.repos]
+"~/src/bashmarks" = { url = "https://github.com/huyng/bashmarks.git" }
+"~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
 
 [settings.npm]
 package_manager = "bun"

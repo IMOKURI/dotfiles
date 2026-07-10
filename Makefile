@@ -18,14 +18,6 @@ define banner
 	printf "\n$(BANNER)%s %s$(CLEAR_COLOR)\n\n" "$(1)" "$${sep:$${#1}}"
 endef
 
-define repo
-	@if [[ -d "$1" ]]; then \
-		cd $1 && git pull && git submodule update --init --recursive; \
-	else \
-		git clone --depth 1 --recursive https://github.com/$2 "$1"; \
-	fi
-endef
-
 list: ## List all dotfiles
 	@mise dotfiles status
 
@@ -63,24 +55,12 @@ mise: ## Setup Mise
 
 bashmarks: ## Setup Bashmarks
 	$(call banner,Setup Bashmarks...)
-	@$(MAKE) update-bashmarks build-bashmarks
-
-update-bashmarks: ## Update Bashmarks repository
-	$(call repo,$(BASHMARKS),huyng/bashmarks)
-
-build-bashmarks: ## Build Bashmarks
 	@cd $(BASHMARKS) && \
 	make install && \
 	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
 bat-theme: ## Setup Bat theme
 	$(call banner,Setup Bat theme...)
-	@$(MAKE) update-bat-theme build-bat-theme
-
-update-bat-theme: ## Update Bat theme repository
-	$(call repo,$(CAT_BAT),catppuccin/bat)
-
-build-bat-theme: ## Build Bat theme
 	@cd $(CAT_BAT) && \
 	mkdir -p "$(shell bat --config-dir)/themes" && \
 	cp -f themes/*.tmTheme "$(shell bat --config-dir)/themes" && \
