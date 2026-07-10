@@ -2,6 +2,23 @@
 color_theme = "catppuccin"
 install_before = "7d"
 
+[settings.dotfiles]
+root = "~/.dotfiles"
+default_mode = "symlink"
+
+[bootstrap.hooks.pre-dotfiles]
+run = """
+mkdir -p ~/.local/bin
+mkdir -p ~/{bin,ghe,github,github_hpeprod,work,docker,namespace}
+mkdir -p ~/ghe/{hpe,yoshio-sugiyama}
+mkdir -p ~/github/{HPE-TA,IMOKURI,others}
+mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
+"""
+
+[dotfiles]
+"~/.vimrc" = {}
+"~/.config/*" = {}
+
 [settings.npm]
 package_manager = "bun"
 

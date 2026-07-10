@@ -8,9 +8,6 @@ COL := 120
 BANNER := \033[38;2;101;178;255m
 CLEAR_COLOR := \033[0m
 
-# List up dotfiles
-DOTFILES_XDG_CONFIG := $(shell ls config)
-
 # Define path
 DOTPATH   := $(HOME)/.dotfiles
 BASHMARKS := $(HOME)/src/bashmarks
@@ -29,19 +26,15 @@ define repo
 	fi
 endef
 
-list: ## Show file/directory list for deployment
-	@$(foreach val, $(DOTFILES_XDG_CONFIG), ls -dF config/$(val);)
+list: ## List all dotfiles
+	@mise dotfiles status
 
 install: link shell-setup mise bashmarks bat-theme ## Do installation process
 
 link: ## Create symlink
 	$(call banner,Create symlinks...)
-	@mkdir -p $(HOME)/.local/bin
-	@mkdir -p $(HOME)/{bin,.config,ghe,github,github_hpeprod,work,docker,namespace}
-	@mkdir -p $(HOME)/ghe/{hpe,yoshio-sugiyama}
-	@mkdir -p $(HOME)/github/{HPE-TA,IMOKURI,others}
-	@mkdir -p $(HOME)/github_hpeprod/yoshio-sugiyama_hpeprod
-	@$(foreach val, $(DOTFILES_XDG_CONFIG), ln -sfnv $(abspath config/$(val)) $(HOME)/.config/$(val);)
+	@mkdir -p $(HOME)/.config
+	@ln -sfnv $(abspath config/mise) $(HOME)/.config/mise
 
 shell-setup: ## Setup shell and SSH settings
 	$(call banner,Setup shell and SSH settings...)
@@ -60,12 +53,12 @@ shell-setup: ## Setup shell and SSH settings
 mise: ## Setup Mise
 	$(call banner,Setup Mise...)
 	@if [[ -f $(HOME)/.local/bin/mise ]]; then \
-		mise self-update -y; \
+		mise self-update --yes; \
 		mise upgrade; \
-		mise prune -y; \
+		mise prune --yes; \
 	else \
 		curl https://mise.run | sh; \
-		mise install; \
+		mise bootstrap --yes; \
 	fi
 
 bashmarks: ## Setup Bashmarks
