@@ -23,10 +23,22 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 "~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
 
 [tasks.bootstrap]
+depends = ["bashmarks", "bat-themes"]
+run = """
+echo "Bootstrap tasks completed."
+"""
+
+[tasks.bashmarks]
 run = """
 cd ~/src/bashmarks && make install
 sed -i 's/^alias l=/# &/' ${HOME}/.bashrc
-cd ${MISE_ORIGINAL_CWD} && pwd
+"""
+
+[tasks.bat-themes]
+run = """
+mkdir -p "$(bat --config-dir)/themes"
+cp -f themes/*.tmTheme "$(bat --config-dir)/themes"
+bat cache --build
 """
 
 [settings.npm]

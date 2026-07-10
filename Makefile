@@ -10,7 +10,6 @@ CLEAR_COLOR := \033[0m
 
 # Define path
 DOTPATH   := $(HOME)/.dotfiles
-CAT_BAT   := $(HOME)/src/cat-bat
 
 define banner
 	@sep="$$(for ((i = 1; i < $(COL); i++)); do printf '='; done)"; \
@@ -20,7 +19,7 @@ endef
 list: ## List all dotfiles
 	@mise dotfiles status
 
-install: link shell-setup mise bat-theme ## Do installation process
+install: link shell-setup mise ## Do installation process
 
 link: ## Create symlink
 	$(call banner,Create symlinks...)
@@ -51,13 +50,6 @@ mise: ## Setup Mise
 		curl https://mise.run | sh; \
 		mise bootstrap --yes; \
 	fi
-
-bat-theme: ## Setup Bat theme
-	$(call banner,Setup Bat theme...)
-	@cd $(CAT_BAT) && \
-	mkdir -p "$(shell bat --config-dir)/themes" && \
-	cp -f themes/*.tmTheme "$(shell bat --config-dir)/themes" && \
-	bat cache --build
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / \
