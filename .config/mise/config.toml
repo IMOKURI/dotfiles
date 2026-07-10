@@ -2,17 +2,13 @@ redactions = ["MISE_GITHUB_TOKEN"]
 
 [settings]
 color_theme = "catppuccin"
-install_before = "7d"
+minimum_release_age = "7d"
 
 [bootstrap.packages]
 "apt:build-essential" = "latest"
 "apt:git" = "latest"
 "apt:gnupg" = "latest"
 "apt:tar" = "latest"
-
-[settings.dotfiles]
-root = "~/.dotfiles"
-default_mode = "symlink"
 
 [bootstrap.hooks.pre-dotfiles]
 run = """
