@@ -28,7 +28,7 @@ _banner "Download Dotfiles..."
 
 if [[ ! -d "${DOTPATH}" ]]; then
     git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
-    mkdir -p $(HOME)/.config
+    mkdir -p ${HOME}/.config
     ln -sfnv "${DOTPATH}/.config/mise" "${HOME}/.config/mise"
 fi
 
