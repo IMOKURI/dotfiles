@@ -1,3 +1,5 @@
+redactions = ["MISE_GITHUB_TOKEN"]
+
 [settings]
 color_theme = "catppuccin"
 install_before = "7d"
@@ -8,6 +10,7 @@ default_mode = "symlink"
 
 [bootstrap.hooks.pre-dotfiles]
 run = """
+mkdir -p -m 700 ~/.ssh
 mkdir -p ~/{bin,ghe,github,github_hpeprod,work,docker,namespace}
 mkdir -p ~/ghe/{hpe,yoshio-sugiyama}
 mkdir -p ~/github/{HPE-TA,IMOKURI,others}
@@ -23,9 +26,28 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 "~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
 
 [tasks.bootstrap]
-depends = ["bashmarks", "bat-themes"]
+depends = ["bashrc", "mise-token", "ssh", "bashmarks", "bat-themes"]
 run = """
 echo "Bootstrap tasks completed."
+"""
+
+[tasks.bashrc]
+run = """
+#!/usr/bin/env bash
+if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"; fi
+"""
+
+[tasks.mise-token]
+run = """
+#!/usr/bin/env bash
+if ! grep -q 'export MISE_GITHUB_TOKEN=' "${HOME}/.bashrc"; then echo 'export MISE_GITHUB_TOKEN="{{env.MISE_GITHUB_TOKEN}}"' >> "${HOME}/.bashrc"; fi
+"""
+
+[tasks.ssh]
+run = """
+#!/usr/bin/env bash
+touch ~/.ssh/config
+if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then echo -e "\nInclude ~/.config/ssh/*.conf" >> "${HOME}/.ssh/config"; fi
 """
 
 [tasks.bashmarks]

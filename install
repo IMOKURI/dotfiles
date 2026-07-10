@@ -30,13 +30,13 @@ if [[ ! -d "${DOTPATH}" ]]; then
     git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
 fi
 
-##### Setup dotfiles #########################################################
+##### Bootstrap ##############################################################
 
-_banner "Setup dotfiles..."
+_banner "Bootstrap..."
 
 pushd "$(pwd)"
 cd "${DOTPATH}"
-make install
+make mise
 popd
 
 ##### Instruct next steps #####################################################
