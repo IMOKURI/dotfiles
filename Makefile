@@ -10,7 +10,6 @@ CLEAR_COLOR := \033[0m
 
 # Define path
 DOTPATH   := $(HOME)/.dotfiles
-BASHMARKS := $(HOME)/src/bashmarks
 CAT_BAT   := $(HOME)/src/cat-bat
 
 define banner
@@ -21,7 +20,7 @@ endef
 list: ## List all dotfiles
 	@mise dotfiles status
 
-install: link shell-setup mise bashmarks bat-theme ## Do installation process
+install: link shell-setup mise bat-theme ## Do installation process
 
 link: ## Create symlink
 	$(call banner,Create symlinks...)
@@ -52,12 +51,6 @@ mise: ## Setup Mise
 		curl https://mise.run | sh; \
 		mise bootstrap --yes; \
 	fi
-
-bashmarks: ## Setup Bashmarks
-	$(call banner,Setup Bashmarks...)
-	@cd $(BASHMARKS) && \
-	make install && \
-	sed -i 's/^alias l=/# &/' $(HOME)/.bashrc
 
 bat-theme: ## Setup Bat theme
 	$(call banner,Setup Bat theme...)

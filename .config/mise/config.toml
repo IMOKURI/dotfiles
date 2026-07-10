@@ -22,6 +22,13 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 "~/src/bashmarks" = { url = "https://github.com/huyng/bashmarks.git" }
 "~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
 
+[tasks.bootstrap]
+run = """
+cd ~/src/bashmarks && make install
+sed -i 's/^alias l=/# &/' ${HOME}/.bashrc
+cd ${MISE_ORIGINAL_CWD} && pwd
+"""
+
 [settings.npm]
 package_manager = "bun"
 
