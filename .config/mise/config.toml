@@ -29,9 +29,6 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 
 [tasks.bootstrap]
 depends = ["bashrc", "mise-token", "ssh", "bashmarks", "bat-themes"]
-run = """
-echo "Bootstrap tasks completed."
-"""
 
 [tasks.bashrc]
 run = """
@@ -66,11 +63,12 @@ bat cache --build
 """
 
 [settings.npm]
-package_manager = "bun"
+package_manager = "pnpm"
 
 [tools]
+ansible-core = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
 bat = "latest"
-bun = "latest"
+copilot = "latest"
 fd = "latest"
 fzf = "latest"
 git-lfs = "latest"
@@ -85,34 +83,26 @@ neovim = "latest"
 node = "lts"
 packer = "latest"
 pnpm = "latest"
+prettier = "latest"
 python = "3.14"
 ripgrep = "latest"
+ruff = "latest"
 shfmt = "latest"
 starship = "latest"
 stern = "latest"
 stylua = "latest"
 terraform = "latest"
+ty = "latest"
 uv = "latest"
 wrangler = "latest"
-yarn = "latest"
 yq = "latest"
-
-# "asdf:richin13/asdf-neovim" = "latest"
 
 "npm:bash-language-server" = "latest"
 "npm:dockerfile-language-server-nodejs" = "latest"
 "npm:doctoc" = "latest"
-"npm:mcp-hub" = "latest"
-"npm:prettier" = "latest"
 "npm:tree-sitter-cli" = "latest"
 "npm:@astrojs/language-server" = "latest"
-"npm:@github/copilot" = "latest"
-"npm:@upstash/context7-mcp" = "latest"
 
-"pipx:ansible-core" = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
 "pipx:huggingface-hub" = "latest"
 "pipx:kaggle" = "latest"
-"pipx:markitdown" = "latest"
-"pipx:ruff" = "latest"
-"pipx:ty" = "latest"
 "pipx:wandb" = "latest"
