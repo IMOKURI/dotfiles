@@ -16,6 +16,7 @@ jobs:
           - ubuntu
         os_version:
           - 24.04
+          - 26.04
 
     runs-on: ubuntu-latest
     container: ${{ matrix.os_name }}:${{ matrix.os_version }}
@@ -34,5 +35,5 @@ jobs:
         HOME: /root
         MISE_GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
       run: |
-        cp -a "${GITHUB_WORKSPACE}" /root/.dotfiles
-        bash /root/.dotfiles/install
+        cp -a "${GITHUB_WORKSPACE}/.config/mise/config.toml" /root/.mise-config.toml
+        bash ${GITHUB_WORKSPACE}/install

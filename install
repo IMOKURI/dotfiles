@@ -6,12 +6,15 @@ set -e
 
 export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:/usr/local/bin:${PATH}
 
+# Mise
+export MISE_GLOBAL_CONFIG_FILE="${HOME}/.mise-config.toml"
+
+# Bootstrap branch
+BRANCH="${BRANCH:-master}"
+
 # Defind Colors
 BANNER="\033[38;2;101;178;255m" # BLUE
 CLEAR_COLOR="\033[0m"
-
-# Define path
-DOTPATH="$HOME/.dotfiles"
 
 ##### Functions ###############################################################
 
@@ -22,17 +25,12 @@ function _banner() {
     printf "\n${BANNER}%s %s${CLEAR_COLOR}\n\n" "${1}" "${sep:${#1}}"
 }
 
-##### Download Dotfiles ######################################################
-
-_banner "Download Dotfiles..."
-
-if [[ ! -d "${DOTPATH}" ]]; then
-    git clone --recursive https://github.com/IMOKURI/dotfiles.git "${DOTPATH}"
-    mkdir -p ${HOME}/.config
-    ln -sfnv "${DOTPATH}/.config/mise" "${HOME}/.config/mise"
-fi
-
 ##### Bootstrap ##############################################################
+
+if [ ! -f "${MISE_GLOBAL_CONFIG_FILE}" ]; then
+    _banner "Download mise global config..."
+    curl -fsSL -o ${MISE_GLOBAL_CONFIG_FILE} https://raw.githubusercontent.com/IMOKURI/dotfiles/refs/heads/${BRANCH}/.config/mise/config.toml
+fi
 
 _banner "Install mise..."
 curl https://mise.run | sh

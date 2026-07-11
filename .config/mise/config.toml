@@ -24,6 +24,7 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 "~/.config/*" = {}
 
 [bootstrap.repos]
+"~/.dotfiles" = { url = "https://github.com/IMOKURI/dotfiles.git" }
 "~/src/bashmarks" = { url = "https://github.com/huyng/bashmarks.git" }
 "~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
 

@@ -17,6 +17,7 @@ Dotfiles that can be installed by one command
 ## Platforms
 
 - Ubuntu 24.04
+- Ubuntu 26.04
 
 ## Requirements
 
@@ -42,20 +43,15 @@ bash -c "$(curl -fsSL https://git.io/imokuri)"
 <summary>Test in Docker</summary>
 
 ```bash
-docker run -it --rm ubuntu:24.04 bash
+docker run -it --rm ubuntu bash
 
 apt update
-apt install curl git -y
+apt install curl -y
 
 export MISE_GITHUB_TOKEN="<your_github_token>"
+export BRANCH="<branch_name>"
 
-git clone https://github.com/IMOKURI/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-
-# Optional: Change the branch to test
-git checkout <branch_name>
-
-bash install
+curl -fsSL https://raw.githubusercontent.com/IMOKURI/dotfiles/refs/heads/${BRANCH}/install | bash
 ```
 
 </details>
