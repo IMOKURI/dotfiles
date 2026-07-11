@@ -9,6 +9,9 @@ export PATH=${HOME}/.local/bin:${HOME}/bin:${HOME}/.local/share/mise/shims:/usr/
 # Mise
 export MISE_GLOBAL_CONFIG_FILE="${HOME}/.mise-config.toml"
 
+# Bootstrap branch
+BRANCH="${BRANCH:-master}"
+
 # Defind Colors
 BANNER="\033[38;2;101;178;255m" # BLUE
 CLEAR_COLOR="\033[0m"
@@ -24,8 +27,10 @@ function _banner() {
 
 ##### Bootstrap ##############################################################
 
-_banner "Download mise global config..."
-curl -fsSL -o ${MISE_GLOBAL_CONFIG_FILE} https://raw.githubusercontent.com/IMOKURI/dotfiles/refs/heads/master/.config/mise/config.toml
+if [ ! -f "${MISE_GLOBAL_CONFIG_FILE}" ]; then
+    _banner "Download mise global config..."
+    curl -fsSL -o ${MISE_GLOBAL_CONFIG_FILE} https://raw.githubusercontent.com/IMOKURI/dotfiles/refs/heads/${BRANCH}/.config/mise/config.toml
+fi
 
 _banner "Install mise..."
 curl https://mise.run | sh
