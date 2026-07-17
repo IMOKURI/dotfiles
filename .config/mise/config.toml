@@ -103,6 +103,7 @@ yq = "latest"
 "npm:doctoc" = "latest"
 "npm:tree-sitter-cli" = "latest"
 "npm:@astrojs/language-server" = "latest"
+"npm:@microsoft/compose-language-service" = "latest"
 
 "pipx:huggingface-hub" = "latest"
 "pipx:kaggle" = "latest"

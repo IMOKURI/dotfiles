@@ -74,62 +74,7 @@ return {
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             vim.lsp.config("*", { capabilities = capabilities })
 
-            vim.lsp.config.astro = {
-                init_options = {
-                    typescript = {
-                        tsdk = vim.fn.expand(
-                            "~/.local/share/mise/installs/npm-astrojs-language-server/latest/node_modules/typescript/lib"
-                        ),
-                    },
-                },
-            }
-
-            vim.lsp.config.ruff = {
-                init_options = {
-                    settings = {
-                        lineLength = 120,
-                    },
-                },
-            }
-
-            vim.lsp.config.ty = {
-                settings = {
-                    ty = {
-                        experimental = {
-                            rename = true,
-                        },
-                    },
-                },
-            }
-
-            vim.lsp.config.lua_ls = {
-                settings = {
-                    -- https://github.com/LuaLS/lua-language-server/wiki/Settings
-                    Lua = {
-                        runtime = {
-                            version = "LuaJIT",
-                            path = vim.split(package.path, ";"),
-                        },
-                        diagnostics = {
-                            globals = vim.list_extend({
-                                "Snacks",
-                                "vim",
-                            }, {}),
-                        },
-                        completion = {
-                            callSnippet = "Replace",
-                        },
-                        hint = {
-                            enable = true,
-                        },
-                        format = {
-                            enable = false,
-                        },
-                    },
-                },
-            }
-
-            vim.lsp.enable({ "astro", "bashls", "dockerls", "lua_ls", "ruff", "ty" })
+            vim.lsp.enable({ "astro", "bashls", "docker_compose_language_service", "dockerls", "lua_ls", "ruff", "ty" })
         end,
     },
 }
