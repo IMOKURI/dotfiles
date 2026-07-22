@@ -23,31 +23,25 @@ mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 "~/.vimrc" = {}
 "~/.config/*" = {}
 
+"~/.bashrc/local-bashrc" = { block = '''
+if [[ -f ~/.config/bashrc ]]; then
+  . ~/.config/bashrc
+fi
+''' }
+"~/.ssh/config/local-ssh" = { line = 'Include ~/.config/ssh/*.conf' }
+
 [bootstrap.repos]
 "~/.dotfiles" = { url = "https://github.com/IMOKURI/dotfiles.git" }
 "~/src/bashmarks" = { url = "https://github.com/huyng/bashmarks.git" }
 "~/src/cat-bat" = { url = "https://github.com/catppuccin/bat.git" }
 
 [tasks.bootstrap]
-depends = ["bashrc", "mise-token", "ssh", "bashmarks", "bat-themes"]
-
-[tasks.bashrc]
-run = """
-#!/usr/bin/env bash
-if ! grep -q '.config/bashrc' "${HOME}/.bashrc"; then echo -e "\nif [[ -f ~/.config/bashrc ]]; then\n  . ~/.config/bashrc\nfi" >> "${HOME}/.bashrc"; fi
-"""
+depends = ["mise-token", "bashmarks", "bat-themes"]
 
 [tasks.mise-token]
 run = """
 #!/usr/bin/env bash
 if ! grep -q 'export MISE_GITHUB_TOKEN=' "${HOME}/.bashrc"; then echo 'export MISE_GITHUB_TOKEN="{{env.MISE_GITHUB_TOKEN}}"' >> "${HOME}/.bashrc"; fi
-"""
-
-[tasks.ssh]
-run = """
-#!/usr/bin/env bash
-touch ~/.ssh/config
-if ! grep -q 'Include ~/.config/ssh/' "${HOME}/.ssh/config"; then echo -e "\nInclude ~/.config/ssh/*.conf" >> "${HOME}/.ssh/config"; fi
 """
 
 [tasks.bashmarks]
