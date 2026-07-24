@@ -62,6 +62,7 @@ package_manager = "pnpm"
 
 [tools]
 ansible-core = { version = "latest", uvx_args = "--with ansible --with cryptography --with kubernetes --with passlib" }
+aws-cli = "latest"
 bat = "latest"
 copilot = "latest"
 fd = "latest"
