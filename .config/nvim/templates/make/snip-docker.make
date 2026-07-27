@@ -29,6 +29,10 @@ up-{{_input_:container_name}}: ## Start {{_input_:container_name}}.
 		-v $(XDG_CACHE_HOME):/root/.cache \
 		$(IMAGE_NAME):$(IMAGE_TAG)
 
+.PHONY: exec-{{_input_:container_name}}
+exec-{{_input_:container_name}}: ## Exec {{_input_:container_name}}.
+	docker exec -it {{_input_:container_name}} bash
+
 .PHONY: down-{{_input_:container_name}}
 down-{{_input_:container_name}}: ## Stop {{_input_:container_name}}.
 	docker stop {{_input_:container_name}} || :
