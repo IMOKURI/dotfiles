@@ -35,3 +35,9 @@ gen-extfile: ## gen-extfile
 gen-cert: ## gen-cert
 	openssl x509 -req -in server.csr -CA ca.crt -CAkey ca-secret.key -CAcreateserial -out server.crt -days 3650 \
 		-extfile extfile.cnf
+
+.PHONY: create-k8s-secret
+create-k8s-secret: ## create-k8s-secret
+	kubectl create secret tls server-cert \
+		--cert=server.crt \
+		--key=server-secret.key
