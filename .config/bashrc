@@ -133,6 +133,32 @@ gclone() {
     git clone "git@$HOST:$REPO_NAME.git"
 }
 
+gremote() {
+    if [ $# -lt 1 ]; then
+        echo "Usage: gremote <repository-name>"
+        return 1
+    fi
+
+    REPO_NAME=$1
+    REPO_NAME=${REPO_NAME%.git}  # Remove .git suffix if present
+    REPO_NAME=${REPO_NAME#*:}  # Remove ssh host prefix if present
+
+    SSH_HOSTS=("github" "github_hpeprod" "ghe")
+
+    echo "Select SSH host for adding remote:"
+    select HOST in "${SSH_HOSTS[@]}"; do
+        if [ -n "$HOST" ]; then
+            echo "You selected: $HOST"
+            break
+        else
+            echo "Invalid selection. Try again."
+        fi
+    done
+
+    echo "Adding remote repository: $REPO_NAME to $HOST ..."
+    git remote add origin "git@$HOST:$REPO_NAME.git"
+}
+
 alias k='kubectl'
 alias ka='kubectl apply'
 alias kc='kubectl create'
