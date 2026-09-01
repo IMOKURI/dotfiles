@@ -37,3 +37,4 @@ jobs:
       run: |
         cp -a "${GITHUB_WORKSPACE}/.config/mise/config.toml" /root/.mise-config.toml
         bash ${GITHUB_WORKSPACE}/install
+        ls -l ${HOME}

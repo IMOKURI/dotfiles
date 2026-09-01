@@ -11,6 +11,7 @@ minimum_release_age = "7d"
 "apt:tar" = "latest"
 
 [bootstrap.hooks.pre-dotfiles]
+shell = "bash"
 run = """
 mkdir -p -m 700 ~/.ssh
 mkdir -p ~/{bin,ghe,github,github_hpeprod,work,docker,namespace}
