@@ -16,13 +16,16 @@ mkdir -p -m 700 ~/.ssh
 mkdir -p ~/bin
 mkdir -p ~/work
 mkdir -p ~/docker
-mkdir -p ~/namespace
+mkdir -p ~/namespace/default
 mkdir -p ~/ghe/hpe
 mkdir -p ~/ghe/yoshio-sugiyama
+mkdir -p ~/ghe/_
 mkdir -p ~/github/HPE-TA
 mkdir -p ~/github/IMOKURI
-mkdir -p ~/github/others
+mkdir -p ~/github/_
+mkdir -p ~/github_hpeprod/HPE-EMU
 mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
+mkdir -p ~/github_hpeprod/_
 """
 
 [dotfiles]
