@@ -11,12 +11,17 @@ minimum_release_age = "7d"
 "apt:tar" = "latest"
 
 [bootstrap.hooks.pre-dotfiles]
-shell = "bash -c"
 run = """
 mkdir -p -m 700 ~/.ssh
-mkdir -p ~/{bin,ghe,github,github_hpeprod,work,docker,namespace}
-mkdir -p ~/ghe/{hpe,yoshio-sugiyama}
-mkdir -p ~/github/{HPE-TA,IMOKURI,others}
+mkdir -p ~/bin
+mkdir -p ~/work
+mkdir -p ~/docker
+mkdir -p ~/namespace
+mkdir -p ~/ghe/hpe
+mkdir -p ~/ghe/yoshio-sugiyama
+mkdir -p ~/github/HPE-TA
+mkdir -p ~/github/IMOKURI
+mkdir -p ~/github/others
 mkdir -p ~/github_hpeprod/yoshio-sugiyama_hpeprod
 """
 
