@@ -23,7 +23,7 @@ gen-ca-cert: ## gen-ca-cert
 		-extfile ca-extfile.cnf
 
 .PHONY: gen-ca
-gen-ca: gen-ca-secret-key gen-ca-csr gen-ca-cert ## gen-ca
+gen-ca: gen-ca-secret-key gen-ca-csr gen-ca-extfile gen-ca-cert ## gen-ca
 
 .PHONY: check-ca-cert
 check-ca-cert: ## check-ca-cert
@@ -31,7 +31,7 @@ check-ca-cert: ## check-ca-cert
 
 .PHONY: clean-ca
 clean-ca: ## clean-ca
-	rm -f ca-secret.key ca.csr ca.crt ca.srl
+	rm -f ca-secret.key ca.csr ca.crt ca.srl ca-extfile.cnf
 
 #######################################################################################################################
 # Server Cert for {{_input_:domain}}
