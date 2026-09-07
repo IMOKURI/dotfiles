@@ -8,7 +8,7 @@ gen-ca-secret-key: ## gen-ca-secret-key
 .PHONY: gen-ca-csr
 gen-ca-csr: ## gen-ca-csr
 	openssl req -new -key ca-secret.key -out ca.csr \
-		-subj "/CN={{_input_:domain}} Root CA"
+		-subj "/CN=IMOKURI Root CA {{_expr_:strftime('%Y%m')}}"
 
 .PHONY: gen-ca-extfile
 gen-ca-extfile: ## gen-ca-extfile
