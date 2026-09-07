@@ -3,7 +3,7 @@
 #######################################################################################################################
 .PHONY: gen-ca-secret-key
 gen-ca-secret-key: ## gen-ca-secret-key
-	openssl genpkey -algorithm ed25519 -out ca-secret.key
+	openssl genrsa -out ca-secret.key 2048
 
 
 .PHONY: gen-ca-csr
@@ -27,7 +27,7 @@ clean-ca: ## clean-ca
 #######################################################################################################################
 .PHONY: gen-server-secret-key
 gen-server-secret-key: ## gen-server-secret-key
-	openssl genpkey -algorithm ed25519 -out server-secret.key
+	openssl genrsa -out server-secret.key 2048
 
 .PHONY: gen-server-csr
 gen-server-csr: ## gen-server-csr
@@ -36,7 +36,13 @@ gen-server-csr: ## gen-server-csr
 
 .PHONY: gen-server-extfile
 gen-server-extfile: ## gen-server-extfile
-	echo "subjectAltName=DNS:{{_input_:domain}}" > extfile.cnf
+	@echo "basicConstraints = CA:FALSE" > extfile.cnf
+	@echo "keyUsage = digitalSignature, keyEncipherment" >> extfile.cnf
+	@echo "extendedKeyUsage = serverAuth" >> extfile.cnf
+	@echo "subjectAltName = @alt_names" >> extfile.cnf
+	@echo "" >> extfile.cnf
+	@echo "[alt_names]" >> extfile.cnf
+	@echo "DNS.1 = {{_input_:domain}}" >> extfile.cnf
 
 .PHONY: gen-server-cert
 gen-server-cert: ## gen-server-cert
