@@ -9,7 +9,7 @@ gen-ca-secret-key: ## gen-ca-secret-key
 .PHONY: gen-ca-csr
 gen-ca-csr: ## gen-ca-csr
 	openssl req -new -key ca-secret.key -out ca.csr \
-		-subj "/CN=Root CA"
+		-subj "/CN={{_input_:domain}} Root CA"
 
 .PHONY: gen-ca-cert
 gen-ca-cert: ## gen-ca-cert
@@ -17,6 +17,10 @@ gen-ca-cert: ## gen-ca-cert
 
 .PHONY: gen-ca
 gen-ca: gen-ca-secret-key gen-ca-csr gen-ca-cert ## gen-ca
+
+.PHONY: clean-ca
+clean-ca: ## clean-ca
+	rm -f ca-secret.key ca.csr ca.crt ca.srl
 
 #######################################################################################################################
 # Server Cert for {{_input_:domain}}
@@ -41,6 +45,10 @@ gen-server-cert: ## gen-server-cert
 
 .PHONY: gen-server
 gen-server: gen-server-secret-key gen-server-csr gen-server-extfile gen-server-cert ## gen-server
+
+.PHONY: clean-server
+clean-server: ## clean-server
+	rm -f server-secret.key server.csr server.crt extfile.cnf
 
 .PHONY: create-k8s-secret
 create-k8s-secret: ## create-k8s-secret
