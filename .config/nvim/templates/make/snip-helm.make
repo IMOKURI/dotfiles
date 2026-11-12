@@ -1,7 +1,7 @@
 #######################################################################################################################
 # {{_input_:repo_name}}/{{_input_:app_name}}
 #######################################################################################################################
-VERSION = ""
+VERSION = "{{_cursor_}}"
 
 .PHONY: add-helm-repo
 add-helm-repo: ## add-helm-repo
@@ -28,4 +28,3 @@ up-{{_input_:app_name}}: ## Start {{_input_:app_name}}.
 down-{{_input_:app_name}}: ## Stop {{_input_:app_name}}.
 	helm uninstall {{_input_:app_name}} --namespace {{_input_:namespace}} || :
 
-{{_cursor_}}
